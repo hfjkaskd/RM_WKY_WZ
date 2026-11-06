@@ -1,0 +1,150 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+namespace Whitebox.Foundation.Editor
+{
+    public static class CoreFlowVerification
+    {
+        private static FoundationController controller;
+        private static int phase,frame,initialId,secondId;
+        private static float started;
+        private static bool goalsFinished;
+        private static string failure;
+        private static readonly Report report=new Report();
+        public static void Run()
+        {
+            controller=UnityEngine.Object.FindObjectOfType<FoundationController>();
+            Require(controller!=null&&controller.CoreFlow.IsInitialized&&controller.CurrentLevelNumber==1,"Real core entry starts level1");
+            Require(controller.Gameplay.WinFail==controller.CoreFlow.WinFail,"Actual permanent WinFail16 is the production core owner");
+            Require(controller.CoreFlow.Configuration.progressFileName.StartsWith("CoreLevels_verify_",StringComparison.Ordinal),"Use the isolated progress-file transport");
+            initialId=controller.GetInstanceID();started=Time.realtimeSinceStartup;
+            SceneManager.sceneLoaded+=SceneLoaded;Application.logMessageReceived+=ObserveLog;
+            EditorApplication.update+=Tick;GoalUiVerification.OnFinished+=GoalsFinished;
+            File.WriteAllText("live_core_flow_verification.json","{\"passed\":false,\"status\":\"running\"}\n");
+            GoalUiVerification.Run();
+        }
+        private static void SceneLoaded(Scene scene,LoadSceneMode mode){controller=UnityEngine.Object.FindObjectOfType<FoundationController>();}
+        private static void GoalsFinished(){goalsFinished=true;}
+        private static void ObserveLog(string message,string stack,LogType type)
+        {if(type==LogType.Error||type==LogType.Exception||type==LogType.Assert)failure=message+"\n"+stack;}
+        private static void Tick()
+        {
+            try{Step();}catch(Exception error){report.failure=error.ToString();Finish();Debug.LogException(error);}
+        }
+        private static void Step()
+        {
+            if(!EditorApplication.isPlaying||frame==Time.frameCount)return;frame=Time.frameCount;
+            Require(failure==null,failure);Require(Time.realtimeSinceStartup-started<180,"Core win/continue/fail/retry scenario timeout, phase="+phase);
+            if(controller==null||controller.Gameplay==null||!controller.CoreFlow.IsInitialized)return;
+            var game=controller.Gameplay;var owner=controller.CoreFlow;
+            if(phase==0)
+            {
+                if(!goalsFinished||owner.WinDialog==null||!owner.WinDialog.Lifecycle.IsShowing||owner.WinDialog.IsAnimationWorking)return;
+                Require(game.Session.State==3&&game.Session.WonAnyLevel&&game.Session.ExtraCoins>0,"Native session Win and remaining moves reached the real result");
+                Require(!owner.RemainingMoves.IsRemainingMovesActive&&owner.RemainingMoves.CollectionCount>0,"Real remaining-move replacement, special explosions and coin flights completed");
+                Require(controller.Progress.LevelToPlay==2,"Actual core progress advances before Continue");
+                using(var db=OriginalRuntimeStorage.Open(controller.Progress.DatabasePath))
+                {
+                    Require(db.Find("Level").Value=="2","Actual SQLite commit contains level2");
+                    Require(db.Find("Coins").Key==null&&db.Find("Stars").Key==null&&db.Find("Area").Key==null,"Core progress writes no peripheral balances/area");
+                }
+                report.win_remaining_reward=game.Session.ExtraCoins;report.win_left_moves=game.Session.LeftMoves;
+                report.production_win_remaining_result_bound=true;Capture("core_flow_win.png");
+                Click(owner.WinDialog.ContinueButton,owner.UiCamera);phase=1;return;
+            }
+            if(phase==1)
+            {
+                if(controller.GetInstanceID()==initialId||controller.CurrentLevelNumber!=2)return;
+                Require(game.Session.Number==2&&game.Session.Name=="00002v02_L"&&game.Moves.LeftMoves==27&&game.State.IsPlaying(),"Continue reloads the actual original second level with27 moves");
+                Require(UnityEngine.Object.FindObjectsOfType<OriginalInGameBoosterSlot>(true).Length==0,"No inventory/purchase booster UI in the core scene");
+                secondId=controller.GetInstanceID();report.actual_next_level_loaded=true;Capture("core_flow_level2.png");
+                // Explicit branch stimulus, not a simulated27-move playthrough.
+                // The real MoveManager event drives the real WinFail/failed UI.
+                game.Moves.IncreaseMove(-game.Moves.LeftMoves,0);phase=2;return;
+            }
+            if(phase==2)
+            {
+                if(owner.FailDialog==null||!owner.FailDialog.Lifecycle.IsShowing)return;
+                Require(game.State.IsFail()&&game.Session.State==4&&!game.CanUserMakeMove(),"Actual zero-budget branch produces a blocked failure state");
+                Require(controller.Progress.LevelToPlay==2,"Failure does not advance progress or spend lives");
+                report.production_zero_move_failure_bound=true;Capture("core_flow_fail.png");
+                Click(owner.FailDialog.RetryButton,owner.UiCamera);phase=3;return;
+            }
+            if(phase==3)
+            {
+                if(controller.GetInstanceID()==secondId||controller.CurrentLevelNumber!=2)return;
+                Require(game.Moves.LeftMoves==27&&game.State.IsPlaying()&&game.Session.State==1,"Retry creates a fresh, playable level2 session");
+                var board=UnityEngine.Object.FindObjectOfType<OriginalInitialBoardView>();
+                Require(board.Goals.GetGoalLeftCount(11)==36,"Retry restores the original36-box goal");
+                VerifyCap(owner.Configuration.progressFileName+"_boundary");
+                Capture("core_flow_retry.png");report.actual_retry_reloaded_same_level=true;report.cap100_and_restart_verified=true;
+                report.core_booster_inventory_purchase_ui_absent=true;
+                // Separate initialization smoke check; this is not a claim of
+                // playing/finishing level2. Load real level3 from core progress.
+                controller.Progress.CompleteLevel(2);SceneManager.LoadSceneAsync(controller.gameObject.scene.path,LoadSceneMode.Single);phase=4;return;
+            }
+            if(phase==4)
+            {
+                if(controller.CurrentLevelNumber!=3)return;
+                int expected=0;var definition=OriginalLevelReader.Load("Levels/level_3");
+                foreach(int id in definition.Grid.Items)if(id==22)expected++;
+                Require(expected>0,"Native level3 contains its two-layer boxes");
+                var sprite=Resources.Load<Sprite>("Recovered/Sprite/Items-BoxItem-box_1");int observed=0;
+                foreach(var view in UnityEngine.Object.FindObjectsOfType<OriginalBoxItemSpriteView>())
+                    if(view.Model!=null&&view.Model.TiledId==22)
+                    {Require(view.Model.LayerCount==2&&view.baseView.sprite==sprite,"Real layered-box model and native sprite bind in level3");observed++;}
+                Require(observed==expected&&game.State.IsPlaying(),"All original two-layer boxes populate actual level3");
+                report.original_level3_two_layer_boxes_bound=true;Capture("core_flow_level3.png");report.passed=true;Finish();
+            }
+        }
+        private static void VerifyCap(string file)
+        {
+            using(var progress=new CoreLevelProgress(file,100))
+            {
+                progress.CompleteLevel(100);Require(progress.IsComplete&&progress.LevelToPlay==100,"Completed core catalog never stores101");
+                using(var db=OriginalRuntimeStorage.Open(progress.DatabasePath))Require(db.Find("Level").Value=="100","Final-level cap is persisted");
+                bool rejected=false;try{progress.CompleteLevel(101);}catch(InvalidDataException){rejected=true;}Require(rejected,"Out-of-scope completion is rejected");
+                progress.StartOver();Require(!progress.IsComplete&&progress.LevelToPlay==1,"Explicit Play Again resets to1");
+            }
+        }
+        private static void Click(Button button,Camera camera)
+        {
+            Require(button!=null&&button.interactable&&button.gameObject.activeInHierarchy,"Actual visible standard Button is ready");
+            var graphic=button.targetGraphic;Require(graphic!=null&&graphic.isActiveAndEnabled&&graphic.color.a>0,"Button targets its actual visible Graphic");
+            var point=camera.WorldToScreenPoint(graphic.rectTransform.TransformPoint(graphic.rectTransform.rect.center));
+            var data=new PointerEventData(EventSystem.current){position=point,button=PointerEventData.InputButton.Left};
+            var hits=new List<RaycastResult>();EventSystem.current.RaycastAll(data,hits);
+            Require(hits.Count>0,"Standard EventSystem finds the visible Button surface");
+            var handler=ExecuteEvents.GetEventHandler<IPointerClickHandler>(hits[0].gameObject);
+            Require(handler==button.gameObject,"Top raycast reaches the same visual Button: "+(hits.Count>0?hits[0].gameObject.name:"none"));
+            ExecuteEvents.ExecuteHierarchy(hits[0].gameObject,data,ExecuteEvents.pointerClickHandler);
+            ExecuteEvents.ExecuteHierarchy(hits[0].gameObject,data,ExecuteEvents.pointerClickHandler); // Duplicate-click guard.
+        }
+        private static void Capture(string name)
+        {
+            var camera=controller.CoreFlow.UiCamera;var target=new RenderTexture(720,1280,24);var old=camera.targetTexture;var active=RenderTexture.active;
+            camera.targetTexture=target;camera.Render();RenderTexture.active=target;var image=new Texture2D(720,1280,TextureFormat.RGB24,false);
+            image.ReadPixels(new Rect(0,0,720,1280),0,0);image.Apply();File.WriteAllBytes(name,image.EncodeToPNG());
+            camera.targetTexture=old;RenderTexture.active=active;UnityEngine.Object.DestroyImmediate(image);UnityEngine.Object.DestroyImmediate(target);
+        }
+        private static void Require(bool value,string message){if(!value)throw new InvalidOperationException(message);}
+        private static void Finish()
+        {
+            EditorApplication.update-=Tick;SceneManager.sceneLoaded-=SceneLoaded;Application.logMessageReceived-=ObserveLog;GoalUiVerification.OnFinished-=GoalsFinished;
+            File.WriteAllText("live_core_flow_verification.json",JsonUtility.ToJson(report,true)+"\n");
+        }
+        [Serializable]private sealed class Report
+        {
+            public bool passed,production_win_remaining_result_bound,actual_next_level_loaded,production_zero_move_failure_bound,actual_retry_reloaded_same_level,cap100_and_restart_verified,core_booster_inventory_purchase_ui_absent;
+            public bool original_level3_two_layer_boxes_bound;
+            public int win_left_moves,win_remaining_reward;public string failure;
+            public string scope="Actual GameScene/CoreGameFlow owners run without Editor runtime substitutions or account/event fixture services. Existing explicit TNT/rocket board setup and recorded gestures stimulate real goal collection; this is not a natural full-level player solve. Real WinFail16/session Win/check gate/remaining moves/dialog flow commit core-only SQLite progress; a standard EventSystem raycast and Button click load original level2. Native MoveManager zero-budget stimulus verifies actual failure/retry and real scene reload, not27 physical turns. Separate private progress verifies the100 cap/restart. Remaining first100 obstacles, full natural playthroughs, no-moves shuffle, complete King animation queue/mixing, full original visual/audio/mobile parity remain pending.";
+        }
+    }
+}

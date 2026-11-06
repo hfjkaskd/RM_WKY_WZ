@@ -1,0 +1,1310 @@
+{
+  "baseline_commit": "019462c3aed9cd1f82b4903c1557088ac111b933",
+  "verified_utc": "2026-11-05T10:43:40.272080+00:00",
+  "source_files": {
+    "SourceCatalog/ExportKingRig.cs": {
+      "before": "e7f2d0e40bfd5a6b3b47d12c3f97d362cadbe8b1d6d22959fe2d729929ab1e63",
+      "after": "515bf5bb227ea6756834d69aebabfd9f4ff226282e4e3e4930f16c35620fbe67"
+    },
+    "Assets/Resources/Foundation/Animation/OriginalWinLogoRig.bytes": {
+      "before": null,
+      "after": "e3d747b460b3b3e0d7dfc75432b25a91f75fcd69bd39c9f50da5813fbe7df2e1"
+    },
+    "Assets/Resources/Foundation/Animation/OriginalWinLogoRig.bytes.meta": {
+      "before": null,
+      "after": "350ce002192d8e64a98642a3f8898c845a5458d37c83ad34cafc3af2295aafdf"
+    },
+    "Assets/Resources/Foundation/Prefabs/CoreWinLogo.prefab": {
+      "before": "86699d38f3048363958e5ca97638e7a5cb0ffc5048af35c4711d8802dfbae8fe",
+      "after": "f4997f9e1f2cce8a4715aa95c60dbbf02428b56a1e61542cc953b9c1859398be"
+    },
+    "Assets/Resources/Foundation/Prefabs/OriginalWinLogoVisual.prefab": {
+      "before": "86cf66c2b9c7f34ff880d7feba9174056c0818addf3be4165adacbc9d459a775",
+      "after": "30eaaf55f83fc7b219ae385b37a5082dcff154023fb0ff011cd80130e465b838"
+    },
+    "Assets/Foundation/Editor/WinLogoVisualVerification.cs": {
+      "before": "d67fdc53488e33eb7ce139dfeddc6cbd625ed73d732b524952b1d15bcdebc00f",
+      "after": "e2f02026a8d484c138479e2244ee0535d70f3d4b9be36a6b3ba3aa71cc829b0d"
+    },
+    "Assets/Foundation/Runtime/OriginalKingAnimationTrack.cs": {
+      "before": "8693c04f0c40be6bfd1ffb0f7e8199267cce3a61a31d78971fcb24a7ad2aaa8a",
+      "after": "a199d064f2435440c9201ad6e6d1f6fe8ba04ebaa0ae1f79b3e662643dbaeafc"
+    },
+    "Assets/Foundation/Runtime/OriginalKingMesh.cs": {
+      "before": "a13af266ff0b1c82b7c2c152543c7640f3da809d36a9200ea21e1c48394ab66d",
+      "after": "7f8701444b7d098d59d920aec02efceb217cdb31b53df7aac934ced84b1e0f86"
+    },
+    "Assets/Foundation/Runtime/OriginalKingPose.cs": {
+      "before": "32146a2072820fb8800842d8d96c29a4ff1a49e697febff2cd6eea0cdadd1ebe",
+      "after": "3761d98fc2407a0b3f7a0b199aade000e466d97b275deb84df938ce86101a5b3"
+    },
+    "Assets/Foundation/Runtime/OriginalKingRigData.cs": {
+      "before": "ec5cb4c54742e0bb3f49a95849be01198ee3ccfd56814cc5d10a074300d39027",
+      "after": "c500614e23fcb3b6bc8038d1bfc16b1052e5ecf2d71071b91bd754fa07290944"
+    },
+    "Assets/Foundation/Runtime/OriginalQuadClip.cs": {
+      "before": null,
+      "after": "2240790b1de0a4dbffc4d96fe8567f11ca14730a03829a8dacc1561639a3e8d2"
+    },
+    "Assets/Foundation/Runtime/OriginalQuadClip.cs.meta": {
+      "before": null,
+      "after": "a619980779118be69dce1c063e9956ddd3884da7739cddfb2a533149c0fc7a59"
+    },
+    "Assets/Foundation/Runtime/OriginalWinLogoDialog.cs": {
+      "before": "995a62ad8387c7c3da043f7d49249bfc2a0bed6be0fc72b5c2ddd74d43432158",
+      "after": "e91d638f66499d9ac25e1cd26a1de9aaeff652935c0bab31eb374b9d729c8865"
+    },
+    "Assets/Foundation/Runtime/OriginalWinLogoRigView.cs": {
+      "before": null,
+      "after": "db2119ab5fa8eee8fee5bf5126c61f0a023391352914ad14bdc45ddce2aac714"
+    },
+    "Assets/Foundation/Runtime/OriginalWinLogoRigView.cs.meta": {
+      "before": null,
+      "after": "07de72977eeeac8c49cda78507721397985b5e86e47c071ad85cf910572e9f44"
+    },
+    "Assets/Foundation/Runtime/OriginalWinLogoVisual.cs": {
+      "before": "5f647bc357b217999d2e0c4bf5269f9dd276d237e9aa4da1edfb9f9f51139c4b",
+      "after": "af9a201284935f62f0f020f24a904734d0fb1e7d6f7f19bee73d285f30ec9a2f"
+    }
+  },
+  "native": {
+    "pinned_version": 38911,
+    "skeleton_version": "3.8.84",
+    "skeleton_sha256": "f409f2eb4c6819b31133b62aabb3559940eb2075b8006fec4f1cd73eafcaa3d1",
+    "atlas_sha256": "70470eedb7b5ed1a2e2ef1b2694589c69b836366a968d9abd968091a763b4749",
+    "set_bone_position": "0x18d16f8",
+    "slot_alpha_writes": [
+      "0x18d1f8c",
+      "0x18d1fb8"
+    ],
+    "slot_attachment_clears": [
+      "0x18d1fec",
+      "0x18d2020",
+      "0x18d2054",
+      "0x18d2088"
+    ],
+    "hidden_awake_advance": "0x18d112c",
+    "reverse_speed": -2,
+    "reverse_cutoff": 1.2333333333333334,
+    "reverse_stop_frame": 43
+  },
+  "representation": {
+    "format": 5,
+    "bones": 43,
+    "slots": 50,
+    "clips": [
+      "logo"
+    ],
+    "mesh_parts": 2,
+    "animated_clip_quads": 2,
+    "old_clip_and_group_bytes": 8865467,
+    "rig_bytes": 100222,
+    "old_files_retained_only_as_source_reference": true,
+    "prefab_hierarchies_materials_and_particle_owners_unchanged": true,
+    "slot_close_semantics": "Write two alphas and clear four actual attachments once, then let the original track continue. No permanent per-vertex mask is reapplied.",
+    "event_export": "Pose-only export; existing typed firework/skip/close timers remain their runtime owners."
+  },
+  "verification": {
+    "quad_decomposition": {
+      "passed": true,
+      "samples": 100000,
+      "single_polygon": 30974,
+      "two_triangles": 69026,
+      "managed_bytes_10000_frames": 0
+    },
+    "pose_and_bind_geometry": {
+      "passed": true,
+      "bones": 43,
+      "paths": 0,
+      "clips": 1,
+      "pose_samples": 2966,
+      "scalar_comparisons": 5393190,
+      "max_absolute_error": 0,
+      "mesh_samples": 153,
+      "mesh_max_error": 0,
+      "managed_bytes_10000_frames": 0,
+      "milliseconds_10000_frames": 318.3371
+    },
+    "state_forward_reverse_layouts_and_one_time_slot_edits": {
+      "passed": true,
+      "playbacks": 96,
+      "frames": 23568,
+      "one_time_slot_clears": 48,
+      "local_max_error": 0,
+      "mesh_max_error": 0,
+      "managed_bytes_10000_frames": 0,
+      "milliseconds_10000_frames": 323
+    },
+    "actual_unity_mesh_uploads": {
+      "passed": true,
+      "files": 2,
+      "mesh_uploads": 176,
+      "unity_frames": 146,
+      "slot_clears": 2,
+      "reverse_commands": 1,
+      "layout_commands": 12,
+      "mesh_scalars": 391088,
+      "mesh_max_error": 0,
+      "track_time_max_error": 0,
+      "colors_and_triangles_exact": true
+    },
+    "legacy_king": {
+      "passed": true,
+      "animations": 32,
+      "pose_samples": 35663,
+      "scalar_comparisons": 81986555,
+      "max_absolute_error": 0,
+      "oracle": "recovered 3.8.84 reference decoder/runtime outside Unity; not native ARM execution",
+      "includes_key_boundaries_loop_weighted_mesh_deform_draw_order": true,
+      "clipped_mesh_samples": 2978,
+      "clipped_mesh_max_error": 4.76837158e-07,
+      "pose_and_mesh_managed_bytes_1000_frames": 0,
+      "animation_track": {
+        "passed": true,
+        "mix_seconds": 0.2,
+        "compared_frames": 4020,
+        "scalar_comparisons": 4299468,
+        "max_absolute_error": 3.05175781e-05,
+        "queued_and_interrupted_transitions": true,
+        "managed_bytes_1000_frames": 0
+      }
+    },
+    "legacy_hand": {
+      "passed": true,
+      "bones": 14,
+      "paths": 2,
+      "clips": 3,
+      "pose_samples": 4032,
+      "scalar_comparisons": 1539654,
+      "max_absolute_error": 1.0471791e-05,
+      "mesh_samples": 202,
+      "mesh_max_error": 7.15255737e-07,
+      "managed_bytes_10000_frames": 0,
+      "milliseconds_10000_frames": 50.121900000000004
+    },
+    "legacy_exports_byte_identical": {
+      "king": true,
+      "hand": true,
+      "jester": true
+    },
+    "formal_scenes": {
+      "early_bound": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "requested_levels": [
+          2
+        ],
+        "attempts": [
+          {
+            "level": 2,
+            "initial_budget": 27,
+            "goals_left": 0,
+            "reloaded_level": 3,
+            "result_coins": 56,
+            "moves_left_on_win": 17,
+            "bonus_coins": 0,
+            "authored_rocket_eggs_removed": 0,
+            "authored_rocket_owls_removed": 0,
+            "level_try_count": 1,
+            "difficulty_seed": 404,
+            "session_name": "00002v02_L",
+            "outcome": "win",
+            "reopened_completion": false,
+            "entered_from_previous_result": false,
+            "free_hammer_used": false,
+            "free_arrow_used": false,
+            "free_arrow_row_cleared": false,
+            "free_cannon_used": false,
+            "free_cannon_column_cleared": false,
+            "free_jester_used": false,
+            "double_lightball_opening": false,
+            "hammer_refills": 0,
+            "hammer_boxes_removed": 0,
+            "moves": [
+              {
+                "from": {
+                  "x": 4,
+                  "y": 7
+                },
+                "to": {
+                  "x": 4,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "hint",
+                "spent_from": 27,
+                "refills": 8,
+                "goals_left": 34,
+                "from_item": 4,
+                "to_item": 1
+              },
+              {
+                "from": {
+                  "x": 3,
+                  "y": 6
+                },
+                "to": {
+                  "x": 4,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 26,
+                "refills": 12,
+                "goals_left": 29,
+                "from_item": 3,
+                "to_item": 20
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 5
+                },
+                "to": {
+                  "x": 2,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 25,
+                "refills": 5,
+                "goals_left": 27,
+                "from_item": 1,
+                "to_item": 2
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 5
+                },
+                "to": {
+                  "x": 1,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 24,
+                "refills": 24,
+                "goals_left": 19,
+                "from_item": 1,
+                "to_item": 4
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 7
+                },
+                "to": {
+                  "x": 2,
+                  "y": 7
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 23,
+                "refills": 7,
+                "goals_left": 17,
+                "from_item": 1,
+                "to_item": 4
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 4
+                },
+                "to": {
+                  "x": 3,
+                  "y": 4
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 22,
+                "refills": 8,
+                "goals_left": 16,
+                "from_item": 4,
+                "to_item": 3
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 3
+                },
+                "to": {
+                  "x": 2,
+                  "y": 4
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 21,
+                "refills": 37,
+                "goals_left": 9,
+                "from_item": 1,
+                "to_item": 40
+              },
+              {
+                "from": {
+                  "x": 3,
+                  "y": 4
+                },
+                "to": {
+                  "x": 4,
+                  "y": 4
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 20,
+                "refills": 14,
+                "goals_left": 8,
+                "from_item": 10,
+                "to_item": 2
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 4
+                },
+                "to": {
+                  "x": 2,
+                  "y": 5
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 19,
+                "refills": 10,
+                "goals_left": 8,
+                "from_item": 3,
+                "to_item": 2
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 4
+                },
+                "to": {
+                  "x": 2,
+                  "y": 4
+                },
+                "is_tap": false,
+                "settled": false,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 18,
+                "refills": 32,
+                "goals_left": 0,
+                "from_item": 10,
+                "to_item": 50
+              }
+            ],
+            "opening_vacancies": [],
+            "goals_at_result": [
+              {
+                "type": 11,
+                "left": 0
+              }
+            ],
+            "combos_at_result": [
+              {
+                "type": 3,
+                "count": 1
+              }
+            ],
+            "cupboards_at_result": [],
+            "grass": [],
+            "honey": []
+          }
+        ],
+        "skip_and_layouts": {
+          "passed": true,
+          "late": false,
+          "reverse": true,
+          "stopped": true,
+          "layouts": 4,
+          "samples_per_layout": 3,
+          "next_level": 3,
+          "track_at_skip": 1.0833330154418945
+        }
+      },
+      "late": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "requested_levels": [
+          2
+        ],
+        "attempts": [
+          {
+            "level": 2,
+            "initial_budget": 27,
+            "goals_left": 0,
+            "reloaded_level": 3,
+            "result_coins": 64,
+            "moves_left_on_win": 17,
+            "bonus_coins": 0,
+            "authored_rocket_eggs_removed": 0,
+            "authored_rocket_owls_removed": 0,
+            "level_try_count": 1,
+            "difficulty_seed": 404,
+            "session_name": "00002v02_L",
+            "outcome": "win",
+            "reopened_completion": false,
+            "entered_from_previous_result": false,
+            "free_hammer_used": false,
+            "free_arrow_used": false,
+            "free_arrow_row_cleared": false,
+            "free_cannon_used": false,
+            "free_cannon_column_cleared": false,
+            "free_jester_used": false,
+            "double_lightball_opening": false,
+            "hammer_refills": 0,
+            "hammer_boxes_removed": 0,
+            "moves": [
+              {
+                "from": {
+                  "x": 4,
+                  "y": 7
+                },
+                "to": {
+                  "x": 4,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "hint",
+                "spent_from": 27,
+                "refills": 8,
+                "goals_left": 34,
+                "from_item": 4,
+                "to_item": 1
+              },
+              {
+                "from": {
+                  "x": 3,
+                  "y": 6
+                },
+                "to": {
+                  "x": 4,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 26,
+                "refills": 12,
+                "goals_left": 29,
+                "from_item": 3,
+                "to_item": 20
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 5
+                },
+                "to": {
+                  "x": 2,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 25,
+                "refills": 5,
+                "goals_left": 27,
+                "from_item": 1,
+                "to_item": 2
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 5
+                },
+                "to": {
+                  "x": 1,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 24,
+                "refills": 39,
+                "goals_left": 19,
+                "from_item": 1,
+                "to_item": 4
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 8
+                },
+                "to": {
+                  "x": 2,
+                  "y": 8
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 23,
+                "refills": 25,
+                "goals_left": 14,
+                "from_item": 2,
+                "to_item": 20
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 2
+                },
+                "to": {
+                  "x": 1,
+                  "y": 3
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 22,
+                "refills": 8,
+                "goals_left": 12,
+                "from_item": 1,
+                "to_item": 2
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 2
+                },
+                "to": {
+                  "x": 2,
+                  "y": 2
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 21,
+                "refills": 12,
+                "goals_left": 11,
+                "from_item": 2,
+                "to_item": 30
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 2
+                },
+                "to": {
+                  "x": 2,
+                  "y": 3
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 20,
+                "refills": 22,
+                "goals_left": 7,
+                "from_item": 4,
+                "to_item": 3
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 1
+                },
+                "to": {
+                  "x": 2,
+                  "y": 2
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 19,
+                "refills": 17,
+                "goals_left": 4,
+                "from_item": 1,
+                "to_item": 2
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 0
+                },
+                "to": {
+                  "x": 2,
+                  "y": 1
+                },
+                "is_tap": false,
+                "settled": false,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 18,
+                "refills": 24,
+                "goals_left": 0,
+                "from_item": 10,
+                "to_item": 50
+              }
+            ],
+            "opening_vacancies": [],
+            "goals_at_result": [
+              {
+                "type": 11,
+                "left": 0
+              }
+            ],
+            "combos_at_result": [
+              {
+                "type": 3,
+                "count": 1
+              }
+            ],
+            "cupboards_at_result": [],
+            "grass": [],
+            "honey": []
+          }
+        ],
+        "skip_and_layouts": {
+          "passed": true,
+          "late": true,
+          "reverse": false,
+          "stopped": false,
+          "layouts": 4,
+          "samples_per_layout": 3,
+          "next_level": 3,
+          "track_at_skip": 1.388889193534851
+        }
+      },
+      "natural_unobserved": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "requested_levels": [
+          2
+        ],
+        "attempts": [
+          {
+            "level": 2,
+            "initial_budget": 27,
+            "goals_left": 0,
+            "reloaded_level": 3,
+            "result_coins": 54,
+            "moves_left_on_win": 14,
+            "bonus_coins": 0,
+            "authored_rocket_eggs_removed": 0,
+            "authored_rocket_owls_removed": 0,
+            "level_try_count": 1,
+            "difficulty_seed": 404,
+            "session_name": "00002v02_L",
+            "outcome": "win",
+            "reopened_completion": false,
+            "entered_from_previous_result": false,
+            "free_hammer_used": false,
+            "free_arrow_used": false,
+            "free_arrow_row_cleared": false,
+            "free_cannon_used": false,
+            "free_cannon_column_cleared": false,
+            "free_jester_used": false,
+            "double_lightball_opening": false,
+            "hammer_refills": 0,
+            "hammer_boxes_removed": 0,
+            "moves": [
+              {
+                "from": {
+                  "x": 4,
+                  "y": 7
+                },
+                "to": {
+                  "x": 4,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "hint",
+                "spent_from": 27,
+                "refills": 8,
+                "goals_left": 34,
+                "from_item": 4,
+                "to_item": 1
+              },
+              {
+                "from": {
+                  "x": 3,
+                  "y": 6
+                },
+                "to": {
+                  "x": 4,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 26,
+                "refills": 12,
+                "goals_left": 29,
+                "from_item": 3,
+                "to_item": 20
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 5
+                },
+                "to": {
+                  "x": 2,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 25,
+                "refills": 5,
+                "goals_left": 27,
+                "from_item": 1,
+                "to_item": 2
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 5
+                },
+                "to": {
+                  "x": 1,
+                  "y": 6
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 24,
+                "refills": 24,
+                "goals_left": 19,
+                "from_item": 1,
+                "to_item": 4
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 7
+                },
+                "to": {
+                  "x": 2,
+                  "y": 7
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 23,
+                "refills": 7,
+                "goals_left": 17,
+                "from_item": 1,
+                "to_item": 4
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 4
+                },
+                "to": {
+                  "x": 3,
+                  "y": 4
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 22,
+                "refills": 8,
+                "goals_left": 16,
+                "from_item": 4,
+                "to_item": 3
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 3
+                },
+                "to": {
+                  "x": 2,
+                  "y": 4
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 21,
+                "refills": 37,
+                "goals_left": 9,
+                "from_item": 1,
+                "to_item": 40
+              },
+              {
+                "from": {
+                  "x": 3,
+                  "y": 4
+                },
+                "to": {
+                  "x": 4,
+                  "y": 4
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 20,
+                "refills": 13,
+                "goals_left": 8,
+                "from_item": 10,
+                "to_item": 2
+              },
+              {
+                "from": {
+                  "x": 2,
+                  "y": 2
+                },
+                "to": {
+                  "x": 3,
+                  "y": 2
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 19,
+                "refills": 8,
+                "goals_left": 7,
+                "from_item": 4,
+                "to_item": 3
+              },
+              {
+                "from": {
+                  "x": 0,
+                  "y": 1
+                },
+                "to": {
+                  "x": 1,
+                  "y": 1
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 18,
+                "refills": 31,
+                "goals_left": 4,
+                "from_item": 4,
+                "to_item": 2
+              },
+              {
+                "from": {
+                  "x": 1,
+                  "y": 0
+                },
+                "to": {
+                  "x": 2,
+                  "y": 0
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": true,
+                "input_source": "board",
+                "spent_from": 17,
+                "refills": 24,
+                "goals_left": 2,
+                "from_item": 1,
+                "to_item": 10
+              },
+              {
+                "from": {
+                  "x": 7,
+                  "y": 7
+                },
+                "to": {
+                  "x": 7,
+                  "y": 8
+                },
+                "is_tap": false,
+                "settled": true,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 16,
+                "refills": 6,
+                "goals_left": 2,
+                "from_item": 2,
+                "to_item": 4
+              },
+              {
+                "from": {
+                  "x": 7,
+                  "y": 6
+                },
+                "to": {
+                  "x": 7,
+                  "y": 7
+                },
+                "is_tap": false,
+                "settled": false,
+                "is_single_power_swap": false,
+                "input_source": "board",
+                "spent_from": 15,
+                "refills": 0,
+                "goals_left": 0,
+                "from_item": 40,
+                "to_item": 20
+              }
+            ],
+            "opening_vacancies": [],
+            "goals_at_result": [
+              {
+                "type": 11,
+                "left": 0
+              }
+            ],
+            "combos_at_result": [
+              {
+                "type": 6,
+                "count": 1
+              }
+            ],
+            "cupboards_at_result": [],
+            "grass": [],
+            "honey": []
+          }
+        ]
+      },
+      "core_flow": {
+        "passed": true,
+        "production_win_remaining_result_bound": true,
+        "actual_next_level_loaded": true,
+        "production_zero_move_failure_bound": true,
+        "actual_retry_reloaded_same_level": true,
+        "cap100_and_restart_verified": true,
+        "core_booster_inventory_purchase_ui_absent": true,
+        "king_win_reaction": "k-1sevinme_6",
+        "king_win_connector": "idle_connect_2",
+        "king_win_loop": "idle_connect_1",
+        "king_fail_reaction": "k-1_uzulme",
+        "king_win_mixed": true,
+        "king_connector_mixed": true,
+        "king_fail_mixed": true,
+        "win_logo_backdrop_fade": true,
+        "remaining_moves_backdrop_reused": true,
+        "result_and_failure_backdrops_cleared_on_reload": true,
+        "back_respected_remaining_moves": false,
+        "back_closed_win": false,
+        "back_respected_failure_dialog": false,
+        "castle_garden_background_survives_continue_and_retry": true,
+        "retry_reused_scene_pool_and_hud": true,
+        "retry_recycled_tnt_and_fuse": true,
+        "cold_entry_verified": true,
+        "cold_entry_board_captured": true,
+        "continue_entry_verified": true,
+        "retry_entry_verified": true,
+        "application_random_survives_continue": true,
+        "music_stopped_at_win_logo": true,
+        "music_stopped_at_failure": true,
+        "opening_music": "Gameplay_1",
+        "continue_music": "Gameplay_2",
+        "retry_music": "Gameplay_4",
+        "paused_music_samples": 28223,
+        "out_of_moves_banner_center_verified": true,
+        "out_of_moves_standard_button_skip_verified": true,
+        "out_of_moves_auto_duration": 2.451751708984375,
+        "out_of_moves_skip_duration": 0.4161033630371094,
+        "win_text_stagger": true,
+        "win_text_overshoot": true,
+        "win_curved_text_settled": true,
+        "win_pillow_started": true,
+        "win_title_curve_verified": true,
+        "fail_title_curve_verified": true,
+        "win_star_hit_time": 29.008834838867188,
+        "win_idle_loop_time": 29.513648986816406,
+        "win_pillow_delay": 0.08114814758300781,
+        "win_first_glyph_delay": 0.2143535614013672,
+        "original_level3_two_layer_boxes_bound": true,
+        "formal_mock_ad_preview_disconnected": true,
+        "level1_attempt_seed": 111,
+        "level2_attempt_seed": 404,
+        "level2_retry_seed": 167,
+        "level2_second_retry_seed": 985,
+        "level3_attempt_seed": 697,
+        "win_left_moves": 22,
+        "win_remaining_reward": 68,
+        "failure": "",
+        "scope": "The formal scene uses controlled TNT and rocket placements plus recorded gestures to complete level 1. The production win and remaining-moves flow persist progress before the result exit loads level 2. Two explicit zero-budget MoveManager stimuli exercise automatic and Button-skipped banner exits, actual defeat and retry. The King plays the authored celebration and its two connectors on victory, then a single sad reaction on defeat. A separate private progress file exercises the level 100 boundary."
+      },
+      "jester": {
+        "passed": true,
+        "dismiss_cancel_reselect_verified": true,
+        "special_piece_relocated": true,
+        "normal_play_resumes": true,
+        "guided_pieces_relocated": 16,
+        "moves_after_shuffle": 27,
+        "status": "finished",
+        "failure": ""
+      }
+    },
+    "stage_level_count": 100,
+    "stage_resource_keys_resolved": true,
+    "final_natural_level2_playthrough_has_no_runtime_observation_hooks": true
+  },
+  "limits": [
+    "Mesh uploads are 176 captures across 146 distinct Unity frames, including explicit screen-layout probes.",
+    "The hidden Unity formal-scene runs verify three legal level-2 wins and actual result/Continue, early and late skip Buttons. These are not Android touch or original-app pixel comparisons.",
+    "Standalone CPU/GC figures measure this PC evaluator and clipping, not Unity mesh-upload cost, GPU time or Android performance.",
+    "The original APK currently awaits user terms consent. Full original rendered/audio/mobile parity and Android execution of this revision remain open."
+  ],
+  "artifacts": {
+    "pose_comparison.json": {
+      "path": "C:/RMWinLogoRig_20261105/pose_comparison.json",
+      "sha256": "fc70a406760a4595f31c244f38919135941979f2179a50518773d1fbbedb7b29",
+      "bytes": 225
+    },
+    "quad_comparison.json": {
+      "path": "C:/RMWinLogoRig_20261105/quad_comparison.json",
+      "sha256": "72cc6189f49e1fe48f5b7a7c3445d53c95bb4204d2a55de647d86f21ede6c814",
+      "bytes": 109
+    },
+    "state_comparison.json": {
+      "path": "C:/RMWinLogoRig_20261105/state_comparison.json",
+      "sha256": "af18298e2329767bb57bc7ff4d9f5803867a738fe5ffa95da55469c091c44f8c",
+      "bytes": 174
+    },
+    "live_mesh_comparison.json": {
+      "path": "C:/RMWinLogoRig_20261105/live_mesh_comparison.json",
+      "sha256": "dfa5566735ebac7767271fe2d77659520d4587f1805b7166fed2b5b62c6ec6fe",
+      "bytes": 222
+    },
+    "legacy_king_comparison.json": {
+      "path": "C:/RMWinLogoRig_20261105/legacy_king_comparison.json",
+      "sha256": "b499bff01d878eec74f7bc5da25761fbbe9ee92bbf9592d2c464c095f7e055fa",
+      "bytes": 592
+    },
+    "legacy_hand_comparison.json": {
+      "path": "C:/RMWinLogoRig_20261105/legacy_hand_comparison.json",
+      "sha256": "35c4c6bb592960e29a9b7f7f81d3c81f63d3b0758e1eef227e302465a8189902",
+      "bytes": 260
+    },
+    "legacy_export_roundtrip.json": {
+      "path": "C:/RMWinLogoRig_20261105/legacy_export_roundtrip.json",
+      "sha256": "ce1504111ca048d200b6636f1e66136b9b8ccbbfc7f4c355e2d489c51d505d9f",
+      "bytes": 58
+    },
+    "early_bound/background_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/early_bound/background_verification.json",
+      "sha256": "0aef4ad0f732b9f14ae0e1e78c94989b2e111a543e61a3e7d97f7341b8ea9251",
+      "bytes": 394
+    },
+    "early_bound/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/early_bound/live_core_natural_attempts_verification.json",
+      "sha256": "f54864d91bbe69dd107b18f4a2add7d18c4e8782c4a400b0673fb266d961bd61",
+      "bytes": 7691
+    },
+    "early_bound/unity.log": {
+      "path": "C:/RMWinLogoRig_20261105/early_bound/unity.log",
+      "sha256": "d06b88f7f5680712768afb8e5529973b2ca3290412243cc7182d0848c242b2ea",
+      "bytes": 110497
+    },
+    "early_bound/live_win_rig_scene.json": {
+      "path": "C:/RMWinLogoRig_20261105/early_bound/live_win_rig_scene.json",
+      "sha256": "bc2bccd37ede7bb91633b58fb7ac8bb80b7dbc0d8c3200e16be86e4760e2e906",
+      "bytes": 192
+    },
+    "early_bound/rig_-46584.bin": {
+      "path": "C:/RMWinLogoRig_20261105/early_bound/rig_-46584.bin",
+      "sha256": "382dcf31fcb17b0b3fdd091cf6054929e9f8aa45df3d3a6c30dc8b87e35f878c",
+      "bytes": 1466968
+    },
+    "late/background_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/late/background_verification.json",
+      "sha256": "19898f00260fee739e81b0491efe292618ecc8b5cce10cf51d7f90db32720899",
+      "bytes": 394
+    },
+    "late/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/late/live_core_natural_attempts_verification.json",
+      "sha256": "6ad8f3fa8e6a0ae9e779d7038125e69270ceed0b7377c77312060f814f5885fb",
+      "bytes": 7693
+    },
+    "late/unity.log": {
+      "path": "C:/RMWinLogoRig_20261105/late/unity.log",
+      "sha256": "f1e6e5c34e3fd9ac37b564ea8fcdc8da431d0125aec9e5ab485df53c08811f27",
+      "bytes": 109387
+    },
+    "late/live_win_rig_scene.json": {
+      "path": "C:/RMWinLogoRig_20261105/late/live_win_rig_scene.json",
+      "sha256": "694e1c96c48265bdffc80caec44851d0fb33e49800de99afb54f497d714ee89a",
+      "bytes": 192
+    },
+    "late/rig_-46734.bin": {
+      "path": "C:/RMWinLogoRig_20261105/late/rig_-46734.bin",
+      "sha256": "5f53db63d9985565e3c038c1b3015e49dab460db6367e407db99859039d713a3",
+      "bytes": 1437216
+    },
+    "natural_unobserved/background_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/natural_unobserved/background_verification.json",
+      "sha256": "51622266b19a67b283ca1fb09120d16505382d5c9ac1883499e0f0ab5137bd3e",
+      "bytes": 394
+    },
+    "natural_unobserved/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/natural_unobserved/live_core_natural_attempts_verification.json",
+      "sha256": "4895b48af2e1665249c4f6f389e78618a9695ce1bb0ad74630db05b160b3d1fb",
+      "bytes": 9536
+    },
+    "natural_unobserved/unity.log": {
+      "path": "C:/RMWinLogoRig_20261105/natural_unobserved/unity.log",
+      "sha256": "49a1ae870fe364f6c0abe9e4b369b21b6addbfc40e4b68421188fc9ef37c7ed8",
+      "bytes": 111113
+    },
+    "core_flow/background_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/core_flow/background_verification.json",
+      "sha256": "2578b8a96fc059c7418bee8c36b8f4c01643a7a98ca391db9380043da25eee56",
+      "bytes": 382
+    },
+    "core_flow/live_core_flow_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/core_flow/live_core_flow_verification.json",
+      "sha256": "41549361bf2cec7fe59d61c7caa799c7900a7277364740e7aff1a55db51c8529",
+      "bytes": 2843
+    },
+    "core_flow/unity.log": {
+      "path": "C:/RMWinLogoRig_20261105/core_flow/unity.log",
+      "sha256": "83b63391d8c8245334862e494152a8af51968a0906310b36eac1766e048220dc",
+      "bytes": 108842
+    },
+    "jester/background_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/jester/background_verification.json",
+      "sha256": "34f31fc028366f9e89896890e2c0b9069fa995a9d64164c79d941daa02bd868b",
+      "bytes": 384
+    },
+    "jester/live_core_jester_verification.json": {
+      "path": "C:/RMWinLogoRig_20261105/jester/live_core_jester_verification.json",
+      "sha256": "5e6bf4fd1d03715b38759ea7dc584fd68a357ddeac00008eaa9845ebfe877c42",
+      "bytes": 250
+    },
+    "jester/unity.log": {
+      "path": "C:/RMWinLogoRig_20261105/jester/unity.log",
+      "sha256": "e1104a2ea7e03a6d822d2582c035fd670f863bf8e1c97e16ec59d94ec67c000a",
+      "bytes": 101608
+    },
+    "baseline.json": {
+      "path": "C:/RMWinLogoRig_20261105/baseline.json",
+      "sha256": "8994c629f11b2ffeba2da6d092aed2f2f8f940f7fcdd89da01ae61e9e899e99c",
+      "bytes": 972
+    },
+    "native_layout_and_close.txt": {
+      "path": "C:/RMWinLogoRig_20261105/native_layout_and_close.txt",
+      "sha256": "225a495a1ce01c2df52dfb4df306792a0b3db8b9474c2df93acf7d467ac36b42",
+      "bytes": 4323
+    },
+    "native_close_before_slots.txt": {
+      "path": "C:/RMWinLogoRig_20261105/native_close_before_slots.txt",
+      "sha256": "607abe12c4892cda80ad061f2a9c3923540d24769b62f9b8c2c34c028332b2ae",
+      "bytes": 3474
+    },
+    "prepare_geometry.py": {
+      "path": "C:/RMWinLogoRig_20261105/prepare_geometry.py",
+      "sha256": "46f4ca8a5afe350d1a4afa070fd934f3df90cdaa3102b39cbcb0d28f0ba9f13c",
+      "bytes": 3877
+    },
+    "prepare_view.py": {
+      "path": "C:/RMWinLogoRig_20261105/prepare_view.py",
+      "sha256": "fadf39433d49281d4997e1db248ce353fe737bbfb498f27632092b26f9cfd974",
+      "bytes": 5676
+    },
+    "QuadClipHarness.cs": {
+      "path": "C:/RMWinLogoRig_20261105/QuadClipHarness.cs",
+      "sha256": "8ae43951296c013e698b758878ac875af3ef762c629eb0ff025034a1fa917071",
+      "bytes": 2304
+    },
+    "LogoPoseHarness.cs": {
+      "path": "C:/RMWinLogoRig_20261105/LogoPoseHarness.cs",
+      "sha256": "a09baef5010261b56817b7b2759562ecbb52b9b0207cc58f22072a5cdabb2ccb",
+      "bytes": 5296
+    },
+    "LogoMeshReference.cs": {
+      "path": "C:/RMWinLogoRig_20261105/LogoMeshReference.cs",
+      "sha256": "df785f577617346536cd622b7ed321397eedd782c3c8e1abe5b51eeb094329bb",
+      "bytes": 3078
+    },
+    "LogoStateHarness.cs": {
+      "path": "C:/RMWinLogoRig_20261105/LogoStateHarness.cs",
+      "sha256": "b333d4c5f137ea2553d31e598c2287f8fa7afd26935f37c7e6775f05fa5b5451",
+      "bytes": 4821
+    },
+    "LiveLogoReference.cs": {
+      "path": "C:/RMWinLogoRig_20261105/LiveLogoReference.cs",
+      "sha256": "4c95d81f46c20f1a61cecb3e4f3f5718585fdac244699fa4f3166c904a0ce530",
+      "bytes": 4974
+    },
+    "LiveLogoMeshBuilder.cs": {
+      "path": "C:/RMWinLogoRig_20261105/LiveLogoMeshBuilder.cs",
+      "sha256": "1d8d1ec94e3dbcf39415620a8c7e2c3ad346f077b91a466c5c876f6c20ea0198",
+      "bytes": 2325
+    },
+    "WinRigSceneProbe.cs": {
+      "path": "C:/RMWinLogoRig_20261105/WinRigSceneProbe.cs",
+      "sha256": "013f0a2caa91e9eede468e165146873722602bea50dd6a0f0fd3661d766cc756",
+      "bytes": 5592
+    },
+    "run_unity.py": {
+      "path": "C:/RMWinLogoRig_20261105/run_unity.py",
+      "sha256": "1270044033c8423efb201dac4c95e041650fa3f6dbc430e2052699eaa37ac016",
+      "bytes": 8801
+    },
+    "offline.py": {
+      "path": "C:/RMWinLogoRig_20261105/offline.py",
+      "sha256": "1f49a1a3aec1dc731c4f6957310d2d5148eb5d14c8dfbb5011e394fc0b8398c5",
+      "bytes": 2950
+    },
+    "legacy_and_reference.py": {
+      "path": "C:/RMWinLogoRig_20261105/legacy_and_reference.py",
+      "sha256": "199bd4b520e21c95b279e73b9ada15f72e85705e5bc4b09d099a0f5fb5a0a1f7",
+      "bytes": 3992
+    },
+    "mirror_restored.json": {
+      "path": "C:/RMWinLogoRig_20261105/mirror_restored.json",
+      "sha256": "f1fba1e4d84ff9b2b78037239b66cf168cabf3137df22e36fea93d0197aec074",
+      "bytes": 1383
+    },
+    "early_bound/win_rig_before_skip.png": {
+      "path": "C:/RMWinLogoRig_20261105/early_bound/win_rig_before_skip.png",
+      "sha256": "981dffc94180d54263b70a199a56bbf4727803b90fc371959a9538dd9b0c3675",
+      "bytes": 968243
+    },
+    "early_bound/win_rig_after_skip.png": {
+      "path": "C:/RMWinLogoRig_20261105/early_bound/win_rig_after_skip.png",
+      "sha256": "08614aae7fa7538c2944adbe5e79deb69be19d30f1482151440590f1d733fea6",
+      "bytes": 650829
+    },
+    "android-dependencies/asset_selection.json": {
+      "path": "C:/RMWinLogoRig_20261105/android-dependencies/asset_selection.json",
+      "sha256": "0982dbb29fdb2d7cef8d37375b3a0138abacd17f5a085a66153e3fd636ed503b",
+      "bytes": 36651
+    }
+  },
+  "preexisting_unstaged_diagnostic_preserved_sha256": "1ceddd9e4f2199561ac52f5ab3feabd0a3d6f8c7e0fcfda7b4ffac0a7f8fb1fa"
+}

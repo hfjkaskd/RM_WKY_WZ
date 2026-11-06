@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrystalShader
+  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+      _Albedo_Texture:
+        m_Texture: {fileID: 2800000, guid: ca88127b15a46d745a8cfac9434d6154, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _Caustic_Texture:
+        m_Texture: {fileID: 2800000, guid: ca3bbf1aac52e324b9005dcc12fc1a96, type: 3}
+        m_Scale: {x: 2.25, y: 4}
+        m_Offset: {x: 0, y: 0}
+      _Height_Map:
+        m_Texture: {fileID: 2800000, guid: 613266389a5d05349b25af4bd24ffc11, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _Normal_Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _Occlusion_Texture:
+        m_Texture: {fileID: 2800000, guid: 7e8f161246a999b428640b1b15e8af6c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _Reflection_Texture:
+        m_Texture: {fileID: 8900000, guid: 36b4cc55bd1d8014bb09411faf8eac0a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _SampleTexture2D_63e96db2aa704ddbb29e4fd2363d36e9_Texture_1:
+        m_Texture: {fileID: 2800000, guid: ed24e9d01527ae043918d7fdb92d8d4f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _SampleTexture2D_e05b0f4275a44f1fa4906c87fa4af104_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 1d1259d9230869749a31bd12f3e94574, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: {}
+    m_Floats:
+      _BUILTIN_QueueControl: 0
+      _BUILTIN_QueueOffset: 0
+      _BumpScale: 1
+      _Cutoff: 0.5
+      _DetailNormalMapScale: 1
+      _DstBlend: 0
+      _GlossMapScale: 1
+      _Glossiness: 0.5
+      _GlossyReflections: 1
+      _Metallic: 0
+      _Metalness: 0
+      _Mode: 0
+      _OcclusionStrength: 1
+      _Parallax: 0.02
+      _Parallax_Amplitude: -25
+      _Smoothness: 1
+      _SmoothnessTextureChannel: 0
+      _SpecularHighlights: 1
+      _SrcBlend: 1
+      _UVSec: 0
+      _ZWrite: 1
+    m_Colors:
+      _Color: {r: 0.09803922, g: 0.9254902, b: 1, a: 0.78431374}
+      _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []

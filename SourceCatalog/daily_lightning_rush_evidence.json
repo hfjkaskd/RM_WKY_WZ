@@ -1,0 +1,68 @@
+{
+  "native_source": "RoyalMatch_20260929/apk_unpacked/split_config.arm64_v8a/lib/arm64-v8a/libil2cpp.so",
+  "methods": [
+    {
+      "rva": "0x338ae10",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$.ctor",
+      "disassembly_sha256": "2ad12e08f4a9a9e456c7e7acd395874175ce619dcdb1045234c82c751123920e"
+    },
+    {
+      "rva": "0x338d3dc",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$Init",
+      "disassembly_sha256": "ae5a800acf155a2bd5f071b8c50c7b969e556ae17841e23bf8e67d95a2898ef0"
+    },
+    {
+      "rva": "0x338d7b8",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$InitForRestore",
+      "disassembly_sha256": "aecfbd8022170d9fa9ff7f3ba79e2586553841f99d60640ca41549248da72296"
+    },
+    {
+      "rva": "0x338d704",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$IncrementCount",
+      "disassembly_sha256": "3f9668118bf8d9cca9861d7469f234bce179428b6abfaa45b003b4171ef5e483"
+    },
+    {
+      "rva": "0x338da00",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$IsEventValid",
+      "disassembly_sha256": "369a4a4b853c79064c4119886a73d391db1f597f8a2f5bee2024ab969e089590"
+    },
+    {
+      "rva": "0x338e1a4",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$GetSaveData",
+      "disassembly_sha256": "6029c3deb6cead530ca2c56bdfb5398227319ccf929c75de20b23875f3576839"
+    },
+    {
+      "rva": "0x338e238",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$LoadSaveData",
+      "disassembly_sha256": "846f94f58ec5c105c0eb0b6469273c1732e58ed23fba55150f70920ec7b9945d"
+    },
+    {
+      "rva": "0x338e2f0",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$GetDataLength",
+      "disassembly_sha256": "8799df682c0009b243fa16db6360f218ec2583bad647634748bc167c5dc40101"
+    },
+    {
+      "rva": "0x338e31c",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$GetIsDataSigned",
+      "disassembly_sha256": "66fd42d1570a68f5d3fd7511b1d4ce81fae5ade2c47f776fdecce83e9530d312"
+    }
+  ],
+  "bundle_key": "daily_lightning_rush_gameplay_v2",
+  "bundle_literal_rva": "0x5627468",
+  "boundaries": [
+    "Actual event manager/progress and application/user current-level ownership",
+    "RoyalBundleManager.GetBundle, RoyalEventBundle type, ARoyalBundle.LoadBundle/UnloadBundle",
+    "Actual ItemFactory recycle/clear/create pool and collect-view presentation",
+    "CLR allocation/RestorableData interface resolution; diagnostic Log.Error construction and tail call omitted"
+  ],
+  "notes": [
+    "Init writes difficulty first. Bundle download failure returns without resetting the existing snapshot, step, flags, presentation or bundle.",
+    "Successful Init captures previous step before first progress read; clears only on step mismatch, stores a separate second progress read, creates pool then owns bundle. Resets presentation and count then IncrementCount(10).",
+    "Unsuccessful LoadBundle invalidates before/after to -1 without replacing/unloading the old bundle or step.",
+    "Inactive Init with an owned bundle resolves pool separately for recycle and clear, then unloads the current owned bundle(false), clears ownership and presentation/count. Step is retained.",
+    "InitForRestore changes difficulty, conditionally loads and creates pool, and changes bundle ownership only on success. It does not clear restored counter/presentation/step state.",
+    "IncrementCount marks ShouldConsume even when amount multiplied by native difficulty multiplier is zero.",
+    "Save fields: shouldConsume unsigned1; before/after signed magnitude24. Load writes all snapshot fields before requiring user/session/active difficulty.",
+    "Formal startup composition and complete event presentation/collection remain pending."
+  ]
+}

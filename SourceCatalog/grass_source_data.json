@@ -1,0 +1,131 @@
+{
+  "bundle_parent": "datapack.unity3d",
+  "asset_file": "resources.assets",
+  "asset_path_id": 131267,
+  "raw_sha256": "286173ec7bef94b249aa07d2d6eca4ca6a7bbfca12f68869fc8d4aed51823bc5",
+  "base_header_bytes": 48,
+  "decoded_bytes": 304,
+  "field_offsets": {
+    "prefabs": 48,
+    "sprites": 88,
+    "audio": 128,
+    "haptics": 144,
+    "goal": 152,
+    "alternativeAudioTypes": 212,
+    "lightBases": 248,
+    "darkBases": 276
+  },
+  "data": {
+    "prefabs": [
+      {
+        "file_id": 0,
+        "path_id": 134073,
+        "type": "MonoBehaviour",
+        "name": "GrassItemPrefab"
+      },
+      {
+        "file_id": 0,
+        "path_id": 131833,
+        "type": "MonoBehaviour",
+        "name": "GrassItemExplodeParticles"
+      },
+      {
+        "file_id": 0,
+        "path_id": 131834,
+        "type": "MonoBehaviour",
+        "name": "GrassItemTapParticles"
+      }
+    ],
+    "sprites": [
+      {
+        "file_id": 0,
+        "path_id": 24422,
+        "type": "Sprite",
+        "name": "StaticItems-Grass-shadow"
+      },
+      {
+        "file_id": 0,
+        "path_id": 18755,
+        "type": "Sprite",
+        "name": "StaticItems-Grass-light_extra01"
+      },
+      {
+        "file_id": 0,
+        "path_id": 25179,
+        "type": "Sprite",
+        "name": "StaticItems-Grass-dark_extra01"
+      }
+    ],
+    "audio": [
+      {
+        "file_id": 0,
+        "path_id": 18385,
+        "type": "AudioClip",
+        "name": "grass_clear"
+      }
+    ],
+    "haptics": [],
+    "goal": {
+      "type": 13,
+      "icon": {
+        "file_id": 0,
+        "path_id": 18855,
+        "type": "Sprite",
+        "name": "StaticItems-Grass-light_base01"
+      },
+      "shadow": {
+        "file_id": 0,
+        "path_id": 24422,
+        "type": "Sprite",
+        "name": "StaticItems-Grass-shadow"
+      },
+      "shadowPosition": [
+        0.0,
+        0.0
+      ],
+      "shadowScale": [
+        1.0,
+        1.0
+      ],
+      "shadowAlpha": 0.4000000059604645,
+      "iconScale": 0.8899999856948853,
+      "iconOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    "alternativeAudioTypes": [
+      165,
+      166
+    ],
+    "lightBases": [
+      {
+        "file_id": 0,
+        "path_id": 18855,
+        "type": "Sprite",
+        "name": "StaticItems-Grass-light_base01"
+      },
+      {
+        "file_id": 0,
+        "path_id": 18814,
+        "type": "Sprite",
+        "name": "StaticItems-Grass-light_base02"
+      }
+    ],
+    "darkBases": [
+      {
+        "file_id": 0,
+        "path_id": 24439,
+        "type": "Sprite",
+        "name": "StaticItems-Grass-dark_base02"
+      },
+      {
+        "file_id": 0,
+        "path_id": 24997,
+        "type": "Sprite",
+        "name": "StaticItems-Grass-dark_base01"
+      }
+    ]
+  },
+  "schema": "Serialized ItemAssets fields in native metadata declaration order, then public GrassItemAssets lightBases/darkBases. Exact EOF checked; no inferred sprite ordering."
+}

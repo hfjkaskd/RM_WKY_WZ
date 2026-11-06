@@ -1,0 +1,245 @@
+{
+  "full_objective_complete": false,
+  "full_original_game_scene_restored": false,
+  "production_application_account_win_fail_bound": false,
+  "normal_scene_king_visual_bound": true,
+  "analytical_keyframe_curves_weighted_mesh_deform_draw_order_and_clipping": true,
+  "mesh_frame_baking": false,
+  "third_party_runtime_shipped": false,
+  "pma_texture_dilation_root_cause_fixed_for_editor_and_player": true,
+  "original_hierarchy_and_sorting_group_preserved": true,
+  "normal_idle_animation": "idle_loop_1",
+  "full_native_king_ui_queue_mix_state_reactions_restored": false,
+  "bottom_booster_settings_and_home_restored": false,
+  "native_arm_animation_execution_verified": false,
+  "original_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "b78c0f0c6422f9f8ab01bdf6170d02f8dfdf69d0487b960f81c34d842e65a6ff",
+  "reference_verification": {
+    "passed": true,
+    "animations": 32,
+    "pose_samples": 35663,
+    "scalar_comparisons": 81986555,
+    "max_absolute_error": 0,
+    "oracle": "recovered 3.8.84 reference decoder/runtime outside Unity; not native ARM execution",
+    "includes_key_boundaries_loop_weighted_mesh_deform_draw_order": true,
+    "clipped_mesh_samples": 2669,
+    "clipped_mesh_max_error": 0,
+    "pose_and_mesh_managed_bytes_1000_frames": 0
+  },
+  "unity_scene_verification": {
+    "passed": true,
+    "normal_scene_and_72_models_verified": true,
+    "original_top_background_verified": true,
+    "original_king_rig_and_atlas_verified": true,
+    "king_vertices": 580,
+    "king_viewport_center": {
+      "x": 0.49988463521003723,
+      "y": 0.9043844938278198,
+      "z": 10.0
+    },
+    "failure": "",
+    "scope": "Normal GameScene starts existing first-board gameplay and original camera/background, plus original King hierarchy/atlas with analytical idle_loop_1 pose, weighted mesh and clipping in Unity Mesh. Full KingUi animation queue/mixing/reactions, boosters, production startup/account/settlement/Home/navigation and full original rendered parity remain incomplete."
+  },
+  "unity_background_verification": {
+    "passed": true,
+    "test": "camera-projection",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "b78c0f0c6422f9f8ab01bdf6170d02f8dfdf69d0487b960f81c34d842e65a6ff",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_camera-projection.log",
+    "elapsed_seconds": 125.49,
+    "batch": {
+      "passed": true,
+      "test": "camera-projection",
+      "failure": "",
+      "timestamp_utc": "2026-11-02T06:09:57.6460659Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "player_input_regression": {
+    "passed": true,
+    "physical_drag_verified": false,
+    "tnt_activated": false,
+    "lightball_activated": false,
+    "rocket_activated": false,
+    "propeller_activated": false,
+    "propeller_flight": 0.0,
+    "propeller_trace": [],
+    "propeller_max_scale": 0.0,
+    "blocked_original_box_holes": 0,
+    "propeller_max_loop": 0,
+    "propeller_takeoff_instances": 0,
+    "propeller_hit_instances": 0,
+    "propeller_max_operations": 0,
+    "rocket_orientation": 0,
+    "rocket_max_operations": 0,
+    "rocket_first_flight": 0.0,
+    "rocket_second_flight": 0.0,
+    "sent_rays": 0,
+    "reached_rays": 0,
+    "completed_rays": 0,
+    "completed_lightball_activations": 0,
+    "rocket_created": true,
+    "tnt_created": false,
+    "lightball_created": false,
+    "propeller_created": true,
+    "failure": "",
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "left_moves": 20,
+    "goals_left": 23,
+    "created_refills": 76,
+    "created_specials": 2,
+    "scope": "Frame-separated recorded device samples through native GameTouchListener into formal production scene services. Checks invalid swap spends0, accepted swaps spend1, first triple/three box goals/six refills, 10accepted swaps and naturally observed special creation patterns (each requested type also has its own activation mode), automatic cascades, original creation coroutines and all72 model slots/no holes/no freeze/landing tolerance. Fails on runtime errors/exceptions. Shadow native match search only chooses gestures and never mutates live cells. Does not verify physical drag timing, special activation/combos, complete session startup, settlement or original rendered parity."
+  },
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/GameSceneVerification.cs",
+      "sha256": "7d8c608a77cd80c547708273d69b6534cf3b32f12d29764404a9f3dfb7a9b3c5"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameplayHud.cs",
+      "sha256": "d19c7775a71eb4f4a8d85e56a1f4ebce54f56ad2de79d1091186ef19be06316c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingMesh.cs",
+      "sha256": "e6530a1f1ac58962d7a7578b4d519e72e57eb2309fd18c3b9feaa2043f84ee7d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingMesh.cs.meta",
+      "sha256": "49a7715cb604cd0440a68f22b9d048fe890bd59f739351e5e0b121bd8997c632"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingPose.cs",
+      "sha256": "5557e3435d1429c85e194b7fbcd2a781148c3253388e4791675421fa16a91d1c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingPose.cs.meta",
+      "sha256": "986fbef935e6a4fef27c699a2c791c1b4b404f81585b5c54370120dcad4e0225"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingRigData.cs",
+      "sha256": "21c65f2ae6a3b473cf64366ed190f0a3f26e81a7acea2697386f483749c4b1bf"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingRigData.cs.meta",
+      "sha256": "8e7b3e2830f9b421ddd57fb9da7681225ca1e923fdbd4d1ef83506fd0b381a22"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingVisual.cs",
+      "sha256": "5e424c01f097fcdd68a80544adadf6afa8d1c41a3ddfb4508a2d6666ddf89436"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingVisual.cs.meta",
+      "sha256": "ad9d780449e3e8b9a2628e991d5938728c3222c02aae520fdcc99dadd6b0b01d"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Animation/OriginalKing.bytes",
+      "sha256": "4986fbeb87149ce84b4a87f5dc060ca4d7631f4e4caa6a6885c5ee479e0cd943"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Animation/OriginalKing.bytes.meta",
+      "sha256": "d6509ca7ed5d244c36eb75adcb1ab81a883aca605a408e72e1a83672188e828b"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalGameplayHud.prefab",
+      "sha256": "68caa6ff878e46b93b4185eccc06fc0caed5064602a826cf4848ef3181b17455"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Texture2D/King.png.meta",
+      "sha256": "46a39c5daf7c6a5c59b7da869808c0289017b7e1a2db8af1a2f3d383641b06ce"
+    },
+    {
+      "path": "SourceCatalog/ExportKingRig.cs",
+      "sha256": "80775275b8e8fd0bfae10cecb57a5f10eaec89eca696bc229f174df291d4c174"
+    },
+    {
+      "path": "SourceCatalog/InspectKingRig.cs",
+      "sha256": "01b2b3cdd0b40355a19a9f7660558cc5a6fd4c55fb95292cb1e3648c04cd3b41"
+    },
+    {
+      "path": "SourceCatalog/KingMeshReference.cs",
+      "sha256": "b9f57df9dc989a3740325a6a33b475ec865869c718523e65df062841a23bfcc3"
+    },
+    {
+      "path": "SourceCatalog/KingRigHarness.cs",
+      "sha256": "33e699dbcdba615259c08228a9d073bec8ba2e6b5e0cb7e058f573d6845735cc"
+    },
+    {
+      "path": "SourceCatalog/export_king_rig.py",
+      "sha256": "a76a0040d4ab62d19d7c507b37552b7dad60967eb52e8cf139752b159773177e"
+    },
+    {
+      "path": "SourceCatalog/king_data_export.json",
+      "sha256": "b96d52043c897978d5fda01eefb5823624d5e3b0c842f431e83a0f187b9a0b77"
+    },
+    {
+      "path": "SourceCatalog/king_original_rig_inspection.json",
+      "sha256": "cc4672af3154e4c186b80a9b59a2241ea5f9df498f7510eacdb928cb54e2ea7c"
+    },
+    {
+      "path": "SourceCatalog/king_visual_authoring.json",
+      "sha256": "3b4e15ea6f1e169ce6bfa018285dcc1f100bf41dae6e83d8a8fe5f93e00ce6c2"
+    },
+    {
+      "path": "SourceCatalog/restore_king_visual.py",
+      "sha256": "3a9e2d70efb52c41f995d95f82a093d5fa3c490a38a2278d4b46a2b66d74ca89"
+    },
+    {
+      "path": "SourceCatalog/verification_history/king_pma_import/background.json",
+      "sha256": "fb6d868fc592115a7bbfd92d3da8d87a2b352df47ccd8f2fe83c97b1c4153518"
+    },
+    {
+      "path": "SourceCatalog/verification_history/king_pma_import/before.png",
+      "sha256": "eee9bf93d41900ef815ef5ec272e77f51fb4831b7c1fa15cf68d151132d8b2a3"
+    },
+    {
+      "path": "SourceCatalog/verification_history/king_pma_import/live.json",
+      "sha256": "da15905102de2a1b19f8209f16136ed43ff4d86cc9e252f647418b08d0639cee"
+    },
+    {
+      "path": "SourceCatalog/verification_history/king_pma_import/reason.json",
+      "sha256": "c132f19b90012f6a199c1be0a3f518aa755f0cedc5ae8201cd5a1ecd75a8be22"
+    },
+    {
+      "path": "SourceCatalog/verify_king_rig.py",
+      "sha256": "6d32487dbad3e29be858f6009abcf7b8742bc1a258ae1b4665c6b02f9dfc3e7e"
+    },
+    {
+      "path": "background_camera_projection_verification.json",
+      "sha256": "372a235acd0342ab0e27f5fec5d43e1a29c652cb9ad6ba39f05bff12257115dc"
+    },
+    {
+      "path": "background_game_scene_verification.json",
+      "sha256": "fb6d868fc592115a7bbfd92d3da8d87a2b352df47ccd8f2fe83c97b1c4153518"
+    },
+    {
+      "path": "game_scene_initial.png",
+      "sha256": "581709f4b87bf0d1a39d52732402d5db1b063d430140e7d7eaeb79bcf80d0a01"
+    },
+    {
+      "path": "king_rig_reference_verification.json",
+      "sha256": "9a0257588a8d97c8a3861d86f763600520bde65c168271dea580da8ef2d3c5b3"
+    },
+    {
+      "path": "live_camera_projection_verification.json",
+      "sha256": "f86c36ed023d1b709022c1447c8d0f857e4236fed7dcc5b0fadb86fac3f902fe"
+    },
+    {
+      "path": "live_game_scene_verification.json",
+      "sha256": "5ad7bc133913229716c21dc51463cc55cad36e9c538c46189ca6c33038e0b8d3"
+    },
+    {
+      "path": "live_player_board_observation.json",
+      "sha256": "d2704ec8bf95a1a12695b82d83d6918e1026b9a6ba733631e70042a889eec7d6"
+    },
+    {
+      "path": "live_player_input_verification.json",
+      "sha256": "3fa8ff561c926783f4da42249137c164f5cab754d388482ef36c15e2edcd873b"
+    }
+  ],
+  "scope": "Actual normal GameScene HUD instantiates the restored King subtree. Original 29-bone/35-slot/32-animation data is evaluated analytically without a third-party Unity assembly; normal runtime currently plays original idle_loop_1. All-clip offline oracle is the recovered reference decoder, not native ARM. Static convex clip topology for the five one-key clip variants is authored from source, while actual pose/deformed vertices and triangle clipping run at runtime. Full KingUi 0.2s track mixing, queue/shuffle/reactive state policy, normal bottom controls, production startup/account/win-fail, Home and complete visual parity remain pending."
+}

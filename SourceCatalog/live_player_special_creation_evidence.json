@@ -1,0 +1,167 @@
+{
+  "scope": "ARM64 source inspection for lightball/propeller construction, creation presentation, native fall callbacks and requested view pool sizes. Runtime composition uses previously restored native match/swap/special creator/fall implementations. This is source evidence plus formal Unity integration, not a new ARM64 differential replay claim.",
+  "cause": "Formal special creation was missing concrete branches; an exception after match removal interrupted resolution and left permanent holes. Missing invalid-swap sound370 also previously interrupted feedback completion.",
+  "methods": [
+    {
+      "rva": "0x1f3dc60",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.LightballItemModel$$.ctor",
+      "disassembly_sha256": "149b79c8d2c907acbdee7e86f4fb514f8738c1ddfaadca47d7a419c8da20c0c9"
+    },
+    {
+      "rva": "0x1f3dc80",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.LightballItemModel$$get_ItemType",
+      "disassembly_sha256": "0594b9d108723c3cdd462c5c43afcb6946530cba236afd92fbc4fb224c15f776"
+    },
+    {
+      "rva": "0x1f3dc88",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.LightballItemModel$$get_GetMoveType",
+      "disassembly_sha256": "5348c0e885571d822e91bad845d9d3a5a3b5afb7e81efb96dbcab79420c25844"
+    },
+    {
+      "rva": "0x1f3dc98",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.LightballItemModel$$CreateView",
+      "disassembly_sha256": "17eec5894178c156f109a9e1ab021dfde5c28164b08ffd07412a485666bf4861"
+    },
+    {
+      "rva": "0x1f3dd54",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.View.LightballItemView$$Init",
+      "disassembly_sha256": "ba6f15197f8d0ae1c05443af5e1ef28237680903bdb8486be69de603fb1f9886"
+    },
+    {
+      "rva": "0x1f41cdc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.View.LightballItemView$$Update",
+      "disassembly_sha256": "7d564710294a38dc500ef2745aa7bd375eb894b48923a547ad7cf2af680ba70e"
+    },
+    {
+      "rva": "0x1f41d78",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.View.LightballItemView$$IsCreationAnimationPlaying",
+      "disassembly_sha256": "1039bdd66c2ab549de7c25fdaff487dfbe44f8ddbc5039f500d34ea9d1c7baf5"
+    },
+    {
+      "rva": "0x1f41f70",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.View.LightballItemView$$PlayCreationAnimation",
+      "disassembly_sha256": "ff044f3afa3f00e03e4cacbefa7d3a998d557afa36659aea5c134ed0460fb7b6"
+    },
+    {
+      "rva": "0x1f42414",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.View.LightballItemView$$SetIsUnderNonFallBlockingAboveStaticItem",
+      "disassembly_sha256": "587af17bd178e510326df8fa26bba1172cc2f9471884eb49e734054f6138d5d0"
+    },
+    {
+      "rva": "0x1f3f5d8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.View.LightballItemAssets$$CreateItemPools",
+      "disassembly_sha256": "52becf4153752aa422d3b285e47c1125586610d668791e8d41f76a7132a865bc"
+    },
+    {
+      "rva": "0x1c9dd94",
+      "name": "Royal.Scenes.Game.Levels.Units.Explode.GuidedExploderItemModel$$get_GetMoveType",
+      "disassembly_sha256": "eba492bc7757e1e409d8d2b7c0ace733ffe88691d38b7799ad9bccf98a181dd3"
+    },
+    {
+      "rva": "0x27bfda4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.PropellerItemModel$$.ctor",
+      "disassembly_sha256": "680d93936bd08ccabd37903d3a4f66f51cc6f8eec5492e45f6a0be52ffb31b72"
+    },
+    {
+      "rva": "0x27bfdd8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.PropellerItemModel$$CreateView",
+      "disassembly_sha256": "13bf6aabc6cf712e2da9df61fa35201b4cdaa12373898fff4e998b99ec9c861d"
+    },
+    {
+      "rva": "0x27b1abc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.GuidedExploderItemView$$Init",
+      "disassembly_sha256": "0f9a80c352c47ae25672017ae449019ae4302ac29b6732f7e6bf6b0ed453daf3"
+    },
+    {
+      "rva": "0x27b1d8c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.GuidedExploderItemView$$PlayCreationAnimation",
+      "disassembly_sha256": "313fea7ee75b3144334f5a682c058e28901368f37f89f143c4a1d6008fc9ccdb"
+    },
+    {
+      "rva": "0x27b1c5c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.GuidedExploderItemView$$StopCreationAnimation",
+      "disassembly_sha256": "c12ad5d9ccfcc0986ed0570896ca9c974827fa6988bab74cebd62b70fbd26798"
+    },
+    {
+      "rva": "0x27c0a8c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerItemView$$FallStarted",
+      "disassembly_sha256": "1da4b19789f68ce7b47f50bfd19b002def1d6f5ebacf0a676f31ef923153f5a2"
+    },
+    {
+      "rva": "0x27c0bc0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerItemView$$FallEnded",
+      "disassembly_sha256": "e35f15826c14bfad5b4a69b21a7550413f2a6b14f802d8708f66eaafba3b0c2b"
+    },
+    {
+      "rva": "0x27c0ebc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerItemView$$PlayEndFallAnimation",
+      "disassembly_sha256": "90d943812e2be4bf5887977798f858de5dd364d10420ada1fabc59bfdc8b71b0"
+    },
+    {
+      "rva": "0x27c0ef8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerItemView$$PlayEndFallAltAnimation",
+      "disassembly_sha256": "e5b5492a80dcb66181cc2bb34455bef34415d5d042417faef3b33d45760a54fc"
+    },
+    {
+      "rva": "0x27c0f34",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerItemView$$OnRecycle",
+      "disassembly_sha256": "b19d10b00644b8afd7a74d3589e4a4b57478192e362c4b6664bafd8a7e29de15"
+    },
+    {
+      "rva": "0x27c05cc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerItemAssets$$CreateItemPools",
+      "disassembly_sha256": "36df8e29e68848691f27687cd072ef12a422e7c2395371e09ad2ed262ce36f4b"
+    },
+    {
+      "rva": "0x2184ac0",
+      "name": "Royal.Scenes.Game.Levels.Units.Pool.LevelGameObjectPool$$InitializePermanentPoolsSecondPart",
+      "disassembly_sha256": "2e054de4c8fff5f1aee96325811d2cd5224937c568de3a32a1430774d16ea1c4"
+    }
+  ],
+  "pool_evidence": {
+    "lightball": {
+      "pool_id": 23,
+      "prewarm": 5,
+      "registration_rva": "0x2184bcc..0x2184bfc",
+      "generic_method_got": "0x53d4dc0 -> 0x55dca20",
+      "generic_name": "ItemAssetsLibrary.Load<LightballItemAssets>()"
+    },
+    "propeller": {
+      "pool_id": 10,
+      "prewarm": 20,
+      "registration_rva": "0x2184b74..0x2184b94",
+      "generic_method_got": "0x535fb28 -> 0x55dcaf0",
+      "generic_name": "ItemAssetsLibrary.Load<PropellerItemAssets>()"
+    }
+  },
+  "preserved_resources": [
+    "LightballItemPrefab",
+    "PropellerItemPrefab",
+    "RocketItemPrefab",
+    "TntItemPrefab",
+    "LightballAnimator",
+    "PropellerAnimator"
+  ],
+  "sound_ids": {
+    "193": "impossible_move",
+    "370": "wrong_move",
+    "314": "rocket_creation",
+    "346": "tnt_creation",
+    "213": "lightball_creation",
+    "292": "propeller_creation"
+  },
+  "binding": "Prefab/scene serialized references, code event subscription, original world-space SpriteRenderer items, Resources paths for large media; no reflection, synthetic UI game pieces or Editor runtime fallback.",
+  "verification": [
+    "live_player_input_verification.json",
+    "live_player_board_observation.json",
+    "special_prefab_bindings_verification.json"
+  ],
+  "remaining": [
+    "Special activation, special swaps and combos",
+    "Propeller pilot/target calculation",
+    "Lightball rays/use animation lifecycle",
+    "Complete UserSession/Active.Start/LevelLoad and save/account providers",
+    "Win/fail/results/progression",
+    "Original HUD and rendered 1:1 parity"
+  ]
+}

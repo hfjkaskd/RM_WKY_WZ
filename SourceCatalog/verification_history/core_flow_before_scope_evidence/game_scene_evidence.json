@@ -1,0 +1,210 @@
+{
+  "full_objective_complete": false,
+  "normal_first_board_scene_asset_and_build_entry": true,
+  "full_original_game_scene_restored": false,
+  "home_start_interval_flow_restored": false,
+  "production_application_account_win_fail_bound": false,
+  "original_scene_build_indices_restored": false,
+  "original_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "c55f2b6b3ac5d037a4997b5e7935a19f292a6090ce65bbba32927f379d2319a0",
+  "authoring": {
+    "original_game_scene_sha256": "6b0aebb280013890a27a007ee245b7e25843ab61ef3802b08d70209686b33d23",
+    "restored_camera_render_lighting_navmesh_settings": true,
+    "original_top_background_ids": [
+      125,
+      432,
+      733
+    ],
+    "top_background_resource_guid": "0a933794f44b15945b7b6b1d4e4de892",
+    "full_original_game_scene_restored": false,
+    "original_scene_build_indices_restored": false,
+    "home_start_interval_flow_restored": false,
+    "scope": "Normal GameScene uses existing first-board gameplay composition, original GameScene camera and global settings and recovered top background under the actual HUD prefab. GameScene is the temporary build entry while full Application/Start/Home/Interval owners remain pending. No inert booster/settings/King objects or unsupported controller stubs are copied. Camera orientation/safe-area and full scene presentation remain incomplete."
+  },
+  "lighting_format_compatibility": {
+    "before_ambient_mode": 3,
+    "before_skybox_exists": false,
+    "before_baked_gi": true,
+    "before_realtime_gi": false,
+    "after_baked_gi": false,
+    "after_realtime_gi": false,
+    "asset_guid": "4a3cb64eaad3fa943b909b7f3bb92e66"
+  },
+  "actual_scene_verification": {
+    "passed": true,
+    "normal_scene_and_72_models_verified": true,
+    "original_top_background_verified": true,
+    "failure": "",
+    "scope": "Normal GameScene starts existing real first-board gameplay, retains original serialized camera/render/bake settings and imports recovered Top/Background under actual HUD. Physical input, dynamic camera/orientation, King/boosters, startup/account/settlement/Home/navigation and full original rendered parity remain incomplete."
+  },
+  "background_verification": {
+    "passed": true,
+    "test": "game-scene",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "c55f2b6b3ac5d037a4997b5e7935a19f292a6090ce65bbba32927f379d2319a0",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_game-scene.log",
+    "elapsed_seconds": 102.12,
+    "batch": {
+      "passed": true,
+      "test": "game-scene",
+      "failure": "",
+      "timestamp_utc": "2026-11-02T03:34:06.0195025Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "player_input_regression": {
+    "passed": true,
+    "physical_drag_verified": false,
+    "tnt_activated": false,
+    "lightball_activated": false,
+    "rocket_activated": false,
+    "propeller_activated": false,
+    "propeller_flight": 0.0,
+    "propeller_trace": [],
+    "propeller_max_scale": 0.0,
+    "blocked_original_box_holes": 0,
+    "propeller_max_loop": 0,
+    "propeller_takeoff_instances": 0,
+    "propeller_hit_instances": 0,
+    "propeller_max_operations": 0,
+    "rocket_orientation": 0,
+    "rocket_max_operations": 0,
+    "rocket_first_flight": 0.0,
+    "rocket_second_flight": 0.0,
+    "sent_rays": 0,
+    "reached_rays": 0,
+    "completed_rays": 0,
+    "completed_lightball_activations": 0,
+    "rocket_created": true,
+    "tnt_created": false,
+    "lightball_created": false,
+    "propeller_created": true,
+    "failure": "",
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "left_moves": 20,
+    "goals_left": 23,
+    "created_refills": 76,
+    "created_specials": 2,
+    "scope": "Frame-separated recorded device samples through native GameTouchListener into formal production scene services. Checks invalid swap spends0, accepted swaps spend1, first triple/three box goals/six refills, 10accepted swaps and naturally observed special creation patterns (each requested type also has its own activation mode), automatic cascades, original creation coroutines and all72 model slots/no holes/no freeze/landing tolerance. Fails on runtime errors/exceptions. Shadow native match search only chooses gestures and never mutates live cells. Does not verify physical drag timing, special activation/combos, complete session startup, settlement or original rendered parity."
+  },
+  "restored_scope": [
+    "Add an independently openable GameScene and make it the enabled build entry instead of RecoveryPreview. It reuses the actual first-board prefab gameplay composition, input, views, fall/refill and HUD owners; the prior preview remains available for explicit verification.",
+    "Copy the original GameScene camera settings and RenderSettings/LightmapSettings/NavMeshSettings, changing only the local camera GameObject reference and the explicit LightingSettings reference needed by Unity2022. The original LightingData asset is already present. Actual Unity verifies original camera name/mask/depth/size, flat ambient mode, absent skybox and disabled baked/realtime GI.",
+    "Retain the failed legacy-lighting load and its exact scene/log/report. Direct Unity observations show original legacy bakedGI=false being loaded as true, while ambient mode3/absent skybox/realtimeGI=false remain correct. Explicit Editor authoring creates a persisted native LightingSettings asset with both GI flags false, and the scene references its actual GUID/local object ID. This is scene-data compatibility for every runtime target, not an Editor-only initialization fallback.",
+    "Recover the original Top/Background object, transform and SpriteRenderer into the actual HUD prefab. Preserve the sprite GUID, local pose, sliced size and sorting. The low-frequency HUD arrangement applies the native portrait width/height5.5 equation and hides that portrait background in landscape. Full native landscape/background/orientation presentation is still required.",
+    "The normal scene itself creates all seventy-two playable first-board models and prefab views. Recorded input through its actual camera/touch services still yields ten accepted and one rejected swaps, seventy-six refills, two naturally created specials and twenty moves. Current player verifier also checks all slots, no holes/freeze and landing tolerance.",
+    "Provide an Editor menu and explicit open method for the normal scene, separate from runtime startup. Verification runs the real normal scene rather than patching the preview during the test. The captured PNG records the current rendering only, not an original-reference comparison."
+  ],
+  "remaining_gaps": [
+    "This is the first-board game scene under the existing limited runtime composition. It is not a complete import/reimplementation of original GameContextController, ApplicationContext or all112 factory slots.",
+    "Start/Home/Interval scene owners, castle-area presentation, original scene indices0/1/2/3, account/event routing and Home/retry/next navigation are still missing. GameScene is temporarily build index0 while those owners are restored; native SceneChangeManager is not installed.",
+    "Full King animation, bottom settings/booster interactions and unlock logic, background bundles, camera/orientation/safe-area logic, all scene transitions and original rendered/mobile parity remain incomplete. No inert copies of those unsupported controllers were added.",
+    "Visual inspection of the640x480 landscape capture shows a small central board with move/goal panels on the left. The portrait background is inactive for this orientation. The captured image does not prove original normal-scene layout, background drawing, portrait scaling or camera/grid fit. Native camera sizing and grid/UI layout owners must be restored together.",
+    "The explicit Unity2022 LightingSettings asset restores the original effective disabled-GI flags. Its currently inactive bake tuning still uses Unity2022 defaults, including backend1/sample512 versus legacy backend0/sample500; complete bake-authoring parameter equivalence is not established.",
+    "Production WinFail/settlement composition, all levels/events/country/AB/GM routes remain required. Existing SDK facade behavior is unchanged."
+  ],
+  "performance": "The added background is a persisted SpriteRenderer subtree, not dynamically authored static UI. It reuses an existing atlas and resizes only with the existing HUD arrangement. No per-frame allocation, reflection, preloading of new large resources or new third-party assembly is introduced.",
+  "files": [
+    {
+      "path": "Assets/Foundation/Scenes/GameScene.unity",
+      "sha256": "92a1537d76473d21c0045563d24be8bb13a668153c8244db8b8d2e34a821007d"
+    },
+    {
+      "path": "Assets/Foundation/Scenes/GameScene.unity.meta",
+      "sha256": "ad94f44cdcade8d9438f890b631a53da18bc8fcd9312312ae29e33c91f402c7e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameplayHud.cs",
+      "sha256": "19b9da9f35cee52fcf2ff0cea487953a435a649eda5a9e6b396c3262c11630ba"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalGameplayHud.prefab",
+      "sha256": "1110232947ec6e8a5182b2f76d9f474397d0235a4ad03d8a777e3aeb55cc319c"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GameSceneVerification.cs",
+      "sha256": "2882b40c14fe78c5af3115e5c0f3bdae72062c831a4eefeb50221d0e1f49c480"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GameSceneVerification.cs.meta",
+      "sha256": "9fb9c716d3c3400907330e889f4f86e0aa52af2f95f4dc199046b21bd76ea707"
+    },
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "2eb37bc91cfaa69cf1ab8078a5bcfc883e2ad8666f5f37fd13bb06b83d4f7554"
+    },
+    {
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "dfd9c22e5754f091bc505c5fea3d5f58c9962944b53d3b36d900ac9b544e046c"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "4097d8f413143d3536fa7e60f00668ed38dec866aaa90696e2f77a702a418417"
+    },
+    {
+      "path": "SourceCatalog/restore_game_scene.py",
+      "sha256": "20aab8043c6a96e36a950e1c1bfce2aa5e5e47ab35784bc3398530aea752e1ad"
+    },
+    {
+      "path": "SourceCatalog/game_scene_authoring.json",
+      "sha256": "5a40c3ab5e3f8eee7aea577a38013db597a8063a32357a33c781746f4db16726"
+    },
+    {
+      "path": "game_scene_initial.png",
+      "sha256": "3a296cd62a1c4f514dbda5d827a4a385dc727c4e6b9ad51d6328fa60252ceb22"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSceneLighting.lighting",
+      "sha256": "eeb91529d7474a687622e7b82c9c06ffdd62d064dad44d11c42b410aa0669986"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSceneLighting.lighting.meta",
+      "sha256": "85585827281781a8689a99981abd1809df759bf4d9d05967bc068fb1c0af7ecb"
+    },
+    {
+      "path": "SourceCatalog/game_scene_lighting_authoring.json",
+      "sha256": "3843a566bf8f69f398deb54f1f2204920f3feb431b73dd22974a15176653c512"
+    },
+    {
+      "path": "SourceCatalog/verification_history/game_scene_legacy_lighting/background.json",
+      "sha256": "9c577e1e47d132f19d61b44d32868eace558c13198775f07216f4f7ca125246d"
+    },
+    {
+      "path": "SourceCatalog/verification_history/game_scene_legacy_lighting/live.json",
+      "sha256": "f856cc9258e5bb19b7ba29ff467d23fd36e322466ccac902c473755db8afdab0"
+    },
+    {
+      "path": "SourceCatalog/verification_history/game_scene_legacy_lighting/batch.log",
+      "sha256": "d0943ada25dafa0cda827c1a85bcad2eb7a51bf5b4c3b75fa10f51db8d50947d"
+    },
+    {
+      "path": "SourceCatalog/verification_history/game_scene_legacy_lighting/GameScene.unity.txt",
+      "sha256": "75694e232f83f2cac57427e3e5a976c0418be772092f5f9d0bd2d519b2706a8a"
+    }
+  ],
+  "current_camera_projection_evidence": "SourceCatalog/camera_projection_evidence.json",
+  "current_camera_projection_source_snapshot_sha256": "c207ecce7f26f43a84b598ec301e110fcd39e5f75dc3eb0f59b85b26a1f3d420",
+  "current_life_helper_evidence": "SourceCatalog/life_helper_evidence.json",
+  "current_life_helper_source_snapshot_sha256": "dedde0979ec2889ad6ffae4256a11ed7a089f09a78736ea3b81611550efcc579",
+  "current_life_clock_evidence": "SourceCatalog/life_clock_evidence.json",
+  "current_life_clock_source_snapshot_sha256": "a47a153158cd4c16fe78e4572119cd1a4e21f6deae87d17f9698c182ae63add3",
+  "current_inventory_time_reset_evidence": "SourceCatalog/inventory_time_reset_evidence.json",
+  "current_inventory_time_reset_source_snapshot_sha256": "0a28f7a3f228db46104aa696c37bd350ded51f87ea02f01ba01e5a0251df34fc",
+  "latest_normal_scene_king_visual_evidence": "SourceCatalog/king_visual_evidence.json",
+  "normal_scene_king_idle_visual_restored": true,
+  "latest_normal_scene_with_king_source_sha256": "b78c0f0c6422f9f8ab01bdf6170d02f8dfdf69d0487b960f81c34d842e65a6ff",
+  "latest_normal_scene_bottom_ui_evidence": "SourceCatalog/bottom_ui_evidence.json",
+  "normal_first_board_bottom_and_locked_slots_restored": true,
+  "latest_normal_scene_with_bottom_source_sha256": "fe05f6f2a88b9b73457cd5ebf4ca839e7b0e37bd7b435d668d4a22ddc4220e0c",
+  "formal_scene_coin_star_snapshots_read_native_account": false,
+  "historical_account_projection_evidence_before_core_scope_cut": "SourceCatalog/account_snapshot_evidence.json",
+  "historical_account_projection_source_snapshot_sha256_before_scope_cut": "d964311c7e70b177e70ad2b22e5bef79ed232b63cbb945b5cd7fcef8c22e887c",
+  "current_core_first100_evidence": "SourceCatalog/core_first100_evidence.json",
+  "current_deliverable_scope": "Ordinary levels1\u2013100 core gameplay only; no peripheral systems.",
+  "current_scope_source_snapshot_sha256": "1ec08c0ddb55d4d8a0c9ccd0efa22b872653f30a260aa5d93c839186c949fd14"
+}

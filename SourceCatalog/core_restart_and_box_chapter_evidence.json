@@ -1,0 +1,336 @@
+{
+  "baseline_commit": "35a04f684d0d7d8885b9db78a591f7c608b3302b",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "tests": {
+    "core-no-moves-author": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-no-moves-author",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-no-moves-author.log",
+      "elapsed_seconds": 27.55,
+      "batch": {
+        "passed": true,
+        "test": "core-no-moves-author"
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-no-moves": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-no-moves",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-no-moves.log",
+      "elapsed_seconds": 25.51,
+      "batch": {
+        "passed": true,
+        "test": "core-no-moves",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T08:46:08.6068545Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-box-chapter": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-box-chapter",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-box-chapter.log",
+      "elapsed_seconds": 70.58,
+      "batch": {
+        "passed": true,
+        "test": "core-box-chapter",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T08:47:19.5511855Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    }
+  },
+  "verified_no_moves": {
+    "passed": true,
+    "status": "finished",
+    "failure": "",
+    "scope": "Production GameScene and native WinFail no-moves notification. The test explicitly calls the exhausted-shuffle notification, then uses the visible standard Restart Button and checks a fresh level 2 session."
+  },
+  "verified_original_box_chapter": {
+    "passed": true,
+    "projection_during_shake_verified": false,
+    "egg_tap_verified": false,
+    "egg_reject_verified": false,
+    "egg_fall_verified": false,
+    "egg_burst_verified": false,
+    "egg_swap_verified": false,
+    "egg_natural_swap": false,
+    "potion_tap_animation": false,
+    "potion_color_hit": false,
+    "potion_repeated_color_rejected": false,
+    "potion_tnt_rocket_verified": false,
+    "dynamic_egg_refill": false,
+    "vase_tap": false,
+    "vase_reject": false,
+    "vase_first_layer": false,
+    "vase_final_layer": false,
+    "vase_natural_swap": false,
+    "vase_swap": false,
+    "vase_fall": false,
+    "owl_tap": false,
+    "owl_drag_blocked": false,
+    "owl_rocket_burst": false,
+    "owl_rocket_hit": false,
+    "owl_tnt_hit": false,
+    "owl_resists_adjacent_match": false,
+    "dynamic_vase_refill": false,
+    "dynamic_owl_chapter_egg_refill": false,
+    "cupboard_door_materials": false,
+    "bush_tap": false,
+    "bush_drag_blocked": false,
+    "bush_near_match": false,
+    "bush_grass_landed": false,
+    "bush_cavity_refilled": false,
+    "bush_grass_layer_refill": false,
+    "no_move_native_result": 0,
+    "coin_shuffles": 0,
+    "bush_shadow_components": 0,
+    "honey_blocks_drag": false,
+    "honey_natural_reveal": false,
+    "honey_reveals_intact_box": false,
+    "honey_first_swap_removed": 0,
+    "safe_blocks_drag": false,
+    "safe_resists_match": false,
+    "safe_power_damage": false,
+    "level_cap_restarts": false,
+    "no_move_board": [],
+    "bush_grass_flights": 0,
+    "owl_rocket_refills": 0,
+    "vase_fall_setup_hits": 0,
+    "eggs_from_opening_match": 0,
+    "failure": "",
+    "status": "finished",
+    "levels": [
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 2,
+        "width": 9,
+        "height": 9,
+        "target_count": 36,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 36,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 0,
+        "moves": 2,
+        "move_budget": 27,
+        "natural_actions": 1,
+        "fixture_actions": 1,
+        "fixture_combos": 1,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 3,
+        "width": 9,
+        "height": 9,
+        "target_count": 25,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 25,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 0,
+        "moves": 4,
+        "move_budget": 27,
+        "natural_actions": 1,
+        "fixture_actions": 3,
+        "fixture_combos": 3,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      }
+    ],
+    "scope": "Actual level 2 and 3 board, recorded first legal color swaps, controlled power placements, real wins and the standard Continue to level 3."
+  },
+  "byte_verified_tested_files": {
+    "Assets/Foundation/Editor/BackgroundVerification.cs": "55e535483099760af95517ef5ad5cf90643f3bd394139442d984b6b462f05b6d",
+    "Assets/Foundation/Editor/CoreMixedChapterVerification.cs": "04fee9bc3573648843502b4d909c916ff7dc0576b44bfc6fb2a2d8e3a95c95b9",
+    "Assets/Foundation/Editor/CoreNoPossibleMovesVerification.cs": "78494ab6783271e60e02df4608d51a3ff20d530fd7a1fc8df184ddd8ee02cc67",
+    "Assets/Foundation/Editor/CoreNoPossibleMovesVerification.cs.meta": "71f2dd47bdce76d18d4f8354a4d04c4687278a0a7e882bc097f3093385f920fa",
+    "Assets/Foundation/Editor/CoreUiAuthoring.cs": "6c3156dce2741c5fba58e07773eb44433a49f73756579ea336c41f3644203b9e",
+    "Assets/Foundation/Runtime/CoreFlowSettings.cs": "c897420940973c4c1e8b20042206678860334136b9e061b836fd283beef8a038",
+    "Assets/Foundation/Runtime/CoreGameFlow.cs": "c73f790e68cfd200eef003215eb0d0aeb607bb31d36546b986d66d8faa6fa671",
+    "Assets/Foundation/Runtime/CoreNoPossibleMovesDialog.cs": "69c6cb0a07b6c0f4d8d3234976384f871f348ea1a156653207b80bb37f0c2a59",
+    "Assets/Foundation/Runtime/CoreNoPossibleMovesDialog.cs.meta": "95ccd379f9114dc3bd10f989b5ae85b5471b0682fb75b7eadd0682183bd7d31c",
+    "Assets/Foundation/Scenes/GameScene.unity": "c1449a998237f2ee5ce55b1727dbfeac535f98c1fffe1bfb45b3b9cc88a50d89",
+    "Assets/Resources/Foundation/Prefabs/CoreNoPossibleMovesDialog.prefab": "f1c2be0d0cb9dc17842a1f0ac58b39384b9bf69b03f6e4ff94bd4694025860e2",
+    "Assets/Resources/Foundation/Prefabs/CoreNoPossibleMovesDialog.prefab.meta": "a4818a5ace462f5139aebfb875f0e6a3a3c097185d5655b3fdc51d89b6adbe67",
+    "Packages/manifest.json": "e7526e7aa8730bf51b97e896ef32bfb7830a22cea8920f6b2c97a848909b2197",
+    "ProjectSettings/EditorBuildSettings.asset": "dfd9c22e5754f091bc505c5fea3d5f58c9962944b53d3b36d900ac9b544e046c"
+  },
+  "preserved_original_configs": [
+    {
+      "number": 2,
+      "original_name": "00002v02_L",
+      "resource_path": "Levels/level_2",
+      "decoded_source": "configs/levels/2__9632.json",
+      "raw_source": "configs/textassets/2__9632.bytes",
+      "sha256": "77a4dd20c7bb43651912efd3dc6d05506b0973a2b01c4a1713d7015be9c48fa4",
+      "moves": 27,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11
+      ],
+      "raw_item_ids": {
+        "1": 12,
+        "2": 10,
+        "3": 12,
+        "4": 11,
+        "21": 36
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 3,
+      "original_name": "00003v02_L",
+      "resource_path": "Levels/level_3",
+      "decoded_source": "configs/levels/3__12443.json",
+      "raw_source": "configs/textassets/3__12443.bytes",
+      "sha256": "fd175619653f8a10e323e4144ec46c4339e4d9523bb2bd21cd6670fa1125d850",
+      "moves": 27,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11
+      ],
+      "raw_item_ids": {
+        "1": 14,
+        "2": 13,
+        "3": 14,
+        "4": 15,
+        "22": 25
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "settings_override": "Separate progress filename, verified against production asset after restoring the single filename field.",
+  "native_reference": [
+    "0x1ede668",
+    "0x32b9e70",
+    "0x1588dd8",
+    "0x15893d8",
+    "0x1589464"
+  ],
+  "verification_limits": [
+    "The no-moves test explicitly notifies the native WinFail owner of the exhausted-shuffle result.",
+    "Levels 2 and 3 use original boards and gestures with controlled special placement where reported.",
+    "Original tutorials, natural full-level wins on all 100 boards, physical mobile touch and rendered parity remain open."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "55e535483099760af95517ef5ad5cf90643f3bd394139442d984b6b462f05b6d"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreMixedChapterVerification.cs",
+      "sha256": "04fee9bc3573648843502b4d909c916ff7dc0576b44bfc6fb2a2d8e3a95c95b9"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreNoPossibleMovesVerification.cs",
+      "sha256": "78494ab6783271e60e02df4608d51a3ff20d530fd7a1fc8df184ddd8ee02cc67"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreNoPossibleMovesVerification.cs.meta",
+      "sha256": "71f2dd47bdce76d18d4f8354a4d04c4687278a0a7e882bc097f3093385f920fa"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreUiAuthoring.cs",
+      "sha256": "6c3156dce2741c5fba58e07773eb44433a49f73756579ea336c41f3644203b9e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreFlowSettings.cs",
+      "sha256": "c897420940973c4c1e8b20042206678860334136b9e061b836fd283beef8a038"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreGameFlow.cs",
+      "sha256": "c73f790e68cfd200eef003215eb0d0aeb607bb31d36546b986d66d8faa6fa671"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreNoPossibleMovesDialog.cs",
+      "sha256": "69c6cb0a07b6c0f4d8d3234976384f871f348ea1a156653207b80bb37f0c2a59"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreNoPossibleMovesDialog.cs.meta",
+      "sha256": "95ccd379f9114dc3bd10f989b5ae85b5471b0682fb75b7eadd0682183bd7d31c"
+    },
+    {
+      "path": "Assets/Foundation/Settings/CoreFlowSettings.asset",
+      "sha256": "a97cce061dd4d1dd9c94c8a4fb7e8fcd1dccf260a58267641f46a769576f0b3d"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreNoPossibleMovesDialog.prefab",
+      "sha256": "f1c2be0d0cb9dc17842a1f0ac58b39384b9bf69b03f6e4ff94bd4694025860e2"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreNoPossibleMovesDialog.prefab.meta",
+      "sha256": "a4818a5ace462f5139aebfb875f0e6a3a3c097185d5655b3fdc51d89b6adbe67"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "a02b88447f0696f365736282060d47131f5681c4fb0dfc59ea64253954a88495"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "a0af351c15438de81e8c16537047cbbfd4790da44b2c86ac002720ac5d81435b"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "acc58d3cf661832ff8c046896a34b17459f0cb8f5c8d1954bfeeee2b50f261e4"
+    },
+    {
+      "path": "core_box_level3_win.png",
+      "sha256": "54a47a8f2c368214345ad55cb2a8e7f26e3e64bf1a73cc4439d0d819f7db7cb9"
+    },
+    {
+      "path": "core_no_possible_moves.png",
+      "sha256": "daf91c960296a383279ad44c7575a45902e8e791ab73c03f50480c44952bc1d4"
+    }
+  ]
+}

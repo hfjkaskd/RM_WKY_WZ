@@ -1,0 +1,55 @@
+{
+  "scope": "Concrete grid/board services for native automatic fall orchestration; full application/session and player resolution remain pending.",
+  "methods": [
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.Board$$CacheFillingCells",
+      "rva": "0x3207b00",
+      "disassembly_sha256": "970bf456334b7711725b77d57e9ea09fc068c3345cf6da97a3747f9ba9df29e7"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.Board$$CanCrossFall",
+      "rva": "0x3207c54",
+      "disassembly_sha256": "2c64e35c561ea74a010b2819b14ad0a845bb1c8ca32cb3a2ef8c642ba09138cb"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$GridManagerOnOnCellGridInitialized",
+      "rva": "0x3210494",
+      "disassembly_sha256": "d694bd6b1bea0af53688063601a5bf40750039ec5185bf56ea0dbbf09a4001b3"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.CellGridManager$$GetIteratorStrategy",
+      "rva": "0x320da64",
+      "disassembly_sha256": "a5bb42537926f500be0fc0ff9d6187245a99aaba0f003e0bab4c75b9ccc1bc22"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$ShouldFindCross",
+      "rva": "0x3211768",
+      "disassembly_sha256": "f06d550bc29d5ad6d88fc48569a5790665624233282d5dbe0ddcc1f629b02fa4"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$IsFallPossibleFromCellToCell",
+      "rva": "0x3211684",
+      "disassembly_sha256": "e4c39996e92d69e24f43a3f0c69cc63bc489c13a2780e51752c953b58072f5f5"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$StopIfReached",
+      "rva": "0x2ee8cc8",
+      "disassembly_sha256": "0483dccddebea1b757c140aeba418b72839a8ce452d8385bdd23c43e7ab452b6"
+    }
+  ],
+  "restored": [
+    "Board.CacheFillingCells scans columns left to right and each column top to bottom, caches only the first filling cell, retains existing entries, and preserves partial mutation on null/type/duplicate failures.",
+    "Board.CanCrossFall considers incoming-from-top-board counts of filling entries in the same and adjacent columns. All relevant entries are visited even after a blocked result.",
+    "Fall traversal caches native strategies0/1/4/5 once, using actual grid/layout membership and board bottom. Unsupported non-fall strategy requests fail explicitly.",
+    "Target services invoke actual item IsAvailableForFall, CanFallCross, IsSpecialItem and IsCrossFallBlocking, actual default Cell.IsFallBlocked(false,false), initial item51 presence and current board cache.",
+    "Active-level portal/multiple-board flags and WinFailManager IsLevelWon stay explicit typed dependencies; they are not inferred from GameStateManager. Ice helper/cross-freeze/incoming owners remain required for Ice paths."
+  ],
+  "verification": {
+    "native_report": "board_filling_cache_native_verification.json",
+    "unity_report": "automatic_refill_unity_verification.json",
+    "unity_fixture": "Three removed normal matches in column4 in each of two phases. Real planner/FallManager automatically moves the existing top match three rows and creates three actual pooled match views from predefined or weighted random generation. No target assignment or direct per-item fall update in the fixture. Seed371, level status and removals are diagnostic inputs. Other columns and boxes are checked unchanged.",
+    "precision": "Native StopIfReached allows targetY+.001 and FallStraight clamps below targetY-.001. Diagnostic position checks use this native precision instead of strict floating equality. Runtime motion is unchanged.",
+    "remaining": "No production application/session seed, SuperBooster/factory/session lifecycle or player swap/damage/collection/resolution startup is supplied by this diagnostic. Portal/multiple-board/Ice end-to-end execution not established."
+  },
+  "performance": "Filling dictionaries and iterator strategies are allocated once per context. High-frequency delegation uses cached owners, no LINQ or per-frame object allocation; actual native target/cross scans remain unchanged. Pooling reuses configured views, while model allocations retain original lifecycle until full model reset semantics are restored. Device profiling remains required."
+}

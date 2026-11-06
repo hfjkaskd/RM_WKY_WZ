@@ -1,0 +1,476 @@
+{
+  "full_objective_complete": false,
+  "production_win_flow_bound": false,
+  "source_snapshot_sha256": "07fa55d04d0b0ac3751ada6ebfd2260f03f930afa4cff9a7abb2396de0e4386e",
+  "restored_scope": "Original Session.Win data capture, coin initialization/goal reward, milestone/star/league branches, ordered event dispatch and feature progress, plus all23 win-reward arithmetic entries. Formal-scene integration now calls actual Session.Win before actual remaining-move manager/Session end.",
+  "original_elf_sha256": "017f7d4716f9375d86bbbe006740e8e68e65c776bad757d00d8a3c120ee8f5eb",
+  "native_methods": [
+    {
+      "rva": "0x32b8920",
+      "name": "Royal.Player.Context.Data.Session.UserActiveLevelData$$Win",
+      "body_sha256": "34c3848376364117d18fe8d20ee3d7c388a255a3cd3565048d3ba49a87cacaeb"
+    },
+    {
+      "rva": "0x338b348",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddLeagueCrown",
+      "body_sha256": "b9b2ba35f905c299fa7126dd571a7d42c72931cd1e2516b8b5603e466eb0a9e7"
+    },
+    {
+      "rva": "0x338b3c4",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddKingsCup",
+      "body_sha256": "0c78583b99166d6b7f692d62d605635f658af9aebe4b9b05ee80c3a3412856a8"
+    },
+    {
+      "rva": "0x338b418",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddTeamBattle",
+      "body_sha256": "f1da5d04b8f8c2d0978e685434faca9fca3cb49e301b9206f9b21e4aeb74328f"
+    },
+    {
+      "rva": "0x338b46c",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddRoyalPass",
+      "body_sha256": "6ff1eec55b976801ac08fd202b86b4a751d0a35318b361925765dc55468a8ba0"
+    },
+    {
+      "rva": "0x338b4c0",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddWeeklyPass",
+      "body_sha256": "df1efcd9a878ae5e8a855e61c86424ce03fff34c5c4fee714ef6d72a2e79c08c"
+    },
+    {
+      "rva": "0x338bc08",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddPinata",
+      "body_sha256": "a4d18d2c01df6818949f046a3fe1c43b5030477eea06038b56de0db73ed6e134"
+    },
+    {
+      "rva": "0x338b540",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddTeamTreasure",
+      "body_sha256": "aa76b00590fc61a58344fc12d86a2d1ba49ae1c28710828e4d50e406d3d399b9"
+    },
+    {
+      "rva": "0x338bb88",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddSpaceMission",
+      "body_sha256": "7d03e78e9790e4b621b588777c1f29efc5a3d532d1bfe802d5ab9a4e1abf8c17"
+    },
+    {
+      "rva": "0x338bbb4",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddBalloonRise",
+      "body_sha256": "5f3fe8d7c90556ee0e9dbbe8e4dbef11dc1292d78313db530ee38d24cdc89133"
+    },
+    {
+      "rva": "0x338b514",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddSkyRace",
+      "body_sha256": "fd0095a89451b7373253dc3d17cbe606f7fa46c966ac50b62b6e2a031b129d31"
+    },
+    {
+      "rva": "0x338b604",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddHiddenTemple",
+      "body_sha256": "674b4e9c3ab2875c3adba36355a7b4d600c61232aa80f58f9a739aeac6d321f5"
+    },
+    {
+      "rva": "0x338b658",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddDragonNest",
+      "body_sha256": "f10aac5ab532831492c554e9d710192ae2b1f06e60c71f979de2ea2a02f1c39c"
+    },
+    {
+      "rva": "0x338b830",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddTeamTournament",
+      "body_sha256": "18eb5859984badff20f058bdd72bd115e210473dff1e980614947aa16aeae219"
+    },
+    {
+      "rva": "0x338b6ac",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddMagicCauldron",
+      "body_sha256": "a07004376526d9f21bf573aaa980e72bbe8ac6169f9228fff33808c2f5ccaa7a"
+    },
+    {
+      "rva": "0x338b700",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddArcheryArena",
+      "body_sha256": "62c8c98eabd7f5bdd5a9d3ef67d2d6779b7e8aad4577539019388fb76947936b"
+    },
+    {
+      "rva": "0x338b758",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddDukesFortune",
+      "body_sha256": "c9d94702a15ac74ace5637b195424e416058d4e61e1915acd1e6f69b5b8eac3e"
+    },
+    {
+      "rva": "0x338b884",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddTrainJourney",
+      "body_sha256": "392e55c7dfd89b6703e2fcb648473e0336713278b9f9b408a39d58a2d321773c"
+    },
+    {
+      "rva": "0x338b8d8",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddOceanOdyssey",
+      "body_sha256": "062b544c56795132e28fba4a32d88e57ac8d6c8d178ee9e008a148db9470fa8e"
+    },
+    {
+      "rva": "0x338ba04",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddPuzzleBreak",
+      "body_sha256": "7f51ee5e7008d00bba8565d93d13781b75fbea86d26af4c14cd0458d898d4546"
+    },
+    {
+      "rva": "0x338bb00",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddRobotRivals",
+      "body_sha256": "36b036395cde93c2b332c4cbf3e4efaa9d4b862ecb9bc7deb4b038642eb85230"
+    },
+    {
+      "rva": "0x338bb2c",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddRoyalWorldCup",
+      "body_sha256": "71d47c35c6836baca1195f7b6e7175b0bdfa27e5a69e8d198956f79fd6e56637"
+    },
+    {
+      "rva": "0x338ba58",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddMergeSmith",
+      "body_sha256": "fd20a6a503e0af9f93148ab3ed23c5f40ddb32cfa742c94eadbe30593e4b5418"
+    },
+    {
+      "rva": "0x338baac",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddShortExpeditionEvent",
+      "body_sha256": "6ad8a4d59a3b0ad425cb60d14e9d3cbbf8c3323cee2104993f4b41565c77fc77"
+    },
+    {
+      "rva": "0x338c6a8",
+      "name": "Royal.Player.Context.Data.Session.BeforeAfterData$$Init",
+      "body_sha256": "3afa99f2152e76872228f1aad2c8115f0935036788fdce22de955845fb6e007c"
+    },
+    {
+      "rva": "0x338b130",
+      "name": "Royal.Player.Context.Data.Session.BeforeAfterData$$AddExtra",
+      "body_sha256": "809bf5351e6cc85df63ac4facad3b17cb3d25464b39598da705097b7becf0e34"
+    },
+    {
+      "rva": "0x222d88c",
+      "name": "Royal.Player.Context.Units.SuperBoosterManager$$GetSuperBoosterUnlockLevel",
+      "body_sha256": "2badeb93826c9a28f420010f47a26791e559864c9cd38fa7216bb33f8ae6808e"
+    },
+    {
+      "rva": "0x111a470",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemReplacer$$ReplaceWithSpecialItem",
+      "body_sha256": "259a0ab1f83653ef8839109e7544c7cb23ed79dbc4448bef77fadd3e6c671d40"
+    },
+    {
+      "rva": "0x2b46f90",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemModel$$ReplaceItem",
+      "body_sha256": "af900eba799f04590604e9e6dfc4fea180beaa2aadc1a0af3252792b91d1ddb4"
+    },
+    {
+      "rva": "0x21a7168",
+      "name": "Royal.Scenes.Game.Mechanics.Items.MatchItem.MatchItemModel$$ReplaceItem",
+      "body_sha256": "11b6e01ae885d25e36fac88826a1cdcd43ccdbc90438dc0959b41cb6e285cf09"
+    }
+  ],
+  "native_differential": {
+    "passed": true,
+    "cases": 1948,
+    "win_cases": 798,
+    "reward_cases": 1150,
+    "reward_entries": 23,
+    "scope": "Execute native ARM64 Session.Win and all23 win-reward arithmetic entries.\n\nActual state/move capture, Coin.Init/AddExtra, milestone/star/feature snapshot\nwrites and native branching instructions run. Account/event/feature getters,\nreward-dispatch calls, metadata/vtable resolution and diagnostic formatting are\nexplicit typed boundaries. Independent executions cover actual23 AnimationData\nreward bodies, including wheel/streak side effects and partial failures. This\ndoes not prove production account providers, win trigger/Flow/dialog binding,\nactive event presentation, persistence or original rendered parity.",
+    "files": [
+      {
+        "path": "SourceCatalog/SessionWinHarness.cs",
+        "sha256": "2aa8d77c6e91a6f21c69ab573af24d929ef4be2259d9096d232bbd466763589a"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalSessionWin.cs",
+        "sha256": "4a1b64d29255f44e457e4d3ab196cd02c59e0bf65a7c9a5f887dd2d5c8b98bfa"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalWinAnimationRewards.cs",
+        "sha256": "46176cb159f690a79d89babd454edf92c6c0087e3792268e81ac042c6cb30a1a"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalSessionValues.cs",
+        "sha256": "607fdf145a1cc7bba00669cef86f048083a78a47cc81eb17b64d9528da1203c0"
+      },
+      {
+        "path": "SourceCatalog/session_win_boundaries.json",
+        "sha256": "310b73941f6838ae8243e661ce9a63eef691754d157e88a1420ce5640a590571"
+      }
+    ]
+  },
+  "item_replacement_native_differential": {
+    "passed": true,
+    "cases": 800,
+    "base_cases": 400,
+    "match_cases": 400,
+    "scope": "Compare actual ARM64 ItemModel/MatchItemModel.ReplaceItem control flow.\n\nGoal/collection/hat/Madness/factory calls and view getters are explicit typed\nboundaries. Native instructions decide order, short-circuit manager selection,\nview ownership and match-count dispatch. This test does not replace the full\nUnity scene checks or prove active collection-manager presentation.",
+    "files": [
+      {
+        "path": "SourceCatalog/ItemReplacementHarness.cs",
+        "sha256": "de9446910427ef9d66f708b9582596c29efb577d93278f6a42f3fab797489a7f"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalItemReplacement.cs",
+        "sha256": "1943291475ae5be3c1505aa4809291733f380c40615115a8d1ef7d408f88aa59"
+      }
+    ]
+  },
+  "runtime_cases": [
+    {
+      "background": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "07fa55d04d0b0ac3751ada6ebfd2260f03f930afa4cff9a7abb2396de0e4386e",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+        "elapsed_seconds": 130.24,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-normal",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T17:18:13.5809559Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "runtime": {
+        "passed": true,
+        "skipped": false,
+        "failure": "",
+        "initial_remaining_moves": 25,
+        "converted_moves": 25,
+        "unconverted_moves": 0,
+        "reward_coins": 101,
+        "collections": 39,
+        "peak_coin_views": 75,
+        "peak_pilots": 78,
+        "peak_operation5": 75,
+        "native_departure_count": 91,
+        "active_board_coin_value_at_end": 0,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "elapsed": 19.36664581298828,
+        "scope": "Formal36box goal scenario then explicit GameState win fixture. Actual Session.Win captures state/moves, initializes coin snapshot, awards the first-board star and dispatches locked event/feature gates. Actual remaining manager, coin flights/recycling and Session.RemainingMovesEnd/mission counters follow. Account/event/feature/cloche availability is an explicit first-board fixture; item-creator/LevelManager/account/dialog/skip-view owners remain bounded. Production WinFail/Flow/physical Button/account persistence/settlement and original rendered/cross-platform parity remain incomplete."
+      }
+    },
+    {
+      "background": {
+        "passed": true,
+        "test": "remaining-coins-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "07fa55d04d0b0ac3751ada6ebfd2260f03f930afa4cff9a7abb2396de0e4386e",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-skip.log",
+        "elapsed_seconds": 102.25,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T17:19:55.3993915Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "runtime": {
+        "passed": true,
+        "skipped": true,
+        "failure": "",
+        "initial_remaining_moves": 25,
+        "converted_moves": 25,
+        "unconverted_moves": 0,
+        "reward_coins": 86,
+        "collections": 1,
+        "peak_coin_views": 3,
+        "peak_pilots": 3,
+        "peak_operation5": 3,
+        "native_departure_count": 3,
+        "active_board_coin_value_at_end": 73,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "elapsed": 5.823030471801758,
+        "scope": "Formal36box goal scenario then explicit GameState win fixture. Actual Session.Win captures state/moves, initializes coin snapshot, awards the first-board star and dispatches locked event/feature gates. Actual remaining manager, coin flights/recycling and Session.RemainingMovesEnd/mission counters follow. Account/event/feature/cloche availability is an explicit first-board fixture; item-creator/LevelManager/account/dialog/skip-view owners remain bounded. Production WinFail/Flow/physical Button/account persistence/settlement and original rendered/cross-platform parity remain incomplete."
+      }
+    },
+    {
+      "background": {
+        "passed": true,
+        "test": "remaining-coins-early-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "07fa55d04d0b0ac3751ada6ebfd2260f03f930afa4cff9a7abb2396de0e4386e",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+        "elapsed_seconds": 100.02,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-early-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T17:21:35.7254294Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "runtime": {
+        "passed": true,
+        "skipped": true,
+        "failure": "",
+        "initial_remaining_moves": 25,
+        "converted_moves": 2,
+        "unconverted_moves": 23,
+        "reward_coins": 81,
+        "collections": 0,
+        "peak_coin_views": 0,
+        "peak_pilots": 0,
+        "peak_operation5": 0,
+        "native_departure_count": 0,
+        "active_board_coin_value_at_end": 14,
+        "unconverted_move_coin_value": 57,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "elapsed": 3.207620620727539,
+        "scope": "Formal36box goal scenario then explicit GameState win fixture. Actual Session.Win captures state/moves, initializes coin snapshot, awards the first-board star and dispatches locked event/feature gates. Actual remaining manager, coin flights/recycling and Session.RemainingMovesEnd/mission counters follow. Account/event/feature/cloche availability is an explicit first-board fixture; item-creator/LevelManager/account/dialog/skip-view owners remain bounded. Production WinFail/Flow/physical Button/account persistence/settlement and original rendered/cross-platform parity remain incomplete."
+      }
+    }
+  ],
+  "native_rules": [
+    "A null MoveManager fails before state writes. Otherwise State3, LeftMoves, MadeMoves and WonAnyLevel are captured before the admin early return. Admin wins do not require account/reward snapshots.",
+    "Non-admin wins resolve the actual inventory owner, call the Coin snapshot virtual Init and then AddExtra for the coin goal. Milestone packages occur at positive multiples of1000 outside story/table/league; the normal/table/story flag combinations retain original ordering.",
+    "Story non-water wins replace LeftMoves with Seconds before the table-game branch; table wins otherwise set LeftMoves0. Those branches reset extraCoins. Ordinary wins preserve the original extraCoins value.",
+    "League adds the difficulty-weighted crown; ordinary non-story/non-table wins add one star. The original23 reward dispatch entries retain event eligibility and SkyRace short-circuit ordering, Archery/WorldCup multipliers and TeamTreasure wheel/streak side effects.",
+    "SuperBooster eligibility retains repeated tutorial/unlock queries and the persistent-level fallback for story. Feature/tutorial gates control snapshot addition and win counting.",
+    "SuperDuke win eligibility is league or Number>=402: native literal0x192. The ARM64 differential caught an initial410 conversion mistake; the actual runtime threshold was corrected and401/402/403 boundaries are included.",
+    "MagicDuke compares the snapshot Before value with the owner maximum, optionally adds one, and always forwards snapshot After when the feature is ready.",
+    "Actual runtime Session.Win now replaces the verifier manual Session.State/LeftMoves/MadeMoves writes. First-board scenarios verify State3, actual move capture, WonAnyLevel, star1 and one cloche-owner invocation before remaining conversion/coins/Session.RemainingMovesEnd.",
+    "Typed account/event/feature/cloche inputs remain explicit fixtures. The existing RoyalPass/Pinata snapshot classes execute real locked-event validity gates; unexpected locked-event queries and resource/feature progression throw.",
+    "Remaining-move landings clear the CURRENT item mediation and call virtual ReplaceItem(true), as native0x111a470. The previous match-only cast/direct recycle was narrower than the native path and omitted goal collection, match counts and Madness gating. Actual base/Match ReplaceItem methods now preserve these callbacks and all six restored pooled view types are handled.",
+    "An earlier full normal run failed at the previous match-only landing guard. It is retained as a discovered regression, not counted as passed. The later native replacement comparison covers800 base/match cases, with explicit factory/goal/manager/hat/Madness boundaries; final scene runs below prove the current snapshot only."
+  ],
+  "performance": {
+    "recommended": "Keep per-level shared snapshots and typed owner interfaces. Win arithmetic runs once, retains the existing reward objects and does not introduce asset loading or per-frame work.",
+    "costs": "Only low-frequency scalar/dictionary-free branching and existing snapshot additions. Replacement uses existing pooled views and item services; no new per-frame allocations or static UI. Event-owner presentation/load costs are outside this data-method scope and remain unbound."
+  },
+  "remaining_scope": [
+    "Production WinFail.OnWin/StartWinFlow, LifeHelper/King/item-creation state changes, LevelEnd/account persistence and native Flow/dialog/skip/result/ego/banner owners remain unbound. The full player win lifecycle is not complete.",
+    "Actual account/inventory/milestone/AB/feature/event providers and unlock composition remain incomplete. Native tests explicitly bound those queries and reward dispatch; the scene uses locked first-board inputs and records the cloche boundary.",
+    "Native tests omit diagnostic argument formatting/logging and supply metadata/vtable resolution, typed getters and owner callbacks. They do not prove all provider mutation/reentrancy or active-event presentation/persistence.",
+    "All-level/static/helper/multi-board/physical input coverage, original rendered/camera/HUD/scene parity and country/AB/GM remain incomplete. SDK handling is unchanged.",
+    "The current replacer selects the replacement type before the landing service clears/replaces the old item; native selects inside CreateSpecialItemAtCell after ReplaceItem. Active goal/manager callbacks could affect random/event state. Full callback/reentrancy parity of that outer replacer remains unverified."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "03a8a5564120cd7b242b2205d2d58b80997f2a8595a49f9155ded4299e3d3d56"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingMovesReplacementServices.cs",
+      "sha256": "f1668762b2091ea98f183bbccdb2bb08770b1f3f88935ffcc4cd78676789f8bd"
+    },
+    {
+      "path": "Assets/Foundation/Editor/SessionWinFixtureContext.cs",
+      "sha256": "212b79dd0934894197a51d83ae65c5dcf78def7dcee843230708c413f39a03fa"
+    },
+    {
+      "path": "Assets/Foundation/Editor/SessionWinFixtureContext.cs.meta",
+      "sha256": "0d3c5a62b123fab6fcd8bd84860b55e1bee1767a3d8b6d7a35bd3d314ec8f1bb"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemReplacement.cs",
+      "sha256": "1943291475ae5be3c1505aa4809291733f380c40615115a8d1ef7d408f88aa59"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemReplacement.cs.meta",
+      "sha256": "bdf99a7fe3ee337a8bf08c4e7d8bb59d8594eb3efaab71cdd39b41b026dd7fd3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalSessionWin.cs",
+      "sha256": "4a1b64d29255f44e457e4d3ab196cd02c59e0bf65a7c9a5f887dd2d5c8b98bfa"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalSessionWin.cs.meta",
+      "sha256": "01853648741282c8da72817689e9269069aaceec1928ff59395d04727e407da6"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWinAnimationRewards.cs",
+      "sha256": "46176cb159f690a79d89babd454edf92c6c0087e3792268e81ac042c6cb30a1a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWinAnimationRewards.cs.meta",
+      "sha256": "ba48cede5cc8552253803fdbc88b70341eeb62856ba32bb9b88f928ba8647ee1"
+    },
+    {
+      "path": "SourceCatalog/SessionWinHarness.cs",
+      "sha256": "2aa8d77c6e91a6f21c69ab573af24d929ef4be2259d9096d232bbd466763589a"
+    },
+    {
+      "path": "SourceCatalog/session_win_boundaries.json",
+      "sha256": "310b73941f6838ae8243e661ce9a63eef691754d157e88a1420ce5640a590571"
+    },
+    {
+      "path": "SourceCatalog/verify_session_win.py",
+      "sha256": "43ec17146298984b3b53efb5b8390aea7b7fd7a769bd65b1f9b11ca748eb92a9"
+    },
+    {
+      "path": "session_win_native_verification.json",
+      "sha256": "8ea2c1c1137b860b1362e49d138b439f50ae4f02b068aab3eb4237047ef8b2fd"
+    },
+    {
+      "path": "SourceCatalog/ItemReplacementHarness.cs",
+      "sha256": "de9446910427ef9d66f708b9582596c29efb577d93278f6a42f3fab797489a7f"
+    },
+    {
+      "path": "SourceCatalog/verify_item_replacement.py",
+      "sha256": "f98efe15ced2c65a6813cc89696c2bc37748714b3054e070516014ca330cbc6b"
+    },
+    {
+      "path": "item_replacement_native_verification.json",
+      "sha256": "e5f8f66dcfacab58f1b723b0f29342089057cb7cd771019100d27f1dfd399b0f"
+    },
+    {
+      "path": "background_remaining_coins_normal_verification.json",
+      "sha256": "9009131f316ac7bb928eaa1277ebef0a5ea3fdf7e95a21ed11ba1dee32076c10"
+    },
+    {
+      "path": "live_remaining_coins_normal_verification.json",
+      "sha256": "da27ec368822d8968b28db3a208b1f50281b0bcdee37060bc8dba16acc0e3e9b"
+    },
+    {
+      "path": "remaining_coins_normal_flying.png",
+      "sha256": "a2e8caf63b2e3a4bae072f1b522b0392216e6e3714b2ea10703ad233b9342b30"
+    },
+    {
+      "path": "remaining_coins_normal_reward.png",
+      "sha256": "2ab4a6cfbbfe80d03867733b81de11430e5c0890b7cfec8e74e43f4365f71641"
+    },
+    {
+      "path": "background_remaining_coins_skip_verification.json",
+      "sha256": "4bd320cfcf8169b8f9b90c8d65b2cdb95853553f3ffa4bfaafc292c44eb00afc"
+    },
+    {
+      "path": "live_remaining_coins_skip_verification.json",
+      "sha256": "c145ed228c84e36e6a3f4b23129f76f20e10ec988df52e9b8b860fb7ed83abf6"
+    },
+    {
+      "path": "remaining_coins_skip_flying.png",
+      "sha256": "1a2fda536d290ffca7dd2ded5014542e885fb64029840e4d39084835dfbe3e6a"
+    },
+    {
+      "path": "remaining_coins_skip_reward.png",
+      "sha256": "b1159db29c8e332ea9472c7630376bbe23782062747c03c9e2147a589f89ff15"
+    },
+    {
+      "path": "background_remaining_coins_early_skip_verification.json",
+      "sha256": "1241548cf47f651be6affa3e96f6aceb944047151e534f100e97f2d606c72410"
+    },
+    {
+      "path": "live_remaining_coins_early_skip_verification.json",
+      "sha256": "08b9b18457050f9d99e34eb3d1ac56d32bf4dfa89164d9990e8e278ce4161bcc"
+    },
+    {
+      "path": "remaining_coins_early_skip_flying.png",
+      "sha256": "429b32941954856c84a1b5129c1b5cc31baca6f24a6ae78f7c919ecab6110d25"
+    },
+    {
+      "path": "remaining_coins_early_skip_reward.png",
+      "sha256": "7da272fb2e881fec7b99c2d1b3c14c0dfa4502bb9ed3576665eba6516a55132c"
+    }
+  ],
+  "historical_checkpoint": "ca2a72f8e8c9bf7ab0598347114c2f5e9b289840",
+  "current_automatic_win_transition_evidence": "SourceCatalog/win_transition_evidence.json",
+  "outer_replacer_selection_order_resolved": "Current source selects after virtual old-item replacement; see current transition evidence. Earlier snapshot hashes/runs in this artifact remain historical."
+}

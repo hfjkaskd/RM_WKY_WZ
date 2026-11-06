@@ -1,0 +1,1865 @@
+{
+  "baseline_commit": "88ea8d175b92be72e88a4a90b667dbb2e63a91c8",
+  "verified_utc": "2026-11-05T12:54:59.698235+00:00",
+  "differences": [
+    "Goal-icon hit tweens used OutQuad and Unity raw delta although the source uses default Linear and the active level clock.",
+    "The ordinary hit return ran in its original list position and captured scale immediately. The source creates an OnComplete return tween appended after existing tweens; its getter captures scale on the next active dispatch.",
+    "The reward goal and Reward title appearance used raw Unity delta and separate Update transport. They now share the existing pre-context level tween dispatch, in source creation order."
+  ],
+  "implementation": "A cached typed icon-animation owner preserves independent overlapping hits and one gated flying sequence, lazy getter startup, next-dispatch return callbacks, paused startup and sequence carryover. Existing Inspector asset multipliers/durations and prefab sprite/text/particle hierarchy remain configured. Reward title and goal appearance share the supplied gameplay delta; no additional runtime plugin or Editor fallback is added.",
+  "source_files": {
+    "Assets/Foundation/Runtime/OriginalGoalUi.cs": {
+      "before_sha256": "55abe3293f726fa2817808965fbc8d8e2c97088824c95e155aba26d735a31ac1",
+      "after_sha256": "46f7f4754e0cb1b0b258439838652445db231d9827aa5e875c7bc6c4fe77af07"
+    },
+    "Assets/Foundation/Runtime/OriginalGoalPanelUi.cs": {
+      "before_sha256": "a2f30b289d84d57d84c5b7a74c7a019f5327ea80e6f53fe80f74a8430fd1beaf",
+      "after_sha256": "6266f42775b16e0699eb0bb3f37a519a5ad3bdbae8ab2d39e99896ad8b7dc5e0"
+    },
+    "Assets/Foundation/Runtime/OriginalGameplayHud.cs": {
+      "before_sha256": "fed4091eba75df6addefcf6feb9baa5d22aa128b6ccfff0f6710d13f1c39d564",
+      "after_sha256": "892b703ee55df607cbea49d6234c324776c7cd1ee3b4a6a81342de06542a0fd4"
+    },
+    "Assets/Foundation/Runtime/OriginalGoalIconAnimation.cs": {
+      "before_sha256": null,
+      "after_sha256": "93a00fdfa3671ba205427c6193ba18825c378d923023944e1c6923e56b2bfa1f"
+    },
+    "Assets/Foundation/Runtime/OriginalGoalIconAnimation.cs.meta": {
+      "before_sha256": null,
+      "after_sha256": "dc13374d5dd70058194cd7b2d1f3fe3f549b772a25da840f36d1578cfdb19952"
+    }
+  },
+  "native_methods": {
+    "0x18cc5cc": {
+      "name": "Royal.Scenes.Game.Ui.Top.Goal.GoalUi$$OnGoalUpdated",
+      "body_sha256": "8b7e23725e1e856faa2233b37ec6875910723ed7ed05a0719a1cb8a89faa5de8"
+    },
+    "0x18ccc6c": {
+      "name": "Royal.Scenes.Game.Ui.Top.Goal.GoalUi$$<OnGoalUpdated>b__22_0",
+      "body_sha256": "a50522dec66b406f3091de9f04e4c1ba1d1db6fdeb34f4a62fab731b8a0ee6a6"
+    },
+    "0x292a9ac": {
+      "name": "DG.Tweening.Tweener$$DoStartup<Vector3, Vector3, VectorOptions>",
+      "body_sha256": "54add864c26b1cfe81e798007e2a69d731d1f50d337c588b8b21005d011861f5"
+    },
+    "0x33dcf78": {
+      "name": "DG.Tweening.Core.TweenManager$$Update",
+      "body_sha256": "4b23e0720503ba040cb6c8fab294975e0c86cf95f6c5c695846b51f1d14bdefd"
+    },
+    "0x1d7d60c": {
+      "name": "DG.Tweening.Sequence$$DoStartup",
+      "body_sha256": "5c6649c11247d973ac56e0ccd33b766aa7eee0194064cfb9337f1e196f413344"
+    },
+    "0x18cbad4": {
+      "name": "Royal.Scenes.Game.Ui.Top.Goal.GoalPanelUi$$ReplaceGoalsWithCoin",
+      "body_sha256": "9328e6065faa4171a62f1a0ef4c1efb9c0c951ef4402075e425bbf6ce876bc5c"
+    },
+    "0x1630680": {
+      "name": "Royal.Scenes.Game.Ui.Top.TopUi$$AnimateTargetTextAsReward",
+      "body_sha256": "27bb3dd6dddeaed419ea810987908abbbfe9de3378cd9ca4b5eb77c221ce3719"
+    },
+    "0x33d5f78": {
+      "name": "DG.Tweening.Core.Easing.EaseManager$$Evaluate",
+      "body_sha256": "f80db07ef1b6c400226fa659c9f36761ebefb3d087c7e9e3526e12f08f352426"
+    }
+  },
+  "offline_comparison": {
+    "passed": true,
+    "commands": 2400,
+    "native_goal_updates": 204,
+    "native_startup_reads": 306,
+    "max_scale_error": 3.5762786865234375e-07,
+    "gc_bytes_10000_active_ticks": 0,
+    "scope": "Actual original ARM64 GoalUi.OnGoalUpdated/return callback emit tween targets, durations and suppression; generic Tweener.DoStartup reads the live transform through supplied getter/plugin ports; native EaseManager evaluates Linear. The independent active-range/sequence dispatcher and vector transform transport are supplied, guided by the original update and sequence bodies. This is not execution of the entire native DOTween manager or proof of original rendered parity."
+  },
+  "formal_verification": {
+    "baseline_natural": {
+      "background": {
+        "passed": true,
+        "test": "core-natural-attempts",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T12:47:10.2058134Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_natural_attempts_verification.json": {
+          "status": "finished",
+          "failure": "",
+          "passed": true,
+          "requested_levels": [
+            2
+          ],
+          "attempts": [
+            {
+              "level": 2,
+              "initial_budget": 27,
+              "goals_left": 0,
+              "reloaded_level": 3,
+              "result_coins": 60,
+              "moves_left_on_win": 17,
+              "bonus_coins": 0,
+              "authored_rocket_eggs_removed": 0,
+              "authored_rocket_owls_removed": 0,
+              "level_try_count": 1,
+              "difficulty_seed": 404,
+              "session_name": "00002v02_L",
+              "outcome": "win",
+              "reopened_completion": false,
+              "entered_from_previous_result": false,
+              "free_hammer_used": false,
+              "free_arrow_used": false,
+              "free_arrow_row_cleared": false,
+              "free_cannon_used": false,
+              "free_cannon_column_cleared": false,
+              "free_jester_used": false,
+              "double_lightball_opening": false,
+              "hammer_refills": 0,
+              "hammer_boxes_removed": 0,
+              "moves": [
+                {
+                  "from": {
+                    "x": 4,
+                    "y": 7
+                  },
+                  "to": {
+                    "x": 4,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "hint",
+                  "spent_from": 27,
+                  "refills": 8,
+                  "goals_left": 34,
+                  "from_item": 4,
+                  "to_item": 1
+                },
+                {
+                  "from": {
+                    "x": 3,
+                    "y": 6
+                  },
+                  "to": {
+                    "x": 4,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 26,
+                  "refills": 12,
+                  "goals_left": 29,
+                  "from_item": 3,
+                  "to_item": 20
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 5
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 25,
+                  "refills": 5,
+                  "goals_left": 27,
+                  "from_item": 1,
+                  "to_item": 2
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 5
+                  },
+                  "to": {
+                    "x": 1,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 24,
+                  "refills": 39,
+                  "goals_left": 19,
+                  "from_item": 1,
+                  "to_item": 4
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 8
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 8
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 23,
+                  "refills": 25,
+                  "goals_left": 14,
+                  "from_item": 2,
+                  "to_item": 20
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 2
+                  },
+                  "to": {
+                    "x": 1,
+                    "y": 3
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 22,
+                  "refills": 8,
+                  "goals_left": 12,
+                  "from_item": 1,
+                  "to_item": 2
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 2
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 2
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 21,
+                  "refills": 12,
+                  "goals_left": 11,
+                  "from_item": 2,
+                  "to_item": 30
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 2
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 3
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 20,
+                  "refills": 22,
+                  "goals_left": 7,
+                  "from_item": 4,
+                  "to_item": 3
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 2
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 19,
+                  "refills": 17,
+                  "goals_left": 4,
+                  "from_item": 1,
+                  "to_item": 2
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 0
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "is_tap": false,
+                  "settled": false,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 18,
+                  "refills": 25,
+                  "goals_left": 0,
+                  "from_item": 10,
+                  "to_item": 50
+                }
+              ],
+              "opening_vacancies": [],
+              "goals_at_result": [
+                {
+                  "type": 11,
+                  "left": 0
+                }
+              ],
+              "combos_at_result": [
+                {
+                  "type": 3,
+                  "count": 1
+                }
+              ],
+              "cupboards_at_result": [],
+              "grass": [],
+              "honey": []
+            }
+          ]
+        },
+        "live_goal_tween_comparison.json": {
+          "passed": false,
+          "run": "baseline_natural",
+          "pulse_requests": 50,
+          "icon_frames": 2132,
+          "flying_requests": 50,
+          "appearance_frames": 26,
+          "max_icon_scale_error": 0.2518918514251709,
+          "icon_scale_bad_frames": 81,
+          "active_state_bad_frames": 0,
+          "max_appearance_scale_error": 0.0009867548942565918,
+          "appearance_scale_bad_frames": 24,
+          "max_appearance_elapsed_error_seconds": 0.00047779083251953125,
+          "appearance_clock_bad_frames": 26,
+          "appearance_kinds": [
+            "goal_root",
+            "reward_title"
+          ],
+          "first_differences": [
+            {
+              "kind": "goal_root",
+              "frame": 1633,
+              "error": 0.00041854381561279297,
+              "elapsed_error": 3.333389759063721e-05
+            },
+            {
+              "kind": "reward_title",
+              "frame": 1633,
+              "error": 0.00041854381561279297,
+              "elapsed_error": 3.333389759063721e-05
+            },
+            {
+              "kind": "goal_root",
+              "frame": 1634,
+              "error": 0.0009867548942565918,
+              "elapsed_error": 0.00010000169277191162
+            },
+            {
+              "kind": "reward_title",
+              "frame": 1634,
+              "error": 0.0009867548942565918,
+              "elapsed_error": 0.00010000169277191162
+            },
+            {
+              "kind": "goal_root",
+              "frame": 1635,
+              "error": 0.0009143948554992676,
+              "elapsed_error": 0.00011111050844192505
+            },
+            {
+              "kind": "reward_title",
+              "frame": 1635,
+              "error": 0.0009143948554992676,
+              "elapsed_error": 0.00011111050844192505
+            },
+            {
+              "kind": "goal_root",
+              "frame": 1636,
+              "error": 0.0005906820297241211,
+              "elapsed_error": 0.00014445185661315918
+            },
+            {
+              "kind": "reward_title",
+              "frame": 1636,
+              "error": 0.0005906820297241211,
+              "elapsed_error": 0.00014445185661315918
+            }
+          ]
+        }
+      },
+      "comparison": {
+        "passed": false,
+        "run": "baseline_natural",
+        "pulse_requests": 50,
+        "icon_frames": 2132,
+        "flying_requests": 50,
+        "appearance_frames": 26,
+        "max_icon_scale_error": 0.2518918514251709,
+        "icon_scale_bad_frames": 81,
+        "active_state_bad_frames": 0,
+        "max_appearance_scale_error": 0.0009867548942565918,
+        "appearance_scale_bad_frames": 24,
+        "max_appearance_elapsed_error_seconds": 0.00047779083251953125,
+        "appearance_clock_bad_frames": 26,
+        "appearance_kinds": [
+          "goal_root",
+          "reward_title"
+        ],
+        "first_differences": [
+          {
+            "kind": "goal_root",
+            "frame": 1633,
+            "error": 0.00041854381561279297,
+            "elapsed_error": 3.333389759063721e-05
+          },
+          {
+            "kind": "reward_title",
+            "frame": 1633,
+            "error": 0.00041854381561279297,
+            "elapsed_error": 3.333389759063721e-05
+          },
+          {
+            "kind": "goal_root",
+            "frame": 1634,
+            "error": 0.0009867548942565918,
+            "elapsed_error": 0.00010000169277191162
+          },
+          {
+            "kind": "reward_title",
+            "frame": 1634,
+            "error": 0.0009867548942565918,
+            "elapsed_error": 0.00010000169277191162
+          },
+          {
+            "kind": "goal_root",
+            "frame": 1635,
+            "error": 0.0009143948554992676,
+            "elapsed_error": 0.00011111050844192505
+          },
+          {
+            "kind": "reward_title",
+            "frame": 1635,
+            "error": 0.0009143948554992676,
+            "elapsed_error": 0.00011111050844192505
+          },
+          {
+            "kind": "goal_root",
+            "frame": 1636,
+            "error": 0.0005906820297241211,
+            "elapsed_error": 0.00014445185661315918
+          },
+          {
+            "kind": "reward_title",
+            "frame": 1636,
+            "error": 0.0005906820297241211,
+            "elapsed_error": 0.00014445185661315918
+          }
+        ]
+      }
+    },
+    "fixed_natural": {
+      "background": {
+        "passed": true,
+        "test": "core-natural-attempts",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T12:48:09.6547318Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_natural_attempts_verification.json": {
+          "status": "finished",
+          "failure": "",
+          "passed": true,
+          "requested_levels": [
+            2
+          ],
+          "attempts": [
+            {
+              "level": 2,
+              "initial_budget": 27,
+              "goals_left": 0,
+              "reloaded_level": 3,
+              "result_coins": 60,
+              "moves_left_on_win": 17,
+              "bonus_coins": 0,
+              "authored_rocket_eggs_removed": 0,
+              "authored_rocket_owls_removed": 0,
+              "level_try_count": 1,
+              "difficulty_seed": 404,
+              "session_name": "00002v02_L",
+              "outcome": "win",
+              "reopened_completion": false,
+              "entered_from_previous_result": false,
+              "free_hammer_used": false,
+              "free_arrow_used": false,
+              "free_arrow_row_cleared": false,
+              "free_cannon_used": false,
+              "free_cannon_column_cleared": false,
+              "free_jester_used": false,
+              "double_lightball_opening": false,
+              "hammer_refills": 0,
+              "hammer_boxes_removed": 0,
+              "moves": [
+                {
+                  "from": {
+                    "x": 4,
+                    "y": 7
+                  },
+                  "to": {
+                    "x": 4,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "hint",
+                  "spent_from": 27,
+                  "refills": 8,
+                  "goals_left": 34,
+                  "from_item": 4,
+                  "to_item": 1
+                },
+                {
+                  "from": {
+                    "x": 3,
+                    "y": 6
+                  },
+                  "to": {
+                    "x": 4,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 26,
+                  "refills": 12,
+                  "goals_left": 29,
+                  "from_item": 3,
+                  "to_item": 20
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 5
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 25,
+                  "refills": 5,
+                  "goals_left": 27,
+                  "from_item": 1,
+                  "to_item": 2
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 5
+                  },
+                  "to": {
+                    "x": 1,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 24,
+                  "refills": 39,
+                  "goals_left": 19,
+                  "from_item": 1,
+                  "to_item": 4
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 8
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 8
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 23,
+                  "refills": 25,
+                  "goals_left": 14,
+                  "from_item": 2,
+                  "to_item": 20
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 2
+                  },
+                  "to": {
+                    "x": 1,
+                    "y": 3
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 22,
+                  "refills": 8,
+                  "goals_left": 12,
+                  "from_item": 1,
+                  "to_item": 2
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 2
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 2
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 21,
+                  "refills": 12,
+                  "goals_left": 11,
+                  "from_item": 2,
+                  "to_item": 30
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 2
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 3
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 20,
+                  "refills": 22,
+                  "goals_left": 7,
+                  "from_item": 4,
+                  "to_item": 3
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 2
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 19,
+                  "refills": 17,
+                  "goals_left": 4,
+                  "from_item": 1,
+                  "to_item": 2
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 0
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "is_tap": false,
+                  "settled": false,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 18,
+                  "refills": 24,
+                  "goals_left": 0,
+                  "from_item": 10,
+                  "to_item": 50
+                }
+              ],
+              "opening_vacancies": [],
+              "goals_at_result": [
+                {
+                  "type": 11,
+                  "left": 0
+                }
+              ],
+              "combos_at_result": [
+                {
+                  "type": 3,
+                  "count": 1
+                }
+              ],
+              "cupboards_at_result": [],
+              "grass": [],
+              "honey": []
+            }
+          ]
+        },
+        "live_goal_tween_comparison.json": {
+          "passed": true,
+          "run": "fixed_natural",
+          "pulse_requests": 50,
+          "icon_frames": 2195,
+          "flying_requests": 50,
+          "appearance_frames": 26,
+          "max_icon_scale_error": 1.1920928955078125e-07,
+          "icon_scale_bad_frames": 0,
+          "active_state_bad_frames": 0,
+          "max_appearance_scale_error": 5.960464477539063e-08,
+          "appearance_scale_bad_frames": 0,
+          "max_appearance_elapsed_error_seconds": 0.0,
+          "appearance_clock_bad_frames": 0,
+          "appearance_kinds": [
+            "goal_root",
+            "reward_title"
+          ],
+          "first_differences": []
+        }
+      },
+      "comparison": {
+        "passed": true,
+        "run": "fixed_natural",
+        "pulse_requests": 50,
+        "icon_frames": 2195,
+        "flying_requests": 50,
+        "appearance_frames": 26,
+        "max_icon_scale_error": 1.1920928955078125e-07,
+        "icon_scale_bad_frames": 0,
+        "active_state_bad_frames": 0,
+        "max_appearance_scale_error": 5.960464477539063e-08,
+        "appearance_scale_bad_frames": 0,
+        "max_appearance_elapsed_error_seconds": 0.0,
+        "appearance_clock_bad_frames": 0,
+        "appearance_kinds": [
+          "goal_root",
+          "reward_title"
+        ],
+        "first_differences": []
+      }
+    },
+    "fixed_mail": {
+      "background": {
+        "passed": true,
+        "test": "core-mail-batch",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T12:48:30.1289542Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_mail_batch_verification.json": {
+          "passed": true,
+          "tracer_ignored_subthreshold_motion": true,
+          "tracer_followed_rotation": true,
+          "tracer_started_and_stopped": true,
+          "assignment_frame": 3,
+          "delays_top_left_to_bottom": [
+            0.0,
+            0.05000000074505806,
+            0.10000000149011612
+          ],
+          "failure": ""
+        },
+        "live_goal_tween_comparison.json": {
+          "passed": true,
+          "run": "fixed_mail",
+          "pulse_requests": 3,
+          "icon_frames": 279,
+          "flying_requests": 2,
+          "appearance_frames": 0,
+          "max_icon_scale_error": 5.960464477539063e-08,
+          "icon_scale_bad_frames": 0,
+          "active_state_bad_frames": 0,
+          "max_appearance_scale_error": 0.0,
+          "appearance_scale_bad_frames": 0,
+          "max_appearance_elapsed_error_seconds": 0.0,
+          "appearance_clock_bad_frames": 0,
+          "appearance_kinds": [],
+          "first_differences": []
+        }
+      },
+      "comparison": {
+        "passed": true,
+        "run": "fixed_mail",
+        "pulse_requests": 3,
+        "icon_frames": 279,
+        "flying_requests": 2,
+        "appearance_frames": 0,
+        "max_icon_scale_error": 5.960464477539063e-08,
+        "icon_scale_bad_frames": 0,
+        "active_state_bad_frames": 0,
+        "max_appearance_scale_error": 0.0,
+        "appearance_scale_bad_frames": 0,
+        "max_appearance_elapsed_error_seconds": 0.0,
+        "appearance_clock_bad_frames": 0,
+        "appearance_kinds": [],
+        "first_differences": []
+      }
+    },
+    "fixed_flow_unobserved": {
+      "background": {
+        "passed": true,
+        "test": "core-flow",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T12:49:31.1710104Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_catalog_verification.json": {
+          "passed": true,
+          "rejects_0_and_101": true,
+          "formal_first_level_uses_catalog": true,
+          "actual_resource_levels_loaded": 100,
+          "raw_cell_definitions_loaded": 8043,
+          "failure": "",
+          "scope": "The actual configured ScriptableObject catalog loads each of the original100 ordinary levels through the production Resources/JSON reader. Out-of-range requests0/101 are rejected before loading; the actual formal entry uses the same catalog. This verifies resource/configuration availability, not100 playable levels. Core entry opens no account/area storage and uses configured presentation snapshots. The separate core-flow scenario checks actual end/retry/next-level owners and absence of peripheral UI. Remaining obstacle/static composition, complete natural playthroughs, original visual/audio/mobile parity remain pending."
+        },
+        "live_core_flow_verification.json": {
+          "passed": true,
+          "production_win_remaining_result_bound": true,
+          "actual_next_level_loaded": true,
+          "production_zero_move_failure_bound": true,
+          "actual_retry_reloaded_same_level": true,
+          "cap100_and_restart_verified": true,
+          "core_booster_inventory_purchase_ui_absent": true,
+          "king_win_reaction": "k-1sevinme_6",
+          "king_win_connector": "idle_connect_2",
+          "king_win_loop": "idle_connect_1",
+          "king_fail_reaction": "k-1_uzulme",
+          "king_win_mixed": true,
+          "king_connector_mixed": true,
+          "king_fail_mixed": true,
+          "win_logo_backdrop_fade": true,
+          "remaining_moves_backdrop_reused": true,
+          "result_and_failure_backdrops_cleared_on_reload": true,
+          "back_respected_remaining_moves": false,
+          "back_closed_win": false,
+          "back_respected_failure_dialog": false,
+          "castle_garden_background_survives_continue_and_retry": true,
+          "retry_reused_scene_pool_and_hud": true,
+          "retry_recycled_tnt_and_fuse": true,
+          "cold_entry_verified": true,
+          "cold_entry_board_captured": true,
+          "continue_entry_verified": true,
+          "retry_entry_verified": true,
+          "application_random_survives_continue": true,
+          "music_stopped_at_win_logo": true,
+          "music_stopped_at_failure": true,
+          "opening_music": "Gameplay_1",
+          "continue_music": "Gameplay_2",
+          "retry_music": "Gameplay_4",
+          "paused_music_samples": 29164,
+          "out_of_moves_banner_center_verified": true,
+          "out_of_moves_standard_button_skip_verified": true,
+          "out_of_moves_auto_duration": 2.4628028869628906,
+          "out_of_moves_skip_duration": 0.40059661865234375,
+          "win_text_stagger": true,
+          "win_text_overshoot": true,
+          "win_curved_text_settled": true,
+          "win_pillow_started": true,
+          "win_title_curve_verified": true,
+          "fail_title_curve_verified": true,
+          "win_star_hit_time": 30.266664505004883,
+          "win_idle_loop_time": 30.771221160888672,
+          "win_pillow_delay": 0.08057212829589844,
+          "win_first_glyph_delay": 0.21419143676757812,
+          "original_level3_two_layer_boxes_bound": true,
+          "formal_mock_ad_preview_disconnected": true,
+          "level1_attempt_seed": 111,
+          "level2_attempt_seed": 404,
+          "level2_retry_seed": 167,
+          "level2_second_retry_seed": 985,
+          "level3_attempt_seed": 697,
+          "win_left_moves": 21,
+          "win_remaining_reward": 66,
+          "failure": "",
+          "scope": "The formal scene uses controlled TNT and rocket placements plus recorded gestures to complete level 1. The production win and remaining-moves flow persist progress before the result exit loads level 2. Two explicit zero-budget MoveManager stimuli exercise automatic and Button-skipped banner exits, actual defeat and retry. The King plays the authored celebration and its two connectors on victory, then a single sad reaction on defeat. A separate private progress file exercises the level 100 boundary."
+        },
+        "live_core_mail_batch_verification.json": {
+          "passed": true,
+          "tracer_ignored_subthreshold_motion": true,
+          "tracer_followed_rotation": true,
+          "tracer_started_and_stopped": true,
+          "assignment_frame": 3,
+          "delays_top_left_to_bottom": [
+            0.0,
+            0.05000000074505806,
+            0.10000000149011612
+          ],
+          "failure": ""
+        },
+        "live_game_scene_verification.json": {
+          "passed": true,
+          "normal_scene_and_72_models_verified": true,
+          "original_top_background_verified": true,
+          "original_king_rig_and_atlas_verified": true,
+          "castle_garden_background_verified": true,
+          "original_hud_title_curves_verified": true,
+          "original_empty_lighting_data_verified": true,
+          "original_single_touch_input_verified": true,
+          "king_vertices": 580,
+          "king_visible_pixels": 726,
+          "king_probe_width": 90,
+          "king_probe_height": 160,
+          "king_viewport_center": {
+            "x": 0.49988463521003723,
+            "y": 0.9044842720031738,
+            "z": 10.0
+          },
+          "original_bottom_locked_presentation_verified": true,
+          "core_bottom_frame_without_inventory_verified": true,
+          "failure": "",
+          "scope": "After the production entrance settles, the formal GameScene verifies the original camera, top HUD, visible King mesh pixels, playable first board, and four locked standard Button tool slots. Separate scenarios verify the actual player input, result flow and in-board power activation. Original-device rendered parity remains outside this check."
+        },
+        "live_goal_ui_verification.json": {
+          "passed": true,
+          "failure": "",
+          "tnt_taps": 4,
+          "left_moves": 21,
+          "goal_count": 0,
+          "pending_checks": 0,
+          "delay_seconds": 0.20086669921875,
+          "check_seconds": 0.6523723602294922,
+          "scope": "Formal first-board scene and unchanged target counts: four production TNT/rocket fixture drags then actual TNT tap damage until all36box goals finish. Original GoalUi prefab, font/material, resource icons and particles, move events, manual level clock, delayed check sequence and GoalManager completion gate. Does not establish natural special generation, physical input, full camera/King/background/original rendered parity, WinFail flow/remaining moves/settlement/progression."
+        },
+        "live_tnt_rocket_combo_verification.json": {
+          "passed": true,
+          "failure": "",
+          "completed_combos": 4,
+          "immediate_move_completions": 4,
+          "left_moves": 25,
+          "accepted_swaps": 5,
+          "goals_left": 8,
+          "created_refills": 164,
+          "peak_operations": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "peak_particles": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "blocked_box_holes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "peak_shake": [
+            0.24861325323581696,
+            0.23746196925640106,
+            0.35097944736480713,
+            0.1997823566198349
+          ],
+          "part_distances": [
+            8.339670181274414,
+            12.006002426147461,
+            8.339670181274414,
+            12.006002426147461,
+            8.339670181274414,
+            12.006002426147461,
+            5.622049331665039,
+            5.622048377990723,
+            5.622049331665039,
+            5.622048377990723,
+            5.622049331665039,
+            5.622048377990723,
+            7.413087844848633,
+            13.052632331848145,
+            7.413087844848633,
+            13.052632331848145,
+            7.413087844848633,
+            13.052632331848145,
+            9.62082290649414,
+            1.4319206476211548,
+            9.62082290649414,
+            1.4319206476211548,
+            9.62082290649414,
+            1.4319206476211548,
+            7.416831016540527,
+            13.060986518859863,
+            7.416831016540527,
+            13.060986518859863,
+            7.416831016540527,
+            13.060986518859863,
+            1.4745346307754517,
+            9.632288932800293,
+            1.4745346307754517,
+            9.632288932800293,
+            1.4745346307754517,
+            9.632288932800293,
+            8.339652061462402,
+            12.002168655395508,
+            8.339652061462402,
+            12.002168655395508,
+            8.339652061462402,
+            12.002168655395508,
+            1.453953742980957,
+            9.632431983947754,
+            1.453953742980957,
+            9.632431983947754,
+            1.453953742980957,
+            9.632431983947754
+          ],
+          "merge_seconds": [
+            0.31278324127197266,
+            0.3671855926513672,
+            0.3474006652832031,
+            0.3669900894165039
+          ],
+          "destinations": [
+            {
+              "x": 4,
+              "y": 6
+            },
+            {
+              "x": 8,
+              "y": 7
+            },
+            {
+              "x": 0,
+              "y": 7
+            },
+            {
+              "x": 0,
+              "y": 6
+            }
+          ],
+          "alternate_pair": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "scope": "Explicit production-factory TNT+rocket fixtures in unchanged formal first-board scene, four directions, both moving roles and rocket orientations, edges including out-of-grid ghost rockets. Actual merge clock/particles, six rocket models/twelve flight parts, damage/goals/moves/fall/refill/pool/unlock. Does not establish natural combo creation, physical input, rendered-original/camera/grid-shake/audio/charger/session/othercombos/settlement parity."
+        }
+      }
+    },
+    "fixed_natural_unobserved": {
+      "background": {
+        "passed": true,
+        "test": "core-natural-attempts",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T12:50:20.2395969Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_flow_verification.json": {
+          "passed": true,
+          "production_win_remaining_result_bound": true,
+          "actual_next_level_loaded": true,
+          "production_zero_move_failure_bound": true,
+          "actual_retry_reloaded_same_level": true,
+          "cap100_and_restart_verified": true,
+          "core_booster_inventory_purchase_ui_absent": true,
+          "king_win_reaction": "k-1sevinme_6",
+          "king_win_connector": "idle_connect_2",
+          "king_win_loop": "idle_connect_1",
+          "king_fail_reaction": "k-1_uzulme",
+          "king_win_mixed": true,
+          "king_connector_mixed": true,
+          "king_fail_mixed": true,
+          "win_logo_backdrop_fade": true,
+          "remaining_moves_backdrop_reused": true,
+          "result_and_failure_backdrops_cleared_on_reload": true,
+          "back_respected_remaining_moves": false,
+          "back_closed_win": false,
+          "back_respected_failure_dialog": false,
+          "castle_garden_background_survives_continue_and_retry": true,
+          "retry_reused_scene_pool_and_hud": true,
+          "retry_recycled_tnt_and_fuse": true,
+          "cold_entry_verified": true,
+          "cold_entry_board_captured": true,
+          "continue_entry_verified": true,
+          "retry_entry_verified": true,
+          "application_random_survives_continue": true,
+          "music_stopped_at_win_logo": true,
+          "music_stopped_at_failure": true,
+          "opening_music": "Gameplay_1",
+          "continue_music": "Gameplay_2",
+          "retry_music": "Gameplay_4",
+          "paused_music_samples": 29164,
+          "out_of_moves_banner_center_verified": true,
+          "out_of_moves_standard_button_skip_verified": true,
+          "out_of_moves_auto_duration": 2.4628028869628906,
+          "out_of_moves_skip_duration": 0.40059661865234375,
+          "win_text_stagger": true,
+          "win_text_overshoot": true,
+          "win_curved_text_settled": true,
+          "win_pillow_started": true,
+          "win_title_curve_verified": true,
+          "fail_title_curve_verified": true,
+          "win_star_hit_time": 30.266664505004883,
+          "win_idle_loop_time": 30.771221160888672,
+          "win_pillow_delay": 0.08057212829589844,
+          "win_first_glyph_delay": 0.21419143676757812,
+          "original_level3_two_layer_boxes_bound": true,
+          "formal_mock_ad_preview_disconnected": true,
+          "level1_attempt_seed": 111,
+          "level2_attempt_seed": 404,
+          "level2_retry_seed": 167,
+          "level2_second_retry_seed": 985,
+          "level3_attempt_seed": 697,
+          "win_left_moves": 21,
+          "win_remaining_reward": 66,
+          "failure": "",
+          "scope": "The formal scene uses controlled TNT and rocket placements plus recorded gestures to complete level 1. The production win and remaining-moves flow persist progress before the result exit loads level 2. Two explicit zero-budget MoveManager stimuli exercise automatic and Button-skipped banner exits, actual defeat and retry. The King plays the authored celebration and its two connectors on victory, then a single sad reaction on defeat. A separate private progress file exercises the level 100 boundary."
+        },
+        "live_core_natural_attempts_verification.json": {
+          "status": "finished",
+          "failure": "",
+          "passed": true,
+          "requested_levels": [
+            2
+          ],
+          "attempts": [
+            {
+              "level": 2,
+              "initial_budget": 27,
+              "goals_left": 0,
+              "reloaded_level": 3,
+              "result_coins": 54,
+              "moves_left_on_win": 17,
+              "bonus_coins": 0,
+              "authored_rocket_eggs_removed": 0,
+              "authored_rocket_owls_removed": 0,
+              "level_try_count": 1,
+              "difficulty_seed": 404,
+              "session_name": "00002v02_L",
+              "outcome": "win",
+              "reopened_completion": false,
+              "entered_from_previous_result": false,
+              "free_hammer_used": false,
+              "free_arrow_used": false,
+              "free_arrow_row_cleared": false,
+              "free_cannon_used": false,
+              "free_cannon_column_cleared": false,
+              "free_jester_used": false,
+              "double_lightball_opening": false,
+              "hammer_refills": 0,
+              "hammer_boxes_removed": 0,
+              "moves": [
+                {
+                  "from": {
+                    "x": 4,
+                    "y": 7
+                  },
+                  "to": {
+                    "x": 4,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "hint",
+                  "spent_from": 27,
+                  "refills": 8,
+                  "goals_left": 34,
+                  "from_item": 4,
+                  "to_item": 1
+                },
+                {
+                  "from": {
+                    "x": 3,
+                    "y": 6
+                  },
+                  "to": {
+                    "x": 4,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 26,
+                  "refills": 12,
+                  "goals_left": 29,
+                  "from_item": 3,
+                  "to_item": 20
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 5
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 25,
+                  "refills": 5,
+                  "goals_left": 27,
+                  "from_item": 1,
+                  "to_item": 2
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 5
+                  },
+                  "to": {
+                    "x": 1,
+                    "y": 6
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 24,
+                  "refills": 24,
+                  "goals_left": 19,
+                  "from_item": 1,
+                  "to_item": 4
+                },
+                {
+                  "from": {
+                    "x": 1,
+                    "y": 7
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 7
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 23,
+                  "refills": 7,
+                  "goals_left": 17,
+                  "from_item": 1,
+                  "to_item": 4
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 4
+                  },
+                  "to": {
+                    "x": 3,
+                    "y": 4
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 22,
+                  "refills": 8,
+                  "goals_left": 16,
+                  "from_item": 4,
+                  "to_item": 3
+                },
+                {
+                  "from": {
+                    "x": 2,
+                    "y": 3
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 4
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 21,
+                  "refills": 37,
+                  "goals_left": 9,
+                  "from_item": 1,
+                  "to_item": 40
+                },
+                {
+                  "from": {
+                    "x": 3,
+                    "y": 4
+                  },
+                  "to": {
+                    "x": 4,
+                    "y": 4
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 20,
+                  "refills": 17,
+                  "goals_left": 8,
+                  "from_item": 10,
+                  "to_item": 2
+                },
+                {
+                  "from": {
+                    "x": 4,
+                    "y": 2
+                  },
+                  "to": {
+                    "x": 5,
+                    "y": 2
+                  },
+                  "is_tap": false,
+                  "settled": true,
+                  "is_single_power_swap": false,
+                  "input_source": "board",
+                  "spent_from": 19,
+                  "refills": 30,
+                  "goals_left": 5,
+                  "from_item": 4,
+                  "to_item": 1
+                },
+                {
+                  "from": {
+                    "x": 4,
+                    "y": 0
+                  },
+                  "to": {
+                    "x": 5,
+                    "y": 0
+                  },
+                  "is_tap": false,
+                  "settled": false,
+                  "is_single_power_swap": true,
+                  "input_source": "board",
+                  "spent_from": 18,
+                  "refills": 0,
+                  "goals_left": 0,
+                  "from_item": 2,
+                  "to_item": 30
+                }
+              ],
+              "opening_vacancies": [],
+              "goals_at_result": [
+                {
+                  "type": 11,
+                  "left": 0
+                }
+              ],
+              "combos_at_result": [],
+              "cupboards_at_result": [],
+              "grass": [],
+              "honey": []
+            }
+          ]
+        }
+      }
+    }
+  },
+  "source_tween_settings": {
+    "path": "F:/Coin Merge Fortune/RM/Recovery/assets/RecoveredProject/ExportedProject/Assets/Resources/DOTweenSettings.asset",
+    "bytes": 1128,
+    "sha256": "bb4cf8e4951c037c149403080348e42f884f4bea3f8f6f4bab290517f057f700"
+  },
+  "limits": [
+    "The ARM64 goal update, callback, generic startup and ease evaluator execute from the original binary. Getter/plugin conversion, active-range/sequence transport and vector writes are supplied reference boundaries; this is not execution of the complete native DOTween manager.",
+    "Observed Unity tests compare actual production goal transforms and counters at alternating 30/60/90 FPS; the unobserved natural and core-flow runs omit runtime observation hooks. This does not prove original-device pixels/audio/input or a natural 100-level campaign.",
+    "This source checkpoint precedes its Android package/verification follow-up. Scope remains ordinary levels 1-100 with no peripheral systems."
+  ],
+  "artifacts": {
+    "1d7d60c.txt": {
+      "path": "C:/RMGoalTween_20261105/1d7d60c.txt",
+      "bytes": 4364,
+      "sha256": "4d6eba99740c12a90844af006d598715b47f62f689b2c5b8115f26884627188f"
+    },
+    "2922d3c.txt": {
+      "path": "C:/RMGoalTween_20261105/2922d3c.txt",
+      "bytes": 2046,
+      "sha256": "ce79be7bbc7b2e4dac150f45ec77abd5e596f34fe1dee3da343909210bc4d641"
+    },
+    "2922ff4.txt": {
+      "path": "C:/RMGoalTween_20261105/2922ff4.txt",
+      "bytes": 2516,
+      "sha256": "f230b6a3b39b1459e14b58bc645f46b839eccd9f1c73cb217e0c61a579d95223"
+    },
+    "29230b4.txt": {
+      "path": "C:/RMGoalTween_20261105/29230b4.txt",
+      "bytes": 1365,
+      "sha256": "c2de9165eb2f255577f25395f7b42075c645f3dd49965ad42b963feb1c89f18d"
+    },
+    "292311c.txt": {
+      "path": "C:/RMGoalTween_20261105/292311c.txt",
+      "bytes": 1473,
+      "sha256": "e165ab48172a79e8bf47194465c006a6910a691d518f0f5e6fbedabb6223e4d7"
+    },
+    "2924074.txt": {
+      "path": "C:/RMGoalTween_20261105/2924074.txt",
+      "bytes": 6891,
+      "sha256": "0ff8c0bfe1f013678a49b1f1ca0dc0e0102bb2dd02b2cb504656bed96ebd5750"
+    },
+    "2924cd4.txt": {
+      "path": "C:/RMGoalTween_20261105/2924cd4.txt",
+      "bytes": 6891,
+      "sha256": "3124ac3231643f48f188903594c700333d3548561574a94e32ebb1d00922f97d"
+    },
+    "2924ee4.txt": {
+      "path": "C:/RMGoalTween_20261105/2924ee4.txt",
+      "bytes": 6891,
+      "sha256": "e873a2fccc107ed968d4d7a27e95f5def49df4564fddd8b478a6b666fcd83ef7"
+    },
+    "29250f4.txt": {
+      "path": "C:/RMGoalTween_20261105/29250f4.txt",
+      "bytes": 6891,
+      "sha256": "5a32d5603691bb49c730b41c9ca1fb50c0f4845f9f6cc9376198d71f1a0890f4"
+    },
+    "29293b8.txt": {
+      "path": "C:/RMGoalTween_20261105/29293b8.txt",
+      "bytes": 8952,
+      "sha256": "cc24dd5ba6fd8bb5413a3f41385d5501265eda1994a05935233ff597e1a1c835"
+    },
+    "292a40c.txt": {
+      "path": "C:/RMGoalTween_20261105/292a40c.txt",
+      "bytes": 9190,
+      "sha256": "3d37123c6b4b64db8f541fdd2679d6d8ae28097d14489b5513d22af2e63ade65"
+    },
+    "292a6dc.txt": {
+      "path": "C:/RMGoalTween_20261105/292a6dc.txt",
+      "bytes": 9190,
+      "sha256": "5c86d176d6a2af99f9616a14016f63c2c611d9c286d8269b5ca43489c83ab2f6"
+    },
+    "292a9ac.txt": {
+      "path": "C:/RMGoalTween_20261105/292a9ac.txt",
+      "bytes": 8952,
+      "sha256": "da93a595e12b4b2c4a271b59fb4f7a47cf57aabf4c43dd8b1c9b408035fb7ba2"
+    },
+    "33dcf78.txt": {
+      "path": "C:/RMGoalTween_20261105/33dcf78.txt",
+      "bytes": 13173,
+      "sha256": "47d0281e28cadb24728d20d1ee18a0780a3babc986906bb181e95e25bab1dc3d"
+    },
+    "actual.txt": {
+      "path": "C:/RMGoalTween_20261105/actual.txt",
+      "bytes": 77839,
+      "sha256": "32bf6d680a35339968a9dfa3a711dfd6fd835ae60ece06d28c67acd4fc6f778d"
+    },
+    "baseline_natural/background_verification.json": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/background_verification.json",
+      "bytes": 394,
+      "sha256": "7039a568e721e752d60bffba960ac1022a0be613bce28363bb5683db413805a7"
+    },
+    "baseline_natural/core_natural_2_win.png": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/core_natural_2_win.png",
+      "bytes": 636599,
+      "sha256": "d5da924b49f0e0f4f56d5fb9e49723f5e2ca416b30823a4b3d4e295ca8b5fef2"
+    },
+    "baseline_natural/goal_tweens.bin": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/goal_tweens.bin",
+      "bytes": 118755,
+      "sha256": "b38fe44e20d5c43e216d8eec863baa98c29554e601fab0e523731689e28f1d19"
+    },
+    "baseline_natural/GoalTweenObservation.cs": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/GoalTweenObservation.cs",
+      "bytes": 1953,
+      "sha256": "b075ed0d7dc14fed0ac6aea368fa37117c123f9c0ca1b9d10e1950565243f91c"
+    },
+    "baseline_natural/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/live_core_natural_attempts_verification.json",
+      "bytes": 7693,
+      "sha256": "82484a7b3146cfce814da8f56fe1e09a3df4ad4773a5901045f3f6d42bbad9a9"
+    },
+    "baseline_natural/live_goal_tween_comparison.json": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/live_goal_tween_comparison.json",
+      "bytes": 1789,
+      "sha256": "e6f2152746d042cfc27a20014d25ebefb71d663af3960a07ae684c6aa6f0be55"
+    },
+    "baseline_natural/OriginalGameplayHud.cs": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/OriginalGameplayHud.cs",
+      "bytes": 8573,
+      "sha256": "d48b8f481c5b4a1f26d29469a4c8897be7af668b59d4313ce4474b3486ef5d5c"
+    },
+    "baseline_natural/OriginalGoalPanelUi.cs": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/OriginalGoalPanelUi.cs",
+      "bytes": 5574,
+      "sha256": "3668102d8273d3ad66f43b2d61824a9c88d786548088e05dbba5481667e750e0"
+    },
+    "baseline_natural/OriginalGoalUi.cs": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/OriginalGoalUi.cs",
+      "bytes": 8258,
+      "sha256": "d64100e54fadae95058a989c7738b2e68ca6092ac871836600f3b8d3d5861850"
+    },
+    "baseline_natural/process.json": {
+      "path": "C:/RMGoalTween_20261105/baseline_natural/process.json",
+      "bytes": 613,
+      "sha256": "5c4fc0afc8151348f844e0a05547eccec3f94c95d10a1e2739f5e0484c476e3a"
+    },
+    "commands.txt": {
+      "path": "C:/RMGoalTween_20261105/commands.txt",
+      "bytes": 55236,
+      "sha256": "3dd7e1a0a4f351ce1573368806ebfd8e3138e56944164c1c6415fe734e419634"
+    },
+    "commit_body.txt": {
+      "path": "C:/RMGoalTween_20261105/commit_body.txt",
+      "bytes": 1142,
+      "sha256": "a90ed2f1d06735899d5f57ba0d56c0f25a44f7638d19bea6486c4f81171ad2a0"
+    },
+    "compare_live.py": {
+      "path": "C:/RMGoalTween_20261105/compare_live.py",
+      "bytes": 5109,
+      "sha256": "7207ac124d40e6e2ddb80c124f1b7b2e960ffea78a2f7ae212e84da8ed3d2206"
+    },
+    "expected.txt": {
+      "path": "C:/RMGoalTween_20261105/expected.txt",
+      "bytes": 77833,
+      "sha256": "309d9c069efb856a5a3ad3c9d2dbd2a466fe168c177f5af9dace765a1de630a3"
+    },
+    "fixed_flow_unobserved/background_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/background_verification.json",
+      "bytes": 382,
+      "sha256": "64762ebddbce07718ddef8850b49a1d1a1f30017cf3db7e20cf72bb7ca51a99b"
+    },
+    "fixed_flow_unobserved/core_flow_fail.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/core_flow_fail.png",
+      "bytes": 425125,
+      "sha256": "e3d0a32aa0dd20bf0861d4172680cdeab598f95b43973f2f07fbd2c290685533"
+    },
+    "fixed_flow_unobserved/core_flow_level2.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/core_flow_level2.png",
+      "bytes": 1134153,
+      "sha256": "d2e70a121e3fc79bde2ce46d5b48abfb7909ff7eb00d73166f45ba763b3b7b2b"
+    },
+    "fixed_flow_unobserved/core_flow_level3.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/core_flow_level3.png",
+      "bytes": 1137588,
+      "sha256": "1b9c6e15d3b258de76e8589b03c58f91e7e6bd006a2b6b03fc942edb0953c9bf"
+    },
+    "fixed_flow_unobserved/core_flow_level_entrance.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/core_flow_level_entrance.png",
+      "bytes": 1235239,
+      "sha256": "600ed86cc9cac61aab1d27717e7a247a08f14be8814691a0c6aa06ca6b8b3a15"
+    },
+    "fixed_flow_unobserved/core_flow_out_of_moves.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/core_flow_out_of_moves.png",
+      "bytes": 932714,
+      "sha256": "aaaf78d9e11cff8341c300ccd54d8e485ffeb32608366b677228e8cbb5ef804d"
+    },
+    "fixed_flow_unobserved/core_flow_retry.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/core_flow_retry.png",
+      "bytes": 1134067,
+      "sha256": "c1eb36521cafd712e485bdebcf6bf59a0c031059460b551a974a2777f7669b0a"
+    },
+    "fixed_flow_unobserved/core_flow_win.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/core_flow_win.png",
+      "bytes": 621907,
+      "sha256": "0cee400fa0bf661745e1afe8f8d2a9afb2bd3bb7c4b984a45eea427cb681cb35"
+    },
+    "fixed_flow_unobserved/core_flow_win_text_enter.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/core_flow_win_text_enter.png",
+      "bytes": 542435,
+      "sha256": "1e310502a1cfc768b493c01cd212140c1fa825b21a90a043000f3a7bd743aaad"
+    },
+    "fixed_flow_unobserved/live_core_catalog_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/live_core_catalog_verification.json",
+      "bytes": 845,
+      "sha256": "44e0dbd1dc66b2dc105b98c55a6d643a7eefd8b71eb83654a5994b31626a572d"
+    },
+    "fixed_flow_unobserved/live_core_flow_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/live_core_flow_verification.json",
+      "bytes": 2846,
+      "sha256": "0bd027505a7dbcd64ff847222190915b1c6712d462cc3e3c06b441d8db7debcc"
+    },
+    "fixed_flow_unobserved/live_core_mail_batch_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/live_core_mail_batch_verification.json",
+      "bytes": 307,
+      "sha256": "b5bf3bfc515e93102ceb2d7733e2c869a69f0cc5ecf915c492ca4537c94f0bcd"
+    },
+    "fixed_flow_unobserved/live_game_scene_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/live_game_scene_verification.json",
+      "bytes": 1098,
+      "sha256": "79e4e9e7c935a679013c6c5210ed6f33f3a2a44bd9c7c6501d2fa5957147a5f1"
+    },
+    "fixed_flow_unobserved/live_goal_ui_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/live_goal_ui_verification.json",
+      "bytes": 704,
+      "sha256": "9bd97a2a78af53916a5224ee2504a18c95e96a7517df8f0d9aeddadac1894c98"
+    },
+    "fixed_flow_unobserved/live_tnt_rocket_combo_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/live_tnt_rocket_combo_verification.json",
+      "bytes": 2885,
+      "sha256": "b303d2dbe093740f26b27114ad0b008f0551150c4bb2373e528838b3096c905a"
+    },
+    "fixed_flow_unobserved/process.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_flow_unobserved/process.json",
+      "bytes": 565,
+      "sha256": "1002f5cdb0d11d3f61e9eddd3f1f875ad428bda674e5cca338f027c76317b990"
+    },
+    "fixed_mail/background_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/background_verification.json",
+      "bytes": 388,
+      "sha256": "9d8f0206e1f8589a898e21227cbe65203a87e64aea73ef11d3416b8dde1fce62"
+    },
+    "fixed_mail/goal_tweens.bin": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/goal_tweens.bin",
+      "bytes": 15454,
+      "sha256": "154d8cca589cf16f3d439e927b18460dc1bbeedc634bafcbfcd4dc8046aa854c"
+    },
+    "fixed_mail/GoalTweenObservation.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/GoalTweenObservation.cs",
+      "bytes": 1947,
+      "sha256": "00196736f1c6f399a2980ad5c62d504ccc783f31411369757f8b99e35c47703f"
+    },
+    "fixed_mail/live_core_mail_batch_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/live_core_mail_batch_verification.json",
+      "bytes": 307,
+      "sha256": "b5bf3bfc515e93102ceb2d7733e2c869a69f0cc5ecf915c492ca4537c94f0bcd"
+    },
+    "fixed_mail/live_goal_tween_comparison.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/live_goal_tween_comparison.json",
+      "bytes": 476,
+      "sha256": "aadd3c3133e91fea5095ac0b647639f5ac93fc0ac5a4d4a8730e077417f0e508"
+    },
+    "fixed_mail/OriginalGameplayHud.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/OriginalGameplayHud.cs",
+      "bytes": 8646,
+      "sha256": "9fa64790962274cb3523daafd0f15cfe10c20b96fe96df02c13062b431f8b32d"
+    },
+    "fixed_mail/OriginalGoalIconAnimation.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/OriginalGoalIconAnimation.cs",
+      "bytes": 3829,
+      "sha256": "93a00fdfa3671ba205427c6193ba18825c378d923023944e1c6923e56b2bfa1f"
+    },
+    "fixed_mail/OriginalGoalPanelUi.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/OriginalGoalPanelUi.cs",
+      "bytes": 5896,
+      "sha256": "d1feff7bd60f850cfd43284d68e0dfc4509112ef88ce4b1b6e8391767fc01c8a"
+    },
+    "fixed_mail/OriginalGoalUi.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/OriginalGoalUi.cs",
+      "bytes": 6259,
+      "sha256": "1144f9101e424719f732d5b85a81811abd585470a86329e5331e5595baaa6a5c"
+    },
+    "fixed_mail/process.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_mail/process.json",
+      "bytes": 560,
+      "sha256": "180f8ed3a67a9061774a358ee5e2f0a165c77cac1efed867ebdd03efcf4b4cbc"
+    },
+    "fixed_natural/background_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/background_verification.json",
+      "bytes": 394,
+      "sha256": "d65e35f0e3c37d9ee4ee6cb2bf2bce4ad846e09ed722993c33195299f1aa752e"
+    },
+    "fixed_natural/core_natural_2_win.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/core_natural_2_win.png",
+      "bytes": 619576,
+      "sha256": "c24bfdb4474de19511b17dfb831a27468e7ed77fa85c1913d052820a4b12fc75"
+    },
+    "fixed_natural/goal_tweens.bin": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/goal_tweens.bin",
+      "bytes": 122220,
+      "sha256": "363eab3ca856ebc156dedc1d065809ca517ecc194cb4dc362eeabaf53d9e67eb"
+    },
+    "fixed_natural/GoalTweenObservation.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/GoalTweenObservation.cs",
+      "bytes": 1950,
+      "sha256": "c4573b60db2566c3b94b5eb89a6322c3b6819111d5fe82e88286daebd31df0ef"
+    },
+    "fixed_natural/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/live_core_natural_attempts_verification.json",
+      "bytes": 7693,
+      "sha256": "713f39b2e3fa1534e73fc78be64a00f72ca8c14080bd35c13196f0d8717a3596"
+    },
+    "fixed_natural/live_goal_tween_comparison.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/live_goal_tween_comparison.json",
+      "bytes": 544,
+      "sha256": "6523d0f9ef11d5c6800833fdf5cc55108308391b63f48cf2633191083754b91f"
+    },
+    "fixed_natural/OriginalGameplayHud.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/OriginalGameplayHud.cs",
+      "bytes": 8646,
+      "sha256": "9fa64790962274cb3523daafd0f15cfe10c20b96fe96df02c13062b431f8b32d"
+    },
+    "fixed_natural/OriginalGoalIconAnimation.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/OriginalGoalIconAnimation.cs",
+      "bytes": 3829,
+      "sha256": "93a00fdfa3671ba205427c6193ba18825c378d923023944e1c6923e56b2bfa1f"
+    },
+    "fixed_natural/OriginalGoalPanelUi.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/OriginalGoalPanelUi.cs",
+      "bytes": 5896,
+      "sha256": "d1feff7bd60f850cfd43284d68e0dfc4509112ef88ce4b1b6e8391767fc01c8a"
+    },
+    "fixed_natural/OriginalGoalUi.cs": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/OriginalGoalUi.cs",
+      "bytes": 6259,
+      "sha256": "1144f9101e424719f732d5b85a81811abd585470a86329e5331e5595baaa6a5c"
+    },
+    "fixed_natural/process.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural/process.json",
+      "bytes": 610,
+      "sha256": "156a832f3d8c624726974e6ae9b704dd46a997898b0d3e876b36d8491f3743f8"
+    },
+    "fixed_natural_unobserved/background_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural_unobserved/background_verification.json",
+      "bytes": 394,
+      "sha256": "783b07356b2dfdae56763d8c8da564ff92ba01133c4f4f962ea1ae5394cb15e4"
+    },
+    "fixed_natural_unobserved/core_flow_level3.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural_unobserved/core_flow_level3.png",
+      "bytes": 1137588,
+      "sha256": "1b9c6e15d3b258de76e8589b03c58f91e7e6bd006a2b6b03fc942edb0953c9bf"
+    },
+    "fixed_natural_unobserved/core_natural_2_win.png": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural_unobserved/core_natural_2_win.png",
+      "bytes": 616071,
+      "sha256": "3954a662ef5e9f2c299eb5170c8dc795c0b83731a2634cd2a00550f4e131cb2a"
+    },
+    "fixed_natural_unobserved/live_core_flow_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural_unobserved/live_core_flow_verification.json",
+      "bytes": 2846,
+      "sha256": "0bd027505a7dbcd64ff847222190915b1c6712d462cc3e3c06b441d8db7debcc"
+    },
+    "fixed_natural_unobserved/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural_unobserved/live_core_natural_attempts_verification.json",
+      "bytes": 7577,
+      "sha256": "8d5e287b98a4985e8d084c5b47b149c0f8c1072e9f5103574ab5979098934570"
+    },
+    "fixed_natural_unobserved/process.json": {
+      "path": "C:/RMGoalTween_20261105/fixed_natural_unobserved/process.json",
+      "bytes": 621,
+      "sha256": "639a414ce09fcca554bb5a1f713bbde6f7f85c038cb1a184d132c8261fbed068"
+    },
+    "goal_icon_comparison.json": {
+      "path": "C:/RMGoalTween_20261105/goal_icon_comparison.json",
+      "bytes": 680,
+      "sha256": "1509a67ef739444c5c0ffc108c37b2c83a6ca2c6f13622992378e61c546290d8"
+    },
+    "GoalIconHarness.cs": {
+      "path": "C:/RMGoalTween_20261105/GoalIconHarness.cs",
+      "bytes": 2605,
+      "sha256": "23c495294c3624d3deb5ad379cb9357213fe29fda3f93dd9efe2183300f1b675"
+    },
+    "GoalTweenObservation.cs": {
+      "path": "C:/RMGoalTween_20261105/GoalTweenObservation.cs",
+      "bytes": 1919,
+      "sha256": "1c0c4feacee5d3a3a7553e377a1364ef728f2bbb2a9e5651bccb5dc9d6de575b"
+    },
+    "inspect_native_tweens.py": {
+      "path": "C:/RMGoalTween_20261105/inspect_native_tweens.py",
+      "bytes": 1076,
+      "sha256": "640d0f5e06a85c27049764c081054018a879d3f4279d4fa55ada683f019da1b7"
+    },
+    "live_goal_tween_comparison.json": {
+      "path": "C:/RMGoalTween_20261105/live_goal_tween_comparison.json",
+      "bytes": 1193,
+      "sha256": "491f2e9a7b4185a99f6ea2c57731556cf24306e71489d2abf5b67dcd6c4b0172"
+    },
+    "mirror_restored.json": {
+      "path": "C:/RMGoalTween_20261105/mirror_restored.json",
+      "bytes": 519,
+      "sha256": "05958902d13f6ce5b2f5ea2e9e48d9221181054c7e171c62e827afde7e73a27f"
+    },
+    "native_1630680.txt": {
+      "path": "C:/RMGoalTween_20261105/native_1630680.txt",
+      "bytes": 7277,
+      "sha256": "0fb2e4529fd0346fbd5967ac976aeb740bdfd57e83fb5c714a6e3c20b8cb7535"
+    },
+    "native_18cbad4.txt": {
+      "path": "C:/RMGoalTween_20261105/native_18cbad4.txt",
+      "bytes": 19910,
+      "sha256": "a70ba6ee34aa892cce28448560a7709ea6564cf1bdd4bb59ba6520e64aa02a05"
+    },
+    "native_18cc5cc.txt": {
+      "path": "C:/RMGoalTween_20261105/native_18cc5cc.txt",
+      "bytes": 11632,
+      "sha256": "aafdf23490bfcf5ae697f05f89a02f736f3dcb64e49a93e8b7aa5c4ab456036e"
+    },
+    "native_18ccc6c.txt": {
+      "path": "C:/RMGoalTween_20261105/native_18ccc6c.txt",
+      "bytes": 816,
+      "sha256": "42fc2a4de80543526c9354d79836c12263b11302f91b878beeaf5a64f4558c0c"
+    },
+    "native_1d7d60c.txt": {
+      "path": "C:/RMGoalTween_20261105/native_1d7d60c.txt",
+      "bytes": 4364,
+      "sha256": "4d6eba99740c12a90844af006d598715b47f62f689b2c5b8115f26884627188f"
+    },
+    "native_292a9ac.txt": {
+      "path": "C:/RMGoalTween_20261105/native_292a9ac.txt",
+      "bytes": 8952,
+      "sha256": "da93a595e12b4b2c4a271b59fb4f7a47cf57aabf4c43dd8b1c9b408035fb7ba2"
+    },
+    "native_33d5f78.txt": {
+      "path": "C:/RMGoalTween_20261105/native_33d5f78.txt",
+      "bytes": 32079,
+      "sha256": "b9a00a1a6c266e1e14d4118fb5e7aed8e59faff63fa044be3e789d279e4ab5ce"
+    },
+    "native_33dcf78.txt": {
+      "path": "C:/RMGoalTween_20261105/native_33dcf78.txt",
+      "bytes": 13173,
+      "sha256": "47d0281e28cadb24728d20d1ee18a0780a3babc986906bb181e95e25bab1dc3d"
+    },
+    "native_goal.py": {
+      "path": "C:/RMGoalTween_20261105/native_goal.py",
+      "bytes": 10683,
+      "sha256": "d7247f5df9200573623e94c46b30477969a43265955eeb901f1f7b1b2da4bd56"
+    },
+    "OriginalGoalIconAnimation.cs": {
+      "path": "C:/RMGoalTween_20261105/OriginalGoalIconAnimation.cs",
+      "bytes": 3829,
+      "sha256": "93a00fdfa3671ba205427c6193ba18825c378d923023944e1c6923e56b2bfa1f"
+    },
+    "plan.json": {
+      "path": "C:/RMGoalTween_20261105/plan.json",
+      "bytes": 1271,
+      "sha256": "068d679c226a01445d7e24589a4c89dc54d607920c27033d07c538fdde3dd807"
+    },
+    "prepare.py": {
+      "path": "C:/RMGoalTween_20261105/prepare.py",
+      "bytes": 5565,
+      "sha256": "761b54e95764b8045c006fd4dbec88bc233ec5f569ec3902a7e8a7ec41ee7f31"
+    },
+    "promote.py": {
+      "path": "C:/RMGoalTween_20261105/promote.py",
+      "bytes": 7938,
+      "sha256": "47db370b8fdc0cb4195dd825c3237ca33e48905dabf00d4c3a25d2e3a48e87ee"
+    },
+    "run_unity.py": {
+      "path": "C:/RMGoalTween_20261105/run_unity.py",
+      "bytes": 6383,
+      "sha256": "d9880b2c6e6bee332dc47b219bff31a80da3437a0f1b5eec95c53e60243a8755"
+    },
+    "tween_methods.json": {
+      "path": "C:/RMGoalTween_20261105/tween_methods.json",
+      "bytes": 6337,
+      "sha256": "9b7b0ba4fd5b083fa33fff6b57234dcefb8b479e47cb846a1f26a4dc51f7ed7c"
+    }
+  },
+  "android_followup": {
+    "source_commit": "9e576792979e72015580882bdbccdf982b1c77f4",
+    "report": "SourceCatalog/android_goal_tween_20261105.json",
+    "apk_sha256": "4e1dd91816b0385c3c93011f992c81b4da038b75e184a24451db4e6e5d3fd2ed",
+    "apk_bytes": 43636748,
+    "natural_level3_win_remaining_result_and_continue": true,
+    "level4_grass_intro_visible": true,
+    "win_left_moves": 18,
+    "final_reward": 59,
+    "scope": "The production APK contains the goal HUD timing fix and all 100 original levels. Real OS actions finish the resumed third level naturally, run unskipped remaining-move conversion, show the result and Continue into the fourth-level grass introduction. Android runtime values are not instrumented; original rendering/audio/input parity and all-100 natural play remain open."
+  }
+}

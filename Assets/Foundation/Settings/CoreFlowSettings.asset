@@ -1,0 +1,368 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d935d4308f2f40b2b3f479a65b1bf067, type: 3}
+  m_Name: CoreFlowSettings
+  m_EditorClassIdentifier: 
+  progressFileName: CoreLevels
+  levelEntrance:
+    boardOffset: 11.1
+    boardStart: 0.2
+    boardDuration: 0.4
+    boardOvershoot: 1.5
+    boardSoundTime: 0.15
+    hudDuration: 0.3
+    hudOvershoot: 2
+    topOutsideOffset: 4
+    bottomOutsideOffset: -1.1
+  modalTutorialPrefabPath: Foundation/Prefabs/CoreModalTutorial
+  hammerTutorialPrefabPath: Foundation/Prefabs/CoreLevelEightHammerGuide
+  arrowTutorialPrefabPath: Foundation/Prefabs/CoreLevelFourteenArrowGuide
+  cannonTutorialPrefabPath: Foundation/Prefabs/CoreLevelSeventeenCannonGuide
+  jesterTutorialPrefabPath: Foundation/Prefabs/CoreLevelNineteenJesterGuide
+  modalTutorials:
+  - level: 21
+    instruction: Make matches next to a MAILBOX to collect MAILS!
+    highlightWholeBoard: 0
+    obstacleCells:
+    - {x: 0, y: 0}
+    - {x: 7, y: 0}
+    - {x: 1, y: 0}
+    portraitCell: {x: -1, y: -1}
+    portraitOffset: {x: 0, y: 1.4}
+    landscapeOffset: {x: 0, y: 0}
+    landscapeAtWorldOrigin: 1
+  - level: 31
+    instruction: Break the ROYAL EGG by making a match next to it!
+    highlightWholeBoard: 0
+    obstacleCells:
+    - {x: 0, y: 0}
+    - {x: 5, y: 0}
+    - {x: 0, y: 1}
+    - {x: 5, y: 1}
+    - {x: 0, y: 2}
+    - {x: 5, y: 2}
+    - {x: 0, y: 3}
+    - {x: 5, y: 3}
+    - {x: 0, y: 4}
+    - {x: 5, y: 4}
+    - {x: 0, y: 5}
+    - {x: 5, y: 5}
+    - {x: 0, y: 6}
+    - {x: 5, y: 6}
+    - {x: 0, y: 7}
+    - {x: 5, y: 7}
+    - {x: 0, y: 8}
+    - {x: 5, y: 8}
+    - {x: 0, y: 9}
+    - {x: 5, y: 9}
+    - {x: 1, y: 0}
+    - {x: 6, y: 0}
+    - {x: 1, y: 1}
+    - {x: 6, y: 1}
+    - {x: 1, y: 2}
+    - {x: 6, y: 2}
+    - {x: 1, y: 3}
+    - {x: 6, y: 3}
+    - {x: 1, y: 4}
+    - {x: 6, y: 4}
+    - {x: 1, y: 5}
+    - {x: 6, y: 5}
+    - {x: 1, y: 6}
+    - {x: 6, y: 6}
+    - {x: 1, y: 7}
+    - {x: 6, y: 7}
+    - {x: 1, y: 8}
+    - {x: 6, y: 8}
+    - {x: 1, y: 9}
+    - {x: 6, y: 9}
+    - {x: 2, y: 0}
+    - {x: 7, y: 0}
+    - {x: 2, y: 1}
+    - {x: 7, y: 1}
+    - {x: 2, y: 2}
+    - {x: 7, y: 2}
+    - {x: 2, y: 3}
+    - {x: 7, y: 3}
+    - {x: 2, y: 4}
+    - {x: 7, y: 4}
+    - {x: 2, y: 5}
+    - {x: 7, y: 5}
+    - {x: 2, y: 6}
+    - {x: 7, y: 6}
+    - {x: 2, y: 7}
+    - {x: 7, y: 7}
+    - {x: 2, y: 8}
+    - {x: 7, y: 8}
+    - {x: 2, y: 9}
+    - {x: 7, y: 9}
+    portraitCell: {x: 3, y: 5}
+    portraitOffset: {x: 0.5, y: 0.4}
+    landscapeOffset: {x: 0, y: 0}
+    landscapeAtWorldOrigin: 1
+  - level: 41
+    instruction: Break a POTION BOTTLE by making a colored match next to it!
+    highlightWholeBoard: 0
+    obstacleCells:
+    - {x: 1, y: 1}
+    - {x: 1, y: 5}
+    - {x: 5, y: 1}
+    - {x: 5, y: 5}
+    portraitCell: {x: -1, y: -1}
+    portraitOffset: {x: 0, y: 1.1}
+    landscapeOffset: {x: 0, y: 0.5}
+    textWidth: 7.5
+    backgroundHalfWidth: 4.2
+  - level: 51
+    instruction: "Make matches 2 times\nnext to a VASE to break it!"
+    highlightWholeBoard: 0
+    obstacleCells:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 0, y: 2}
+    - {x: 0, y: 3}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    - {x: 1, y: 2}
+    - {x: 1, y: 3}
+    - {x: 2, y: 0}
+    - {x: 2, y: 1}
+    - {x: 2, y: 2}
+    - {x: 2, y: 3}
+    - {x: 3, y: 0}
+    - {x: 3, y: 1}
+    - {x: 3, y: 2}
+    - {x: 3, y: 3}
+    - {x: 4, y: 0}
+    - {x: 4, y: 1}
+    - {x: 4, y: 2}
+    - {x: 4, y: 3}
+    - {x: 5, y: 0}
+    - {x: 5, y: 1}
+    - {x: 5, y: 2}
+    - {x: 5, y: 3}
+    - {x: 6, y: 0}
+    - {x: 6, y: 1}
+    - {x: 6, y: 2}
+    - {x: 6, y: 3}
+    - {x: 7, y: 0}
+    - {x: 7, y: 1}
+    - {x: 7, y: 2}
+    - {x: 7, y: 3}
+    - {x: 8, y: 0}
+    - {x: 8, y: 1}
+    - {x: 8, y: 2}
+    - {x: 8, y: 3}
+    portraitCell: {x: 4, y: 5}
+    portraitOffset: {x: 0, y: 0.4}
+    landscapeOffset: {x: 0, y: -2}
+  - level: 71
+    instruction: Make matches 5 times next to a BUSH to spread GRASS!
+    highlightWholeBoard: 0
+    obstacleCells:
+    - {x: 1, y: 1}
+    - {x: 1, y: 5}
+    - {x: 6, y: 1}
+    - {x: 6, y: 5}
+    portraitCell: {x: -1, y: -1}
+    portraitOffset: {x: 0, y: 0.6}
+    landscapeOffset: {x: 0, y: 0.6}
+  - level: 81
+    instruction: Clear HONEY by making a match next to it!
+    highlightWholeBoard: 1
+    obstacleCells: []
+    portraitCell: {x: 4, y: 5}
+    portraitOffset: {x: 0, y: 0}
+    landscapeOffset: {x: 0, y: -4.5}
+  - level: 91
+    instruction: Hit SAFE 5 times with power-ups to break it!
+    highlightWholeBoard: 0
+    obstacleCells:
+    - {x: 1, y: 2}
+    - {x: 1, y: 5}
+    - {x: 6, y: 2}
+    - {x: 6, y: 5}
+    portraitCell: {x: -1, y: -1}
+    portraitOffset: {x: 0, y: -0.5}
+    landscapeOffset: {x: 0, y: -0.5}
+  directedTutorials:
+  - level: 1
+    lightballTaps: 0
+    delay: 0
+    stableBoardSeconds: 0.1
+    prefabPath: Foundation/Prefabs/CoreLevelOneOpeningGuide
+    inputCells:
+    - {x: 5, y: 5}
+    - {x: 5, y: 4}
+    raisedBoxes:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 0, y: 2}
+    - {x: 0, y: 3}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    - {x: 1, y: 2}
+    - {x: 1, y: 3}
+    - {x: 2, y: 0}
+    - {x: 2, y: 1}
+    - {x: 2, y: 2}
+    - {x: 2, y: 3}
+    - {x: 3, y: 0}
+    - {x: 3, y: 1}
+    - {x: 3, y: 2}
+    - {x: 3, y: 3}
+    - {x: 4, y: 0}
+    - {x: 4, y: 1}
+    - {x: 4, y: 2}
+    - {x: 4, y: 3}
+    - {x: 5, y: 0}
+    - {x: 5, y: 1}
+    - {x: 5, y: 2}
+    - {x: 5, y: 3}
+    - {x: 6, y: 0}
+    - {x: 6, y: 1}
+    - {x: 6, y: 2}
+    - {x: 6, y: 3}
+    - {x: 7, y: 0}
+    - {x: 7, y: 1}
+    - {x: 7, y: 2}
+    - {x: 7, y: 3}
+    - {x: 8, y: 0}
+    - {x: 8, y: 1}
+    - {x: 8, y: 2}
+    - {x: 8, y: 3}
+    highlightWholeBoard: 0
+  - level: 4
+    lightballTaps: 0
+    delay: 0
+    prefabPath: Foundation/Prefabs/CoreLevelFourGrassGuide
+    inputCells:
+    - {x: 1, y: 1}
+    - {x: 1, y: 2}
+    - {x: 1, y: 3}
+    - {x: 1, y: 4}
+    - {x: 1, y: 5}
+    - {x: 1, y: 6}
+    - {x: 1, y: 7}
+    - {x: 2, y: 1}
+    - {x: 2, y: 2}
+    - {x: 2, y: 3}
+    - {x: 2, y: 4}
+    - {x: 2, y: 5}
+    - {x: 2, y: 6}
+    - {x: 2, y: 7}
+    - {x: 3, y: 1}
+    - {x: 3, y: 2}
+    - {x: 3, y: 3}
+    - {x: 3, y: 4}
+    - {x: 3, y: 5}
+    - {x: 3, y: 6}
+    - {x: 3, y: 7}
+    - {x: 4, y: 1}
+    - {x: 4, y: 2}
+    - {x: 4, y: 3}
+    - {x: 4, y: 4}
+    - {x: 4, y: 5}
+    - {x: 4, y: 6}
+    - {x: 4, y: 7}
+    - {x: 5, y: 1}
+    - {x: 5, y: 2}
+    - {x: 5, y: 3}
+    - {x: 5, y: 4}
+    - {x: 5, y: 5}
+    - {x: 5, y: 6}
+    - {x: 5, y: 7}
+    - {x: 6, y: 1}
+    - {x: 6, y: 2}
+    - {x: 6, y: 3}
+    - {x: 6, y: 4}
+    - {x: 6, y: 5}
+    - {x: 6, y: 6}
+    - {x: 6, y: 7}
+    - {x: 7, y: 1}
+    - {x: 7, y: 2}
+    - {x: 7, y: 3}
+    - {x: 7, y: 4}
+    - {x: 7, y: 5}
+    - {x: 7, y: 6}
+    - {x: 7, y: 7}
+    raisedBoxes: []
+    highlightWholeBoard: 0
+  - level: 20
+    lightballTaps: 0
+    delay: 0
+    stableBoardSeconds: 0
+    prefabPath: Foundation/Prefabs/CoreLevelTwentyBonusGuide
+    inputCells:
+    - {x: 4, y: 4}
+    - {x: 4, y: 5}
+    raisedBoxes: []
+    highlightWholeBoard: 1
+    showWhileBoardBusy: 0
+  - level: 28
+    lightballTaps: 3
+    delay: 4
+    prefabPath: Foundation/Prefabs/CoreLevelTwentyEightGuide
+    inputCells:
+    - {x: 4, y: 5}
+    - {x: 3, y: 5}
+    raisedBoxes: []
+    highlightWholeBoard: 0
+    showWhileBoardBusy: 1
+  - level: 61
+    lightballTaps: 0
+    delay: 0
+    prefabPath: Foundation/Prefabs/CoreLevelSixtyOneOwlGuide
+    inputCells:
+    - {x: 0, y: 9}
+    - {x: 1, y: 0}
+    - {x: 4, y: 7}
+    - {x: 7, y: 0}
+    - {x: 8, y: 9}
+    raisedBoxes: []
+    highlightWholeBoard: 1
+  lightballTapTutorialPrefabPath: Foundation/Prefabs/CoreLightballTapGuide
+  dynamicComboTutorialPrefabPath: Foundation/Prefabs/CoreDynamicComboGuide
+  lightballTapTutorialDelay: 5
+  matchHintParticlesPrefabPath: Foundation/Prefabs/OriginalHintParticles
+  matchHintTiming:
+    stableFrames: 60
+    initialCycleFrames: 120
+    moveDistance: 0.1
+    forwardSeconds: 0.18
+    returnSeconds: 0.23
+    pauseSeconds: 0.2
+    repeatSeconds: 3
+    comboDistance: 0.05
+    comboForwardSeconds: 0.13
+    comboReturnSeconds: 0.17
+    tapScale: 1.05
+    tapPulseSeconds: 0.19
+    tapPauseSeconds: 0.4
+    stopSeconds: 0.1
+    tapHintLevelCutoff: 19
+    tapHintTapLimit: 5
+  winLogoPrefabPath: Foundation/Prefabs/CoreWinLogo
+  remainingMovesPrefabPath: Foundation/Prefabs/OriginalRemainingMovesDialog
+  winDialogPrefabPath: Foundation/Prefabs/CoreLevelWinDialog
+  failDialogPrefabPath: Foundation/Prefabs/CoreLevelFailDialog
+  noPossibleMovesPrefabPath: Foundation/Prefabs/CoreNoPossibleMovesDialog
+  backdropPrefabPath: Foundation/Prefabs/CoreDialogBackground
+  outOfMovesBannerPrefabPath: Foundation/Prefabs/CoreOutOfMovesBanner
+  levelQuitPrefabPath: Foundation/Prefabs/CoreLevelQuitDialog
+  levelTitleFormat: Level {0}
+  completedTitle: 100 Levels Complete
+  continueText: Continue
+  completedContinueText: Play Again
+  retryText: Try Again
+  failText: Level Failed!
+  skipText: Tap to Skip
+  soundFadeDuration: 0.5

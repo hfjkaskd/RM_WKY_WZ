@@ -1,0 +1,1067 @@
+{
+  "schema": 1,
+  "parent_commit": "720c93207074a1fb7d729bce925c017af6128762",
+  "verified_utc": "2026-11-05T22:49:24.219362+00:00",
+  "original_version": 38911,
+  "full_current_scope_complete": false,
+  "registry": {
+    "passed": true,
+    "original_library_sha256": "017f7d4716f9375d86bbbe006740e8e68e65c776bad757d00d8a3c120ee8f5eb",
+    "addresses": {
+      "add": "0x2bca684",
+      "sort": "0x2bcb934",
+      "compare": "0x2bcba50",
+      "nearest": "0x2bcb0bc",
+      "remove": "0x2bcaacc",
+      "view_shake": "0x2bcc35c"
+    },
+    "authored_levels": [
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      25,
+      27,
+      28,
+      35,
+      37,
+      38,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      49,
+      50,
+      53,
+      56,
+      57,
+      59,
+      64,
+      65,
+      68,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      78,
+      79,
+      83,
+      84,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      97,
+      98,
+      99
+    ],
+    "cases": 53,
+    "sort_calls": 53,
+    "distance_comparisons": 1593,
+    "native_lookup_calls": 9361,
+    "synthetic_cap": 16,
+    "level11_order": [
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "lookup_values_compared": 9361,
+    "view_shake_commands_compared": 48,
+    "baseline_synthetic_differences": {
+      "cap": 95,
+      "pose_offset": 88
+    },
+    "all_authored_lookup_values_match": true,
+    "all_candidate_values_match": true,
+    "candidate_sha256": {
+      "OriginalCupboardBoardItem.cs": "c9dc8b6cb19486ed103259cbf0b61ef19e7453dccf1ce0c6e7581bfabe5ed213",
+      "OriginalCupboardItemView.cs": "c52ab8558e9cba8d9f4b07fac7fd4288008ec69870aa9f0f30c057e4222d7320",
+      "OriginalInitialBoardView.cs": "a53323c1042dea9f8182610cdae17c801e1dcbbff4b9c869f038c07946994c92",
+      "OriginalPlayableBoard.cs": "e136159a9480e7834510b74fe9d1998373a238bf5db7977bc43c1e30072e9d92"
+    },
+    "scope": "Actual original ARM64 registration, comparator, sort dispatch, predecessor scan, removal dispatch and shake choice. The adapters supply managed List storage/sorting, grid cells, clock, Unity random and Animator calls. All supported cupboard layouts and two explicit synthetic fixtures are compared to the compiled source.",
+    "source_order": {
+      "original_bind": "0x2bcb80c subscribes to OnCellGridViewsInitialized",
+      "original_view_end": "0x320bf54 dispatches the event after constructing board views",
+      "original_iteration": "0x320adfc selects bottom-left vertical traversal",
+      "original_ties": "0x36ce2a8 uses the small-list path at sixteen entries or fewer; 0x36cef78 shifts only on a negative comparison"
+    },
+    "runtime": "Register models as their authored views finish, sort once by cell distance after views are ready, scan preceding models within five level frames, and remove a destroyed model before recycling its view.",
+    "former_runtime": "Inserted view transforms directly in distance order with no sixteen-model cap.",
+    "baseline_observation": "The two synthetic scenarios exercise the native capacity and view-position independence. The fixed opening placements of all scoped cupboard levels produce the same predecessor results before and after the implementation alignment.",
+    "unity_level11": {
+      "passed": true,
+      "test": "core-cupboard",
+      "checks": [
+        "closed_and_open_taps_verified",
+        "door_only_hit",
+        "rocket_shared_plate_hits",
+        "guided_cupboard_hit",
+        "cupboard_win",
+        "guided_cupboard_center_verified",
+        "cupboard_row_sorting_verified",
+        "two_digit_result_title_verified",
+        "open_tap_upper_state",
+        "open_tap_lower_state"
+      ],
+      "cupboard_masters": 4,
+      "proxy_cells": 12,
+      "scope": "Formal GameScene with authored objects, legal first swap, ordinary tap feedback, controlled power stimuli, removal/refill and actual result flow."
+    },
+    "unity_level16": {
+      "passed": true,
+      "level": 16,
+      "footprint_cells": 4,
+      "obstacle_goal_decrement": 10,
+      "proxy_obstacle_goal_decrement": 10,
+      "grass_layers_lost_in_same_wave": 0,
+      "grass_layers_lost_in_distinct_waves": 2,
+      "test": "core-cupboard-footprint",
+      "scope": "Controlled explosion dispatch verifies the master and proxy releases and grass layers across two waves."
+    }
+  },
+  "android": {
+    "apk_source_commit": "29aaadce79d1b8e128e5a6d7d7068754d51aeaf9",
+    "apk": {
+      "path": "C:/RMAndroidGrass_20261105/RoyalMatch-Core-1-100-29aaadc-arm64.apk",
+      "bytes": 43640903,
+      "sha256": "1dcc8344dcd65d9bf8020c308f7eead236fa3e3002b2e44ba9950435db0d1f4a",
+      "package": "com.royalmatch.core.recovery",
+      "abi": "arm64-v8a",
+      "signature_v2_verified": true,
+      "native_elf_load_alignment": {
+        "lib/arm64-v8a/lib_burst_generated.so": 16384,
+        "lib/arm64-v8a/libil2cpp.so": 16384,
+        "lib/arm64-v8a/libmain.so": 16384,
+        "lib/arm64-v8a/libunity.so": 16384
+      }
+    },
+    "capture_directory": "C:/RMCupboardAndroid_20261105",
+    "platform": "Android 15 MuMu, ARM64 translation",
+    "serial": "127.0.0.1:5559",
+    "adb_server_port": 15038,
+    "level_sources": {
+      "10": {
+        "decoded_source": "configs/levels/10__7231.json",
+        "sha256": "19cf972253e37999d5845eb8335f785671ffdf1fb46cd866e150fd359d1febf9",
+        "original_name": "00010v03_L"
+      },
+      "11": {
+        "decoded_source": "configs/levels/11__5900.json",
+        "sha256": "72dddf1a3ca64a8027d3791fde710c30fb5ac4512857a3879851e3cd3261022e",
+        "original_name": "00011v03_L"
+      }
+    },
+    "resumed_opening": {
+      "visible_piece_classes_matched": 81,
+      "moves": 31,
+      "boxes": 25,
+      "existing_activity_resumed": true,
+      "capture": "l10_resume.png"
+    },
+    "level10": {
+      "accepted_moves_after_resume": 27,
+      "accepted_moves_in_attempt": 28,
+      "all_actions_native_os_events": true,
+      "box_grass_opening": {
+        "temporary_right_column_cavities": [
+          "l10_move03.png",
+          "l10_move05.png"
+        ],
+        "opened_middle_cells_refilled": "l10_move05.png",
+        "remaining_lower_cells_refilled": "l10_move11.png"
+      },
+      "box_counts_after_named_moves": {
+        "21": 5,
+        "22": 4,
+        "23": 2,
+        "24": 1,
+        "25": 0
+      },
+      "rocket_tnt": "l10_move22_rocket_tnt.png",
+      "propeller_tnt": "l10_move23.png",
+      "last_box": "l10_move25_last_box.png",
+      "natural_lightball": "l10_move26_lightball_create.png",
+      "remaining_grass_before_last_action": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "win": {
+        "final_action": "propeller downward swap followed by cascade",
+        "moves_at_win": 4,
+        "reward_coins": 36,
+        "bonus_skipped": false,
+        "goal_and_win_logo": "l10_move28_propeller_down.png",
+        "result": "l10_result.png",
+        "continue_level": 11
+      },
+      "settled_frames": {
+        "2": "l10_move02.png",
+        "3": "l10_move03.png",
+        "4": "l10_move04.png",
+        "5": "l10_move05.png",
+        "6": "l10_move06.png",
+        "7": "l10_move07.png",
+        "8": "l10_move08.png",
+        "9": "l10_move09.png",
+        "10": "l10_move10.png",
+        "11": "l10_move11.png",
+        "12": "l10_move12.png",
+        "13": "l10_move13.png",
+        "14": "l10_move14.png",
+        "15": "l10_move15.png",
+        "16": "l10_move16.png",
+        "17": "l10_move17.png",
+        "18": "l10_move18.png",
+        "19": "l10_move19.png",
+        "20": "l10_move20.png",
+        "21": "l10_move21_observe1.png",
+        "22": "l10_move22_rocket_tnt.png",
+        "23": "l10_move23.png",
+        "24": "l10_move24.png",
+        "25": "l10_move25_last_box.png",
+        "26": "l10_move26_lightball_create.png",
+        "27": "l10_move27_tnt_down.png",
+        "28": "l10_move28_propeller_down.png"
+      }
+    },
+    "level11": {
+      "ordinary_opening_tiles_matched": 65,
+      "ordinary_tile_template_max_distance": 20.4,
+      "visible_cupboard_masters": 4,
+      "authored_footprint_cells": 16,
+      "opening_moves": 27,
+      "opening_plates": 40,
+      "closed_tap_moves": 27,
+      "first_swipe_moves": 26,
+      "first_swipe_plates": 40,
+      "first_swipe_opens_master": [
+        2,
+        5
+      ],
+      "tap_phase_cupboard_pixels": [
+        {
+          "master": [
+            2,
+            2
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        },
+        {
+          "master": [
+            2,
+            5
+          ],
+          "changed_fraction_over_16_rgb": 0.3927
+        },
+        {
+          "master": [
+            5,
+            2
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        },
+        {
+          "master": [
+            5,
+            5
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        }
+      ],
+      "tap_end_cupboard_pixels": [
+        {
+          "master": [
+            2,
+            2
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        },
+        {
+          "master": [
+            2,
+            5
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        },
+        {
+          "master": [
+            5,
+            2
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        },
+        {
+          "master": [
+            5,
+            5
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        }
+      ],
+      "door_open_cupboard_pixels": [
+        {
+          "master": [
+            2,
+            2
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        },
+        {
+          "master": [
+            2,
+            5
+          ],
+          "changed_fraction_over_16_rgb": 0.9643
+        },
+        {
+          "master": [
+            5,
+            2
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        },
+        {
+          "master": [
+            5,
+            5
+          ],
+          "changed_fraction_over_16_rgb": 0.0
+        }
+      ],
+      "visual_result": "l11_move01_door.png"
+    },
+    "system_gestures": [
+      {
+        "label": "l10_move02",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:27:41.342252+00:00",
+        "action": "swipe",
+        "coordinates": [
+          773,
+          1417,
+          890,
+          1417
+        ],
+        "capture": {
+          "file": "l10_move02.png",
+          "sha256": "1e3c76b41002feae8c83dfa89825bcd079034113bb6809fa3504f003de25d8a6",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move03",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:27:46.945079+00:00",
+        "action": "swipe",
+        "coordinates": [
+          773,
+          1534,
+          773,
+          1417
+        ],
+        "capture": {
+          "file": "l10_move03.png",
+          "sha256": "f7ca5c405daf0218eea1bd47cec4d0a94840208dcc03379bcd509c8f5694da83",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move04",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:27:52.554064+00:00",
+        "action": "swipe",
+        "coordinates": [
+          1006,
+          1184,
+          1006,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move04.png",
+          "sha256": "badf6e3311cdeacad64f985f230fa72ebb9d806b704791413c600aa7566f5bb0",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move05",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:27:58.102912+00:00",
+        "action": "swipe",
+        "coordinates": [
+          773,
+          1184,
+          773,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move05.png",
+          "sha256": "27708d27afe574937087cdd2372483b05e7949450340c048d4df9977f2eea308",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move06",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:28:03.789160+00:00",
+        "action": "swipe",
+        "coordinates": [
+          656,
+          950,
+          656,
+          833
+        ],
+        "capture": {
+          "file": "l10_move06.png",
+          "sha256": "49ff3ee485346477c6a6d6ef3fd841ffb7acd4ffc7582c127a311f833d163b8f",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move07",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:28:09.393982+00:00",
+        "action": "tap",
+        "coordinates": [
+          656,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move07.png",
+          "sha256": "9b2fa395e18feb5806d455547b7667c6c0a68651948b793dca393cdc0a0d39eb",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move08",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:28:14.828197+00:00",
+        "action": "swipe",
+        "coordinates": [
+          656,
+          1067,
+          773,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move08.png",
+          "sha256": "c0f4bede87aa66142078c8e54e0728ee4665b6a3fda51575883967082bd763a9",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move09",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:28:20.434949+00:00",
+        "action": "swipe",
+        "coordinates": [
+          190,
+          1417,
+          307,
+          1417
+        ],
+        "capture": {
+          "file": "l10_move09.png",
+          "sha256": "5ebf6fab46a14a453af4858725722b97b848c01c6a55c90cce9bd9981a87dc44",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move10",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:28:26.097025+00:00",
+        "action": "swipe",
+        "coordinates": [
+          656,
+          1067,
+          773,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move10.png",
+          "sha256": "b8e590e519a96ec72d7c44decd85a27c2a77b97ba75e23ba41dd7de23b36d748",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move11",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:28:31.662884+00:00",
+        "action": "swipe",
+        "coordinates": [
+          656,
+          1184,
+          656,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move11.png",
+          "sha256": "58011caad162f641e8b198113d2c920072b61aee61d8c477fcba2e4e133ca20d",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move12",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:28:37.298185+00:00",
+        "action": "swipe",
+        "coordinates": [
+          890,
+          1650,
+          890,
+          1534
+        ],
+        "capture": {
+          "file": "l10_move12.png",
+          "sha256": "496d660438910e18182acc2f25293eca54bac2bd4543413ffdf631c8b13ac5a8",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move13",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:28:42.963803+00:00",
+        "action": "tap",
+        "coordinates": [
+          773,
+          1650
+        ],
+        "capture": {
+          "file": "l10_move13.png",
+          "sha256": "1493b1fe3618445514bcadf71b511eab70473e8be7a03b7ebf76f563c6444cfc",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move14",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:30:01.073642+00:00",
+        "action": "swipe",
+        "coordinates": [
+          656,
+          1184,
+          656,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move14.png",
+          "sha256": "916d1f0a6ac4fc269b7b58679deda42ce64e2d3653e1a1fdfd235ae2cd190d49",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move15",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:30:06.721987+00:00",
+        "action": "swipe",
+        "coordinates": [
+          540,
+          1184,
+          656,
+          1184
+        ],
+        "capture": {
+          "file": "l10_move15.png",
+          "sha256": "d81611877d756c795d72936e69dbfe7fba41a696301afe9eeccc60a5e321d6d9",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move16",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:30:12.287843+00:00",
+        "action": "tap",
+        "coordinates": [
+          540,
+          1417
+        ],
+        "capture": {
+          "file": "l10_move16.png",
+          "sha256": "684e4f837bc05e3f6e056a71db7b19d9d03f6900da16b87b482b6cbd7770549d",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move17",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:30:17.708291+00:00",
+        "action": "tap",
+        "coordinates": [
+          656,
+          950
+        ],
+        "capture": {
+          "file": "l10_move17.png",
+          "sha256": "5cf1146c8d4ef1750ce10b0090ece2efe6ae69cbbe42516d087907e8eadb0fe8",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move18",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:30:23.222718+00:00",
+        "action": "swipe",
+        "coordinates": [
+          656,
+          1184,
+          656,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move18.png",
+          "sha256": "4124eeda5807c075b5e92fe0b3df64498aa3467ff8bca9e74a294dead3dce93f",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move19",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:30:28.826013+00:00",
+        "action": "tap",
+        "coordinates": [
+          656,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move19.png",
+          "sha256": "14c75705e82676961ad600c27973b4ad78ce6e3c33728ba4f8bd2bc200733e5a",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move20",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:30:34.259901+00:00",
+        "action": "swipe",
+        "coordinates": [
+          656,
+          950,
+          656,
+          833
+        ],
+        "capture": {
+          "file": "l10_move20.png",
+          "sha256": "374dda79a137042fc67d7c3e1186cfe2d2c7b5e59df8a34c49c714ea7d158888",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move21",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:30:39.841309+00:00",
+        "action": "tap",
+        "coordinates": [
+          656,
+          950
+        ],
+        "capture": {
+          "file": "l10_move21.png",
+          "sha256": "479da8e37b28d693ee5222c924382333eac9fefd25ad9263cf6f8052e5422714",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move22_rocket_tnt",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:32:06.973484+00:00",
+        "action": "swipe",
+        "coordinates": [
+          1006,
+          1184,
+          1006,
+          1300
+        ],
+        "capture": {
+          "file": "l10_move22_rocket_tnt.png",
+          "sha256": "f1da5808de93c4019ee3460c484c8e2d4a3af3e782c78d8eff0f938fe8c6dd7c",
+          "delay": 11.0
+        }
+      },
+      {
+        "label": "l10_move23",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:33:21.694495+00:00",
+        "action": "swipe",
+        "coordinates": [
+          656,
+          1300,
+          656,
+          1417
+        ],
+        "capture": {
+          "file": "l10_move23.png",
+          "sha256": "21c7602cbf9c5ce20de1e44c73449deeffb40b0985bf8e56c769ebc74dd935cf",
+          "delay": 9
+        }
+      },
+      {
+        "label": "l10_move24",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:33:32.424117+00:00",
+        "action": "swipe",
+        "coordinates": [
+          424,
+          1650,
+          424,
+          1534
+        ],
+        "capture": {
+          "file": "l10_move24.png",
+          "sha256": "721f3ab665f0c392c71aca350483e66d710454139843c0e44b74001047ca7770",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l10_move25_last_box",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:35:37.284012+00:00",
+        "action": "swipe",
+        "coordinates": [
+          307,
+          1650,
+          424,
+          1650
+        ],
+        "capture": {
+          "file": "l10_move25_last_box.png",
+          "sha256": "0f0f243bc569bb7d7e083876180c4286467d85e308fd104b5e0ebc9ac03346ff",
+          "delay": 4.0
+        }
+      },
+      {
+        "label": "l10_move26_lightball_create",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:37:09.188053+00:00",
+        "action": "swipe",
+        "coordinates": [
+          307,
+          950,
+          307,
+          1067
+        ],
+        "capture": {
+          "file": "l10_move26_lightball_create.png",
+          "sha256": "ad07f0edeb3a1716895b087f00860ca0a4529b9f1032518961511a1d034db991",
+          "delay": 5.0
+        }
+      },
+      {
+        "label": "l10_move27_tnt_down",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:39:50.394368+00:00",
+        "action": "swipe",
+        "coordinates": [
+          307,
+          1300,
+          307,
+          1417
+        ],
+        "capture": {
+          "file": "l10_move27_tnt_down.png",
+          "sha256": "765570f71ef84204a5d81129936ae2c5b33aa7e438e59a0191224f727a6640bb",
+          "delay": 6.0
+        }
+      },
+      {
+        "label": "l10_move28_propeller_down",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:42:12.231174+00:00",
+        "action": "swipe",
+        "coordinates": [
+          424,
+          1534,
+          424,
+          1650
+        ],
+        "capture": {
+          "file": "l10_move28_propeller_down.png",
+          "sha256": "0db54d79694de01a5ca809b78f08f926f6b6c8a9202ca9b4d8e682f3bb576de7",
+          "delay": 8.0
+        }
+      },
+      {
+        "label": "l11_opening",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:44:10.299626+00:00",
+        "action": "tap",
+        "coordinates": [
+          540,
+          1620
+        ],
+        "capture": {
+          "file": "l11_opening.png",
+          "sha256": "9a4c3ae745f8a4681be83f55e55f54592755e417b6cdad7bfb71d1eadcd595b0",
+          "delay": 4.0
+        }
+      },
+      {
+        "label": "l11_closed_cupboard_tap",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:45:17.363418+00:00",
+        "action": "tap",
+        "coordinates": [
+          307,
+          1067
+        ],
+        "phases": [
+          {
+            "file": "l11_closed_cupboard_tap_0_12s.png",
+            "sha256": "cbe9323c150025580b938e476ad8f3fd58742696ebeb6b3c0f9f3193d36a3e9e",
+            "delay": 0.12
+          },
+          {
+            "file": "l11_closed_cupboard_tap_0_3s.png",
+            "sha256": "1ae088b4a7c633096d43d928dbd159ae611a8a7365c930b40727afdba7ce6c25",
+            "delay": 0.3
+          }
+        ],
+        "capture": {
+          "file": "l11_closed_cupboard_tap.png",
+          "sha256": "8d152baa9af0c9a49e074bf6c8b759128904d614eaba6c7030cffa644e27562d",
+          "delay": 1.5
+        }
+      },
+      {
+        "label": "l11_move01_door",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:45:20.010080+00:00",
+        "action": "swipe",
+        "coordinates": [
+          540,
+          833,
+          540,
+          950
+        ],
+        "phases": [
+          {
+            "file": "l11_move01_door_0_35s.png",
+            "sha256": "88216c1eb920fbdc828a9920b16991741e79c18265ef7107c3e94b6e1f04054e",
+            "delay": 0.35
+          },
+          {
+            "file": "l11_move01_door_0_75s.png",
+            "sha256": "fc9af407f0d552d05345629e7145919829f31990abcf10afcef4f2d569e1b280",
+            "delay": 0.75
+          },
+          {
+            "file": "l11_move01_door_1_3s.png",
+            "sha256": "8c1cfc6002839a51de16cbb7ea28ee0586e8ec36e1d48e4f1fbe6bc55e1674ba",
+            "delay": 1.3
+          }
+        ],
+        "capture": {
+          "file": "l11_move01_door.png",
+          "sha256": "2c72a18763798ae5ac38018eee039b20d4e9bc806be07db4b5da8a5e2c134418",
+          "delay": 4.5
+        }
+      }
+    ],
+    "logs": {
+      "timestamp_utc": "2026-11-05T22:46:48.347474+00:00",
+      "current_pid": "45007",
+      "logs": [
+        {
+          "pid": "45007",
+          "file": "android_session_45007_logcat.txt",
+          "sha256": "d96d6e6f2d8c69d186cc21123f92e14d28f67dcca31f2037767b4968fc02cc77",
+          "retained_lines": 178,
+          "unity_exception_or_crash_matches": [],
+          "stripped_physics_warnings": [
+            "11-05 18:26:53.816 45007 45046 W Unity   : The ParticleSystem uses a gravityModifier, but the Physics Module has been stripped, so using a default value of 9.81 units/sec/sec for gravity. Disable stripping in the Player Settings to fix this, or make sure the physics module is included in the built-in packages in the Package Manager."
+          ]
+        }
+      ],
+      "before_activity": [
+        "topResumedActivity=ActivityRecord{113811804 u0 com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity t65}",
+        "ResumedActivity: ActivityRecord{113811804 u0 com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity t65}"
+      ],
+      "finished_activity": [
+        "topResumedActivity=ActivityRecord{56712943 u0 app.lawnchair/.LawnchairLauncher t2}",
+        "ResumedActivity: ActivityRecord{56712943 u0 app.lawnchair/.LawnchairLauncher t2}"
+      ],
+      "finished_on_emulator_launcher": true,
+      "unity_exception_or_crash_match_count": 0
+    },
+    "scope": "The installed release APK is from an earlier commit. Actual Android input verifies the level 10 completion and level 11 opening feedback. The new registry is tested separately in Unity and the native replay."
+  },
+  "remaining_verification": "Original-device rendered animation, audio and physical input parity, plus complete natural play of all first hundred levels.",
+  "unrelated_diagnostic_sha256": "1ceddd9e4f2199561ac52f5ab3feabd0a3d6f8c7e0fcfda7b4ffac0a7f8fb1fa",
+  "artifacts": {
+    "native_registry.py": {
+      "path": "C:/RMCupboardAndroid_20261105/native_registry.py",
+      "bytes": 9119,
+      "sha256": "79e2c61c33c69014b7859313b2a406aaae0722c650cbbf9edbaf0bcf1969b5f8"
+    },
+    "native_registry.json": {
+      "path": "C:/RMCupboardAndroid_20261105/native_registry.json",
+      "bytes": 915961,
+      "sha256": "6f1379082f1548520ceaf5abfa3fad6651bbe20df23e20765f90be3c187fa5f8"
+    },
+    "compare_registry.py": {
+      "path": "C:/RMCupboardAndroid_20261105/compare_registry.py",
+      "bytes": 7921,
+      "sha256": "2c939555f80d6bde00aaf07afb4f920ebc668b446b698955a31c9a9104e757a2"
+    },
+    "registry_parity.json": {
+      "path": "C:/RMCupboardAndroid_20261105/registry_parity.json",
+      "bytes": 2114,
+      "sha256": "ff2999d7bc1e3eb1250aa2d955052e1184f8094fa895c94833780e15b91df807"
+    },
+    "registry_commands.txt": {
+      "path": "C:/RMCupboardAndroid_20261105/registry_commands.txt",
+      "bytes": 133092,
+      "sha256": "65e9cc48d0454f649a5423e955d9629b40a4df19a4e6d8bb54e765185c091fcf"
+    },
+    "managed_registry_replay.txt": {
+      "path": "C:/RMCupboardAndroid_20261105/managed_registry_replay.txt",
+      "bytes": 95192,
+      "sha256": "464b47d4bcb3e4131ff8c422879792a22166e19292c82e26a8767f61268e5788"
+    },
+    "0x36ce2a8.asm": {
+      "path": "C:/RMCupboardAndroid_20261105/0x36ce2a8.asm",
+      "bytes": 15233,
+      "sha256": "1ccaccdb839d41bce62918fd89c85be67b652adb4765adf3562387c7313faa9d"
+    },
+    "0x36cef78.asm": {
+      "path": "C:/RMCupboardAndroid_20261105/0x36cef78.asm",
+      "bytes": 4784,
+      "sha256": "5e26d7feba7ffa294c590c0a3d772132d5b33fb9a648105c4a98b78962bac7b6"
+    },
+    "source.diff": {
+      "path": "C:/RMCupboardAndroid_20261105/source.diff",
+      "bytes": 11243,
+      "sha256": "d2988a8cc0855e417f0356ca0917ed156c04d29ff188f31d849024ea7d9c79d3"
+    },
+    "run_unity.py": {
+      "path": "C:/RMCupboardAndroid_20261105/run_unity.py",
+      "bytes": 8701,
+      "sha256": "0086fbb49f6ddc0dae4e667b8b1cbead446d0df84b07f125be05ae5b2ccee3fd"
+    },
+    "source_manifest.json": {
+      "path": "C:/RMCupboardAndroid_20261105/source_manifest.json",
+      "bytes": 166054,
+      "sha256": "0dbfe2307b71617a01c861ad06d6ee13680494100c0a471f6b0771d0207213a0"
+    },
+    "cupboard11/result.json": {
+      "path": "C:/RMCupboardAndroid_20261105/cupboard11/result.json",
+      "bytes": 1676,
+      "sha256": "57f4dfa72528587fe4ff70bfcece58969f371a175eb581a2954138ac2d1b839c"
+    },
+    "cupboard11/unity.log": {
+      "path": "C:/RMCupboardAndroid_20261105/cupboard11/unity.log",
+      "bytes": 108249,
+      "sha256": "952bcff712ae987f56adea40b7bde069a101455cf7c7bd0a1c2b50be70e89555"
+    },
+    "footprint16/result.json": {
+      "path": "C:/RMCupboardAndroid_20261105/footprint16/result.json",
+      "bytes": 694,
+      "sha256": "c8ae94ba8ee88a00e701b1b633844aec3aa4cbaa5e027041034b827d8a1c5c70"
+    },
+    "footprint16/unity.log": {
+      "path": "C:/RMCupboardAndroid_20261105/footprint16/unity.log",
+      "bytes": 105121,
+      "sha256": "4a801eeaf94159e0454309d4f738adedc1734935e6b81742ab712eb169c774e6"
+    },
+    "android_finished_session.json": {
+      "path": "C:/RMCupboardAndroid_20261105/android_finished_session.json",
+      "bytes": 1332,
+      "sha256": "58f6e172ba769d4f6d5ccf34dbcd72923ad85a9b48461301b9c20e744d44cc24"
+    },
+    "android_session_45007_logcat.txt": {
+      "path": "C:/RMCupboardAndroid_20261105/android_session_45007_logcat.txt",
+      "bytes": 24917,
+      "sha256": "d96d6e6f2d8c69d186cc21123f92e14d28f67dcca31f2037767b4968fc02cc77"
+    },
+    "gestures.jsonl": {
+      "path": "C:/RMCupboardAndroid_20261105/gestures.jsonl",
+      "bytes": 9536,
+      "sha256": "f7760947c2857ad72533c6dabc45cf08663e771941b399d8ae633548c9287a7a"
+    },
+    "l10_result.png": {
+      "path": "C:/RMCupboardAndroid_20261105/l10_result.png",
+      "bytes": 1143667,
+      "sha256": "d88111f54cbd0baa9bbae12ace3a4485d35ab6b74c5f6827d4acbd3de1cde5d9"
+    },
+    "l10_move21_observe1.png": {
+      "path": "C:/RMCupboardAndroid_20261105/l10_move21_observe1.png",
+      "bytes": 2328104,
+      "sha256": "416a52d2cb946c8de39a0d2cf59e6ab6645b495650bf2682f6d56cc66f8c1037"
+    },
+    "l11_opening.png": {
+      "path": "C:/RMCupboardAndroid_20261105/l11_opening.png",
+      "bytes": 2643102,
+      "sha256": "9a4c3ae745f8a4681be83f55e55f54592755e417b6cdad7bfb71d1eadcd595b0"
+    },
+    "l11_move01_door.png": {
+      "path": "C:/RMCupboardAndroid_20261105/l11_move01_door.png",
+      "bytes": 2677050,
+      "sha256": "2c72a18763798ae5ac38018eee039b20d4e9bc806be07db4b5da8a5e2c134418"
+    }
+  }
+}

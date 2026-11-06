@@ -1,0 +1,79 @@
+{
+  "spending_prefix": {
+    "got": "0x5359200",
+    "metadata_address": 90218048,
+    "value": "Ego-"
+  },
+  "ego_shown_unit61": {
+    "got": "0x53a4548",
+    "metadata_address": 90099888,
+    "method": "Method$Royal.Player.Context.UserContext.Get<CoinShopManager>()",
+    "field_offset": "0x79",
+    "field_name": "egoOfferPurchasedInCurrentGameSession",
+    "value": false
+  },
+  "default_catalog_source": "EgoManager..cctor0x1ca5f64..0x1ca6118",
+  "default_catalog_used_only_in_explicit_fixture": true,
+  "production_catalog_or_ab_owner_installed": false,
+  "default_packages": [
+    {
+      "coins": 900,
+      "moves": 5,
+      "rockets": 0,
+      "tnt": 0,
+      "lightballs": 0,
+      "first_item_type": 0,
+      "second_item_type": 0
+    },
+    {
+      "coins": 1900,
+      "moves": 5,
+      "rockets": 1,
+      "tnt": 0,
+      "lightballs": 0,
+      "first_item_type": 2,
+      "second_item_type": 0
+    },
+    {
+      "coins": 2900,
+      "moves": 5,
+      "rockets": 1,
+      "tnt": 1,
+      "lightballs": 0,
+      "first_item_type": 2,
+      "second_item_type": 4
+    },
+    {
+      "coins": 3900,
+      "moves": 5,
+      "rockets": 0,
+      "tnt": 1,
+      "lightballs": 1,
+      "first_item_type": 4,
+      "second_item_type": 5
+    },
+    {
+      "coins": 4900,
+      "moves": 5,
+      "rockets": 0,
+      "tnt": 0,
+      "lightballs": 2,
+      "first_item_type": 5,
+      "second_item_type": 5
+    }
+  ],
+  "get_move_count": "Native0x1ca5e18 separately returns5 or10 via IsPriceChange10MovesAbEnabled; full AB/catalog configuration remains a required provider.",
+  "on_close": {
+    "paid": "PlayOn(false), WinFail.Clear(false)",
+    "free": "PlayOn(true), WinFail.Clear(false)",
+    "cancel": "CancelOffer(), WinFail.Clear(true), OfferManager.SetEgoOfferStatus(false,false)"
+  },
+  "has_shown_ego": "currentStep != -1, including other negative restored values",
+  "item_coroutine": {
+    "operation": 8,
+    "rocket_delay": "Unity WaitForSeconds0.5 after each rocket",
+    "tnt_delay": "WaitForGameplaySeconds0.5 after each TNT",
+    "lightball_delay": "WaitForGameplaySeconds0.5 when the incremented index is below the package count; even if the next iteration then exhausts target cells",
+    "exception_cleanup": "No synthetic finally cleanup; native Dispose is empty."
+  }
+}

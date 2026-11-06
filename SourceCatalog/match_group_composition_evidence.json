@@ -1,0 +1,102 @@
+{
+  "scope": "Concrete match-group grid/static/normal-item/neighbor/session dispatch and box view services. Original Madness collection/Jelly spread and match/swipe SFX dependencies. Full player/session/auto-cascade ownership remains pending.",
+  "methods": [
+    {
+      "name": "Royal.Player.Context.Data.Session.UserActiveLevelData$$TryCollectMadness",
+      "rva": "0x32b9ab0",
+      "disassembly_sha256": "92be4a76067f4116b58468c1e77df8d2c6617df23aae2f0b4e66ecaf4645af20"
+    },
+    {
+      "name": "Royal.Player.Context.Data.Session.UserActiveLevelData$$IncrementMadnessMatchItemCount",
+      "rva": "0x32b9bbc",
+      "disassembly_sha256": "89e490f516816460e5fe8a5aa9380d425a715649070122fb98ee160d0bb1df13"
+    },
+    {
+      "name": "Royal.Player.Context.Data.Session.MadnessSessionData$$TryAddMadnessMatch",
+      "rva": "0x32b370c",
+      "disassembly_sha256": "f30ca8d506bee6fa1ce706b5cfb1442783eb2cfd8fe79fd4ae5162415e85e185"
+    },
+    {
+      "name": "Royal.Player.Context.Data.Session.MadnessSessionData$$TryIncrementMadnessForExploderId",
+      "rva": "0x32b393c",
+      "disassembly_sha256": "89d08ac1bf2fa8fe5626220b67fb49747e5be4737779265f829c7914c09e68dc"
+    },
+    {
+      "name": "Royal.Player.Context.Data.Session.MadnessSessionData$$get_MatchTypeToCollect",
+      "rva": "0x32b2f60",
+      "disassembly_sha256": "2d34939c034004853cfeb281cc143e7ff5d7475ee957c000bac707527ada0fa7"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Matches.MatchGroup$$InitJellySpreadData",
+      "rva": "0x12dfba8",
+      "disassembly_sha256": "c67532ed02094222fe34f7b7ad8fcb871ce49d0c7fb4ecd712b4d2219c8a77f3"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.Sfx.GameSfxManager$$PlayMatchExplode",
+      "rva": "0x2180304",
+      "disassembly_sha256": "3e97a7739ae84a3ab7ab45ee9f72ad89f1570dbdb7e50fd1583b4bdb8e5d0632"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.Sfx.GameSfxAssets$$GetRandomSfxTypeForMatchExplode",
+      "rva": "0x1ef2438",
+      "disassembly_sha256": "14457488c571e7d3516e34b3de164826437cb4c0e8bed6e92c4b66c147486013"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.Sfx.GameSfxAssets$$GetClip",
+      "rva": "0x1ee9054",
+      "disassembly_sha256": "8f81540bf69b7b252ffb880191f3a86d36365eec6f7d45e97d9446995c955806"
+    }
+  ],
+  "native_verification": {
+    "madness_match_collection_native_verification": {
+      "passed": true,
+      "native_sequences": 502,
+      "native_commands": 2510,
+      "scope": "Actual ARM64 ActiveLevel.TryCollectMadness/IncrementMadnessMatchItemCount, MadnessSessionData.TryAddMadnessMatch/MatchTypeToCollect/TryIncrementMadnessForExploderId, real difficulty-factor and BeforeAfter.AddExtra bodies. Compares gates, repeated event/manager reads, count overflow/partial mutation, animation suppression/null/missing and position/count/delay forwarding, dictionary increments and injected boundary failures. IsEventValid (separately verified), manager/current-session/CLR/pool/Unity-object and animation APIs are supplied boundaries. Full event eligibility, sticker visual and application-owned session composition remain separate."
+    },
+    "match_jelly_spread_native_verification": {
+      "passed": true,
+      "native_cases": 286,
+      "scope": "Actual ARM64 MatchGroup.InitJellySpreadData: absent-level gate, full ordered0..14-cell scan even after a Jelly hit, incoming spread flag, final SetSpreadData dispatch, null cells and partial ExplodeData mutation on injected callback failures. Level lookup/presence, Cell14 storage, HasJellyView and SetSpreadData are supplied boundaries; concrete Jelly view/model spreading remains required and is not proven by this test."
+    },
+    "match_sfx_native_verification": {
+      "passed": true,
+      "native_dispatch_cases": 7680,
+      "native_clip_cases": 7,
+      "scope": "Actual ARM64 PlayMatchExplode, GetRandomSfxTypeForMatchExplode, RandomManager dispatch, AudioManager ordinary one-shot path and GetClip match/swipe jump-table cases. Compares counter mutation, overflow/clamping, missing global assets/array/audio/random, no-game mute, swap bypass of array count, invalid random output and ordered time/random/load/play traces. CLR metadata/storage, cached random-owner lookup, Unity random/time/object-null/playback and resource transport are supplied boundaries. Full native audio/context lifecycle remains pending.",
+      "resource_sha256": {
+        "match_explode1": "c662fa319920796fbeb892ce7e76e61b325a2bbdc51b4e2bc6b6be55a196354c",
+        "match_explode2": "cb433df945b8b050bfe6a8856a997d64bd1d26ecf6d54bb0c34cb96d6e7fb87f",
+        "match_explode3": "5950bf90e2fc75f60a1672467d05fec0247120488ba72015ef9fd7217410e0a1",
+        "match_explode4": "8f26c83ba5252e055b72d413e5a83444e93fe487a44ad731e9053ee4611e55d7",
+        "match_explode5": "33e77eaa2f96b21aa9cdd72938ca0f43a25ce8c5739348e9a525144b3e65c69e",
+        "match_explode6": "c0c1789ccdfff90dcf9607b2e098e97c2b68b3dfcbf6bd56142c1d2efbf9f5da",
+        "match_item_swipe": "a0b4133db401440c23b325966c62eec2767eca371894ba0d22e03ca26216735a"
+      }
+    }
+  },
+  "notes": [
+    "Madness TryAdd has early match/count/validity gates and repeated validity via MatchTypeToCollect; unchecked difficulty multiplication then BeforeAfter.AddExtra, ShouldConsume forced even when multiplied count is zero. DailyLightningRush and sticker prevention gate pool107 animation after count mutation. Active level collects only State2 or explicit remainingMoves; exploder-id count requires State2 and matching active event. Required presentation/manager owners remain typed dependencies.",
+    "Jelly spread requires initial static-type3 presence. Native scans all group cells in order, including after first Jelly view; existing true spread still needs level presence. HasJellyView/SetSpreadData owners remain required on Jelly levels. No false-default production Jelly service is supplied.",
+    "Concrete MatchGroup service calls actual grid/static/item/near-match services and current active-level collection at actual cell world position. Box view adapter calls actual shared pool/particles/application random/SFX and native ItemView goal-collection helper. No direct cell removal is simulated.",
+    "Six match explosion WAVs and swipe WAV are byte-identical originals and loaded individually by path. Native GameSfx counter reset/increment/clamp is separate from random0..6 clip choice247..252; offset0.04. GetClip254 reads original matchSwipe. Full audio preferences/music/download lifecycle remains pending."
+  ],
+  "unity_integration": {
+    "passed": true,
+    "frames": 1189,
+    "box_events": 3,
+    "match_count": 3,
+    "created_views": 6,
+    "goal_left": 33,
+    "match_sounds": 1,
+    "haptic_requests": 1,
+    "auto_groups": 0,
+    "auto_attempts": 0,
+    "shuffle_draws": 0,
+    "host_updates": 1189,
+    "native_auto_before_fall": false,
+    "max_position_error": 0.0,
+    "timestamp_utc": "2026-10-20T05:07:04.7772464Z",
+    "scope": "Actual formal first-level models: valid3,5to3,4 swap, coroutine tween/particles, saved-group resolution and native match-group orchestration, real match/static/neighbor/box model and configured box view particles/recycle, actual36to33 model/UI/display goal counts, active-level match statistics/useful counters and delayed King relief, automatic planner/fill/native pooled-view creation and frame motion for six holes. Explicit diagnostic command, seed371, state2 inactive-Madness session, normal-final-board/not-won/unworried contexts and animation constants are inputs. Haptic and propeller-cache-clear requests are traced boundaries; normal-item special dispatch is asserted only. Full input/application startup, move consumption, auto-match cascades, special combos, King analysis/UI, HUD, later lifecycle and original rendered parity remain pending. No production no-op providers installed. Destructive Play-only diagnostic is reset by restarting Play; scene/prefab assets are unchanged. SDK unchanged. Actual prefab context host drives restored ContextContainer/FallManager in Unity Update; Editor only observes. Full original unit factories, late lifecycle and application activation remain pending."
+  }
+}

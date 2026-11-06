@@ -1,0 +1,72 @@
+{
+  "current_deliverable_scope": "Original ordinary levels1–100, core gameplay only; no peripheral systems. Latest user scope supersedes historical whole-lifecycle/region-AB/GM work.",
+  "full_original_parity_verified": false,
+  "historical_scene_authoring_evidence": "SourceCatalog/verification_history/core_flow_before_scope_evidence/game_scene_evidence.json",
+  "current_core_first100_evidence": "SourceCatalog/core_first100_evidence.json",
+  "current_core_flow_evidence": "SourceCatalog/core_flow_evidence.json",
+  "source_snapshot_sha256": "5ef334cb9f75b78f117a4c9e35bcbc731d1622ce4b4e641691b487cf793691d3",
+  "actual_scene_verification": {
+    "passed": true,
+    "normal_scene_and_72_models_verified": true,
+    "original_top_background_verified": true,
+    "original_king_rig_and_atlas_verified": true,
+    "king_vertices": 580,
+    "king_viewport_center": {
+      "x": 0.49988463521003723,
+      "y": 0.9043768644332886,
+      "z": 10.0
+    },
+    "original_bottom_locked_presentation_verified": false,
+    "core_bottom_frame_without_inventory_verified": true,
+    "failure": "",
+    "scope": "Normal core GameScene includes the playable first board and original camera/top/King rig. Peripheral bottom/inventory/purchase UI owners are absent per current scope. This initial-scene check does not establish100 playable levels, full KingUi queue/mixing, complete natural core playthroughs, original rendered parity or mobile fidelity; core-flow separately verifies actual end/reload owners."
+  },
+  "background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-flow",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "5ef334cb9f75b78f117a4c9e35bcbc731d1622ce4b4e641691b487cf793691d3",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-flow.log",
+    "elapsed_seconds": 433.88,
+    "batch": {
+      "passed": true,
+      "test": "core-flow",
+      "failure": "",
+      "timestamp_utc": "2026-11-02T10:51:20.8722895Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "production_core_flow_verification": {
+    "passed": true,
+    "production_win_remaining_result_bound": true,
+    "actual_next_level_loaded": true,
+    "production_zero_move_failure_bound": true,
+    "actual_retry_reloaded_same_level": true,
+    "cap100_and_restart_verified": true,
+    "core_booster_inventory_purchase_ui_absent": true,
+    "original_level3_two_layer_boxes_bound": true,
+    "win_left_moves": 24,
+    "win_remaining_reward": 76,
+    "failure": "",
+    "scope": "Actual GameScene/CoreGameFlow owners run without Editor runtime substitutions or account/event fixture services. Existing explicit TNT/rocket board setup and recorded gestures stimulate real goal collection; this is not a natural full-level player solve. Real WinFail16/session Win/check gate/remaining moves/dialog flow commit core-only SQLite progress; a standard EventSystem raycast and Button click load original level2. Native MoveManager zero-budget stimulus verifies actual failure/retry and real scene reload, not27 physical turns. Separate private progress verifies the100 cap/restart. Remaining first100 obstacles, full natural playthroughs, no-moves shuffle, complete King animation queue/mixing, full original visual/audio/mobile parity remain pending."
+  },
+  "no_peripheral_bottom_or_inventory_owner_created": true,
+  "visual_review": [
+    "Portrait720x1280 scene has original top/King/board with no bottom booster slots or empty-slot frame.",
+    "Result capture shows Level1/Well Done/star/pillow/Continue. Fail capture shows Level2/Level Failed/box with red cross/Try Again.",
+    "Level2/retry restores27moves and36boxes; level3 initializes actual two-layer boxes using the original box_1 sprite.",
+    "Failure retains the source frame dimensions after peripheral selection UI removal; full layout parity is not asserted."
+  ],
+  "remaining_gaps": [
+    "Not all100 levels are playable: level4 static grass, other required obstacle/goal models and irregular cells still need composition and actual level validation.",
+    "The current core scenario uses controlled native TNT/rocket setup and recorded gesture samples; it is not a natural player solve. Failure uses a native MoveManager zero-budget stimulus, not27 physical turns.",
+    "The100 cap/restart is checked with a separate core progress file; this does not establish a full level100 board playthrough.",
+    "Dedicated no-possible-move handling remains incomplete; the core policy currently uses the failure/retry route.",
+    "Full original KingUi animation queues/mixing/reactions, dialog background ownership/cancellation, complete result/failure layout and audio timing are not verified1:1.",
+    "Physical device input, Android/iOS execution and original rendered/mobile parity remain unverified."
+  ]
+}

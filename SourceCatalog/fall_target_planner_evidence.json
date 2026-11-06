@@ -1,0 +1,78 @@
+{
+  "functions": [
+    {
+      "rva": "0x3210d84",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$AddRemainingItemsToFillingCellQueue",
+      "disassembly_sha256": "fcff534cb43d9f8f595840c00582a3098439d8429b7eba74a9ca0c924d51910a"
+    },
+    {
+      "rva": "0x3210e48",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$FindTargetItemOrFillingCell",
+      "disassembly_sha256": "4417ce6dccb0784d6926425c47e091a4b80d19407c6f977d7f2b42a8127699a0"
+    },
+    {
+      "rva": "0x3211494",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$FindCrossItem",
+      "disassembly_sha256": "8b9965715dc7795fa0f663361ab3e007b3bb545874442757ef719945c80eafec"
+    },
+    {
+      "rva": "0x32115cc",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$GetNextItemOfCell",
+      "disassembly_sha256": "570e34926b5e124d025669b9916d8a06d5845737e094356144a8076a0fad4887"
+    },
+    {
+      "rva": "0x3211684",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$IsFallPossibleFromCellToCell",
+      "disassembly_sha256": "e4c39996e92d69e24f43a3f0c69cc63bc489c13a2780e51752c953b58072f5f5"
+    },
+    {
+      "rva": "0x3211768",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$ShouldFindCross",
+      "disassembly_sha256": "f06d550bc29d5ad6d88fc48569a5790665624233282d5dbe0ddcc1f629b02fa4"
+    },
+    {
+      "rva": "0x3211ab8",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$IsCellTargetedByMultipleFallableItem",
+      "disassembly_sha256": "5b7fa1728de0263211837918755f046fb5cea37d88084846e19e3f3e6f927e64"
+    },
+    {
+      "rva": "0x3211b4c",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$AddToCrossVisitCells",
+      "disassembly_sha256": "5c575ba18d9855084c8148c27b8d878c00fde3e565107de59dacaaff1d2ab070"
+    },
+    {
+      "rva": "0x3211c08",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$FindCrossItemInLeftOrRightColumn",
+      "disassembly_sha256": "1ffd268477b490e9c19eaefbda428ccf9d8a03adddaa0d3b48a5142e6567b518"
+    },
+    {
+      "rva": "0x3211d28",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$FindTargetItemFromCrossCell",
+      "disassembly_sha256": "73fc1cf6e2a36778f8e0c949fbf98dbec7e365640f75411a270af9421fc33099"
+    },
+    {
+      "rva": "0x3211f24",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$AddTopBoardRemainingItemsToFillingCell",
+      "disassembly_sha256": "77518356cc91a5a781f5fa7a4366507ce3a4bbf00db0e1b58e5b958d7d64ee20"
+    },
+    {
+      "rva": "0x3211710",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$CheckForTopBoard",
+      "disassembly_sha256": "e9b8a36d5275dafa609de45bea78b1903dce27934c0d431cee76c8606afd240e"
+    }
+  ],
+  "native_source": "RoyalMatch_20260929/apk_unpacked/split_config.arm64_v8a/lib/arm64-v8a/libil2cpp.so",
+  "pseudocode_source": "Recovery/code/pseudocode/refined/gameplay.c (indexed source/offset validated per function)",
+  "class_membership": {
+    "IMultipleFallableItem": "0x558e268",
+    "IceCubeFakeItemModel": "0x558e7e0",
+    "IceCubeItemModel": "0x558e7f0"
+  },
+  "notes": [
+    "Runtime restores concrete bidirectional target writes, cross flag, two cached traversal stacks, native special-side preference and current/upper-board queue handoff.",
+    "Native comparison uses real ARM64 target-planning functions. Actual item availability/static/ice/board feature predicates, multiple-item implementation, queue storage helpers and CLR/interface/type infrastructure are explicitly supplied boundaries. No permissive services are installed in production.",
+    "CellNeighbors.UpperCell (+0x20) must be initialized separately from its neighbor-array cache (+0x18); the cross-candidate function reads it directly. Correcting this oracle setup resolved the initial callback-trace mismatch without changing runtime rules.",
+    "1131 sequences / 11252 commands compare state and ordered callbacks, including 256 lower-filling queue/incoming transfer combinations. Queue state is compared by membership; concrete FIFO storage remains OriginalFillingCell.",
+    "Unity 2022.3.62f2 Android editor compiled both modified runtime files, reloaded assemblies and entered Play mode with the original fixed 9x8 / 72-view board. The planner is not yet wired into a complete playable loop."
+  ]
+}

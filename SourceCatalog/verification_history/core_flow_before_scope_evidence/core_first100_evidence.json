@@ -1,0 +1,985 @@
+{
+  "current_user_scope": "Original ordinary levels1\u2013100, core gameplay only; no peripheral systems. This explicitly supersedes the earlier whole-lifecycle/region-AB/GM scope.",
+  "full_current_scope_complete": false,
+  "all100_levels_playable": false,
+  "all100_original_configs_imported_and_unity_loaded": true,
+  "catalog_rejects_levels_outside_1_to_100": true,
+  "formal_first_level_uses_configured_catalog": true,
+  "formal_account_and_area_startup_removed": true,
+  "formal_session_snapshots_use_configured_values_without_account_storage": true,
+  "remaining_peripheral_booster_inventory_purchase_ui_removed": false,
+  "production_win_fail_end_retry_next_level_bound": false,
+  "all_first100_required_obstacles_and_goals_bound": false,
+  "full_core_visual_native_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "1ec08c0ddb55d4d8a0c9ccd0efa22b872653f30a260aa5d93c839186c949fd14",
+  "native_source_manifest": "SourceCatalog/core_first100_manifest.json",
+  "baseline_and_migration_inventory": "SourceCatalog/core_first100_migration.json",
+  "unity_catalog_verification": {
+    "passed": true,
+    "rejects_0_and_101": true,
+    "formal_first_level_uses_catalog": true,
+    "actual_resource_levels_loaded": 100,
+    "raw_cell_definitions_loaded": 8043,
+    "failure": "",
+    "scope": "The actual configured ScriptableObject catalog loads each of the original100 ordinary levels through the production Resources/JSON reader. Out-of-range requests0/101 are rejected before loading; the actual formal first-board entry uses the same catalog. This verifies resource/configuration availability, not100 playable levels. The production entry no longer initializes account/area storage and uses configured session presentation snapshots. Unsupported obstacle/static/other board composition, production WinFail/end/retry/next-level and remaining booster inventory/purchase UI removal remain pending."
+  },
+  "scene_verification": {
+    "passed": true,
+    "normal_scene_and_72_models_verified": true,
+    "original_top_background_verified": true,
+    "original_king_rig_and_atlas_verified": true,
+    "king_vertices": 580,
+    "king_viewport_center": {
+      "x": 0.49988463521003723,
+      "y": 0.9043816328048706,
+      "z": 10.0
+    },
+    "original_bottom_locked_presentation_verified": true,
+    "failure": "",
+    "scope": "Normal GameScene includes playable first board, original camera/top/King idle and portrait bottom background/four locked booster slots with visible standard Button backplates. Native level1 AB201 group0 disabled-lock state is verified; click adapter is instrumented, not physical input. Unlocked booster inventory/selection/use/purchase/tooltip/settings, live AB provider, full KingUi queue/mixing/reactions, production startup/account/settlement/Home and full original parity remain pending."
+  },
+  "player_input_regression": {
+    "passed": true,
+    "physical_drag_verified": false,
+    "tnt_activated": false,
+    "lightball_activated": false,
+    "rocket_activated": false,
+    "propeller_activated": false,
+    "propeller_flight": 0.0,
+    "propeller_trace": [],
+    "propeller_max_scale": 0.0,
+    "blocked_original_box_holes": 0,
+    "propeller_max_loop": 0,
+    "propeller_takeoff_instances": 0,
+    "propeller_hit_instances": 0,
+    "propeller_max_operations": 0,
+    "rocket_orientation": 0,
+    "rocket_max_operations": 0,
+    "rocket_first_flight": 0.0,
+    "rocket_second_flight": 0.0,
+    "sent_rays": 0,
+    "reached_rays": 0,
+    "completed_rays": 0,
+    "completed_lightball_activations": 0,
+    "rocket_created": true,
+    "tnt_created": false,
+    "lightball_created": false,
+    "propeller_created": true,
+    "failure": "",
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "left_moves": 20,
+    "goals_left": 23,
+    "created_refills": 76,
+    "created_specials": 2,
+    "scope": "Frame-separated recorded device samples through native GameTouchListener into formal production scene services. Checks invalid swap spends0, accepted swaps spend1, first triple/three box goals/six refills, 10accepted swaps and naturally observed special creation patterns (each requested type also has its own activation mode), automatic cascades, original creation coroutines and all72 model slots/no holes/no freeze/landing tolerance. Fails on runtime errors/exceptions. Shadow native match search only chooses gestures and never mutates live cells. Does not verify physical drag timing, special activation/combos, complete session startup, settlement or original rendered parity."
+  },
+  "background_verification": {
+    "passed": true,
+    "test": "core-catalog",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "1ec08c0ddb55d4d8a0c9ccd0efa22b872653f30a260aa5d93c839186c949fd14",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-catalog.log",
+    "elapsed_seconds": 576.25,
+    "batch": {
+      "passed": true,
+      "test": "core-catalog",
+      "failure": "",
+      "timestamp_utc": "2026-11-02T08:46:53.0914280Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. The core entry no longer opens account/area storage; legacy account verifiers explicitly own temporary databases. No physical-input, production WinFail/100-level gameplay or original rendered-parity claim."
+  },
+  "deliberately_removed_account_snapshot_files": [
+    "Assets/Foundation/Editor/AccountSnapshotVerification.cs",
+    "Assets/Foundation/Editor/AccountSnapshotVerification.cs.meta",
+    "Assets/Foundation/Runtime/OriginalLocalAccountSnapshot.cs",
+    "Assets/Foundation/Runtime/OriginalLocalAccountSnapshot.cs.meta"
+  ],
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "fee17f27773452286822f3433b88e181c9ae103490f8a33f3649ad71c56a7bbb"
+    },
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "aeb814a5e180e5db4620d0e769384e67572de28b3f1f21488af70d4f258faa2e"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCatalogVerification.cs",
+      "sha256": "7b7466094027a52654052cf17ab5f6158a985a907e4b05908c6a0d59584920a6"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCatalogVerification.cs.meta",
+      "sha256": "c706d8c81c9aca92bc067140881302cada4b64b47fe57ca7e5de766fb1fa45d3"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "ffa0e50f109750ea8b334633f02cb18a36502526b9b8998fe0643f7a397e11d4"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreLevelCatalog.cs",
+      "sha256": "dec26bfcc395f441273918b9b9f5cd8daca56fb7cb30ebc426e627ecd2196016"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreLevelCatalog.cs.meta",
+      "sha256": "290cbe3c00668a83db264240e97fb6fc40f9cca1de58f9055a9eef1c4a0a89a7"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/FoundationController.cs",
+      "sha256": "4d57828b90565f4e1ebadefde23911194175613e6d609898c914e2c6d14d988a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/FoundationSettings.cs",
+      "sha256": "1edf7dfd7350b2ce578f9ebf708199c64cbb634ffcb0c1927446581235cd24ae"
+    },
+    {
+      "path": "Assets/Foundation/Settings/CoreLevelsFirst100.asset",
+      "sha256": "153ae131ed06e426ac98cf60832eb597ba7c39d7920c560afcfbe6e4fd52462c"
+    },
+    {
+      "path": "Assets/Foundation/Settings/CoreLevelsFirst100.asset.meta",
+      "sha256": "84322a5b980d07fd26bcace0d2736e26697bd14200ac9e11a2740b4493bf5249"
+    },
+    {
+      "path": "Assets/Foundation/Settings/FoundationSettings.asset",
+      "sha256": "aadde7e32825fc5ce460fd8e675b7e126104dd2503e2eb8c9b03edcf7da1ddb1"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_10.json",
+      "sha256": "19cf972253e37999d5845eb8335f785671ffdf1fb46cd866e150fd359d1febf9"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_10.json.meta",
+      "sha256": "6add87d83b71550149a87f1c50b26f4da2ec7d1aa8c03245b8ba76b062e0595a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_100.json",
+      "sha256": "452efab0b4db7b49c379697a185de35b3c38df08f87a3fad47ef77a348b6682a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_100.json.meta",
+      "sha256": "2d5a8cf0a66e44f9a1e3304453244294b17f687efa107140633b5e05a6993976"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_11.json",
+      "sha256": "72dddf1a3ca64a8027d3791fde710c30fb5ac4512857a3879851e3cd3261022e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_11.json.meta",
+      "sha256": "2e00c009e2527adc91466a51f5a0102ab4efa35b55721c990319ac18dca23c2a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_12.json",
+      "sha256": "eff3f8c1c2a0a4b0790d2c405846078d04d5737579d1e2527f2468361ce7d837"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_12.json.meta",
+      "sha256": "fbf83a4eadfef13c2d1cd2831073d71e82cda7b1e311b4d9c4653e34b2376a26"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_13.json",
+      "sha256": "5ce029e6c2ec3c9abaf1be92412ad85e2cd6f59c1418a3c004942922e1140867"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_13.json.meta",
+      "sha256": "7d700cc906509945d82312525a00574690cbf7171aed4eb1cbe62a6843fc44dc"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_14.json",
+      "sha256": "96680e44f16ab6a4fd50bdca87c2a18f73825edc1cba2cea722acbce3f771f71"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_14.json.meta",
+      "sha256": "29b05056dd24814de000698349ff3fc4c9ddc8aaa8fa131befd858bdba1a0115"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_15.json",
+      "sha256": "e7fa12e66e6bf5f6b5885f0a679063d7bea6d627e6e20a37e55d8a4c4581aa0e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_15.json.meta",
+      "sha256": "da476c44bd1b472a2011f063d83ec595d50fde384134201c4e2fb89042c7a65c"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_16.json",
+      "sha256": "eb51cdf1c6bb3fd3d89d0677dda1b7341420b770eb1d0386826d9c860dc2a46e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_16.json.meta",
+      "sha256": "880f5ffbeb645b0267071600a0f81f973b4b466c8fe314908a449bd5930c12f1"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_17.json",
+      "sha256": "b0e83b1f62929726233622d8e02c66aa936a0a406bcd609114613846c94fdd7d"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_17.json.meta",
+      "sha256": "9ea9b7fe705e77f7496712444c9aa2436b1f788b1f3b652d6367fd27675e8b22"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_18.json",
+      "sha256": "7cadce1e84f1c9a91225fbb0a6afafff32e41653cb35ee636ca016d135aaca74"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_18.json.meta",
+      "sha256": "e9364c59a8848850b6fd2c0748c6de5234cd90be3d98fe25bf4b4395b0f08fa2"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_19.json",
+      "sha256": "3c4f81a7123f359df348647202177d35f3b9908beedf7a8d140bc649a4c427b7"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_19.json.meta",
+      "sha256": "cb8b37db7a0bf9df074dd6cea4a528caa34cfc3e9970df014a55754f55f15ffc"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_2.json",
+      "sha256": "77a4dd20c7bb43651912efd3dc6d05506b0973a2b01c4a1713d7015be9c48fa4"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_2.json.meta",
+      "sha256": "31fc2b209100e9cb73dc84fd1e87bc081890b60eb5672d7a0f83622961b02825"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_20.json",
+      "sha256": "83dba7cf168d5d58d9ac325bf33611de221d46fcc4289505a869c1e31f3d8471"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_20.json.meta",
+      "sha256": "daec830ddd28741263fc4be3fe147302c562d7af08757630614fc5a8f01ad274"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_21.json",
+      "sha256": "e7c6cb6ef8ba4302fa5234838a1dc4417ffacc24abaaff1a705d314c7c75342e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_21.json.meta",
+      "sha256": "4030696dded1f07c1998cf168adce926c3583c81852e0dd64f5fdc370278f4da"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_22.json",
+      "sha256": "64437b64830f05d45c9f18c98b2e77df8d8a425da52da4cf8ff99f4c92139d9b"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_22.json.meta",
+      "sha256": "d749b51f4dd8006630e1ca9c4d55567c9e6e0723fafcc83cfac3ef50ce76ace4"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_23.json",
+      "sha256": "9a78db5fe6906b6b93a663537a088e2b68661e09eb4b2123738ce749c77d9914"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_23.json.meta",
+      "sha256": "31c709d1ffc30c44f9d7dc6e8f3863ad21b1a76bf227349a1b6b7fdf298a55be"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_24.json",
+      "sha256": "e9d8005825e17d049ec050f2249f8e3d3d3bb2623039ba28d802c7d67df3a8d8"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_24.json.meta",
+      "sha256": "b77ce2f66ff0d54a7c192c4245b0fe29a2f8c22424405fa0fb82d38747d5a30f"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_25.json",
+      "sha256": "bdc67aac6b0e0e00cd0c6ac70254066cbb7ce532882d949903dcb8c5bae840a1"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_25.json.meta",
+      "sha256": "39734d06cf52e1aa52ba7040503be50a4e65dbfcda42eaae6935a3b91999b194"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_26.json",
+      "sha256": "41e9d823bc171b435b538bda85193626b562bee365276e70626266a5625f2333"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_26.json.meta",
+      "sha256": "207860e281b7113fb554cca9d453d1f9a4c17a696e1ae67cd22313084de12b86"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_27.json",
+      "sha256": "3ae95cbcc93d166acd2258009e3218057af3a829a72baa8e8f6f9b46b269bca7"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_27.json.meta",
+      "sha256": "c4e5c2487740f0d72209bbc746185036b6688a47612c4c6e9a43f81972b94fd6"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_28.json",
+      "sha256": "40645a56a5effe3e2c4b1475eeccc94259e3ac34f6a40c5b12aeb9b44ad47a28"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_28.json.meta",
+      "sha256": "87a7e4886bb22eb3faa2aea7dfaa66f04e9b42594c516f27b4c0a62e6165a995"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_29.json",
+      "sha256": "7d973812718fffe2adfc39d527e9667a199aec620f8149d29a226e53b4f51967"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_29.json.meta",
+      "sha256": "9b140a67d31fb78c6890484c0182c265fd15cdd292a8e77ff1bd0052326f548b"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_3.json",
+      "sha256": "fd175619653f8a10e323e4144ec46c4339e4d9523bb2bd21cd6670fa1125d850"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_3.json.meta",
+      "sha256": "dc2cd6f4e67830ffde2ef70c8d906bbd84ab5172370a6d9b7de565336abebe6e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_30.json",
+      "sha256": "d9bc84b16cf15982e334565f97bd2a33fa4c2f4772fb72b3b322a7cf730fbd1e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_30.json.meta",
+      "sha256": "5fa6ec7411516a1087ac62c28ad6e341a609f988cd08f638776c677376e752f9"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_31.json",
+      "sha256": "fc4e18c3aad783e5723340788a8a1e728736e92fcdc22344605dc506b031392a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_31.json.meta",
+      "sha256": "08f32d76ca64022f4aff4f394590ba4225a8ec421a5e59d766305677b6196bbb"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_32.json",
+      "sha256": "c52ac26abbaeb6a428acb33c299fc275e8a96d2faf1cd553258cfd0413a055b6"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_32.json.meta",
+      "sha256": "49d0cedff435bfb8c7b0dfb35dcf52ddf395b32d20bc6b78d469ade9e68fde07"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_33.json",
+      "sha256": "b476e4b0174a56488901ef145ee1a6a42c49c623327e527fa4f233a0ef4bf082"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_33.json.meta",
+      "sha256": "fafff473e805782fdc0adcc513683f5a74dd681e3ed18af25a15f1a2aa7d6ff9"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_34.json",
+      "sha256": "31701a3c9e3e936c5139ce482afbeb2cb36d56ffaf1ce022bd0e1b409f4ea1b2"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_34.json.meta",
+      "sha256": "b0a47654020150f2f023f7e84e75676f0433457c048c85bfa7b25739ac03a45f"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_35.json",
+      "sha256": "74fb73fe616fe7c7343d3f8812eb16b31a15637058f0de922e37475ae0da5240"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_35.json.meta",
+      "sha256": "c6678816d61deb39f979445e5f9c1d399f022ed598e5e53551fe36355294079b"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_36.json",
+      "sha256": "fac178d0695e85d0caac0bdd6594a12b92720d364e7772624e7b86ccae72a660"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_36.json.meta",
+      "sha256": "964c34c6df6bb4002cadf22b9a1d5db3bf4cf2d6bbd9fb5592fbb4f78d5feddf"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_37.json",
+      "sha256": "36a00e1987a305b726e2dc11d10350188cd7faa062fa3adcf6294dffb425ebf8"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_37.json.meta",
+      "sha256": "3d3d4187417123381724c90952295172da95705154a9db99a491297ac21ecc30"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_38.json",
+      "sha256": "46f8f989c52c1222e8c353348c27575c0589b142699c5fe9299c9aa1f3a33ffb"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_38.json.meta",
+      "sha256": "9e8086cb30475559ce356241bc8c14ab4604f6189383078f919365efc9124dd0"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_39.json",
+      "sha256": "a34b570a9f34c57c1db8da42d9d64944c47901dfaf076053a2959a59f8a36462"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_39.json.meta",
+      "sha256": "af0cec34bbcf9ee0c1d201b095229ffaa277908d0496c38ce7802a65b002ba33"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_4.json",
+      "sha256": "2c6739354629ce2360a82ce95bf0d29c103078671fb4849fd3efc6e9537114cb"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_4.json.meta",
+      "sha256": "427625c1727717c1b3a059f928946561a0ca6229c41e553efb3859a44ef17b4b"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_40.json",
+      "sha256": "a182b90bc78ece63ce30559da10489662bfa533e9319ad723d6af7fd331f35c3"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_40.json.meta",
+      "sha256": "5975b5b3c2e563da7f543cbfacc61ff0da349616cc1e10d5d32f40717718d63a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_41.json",
+      "sha256": "e1acb770291d6a29f50f037e66b7ec30c0d543d1156e75ce4731f41e2d56b2fd"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_41.json.meta",
+      "sha256": "58a5b1c17badc818c76570a8c27ee885ee2d9ec8a55aaba991ca623420fa2c0a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_42.json",
+      "sha256": "2362e3185a28d1febaeaf3d4d55f84eace132806336e8c7f7a99dccec7c73610"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_42.json.meta",
+      "sha256": "c0d7f25808c074b276256edbcd101b9c6817a12e398bcd0d2968b4907dca969b"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_43.json",
+      "sha256": "bb46d4a0f0a657a2e51055166a638d0928b823cc8b5489ba0049bebe9a37d45e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_43.json.meta",
+      "sha256": "9ba67b5ff7101db5b80645f9b9b1ce28eb33332e7883ebbeebc5d534bc1a491a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_44.json",
+      "sha256": "a17af05a9478b3f77463426f2d8a8584abf8d3e636ae218f34b4778bf84afa2a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_44.json.meta",
+      "sha256": "741109aafa4a8a212a7dfa90af7db71bbdfc68da83571c91c37d6f0ec8f39f99"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_45.json",
+      "sha256": "55d71316a80f9b883b58e62b752bae42d7bf863d84c9d42ca3d3e01926ab9aba"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_45.json.meta",
+      "sha256": "e50983e11d9a1f8463cf71a9e05bd052f2042e206caf2275183556b2bd47cfc4"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_46.json",
+      "sha256": "057e649d24e841f836ec72ab7f88b585f70d4b38f7302a2b149bdc4794748400"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_46.json.meta",
+      "sha256": "4713577782a01338b11b3781d64d4243a9601b65771e5747d726901b6e076913"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_47.json",
+      "sha256": "23674512d6e9a51a441a2ca2d6c3eb246a61a4d7d874de909f75db9c1d9534f1"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_47.json.meta",
+      "sha256": "712946be71ac3fefc0f289676f5ceda84e2500390ab92fdd4c1009e01a52d584"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_48.json",
+      "sha256": "e053ce869ae1230c17b0c052a0d89606c02b2d41424c9ce7389310c3092f2048"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_48.json.meta",
+      "sha256": "8342fe7ad1e3188a21d489174f7f711b7d6a7a7f3c5b1acc9bf8f3b20e8d22e2"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_49.json",
+      "sha256": "2ccb1f90ee674db40f042d59f228d40b7be93daf45341679c948e6ea2cde0300"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_49.json.meta",
+      "sha256": "5a308916db4c1b68a817c616001d54ffbd25a66277387b5f39db31648c36ae9e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_5.json",
+      "sha256": "b2fe4efb7b403d55d43904b06b4d32daf64b3ec8a507a6f381e4645dad7c2fb2"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_5.json.meta",
+      "sha256": "74fa0e1791582e8ef4a59b5005f98a71fe5198c1ee35400e4ebb6f5895215ab3"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_50.json",
+      "sha256": "1dc983bd1cb9e5d17d3b88cb8d3b281c67c5afebb0069b8b130ce81a6cb38fee"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_50.json.meta",
+      "sha256": "703cc8a5f3bb442cd728cb7f18c2ecd481f1ea54528d69b6e7bd7edcf32cb180"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_51.json",
+      "sha256": "f17bffcebeb4b62359a1378a82ba2a7d7b3d67ad6a3db91ac0aa8b061addbb21"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_51.json.meta",
+      "sha256": "3e74e97bee541e6b505800645e5aeeb190e9133398234d810b0b5a1b276d83d3"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_52.json",
+      "sha256": "e4a40aeffbaff7d63cb26b52a143079b6e78b35ad80ef5819ca15d4987aadf65"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_52.json.meta",
+      "sha256": "e69486df0b7c08277800d50b81dbce520659a28f9e3259a2b806539106e7e762"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_53.json",
+      "sha256": "e4f215b6b4619d28f055bd1580e3dc94de29855cb2f918fd941a03f209c96956"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_53.json.meta",
+      "sha256": "afad39eaf3df34d3dbc2f3844af734ea00847421c82dd7a905d515e6e17a0098"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_54.json",
+      "sha256": "31185461b08c2e99351176abef475f4905422cc54fe59231b39792919cbc0cf4"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_54.json.meta",
+      "sha256": "3c0856967cc69bb0a7a824f900d19f8a67a1a1b62868a8b3bbe95b8f1f81d5c4"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_55.json",
+      "sha256": "6baba031b2b828cf54722acc520bbb02b3c87c6b40b3c00be2b3613ce13deb82"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_55.json.meta",
+      "sha256": "f7533a07f3bdaab4a9dba1994050c85c2609bfa1b85b6bcbf1209273195a1b18"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_56.json",
+      "sha256": "9cc9dd12e6408cec09e400c4d502f7a8fc53f28bc0a63a28c2cb247f68a12572"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_56.json.meta",
+      "sha256": "ddd7b4162315c6e7801c704c2a0072e567d69f090da4ee1d38cfa7f2fc0a0e22"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_57.json",
+      "sha256": "22645abee90d4055c2e0050a327974886095d82e6fb705a33494cac305745b80"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_57.json.meta",
+      "sha256": "83b6b31d9cf4e03f0e9277ab5cd88947225bc562afe490ad96bff6d112c09696"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_58.json",
+      "sha256": "73a1cd0f7ca80d7566757e03c3166390b913291d28758f5d21f74970d65e68be"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_58.json.meta",
+      "sha256": "97af6e8ea454a54bae776d0099b36f4b50eeea481b320e8dcc8a1fd7a16be328"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_59.json",
+      "sha256": "12db94e013ce5de2e18e59507b84d2d80d4ce6f4fcd5a23e80ee15f6910685dd"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_59.json.meta",
+      "sha256": "8dabedb8ff8e58a56be55e0e0edd607b7d51a0f03be30b58b7b7ea58e860d085"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_6.json",
+      "sha256": "de737617a09096597b0df2393385a40822880992c3aa4953b731731e15ab41d2"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_6.json.meta",
+      "sha256": "84754089237c8d5df23a268b625f07005ff5a4830cb2a3d3287200e4e5871d09"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_60.json",
+      "sha256": "d3efe9f52b5f052fd68a38f591f3539039993d7d66d71054e0eb10a16658a8cc"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_60.json.meta",
+      "sha256": "8dd9b6bbb6a40c8ac0f2b041c95e4039273fc961ebfcd9183dbcdde75eba7e63"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_61.json",
+      "sha256": "648f10557230957afa435b973d1b2bc5cb7716c61f981d6831bebc4b9146a77e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_61.json.meta",
+      "sha256": "98eb3a2ca27e67f3f21e2f72ae5d2ea068c5ea94d5bf8408b0a7c347300bac83"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_62.json",
+      "sha256": "b68942d0635d73cc64b7d87d61ab78c1c3fba5e1095f875d1e1724e575076281"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_62.json.meta",
+      "sha256": "d5d9601d497251392ccb3c8354b2e7d8863a192ef15308a6fe4527e9155f2969"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_63.json",
+      "sha256": "f71e9facd19ede2b7e70c5b711dd3cd36ad4b396e7d712ee2f852692cf7fed11"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_63.json.meta",
+      "sha256": "b2acb1f2362fcdf394cdfaabee1c0cafb1a98a24d45c088eba9987c6be9a3bdc"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_64.json",
+      "sha256": "31e19537e571247ff39a94244e5dda2224a7a7efc2e07fd5af1a93111280d7dc"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_64.json.meta",
+      "sha256": "670c25f08c6dd551cfbb9bf1305d768018856a2b419ceab64a225a5d1c2f35eb"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_65.json",
+      "sha256": "c36174dadb63cddde0a9184965f67f9a7e5f4aebcddb75b5a2d2f966b48e6fab"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_65.json.meta",
+      "sha256": "401cbf2430d2f56e8f3ceddfb280e742bf6820d28f608e29c1d0b4821f915b9f"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_66.json",
+      "sha256": "155c154ba63f083a5d1ce7c2e952112812fd07e4fc4f09830f1855acfe369f11"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_66.json.meta",
+      "sha256": "77ceea04ad68e99afac3f61ccfbfe610c5cb8f17ec295fca8a69a567886237a6"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_67.json",
+      "sha256": "7b68ec75b2accbb802214b9e756c3ebaa13de8c4592b2a17d956fae0b5c2ade7"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_67.json.meta",
+      "sha256": "eac9a4ced7bc4f1592f27c20239a11d7518f0832c95a206b334a8d9840c790e0"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_68.json",
+      "sha256": "d34e5dd204c8787c0acdb8b2e2d7ca1f2bc5d26f82fc525fe3e0a1837f88a7d3"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_68.json.meta",
+      "sha256": "5c5ba153036325d679968ef5ac453408141a469b58a5575757cee51e5780e367"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_69.json",
+      "sha256": "833b72ca320a07a2efe6700bba97c1ee02b48cf09897ba89e6c09d67275b1032"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_69.json.meta",
+      "sha256": "6c74af0ec6f341052a1c42804747be39672f79058eaade962d0beb17b3692b97"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_7.json",
+      "sha256": "730d27ddc6147b788c81f5247f4c783a0d557203cb92ceca617b59ee1f8b608f"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_7.json.meta",
+      "sha256": "7f7b2491f79292cfd66960c45771e18b0d1158de84fbc4325fefda2fa8935e73"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_70.json",
+      "sha256": "c3a2f02df83e008529142e618c5453128d06fbcae6a59de79e7a8d2d015a435b"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_70.json.meta",
+      "sha256": "e9b83b794c79130331ff3e49dcb10d7b328e5dbc06817054150fd90188acda29"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_71.json",
+      "sha256": "fd6d20a8d7a4b21871165f8be72c09065a4850f3b2bca163553e090a4903170a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_71.json.meta",
+      "sha256": "f794294de463eb27239cc6f746c8906c09a91aa6992df22104b39b4bea4fb758"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_72.json",
+      "sha256": "96645e1a76a792cee180d78a44f6ac2258e73d2656ef32b880d00b89bb2faa4b"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_72.json.meta",
+      "sha256": "8bc2652e8139413b88cf23f92d374d3589a236f2a866b0c42dec858961ca6854"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_73.json",
+      "sha256": "f91917eec06f4ba38cc0cce22805d5dafe4899f988e1ec5185373e9698681845"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_73.json.meta",
+      "sha256": "e2ae303decf263e7a58a7fc9bb006d547638117c8f6e880dd2f50e90ba1dc9c0"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_74.json",
+      "sha256": "6e9b9b252737577cb376765408a9ab227b04c62060927349e919a115b27e70c0"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_74.json.meta",
+      "sha256": "d00ef9f95c1121e9bfb7a0097b233b083a9fc2d583fe02b39c5ccc8a32e13855"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_75.json",
+      "sha256": "c60c3fd43cdfa6cc371e44838e45627da093f7665e2237bc7b553cda692d8d4c"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_75.json.meta",
+      "sha256": "6b1300181630f38cb1dc4569a91ec020bf5250b021e0e42f5504473bbd400c37"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_76.json",
+      "sha256": "e504784b6833218fbbfc193623004f477ba08624ae30fce9d5bb77a4f3276ac1"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_76.json.meta",
+      "sha256": "b222909f03c85e447cae0ff7ea1e994d53655f75d65916cca97f26d7984e49db"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_77.json",
+      "sha256": "024ca5892c58c8686c27e0ee765ad3393af3cc135bd71fd506478d9bb578835b"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_77.json.meta",
+      "sha256": "a5423681fce5fc753134cfc478f461011704047ffb81c5a465f81203af56181b"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_78.json",
+      "sha256": "89a2a1152b2a22d70744a1df48fea6e5a9b8272b57459c8b64608c4f64adfc3e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_78.json.meta",
+      "sha256": "99afa7917fe620e1bd52884f79e4907863e6a5fa2762f60513d6eeaabc00243c"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_79.json",
+      "sha256": "ddd398fae2831220c3a943eb08bab3f948785ec702b5f4b0a00a9d2d0c6b535d"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_79.json.meta",
+      "sha256": "455a59f768541e9f9726dd6a6b354d2e8a589665854f0146de82478596c80da1"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_8.json",
+      "sha256": "478961418f198c34c58a9fa45f19e01b72999a15a376b57967549603611958fd"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_8.json.meta",
+      "sha256": "91a9448ed42bbf9f604563528df1c40ed8d31c5d24521ffc5319a99c4c5d6f5a"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_80.json",
+      "sha256": "f7c4bd282597b031091de69ec9bca524742b8152798326230c26af2b3dc810fb"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_80.json.meta",
+      "sha256": "c970f2eba805728e78349ff17d5eb54d6356a942504b41cf24e86049e0b295ef"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_81.json",
+      "sha256": "4316e5d134b62a1c7b00018f6f81418e699f139940616043e73f1c1881e318aa"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_81.json.meta",
+      "sha256": "e48741c8e635d7f1729f68207fe4de7cc374f06c58c83d064730634819d79cb5"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_82.json",
+      "sha256": "728872a4339145a6794efd9d4f647088b7fcc5d5a023f10ad66eb3050d9f0e13"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_82.json.meta",
+      "sha256": "6bb023915c232901976289ec041b4a3c8e09aab4f050c9362a97d790057e5cd0"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_83.json",
+      "sha256": "294853be1bb3864d549c28fb6b2fb07f36bda74e423424940682c075c9e5bb67"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_83.json.meta",
+      "sha256": "de5c16b4b6e3e359fb641ced7ba4f4e1008748c5f597402b488a0d7a3e6fdcf0"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_84.json",
+      "sha256": "3fd1b7381184f03d497c33e7bf93d55ef4eb425542e0d8616409a2289f511a5e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_84.json.meta",
+      "sha256": "fd651f3f373609b3ecfd91a8040b240b4f415c40774bf38f3abc2f21b242a8fd"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_85.json",
+      "sha256": "2da96d60e8752cb693ddb33cb3a274cea2e59ade91aac87411e150ab01f92ba1"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_85.json.meta",
+      "sha256": "0f727b83cde65b62991708ec755e29baecc18ce0d60069698f640315920d7dac"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_86.json",
+      "sha256": "311eb3312a49015537c419d8f02e99fbff35a2dfd8403089426d17a2a501d46c"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_86.json.meta",
+      "sha256": "6153ccd15f24603c8286d8d4bab8968b497f15106f231d82085a1f3f4c186bc5"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_87.json",
+      "sha256": "a01d39b8c8577e1dc4fa67865ab1c98def9378474eb2ca775ec802c664c72329"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_87.json.meta",
+      "sha256": "2784446377d92a2872fee9191928cfa63d913b969a30107731106fe95f19c63f"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_88.json",
+      "sha256": "e999565a56d0526fd800466b72c88ca44a0e608a4b46faa044cc91b45f8f1c61"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_88.json.meta",
+      "sha256": "861f006ed8af00825d37bfa2392eb95f415ff7200443a75c8e20107166748c1c"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_89.json",
+      "sha256": "96c74e08a1543536bae9f68a30471097cd90b69c409351ccc1120fcb314b7bb6"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_89.json.meta",
+      "sha256": "10e277ff3e7d4be029c41bd83544c9e07af726c5222b6382644b0557f247bc24"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_9.json",
+      "sha256": "aa4af8df189140de32e8ad7a4b0ac25ffbca4eea1cec308221a777745574f361"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_9.json.meta",
+      "sha256": "516514f785ace21ee36ab27e38172279ae7d9ac4877611c22819b21ea989a5af"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_90.json",
+      "sha256": "e46617a375654ba5eae2b420bc048636b55d2f3da222b8e422cd0c2d7a5ecb67"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_90.json.meta",
+      "sha256": "62bd953892ac820141bc1c1795a722d8ef162e5a2694ffc817fff162639e09fc"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_91.json",
+      "sha256": "fe64bb8b6ebad2b4c950635c5a1637fe0f4b226fcb30b7f03668e4f915eee3bb"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_91.json.meta",
+      "sha256": "b55bb85c4588e08f915f9abc22cc0e79fc7299cf25f0420c78bc791d974614c3"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_92.json",
+      "sha256": "37319836f3fe237f3c55c07dcada2eeec06d8e7d0faf9e28c2e85eea3b4dc4da"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_92.json.meta",
+      "sha256": "c6a9083381060698b3926732866bcd75768b6fd97b9878aca734e8927beff3e5"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_93.json",
+      "sha256": "f678178ccb5fe76d1f16d364f7c8d882f337d6148b2e624c64493aa5dd0aa28e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_93.json.meta",
+      "sha256": "732b642f799452e4c1672c293f154774a958ffd3efdcaa997bac20cd4b5d14d9"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_94.json",
+      "sha256": "27579ef1f77797d82802ebddd7d1d909b33e2114d070f5f0154ec0e6d17b01f2"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_94.json.meta",
+      "sha256": "d527c7bdc88eb2790bed46da34e5be815375c6ac88b2117e4dda8f4db0c3cf14"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_95.json",
+      "sha256": "a862a321b3f2e33c4434ffc8d89326701e00b3fa55488e0f82dba9a72bb81bde"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_95.json.meta",
+      "sha256": "e7ec007221e001458e1af4210b22931bde5a894db5b9ea54213c6791fca802b0"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_96.json",
+      "sha256": "9260221d1a045cebb70f68fc3f006a5029501ff61981a8be078f109815f18c1d"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_96.json.meta",
+      "sha256": "d244e292dd2560f85c9e7869d3ba980576d63d31b1190918b2f23014dab956bc"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_97.json",
+      "sha256": "88bbf614909ec43f758fdd76859aed052eadc73e49c5a10d834f14b29663896f"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_97.json.meta",
+      "sha256": "27ca1aecef10471128eae123cea2185cf7e64f7d412c658186f297927a76f12c"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_98.json",
+      "sha256": "ce36e08ff0c0777d91683a2469b2f9bc65011e9e349897bc1260750df01b938e"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_98.json.meta",
+      "sha256": "dc53230a726053e393b9aaaa41b570032cb7efe98dcf0111e2acab89b87bff9d"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_99.json",
+      "sha256": "addc18c877cf2cce6d523bef9b30c981c94b1d04e6f5c01b8f939b93fa0fab56"
+    },
+    {
+      "path": "Assets/Resources/Levels/level_99.json.meta",
+      "sha256": "8dbf2ee1c9043fdb95fcfb02fff04f3651a953143f7dfc7dc85f9187ee41480f"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "4b10ce46985d916901ad3e5fc24f42506bbcf5ced29c1603b11add94c8b7d983"
+    },
+    {
+      "path": "SourceCatalog/core_first100_migration.json",
+      "sha256": "8dc0f8d37782ed04eb9cff338b53137e9fe58263a28d78417e76680e29da3658"
+    },
+    {
+      "path": "SourceCatalog/import_core_first100.py",
+      "sha256": "6534a6796743bbb78e6e814f2e415e36b17e46b7a0fa7c8bf9d8e0fc1d5168cf"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "ddb04cb323edfb64735899309b185184a78285359366ea05677ac579efe4651d"
+    },
+    {
+      "path": "background_core_catalog_verification.json",
+      "sha256": "e0c8a6b6fc310c2d92e1f8d5bbb79030ff52d5130a9f3d9db2c2fb95d0abdf01"
+    },
+    {
+      "path": "game_scene_initial.png",
+      "sha256": "928cbbdcda5978c431e4a512137c6a81eac03fcd6d29b4e8d49ecbba7ab32374"
+    },
+    {
+      "path": "live_core_catalog_verification.json",
+      "sha256": "c6eece568b145ef29d63e29579a24ceeecc17fda89869adf6013443a32149dc9"
+    },
+    {
+      "path": "live_game_scene_verification.json",
+      "sha256": "b4f2c21816e7730eba866a819947a0b04dfa0b10d2c823666be13383956fce74"
+    },
+    {
+      "path": "live_player_board_observation.json",
+      "sha256": "6538a9da21c9415d0f27c344ea1767b463cfc439f0f933fb5fcfebd12497065b"
+    },
+    {
+      "path": "live_player_input_verification.json",
+      "sha256": "3fa8ff561c926783f4da42249137c164f5cab754d388482ef36c15e2edcd873b"
+    }
+  ],
+  "scope": "The source configs/raw bytes are preserved, and only original ordinary levels1\u2013100 are imported byte-for-byte. A lightweight ScriptableObject stores weak resource paths; actual runtime loads only the selected payload. The formal first-board entry now uses this catalog, and account/area startup plus its identity/test transport are removed per the new scope. Native session reset still receives mandatory inventory snapshots, now authored session presentation values rather than a persistent account. SDK mock handling is unchanged. Unity sequentially loads100 configurations and verifies real first-board presentation/input; this does not make unsupported later obstacle/static compositions playable. The first-board composition guard, required first100 obstacle/goal models, complete production win/fail/remaining-moves/end/retry/next-level/local-progress flow and remaining booster inventory/purchase UI removal remain pending. No higher-level/peripheral implementation, whole filesystem rollback, full rendered parity or mobile completion is claimed."
+}

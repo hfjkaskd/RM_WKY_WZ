@@ -1,0 +1,12 @@
+{
+  "scope": "First independent Unity run rejected the new verification asset because its manually authored GUID had33 hex characters. Source was unchanged during the rejected run. No runtime pass is inferred.",
+  "invalid_guid": "cc68b05481e548a4849ee597a0b900f6f",
+  "diagnostics": [
+    "The GUID inside 'Assets/Foundation/Editor/LifeClockVerification.cs.meta' cannot be extracted by the YAML Parser. Attempting to extract it via string matching instead. Please verify the file does not contain unexpected data.",
+    "The .meta file Assets/Foundation/Editor/LifeClockVerification.cs.meta does not have a valid GUID and its corresponding Asset file will be ignored. If this file is not malformed, please add a GUID, or delete the .meta file and it will be recreated correctly",
+    "Assets\\Foundation\\Editor\\BackgroundVerification.cs(88,29): error CS0103: The name 'LifeClockVerification' does not exist in the current context",
+    "Assets\\Foundation\\Editor\\BackgroundVerification.cs(88,29): error CS0103: The name 'LifeClockVerification' does not exist in the current context",
+    "Assets\\Foundation\\Editor\\BackgroundVerification.cs(88,29): error CS0103: The name 'LifeClockVerification' does not exist in the current context"
+  ],
+  "fix": "Use a unique32-character GUID so the normal Unity asset import includes the verification script. No compiler bypass or Editor-specific runtime fallback."
+}

@@ -1,0 +1,33 @@
+{
+  "functions": [
+    {
+      "rva": "0x218022c",
+      "name": "Royal.Scenes.Game.Levels.Units.Sfx.GameSfxManager$$PlayFallHit",
+      "disassembly_sha256": "6a9e28872081194e1a7b1c2fd8efb44ba02203886bae1ee68cfd613850b04e4e"
+    },
+    {
+      "rva": "0x3e18f78",
+      "name": "Royal.Scenes.Start.Context.Units.Audio.AudioManager$$GetClipLastPlayedTime",
+      "disassembly_sha256": "a7634246c3a89d72ed14a76f86d45abadb595092e3e46114061d09adf7cd14b9"
+    },
+    {
+      "rva": "0x1ee9054",
+      "name": "Royal.Scenes.Game.Levels.Units.Sfx.GameSfxAssets$$GetClip",
+      "disassembly_sha256": "8f81540bf69b7b252ffb880191f3a86d36365eec6f7d45e97d9446995c955806"
+    },
+    {
+      "rva": "0x2d70ac4",
+      "name": "Royal.Infrastructure.Utils.Randoming.RandomManager$$Next",
+      "disassembly_sha256": "5e4aa7bb8caf7a2ef2ddbe4d1b3a675a2dc51ad2f1cac0b441021b0dba1aac6d"
+    }
+  ],
+  "notes": [
+    "PlayFallHit uses application Unity RandomManager, not seeded level randomness; noGameSound short-circuits before required audio. Both clip last-play timestamps are read before global Unity time. Each delta must exceed .1, with native unordered NaN comparisons continuing. Clip type is 146 when Next(0,2)==0, otherwise147; PlaySound offset .04. Audio mute still suppresses only inside PlaySound, after random selection.",
+    "GameSfxAssets fallHits array order follows source asset GUIDs 1ad51614e56f4e84d9e97ed30f9658e0 and749c2be19bc6b1c4c926fe2c919d0e6c. Exact original WAV/meta files are copied, 32128 source bytes total. ScriptableObject stores resource paths; first access loads and caches each requested clip, including null/destroyed-object result, in place of original asset transport. Existing box catalog remains the same owner. Native GetClip fall-array selection executes for all eight null/non-null clip combinations.",
+    "Formal OriginalGameAudioHost now owns a configured GameSfxAssets reference, shares its existing AudioSource/playback and application RandomManager with PlayFallHit, and resolves existing box clips through the same catalog. Full preference/download/music/audio lifecycle remains pending. No native SDK is added.",
+    "Native differential verification includes 328 fall sequences /7128 operations, both timestamp gates, default zero timestamp, immediate/cross-variant throttling, missing audio/random/source and no-game/mute/override, NaN/infinity and random boundary outputs. Existing 256 ordinary SFX sequences /5504 commands, 180 random cases and224 box cases pass as regression.",
+    "Game-level motion still requires actual CellView Transform positions, application clock/level presence and fall-manager/session composition. The formal cell-view visual/mask/border lifecycle is not restored; no integer-coordinate fallback is installed as a substitute for its world Transform. Player-driven damage/refill/cascades and rendered-original parity remain incomplete.",
+    "Unity Play-mode verification passes using the actual configured formal audio host: path clip names/order, exactly one variant timestamp, immediate shared suppression and AudioSource.isPlaying observation. It does not claim microphone/output-device audible validation.",
+    "Existing Unity four-hit box model/view, damage/goal/useful-state, application random, actual audio and pool regression passes after changing the formal playback clip resolver to the shared catalog."
+  ]
+}

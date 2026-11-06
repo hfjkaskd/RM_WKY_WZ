@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bathtub_Caustic_Shader
+  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+      _CausticTex:
+        m_Texture: {fileID: 2800000, guid: 1f729747853b9b5499589bac5d98f18d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _MainTex:
+        m_Texture: {fileID: 2800000, guid: 54bddfe4ac5b8d9499efeaf86589ee18, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: {}
+    m_Floats:
+      _BUILTIN_QueueControl: 0
+      _BUILTIN_QueueOffset: 0
+      _CausticPower: 1
+      _DistortScale: 4
+      _DistortSpeed: 0.3
+      _DistortStrength: 0.03
+      _FadeEnd: 0.43
+      _FadeStart: 0.124
+      _TileNum: 0.9
+    m_Colors:
+      _FadeShape: {r: 1.19, g: 1.21, b: 0, a: 0}
+      _ScrollSpeed: {r: 0.05, g: 0.015, b: 0, a: 0}
+      _Tint: {r: 0.08122745, g: 0.20220098, b: 0.3019608, a: 0}
+  m_BuildTextureStacks: []

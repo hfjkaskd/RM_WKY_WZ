@@ -1,0 +1,938 @@
+{
+  "full_objective_complete": false,
+  "production_startup_user_flow_bound": false,
+  "production_database_bound": false,
+  "mobile_storage_provider_bound": false,
+  "full_home_area_parser_bound": false,
+  "final_result_dialog_rendered": false,
+  "local_account_load_kernel_restored": true,
+  "source_snapshot_sha256": "e0753ee8bbd130df9aa86fbcc9bd732c5101d36adf8be4322ae30779f72f6aed",
+  "restored_scope": "Original SyncManager.UpdateDataFromLocalStorage sequence, UserId local field restore, complete basic/inventory loaded fields, Pinata/Madness defaults, RoyalPass/TeamOffer decode and signed-byte booster BitArray loading. Formal-scene checks now start with a genuinely empty private Windows SQLite database and use the same native loader to restore fresh account defaults and post-win rewards into a new account model.",
+  "native_keys": {
+    "scope": "Literal keys/default constants used by SyncManager.UpdateDataFromLocalStorage and UserId.FillFromLocal. No production account startup or mobile provider claim.",
+    "initial_coins": 2000,
+    "initial_level": 1,
+    "unlimited_booster_bits": 192,
+    "keys": [
+      {
+        "field": "sync_id",
+        "got": "0x5368290",
+        "metadata_address": "0x561c260",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90292832,
+          "Value": "SyncId"
+        }
+      },
+      {
+        "field": "level",
+        "got": "0x534b450",
+        "metadata_address": "0x5610ca8",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90246312,
+          "Value": "Level"
+        }
+      },
+      {
+        "field": "league_level",
+        "got": "0x5394160",
+        "metadata_address": "0x5610aa0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90245792,
+          "Value": "LeagueLevel"
+        }
+      },
+      {
+        "field": "full_lives_time",
+        "got": "0x5350040",
+        "metadata_address": "0x560bf28",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90226472,
+          "Value": "FullLivesTimeInMs"
+        }
+      },
+      {
+        "field": "unlimited_lives_time",
+        "got": "0x53b18c8",
+        "metadata_address": "0x56209a8",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90311080,
+          "Value": "UnlimitedLivesEndTimeInMs"
+        }
+      },
+      {
+        "field": "user_data",
+        "got": "0x53d7af0",
+        "metadata_address": "0x5621658",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90314328,
+          "Value": "UserData"
+        }
+      },
+      {
+        "field": "offer_segment",
+        "got": "0x53a4b48",
+        "metadata_address": "0x5621740",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90314560,
+          "Value": "UserOfferSegment"
+        }
+      },
+      {
+        "field": "coins",
+        "got": "0x535ebc0",
+        "metadata_address": "0x56071a0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90206624,
+          "Value": "Coins"
+        }
+      },
+      {
+        "field": "stars",
+        "got": "0x5398ac0",
+        "metadata_address": "0x561b690",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90289808,
+          "Value": "Stars"
+        }
+      },
+      {
+        "field": "inbox",
+        "got": "0x539fb90",
+        "metadata_address": "0x560dd58",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90234200,
+          "Value": "Inbox"
+        }
+      },
+      {
+        "field": "chest",
+        "got": "0x534fad8",
+        "metadata_address": "0x56068b0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90204336,
+          "Value": "Chest"
+        }
+      },
+      {
+        "field": "feature1",
+        "got": "0x53a2ee0",
+        "metadata_address": "0x560b5f0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90224112,
+          "Value": "Feature1"
+        }
+      },
+      {
+        "field": "feature2",
+        "got": "0x53daff0",
+        "metadata_address": "0x560b600",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90224128,
+          "Value": "Feature2"
+        }
+      },
+      {
+        "field": "rocket_end",
+        "got": "0x53adab0",
+        "metadata_address": "0x5617058",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90271832,
+          "Value": "RET"
+        }
+      },
+      {
+        "field": "tnt_end",
+        "got": "0x5341000",
+        "metadata_address": "0x561c6f0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90294000,
+          "Value": "TET"
+        }
+      },
+      {
+        "field": "lightball_end",
+        "got": "0x53e82e0",
+        "metadata_address": "0x560ff80",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90242944,
+          "Value": "LET"
+        }
+      },
+      {
+        "field": "event_inventory",
+        "got": "0x5382240",
+        "metadata_address": "0x560aaa0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90221216,
+          "Value": "EventInventory"
+        }
+      },
+      {
+        "field": "in_game",
+        "got": "0x537ad00",
+        "metadata_address": "0x560dd20",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90234144,
+          "Value": "InGameInventory"
+        }
+      },
+      {
+        "field": "pre_level",
+        "got": "0x5389988",
+        "metadata_address": "0x5616368",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90268520,
+          "Value": "PreLevelInventory"
+        }
+      },
+      {
+        "field": "remaining_booster_times",
+        "got": "0x5372478",
+        "metadata_address": "0x56175e8",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90273256,
+          "Value": "RemainingBoosterTimes"
+        }
+      },
+      {
+        "field": "pass_progress",
+        "got": "0x53b6268",
+        "metadata_address": "0x5618670",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90277488,
+          "Value": "RoyalPassProgress"
+        }
+      },
+      {
+        "field": "pass_free",
+        "got": "0x53ee9b8",
+        "metadata_address": "0x5618610",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90277392,
+          "Value": "RoyalPassFree"
+        }
+      },
+      {
+        "field": "pass_gold",
+        "got": "0x53bf190",
+        "metadata_address": "0x5618618",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90277400,
+          "Value": "RoyalPassGold"
+        }
+      },
+      {
+        "field": "multiplier_end",
+        "got": "0x536b098",
+        "metadata_address": "0x56135f8",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90256888,
+          "Value": "MultiplierEndTimes"
+        }
+      },
+      {
+        "field": "log",
+        "got": "0x5344370",
+        "metadata_address": "0x56100d0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90243280,
+          "Value": "LWM"
+        }
+      },
+      {
+        "field": "team_offer",
+        "got": "0x53a55f0",
+        "metadata_address": "0x561d0a0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90296480,
+          "Value": "TeamOffer"
+        }
+      },
+      {
+        "field": "dynamic_difficulty",
+        "got": "0x536f290",
+        "metadata_address": "0x5609a30",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90217008,
+          "Value": "DynaDiff"
+        }
+      },
+      {
+        "field": "dialogs",
+        "got": "0x53ea610",
+        "metadata_address": "0x5608e80",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90214016,
+          "Value": "Dialogs"
+        }
+      },
+      {
+        "field": "story",
+        "got": "0x53d9b10",
+        "metadata_address": "0x560f8e0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90241248,
+          "Value": "KNLWM"
+        }
+      },
+      {
+        "field": "table_game",
+        "got": "0x53a9100",
+        "metadata_address": "0x560f8d8",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90241240,
+          "Value": "KNLW"
+        }
+      },
+      {
+        "field": "name",
+        "got": "0x53be430",
+        "metadata_address": "0x5621730",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90314544,
+          "Value": "UserName"
+        }
+      },
+      {
+        "field": "team",
+        "got": "0x53c9c10",
+        "metadata_address": "0x561d000",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90296320,
+          "Value": "TeamId"
+        }
+      },
+      {
+        "field": "facebook",
+        "got": "0x53ec158",
+        "metadata_address": "0x560b250",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90223184,
+          "Value": "FacebookId"
+        }
+      },
+      {
+        "field": "apple",
+        "got": "0x53f3a68",
+        "metadata_address": "0x5600b10",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90180368,
+          "Value": "AppleId"
+        }
+      },
+      {
+        "field": "google",
+        "got": "0x535ee40",
+        "metadata_address": "0x560c818",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90228760,
+          "Value": "GoogleId"
+        }
+      },
+      {
+        "field": "byte_array_prefix",
+        "got": "0x53ef970",
+        "metadata_address": "0x5604fc0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90197952,
+          "Value": "ByteArrayKeyValue"
+        }
+      }
+    ]
+  },
+  "differential_native_methods": [
+    {
+      "rva": "0x337e714",
+      "name": "Royal.Player.Context.Data.SyncManager$$UpdateDataFromLocalStorage",
+      "body_sha256": "a79a3b854a19eb17489a1c3387506edc8f64276126750364dc0452382c6c01fd"
+    },
+    {
+      "rva": "0x337ed84",
+      "name": "Royal.Player.Context.Data.UserId$$FillFromLocal",
+      "body_sha256": "c10e47b7ac5602699ae21cc35cc1db08144a39e0dcbf81e693f2481e7a0148a2"
+    },
+    {
+      "rva": "0x337f0c8",
+      "name": "Royal.Player.Context.Data.SyncManager$$InitFeature2Progress",
+      "body_sha256": "6e61c9e5efd5f36c28531053fbc34ee4a2eb87436bf03f03ced4c6725d734a55"
+    },
+    {
+      "rva": "0x337f124",
+      "name": "Royal.Player.Context.Data.SyncManager$$InitRoyalPassProgress",
+      "body_sha256": "6a2231b1fb7b9de8ad639bd4ac906834b91332a1dd6a187f73a48546fe532c55"
+    },
+    {
+      "rva": "0x30d2110",
+      "name": "Royal.Player.Context.Data.Persistent.RoyalPassProgress$$.ctor",
+      "body_sha256": "e379a30ac34314e80bef8573e651f465a0682b1e4d1658c7010e0677d501606a"
+    },
+    {
+      "rva": "0x28dc430",
+      "name": "Royal.Player.Context.Data.Persistent.TeamOfferProgress$$.ctor",
+      "body_sha256": "8006c9c0b30dfdbfb715128565fc28c65cd2258598ddababf5f4e6b9e3cf419b"
+    },
+    {
+      "rva": "0x30cc1e0",
+      "name": "Royal.Player.Context.Data.Persistent.PinataProgress$$GetDefaultPinata",
+      "body_sha256": "4201fb5eeb0aa9f137ba612e45e7fb3c9d7fd6dc2629bee24a97226d4f9e0d47"
+    },
+    {
+      "rva": "0x28e55b8",
+      "name": "Royal.Player.Context.Data.Persistent.UserInventory$$InitEventInventory",
+      "body_sha256": "7ce70e37fb009abc304ea95a07513f305143b16b39fe00d45c10f5ef894d3284"
+    },
+    {
+      "rva": "0x28ea480",
+      "name": "Royal.Player.Context.Data.Persistent.UserInventory$$InitUnlimitedInGameBoosterInventory",
+      "body_sha256": "05505c92dc163b0cbd86bb6a3746093c03188ec86a446683d3e057e2b22e5338"
+    },
+    {
+      "rva": "0x2d7b268",
+      "name": "Royal.Infrastructure.Utils.Math.BitArrayOperations$$ToBitArray",
+      "body_sha256": "cad05f2a0c13548350193993bf8bff1da97d7bb88a4486fc1189d1d2107b1386"
+    },
+    {
+      "rva": "0x2d7b2d0",
+      "name": "Royal.Infrastructure.Utils.Math.BitArrayOperations$$ToSByteArray",
+      "body_sha256": "d568897e3de9b6ab7a3e68da16861268037e1ce9358a594a0528bf32b351d711"
+    },
+    {
+      "rva": "0x2d7b3bc",
+      "name": "Royal.Infrastructure.Utils.Math.BitArrayOperations$$ToBitArray",
+      "body_sha256": "8a21d42c39039d0f099caff3aaa1efabbdb47b7e1a4fe6d6eb4f8cf1bb30a83b"
+    },
+    {
+      "rva": "0x2d7b1dc",
+      "name": "Royal.Infrastructure.Utils.Math.BitArrayOperations$$UpdateBitArray",
+      "body_sha256": "ae40b7309fef968ed6896513a72b696d8dccc190246e2441473916a827c02a68"
+    }
+  ],
+  "native_tests": [
+    {
+      "path": "local_account_load_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 900,
+        "scope": "Execute native SyncManager local loading and identity/packed-progress decoding.\n\nUserKeyValue reads/BCL parsing, wall clock, home-area parsing and unlimited-booster\nstring-to-BitArray are typed boundaries. Native field/default/write ordering,\ncaptured references, null/partial failure, Pinata/Madness defaults, RoyalPass and\nTeamOffer decoding execute from the ELF. Diagnostic formatting is skipped. SQL\nreload/booster parsing are checked separately. Production startup/mobile, home\narea contents and complete feature ownership are not proved by this kernel test.",
+        "original_rvas": [
+          "0x337e714",
+          "0x337ed84",
+          "0x337f0c8",
+          "0x337f124",
+          "0x30d2110",
+          "0x28dc430",
+          "0x30cc1e0",
+          "0x28e55b8"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/LocalAccountLoadHarness.cs",
+            "sha256": "ee067c96c27be0c9ebc7e043a592572b8672264493a0d0a5c76bf51e4feebec0"
+          },
+          {
+            "path": "SourceCatalog/AccountKernelHarness.cs",
+            "sha256": "54eb9beca8cadcd8b4254e827a9e6610ac5a7430dfba813ea4a2e654e8304238"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+            "sha256": "6e5847395641c36a54634e099e09c88370db88a546ef2cef69c93e2eeb77d496"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+            "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+            "sha256": "060bcc6fd74937b63449baa097985bc303fbb3a334e091b018034d7e2405f3ea"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+            "sha256": "e5a0cd8a5ea3c1d2f37bf48fd68fecc864909521479a7c710702a0c9d291cee8"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalActiveLevelData.cs",
+            "sha256": "99073681633b6c4aed4fc58ff70814a2b461b4829f6ee9e78aaafd27d0546863"
+          }
+        ]
+      }
+    },
+    {
+      "path": "local_booster_inventory_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 420,
+        "scope": "Compare native unlimited-booster string/BitArray restoration.\n\nActual native initialization, signed-byte array construction, length selection\nand bit update loops execute. Storage/key serialization, BCL Split/TryParse,\nallocation and BitArray constructors/setters are typed boundaries. This does\nnot restore booster use timers or prove production/mobile account composition.",
+        "original_rvas": [
+          "0x28ea480",
+          "0x2d7b268",
+          "0x2d7b2d0",
+          "0x2d7b3bc",
+          "0x2d7b1dc"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/LocalBoosterInventoryHarness.cs",
+            "sha256": "8c1907f99fdf19b2f72fbfa94d1b4203b1d230eb53a2dd1e62ad1988be897014"
+          },
+          {
+            "path": "SourceCatalog/AccountKernelHarness.cs",
+            "sha256": "54eb9beca8cadcd8b4254e827a9e6610ac5a7430dfba813ea4a2e654e8304238"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+            "sha256": "6e5847395641c36a54634e099e09c88370db88a546ef2cef69c93e2eeb77d496"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+            "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+            "sha256": "060bcc6fd74937b63449baa097985bc303fbb3a334e091b018034d7e2405f3ea"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+            "sha256": "e5a0cd8a5ea3c1d2f37bf48fd68fecc864909521479a7c710702a0c9d291cee8"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalActiveLevelData.cs",
+            "sha256": "99073681633b6c4aed4fc58ff70814a2b461b4829f6ee9e78aaafd27d0546863"
+          }
+        ]
+      }
+    },
+    {
+      "path": "account_kernels_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 1500,
+        "scope": "Execute native BasicUserData progression and UserInventory balance/packing code.\n\nReal native level/league updates, arithmetic, clamping, delegates and Madness\npacking execute. UserKeyValue storage writes, feature gates, leaderboard/mission,\nanalytics, side-progression/story helpers are explicit typed boundaries. Native\ndiagnostic formatting is skipped. This does not prove database loading, real\nsave files, event providers or production account startup composition.",
+        "original_rvas": [
+          "0x2f82d54",
+          "0x2f825d4",
+          "0x2f827f8",
+          "0x28e4db0",
+          "0x28e4bd8",
+          "0x28e4f3c",
+          "0x28e5320",
+          "0x28e5354",
+          "0x28e5390",
+          "0x28e55b8",
+          "0x2f9645c",
+          "0x2f96544",
+          "0x2f965e0"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/AccountKernelHarness.cs",
+            "sha256": "54eb9beca8cadcd8b4254e827a9e6610ac5a7430dfba813ea4a2e654e8304238"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+            "sha256": "060bcc6fd74937b63449baa097985bc303fbb3a334e091b018034d7e2405f3ea"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+            "sha256": "e5a0cd8a5ea3c1d2f37bf48fd68fecc864909521479a7c710702a0c9d291cee8"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalActiveLevelData.cs",
+            "sha256": "99073681633b6c4aed4fc58ff70814a2b461b4829f6ee9e78aaafd27d0546863"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+            "sha256": "6e5847395641c36a54634e099e09c88370db88a546ef2cef69c93e2eeb77d496"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+            "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+          }
+        ]
+      }
+    },
+    {
+      "path": "user_end_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 1800,
+        "scope": "Compare native UserManager.LevelEnd/RemainingMovesEnd and LevelManager tail.\n\nActual native BasicUserData progression and UserInventory balance/packing methods\nrun inside the full dispatch. Feature/event aggregation, database writes, restore\nfile deletion, analytics/backend, milestone package and Madness validity are typed\nboundaries. Session data loading and full event helper implementations are outside\nscope. Diagnostic formatting is skipped; production persistence/UI is not proved.",
+        "original_rvas": [
+          "0x2aec860",
+          "0x2aeeb3c",
+          "0x1e1c1f8",
+          "0x2f82d54",
+          "0x28e4f3c",
+          "0x28e4bd8",
+          "0x28e5320",
+          "0x28e5354"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/AccountKernelHarness.cs",
+            "sha256": "54eb9beca8cadcd8b4254e827a9e6610ac5a7430dfba813ea4a2e654e8304238"
+          },
+          {
+            "path": "SourceCatalog/UserEndHarness.cs",
+            "sha256": "d453a5c5ead2fd1131cbeb9f75df5e6147851f56b681ac863c64ed3c5e40e0c3"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+            "sha256": "060bcc6fd74937b63449baa097985bc303fbb3a334e091b018034d7e2405f3ea"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+            "sha256": "e5a0cd8a5ea3c1d2f37bf48fd68fecc864909521479a7c710702a0c9d291cee8"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalUserLevelEnd.cs",
+            "sha256": "8cb4cb468bc1a78a912d546b7488c084640faa4212d936eaf48e4d275b1da1a4"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalLevelEnd.cs",
+            "sha256": "9d080c7a2ae48351fa7e3294f86a75a9e4ec1e629ce26d39d739dd8230ae6c9b"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalActiveLevelData.cs",
+            "sha256": "99073681633b6c4aed4fc58ff70814a2b461b4829f6ee9e78aaafd27d0546863"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalSessionValues.cs",
+            "sha256": "607fdf145a1cc7bba00669cef86f048083a78a47cc81eb17b64d9528da1203c0"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+            "sha256": "6e5847395641c36a54634e099e09c88370db88a546ef2cef69c93e2eeb77d496"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+            "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+          }
+        ]
+      }
+    }
+  ],
+  "same_snapshot_runtime_tests": [
+    {
+      "path": "background_remaining_coins_normal_verification.json",
+      "report": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "e0753ee8bbd130df9aa86fbcc9bd732c5101d36adf8be4322ae30779f72f6aed",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+        "elapsed_seconds": 108.97,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-normal",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T19:45:31.0493146Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "live_path": "live_remaining_coins_normal_verification.json",
+      "live": {
+        "passed": true,
+        "skipped": false,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "account_native_reload_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-b7c2a102330048608bc957a673a5ad15.sqlite",
+        "initial_remaining_moves": 24,
+        "converted_moves": 24,
+        "unconverted_moves": 0,
+        "reward_coins": 79,
+        "collections": 27,
+        "peak_coin_views": 66,
+        "peak_pilots": 69,
+        "peak_operation5": 66,
+        "native_departure_count": 69,
+        "active_board_coin_value_at_end": 0,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 2079,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "account_initial_coin": 2000,
+        "account_area_load_calls": 2,
+        "elapsed": 12.992595672607422,
+        "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      },
+      "independent_read_only_sqlite_check": true,
+      "database_sha256": "a5db9c0b492be67ac3468a5f5606debe3dac944b125364ee0a7dcc989f35518c",
+      "persisted_core_keys": {
+        "Coins": "2079",
+        "HardLevelBackgroundIndex": "0",
+        "Level": "2",
+        "LevelTryCount": "0",
+        "Stars": "1"
+      }
+    },
+    {
+      "path": "background_remaining_coins_skip_verification.json",
+      "report": {
+        "passed": true,
+        "test": "remaining-coins-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "e0753ee8bbd130df9aa86fbcc9bd732c5101d36adf8be4322ae30779f72f6aed",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-skip.log",
+        "elapsed_seconds": 100.62,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T19:47:10.8359175Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "live_path": "live_remaining_coins_skip_verification.json",
+      "live": {
+        "passed": true,
+        "skipped": true,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "account_native_reload_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-0689d8bef5cd4389bbb5fdd4982fd805.sqlite",
+        "initial_remaining_moves": 24,
+        "converted_moves": 24,
+        "unconverted_moves": 0,
+        "reward_coins": 71,
+        "collections": 1,
+        "peak_coin_views": 3,
+        "peak_pilots": 3,
+        "peak_operation5": 3,
+        "native_departure_count": 3,
+        "active_board_coin_value_at_end": 58,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 2071,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "account_initial_coin": 2000,
+        "account_area_load_calls": 2,
+        "elapsed": 9.028036117553711,
+        "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      },
+      "independent_read_only_sqlite_check": true,
+      "database_sha256": "0e2ce40943b892b16393028238b258e9e2fb8e74be0d6fda89cce72d81dc6dcd",
+      "persisted_core_keys": {
+        "Coins": "2071",
+        "HardLevelBackgroundIndex": "0",
+        "Level": "2",
+        "LevelTryCount": "0",
+        "Stars": "1"
+      }
+    },
+    {
+      "path": "background_remaining_coins_early_skip_verification.json",
+      "report": {
+        "passed": true,
+        "test": "remaining-coins-early-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "e0753ee8bbd130df9aa86fbcc9bd732c5101d36adf8be4322ae30779f72f6aed",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+        "elapsed_seconds": 108.79,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-early-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T19:49:00.6085745Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "live_path": "live_remaining_coins_early_skip_verification.json",
+      "live": {
+        "passed": true,
+        "skipped": true,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "account_native_reload_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-95ba4b8d066d4b8db4af882dc8f131b9.sqlite",
+        "initial_remaining_moves": 24,
+        "converted_moves": 2,
+        "unconverted_moves": 22,
+        "reward_coins": 73,
+        "collections": 0,
+        "peak_coin_views": 0,
+        "peak_pilots": 0,
+        "peak_operation5": 0,
+        "native_departure_count": 0,
+        "active_board_coin_value_at_end": 8,
+        "unconverted_move_coin_value": 55,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 2073,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "account_initial_coin": 2000,
+        "account_area_load_calls": 2,
+        "elapsed": 6.507890701293945,
+        "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      },
+      "independent_read_only_sqlite_check": true,
+      "database_sha256": "c9308d6f38cc65210122da737d1e540052bf2b9c7043615c5b5e208135b889dd",
+      "persisted_core_keys": {
+        "Coins": "2073",
+        "HardLevelBackgroundIndex": "0",
+        "Level": "2",
+        "LevelTryCount": "0",
+        "Stars": "1"
+      }
+    }
+  ],
+  "facts": [
+    "Native default level1, coins2000, stars0; absent default values are not persisted by direct field loading.",
+    "UserData is read through GetInt and sign-extended, despite its long field and long writer.",
+    "Clock is evaluated before reading FullLivesTimeInMs, even if storage contains a value.",
+    "Field targets are captured before getters. Callbacks replacing Basic/Inventory retain native partial-write/reference behavior.",
+    "Loading uses direct field restoration without balance update events, mission progress or reward grants.",
+    "Unlimited boosters use signed decimal byte segments separated by U+00A7, preserve at least192bits and treat failed SByte parses as zero."
+  ],
+  "limits": [
+    "Home-area parse/ownership, wall-clock backend synchronization and other application registration remain required external owners; scene checks use explicit clock/area/feature/backend fixtures.",
+    "This restores the local data loader, not the complete application/UserContext startup or its order relative to scene/level initialization.",
+    "Android/iOS SQLite transports, production path/service/database composition, all tables/migrations/corruption/level-save restore remain incomplete.",
+    "Actual feature/event/backend/King/Life/Ego/reactivation owners and complete win/loss/settlement/continue/retry/home UI remain incomplete.",
+    "Physical/original-rendered/cross-platform/all-level/country/AB/GM parity is unproved; SDK behavior is unchanged."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+      "sha256": "6e5847395641c36a54634e099e09c88370db88a546ef2cef69c93e2eeb77d496"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs.meta",
+      "sha256": "5ec75440c579fc62b88daffe54e94f5a3d7d71a6a9e779f0a368bc29afc715cd"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+      "sha256": "060bcc6fd74937b63449baa097985bc303fbb3a334e091b018034d7e2405f3ea"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+      "sha256": "e5a0cd8a5ea3c1d2f37bf48fd68fecc864909521479a7c710702a0c9d291cee8"
+    },
+    {
+      "path": "Assets/Foundation/Editor/UserEndFixtureContext.cs",
+      "sha256": "2497b63e79aa4e94e4e0c3145ca4f457b327bb4ee5bbba3b95abd215eef64d11"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "5c555c43ef06680d86e8fce9faa38891b73a8595a747310e259d8c22cab76346"
+    },
+    {
+      "path": "SourceCatalog/LocalAccountLoadHarness.cs",
+      "sha256": "ee067c96c27be0c9ebc7e043a592572b8672264493a0d0a5c76bf51e4feebec0"
+    },
+    {
+      "path": "SourceCatalog/verify_local_account_load.py",
+      "sha256": "740e6c0399b2e35843a7b49a16fcae90f29a1e33c7a1f537255190d5b8ace7de"
+    },
+    {
+      "path": "SourceCatalog/LocalBoosterInventoryHarness.cs",
+      "sha256": "8c1907f99fdf19b2f72fbfa94d1b4203b1d230eb53a2dd1e62ad1988be897014"
+    },
+    {
+      "path": "SourceCatalog/verify_local_booster_inventory.py",
+      "sha256": "14974b46c7539fc0e4a0718a7ce857bdfd7f83b5eab4d80c090ec63cf52c37df"
+    },
+    {
+      "path": "SourceCatalog/verify_account_kernels.py",
+      "sha256": "c97ea625632d3a47917c0c9a889c0a97c82e5c979811d0457460017b24d0c49b"
+    },
+    {
+      "path": "SourceCatalog/verify_user_end.py",
+      "sha256": "2ca3ca2e58b96b97df6ed05e1dc9f55dfb2f0a9efbc7f49b1326162afa67ab78"
+    },
+    {
+      "path": "SourceCatalog/local_account_load_native_keys.json",
+      "sha256": "be19ae9b8614d89117755e4071b5a384b591cd90130430907fe6b4662350fc41"
+    }
+  ],
+  "historical_snapshot_preserved": true,
+  "current_native_storage_composition_evidence": "SourceCatalog/native_storage_composition_evidence.json",
+  "current_area_data_evidence": "SourceCatalog/area_data_evidence.json",
+  "current_area_data_source_snapshot_sha256": "8fbbab70a4b5bc904fc94ed612d60e629d2ebd3d99a096e0017968b1b40bd1f7"
+}

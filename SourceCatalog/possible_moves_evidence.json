@@ -1,0 +1,283 @@
+{
+  "full_objective_complete": false,
+  "production_application_account_win_fail_bound": false,
+  "production_game_manager_start_restore_bound": false,
+  "runtime_possible_move_finder_and_initial_retry_restored": true,
+  "formal_first_board_finder_and_initial_check_owned": true,
+  "entry_fixture_consults_real_formal_board_checker": true,
+  "full_shuffle_animation_events_lifecycle_restored": false,
+  "created_count_clear_restore_restored": false,
+  "actual_home_scene_navigation_or_view_verified": false,
+  "original_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "f23eef56f3dc4694bbe871ae4109995105f180b5c2dfe04102241392a33c3975",
+  "restored_scope": [
+    "Restore the distinct Shuffle.PossibleMatch value: required cell, minimum neighbor count, contains-special flag, four directional candidates, native direction selection and validity/count semantics. This is separate from existing match-group candidate data.",
+    "PossibleMatchFinder now executes original full board traversal, item virtual capability tests, cell eligibility, lightball/adjacent-special branches, normal-color directional searches, required destination selection and relative chain exclusions. Native0/1/2 outcomes distinguish no move, only-lightball move and a normal possible move.",
+    "Initialization ShouldTryAgain clears onlyLightballExists before its by-value iterator search, requests retry for no move or only-lightball, sets that private flag only for result1, and queries actual IsThereAnyMatch(false) only for result2. It does not substitute the separately published HasOnlyLightballMove flag or restore runtime shuffle animations/events.",
+    "The real first-board owner now holds the finder, native non-portal iterator1/current-board horizontal check and actual match search. Cell/static/incoming eligibility reads existing model mediators; model IsSwappable is used without requiring views or animation readiness. The ordinary fixed first-level startup retains its original no-randomization behavior.",
+    "The entry integration supplies an explicit randomized parser flag and consults that SAME real formal-board checker through GameManager.CreateItems, accepting its real move/no-prematch result in one attempt. All other application/grid/event/restore ports retain their explicit fixture scope; this is not complete production startup.",
+    "Actual Unity models verify ordinary and dead layouts, only-lightball retry, adjacent-lightball combo acceptance, private flag reset, lateral versus axial chain filtering, clearing a real static mediator chain, and incoming roof rejection. The model search uses actual cells/neighbors/mediation, normal models, lightballs and core match search without creating views for synthetic layouts.",
+    "Recorded input regression after the checks retains10 accepted and1 rejected swaps,76 refills,2 specials and20 moves, with all72 slots/no holes/freeze/landing checks. It is not physical mouse/touch timing proof."
+  ],
+  "native_verification": {
+    "passed": true,
+    "cases": 12226,
+    "scope": "Execute actual ARM64 PossibleMatch struct/finder and initialization retry decision.\n\nCell mediation, current item virtual capabilities, cell/static/incoming\neligibility, neighbor access, native metadata and match-existence query are\nsupplied ports. Original full finder loops, relative chain rules, required\ncell/neighbor result, struct validation, by-value iterator reset and the\n0/1/2 retry/lightball decision execute from ELF. This is not all runtime\nshuffle animation/event/lifecycle behavior or full production startup proof.",
+    "original_rvas": [
+      "0x1ee5b88",
+      "0x1ee5bd4",
+      "0x1ee5c34",
+      "0x1ee5c64",
+      "0x1ee5e98",
+      "0x1ee5f94",
+      "0x1ee6068",
+      "0x1ee6c20"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/PossibleMoveHarness.cs",
+        "sha256": "b5f096ee54330dda953b82a6fe4bc2e4222865c58d6e4f4503ed63fcfd15e9be"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalPossibleMoveFinder.cs",
+        "sha256": "cc99d4fa1d4520424e425723f4026e64eabac61d3cfce2e08ccb82e7bfdedc0e"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGridIterator.cs",
+        "sha256": "0b9e6deb38a95eb3fa389de27b391c84963959c444c49747f051d9f244896b60"
+      },
+      {
+        "path": "SourceCatalog/verify_possible_moves.py",
+        "sha256": "9cad49467274d8b9884cf906fd4abd0e8480785ae836f08bf3d3f63a1a8c8743"
+      }
+    ]
+  },
+  "original_methods": [
+    {
+      "rva": "0x1ee5b88",
+      "name": "Royal.Scenes.Game.Levels.Units.Shuffle.PossibleMatch$$SetSwappableNeighbor",
+      "body_sha256": "4c960f477304059f1bd648f90117edeac4b0825f057cd326ddbf08a9d9f34b29"
+    },
+    {
+      "rva": "0x1ee5bd4",
+      "name": "Royal.Scenes.Game.Levels.Units.Shuffle.PossibleMatch$$IsValid",
+      "body_sha256": "d3fa88919e8bd6d33c5ce6c2a6181c7f1c8e8e9219037a76a6ebebd299a7688c"
+    },
+    {
+      "rva": "0x1ee5c34",
+      "name": "Royal.Scenes.Game.Levels.Units.Shuffle.PossibleMatch$$GetSwappableNeighborsCount",
+      "body_sha256": "444e9aceebb9c713cec111acd9950af30d1cdfc3e33c93a9cb4856e9179518e2"
+    },
+    {
+      "rva": "0x1ee5c64",
+      "name": "Royal.Scenes.Game.Levels.Units.Shuffle.PossibleMatchFinder$$CheckBoard",
+      "body_sha256": "342717279191d987eec45055a10850981a09bcd8f5565c85525ad6b9d43cfecc"
+    },
+    {
+      "rva": "0x1ee5e98",
+      "name": "Royal.Scenes.Game.Levels.Units.Shuffle.PossibleMatchFinder$$HasAnySpecialItemAround",
+      "body_sha256": "59aba20fb539a9c65a7eaba746ece764b81785cdf71f3146626b8d4e283e6c4b"
+    },
+    {
+      "rva": "0x1ee5f94",
+      "name": "Royal.Scenes.Game.Levels.Units.Shuffle.PossibleMatchFinder$$CheckNeighborForPossibleMatches",
+      "body_sha256": "dbc7f070885d1c3f317ddc944aa7057879af5c5fe2cf7d0c94c65da37cfd20f7"
+    },
+    {
+      "rva": "0x1ee6068",
+      "name": "Royal.Scenes.Game.Levels.Units.Shuffle.PossibleMatchFinder$$CheckNeighborsForMatchType",
+      "body_sha256": "a6d768d998464d52bcfdb09f44124f6227de52c7f2c2be7416a16d165c2c6e52"
+    },
+    {
+      "rva": "0x1ee6c20",
+      "name": "Royal.Scenes.Game.Levels.Units.Shuffle.ShuffleManager$$ShouldTryAgain",
+      "body_sha256": "8d02384bee975e66d639134247a111ac421d01f398a6322bcc5c15080a047d80"
+    },
+    {
+      "rva": "0x318ec68",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$CanEnterPossibleMatch",
+      "body_sha256": "066c7b3fe3b3ab2c9efc747ebc9e279ab9bf668fa50c6762a31bfd006eac3002"
+    },
+    {
+      "rva": "0x319dcb0",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$CanEnterPossibleMatchAcceptingChain",
+      "body_sha256": "923fd621ff4596aa6a448fd364915ac9789f85581c8749ca9e35f689105798e0"
+    },
+    {
+      "rva": "0x319cd50",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$HasSpecialItem",
+      "body_sha256": "8317628daf6f0d05c0c6e6da6027c800a7f3acea7dce6fc9be2093fcbf50c2c9"
+    },
+    {
+      "rva": "0x319571c",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.CellNeighborType$$OppositeNeighbor",
+      "body_sha256": "301829503afa4f2d30aafff0c43d244ff39cd9ef8ae44122a66068729bf03d2f"
+    },
+    {
+      "rva": "0x1ee671c",
+      "name": "Royal.Scenes.Game.Levels.Units.Shuffle.ShuffleManager$$OnCellGridInitialized",
+      "body_sha256": "fbc1460864bcd93c4e28465542e76f4fccf9034335a5799d68120c20ca10ea08"
+    }
+  ],
+  "background_verification": {
+    "passed": true,
+    "test": "possible-moves",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "f23eef56f3dc4694bbe871ae4109995105f180b5c2dfe04102241392a33c3975",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_possible-moves.log",
+    "elapsed_seconds": 109.96,
+    "batch": {
+      "passed": true,
+      "test": "possible-moves",
+      "failure": "",
+      "timestamp_utc": "2026-10-29T01:31:36.7513291Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "actual_unity_models": {
+    "passed": true,
+    "formal_board_verified": true,
+    "dead_board_verified": true,
+    "movable_board_verified": true,
+    "lightball_and_combo_verified": true,
+    "chain_and_incoming_verified": true,
+    "failure": "",
+    "scope": "Real formal first-board finder/match owners plus explicit small model layouts using actual core models, lightballs, cells, mediation, neighbors, static chain and incoming roof state. No item views are required for the model-only search. This does not verify full runtime shuffle animations/events, all static/item types, production account/factories or mobile execution."
+  },
+  "entry_and_storage_integration": {
+    "passed": true,
+    "actual_session_start_verified": true,
+    "fresh_move_goal_models_verified": true,
+    "restore_move_goal_models_verified": true,
+    "restore_preserves_session_verified": true,
+    "sqlite_reopen_verified": true,
+    "formal_initial_models_verified": true,
+    "real_initial_shuffle_verified": true,
+    "fresh_left_moves": 30,
+    "restored_left_moves": 19,
+    "restored_made_moves": 11,
+    "restored_box_goal": 7,
+    "level_try_count": 1,
+    "formal_models": 72,
+    "formal_boxes": 36,
+    "failure": "",
+    "trace": [
+      "team",
+      "prepare-fresh",
+      "cells",
+      "static",
+      "views-fresh",
+      "before",
+      "prepare-saved",
+      "cells",
+      "static",
+      "counts-update",
+      "views-saved",
+      "after"
+    ],
+    "scope": "Formal72 initial models/cells/prefab views now use the runtime population kernel and real mediation. Separate entry fixture uses real active-session Start, fresh/saved goal/move models,86-bit getters, shared exit flag, Stopwatch and SQLite attempt/reopen. Entry fixture application/feature/lives/context/grid/tutorial/save/restore/sorting/analytics remain explicit boundaries; this is not full production startup, all-item/static/restore implementations, original-rendered parity or mobile proof."
+  },
+  "player_input_regression": {
+    "passed": true,
+    "physical_drag_verified": false,
+    "tnt_activated": false,
+    "lightball_activated": false,
+    "rocket_activated": false,
+    "propeller_activated": false,
+    "propeller_flight": 0.0,
+    "propeller_trace": [],
+    "propeller_max_scale": 0.0,
+    "blocked_original_box_holes": 0,
+    "propeller_max_loop": 0,
+    "propeller_takeoff_instances": 0,
+    "propeller_hit_instances": 0,
+    "propeller_max_operations": 0,
+    "rocket_orientation": 0,
+    "rocket_max_operations": 0,
+    "rocket_first_flight": 0.0,
+    "rocket_second_flight": 0.0,
+    "sent_rays": 0,
+    "reached_rays": 0,
+    "completed_rays": 0,
+    "completed_lightball_activations": 0,
+    "rocket_created": true,
+    "tnt_created": false,
+    "lightball_created": false,
+    "propeller_created": true,
+    "failure": "",
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "left_moves": 20,
+    "goals_left": 23,
+    "created_refills": 76,
+    "created_specials": 2,
+    "scope": "Frame-separated recorded device samples through native GameTouchListener into formal production scene services. Checks invalid swap spends0, accepted swaps spend1, first triple/three box goals/six refills, 10accepted swaps and naturally observed special creation patterns (each requested type also has its own activation mode), automatic cascades, original creation coroutines and all72 model slots/no holes/no freeze/landing tolerance. Fails on runtime errors/exceptions. Shadow native match search only chooses gestures and never mutates live cells. Does not verify physical drag timing, special activation/combos, complete session startup, settlement or original rendered parity."
+  },
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "7a6433c5d7aee974a1afb2a763d8ff8b66264b11f721bc791bedfd2456dd4560"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GameStartVerification.cs",
+      "sha256": "9d4c73e78d2a9c62def81e2ae23c624e5f07eb22bbb67dd51d185802ddcb1cc4"
+    },
+    {
+      "path": "Assets/Foundation/Editor/PossibleMoveVerification.cs",
+      "sha256": "d91e73006686570728f2e4ea6f7de545a49ed1385f70779c28e3491785fa8d1f"
+    },
+    {
+      "path": "Assets/Foundation/Editor/PossibleMoveVerification.cs.meta",
+      "sha256": "678bcc43844ee0eebf2a07e553275e04cbcf35ca7ed180790956855dd6ad2bc2"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoardPossibleMoveServices.cs",
+      "sha256": "aebf280c7e5a6dfc0bec8657637c36018709ae5324974cee7fcc1a726e0e63e3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoardPossibleMoveServices.cs.meta",
+      "sha256": "6e3cb2db71986553c23bccd5036c2f300ba4b4806650471804c72f10709ea982"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGridIterator.cs",
+      "sha256": "0b9e6deb38a95eb3fa389de27b391c84963959c444c49747f051d9f244896b60"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "625da962e710469bb555c29baed3607a11d8817afd65d578c7f7f589577a62dd"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPossibleMoveFinder.cs",
+      "sha256": "cc99d4fa1d4520424e425723f4026e64eabac61d3cfce2e08ccb82e7bfdedc0e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPossibleMoveFinder.cs.meta",
+      "sha256": "e2afc9a242fafc80ce023eb9763c26d04bebf84b436628b3603cb5425803b640"
+    },
+    {
+      "path": "SourceCatalog/PossibleMoveHarness.cs",
+      "sha256": "b5f096ee54330dda953b82a6fe4bc2e4222865c58d6e4f4503ed63fcfd15e9be"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "8bf5206de3e884d168139d57b427d01278e123398116c2191b4a4721a250325e"
+    },
+    {
+      "path": "SourceCatalog/verify_possible_moves.py",
+      "sha256": "9cad49467274d8b9884cf906fd4abd0e8480785ae836f08bf3d3f63a1a8c8743"
+    }
+  ],
+  "remaining_gaps": [
+    "Production Application/UserContext/account/WinFail/GameManager entry composition and112-slot factories remain absent. Explicit fixture owners are not production services. The fixed first-board gameplay composition continues to run.",
+    "Generation-count clear/restore owners, complete parser/randomization/saved-level data, all static/initial/filling item factories and full before/after restore behavior remain required. Native count-method analysis was performed, but those methods are not restored in this change.",
+    "Runtime no-move detection/publication, shuffle/recolor animations, hint/navigation/UI event flow and portal/other-board lifecycle are still required. This restores the finder and initialization retry decision, not all ShuffleManager behavior.",
+    "Home/retry/next-level navigation, every level/event/visual/audio branch, country/AB/GM/default US routing and Android/iOS execution remain unproven. SDK behavior stays unchanged; the earlier Android SQLite question remains unanswered and no libsqlite3.so is added."
+  ],
+  "performance": "Search retains native value structs and iterators, uses existing neighbor arrays/model references and allocates no LINQ/collections in its loops. No per-frame polling or resource preloading is added. Small synthetic model layouts exist only in explicit Editor verification; no view/asset loads are required for them. Hidden incremental Unity verification uses the existing independent cache.",
+  "current_generated_counts_evidence": "SourceCatalog/generated_counts_evidence.json",
+  "current_generated_counts_source_snapshot_sha256": "486e64b0a987d902779db5b557aa56714f48871c99f5a89012c7023e9a071fb7"
+}

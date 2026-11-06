@@ -1,0 +1,545 @@
+{
+  "timestamp_utc": "2026-11-02T10:57:36.957692+00:00",
+  "baseline_commit": "f8b28ad7f64b4482d6ec3c80bc826686e96f7b94",
+  "source_snapshot_sha256": "5ef334cb9f75b78f117a4c9e35bcbc731d1622ce4b4e641691b487cf793691d3",
+  "full_current_scope_complete": false,
+  "all100_levels_playable": false,
+  "current_user_scope": "Original ordinary levels1–100, core gameplay only; no peripheral systems. Latest user scope supersedes historical whole-lifecycle/region-AB/GM work.",
+  "actual_production_flow": {
+    "passed": true,
+    "production_win_remaining_result_bound": true,
+    "actual_next_level_loaded": true,
+    "production_zero_move_failure_bound": true,
+    "actual_retry_reloaded_same_level": true,
+    "cap100_and_restart_verified": true,
+    "core_booster_inventory_purchase_ui_absent": true,
+    "original_level3_two_layer_boxes_bound": true,
+    "win_left_moves": 24,
+    "win_remaining_reward": 76,
+    "failure": "",
+    "scope": "Actual GameScene/CoreGameFlow owners run without Editor runtime substitutions or account/event fixture services. Existing explicit TNT/rocket board setup and recorded gestures stimulate real goal collection; this is not a natural full-level player solve. Real WinFail16/session Win/check gate/remaining moves/dialog flow commit core-only SQLite progress; a standard EventSystem raycast and Button click load original level2. Native MoveManager zero-budget stimulus verifies actual failure/retry and real scene reload, not27 physical turns. Separate private progress verifies the100 cap/restart. Remaining first100 obstacles, full natural playthroughs, no-moves shuffle, complete King animation queue/mixing, full original visual/audio/mobile parity remain pending."
+  },
+  "catalog_and_scene_checks": {
+    "catalog": {
+      "passed": true,
+      "rejects_0_and_101": true,
+      "formal_first_level_uses_catalog": true,
+      "actual_resource_levels_loaded": 100,
+      "raw_cell_definitions_loaded": 8043,
+      "failure": "",
+      "scope": "The actual configured ScriptableObject catalog loads each of the original100 ordinary levels through the production Resources/JSON reader. Out-of-range requests0/101 are rejected before loading; the actual formal entry uses the same catalog. This verifies resource/configuration availability, not100 playable levels. Core entry opens no account/area storage and uses configured presentation snapshots. The separate core-flow scenario checks actual end/retry/next-level owners and absence of peripheral UI. Remaining obstacle/static composition, complete natural playthroughs, original visual/audio/mobile parity remain pending."
+    },
+    "scene": {
+      "passed": true,
+      "normal_scene_and_72_models_verified": true,
+      "original_top_background_verified": true,
+      "original_king_rig_and_atlas_verified": true,
+      "king_vertices": 580,
+      "king_viewport_center": {
+        "x": 0.49988463521003723,
+        "y": 0.9043768644332886,
+        "z": 10.0
+      },
+      "original_bottom_locked_presentation_verified": false,
+      "core_bottom_frame_without_inventory_verified": true,
+      "failure": "",
+      "scope": "Normal core GameScene includes the playable first board and original camera/top/King rig. Peripheral bottom/inventory/purchase UI owners are absent per current scope. This initial-scene check does not establish100 playable levels, full KingUi queue/mixing, complete natural core playthroughs, original rendered parity or mobile fidelity; core-flow separately verifies actual end/reload owners."
+    }
+  },
+  "canonical_background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-flow",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "5ef334cb9f75b78f117a4c9e35bcbc731d1622ce4b4e641691b487cf793691d3",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-flow.log",
+    "elapsed_seconds": 433.88,
+    "batch": {
+      "passed": true,
+      "test": "core-flow",
+      "failure": "",
+      "timestamp_utc": "2026-11-02T10:51:20.8722895Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "progress_storage": "Configured CoreLevels file under the actual native application-data path; native SQLite KeyValue/typed transaction service; Level and core-completion only, plus original attempt/background reset keys. No Coins/Stars/Area storage.",
+  "excluded_systems": "No account/area/economy/lives/paid extra moves/event/cloche/league/regionAB/GM owners; original session and remaining flows use explicit product exclusion policy. Existing SDK facade processing unchanged.",
+  "native_failure_goal_sources": "SourceCatalog/core_fail_goal_native.json",
+  "preserved_sources_and_migration": "SourceCatalog/core_flow_preflight.json",
+  "authoring_and_import_chain": [
+    "core_ui_authoring.json",
+    "SourceCatalog/core_ui_import.json",
+    "SourceCatalog/core_ui_world_units.json",
+    "SourceCatalog/core_fail_goals_authoring.json"
+  ],
+  "unbound_historical_variant": "CoreBottomFrame was authored during migration but the final entry instantiates no OriginalBottomUi or inventory owner; this asset is not loaded at startup.",
+  "input_adaptation": "Visible standard Buttons and GraphicRaycasters replace original proprietary collider inputs per user rule; duplicate Continue/Retry pointer events cause only one reload. This is intentionally different input plumbing, not a native implementation parity claim.",
+  "skip_adaptation": "Core tap-to-skip exposes the visible text hit surface whenever interactive; no invisible whole-screen click target. Level1 native skip restriction remains.",
+  "performance": "Runtime instantiates configured dialog prefabs only at low-frequency flow changes; core progress saves a few scalar SQLite values at results. Large art/audio is loaded lazily through existing Resources paths, not serialized strong bulk references. Verification uses isolated incremental copies; diagnostic runs omit full hashes explicitly and cannot provide canonical proof.",
+  "verification_limitations": [
+    "Not all100 levels are playable: level4 static grass, other required obstacle/goal models and irregular cells still need composition and actual level validation.",
+    "The current core scenario uses controlled native TNT/rocket setup and recorded gesture samples; it is not a natural player solve. Failure uses a native MoveManager zero-budget stimulus, not27 physical turns.",
+    "The100 cap/restart is checked with a separate core progress file; this does not establish a full level100 board playthrough.",
+    "Dedicated no-possible-move handling remains incomplete; the core policy currently uses the failure/retry route.",
+    "Full original KingUi animation queues/mixing/reactions, dialog background ownership/cancellation, complete result/failure layout and audio timing are not verified1:1.",
+    "Physical device input, Android/iOS execution and original rendered/mobile parity remain unverified."
+  ],
+  "historical_failures": [
+    "Initial authoring attempted RectTransform addition to an ordinary Transform, fixed by authoring a real child Graphic.",
+    "The first canonical flow run failed a blocked-cavity assertion; preserved with exact source/log. Subsequent incremental runs and the final canonical scenario retain that assertion. This is not a claim of resolving every random/timing board case.",
+    "A retry assertion incorrectly required session state1; native ResetValues sets active state2, so the assertion was corrected. Failure SDF material and omitted goal slots were also repaired."
+  ],
+  "compiler_verification": {
+    "runtime_sources": 365,
+    "runtime_exit_code": 0,
+    "editor_sources": 64,
+    "editor_exit_code": 0
+  },
+  "owned_new_files": [
+    "Assets/Foundation/Editor/CoreFlowVerification.cs",
+    "Assets/Foundation/Editor/CoreFlowVerification.cs.meta",
+    "Assets/Foundation/Editor/CoreUiAuthoring.cs",
+    "Assets/Foundation/Editor/CoreUiAuthoring.cs.meta",
+    "Assets/Foundation/Editor/CoreUiSourcePaths.cs",
+    "Assets/Foundation/Editor/CoreUiSourcePaths.cs.meta",
+    "Assets/Foundation/Runtime/CoreDialogBackground.cs",
+    "Assets/Foundation/Runtime/CoreDialogBackground.cs.meta",
+    "Assets/Foundation/Runtime/CoreExcludedPeripheralSystems.cs",
+    "Assets/Foundation/Runtime/CoreExcludedPeripheralSystems.cs.meta",
+    "Assets/Foundation/Runtime/CoreFlowSettings.cs",
+    "Assets/Foundation/Runtime/CoreFlowSettings.cs.meta",
+    "Assets/Foundation/Runtime/CoreGameFlow.cs",
+    "Assets/Foundation/Runtime/CoreGameFlow.cs.meta",
+    "Assets/Foundation/Runtime/CoreLevelFailDialog.cs",
+    "Assets/Foundation/Runtime/CoreLevelFailDialog.cs.meta",
+    "Assets/Foundation/Runtime/CoreLevelProgress.cs",
+    "Assets/Foundation/Runtime/CoreLevelProgress.cs.meta",
+    "Assets/Foundation/Settings/CoreFlowSettings.asset",
+    "Assets/Foundation/Settings/CoreFlowSettings.asset.meta",
+    "Assets/Resources/Foundation/Prefabs/CoreBottomFrame.prefab",
+    "Assets/Resources/Foundation/Prefabs/CoreBottomFrame.prefab.meta",
+    "Assets/Resources/Foundation/Prefabs/CoreDialogBackground.prefab",
+    "Assets/Resources/Foundation/Prefabs/CoreDialogBackground.prefab.meta",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelFailDialog.prefab",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelFailDialog.prefab.meta",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelWinDialog.prefab",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelWinDialog.prefab.meta",
+    "Assets/Resources/Foundation/Prefabs/CoreTapToSkip.prefab",
+    "Assets/Resources/Foundation/Prefabs/CoreTapToSkip.prefab.meta",
+    "Assets/Resources/Foundation/Prefabs/CoreWinLogo.prefab",
+    "Assets/Resources/Foundation/Prefabs/CoreWinLogo.prefab.meta",
+    "SourceCatalog/core_fail_goal_native.json",
+    "SourceCatalog/core_fail_goals_authoring.json",
+    "SourceCatalog/core_flow_evidence.json",
+    "SourceCatalog/core_flow_preflight.json",
+    "SourceCatalog/core_flow_source_paths.json",
+    "SourceCatalog/core_flow_ui_sources.json",
+    "SourceCatalog/core_ui_import.json",
+    "SourceCatalog/core_ui_world_units.json",
+    "SourceCatalog/restore_core_fail_goals.py",
+    "SourceCatalog/verification_history/core_flow_before_scope_evidence/core_first100_evidence.json",
+    "SourceCatalog/verification_history/core_flow_before_scope_evidence/game_scene_evidence.json",
+    "SourceCatalog/verification_history/core_flow_blocked_cavity/background.json",
+    "SourceCatalog/verification_history/core_flow_blocked_cavity/batch.log",
+    "SourceCatalog/verification_history/core_flow_blocked_cavity/combo.json",
+    "SourceCatalog/verification_history/core_flow_blocked_cavity/core_verifier_before.cs.txt",
+    "SourceCatalog/verification_history/core_flow_blocked_cavity/verifier_before.cs.txt",
+    "SourceCatalog/verification_history/core_flow_final/batch.log",
+    "SourceCatalog/verification_history/core_flow_final/combo.json",
+    "SourceCatalog/verification_history/core_flow_final/goal_ui.json",
+    "SourceCatalog/verification_history/core_flow_incremental_pass/batch.log",
+    "SourceCatalog/verification_history/core_flow_incremental_pass/diagnostic.json",
+    "SourceCatalog/verification_history/core_flow_incremental_pass/live.json",
+    "SourceCatalog/verification_history/core_flow_retry_state/batch.log",
+    "SourceCatalog/verification_history/core_flow_retry_state/diagnostic.json",
+    "SourceCatalog/verification_history/core_flow_retry_state/fail.png",
+    "SourceCatalog/verification_history/core_flow_retry_state/fail_before.prefab.txt",
+    "SourceCatalog/verification_history/core_flow_retry_state/live.json",
+    "SourceCatalog/verification_history/core_ui_rect/author_before.cs.txt",
+    "SourceCatalog/verification_history/core_ui_rect/background.json",
+    "SourceCatalog/verification_history/core_ui_rect/batch.log",
+    "background_core_flow_verification.json",
+    "background_core_ui_author_verification.json",
+    "core_flow_fail.png",
+    "core_flow_level2.png",
+    "core_flow_level3.png",
+    "core_flow_retry.png",
+    "core_flow_win.png",
+    "core_ui_authoring.json",
+    "diagnostic_core_flow_verification.json",
+    "live_core_flow_verification.json"
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "1c6b1ab6c4b4a38c10f99112a9d4197fe44e55cc4be5b8805e62a6a032dbc8a1"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCatalogVerification.cs",
+      "sha256": "850342f6d1f093e8b1cca1c87389e6c8496716ac5799aa9a5d08beea9b1df6a4"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreFlowVerification.cs",
+      "sha256": "8424d832b5c1513ae387555942391880822f239b610fa8efd343351ee93ce9fc"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreFlowVerification.cs.meta",
+      "sha256": "8bc5345cbde031e94832501700d0b7c4f84baeea59099cb0df444b988aaae010"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreUiAuthoring.cs",
+      "sha256": "ca9e81a1ae21118c82822ca47d038e23172183590b75486dba0376d71654afeb"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreUiAuthoring.cs.meta",
+      "sha256": "c8c280f8a3e20e71ad9f70d4caa8fdb24e91b20492d245a3409dbc0d2f5ca8af"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreUiSourcePaths.cs",
+      "sha256": "f4d7ab5f31bb5afe1e69acc7b2581c77d09a3221e4503fa44d4313a2093bf504"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreUiSourcePaths.cs.meta",
+      "sha256": "694a77687d013922d1a93ca35d6a1f660725e502795f864c57cecfa92202ed70"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GameSceneVerification.cs",
+      "sha256": "312209ea40397f2e8845a97f12cae412dead96df5adf90b4b0579bacb7ee3e19"
+    },
+    {
+      "path": "Assets/Foundation/Editor/TntRocketComboVerification.cs",
+      "sha256": "23ae2c437bb7c725854528e422217f64fdfa0554cedf276e6bf908750e676973"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "d2406d4820d3da65ead05246159a3d2edfbfa08ea63070a06bf28f1acf5fe701"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreDialogBackground.cs",
+      "sha256": "c91885feb19b48a5a426db20f41412144a97dc55c82a504973c56d9842dfd937"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreDialogBackground.cs.meta",
+      "sha256": "9a7d91cec15f2f5419d184d42eaa2d97b5eab1c2473094d065f9364a8bd99b9a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreExcludedPeripheralSystems.cs",
+      "sha256": "88329de5ea028ead071b497d4e0b4d6d2826c690499041de6fdb7e8ca6ab1f39"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreExcludedPeripheralSystems.cs.meta",
+      "sha256": "552cfdad60bf5d83539b7723c1b01e92cf9dc66f9f72998e9964ca745b43fc05"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreFlowSettings.cs",
+      "sha256": "2d5dd1f686d091f4e5eb19bf9b2e87d1f40b80e597c8052b06dbbe37c2ea7183"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreFlowSettings.cs.meta",
+      "sha256": "9502e8b2c0fef6ac066779f78446e17bc7fff55d82faa213e13ea3508616fb1d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreGameFlow.cs",
+      "sha256": "306c099e4288dd9b43bdc75ef9ec94cb6a7f26b63dc0cf35bdc9b8dbdb3df4f2"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreGameFlow.cs.meta",
+      "sha256": "366fbfdd50bdce5c49fa2c58b2744c591cd2b68dc287efcc111b275337b2daad"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreLevelFailDialog.cs",
+      "sha256": "32ed4a01b42e562aebcd92302269ae78da15008ae31af9193ea29671938aee99"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreLevelFailDialog.cs.meta",
+      "sha256": "1a88153774cf07540134d2f2e726ffdd3a5ffca471018fb50195e27aaebcd448"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreLevelProgress.cs",
+      "sha256": "99d6d98b456454d6c11cbce00010e7b95cbb07a7ef85037e72d5e6da3936d5d2"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreLevelProgress.cs.meta",
+      "sha256": "a843d28a8c0c36946ca916f64285306868fe7e13d6e8f34c19b136674c51667f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/FoundationController.cs",
+      "sha256": "a5f3ee70cf9932f658de2d8a8c9a10f3f7a86cfe65b9655e12577e366a0bd220"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "0c17e685f8f1e8bf8e025890166a3d48d18716124b49dc1227f537f92d642997"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingVisual.cs",
+      "sha256": "30420dccba59682a4e0c75bb18d17008a66c4b08b3bdadf1f1a5b9d987aa695d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelWinDialog.cs",
+      "sha256": "80d54a3aa5accff21e6c03931601afaa77900f25b744a09b7ab66d8ebddca91c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "adfa72ef65e176808577cf04564641d6d1c1ea09b131082ab6efeabd09d3667c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTapToSkipView.cs",
+      "sha256": "c19028ed8a01bd5f048483489bcb221c2a94fc60467a960793aa7ff30c3d1983"
+    },
+    {
+      "path": "Assets/Foundation/Settings/CoreFlowSettings.asset",
+      "sha256": "431ea2a3826ca0305189c7202c2df85a9689648b985ac25a55d3d9113017a0d0"
+    },
+    {
+      "path": "Assets/Foundation/Settings/CoreFlowSettings.asset.meta",
+      "sha256": "f29737cfbfc889d339654ae915e80878b01ee4d4205b451278fd6719d6e7f849"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSfxAssets.asset",
+      "sha256": "4cacdd3b64f2e1a1c30976de909d7d76e283a1e545722c8e7a5e4cfb90cef307"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreBottomFrame.prefab",
+      "sha256": "9ceccf5305bd8e1d375a1b4963235c9bcd5c55c5784eaefab2a6e02ad8f2b8b1"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreBottomFrame.prefab.meta",
+      "sha256": "b31c20b2bfbcc65394f4258313df475c6df8bf76048abc00d5771c7b6fd326e1"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreDialogBackground.prefab",
+      "sha256": "67fa38d1987af51dd89b0ccebbc95330ae65f3594cd1b0d0a04dee15b2da2114"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreDialogBackground.prefab.meta",
+      "sha256": "7ac8e778088a9a2db0bf9a0b7ca65a4ef4cf8c3340f759439180b631b665a487"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreLevelFailDialog.prefab",
+      "sha256": "2d0a1e2f22ba0cc2fc49fc29201e3b66586a2c61bd6cfc014fd35abef78d91f8"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreLevelFailDialog.prefab.meta",
+      "sha256": "a8d2384a8889cf80f8319e23d43293efa3b87a4a42d5d14225a8d5b9adb5725c"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreLevelWinDialog.prefab",
+      "sha256": "acbcc71da3698a83c61f207c1f46d3d5eca95867b26399a4ded66d16f58acee9"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreLevelWinDialog.prefab.meta",
+      "sha256": "db57779faaed13130b5524654d5d8f1a0486a82c53be637e006ec46d26c41ecd"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreTapToSkip.prefab",
+      "sha256": "bed1cef78486ccd1bb5660107f2ed2ad454cc08af66fcc4cd335a7ad54d4c3df"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreTapToSkip.prefab.meta",
+      "sha256": "fc85311b6e30164229d6c5cdb92140d391a9c2e20731b594e4cc741e868f3140"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreWinLogo.prefab",
+      "sha256": "410ae1cd006bcda19d46330051e4fd8da5eb5ad2c27c1e6336bf2f9d5841503d"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreWinLogo.prefab.meta",
+      "sha256": "ce86d7dcd15dc2b0ed68d7b7508c3b19ede2704b824bed636ab6cdc1d0a50214"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Material/MikadoBlack_Default.mat",
+      "sha256": "9ac04a05df71924adcc59c33967dcabf9e66a39037b3f7311e43eff37daddda1"
+    },
+    {
+      "path": "SourceCatalog/core_fail_goal_native.json",
+      "sha256": "3602391047b13ec53aeb524e4d60cd05fe8f266019b276b96f72f5b386a77ec2"
+    },
+    {
+      "path": "SourceCatalog/core_fail_goals_authoring.json",
+      "sha256": "f75195e3b439276b4ed154e81004fef89185ccfaaacdde92707bf93603d97841"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "0b31f3ccce441fa6813973e19136576258e8fc16402d0f12dbc3436d694ad34c"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "37cbb3db9e08c51724c930710834e8921ffadaf9a0f564a611a58b9eae19c0e1"
+    },
+    {
+      "path": "SourceCatalog/core_flow_preflight.json",
+      "sha256": "10660e2295c0989c995d058dbb072a33f7e06aff3c4c987332e3ea05451f5477"
+    },
+    {
+      "path": "SourceCatalog/core_flow_source_paths.json",
+      "sha256": "72b27a9c36c0136a0992527794ed6c0af12fe12dfb3c2bd04623a267271ac050"
+    },
+    {
+      "path": "SourceCatalog/core_flow_ui_sources.json",
+      "sha256": "1c973460961a26601f4b559453d4192687779c98ded715eb05f3c3e068f13a15"
+    },
+    {
+      "path": "SourceCatalog/core_ui_import.json",
+      "sha256": "e20cd54b310554e8e35046bd9b894bcc2575a42d3d258efa2c21b07d5a7fa6fe"
+    },
+    {
+      "path": "SourceCatalog/core_ui_world_units.json",
+      "sha256": "11f08b8bf85f077cc81dbfc72f599d71903c1a8240d74a15b6b08575249d1af6"
+    },
+    {
+      "path": "SourceCatalog/game_scene_evidence.json",
+      "sha256": "30d8cec73d1b57eef9c687301a666409949b9c12835e92519842d5861e38e1c6"
+    },
+    {
+      "path": "SourceCatalog/material_preview_conversions.json",
+      "sha256": "70f9cfec90e6ecd50eefb8ac789ae9fa0e0324228c70c5e93e49f793bf10a4d2"
+    },
+    {
+      "path": "SourceCatalog/restore_core_fail_goals.py",
+      "sha256": "e18215351b8de4e90242f7550f0b322fdb42d62d157e4ef91c934fc580fd2158"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "08e420ae1f4c3f3abaa1b59ff6e1b23886efb21c1236d02c71d5b7b993e4555f"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_before_scope_evidence/core_first100_evidence.json",
+      "sha256": "ff13571219f9e086d39b5e8740c987a91766904b8e55bce2c738c770370740a6"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_before_scope_evidence/game_scene_evidence.json",
+      "sha256": "25ba0231b179cb3b69640cba1ab4aed34c23c8386d78d85f48ed63c571ed0611"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_blocked_cavity/background.json",
+      "sha256": "179bdc105d7d6a6e792378bf1d1fe42f88c754a12fb324feaf92a367d58ea4d6"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_blocked_cavity/batch.log",
+      "sha256": "19afc14c21b677d7fa52aa4f09ff4fbacf0b55cf14c41b8e5c636d8f5d7f2eec"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_blocked_cavity/combo.json",
+      "sha256": "33660241ee36f063504a77988643156020d15782d302fc5585953484d2c86a9b"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_blocked_cavity/core_verifier_before.cs.txt",
+      "sha256": "6b4380aa24d795b2909f5bc0e2042a52326d9ee1cd852f665dd662ec52c9b4b8"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_blocked_cavity/verifier_before.cs.txt",
+      "sha256": "422e136d4c9510204b1afe785af50d9507e86a39811a8efd74b66c7c901a6ac4"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_final/batch.log",
+      "sha256": "0c181615f06eac98857de56d20ec1557d4af4adab65927f74dfb115dedd1dfc6"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_final/combo.json",
+      "sha256": "1277c74eb22e180be839a44709b1c80450ef13ce659ac566dc1e2d96458b44d7"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_final/goal_ui.json",
+      "sha256": "3b6ed0e7ca3d2aec40888133de271f2b9dce91078ddc332bd5db0352214ce81d"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_incremental_pass/batch.log",
+      "sha256": "6373fce1ba8355a31ed686cc9dcea462bc73f9a21624784e37ba757646c6fe47"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_incremental_pass/diagnostic.json",
+      "sha256": "424ea9867dd382afc9bc08bb7fcd4e05d2c70449604b2f763608764c70b467ca"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_incremental_pass/live.json",
+      "sha256": "02b1bc2e12cb17c789f1d0eb50fb5beacb472a6f53a83656221f7ca5a0267926"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_retry_state/batch.log",
+      "sha256": "bbf8dd3e2b99ddffd8b7c43340ce57a66f0d4d37100fd67b4ce27710ef5fb992"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_retry_state/diagnostic.json",
+      "sha256": "91cc8979430c74d2f0f99ddb5aa7b6bf9293ef4c4edd3f444502f402059673c8"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_retry_state/fail.png",
+      "sha256": "0b78ff3d0ff76c87cd198376c81a559de9dd273c2a0c24c03249b30abf12788d"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_retry_state/fail_before.prefab.txt",
+      "sha256": "0ab3042fa4c6d7ace00d41adc5b68b9b77f6b87b9bf01aac64ac949a52bf5c9f"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_flow_retry_state/live.json",
+      "sha256": "f01817bfc6da0345006bd5686bc59c7a74a3f7b70631d7700df5092743957882"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_ui_rect/author_before.cs.txt",
+      "sha256": "c9a7465f6f23466941ad1a3c4c0d922678ffff18504358acf3bfac0624736959"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_ui_rect/background.json",
+      "sha256": "d23906b770e39ca63d391515d2bb07cd92b2a4926b585afe58d35b4611bb5828"
+    },
+    {
+      "path": "SourceCatalog/verification_history/core_ui_rect/batch.log",
+      "sha256": "28e3dfa035033a3eb2943a5d9d3888402ae43dd4c096a046121f3c71da5c4a1b"
+    },
+    {
+      "path": "background_core_flow_verification.json",
+      "sha256": "0b1889ab57ad6f5d85f5d10474c8c761a72ad47082b63bfff8ee91d701f06c26"
+    },
+    {
+      "path": "background_core_ui_author_verification.json",
+      "sha256": "f709d76faed63e41d3563189eaf6b7b0187587e5cedfc16a7e59169ed790efca"
+    },
+    {
+      "path": "core_flow_fail.png",
+      "sha256": "fd33c9e8ada7861c8a69812499473fbb9dd13650510dbc52d2d7138de410138a"
+    },
+    {
+      "path": "core_flow_level2.png",
+      "sha256": "12bd359f5147c660ff209842ccb091aad672536a056d441ccd4d633868b74c0b"
+    },
+    {
+      "path": "core_flow_level3.png",
+      "sha256": "37c84b26474d3918568f9f215f3f2ebcc95bbe255ee000a7b77c615d8311c765"
+    },
+    {
+      "path": "core_flow_retry.png",
+      "sha256": "8e13eaab0b17daef038f2a1830294b68b7b43edb530734160676235136d1791f"
+    },
+    {
+      "path": "core_flow_win.png",
+      "sha256": "a9dac6c8288227bcf065f36fe1c980e6091acc4564dd0bd52a1e01463ad227d1"
+    },
+    {
+      "path": "core_ui_authoring.json",
+      "sha256": "cfdde4bc70dac5bfb8333e7bce8eafe5a41146ded2a0c93721b7eb0e5f53eaab"
+    },
+    {
+      "path": "diagnostic_core_flow_verification.json",
+      "sha256": "424ea9867dd382afc9bc08bb7fcd4e05d2c70449604b2f763608764c70b467ca"
+    },
+    {
+      "path": "game_scene_initial.png",
+      "sha256": "ce6b363a67b070ed517c6de7c5bc6d2af32246414443ef46ca5d75d13bacbb79"
+    },
+    {
+      "path": "live_core_catalog_verification.json",
+      "sha256": "44e0dbd1dc66b2dc105b98c55a6d643a7eefd8b71eb83654a5994b31626a572d"
+    },
+    {
+      "path": "live_core_flow_verification.json",
+      "sha256": "f39d3f180d1d2a5cea243f285dff19a68d94137855708ec75c00d1dfba4eb3f2"
+    },
+    {
+      "path": "live_game_scene_verification.json",
+      "sha256": "045ff18703b2316c3568b5ffe9a86bc2044d8ce4bc269deb637d156a999fbe0f"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "scope": "Preserve native SpriteRenderer world-unit slice borders in UGUI variants.\n\nOfficial Image.cs uses border/(spritePPU/canvasReferencePPU*multiplier).\nThe variants are authored in world units, so multiplier=referencePPU=100\nretains the original border/spritePPU rather than inflating it by100.",
+  "official_source": "Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs",
+  "files": [
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreLevelWinDialog.prefab",
+      "before_sha256": "8073a122ff4803a6755927239c54c0275ac22cedf351892cd655d1ee95eaa6fc",
+      "after_sha256": "acbcc71da3698a83c61f207c1f46d3d5eca95867b26399a4ded66d16f58acee9",
+      "visible_images": 17,
+      "world_unit_multiplier": 100
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreLevelFailDialog.prefab",
+      "before_sha256": "cee9065ba98d23c1bb78a23655e8997bb44c184abc805769eeb81eca9036585e",
+      "after_sha256": "0ab3042fa4c6d7ace00d41adc5b68b9b77f6b87b9bf01aac64ac949a52bf5c9f",
+      "visible_images": 2,
+      "world_unit_multiplier": 100
+    }
+  ],
+  "full_rendered_parity_verified": false
+}

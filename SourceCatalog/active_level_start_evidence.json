@@ -1,0 +1,73 @@
+{
+  "source": "RoyalMatch_20260929 original ARM64 libil2cpp.so; metadata signatures/field layout only",
+  "methods": {
+    "UserActiveLevelData.Start": "0x32b6ed0",
+    "UserActiveLevelData.Restart": "0x32b7a6c",
+    "UserActiveLevelData.SetStartValues": "0x32b7244",
+    "BeforeAfterData.GetMultiplierValueForDifficulty": "0x338c6f0",
+    "PropellerRushLevelData.Init": "0x32b4ce4",
+    "PropellerRushLevelData.TryIncrementCount": "0x32b4cf8",
+    "PropellerRushLevelData.Reset": "0x32b4d9c",
+    "PropellerRushLevelData.GetSaveData": "0x32b4e18",
+    "PropellerRushLevelData.LoadSaveData": "0x32b4eac",
+    "PropellerRushLevelData.GetDataLength": "0x32b4f80",
+    "MissionEventsLevelData.Init": "0x32b4084",
+    "InviteFriendsLevelData.Init": "0x32b1180",
+    "ArcheryArenaLevelData.Init": "0x338c4e8",
+    "ArcheryArenaLevelData.GetSaveData": "0x338c500",
+    "ArcheryArenaLevelData.LoadSaveData": "0x338c5c4",
+    "ArcheryArenaLevelData.GetDataLength": "0x338c660"
+  },
+  "tables": {
+    "difficulty_multiplier": {
+      "ELF_address": "0x4053e98",
+      "difficulty_keys": [
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "values": [
+        2,
+        1,
+        3,
+        5,
+        10
+      ],
+      "all_other_int_values": 1
+    },
+    "archery_save_bits": [
+      1,
+      20,
+      20,
+      3,
+      6,
+      1
+    ]
+  },
+  "ordering": [
+    "Start and Restart call actual ResetValues, then SetStartValues origins 1 and 2 respectively. Only the diagnostic Log.Debug tail is omitted.",
+    "Clear ego purchase count; get/init cloche; resolve cloche again and persist BEFORE; get/init magic duke. Origin 1 clears wonAnyLevel, other origins retain it.",
+    "Resolve multiplier selection even on excluded story/table/bonus levels. Initial availability snapshot can skip its query, but multiplied branch requires the manager and a second independent query.",
+    "Resolve inventory separately for hammer/arrow/cannon/jester; >0 determines unlimited state. Reset all used flags only after the final time read, then shuffle counters/time/statistics/useful counters.",
+    "Capture BalloonRise and Archery managers before ordered feature initializations. Missing managers remain required and fail at original use sites.",
+    "PropellerRush reads current manager, short circuits inactive progress and table-game level, sets consume before adding unchecked amount times original difficulty multiplier.",
+    "Mission zeroes five counts and retains shouldConsume; InviteFriends clears consume/ego price. Archery captures streak bits 20..22 only if progressing, always requires rank data, calls icon getter before checking target, then invokes virtual Init.",
+    "Propeller save uses the base 1/20/20 snapshot layout and load requires current active-level difficulty after snapshot writes. Archery save/load includes streak/rank/icon bits."
+  ],
+  "verified": {
+    "ARM64_sequences": 265,
+    "ARM64_commands": 1545,
+    "manager_and_snapshot_missing_cases": true,
+    "ordered_callback_failure_positions": 59,
+    "startup_and_save_probes": true
+  },
+  "required_boundaries": [
+    "Application inventory, progress and unit context; original Cloche/MagicDuke/Multiplier/Balloon/Archery manager calculations and persistence",
+    "MultiplierUtil.CanMultiply, Madness/RoyalPass/Pinata/Clash initialization, derived DailyLightningRush/DukesTreats and remaining full event data implementations",
+    "Complete original AnimationData constructor, real application composition and saved-level initialization"
+  ],
+  "formal_scene": "Remains NoGame with zero/uninitialized move budget and 36 box previews; no diagnostic fixture is installed as production context. Formal resolution/fall/refill/HUD/settlement and visual parity remain pending.",
+  "sdk": "unchanged"
+}

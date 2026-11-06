@@ -1,0 +1,242 @@
+{
+  "full_objective_complete": false,
+  "full_original_game_scene_restored": false,
+  "production_application_account_win_fail_bound": false,
+  "normal_first_board_bottom_visual_and_four_slots_bound": true,
+  "native_unlock_ab_and_button_prepare_state_restored": true,
+  "standard_buttons_on_visible_original_backplates": true,
+  "transparent_hit_images_or_ui_colliders_used": false,
+  "original_text_fields_bound_to_official_tmp_components": 12,
+  "verified_normal_user_level": 1,
+  "configured_ab201_group": 0,
+  "production_inventory_selection_use_purchase_tutorial_tooltip_settings_and_ab_provider_bound": false,
+  "original_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "fe05f6f2a88b9b73457cd5ebf4ca839e7b0e37bd7b435d668d4a22ddc4220e0c",
+  "native_state_verification": {
+    "passed": true,
+    "cases": 2055,
+    "native_prepare_button_cases": 1728,
+    "original_arm64_bodies_executed": true,
+    "ports": "metadata/current-user/AB value/inventory and free-use queries/Unity graphics/localization/string boundary",
+    "ui_state_and_inventory_query_order_compared": true,
+    "original_unlock_levels": [
+      "8",
+      "14",
+      "17",
+      "19"
+    ],
+    "production_inventory_booster_use_tooltip_settings_and_ab_provider_verified": false,
+    "source_sha256": "441ae2554f7f5e41a4863f6967771f4545d18abb2c569583f0a549e68556c620"
+  },
+  "local_backplate_geometry_verification": {
+    "passed": true,
+    "backplates": 8,
+    "scalar_comparisons": 96,
+    "max_local_vertex_error": 0.0,
+    "native_sprite_bounds": [
+      0.6642857193946838,
+      1.335714340209961
+    ],
+    "sprite_mesh_sha256": "4141aac4fedf3066165cf99051b71021fbd500ca154d6c56cea8c0bcd49892f0",
+    "official_ugui_equation_source": "Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs:GenerateSprite",
+    "whole_original_rendered_parity_verified": false,
+    "physical_input_verified": false
+  },
+  "unity_scene_verification": {
+    "passed": true,
+    "normal_scene_and_72_models_verified": true,
+    "original_top_background_verified": true,
+    "original_king_rig_and_atlas_verified": true,
+    "king_vertices": 580,
+    "king_viewport_center": {
+      "x": 0.49988463521003723,
+      "y": 0.9043259620666504,
+      "z": 10.0
+    },
+    "original_bottom_locked_presentation_verified": true,
+    "failure": "",
+    "scope": "Normal GameScene includes playable first board, original camera/top/King idle and portrait bottom background/four locked booster slots with visible standard Button backplates. Native level1 AB201 group0 disabled-lock state is verified; click adapter is instrumented, not physical input. Unlocked booster inventory/selection/use/purchase/tooltip/settings, live AB provider, full KingUi queue/mixing/reactions, production startup/account/settlement/Home and full original parity remain pending."
+  },
+  "background_verification": {
+    "passed": true,
+    "test": "camera-projection",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "fe05f6f2a88b9b73457cd5ebf4ca839e7b0e37bd7b435d668d4a22ddc4220e0c",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_camera-projection.log",
+    "elapsed_seconds": 155.67,
+    "batch": {
+      "passed": true,
+      "test": "camera-projection",
+      "failure": "",
+      "timestamp_utc": "2026-11-02T06:50:21.7744008Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "player_input_regression": {
+    "passed": true,
+    "physical_drag_verified": false,
+    "tnt_activated": false,
+    "lightball_activated": false,
+    "rocket_activated": false,
+    "propeller_activated": false,
+    "propeller_flight": 0.0,
+    "propeller_trace": [],
+    "propeller_max_scale": 0.0,
+    "blocked_original_box_holes": 0,
+    "propeller_max_loop": 0,
+    "propeller_takeoff_instances": 0,
+    "propeller_hit_instances": 0,
+    "propeller_max_operations": 0,
+    "rocket_orientation": 0,
+    "rocket_max_operations": 0,
+    "rocket_first_flight": 0.0,
+    "rocket_second_flight": 0.0,
+    "sent_rays": 0,
+    "reached_rays": 0,
+    "completed_rays": 0,
+    "completed_lightball_activations": 0,
+    "rocket_created": true,
+    "tnt_created": false,
+    "lightball_created": false,
+    "propeller_created": true,
+    "failure": "",
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "left_moves": 20,
+    "goals_left": 23,
+    "created_refills": 76,
+    "created_specials": 2,
+    "scope": "Frame-separated recorded device samples through native GameTouchListener into formal production scene services. Checks invalid swap spends0, accepted swaps spend1, first triple/three box goals/six refills, 10accepted swaps and naturally observed special creation patterns (each requested type also has its own activation mode), automatic cascades, original creation coroutines and all72 model slots/no holes/no freeze/landing tolerance. Fails on runtime errors/exceptions. Shadow native match search only chooses gestures and never mutates live cells. Does not verify physical drag timing, special activation/combos, complete session startup, settlement or original rendered parity."
+  },
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/GameSceneVerification.cs",
+      "sha256": "e4ddf619c4a29bd78292fd8dde18540547b1fd73c89b0ccc3a26be9dfb19e06a"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "ffa0e50f109750ea8b334633f02cb18a36502526b9b8998fe0643f7a397e11d4"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/FoundationController.cs",
+      "sha256": "d52dad1894191bdb4b5f00e84202177095b272f0d0bb9b04c1cfc2a7b138627a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoosterUnlock.cs",
+      "sha256": "441ae2554f7f5e41a4863f6967771f4545d18abb2c569583f0a549e68556c620"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoosterUnlock.cs.meta",
+      "sha256": "d6800777086187aa026c14c96b7dd1cba68b69ddee1553b6d7765459ecdfcce7"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBottomUi.cs",
+      "sha256": "cd09df9945b8a7d70afc7f2954e2189a094505681223c4ce84a96274a119b6fe"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBottomUi.cs.meta",
+      "sha256": "35f30d9e3116ecfc05a434c0c26eb5c2c7112f66e233ba39a6346ad8be928554"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInGameBoosterSlot.cs",
+      "sha256": "ea85ade060a606c71bd380c2598fc639975125fa1a9a68a0a87578d59de1f359"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInGameBoosterSlot.cs.meta",
+      "sha256": "835b4b46d229cc20813bdfccb71afa4299413844f198c10c2bd587aadda31fd1"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalBottomUi.prefab",
+      "sha256": "10f28567bac9fdcc74bede29255bac8ba29bfe6fe750d9473a7ee4e30b179031"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalBottomUi.prefab.meta",
+      "sha256": "44c497fcf9c1b5e7125edb90b61d20f0e31d1bd56cacfabcdb776c65532ed3e7"
+    },
+    {
+      "path": "SourceCatalog/BoosterUnlockHarness.cs",
+      "sha256": "fe258efafd75ec79858d0d753ce7acce6f3f091de51f012c880b64dcecd880e4"
+    },
+    {
+      "path": "SourceCatalog/bottom_scene_inspection.json",
+      "sha256": "061b933b9a0b4174b531036d67ea39ae770231d86db735abf09d207cf27e1263"
+    },
+    {
+      "path": "SourceCatalog/bottom_ui_authoring.json",
+      "sha256": "075277e35357abc13b48b2dcd2f461c19c0af1ca9b861d35b6682c24323e4361"
+    },
+    {
+      "path": "SourceCatalog/inspect_bottom_scene.py",
+      "sha256": "166b843f18421c5a8b010e4744669c4d995d4856b3b39c33248dce8fff5ef32b"
+    },
+    {
+      "path": "SourceCatalog/restore_bottom_ui.py",
+      "sha256": "8482048862097e1ee3190d734a69b1130a9a823a5587f22654a8a6238709250e"
+    },
+    {
+      "path": "SourceCatalog/verification_history/bottom_tmp_binding/background.json",
+      "sha256": "35b0347ac41bb611b8231778d59b725750d6aea2013ae08de791ed33b3503dd8"
+    },
+    {
+      "path": "SourceCatalog/verification_history/bottom_tmp_binding/batch.json",
+      "sha256": "f9a1bc8c27c510c5a613c7f61a4cc1b4d2c1ee428de1b035612d4fb5a4ca82d7"
+    },
+    {
+      "path": "SourceCatalog/verification_history/bottom_tmp_binding/batch.log",
+      "sha256": "74f5481e88acbf5a19fdb99f5010979f383cc8f696a91247cd7e11703e3c85bb"
+    },
+    {
+      "path": "SourceCatalog/verification_history/bottom_tmp_binding/before.prefab.txt",
+      "sha256": "6301e34889398655e06278a6b6d2e6ea86de7d2e65dfab7ded579529f1f49c94"
+    },
+    {
+      "path": "SourceCatalog/verification_history/bottom_tmp_binding/reason.json",
+      "sha256": "e8e30f1f3dcd6c39e302be2eaceab699c7fd8cd22ecbdc9021487a7b257bd09a"
+    },
+    {
+      "path": "SourceCatalog/verify_booster_unlock.py",
+      "sha256": "239a792d2cf41e8926a01567d2634c81df4ec238effd71bfa2551b676aaafee4"
+    },
+    {
+      "path": "SourceCatalog/verify_bottom_button_geometry.py",
+      "sha256": "26fe3f53d7404acd32edf3a1aa31b179cbcb6a9d43c41a0406469cc8c5642a1e"
+    },
+    {
+      "path": "background_camera_projection_verification.json",
+      "sha256": "a374f0ef07d2cc14513d9fca8dc00d2ec4a32ac745a0a6e36b257ed3ef3ed187"
+    },
+    {
+      "path": "booster_unlock_native_verification.json",
+      "sha256": "cf3aee8ed0fedb273476f0d270b211f2bce42e54bca4bdb44bd0a87495c41ac9"
+    },
+    {
+      "path": "bottom_button_geometry_verification.json",
+      "sha256": "91c9d93b6cd32b21db1dae9f3389377595691f20a72509a386b5ee23ca3f246c"
+    },
+    {
+      "path": "game_scene_initial.png",
+      "sha256": "9571d8e493d8a6a9da3ce2d6668e2b44c8edbcbc41e887852bf16890285e23fa"
+    },
+    {
+      "path": "live_camera_projection_verification.json",
+      "sha256": "f86c36ed023d1b709022c1447c8d0f857e4236fed7dcc5b0fadb86fac3f902fe"
+    },
+    {
+      "path": "live_game_scene_verification.json",
+      "sha256": "ef5863d2c211607869f70ec4b120b1cb989ec5b09d344bb53bcb2315f90fa9a7"
+    },
+    {
+      "path": "live_player_board_observation.json",
+      "sha256": "be348ef06043776e787dd7b57c7ffe8bd316264bcc2c06c95bc6ab3d3eb203fa"
+    },
+    {
+      "path": "live_player_input_verification.json",
+      "sha256": "3fa8ff561c926783f4da42249137c164f5cab754d388482ef36c15e2edcd873b"
+    }
+  ],
+  "scope": "Actual normal GameScene now instantiates the recovered portrait bottom background and four booster slots through prefab configuration. Original unlock levels8/14/17/19, AB201 enable groups2/3 and PrepareButton UI flags/query order execute against native ARM64. Current normal entry is the existing level1 composition with configured AB201 group0; actual user/AB/inventory ownership is still pending. No invented stock or free uses are supplied: unlocked presentation requires its real inventory port. Settings and live unlocked booster selection/use/purchases/tutorial/tooltip owners, production Application/account/WinFail, complete Home flow, King animation state queue/mixing and whole-game visual/native/mobile parity remain pending."
+}

@@ -1,0 +1,75 @@
+{
+  "original_prefab_sha256": "aef6158bee17115f467bedf7109d4b9417b1e63a0d4280f07cee85941e1aa905",
+  "original_skeleton_sha256": "f409f2eb4c6819b31133b62aabb3559940eb2075b8006fec4f1cd73eafcaa3d1",
+  "sample_rate_hz": 120,
+  "baked_bytes": 8825140,
+  "parts": 2,
+  "clipping": true,
+  "source_animation_version": "3.8.84",
+  "scope": "Visual dependency only. Original skeleton sample interpolation, not an exact runtime skeleton implementation; full orientation/skip/dialog/flow parity pending.",
+  "external_runtime_assembly_shipped": false,
+  "verification": {
+    "passed": true,
+    "test": "win-logo-visual",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "50a40d720bfb99ee1dbc1ec800e8f560e91d07552ca3dda76944e6785b8fbaaa",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_win-logo-visual.log",
+    "elapsed_seconds": 79.72,
+    "batch": {
+      "passed": true,
+      "test": "win-logo-visual",
+      "failure": "",
+      "timestamp_utc": "2026-10-21T11:31:35.8432599Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "rendered_capture_inspected": "win_logo_visual.png: actual Royal Match logo/flags/trumpets visible above original board. Full camera/dynamic screenshot background/particle material parity remain unverified.",
+  "offline_runtime_sources": {
+    "repository": "https://github.com/EsotericSoftware/spine-runtimes",
+    "commit": "8b4844bd4b193ba9e54487ed397a777993cbad56",
+    "location": "Recovery/tools/SpineOfflineBaker/src, outside Unity project",
+    "license": "SourceCatalog/OfflineSpineLicense.txt"
+  },
+  "cost": "8,825,140-byte binary loaded on demand, 453 frames, maximum866 vertices/1566 indices per part. Unity-owned mesh playback reuses position/UV/color buffers; two mesh uploads/frame. CPU frame arrays, managed byte copy and 2028x1285 atlas add a one-time victory load peak; no per-frame skeleton parsing. Need device profiling before memory/GC parity claims.",
+  "live_verification": {
+    "passed": true,
+    "frames": 453,
+    "sample_rate_hz": 120,
+    "close_requests": 1,
+    "scope": "Original win logo prefab visual dependency, original skeleton offline samples/clipping/PMA and particle timing; actual3second native Close literal reaches explicit test owner. Does not establish native dynamic screenshot backdrop, camera-dependent trumpet relocation, skip owner, production flow or result parity."
+  },
+  "native_invoke_literals": [
+    {
+      "got": "0x53c1050",
+      "metadata_slot": "0x5606e50",
+      "value": "Close",
+      "delay": 3
+    },
+    {
+      "got": "0x5369db0",
+      "metadata_slot": "0x5615fe0",
+      "value": "PlayParticles",
+      "delay": 1
+    },
+    {
+      "got": "0x53867a8",
+      "metadata_slot": "0x5601630",
+      "value": "AttachToTapToSkip",
+      "delay": 0.75
+    }
+  ],
+  "correction": "The3second Invoke literal is Close, not StopAnimation. The visual now notifies an explicit owner exactly once; production dialog queue/close lifetime remains unbound.",
+  "current_dialog_lifecycle_evidence": "SourceCatalog/ui_dialog_lifecycle_evidence.json",
+  "current_dialog_lifecycle_source_snapshot_sha256": "324e684c097c0f10c615a5e26483638aaae6526816eb18fa68dedcc70250b787",
+  "current_remaining_dialog_skip_evidence": "SourceCatalog/remaining_dialog_skip_evidence.json",
+  "current_remaining_dialog_skip_source_snapshot_sha256": "af195c40f8130efbbdd8f41ae3a75fc28b3465590985f80e175d1b6699326b65",
+  "current_level_win_dialog_evidence": "SourceCatalog/level_win_dialog_evidence.json",
+  "current_level_win_dialog_source_snapshot_sha256": "79557e533b0777f36a4699640241fc7dc1872ac45251314a68d191617ea5b35c",
+  "current_game_exit_evidence": "SourceCatalog/game_exit_evidence.json",
+  "current_game_exit_source_snapshot_sha256": "5ba86cfdbf811aa7929d6c11e1d5dbd53fb599db7e256ec5c3010c1181e31831",
+  "current_game_context_exit_evidence": "SourceCatalog/game_context_exit_evidence.json",
+  "current_game_context_exit_source_snapshot_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332"
+}

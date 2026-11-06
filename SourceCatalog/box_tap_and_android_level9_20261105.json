@@ -1,0 +1,773 @@
+{
+  "schema": 1,
+  "parent_commit": "29efea71bf767a92d75f9210f240db792d4d97c7",
+  "verified_utc": "2026-11-05T22:24:26.070185+00:00",
+  "original_version": 38911,
+  "runtime_path": "Assets/Foundation/Runtime/OriginalBoxItemSpriteView.cs",
+  "full_current_scope_complete": false,
+  "box_tap": {
+    "passed": true,
+    "native_entry": "0x2bc64ac",
+    "native_sha256": "017f7d4716f9375d86bbbe006740e8e68e65c776bad757d00d8a3c120ee8f5eb",
+    "candidate_sha256": "6cc9b05f2e569231a5ff5929a0c4adbb7430cebe32f37e60049fca84b3cd1fd3",
+    "baseline_sha256": "f7dd40c1a7ca7e43336121d9074203f44a0b7fc12e8d5fe492d5f4300eabb75a",
+    "cases": [
+      {
+        "case": "60fps",
+        "native_and_candidate_frames": 18,
+        "baseline_frames": 17,
+        "restored_sort_frame_index": 16
+      },
+      {
+        "case": "30fps",
+        "native_and_candidate_frames": 10,
+        "baseline_frames": 9,
+        "restored_sort_frame_index": 8
+      },
+      {
+        "case": "fast",
+        "native_and_candidate_frames": 42,
+        "baseline_frames": 41,
+        "restored_sort_frame_index": 40
+      },
+      {
+        "case": "large_delta",
+        "native_and_candidate_frames": 10,
+        "baseline_frames": 9,
+        "restored_sort_frame_index": 8
+      },
+      {
+        "case": "pause",
+        "native_and_candidate_frames": 34,
+        "baseline_frames": 33,
+        "restored_sort_frame_index": 32
+      },
+      {
+        "case": "uneven",
+        "native_and_candidate_frames": 40,
+        "baseline_frames": 39,
+        "restored_sort_frame_index": 38
+      }
+    ],
+    "candidate_frames": 154,
+    "candidate_events": 330,
+    "maximum_numeric_port_error": 2.763214113077339e-08,
+    "baseline_only_difference": "Restored-sort MoveNext returned false, omitting the native following termination frame.",
+    "scope": "Original ARM64 replay against the exact production C# iterator and sorting methods. Both adapters use scalar Z rotations at the Unity transform and quaternion boundaries.",
+    "native_sort_calculation_entry": "0x12d7c10",
+    "settings": {
+      "phase_seconds": 0.033,
+      "min_scale": 0.98,
+      "angles_degrees": [
+        15,
+        0,
+        -15,
+        0,
+        10,
+        0,
+        -10,
+        0
+      ]
+    },
+    "runtime_change": "Yield once after restoring the default sort, then terminate on the next frame.",
+    "formal_play": {
+      "test": "core-attempt-resume",
+      "level": 9,
+      "exit_code": 0,
+      "real_level9_two_layer_box_feedback_restored": true,
+      "moves_after_tap": 30,
+      "moves_after_first_swipe_and_restore": 29,
+      "second_move_after_restore_verified": true,
+      "statistics_restored": true,
+      "truncated_attempt_rejected": true,
+      "mirror_changes_restored": true,
+      "scope": "The temporary Editor verification drives the production typed touch listener, authored box model/view, scene, save writer and resume path in a private project. Iterator completion is independently compared using the native instruction replay."
+    },
+    "chapter_fixture_limit": {
+      "baseline_and_candidate_exits": {
+        "early-chapter": 1,
+        "early-baseline": 1
+      },
+      "chapter_wins_before_test_stopped": 0,
+      "test_failures": {
+        "early-chapter": "A match item can host a TNT that reaches a remaining target.",
+        "early-baseline": "Finish the original goals within the test stimulus budget."
+      },
+      "scope": "The existing early-chapter verifier uses controlled TNT stimuli. The candidate exhausted eligible placements, and the exact baseline exhausted its stimulus budget. The two failures do not establish a chapter-wide pass or an exact baseline reproduction."
+    }
+  },
+  "android": {
+    "source_commit": "29aaadce79d1b8e128e5a6d7d7068754d51aeaf9",
+    "apk": {
+      "path": "C:/RMAndroidGrass_20261105/RoyalMatch-Core-1-100-29aaadc-arm64.apk",
+      "bytes": 43640903,
+      "sha256": "1dcc8344dcd65d9bf8020c308f7eead236fa3e3002b2e44ba9950435db0d1f4a",
+      "package": "com.royalmatch.core.recovery",
+      "abi": "arm64-v8a",
+      "signature_v2_verified": true,
+      "native_elf_load_alignment": {
+        "lib/arm64-v8a/lib_burst_generated.so": 16384,
+        "lib/arm64-v8a/libil2cpp.so": 16384,
+        "lib/arm64-v8a/libmain.so": 16384,
+        "lib/arm64-v8a/libunity.so": 16384
+      }
+    },
+    "emulator": {
+      "serial": "127.0.0.1:5559",
+      "adb_server_port": 15038,
+      "android_release": "15",
+      "arm64_translation_host_abi": "x86_64",
+      "physical_device": false,
+      "data_cleared": false
+    },
+    "decoded_sources": {
+      "9": {
+        "path": "configs/levels/9__1630.json",
+        "sha256": "aa4af8df189140de32e8ad7a4b0ac25ffbca4eea1cec308221a777745574f361",
+        "name": "00009v02_L"
+      },
+      "10": {
+        "path": "configs/levels/10__7231.json",
+        "sha256": "19cf972253e37999d5845eb8335f785671ffdf1fb46cd866e150fd359d1febf9",
+        "name": "00010v03_L"
+      }
+    },
+    "level9": {
+      "resumed_all_64_cells_equal_to_prior_swipe": true,
+      "resumed_moves": 29,
+      "resumed_boxes": 37,
+      "accepted_moves_total": 18,
+      "accepted_moves_after_resume": 17,
+      "nonspending_ordinary_tap": "l9_move16_propeller.png",
+      "remaining_move_checks": {
+        "l9_move02": {
+          "capture": "l9_move02.png",
+          "moves": 28
+        },
+        "l9_move03": {
+          "capture": "l9_move03.png",
+          "moves": 27
+        },
+        "l9_move04": {
+          "capture": "l9_move04.png",
+          "moves": 26
+        },
+        "l9_move05": {
+          "capture": "l9_move05.png",
+          "moves": 25
+        },
+        "l9_move06": {
+          "capture": "l9_move06.png",
+          "moves": 24
+        },
+        "l9_move07": {
+          "capture": "l9_move07.png",
+          "moves": 23
+        },
+        "l9_move08": {
+          "capture": "l9_move08.png",
+          "moves": 22
+        },
+        "l9_move09": {
+          "capture": "l9_move09.png",
+          "moves": 21
+        },
+        "l9_move10": {
+          "capture": "l9_move10.png",
+          "moves": 20
+        },
+        "l9_move11": {
+          "capture": "l9_move11.png",
+          "moves": 19
+        },
+        "l9_move12": {
+          "capture": "l9_move12.png",
+          "moves": 18
+        },
+        "l9_move13": {
+          "capture": "l9_move13_observe1.png",
+          "moves": 17
+        },
+        "l9_move14_rocket_down": {
+          "capture": "l9_move14_rocket_down.png",
+          "moves": 16
+        },
+        "l9_move15_propeller_create": {
+          "capture": "l9_move15_propeller_create.png",
+          "moves": 15
+        },
+        "l9_move16_propeller": {
+          "capture": "l9_move16_propeller.png",
+          "moves": 15
+        },
+        "l9_move16_propeller_correct": {
+          "capture": "l9_move16_propeller_correct.png",
+          "moves": 14
+        },
+        "l9_move17_propeller_create": {
+          "capture": "l9_move17_propeller_create.png",
+          "moves": 13
+        }
+      },
+      "left_cavity_cells": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "cavity_blocker_cell": [
+        0,
+        7
+      ],
+      "outer_box_transitions": [
+        {
+          "capture": "l9_resume.png",
+          "visible_items": "XXX"
+        },
+        {
+          "capture": "l9_move04.png",
+          "visible_items": "xxx"
+        },
+        {
+          "capture": "l9_move05.png",
+          "visible_items": "AAx"
+        },
+        {
+          "capture": "l9_move09.png",
+          "visible_items": "YGR"
+        }
+      ],
+      "lightball_vertical_rocket": {
+        "before": "l9_move12.png",
+        "after": "l9_move13_observe1.png",
+        "boxes_before_after": [
+          15,
+          2
+        ],
+        "moves_after": 17
+      },
+      "last_box_layers": {
+        "cell": [
+          0,
+          2
+        ],
+        "before": "l9_move14_rocket_down.png",
+        "after_first_hit": "l9_move16_propeller_correct.png",
+        "final_propeller_activation": "l9_move18_final_propeller.png"
+      },
+      "win": {
+        "moves_before_conversion": 12,
+        "reward_coins": 55,
+        "bonus_skipped": false,
+        "result": "l9_move18_final_propeller.png",
+        "continue_opened": 10
+      }
+    },
+    "level10": {
+      "matching_opening_cells": 81,
+      "opening_max_template_distance": 12.6,
+      "opening_moves": 32,
+      "opening_boxes": 27,
+      "opening_grass": 27,
+      "after_first_move": 31,
+      "after_first_move_boxes": 25,
+      "after_first_move_grass": 27,
+      "opened_grass_cavities": [
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "created_propeller": [
+        7,
+        6
+      ],
+      "capture_after_first_swipe": "l10_move01.png"
+    },
+    "log_review": {
+      "timestamp_utc": "2026-11-05T22:19:58.810838+00:00",
+      "current_pid": "45007",
+      "logs": [
+        {
+          "pid": "45007",
+          "file": "android_session_45007_logcat.txt",
+          "sha256": "e272707db47da978c177772991af8ce04a838596caad823b2544634670332155",
+          "retained_lines": 141,
+          "unity_exception_or_crash_matches": [],
+          "stripped_physics_warnings": [
+            "11-05 18:26:53.816 45007 45046 W Unity   : The ParticleSystem uses a gravityModifier, but the Physics Module has been stripped, so using a default value of 9.81 units/sec/sec for gravity. Disable stripping in the Player Settings to fix this, or make sure the physics module is included in the built-in packages in the Package Manager."
+          ]
+        }
+      ],
+      "before_activity": [
+        "topResumedActivity=ActivityRecord{113811804 u0 com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity t65}",
+        "ResumedActivity: ActivityRecord{113811804 u0 com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity t65}"
+      ],
+      "finished_activity": [
+        "topResumedActivity=ActivityRecord{56712943 u0 app.lawnchair/.LawnchairLauncher t2}",
+        "ResumedActivity: ActivityRecord{56712943 u0 app.lawnchair/.LawnchairLauncher t2}"
+      ],
+      "finished_on_emulator_launcher": true,
+      "unity_exception_or_crash_match_count": 0
+    },
+    "system_gestures": [
+      {
+        "label": "l9_move02",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:05.366730+00:00",
+        "action": "swipe",
+        "coordinates": [
+          598,
+          1359,
+          715,
+          1359
+        ],
+        "capture": {
+          "file": "l9_move02.png",
+          "sha256": "6ba6e16c699c608bbe0b9ad53133f6c37beadf63375e6556148938c500c51c66",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move03",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:11.327265+00:00",
+        "action": "swipe",
+        "coordinates": [
+          831,
+          1359,
+          831,
+          1242
+        ],
+        "capture": {
+          "file": "l9_move03.png",
+          "sha256": "838d802776569e6b00ccb873694bcd92269141509f6f01fe2221496ffc6d4cdf",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move04",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:17.037366+00:00",
+        "action": "swipe",
+        "coordinates": [
+          249,
+          1008,
+          365,
+          1008
+        ],
+        "capture": {
+          "file": "l9_move04.png",
+          "sha256": "49081da2d8311f50d0f9b6e74dd456227f62fc1eb313c06950c87a403c2fe50a",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move05",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:22.663099+00:00",
+        "action": "swipe",
+        "coordinates": [
+          365,
+          1008,
+          482,
+          1008
+        ],
+        "capture": {
+          "file": "l9_move05.png",
+          "sha256": "622bc24a8cf4b0c96be46ae2fa368993e70cbb08f6d4d5da56cbc6f8650b3297",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move06",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:28.236635+00:00",
+        "action": "swipe",
+        "coordinates": [
+          715,
+          1359,
+          715,
+          1242
+        ],
+        "capture": {
+          "file": "l9_move06.png",
+          "sha256": "28874b7e7db2f05939524c2e08fcb0131e8e70431be78518390460aacfc8587a",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move07",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:33.719635+00:00",
+        "action": "swipe",
+        "coordinates": [
+          598,
+          1008,
+          598,
+          892
+        ],
+        "capture": {
+          "file": "l9_move07.png",
+          "sha256": "0ede3c86cdfeac636cf82e20ff74c8170030aaafeb96d775ad2a3d030c12af03",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move08",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:39.161878+00:00",
+        "action": "swipe",
+        "coordinates": [
+          365,
+          1359,
+          365,
+          1242
+        ],
+        "capture": {
+          "file": "l9_move08.png",
+          "sha256": "0d3db849aacf38a7f557293ae774f5fc58bdd491889af9e840964b284dedbeac",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move09",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:44.734466+00:00",
+        "action": "swipe",
+        "coordinates": [
+          249,
+          1125,
+          365,
+          1125
+        ],
+        "capture": {
+          "file": "l9_move09.png",
+          "sha256": "eb17b985c983585e2d21f92a42e733156e142b759f822633298a2c12f3ac6d86",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move10",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:50.414141+00:00",
+        "action": "tap",
+        "coordinates": [
+          831,
+          1592
+        ],
+        "capture": {
+          "file": "l9_move10.png",
+          "sha256": "8504f570186c36679ca93f06579c59b4f50755fcaa145df719de702fd9e21c88",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move11",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:56:55.878554+00:00",
+        "action": "swipe",
+        "coordinates": [
+          831,
+          1592,
+          831,
+          1475
+        ],
+        "capture": {
+          "file": "l9_move11.png",
+          "sha256": "a0c8fe1a68ed3639604c4c5ba95e63c90164688f1d276d2ad43bef9be84e3474",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move12",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:57:01.418691+00:00",
+        "action": "swipe",
+        "coordinates": [
+          598,
+          1592,
+          598,
+          1475
+        ],
+        "capture": {
+          "file": "l9_move12.png",
+          "sha256": "70c5785ec301460b965b0d79c82106f9acd3ba917740637deecedfd18696e42d",
+          "delay": 3.8
+        }
+      },
+      {
+        "label": "l9_move13",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:57:06.944845+00:00",
+        "action": "swipe",
+        "coordinates": [
+          598,
+          1475,
+          598,
+          1359
+        ],
+        "capture": {
+          "file": "l9_move13.png",
+          "sha256": "fee4362ddf8516403c26479e4837a5f00ac241229b0abc339fb1b96e43aa1534",
+          "delay": 9
+        }
+      },
+      {
+        "label": "l9_move14_rocket_down",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T21:59:10.901312+00:00",
+        "action": "swipe",
+        "coordinates": [
+          831,
+          1592,
+          831,
+          1709
+        ],
+        "capture": {
+          "file": "l9_move14_rocket_down.png",
+          "sha256": "0e6916b87119a9c82ef2eeae24bdd2feb5c7ff45c58ff31e338c84d0f6047e29",
+          "delay": 8
+        }
+      },
+      {
+        "label": "l9_move15_propeller_create",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:01:24.977550+00:00",
+        "action": "swipe",
+        "coordinates": [
+          365,
+          1125,
+          365,
+          1242
+        ],
+        "capture": {
+          "file": "l9_move15_propeller_create.png",
+          "sha256": "0cfdb26fc5d84c78b16b382d0719ea06c573456cd713a1951bcdbe711245550e",
+          "delay": 5
+        }
+      },
+      {
+        "label": "l9_move16_propeller",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:02:45.620787+00:00",
+        "action": "tap",
+        "coordinates": [
+          365,
+          1242
+        ],
+        "capture": {
+          "file": "l9_move16_propeller.png",
+          "sha256": "d5696b46c5f584fd89ae66ef40a85aa159bad74af09aaeca1e51103de61bbd3d",
+          "delay": 6
+        }
+      },
+      {
+        "label": "l9_move16_propeller_correct",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:04:09.842741+00:00",
+        "action": "tap",
+        "coordinates": [
+          365,
+          1359
+        ],
+        "capture": {
+          "file": "l9_move16_propeller_correct.png",
+          "sha256": "921c378fd73716e7fcf91324e18b936aa0c282d0bcfe46ff365486fbfaeb7e6c",
+          "delay": 7
+        }
+      },
+      {
+        "label": "l9_move17_propeller_create",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:05:46.375693+00:00",
+        "action": "swipe",
+        "coordinates": [
+          598,
+          1592,
+          598,
+          1475
+        ],
+        "capture": {
+          "file": "l9_move17_propeller_create.png",
+          "sha256": "456b2859935f2886a003712ff4ac84c3fd62afc0b5994d5609625895294b1d0e",
+          "delay": 5
+        }
+      },
+      {
+        "label": "l9_move18_final_propeller",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:06:22.287222+00:00",
+        "action": "tap",
+        "coordinates": [
+          598,
+          1475
+        ],
+        "capture": {
+          "file": "l9_move18_final_propeller.png",
+          "sha256": "4cb6a89be3992c1d4849593a58bc851627d11d09dcf30650cfde6728893a4900",
+          "delay": 16
+        }
+      },
+      {
+        "label": "l10_opening",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:15:30.049746+00:00",
+        "action": "tap",
+        "coordinates": [
+          540,
+          1620
+        ],
+        "capture": {
+          "file": "l10_opening.png",
+          "sha256": "194ef38b2e520980157d806d050460e9da39410be89d31afbc9e516aa282c133",
+          "delay": 4.0
+        }
+      },
+      {
+        "label": "l10_move01",
+        "level": 0,
+        "pid": "45007",
+        "started_utc": "2026-11-05T22:17:38.035712+00:00",
+        "action": "swipe",
+        "coordinates": [
+          773,
+          1650,
+          890,
+          1650
+        ],
+        "capture": {
+          "file": "l10_move01.png",
+          "sha256": "bd946ae242006a2e1f145b17daf0d4d6f30d6634830ca66544671e2a2f21f91a",
+          "delay": 4.0
+        }
+      }
+    ],
+    "scope": "The previously built release APK uses actual Android taps and swipes, natural pieces and saved progress. This APK predates the Unity tap-coroutine change. HUD/result readings and visible tile template comparisons cover the ninth result and the tenth opening and first move."
+  },
+  "limitations": [
+    "Native transform ports compare event values and timing, using scalar Z rotation on both sides.",
+    "Same-version original-device rendering, audio and exact frame scheduling remain unverified.",
+    "These checks cover targeted behavior within the first hundred levels."
+  ],
+  "unrelated_diagnostic_sha256": "1ceddd9e4f2199561ac52f5ab3feabd0a3d6f8c7e0fcfda7b4ffac0a7f8fb1fa",
+  "artifacts": {
+    "native_box_tap.py": {
+      "path": "C:/RMAndroidBox_20261105/native_box_tap.py",
+      "bytes": 5531,
+      "sha256": "3ae0cea410964b179de4f4d05c5791b2979eca3c92f56362895f27caa417cddc"
+    },
+    "native_box_tap.json": {
+      "path": "C:/RMAndroidBox_20261105/native_box_tap.json",
+      "bytes": 59671,
+      "sha256": "8a9c2bb8d7693c7d7572d4ed7173e4ef852b0f37578ce1184e3ffe98606750dc"
+    },
+    "compare_box_tap.py": {
+      "path": "C:/RMAndroidBox_20261105/compare_box_tap.py",
+      "bytes": 9802,
+      "sha256": "8ee80dd07b34574f6944d8309060253f43f0db3e5b15a2ee6ba21d0d6491ec41"
+    },
+    "box_tap_parity.json": {
+      "path": "C:/RMAndroidBox_20261105/box_tap_parity.json",
+      "bytes": 1666,
+      "sha256": "469e1a3edb6a8727be97b48add2386bae2351842777ff2a7ee9fa39f87858909"
+    },
+    "source_manifest.json": {
+      "path": "C:/RMAndroidBox_20261105/source_manifest.json",
+      "bytes": 166054,
+      "sha256": "923488574964f5bb37b9b46eefde3a39d769bffb9d2bf5f420cbc663a1c5f781"
+    },
+    "run_unity.py": {
+      "path": "C:/RMAndroidBox_20261105/run_unity.py",
+      "bytes": 8519,
+      "sha256": "1250be7ee1908f29d3761ac5bdb2559376310a111e0dcb46ad2529bdd645396f"
+    },
+    "run_focused.py": {
+      "path": "C:/RMAndroidBox_20261105/run_focused.py",
+      "bytes": 8987,
+      "sha256": "8a551bfb54650b35a241f532f8d206afe5aab388061e2e5b4bd39aa5febe4e3a"
+    },
+    "CoreAttemptResumeVerification.cs": {
+      "path": "C:/RMAndroidBox_20261105/CoreAttemptResumeVerification.cs",
+      "bytes": 14547,
+      "sha256": "6748f50f29174b931331bf11a253a598fea9a6ee2ea2b152157c9089ad0de2e7"
+    },
+    "level9-tap/result.json": {
+      "path": "C:/RMAndroidBox_20261105/level9-tap/result.json",
+      "bytes": 1000,
+      "sha256": "0bfd73fcf2502c5f6d1e6f1db3cb42b13367818aff08769fdc05f422d37844ce"
+    },
+    "level9-tap/restored.json": {
+      "path": "C:/RMAndroidBox_20261105/level9-tap/restored.json",
+      "bytes": 148,
+      "sha256": "3c2d8bb692f0384fb4133f17b1ae1c49094fbae42076ef07ee64d1c64da5c9ae"
+    },
+    "level9-tap/unity.log": {
+      "path": "C:/RMAndroidBox_20261105/level9-tap/unity.log",
+      "bytes": 110515,
+      "sha256": "ab767979c506fc99501da79b486ab4f46729419e7793af84bf6d9032f9083d0f"
+    },
+    "early-chapter/result.json": {
+      "path": "C:/RMAndroidBox_20261105/early-chapter/result.json",
+      "bytes": 2716,
+      "sha256": "d9ebadd7e2da3cdeaaf11ca075f1c9b8d6b9df6abd7fb283c132b145a753e768"
+    },
+    "early-baseline/result.json": {
+      "path": "C:/RMAndroidBox_20261105/early-baseline/result.json",
+      "bytes": 2712,
+      "sha256": "8d1b45ffd94bf02960d9164f19c319bf2b7d2fcc12a4284a0aee3b77cfd3befe"
+    },
+    "gestures.jsonl": {
+      "path": "C:/RMAndroidBox_20261105/gestures.jsonl",
+      "bytes": 5927,
+      "sha256": "bd377b3a64f65da41ed6a38769beab083d78a831d6f071442ef994d2f2dbc7e8"
+    },
+    "l9_resume.png": {
+      "path": "C:/RMAndroidBox_20261105/l9_resume.png",
+      "bytes": 2814817,
+      "sha256": "d1f0bf48a767b9e1082e9aaf3c4b7e6a55c01283d0befaa286013c400b1bfa33"
+    },
+    "l9_move13_observe1.png": {
+      "path": "C:/RMAndroidBox_20261105/l9_move13_observe1.png",
+      "bytes": 2751932,
+      "sha256": "5348d3e2bbd8319727e6dec570ea872a6a7ce062fdb959b5010c5acfc2fc72bc"
+    },
+    "android_finished_session.json": {
+      "path": "C:/RMAndroidBox_20261105/android_finished_session.json",
+      "bytes": 1332,
+      "sha256": "e2b451ef869939234b30443c95cd43c761606b417d9df2269c20035a93154069"
+    },
+    "android_session_45007_logcat.txt": {
+      "path": "C:/RMAndroidBox_20261105/android_session_45007_logcat.txt",
+      "bytes": 20349,
+      "sha256": "e272707db47da978c177772991af8ce04a838596caad823b2544634670332155"
+    }
+  }
+}

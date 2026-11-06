@@ -1,0 +1,603 @@
+{
+  "baseline_commit": "d6ff69ce8fe055ec44be362980214e091e1974ed",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "canonical_background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-mixed-chapter",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "61048ccab7e1964217bf6702b2e2f999bc895b5f2302194813eed32debfbc78f",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-mixed-chapter.log",
+    "elapsed_seconds": 411.78,
+    "batch": {
+      "passed": true,
+      "test": "core-mixed-chapter",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T05:38:49.6468311Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "actual_chapter_verification": {
+    "passed": true,
+    "projection_during_shake_verified": true,
+    "failure": "",
+    "status": "finished",
+    "levels": [
+      {
+        "level": 22,
+        "width": 9,
+        "height": 9,
+        "target_count": 60,
+        "mailboxes": 9,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "moves": 6,
+        "natural_actions": 1,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 23,
+        "width": 8,
+        "height": 8,
+        "target_count": 70,
+        "mailboxes": 11,
+        "cupboards": 0,
+        "boxes": 25,
+        "grass": 0,
+        "moves": 6,
+        "natural_actions": 0,
+        "fixture_actions": 6,
+        "fixture_combos": 0,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 24,
+        "width": 9,
+        "height": 9,
+        "target_count": 72,
+        "mailboxes": 9,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 32,
+        "moves": 10,
+        "natural_actions": 0,
+        "fixture_actions": 10,
+        "fixture_combos": 0,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 25,
+        "width": 9,
+        "height": 10,
+        "target_count": 96,
+        "mailboxes": 6,
+        "cupboards": 3,
+        "boxes": 36,
+        "grass": 0,
+        "moves": 10,
+        "natural_actions": 0,
+        "fixture_actions": 10,
+        "fixture_combos": 0,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 26,
+        "width": 9,
+        "height": 9,
+        "target_count": 51,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 15,
+        "grass": 36,
+        "moves": 7,
+        "natural_actions": 0,
+        "fixture_actions": 7,
+        "fixture_combos": 0,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 27,
+        "width": 8,
+        "height": 8,
+        "target_count": 72,
+        "mailboxes": 0,
+        "cupboards": 4,
+        "boxes": 16,
+        "grass": 16,
+        "moves": 10,
+        "natural_actions": 0,
+        "fixture_actions": 10,
+        "fixture_combos": 0,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 28,
+        "width": 8,
+        "height": 10,
+        "target_count": 150,
+        "mailboxes": 0,
+        "cupboards": 12,
+        "boxes": 30,
+        "grass": 0,
+        "moves": 12,
+        "natural_actions": 1,
+        "fixture_actions": 11,
+        "fixture_combos": 0,
+        "original_lightball_combo": true,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 29,
+        "width": 9,
+        "height": 10,
+        "target_count": 95,
+        "mailboxes": 9,
+        "cupboards": 0,
+        "boxes": 27,
+        "grass": 18,
+        "moves": 13,
+        "natural_actions": 0,
+        "fixture_actions": 13,
+        "fixture_combos": 0,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 30,
+        "width": 8,
+        "height": 8,
+        "target_count": 200,
+        "mailboxes": 36,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "moves": 5,
+        "natural_actions": 0,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      }
+    ],
+    "scope": "Actual GameScene seeded only to level 22, then original Continue buttons. Recorded player input triggers the original level 28 lightball pair and controlled production-factory TNT placements. Checks original mixed goals, ten-row board position, completion and local progression."
+  },
+  "native_portrait_offset_reference": {
+    "passed": true,
+    "cases": [
+      {
+        "portrait_aspect": 0.3499999940395355,
+        "native_offset_y": -1.0
+      },
+      {
+        "portrait_aspect": 0.44999998807907104,
+        "native_offset_y": -1.0
+      },
+      {
+        "portrait_aspect": 0.5625,
+        "native_offset_y": -0.75
+      },
+      {
+        "portrait_aspect": 0.6499999761581421,
+        "native_offset_y": -0.75
+      },
+      {
+        "portrait_aspect": 0.699999988079071,
+        "native_offset_y": -0.75
+      },
+      {
+        "portrait_aspect": 0.8999999761581421,
+        "native_offset_y": -1.0714285373687744
+      },
+      {
+        "portrait_aspect": 1.0,
+        "native_offset_y": -1.0714285373687744
+      },
+      {
+        "portrait_aspect": 0.4999999701976776,
+        "native_offset_y": -1.0
+      },
+      {
+        "portrait_aspect": 0.5,
+        "native_offset_y": -0.75
+      },
+      {
+        "portrait_aspect": 0.5000000596046448,
+        "native_offset_y": -0.75
+      },
+      {
+        "portrait_aspect": 0.7999999523162842,
+        "native_offset_y": -0.75
+      },
+      {
+        "portrait_aspect": 0.800000011920929,
+        "native_offset_y": -1.0714285373687744
+      },
+      {
+        "portrait_aspect": 0.8000000715255737,
+        "native_offset_y": -1.0714285373687744
+      }
+    ],
+    "scope": "Actual ARM64 GridPositioner.CalculateOffset, GetOffsetByAspectRatio and CameraManager.GetUiScaleFactor for a game camera without event offsets. Unity Camera aspect and scene/metadata services are supplied ports. Compares the managed offset bit-for-bit around both thresholds."
+  },
+  "preserved_original_configs": [
+    {
+      "number": 22,
+      "original_name": "00022v01_L",
+      "resource_path": "Levels/level_22",
+      "decoded_source": "configs/levels/22__3281.json",
+      "raw_source": "configs/textassets/22__3281.bytes",
+      "sha256": "64437b64830f05d45c9f18c98b2e77df8d8a425da52da4cf8ff99f4c92139d9b",
+      "moves": 25,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        18
+      ],
+      "raw_item_ids": {
+        "0": 32,
+        "1": 3,
+        "2": 3,
+        "11": 8,
+        "14": 26,
+        "34": 9
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 23,
+      "original_name": "00023v02_L",
+      "resource_path": "Levels/level_23",
+      "decoded_source": "configs/levels/23__5179.json",
+      "raw_source": "configs/textassets/23__5179.bytes",
+      "sha256": "9a78db5fe6906b6b93a663537a088e2b68661e09eb4b2123738ce749c77d9914",
+      "moves": 20,
+      "width": 8,
+      "height": 8,
+      "goal_types": [
+        11,
+        18
+      ],
+      "raw_item_ids": {
+        "0": 9,
+        "1": 4,
+        "2": 5,
+        "3": 4,
+        "4": 3,
+        "11": 3,
+        "21": 25,
+        "34": 11
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 24,
+      "original_name": "00024v03_L",
+      "resource_path": "Levels/level_24",
+      "decoded_source": "configs/levels/24__13972.json",
+      "raw_source": "configs/textassets/24__13972.bytes",
+      "sha256": "e9d8005825e17d049ec050f2249f8e3d3d3bb2623039ba28d802c7d67df3a8d8",
+      "moves": 26,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        13,
+        18
+      ],
+      "raw_item_ids": {
+        "0": 12,
+        "11": 1,
+        "14": 59,
+        "34": 9
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8,
+        "Grass": 32
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 25,
+      "original_name": "00025v03_L",
+      "resource_path": "Levels/level_25",
+      "decoded_source": "configs/levels/25__5964.json",
+      "raw_source": "configs/textassets/25__5964.bytes",
+      "sha256": "bdc67aac6b0e0e00cd0c6ac70254066cbb7ce532882d949903dcb8c5bae840a1",
+      "moves": 26,
+      "width": 9,
+      "height": 10,
+      "goal_types": [
+        11,
+        15,
+        18
+      ],
+      "raw_item_ids": {
+        "0": 15,
+        "2": 1,
+        "3": 3,
+        "11": 3,
+        "14": 14,
+        "21": 36,
+        "34": 6,
+        "41": 3,
+        "42": 3,
+        "51": 3,
+        "52": 3
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 26,
+      "original_name": "00026v03_L",
+      "resource_path": "Levels/level_26",
+      "decoded_source": "configs/levels/26__4803.json",
+      "raw_source": "configs/textassets/26__4803.bytes",
+      "sha256": "41e9d823bc171b435b538bda85193626b562bee365276e70626266a5625f2333",
+      "moves": 23,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "0": 9,
+        "1": 3,
+        "3": 3,
+        "4": 3,
+        "13": 36,
+        "14": 12,
+        "22": 15
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 36
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 27,
+      "original_name": "00027v03_L",
+      "resource_path": "Levels/level_27",
+      "decoded_source": "configs/levels/27__5224.json",
+      "raw_source": "configs/textassets/27__5224.bytes",
+      "sha256": "3ae95cbcc93d166acd2258009e3218057af3a829a72baa8e8f6f9b46b269bca7",
+      "moves": 21,
+      "width": 8,
+      "height": 8,
+      "goal_types": [
+        15,
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "1": 3,
+        "2": 1,
+        "3": 3,
+        "4": 1,
+        "14": 24,
+        "21": 16,
+        "41": 4,
+        "42": 4,
+        "51": 4,
+        "52": 4
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8,
+        "Grass": 16
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 28,
+      "original_name": "00028v03_L",
+      "resource_path": "Levels/level_28",
+      "decoded_source": "configs/levels/28__13595.json",
+      "raw_source": "configs/textassets/28__13595.bytes",
+      "sha256": "40645a56a5effe3e2c4b1475eeccc94259e3ac34f6a40c5b12aeb9b44ad47a28",
+      "moves": 27,
+      "width": 8,
+      "height": 10,
+      "goal_types": [
+        15,
+        11
+      ],
+      "raw_item_ids": {
+        "21": 30,
+        "41": 12,
+        "42": 12,
+        "50": 2,
+        "51": 12,
+        "52": 12
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 29,
+      "original_name": "00029v03_L",
+      "resource_path": "Levels/level_29",
+      "decoded_source": "configs/levels/29__9042.json",
+      "raw_source": "configs/textassets/29__9042.bytes",
+      "sha256": "7d973812718fffe2adfc39d527e9667a199aec620f8149d29a226e53b4f51967",
+      "moves": 25,
+      "width": 9,
+      "height": 10,
+      "goal_types": [
+        11,
+        13,
+        18
+      ],
+      "raw_item_ids": {
+        "0": 9,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "14": 33,
+        "22": 27,
+        "34": 9
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 18
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 30,
+      "original_name": "00030v03_L",
+      "resource_path": "Levels/level_30",
+      "decoded_source": "configs/levels/30__4808.json",
+      "raw_source": "configs/textassets/30__4808.bytes",
+      "sha256": "d9bc84b16cf15982e334565f97bd2a33fa4c2f4772fb72b3b322a7cf730fbd1e",
+      "moves": 22,
+      "width": 8,
+      "height": 8,
+      "goal_types": [
+        18
+      ],
+      "raw_item_ids": {
+        "14": 28,
+        "34": 36
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "native_paths": {
+    "grid_position": "GridPositioner 0x1e33b68 and 0x1e33c50 use the center of the board corners. Ordinary portrait offset 0x1e3329c and 0x1e336c8 uses Vector3.down with the aspect factor and game UI scale 0x200591c.",
+    "original_lightball_pair": "Level 28 original tiles 50 at (3,5)/(4,5) drive the original BallBallCombo 0x1e2a400–0x1e2b3c8, not a placed fixture."
+  },
+  "verification_limits": [
+    "Formal GameScene starts from isolated level 22 progress and uses eight real Continue buttons. Controlled TNT placements are recorded for the remainder of the chapter alongside natural opening input.",
+    "The regular 720×1280 camera path, native aspect-derived board offset and projection refresh during a live horizontal shake are checked. Device-specific unsupported-resolution handling, physical touch, Android/iOS and full rendered parity are unverified.",
+    "This chapter ends at the actual level 30 win and advances the progress value to 31."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "4b30634cedb023de8a740f2b80b7b931286abf4407948b8dfb8e16ff8060fec3"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreMixedChapterVerification.cs",
+      "sha256": "1f4f8d9d3b1181db22406cedcf4a0122ad132e6d566cc727820c972b40a04b67"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreMixedChapterVerification.cs.meta",
+      "sha256": "b38daf08d57d6f6f453bbb17d6d4224cacaf8910aafd4de8f69b3e35dd8c4b3f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/FoundationController.cs",
+      "sha256": "502f6843336c79e73be802ac2e16cf69a89bda327b8b3f40d4a1d1e564d28edf"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCameraProjection.cs",
+      "sha256": "df0b1df8237b95b9f9d5c94a4f245f9fac39307becaf13cc7fb066e975899727"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameSceneProjection.cs",
+      "sha256": "c51b5246f8bc30c95766f072cc2f5d35a48fe946f7acfd05b338c30e120a039c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGridShakeAnimation.cs",
+      "sha256": "c8e52fe9b2f5a2dd258101544db1647d7d6331b20850226e904eaaf4f4e990e0"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "e292b52493dd6492ae493b79976df3d9b92133661e7fea5ceb535ade31907ec4"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "51f37b81d980a9dd7ded082fc10ef1e7805bd90d0b370a63d0fe13d0c4ba6558"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "e148efa2b6787499c18edea13107e6344abb0ef6cf05b265b510affb980fc088"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "c3bfa138526ec9e7e6a78cf07616d9b1d4207a32497294e801cf1e672bef1052"
+    },
+    {
+      "path": "background_core_mixed_chapter_verification.json",
+      "sha256": "c8a8589dc78fe378100f7fd409add1c7ea0436141c26e70e52df52067be7a679"
+    },
+    {
+      "path": "core_mixed_level25_start.png",
+      "sha256": "2cfa2ca78a5912fc59858856caf5d7800e1ab838dc773b047da1594f9768cc98"
+    },
+    {
+      "path": "core_mixed_level28_combo.png",
+      "sha256": "c4e3ecf8591963a2e1a16a48da3076a7fa80b2cede17070e25324e4d65b39de2"
+    },
+    {
+      "path": "core_mixed_level28_start.png",
+      "sha256": "dba36be41a65955252a4b7cd9de6b7280f06e878b8f63761f81cf3eb9c883dc9"
+    },
+    {
+      "path": "core_mixed_level29_start.png",
+      "sha256": "28dc5c5d7ab0f9df2a3d124b7456006d5ac8aa07deb467947e9fd3a70a4f579c"
+    },
+    {
+      "path": "core_mixed_level30_win.png",
+      "sha256": "dd8e6fb5f04ae4984e91a36b5f6eca70d832b90eaf24ece3c0768a7568ff1e18"
+    },
+    {
+      "path": "live_core_mixed_chapter_verification.json",
+      "sha256": "e5c5ed06304aa56e27efae41f134006dbc0b71792a684743217648d3c7ca66c8"
+    }
+  ]
+}

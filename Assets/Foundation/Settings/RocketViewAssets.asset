@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bdb34e492024833a7c3314a349c6b03, type: 3}
+  m_Name: RocketViewAssets
+  m_EditorClassIdentifier:
+  spritePaths:
+  - Recovered/Sprite/Items-SpecialItems-RocketItem-horizontal_rocket
+  - Recovered/Sprite/Items-SpecialItems-RocketItem-horizontal_rocket_part_left
+  - Recovered/Sprite/Items-SpecialItems-RocketItem-horizontal_rocket_part_right
+  - Recovered/Sprite/Items-SpecialItems-RocketItem-vertical_rocket
+  - Recovered/Sprite/Items-SpecialItems-RocketItem-vertical_rocket_part_bottom
+  - Recovered/Sprite/Items-SpecialItems-RocketItem-vertical_rocket_part_top
+  - Recovered/Sprite/Items-SpecialItems-RocketItem-rocket_shadow
+  horizontalCreationState: Base Layer.HorizontalRocketCreationAnimation
+  verticalCreationState: Base Layer.VerticalRocketCreationAnimation
+  shadowSprite: 6
+  creationSound: 314
+  creationSoundOffset: 0.04
+  useSound: 315
+  useSoundOffset: 0.04
+  speed: 13.5
+  accelerationPerFrame: 0.18
+  hitDistance: 0.8
+  horizontalScreenMargin: 1
+  verticalScreenMargin: 2
+  wideDeviceUnfreezeX: 5.65
+  wideDeviceAspect: 0.57
+  recycleTail: 1
+  propellerComboTargetDelay: 0.07
+  propellerComboShadowAlpha: 0.23529412
+  horizontalPose:
+    BodyOffset: {x: 0, y: -0.013, z: 0}
+    ShadowOffset: {x: 0, y: 0.027, z: 0}
+    ShadowEuler: {x: 0, y: 0, z: 0}
+    FirstPartOffset: {x: -0.3, y: 0, z: 0}
+    SecondPartOffset: {x: 0.3, y: 0, z: 0}
+    BodySprite: 0
+    FirstPartSprite: 1
+    SecondPartSprite: 2
+  verticalPose:
+    BodyOffset: {x: 0.024, y: 0.005, z: 0}
+    ShadowOffset: {x: -0.055, y: -0.025, z: 0}
+    ShadowEuler: {x: 0, y: 0, z: 90}
+    FirstPartOffset: {x: 0, y: 0.3, z: 0}
+    SecondPartOffset: {x: 0, y: -0.3, z: 0}
+    BodySprite: 3
+    FirstPartSprite: 5
+    SecondPartSprite: 4

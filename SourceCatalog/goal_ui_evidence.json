@@ -1,0 +1,55 @@
+{
+  "status": "Bound to production first-board scene and verified in isolated Unity Android batch editor.",
+  "original_methods": [
+    "GoalUi.Init 0x18cb554",
+    "GoalUi.OnGoalUpdated 0x18cc5cc",
+    "GoalUi.ShowCheckImage 0x18cc914",
+    "GoalUi check callbacks 0x18ccca4 / 0x18ccf64",
+    "GoalPanelUi check count 0x18cb924 / 0x18cc160 / 0x18cc170",
+    "GoalManager check gate 0x3215554 / 0x32155a8"
+  ],
+  "changes": [
+    "Original GoalUi prefab rebound to typed runtime, original Box icon/shadow/count/check/particles and lazy sound163.",
+    "Original Target/Moves scene subtrees extracted as configured HUD prefab; code binds move/goal events.",
+    "Recovered Mikado materials use official TMP mobile SDF shader as in original source, fixing invisible text.",
+    "Original .2s delay, .6 check base scale, 6x initial size, four linear stages .15/.0155/.1/.17s; real completion callback releases check count.",
+    "Uses same manual level clock in Editor and player; no reflection or third-party runtime assemblies."
+  ],
+  "verification": {
+    "passed": true,
+    "mode": "goal-ui",
+    "source_sha256": "1c6db4378a4a881f6d5459d32297b295eca84668c16cd24a9c0ead182a7f4581",
+    "source_unchanged": true,
+    "unity_exit_code": 0,
+    "box_goals": 36,
+    "combo_swaps": 4,
+    "tnt_taps": 1,
+    "left_moves": 25,
+    "goals_left": 0,
+    "pending_checks": 0,
+    "delay_observed_seconds": 0.2166309356689453,
+    "check_complete_observed_seconds": 0.65380859375,
+    "rendered_capture_inspected": "goal_ui_completed.png: Moves25, Target check, original sprites and visible Mikado text."
+  },
+  "known_gaps": [
+    "Only original Box11 collection behavior admitted; other goal celebration owners are pending.",
+    "Full original CameraManager notch/scaler, King/background/introduction not restored; full visual parity unproven.",
+    "WinFail, remaining moves conversion, settlement, progression and country/region A/B GM still pending.",
+    "Fixture-driven production drags/tap verify actual model damage, not physical pointer timing or natural combo creation."
+  ],
+  "git_checkpoint": {
+    "verified_parent": "30df6acd6952e0d0f5198dc7864b4c3504f2ac50",
+    "expected_title": "Restore original goal checks and playable move HUD",
+    "method": "Local Git GUI commit and push. Immutable result recorded outside source and in task response.",
+    "git_cli_used": false
+  },
+  "current_remaining_dialog_skip_evidence": "SourceCatalog/remaining_dialog_skip_evidence.json",
+  "current_remaining_dialog_skip_source_snapshot_sha256": "af195c40f8130efbbdd8f41ae3a75fc28b3465590985f80e175d1b6699326b65",
+  "current_verifier_observation_note": "Actual ParticleSystem.isPlaying is also observed on the animation completion frame; original runtime check stages/timing are unchanged. See current remaining-dialog evidence for the initial failure and verified correction.",
+  "current_level_win_dialog_evidence": "SourceCatalog/level_win_dialog_evidence.json",
+  "current_level_win_dialog_source_snapshot_sha256": "79557e533b0777f36a4699640241fc7dc1872ac45251314a68d191617ea5b35c",
+  "current_game_exit_evidence": "SourceCatalog/game_exit_evidence.json",
+  "current_game_exit_source_snapshot_sha256": "5ba86cfdbf811aa7929d6c11e1d5dbd53fb599db7e256ec5c3010c1181e31831",
+  "current_game_context_exit_evidence": "SourceCatalog/game_context_exit_evidence.json",
+  "current_game_context_exit_source_snapshot_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332"
+}

@@ -1,0 +1,574 @@
+{
+  "restored_branch": "Native combo8, normal TNT plus propeller primary branch (isExtraCombo=false), admitted static-free first board",
+  "full_objective_complete": false,
+  "source_snapshot_sha256": "09ab3e32a8196c209b0c488d00f7f9a2b8a5b21529d545f24c668c4031351f77",
+  "native_methods": [
+    {
+      "rva": "0x1e2e0b0",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.TntPropellerCombo$$Prepare",
+      "body_sha256": "a70d0bda6f014abd184b91e9214febaf37ea01a387d6d0533dd2fad664024690"
+    },
+    {
+      "rva": "0x1e2e398",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.TntPropellerCombo$$Explode",
+      "body_sha256": "72e66a038bcfaa9fa0cf802d269d9df9cbf4f122466da23b4ca23de84c8a204b"
+    },
+    {
+      "rva": "0x1e30ad4",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.TntPropellerCombo$$SetAllItems",
+      "body_sha256": "5acc472aaafd270b9a1edd4194ab7e8006d3fb3c3c114a7d0cc767dd0d96ab41"
+    },
+    {
+      "rva": "0x1f3d040",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerSpecialItemStrategy$$.ctor",
+      "body_sha256": "1ad0516aa3e18f64a3b58ea7583c6b4124157b22b85e0ab7f20945534082555c"
+    },
+    {
+      "rva": "0x1f3d6a0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerSpecialItemStrategy$$OnTargetFound",
+      "body_sha256": "feef0c8df86b55eb50ab8eac42cefea37f6675d0de2cd6a20698168d8799a049"
+    },
+    {
+      "rva": "0x1f3d6d4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerSpecialItemStrategy$$OnTargetCancelled",
+      "body_sha256": "e48e0b27e1c0607b787c86f2f866748d3aa07141b3561cd6c4343af53800af43"
+    },
+    {
+      "rva": "0x1f3d708",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerSpecialItemStrategy$$OnTargetReached",
+      "body_sha256": "8df07aaf489a450ccc471e13a8387d415cb28bb97d07b975bb248cd372621480"
+    },
+    {
+      "rva": "0x1f3d85c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerSpecialItemStrategy$$ForceExplode",
+      "body_sha256": "479c4b8f76672c552934b62fc7ecc0a804f6a5d947b7f5a17d7129fed8767fea"
+    },
+    {
+      "rva": "0x1f3d98c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerSpecialItemStrategy.<FinishOperationWithDelay>d__11$$MoveNext",
+      "body_sha256": "1636d0e1c8dc1a2a1ee577f61abb7c10109c7465fdad2d434e70ef7866680f07"
+    },
+    {
+      "rva": "0x1f3dac8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerTntStrategy$$NextExploder",
+      "body_sha256": "4e11da1194f1a55079c282dd9060a95f847d37ed44a6c0207950b3859a98c4ad"
+    },
+    {
+      "rva": "0x1f3db98",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerTntStrategy$$OnTargetReached",
+      "body_sha256": "e3f2f05043da0f1cbd2274049a48e614cce3594161333e10cdf5a85700a01e53"
+    },
+    {
+      "rva": "0x1f348b4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$get_ScaleUpSpeedConst",
+      "body_sha256": "53d3e2cd8228073c10152e2d6cb7f0a196caac759701a7cfbb9989a8a4aa59aa"
+    },
+    {
+      "rva": "0x1f348bc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$get_MinOutSpeedConst",
+      "body_sha256": "cd8d770957f0e6e8b4c0dd8f5a65d970e0917ecb0277facfcd81ab71e759eade"
+    },
+    {
+      "rva": "0x1f348c4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$get_MaxOutSpeedConst",
+      "body_sha256": "cf158d58f926f2cc3e9f0a8a2a86d4afe159bbf6cdb94d77271026d35808199e"
+    },
+    {
+      "rva": "0x1f348d0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$get_GoSpeedMultiplierConst",
+      "body_sha256": "47859d9b4c78090433a048ad51273b838128b3445be23c5ea9c9accffffb8b9b"
+    },
+    {
+      "rva": "0x1f348d8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$get_MaxGoSpeedConst",
+      "body_sha256": "b27dd98ee534e40f6c79209a8930c9d04711936e81f0e7e160c4094497a60e1e"
+    },
+    {
+      "rva": "0x1f348e4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$get_MinDistanceToScaleDown",
+      "body_sha256": "d9b4e9ade4d0f0e89892e1b5a0b697337a0c6d4cb25e1187fb486cc70c0a9e72"
+    },
+    {
+      "rva": "0x1f34a10",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$GetMinFlyTime",
+      "body_sha256": "659dfdaf990351b93b02662156f73bbaaab99c39c7c7504581e2d3785e7f98ed"
+    },
+    {
+      "rva": "0x1f34a1c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$StartFlying",
+      "body_sha256": "a6f7ff153a8e7b20b7628c3f84433c12110097da1eeeaf94972859c5bc0ecc7c"
+    },
+    {
+      "rva": "0x1f34ac8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$InitializeCurveVariables",
+      "body_sha256": "eef91c1a7aaa943d1ee415916e74c9cc0c1c0e9fb5c7d1a5e4ab81e4bc3ac31c"
+    },
+    {
+      "rva": "0x1f34ed0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$ArrangeSorting",
+      "body_sha256": "f2eda9d8e8c08f94a18b8c22ce63032624dcbbfbfbf7c0e493456344bc4291fe"
+    },
+    {
+      "rva": "0x1f34fb8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$TargetReached",
+      "body_sha256": "62769bf0753ca23574cf50fe2c0e786a393d472139c60ace3f7d752218ecc3aa"
+    },
+    {
+      "rva": "0x1f350f0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$ArrangePosition",
+      "body_sha256": "dade8eefbeac73fa03b88f9e0fb0e1abd02b9b147df3c5a6f6d66d02dd9047e1"
+    },
+    {
+      "rva": "0x1f35168",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$ArrangeRootPositions",
+      "body_sha256": "3f579ae06676e42c693cdb2cb78490798643ae7477359aab62264d8f7b719324"
+    },
+    {
+      "rva": "0x1f35520",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$ArrangeScaleDown",
+      "body_sha256": "5d48b46310ade48522e5c04ade9a298d6ede351a3e45e0227774efd2759be5fb"
+    },
+    {
+      "rva": "0x1f356dc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$ArrangeScaleUp",
+      "body_sha256": "b7fe7315bb136db23ae8fee2ac2ac35082fd214e280d9fe7c4688d9c7a91733b"
+    },
+    {
+      "rva": "0x1f358d0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$MoveToTarget",
+      "body_sha256": "160ac45ad2b0d537675a102890dc2650d5dae6067b35f0169378a4cacc156093"
+    },
+    {
+      "rva": "0x1f35ee4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.View.PropellerPilot.PropellerSpecialComboPilot$$CalculateAngleSmoothCoefficient",
+      "body_sha256": "4060e0823576cac4d7cfa8afb5616aa5d7cf84ea7f1e54771a39133db3b5c9ba"
+    },
+    {
+      "rva": "0x1c95018",
+      "name": "Royal.Scenes.Game.Levels.Units.Explode.ExplodeTargetFinder$$FindAreaTarget",
+      "body_sha256": "dcf98aaf31cd7b0c40d2c98ae6f82a735f3cdaff8ecd54f5d5631a6165bbb845"
+    },
+    {
+      "rva": "0x1c95804",
+      "name": "Royal.Scenes.Game.Levels.Units.Explode.ExplodeTargetFinder$$FindHighestScoreForAreaExploder",
+      "body_sha256": "f44d9b016bcf28e684b1db802961cb665f5e56ecddc1ca08f5ad80951c0df008"
+    },
+    {
+      "rva": "0x1c9ba28",
+      "name": "Royal.Scenes.Game.Levels.Units.Explode.ExplodeTargetFinder$$CalculateScoreForAreaExploder",
+      "body_sha256": "49d4f8d4a3144b04a73774029cf6fe824e3b0702327f8bfd36360dd6308b1dc3"
+    },
+    {
+      "rva": "0x1c9763c",
+      "name": "Royal.Scenes.Game.Levels.Units.Explode.ExplodeTargetFinder$$ShouldAddToTotalScore",
+      "body_sha256": "c1862d7379125cc7008c8ae55e046b3d10946db95ad2bd108b8b297804453257"
+    },
+    {
+      "rva": "0x1ca42f0",
+      "name": "Royal.Scenes.Game.Levels.Units.Explode.WinCalculationData$$IsCellWinningForAreaExploder",
+      "body_sha256": "0b7b3f55073921821c924c1183d467d2f12b3edd54ee797c1cfc91bff7e8242c"
+    },
+    {
+      "rva": "0x319d6cc",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$CalculateGoalDecrementByPropellerHit",
+      "body_sha256": "c3df21b2e62e7090acff0a529d6a80fc26c4c188c25bee3a210d2fe0689aef84"
+    },
+    {
+      "rva": "0x2b47910",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemModel$$CalculateGoalDecrementByPropellerHit",
+      "body_sha256": "f86c313bb52182ff868c09a2c5503f6b9740a93b7f101c481bdf1052625b5efe"
+    },
+    {
+      "rva": "0x1c9f554",
+      "name": "Royal.Scenes.Game.Levels.Units.Explode.GuidedExploderItemModel$$FindTarget",
+      "body_sha256": "6267e24e71e8d445b9ef46267c4d8f04e97b07946c003d997d5760c3f870fc70"
+    },
+    {
+      "rva": "0x1c9df7c",
+      "name": "Royal.Scenes.Game.Levels.Units.Explode.GuidedExploderItemModel$$IsTargetValid",
+      "body_sha256": "af7ecf4cc60032163bde14ae35ca65b9299a16ed3e56ae0c0b504edd6f7ece5c"
+    },
+    {
+      "rva": "0x1c9f26c",
+      "name": "Royal.Scenes.Game.Levels.Units.Explode.GuidedExploderItemModel$$GetTargetPosition",
+      "body_sha256": "f0e7c768d411042f9717856dbbb52a248a2d4cf6871170010dfdc7dc53e468f2"
+    },
+    {
+      "rva": "0x1ee402c",
+      "name": "Royal.Scenes.Game.Levels.Units.Touch.SwapAction$$GetSwapMoveTypeFromItems",
+      "body_sha256": "8a9947d0047ddad24db70765443531ab7081d9ded8e7a1a5970efa961fa64154"
+    },
+    {
+      "rva": "0x12d9f74",
+      "name": "Royal.Scenes.Game.Mechanics.Sortings.Sorting$$GetPropellerFlyingSorting",
+      "body_sha256": "9d6cd666752b8e3bfb638fdeb7e1daca16ce5d7b497a26555c96b5398d2199d6"
+    },
+    {
+      "rva": "0x12d9ff4",
+      "name": "Royal.Scenes.Game.Mechanics.Sortings.Sorting$$GetPropellerScaleDownSorting",
+      "body_sha256": "ef717c5b342fc065d03464087e8d3810153c2c9310c9decb4fecb95ceda542c3"
+    },
+    {
+      "rva": "0x27b9554",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemView$$SwapAnimationStarted",
+      "body_sha256": "7b8722e3fb9dd5925857b1ea469bb6d2a26e5873f9b69aa8ada58dc9897ed194"
+    },
+    {
+      "rva": "0x27b9594",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemView$$PreparePropellerComboFuseParticles",
+      "body_sha256": "b376362585a503094bfb092664d43dc81de81d452432d1e004bcf40d1615a25e"
+    },
+    {
+      "rva": "0x27ba378",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntPropellerCombo.TntPropellerComboFuseParticles$$GetPoolId",
+      "body_sha256": "4e0573c2b9c506a5d2dd4f34024d548cf5bb037b5b55903a688035bd3abaa26b"
+    },
+    {
+      "rva": "0x27ba3cc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntPropellerCombo.TntPropellerComboFuseParticles$$UpdateSorting",
+      "body_sha256": "5db5580d48b583617407daafbc39b3f307fb94858810c2daf968c639542a136e"
+    },
+    {
+      "rva": "0x27b75d4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemAssets$$CreateItemPools",
+      "body_sha256": "5865e1e2697ca737be8521407277a5a1192429273926c176b3d5ee55b8cff991"
+    },
+    {
+      "rva": "0x27b5cf4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.TntItemModel$$ExplodeViews",
+      "body_sha256": "252cbdaee108dee16de580ebd17dbe353bc3f74943f685cdac9291c4bf57f498"
+    },
+    {
+      "rva": "0x27b6088",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemView$$Recycle",
+      "body_sha256": "5b830024d57f4aaa76da4a574d6a14e4b615c5db09bc1181b9db45eaba4e345f"
+    },
+    {
+      "rva": "0x2b46bc8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemModel$$GetViewPosition",
+      "body_sha256": "c4f0c9975a2cf4e4797ba739c8a936788e14d18d051c3cd2bad424c6bd964c4b"
+    }
+  ],
+  "native_rules": [
+    "SwapAction classifies combo8 as move1. Prepare merges the propeller into the moving-item cell when needed, detaches the existing TNT, stops TNT creation, preserves swipe direction/item origin and freezes the empty cell for0.15.",
+    "SwapAnimationStarted with otherItem3 recycles regular fuse16 and borrows dedicated native fuse17, with the original four renderer bindings and sorting offsets0/1/2/3. Native TntItemAssets prewarms exactly one combo fuse.",
+    "Loop296 uses the recovered propeller_tnt_combo clip by Resources path. The actual existing TNT view is parented to the propeller, uses native6/.5/.7/15/45/1.5/.1 pilot constants, root weaving/scales/rotation, shadow alpha60/255, combo sorting150 and alternating +/-10 carrier offset.",
+    "Trigger13 selects the highest-scoring radius2 area. Traversal, overflow arithmetic, lightball penalty, winning priority, separate positive versus zero/negative-center lists, useful-negative fallback and exact RNG consumption are differentially tested against the ARM64 binary.",
+    "First-board concrete area services use actual item scores, goal-dependent match caps and target-mediation remaining-hit counts for winning areas. Prerequisites/bonus return false; unsupported conditional-goal/static/jelly/claimer owners are not admitted.",
+    "Zero-score match/special targets pin the original selected cell. Scoring targets use their actual view position. Incoming trigger13 reservations are removed at arrival; operation3 and special flight ownership release normally.",
+    "Arrival stops loop296, reparents the real TNT view to the board and resets its root/scale before executing detached TNT damage at the target point. Operation9 remains until a native0.5 gameplay-second delay expires.",
+    "Native detached TNT ExplodeViews recycles its view directly and skips FinalExplodeCompleted, preserving its HasView field. Pool accounting, rather than an invented flag reset, proves actual TNT/fuse release.",
+    "All eight actual swaps complete damage, goals, refill, one-move consumption, subsequent input, cell mediation, freeze release and borrowed-view ownership. The existing18-operation lightball suite passes on the identical source snapshot in a separate fresh session."
+  ],
+  "area_native_differential": {
+    "passed": true,
+    "selection_cases": 160,
+    "score_queries": 3341,
+    "methods": [
+      {
+        "rva": "0x1c95804",
+        "name": "Royal.Scenes.Game.Levels.Units.Explode.ExplodeTargetFinder$$FindHighestScoreForAreaExploder",
+        "body_sha256": "f44d9b016bcf28e684b1db802961cb665f5e56ecddc1ca08f5ad80951c0df008"
+      },
+      {
+        "rva": "0x1c9ba28",
+        "name": "Royal.Scenes.Game.Levels.Units.Explode.ExplodeTargetFinder$$CalculateScoreForAreaExploder",
+        "body_sha256": "49d4f8d4a3144b04a73774029cf6fe824e3b0702327f8bfd36360dd6308b1dc3"
+      },
+      {
+        "rva": "0x1c9d160",
+        "name": "Royal.Scenes.Game.Levels.Units.Explode.ExplodeTargetFinder$$GetRandomItemFromAreaScores",
+        "body_sha256": "b6087f1780ff0113bcea5bb1bd0eaaeb06d7b5a7d4324216c03a4cdf276bf24a"
+      },
+      {
+        "rva": "0x2b44060",
+        "name": "Royal.Scenes.Game.Mechanics.Items.Config.GameplayExtensions$$ExplodeRadius",
+        "body_sha256": "331f176827861050312f022b02b7f243aa2185c39768432a747ebbe9c7858c79"
+      }
+    ],
+    "scope": "Execute original ARM64 TNT area loops/selection against production C#.\n\nCell score, goal-cap admission and area-winning decisions are explicit shared\nboundaries. This proves the original area traversal/penalty/candidate/RNG rules,\nnot those service implementations or carried-special flight/presentation. Tests include sparse/boundary/non-normal cells, positive/zero/negative/overflow scores, lightball penalties, score-admission boundaries, winning candidate priority, positive-center preference over zero/negative match centers, useful-negative candidates and exact one-candidate RNG consumption. No custom comparer, active helper/static/jelly, model reservations, real board flight or rendered-parity proof.",
+    "production_source_sha256": "8d4dbface629c2d70695177584f5c509723a4dd1b8a5866f120e8409b4223c32",
+    "harness_source_sha256": "c42c14374cdf48948f56ed1394d1cad41640a2cbab49005f1c1f54765f4b39bd"
+  },
+  "background": {
+    "passed": true,
+    "test": "tnt-propeller-combo",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "09ab3e32a8196c209b0c488d00f7f9a2b8a5b21529d545f24c668c4031351f77",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_tnt-propeller-combo.log",
+    "elapsed_seconds": 260.63,
+    "batch": {
+      "passed": true,
+      "test": "tnt-propeller-combo",
+      "failure": "",
+      "timestamp_utc": "2026-10-28T13:41:48.9303330Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "runtime_cases": {
+    "passed": true,
+    "failure": "",
+    "completed_combos": 8,
+    "left_moves": 22,
+    "goals_left": 0,
+    "flight_distance": [
+      5.853608131408691,
+      7.552956581115723,
+      8.924478530883789,
+      6.794632434844971,
+      2.708270788192749,
+      4.829371452331543,
+      4.066749572753906,
+      4.81446647644043
+    ],
+    "native_box_cavities": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "scope": "Eight explicit production-factory TNT/propeller fixtures exercise both item orders, horizontal/vertical swipes and both directions in one formal player scene. Checks actual carrying/root motion/sorting, trigger13 reservations, operations3/9, detached TNT damage/goals/refill, one move, pool/fuse/freeze release and subsequent input. No natural creation, physical input, original rendered parity, extra-combo/private coroutine, conditional goal/helper/static/jelly/event/charger or full lifecycle parity claim."
+  },
+  "lightball_regression_background": {
+    "passed": true,
+    "test": "lightball-combo-regression",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "09ab3e32a8196c209b0c488d00f7f9a2b8a5b21529d545f24c668c4031351f77",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_lightball-combo-regression.log",
+    "elapsed_seconds": 203.88,
+    "batch": {
+      "passed": true,
+      "test": "lightball-combo-regression",
+      "failure": "",
+      "timestamp_utc": "2026-10-28T13:46:15.0788745Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "lightball_regression": {
+    "passed": true,
+    "propeller_combos": 4,
+    "tnt_combos": 4,
+    "default_lightballs": 2,
+    "rocket_combos": 8,
+    "left_moves": 12,
+    "timestamp_utc": "2026-10-28T13:46:15.0635204Z",
+    "scope": "One unchanged formal runtime/board sequentially runs 18 operations through the existing recorded input: 4 lightball/propeller combos, four lightball/TNT combos, normal lightball tap/swap and eight lightball/rocket combos. Individual reports retain detailed assertions; this transport verifies continuation, move consumption and shared pool reuse. Natural combination creation, physical input, full lifecycle and rendered-original parity remain unverified."
+  },
+  "performance": {
+    "recommended": "Original pooled carrier/TNT/fuse reuse; area search runs only when acquiring or changing a combo target.",
+    "area_work": "At most one radius2 score/win scan per normal candidate on the admitted9x8 board; reusable candidate lists and goal buffers. No added per-frame grid search.",
+    "pooling": "Restores the native single fuse17 prewarm and on-demand combo audio clip. Flight uses existing view pools; no per-frame creation of gameplay objects.",
+    "limits": "Device CPU/GC/memory/load profiling remains pending; passing desktop behavior does not prove mobile budgets."
+  },
+  "remaining_scope": [
+    "Combo1 lightball/lightball and combo9 propeller/rocket remain unbound.",
+    "Private extra-combo coroutine/extra pilot branch, super variants, static/jelly/helper/conditional-goal/event/charger compositions are not verified by these checks.",
+    "Winning-area king animation callback has no bound native king-animation owner yet.",
+    "Natural creation/physical input/original rendered comparison and full win/fail/remaining-move/result/progression lifecycle are not proven.",
+    "Full camera/HUD/layout/visual/scene parity and country/AB/GM remain incomplete. SDK handling is unchanged; no payout per repository instructions."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDefaultPropellerPilot.cs",
+      "sha256": "3565a54b44ffe25bd9a842e6e24ed69dcb2cfd7fb757d7ea0603f250cc45145b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDefaultPropellerStrategy.cs",
+      "sha256": "321a60f2196449e1f8a81762fcb1c288286314823224147c3ce9d4fd437f207b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardExplodeTargets.cs",
+      "sha256": "033f3ddcd0ed29db904d15becdc2aa9e91cabafd60c7a57e80c00c7d078e4393"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGuidedExploderBoardItem.cs",
+      "sha256": "018faab5c508cdc05a1a460d1507738ebe5322cb3259e902ac7f210b7e219cfc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalNormalSwapAnimationBackend.cs",
+      "sha256": "a0597ecb6e4b189e8b1c27a8c21e29c56dbac2492959e43eee3c8eade40f60ad"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "6f84600e839bf292211ecdf617a3f1fb42e205065521ff50459515fbe7ddcbf2"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPropellerPropellerCombo.cs",
+      "sha256": "4307c13dc91b0f651848962eca06851e0797e465970f5f7201cc60d57df30abe"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPropellerViewFlight.cs",
+      "sha256": "6b16ee2fb3f88b48e851ee7d1e89bc7d2d23c5d33b4b5649a7325ed4afe90a8a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTntItemExplosion.cs",
+      "sha256": "0df822522866d28b2796ae09a6610fd5d082eb9072198a804e1cefbb452aa75c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTntItemSpriteView.cs",
+      "sha256": "27dda77d0bb0a91c6172a6316bc925aa96b0b27a9749189b9063aeb04ed9105f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTntViewAssets.cs",
+      "sha256": "a8bc894fd73a6728a7c56464ae6be6bee75e6a051c57b61d7d58dd365d8c9f5a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelPresentation.cs",
+      "sha256": "224c9a808d12c918581e18446a3d77b6c032cc31b308c797dfc677f742b9de98"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAreaExplodeTargetFinder.cs",
+      "sha256": "8d4dbface629c2d70695177584f5c509723a4dd1b8a5866f120e8409b4223c32"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardAreaTargets.cs",
+      "sha256": "68c7567b74220537d21ea9bd0c8be30028c004cd81780121f43f78efbb2ff26b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTntPropellerCombo.cs",
+      "sha256": "04ad6e42af82d758b41ae65058cae0686322e1dfb2717141bb0c65595b1f0379"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPropellerTntPilot.cs",
+      "sha256": "b049de7b28d706484f547879393f1136b88f7470cba2e3981e1959be0eb4d767"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTntPropellerComboFuseParticles.cs",
+      "sha256": "e6eb5760bdf8dd8791699a38c94950261ddfc63375450e2f361f24a2fbac4fe1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAreaExplodeTargetFinder.cs.meta",
+      "sha256": "3137b1edd2206705dd310d35794a0cb54a1a3a0891ce660156f1c72e1b498c13"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardAreaTargets.cs.meta",
+      "sha256": "7d5b9ede0f2a0a06da28a352120e62e4ca6cc0c9632670037f228e3b76f0e7dc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTntPropellerCombo.cs.meta",
+      "sha256": "78482195e67a12c9febc0a8805e0ef1e3e47457f8430f022587456c10775545c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPropellerTntPilot.cs.meta",
+      "sha256": "2ef3bd320d69002fbbe0d4d0301a91188d74960a34bf1c6723ac75aa268aa243"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTntPropellerComboFuseParticles.cs.meta",
+      "sha256": "ae37676abb9443de133c22d252046ed1b6faef9000d0ace5c833d7261695f82d"
+    },
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "9fbddfdf0af1d7bb04dd6ca52ea17898a9a7952b6f0266e9222d7aa3767f455b"
+    },
+    {
+      "path": "Assets/Foundation/Editor/TntPropellerComboVerification.cs",
+      "sha256": "653b7fce05164d260d1163a0a550ffcebcb9eff7fde17e52f3d2cfc130d23936"
+    },
+    {
+      "path": "Assets/Foundation/Editor/TntPropellerComboVerification.cs.meta",
+      "sha256": "b2741d46105ce94c3a48180aaa439b6dee0b83921c7755d16b3c4af86f573242"
+    },
+    {
+      "path": "Assets/Foundation/Settings/TntViewAssets.asset",
+      "sha256": "f36ae3a3049f36f8c511b384bd3ad201ee41b51a0670ea05765bc7b101f90cde"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSfxAssets.asset",
+      "sha256": "7a24249de372372c98c87d00bede0c78fa672173ea3b72b558a6cebd99583413"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "c8a823336292dd52b85ade24fcd7627990a0e6f050ffe83e855343d30515ee0c"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/TntPropellerComboFuseParticles.prefab",
+      "sha256": "3dbbc211b99bef480b964e3bff765976dd6747c248dde7e2e91d46e982c712f3"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "f0a13efeca4d51e2f890940cf9d435ef014f2546c5870b3b27fe54411ecb584a"
+    },
+    {
+      "path": "SourceCatalog/AreaExplodeTargetHarness.cs",
+      "sha256": "c42c14374cdf48948f56ed1394d1cad41640a2cbab49005f1c1f54765f4b39bd"
+    },
+    {
+      "path": "SourceCatalog/verify_area_explode_targets.py",
+      "sha256": "b651c52de24dc1e9e7106179de8e4fd4ca320a5d6361021dbfc9eab2ad0e66f3"
+    },
+    {
+      "path": "area_explode_targets_native_verification.json",
+      "sha256": "f97ef684b8bbf9729330b29edc580286fcbded172eb8069af8c2f337fa592b59"
+    },
+    {
+      "path": "background_tnt_propeller_combo_verification.json",
+      "sha256": "f7883e8fd949ed71c4893e47489291157a88bc9b256f4cae983fbc9e6c7624d6"
+    },
+    {
+      "path": "live_tnt_propeller_combo_verification.json",
+      "sha256": "87cbb5e50389c2425523f0e0e21ff2449d195ad7fbff96591064a0ec0348356c"
+    },
+    {
+      "path": "background_lightball_combo_regression_verification.json",
+      "sha256": "416c7264fc36d1f812fd8e7958f11d0ec60b3b6e229bc5bdee2d129780ef2440"
+    },
+    {
+      "path": "live_lightball_combo_regression_verification.json",
+      "sha256": "b02352d8014d2b9a9de6b1fe00fa9a9ccaf1d20860dd08618351d54206d71382"
+    },
+    {
+      "path": "live_lightball_propeller_combo_verification.json",
+      "sha256": "fc1f97e57fea10d18e1cc9439c327ac1990f0c50bc9a4c42d4d338d7c0aad26b"
+    },
+    {
+      "path": "live_lightball_tnt_combo_verification.json",
+      "sha256": "a25d37ef01751a9da35339da22038b0888b1cba91aaa27f51b2daad6ac659d20"
+    },
+    {
+      "path": "live_lightball_rocket_combo_verification.json",
+      "sha256": "53d030560cd741c5bc440418b7b49261b5f8dea124a5939b5175e28e15a224c3"
+    },
+    {
+      "path": "tnt_propeller_carrying.png",
+      "sha256": "f5882792ea65a83c348fa99f2a2daf316ea4d8a0b5cf50dceee61abb89499dff"
+    },
+    {
+      "path": "tnt_propeller_refilled.png",
+      "sha256": "e34c871ed2a4b37842c76c5552cfcfbff398781e240d49c736a360ef3fc105e3"
+    },
+    {
+      "path": "lightball_propeller_converted.png",
+      "sha256": "b6132afdd36ac394bdca59cde0f843a66e2207174772004e847217085d233d89"
+    },
+    {
+      "path": "lightball_propeller_refilled.png",
+      "sha256": "3ad37a2f94424e5d03ec76ba8aa0e66c095c1ef9a4d2ed0fd0d45d93957e7782"
+    },
+    {
+      "path": "lightball_tnt_converted.png",
+      "sha256": "f8e2f541cd93d2b13e2bf06f3c29d71fbd43e7da25f6367f8c563621d7f12f42"
+    },
+    {
+      "path": "lightball_tnt_refilled.png",
+      "sha256": "5811f435edc3eeb85feac64287ab31b5614da18837e723d70b09734b83b6b296"
+    },
+    {
+      "path": "lightball_rocket_converted.png",
+      "sha256": "a82abbe40706c2f827510073b1f7365666965d7fec8a1b21a3ec4337e5daf592"
+    },
+    {
+      "path": "lightball_rocket_refilled.png",
+      "sha256": "a9d2b687b6cb78bd04fc40dced8ebf2926fac79c301e2b4b657ae4159526555a"
+    }
+  ]
+}

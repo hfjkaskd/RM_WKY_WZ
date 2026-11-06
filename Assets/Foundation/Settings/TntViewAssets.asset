@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c0c8644aeb4f40b3c2c28cb1d1d686, type: 3}
+  m_Name: TntViewAssets
+  m_EditorClassIdentifier:
+  spritePath: Recovered/Sprite/Items-SpecialItems-TntItem-tnt
+  boosterState: Base Layer.TntBoosterAnimation
+  lightballCreationState: Base Layer.TntLightballCreationAnimation
+  shadowOffset: {x: 0, y: -0.025, z: 0}
+  shadowColor: {r: 1, g: 1, b: 1, a: 0.35}
+  propellerComboShadowAlpha: 0.23529412
+  recycledMaskOffset: {x: -0.18, y: -0.09, z: 0}
+  recycledMaskScale: {x: 50, y: 50, z: 1}
+  creationSound: 346
+  creationSoundOffset: 0.04
+  explosion:
+    Radius: 2
+    RingInterval: 0.02
+    ExplodeDelay: 0.1
+    Shake:
+      Delay: 0.05
+      Duration: 0.15
+      MinVibrate: 0.05
+      MidVibrate: 0.1
+      MaxVibrate: 0.2
+      ShouldScale: 0
+      ShouldVisitCenter: 1
+      Direction: 0
+  rocketCombo:
+    positionEasing:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    firstPositionDuration: 0.14
+    secondPositionDuration: 0.17
+    finalPositionDuration: 0.07
+    firstRotationDuration: 0.098
+    secondRotationDuration: 0.119
+    thirdRotationDuration: 0.042
+    finalRotationDuration: 0.07
+    smallScaleDuration: 0.07
+    largeScaleDuration: 0.085
+    rotationAngle: 4
+    firstDistance: 0.6
+    secondDistance: 0.8
+    largeScale: 1.35
+    mediumScale: 1.2
+    smallScale: 0.85
+    dimColor: 0.65
+    freezeDuration: 0.1
+    shake:
+      Delay: 0.05
+      Duration: 0.15
+      MinVibrate: 0.05
+      MidVibrate: 0.1
+      MaxVibrate: 0.2
+      ShouldScale: 0
+      ShouldVisitCenter: 1
+      Direction: 0

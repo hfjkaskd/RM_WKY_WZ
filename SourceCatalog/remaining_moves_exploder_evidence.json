@@ -1,0 +1,66 @@
+{
+  "status": "Production runtime exploder implemented; end-flow composition still pending.",
+  "original_methods": {
+    "0x1118d40": {
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemExploder$$ExplodeItemsOnBoard",
+      "body_sha256": "ba37e846f0f8ede0a3c11bac240feb1f309a8e8e2feec8511bd02d63fe1964ae"
+    },
+    "0x1118fd0": {
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemExploder.<ExplodeSpecialItems>d__10$$MoveNext",
+      "body_sha256": "fda31b2b3adbd177117adb23ee459bb5fad45759554017dc9ff839879feeb1be"
+    },
+    "0x1118ea0": {
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemExploder$$CalculateExtraCoinAmountOnBoard",
+      "body_sha256": "9d7924ade3f586a1e65f1b0fbe24f833068c14ce9af9623dc8f7448c82351f28"
+    },
+    "0x1118c80": {
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemExploder$$SkipClicked",
+      "body_sha256": "c9b3d9b42785c7c36390caba7e5afd91728f88a4eccaac4dd47bdb7425861c72"
+    },
+    "0x1f3dc60": {
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.LightballItemModel$$.ctor",
+      "body_sha256": "149b79c8d2c907acbdee7e86f4fb514f8738c1ddfaadca47d7a419c8da20c0c9"
+    }
+  },
+  "verification": {
+    "passed": true,
+    "test": "remaining-moves-exploder",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "107963debe348d29369381cdae90d1a9949a780ea47f5c6a0e27fd5fbbdb7d70",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-moves-exploder.log",
+    "elapsed_seconds": 118.09,
+    "batch": {
+      "passed": true,
+      "test": "remaining-moves-exploder",
+      "failure": "",
+      "timestamp_utc": "2026-10-21T11:01:59.8970065Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "live": {
+    "passed": true,
+    "failure": "",
+    "initial_specials": 13,
+    "initial_extra_coins": 30,
+    "final_specials": 0,
+    "holes": 0,
+    "left_moves": 25,
+    "elapsed": 14.57502555847168,
+    "scope": "Actual formal36box goal completion through four combo fixture drags and TNT tap, then explicit GameState.Win/Session.Win fixture and configured propeller/horizontal rocket/vertical rocket/TNT/lightball replacements run production remaining-special exploder, original grid traversal/activation/fall timing, real special explosions/cascades/refill and operation completion. Does not establish production WinFail/Flow/Session binding, move replacement/coin collection/result UI, physical input or complete original rendered parity."
+  },
+  "source_sha256": "9aa0da928f385282771c83c120ab156b99b2ad3689415f9277e02c8ef7d22909",
+  "facts": [
+    "Iterator3 TopLeftHorizontal; one explosion per traversal then reset.",
+    "Initial wait .8 gameplay seconds; active age >.5 and steady age >.3; polling .2; operation-free >.4; wait for operations without forced reset.",
+    "Trigger22 real special explosions. Active/unexploded coin values: propeller1, rocket2 default, TNT3, lightball5.",
+    "Skip invokes completion before setting completed flag, matching native reentrancy ordering."
+  ],
+  "known_gaps": [
+    "No full ARM64 coroutine differential replay yet; source inspection plus formal actual-board fixture verification.",
+    "WinFail/Flow/Session not composed; real Win entry, remaining-move replacement/coin flight and collection, result/ego/retry/continue UI and progression still pending.",
+    "TopUi sorting callback is a recorded test boundary; original presentation owner not connected."
+  ]
+}

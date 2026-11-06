@@ -1,0 +1,948 @@
+{
+  "schema": 1,
+  "source_commit": "1771c9a8ea335cb497a5a7905a103cef58f25cd3",
+  "verified_utc": "2026-11-05T20:33:32.741716+00:00",
+  "full_current_scope_complete": false,
+  "apk": {
+    "path": "C:/RMAndroidHints_20261105/RoyalMatch-Core-1-100-1771c9a-arm64.apk",
+    "bytes": 43639632,
+    "sha256": "f62b86f964532dcad76c2cc2924ececc598e179ac3efdb511b21d757bb76fdb9",
+    "package": "com.royalmatch.core.recovery",
+    "abi": "arm64-v8a",
+    "version_name": "1.0",
+    "version_code": 1,
+    "target_sdk": 34,
+    "all_100_level_bytes_equal_committed_source": true,
+    "elf_load_alignments": {
+      "lib/arm64-v8a/lib_burst_generated.so": 16384,
+      "lib/arm64-v8a/libil2cpp.so": 16384,
+      "lib/arm64-v8a/libmain.so": 16384,
+      "lib/arm64-v8a/libunity.so": 16384
+    },
+    "zip_integrity_alignment_and_v2_signature_passed": true,
+    "generated_hint_code_and_serialized_timing_verified": true
+  },
+  "build": {
+    "selected_committed_files": 3534,
+    "cache_changes": {
+      "Assets/Foundation/Runtime/OriginalMatchHintManager.cs": {
+        "previous_sha256": "e2af62b31021414783a788405e410958a0e1213729691218f9244e0a88f54e87",
+        "incoming_sha256": "ddf9a9992d9defb2919bf703d79e927bb6f791328383f3391b81c45b57ae674c",
+        "backup": "C:/RMAndroidHints_20261105/previous_cache_files/Assets/Foundation/Runtime/OriginalMatchHintManager.cs"
+      },
+      "ProjectSettings/ProjectSettings.asset": {
+        "previous_sha256": "052662f6b718bf80a5620f9730e014a8805848a8a7ec010578b7e93e94d4b49c",
+        "incoming_sha256": "5744a90eda5f7ec49e779a5d7e7268203a4c9bd0743de28bcbb51887d77ae3e7",
+        "backup": "C:/RMAndroidHints_20261105/previous_cache_files/ProjectSettings/ProjectSettings.asset"
+      }
+    },
+    "unity": "2022.3.62f2",
+    "cpu_mask": 3,
+    "background": true,
+    "arm64_libil2cpp_sha256": "b6d1880f696413c1b378ab4b05879d1986e1ea92dc44aee3ca200b3203ceacce"
+  },
+  "original_level_data": {
+    "6": {
+      "name": "00006v02_L",
+      "source": "F:/Coin Merge Fortune/RM/Recovery/configs/levels/6__3731.json",
+      "sha256": "de737617a09096597b0df2393385a40822880992c3aa4953b731731e15ab41d2",
+      "packaged_sha256_after_lf_normalization": "96a1fb9d41bea52769a3bf3d26a79345e09564a9e935ad9963c562ce49cc26cf",
+      "size": [
+        9,
+        9
+      ],
+      "moves": 35,
+      "goals": [
+        {
+          "Goal": 13,
+          "Count": 72
+        }
+      ]
+    },
+    "7": {
+      "name": "00007v03_L",
+      "source": "F:/Coin Merge Fortune/RM/Recovery/configs/levels/7__10495.json",
+      "sha256": "730d27ddc6147b788c81f5247f4c783a0d557203cb92ceca617b59ee1f8b608f",
+      "packaged_sha256_after_lf_normalization": "c9f5776d19a66890ca7cc893b0eed5bf76d558c0172370cef88979f7cd24c839",
+      "size": [
+        9,
+        9
+      ],
+      "moves": 25,
+      "goals": [
+        {
+          "Goal": 11,
+          "Count": 17
+        },
+        {
+          "Goal": 13,
+          "Count": 32
+        }
+      ]
+    }
+  },
+  "emulator": {
+    "platform": "MuMu Android 15 x86_64 with ARM64 app support",
+    "device": "127.0.0.1:5559",
+    "adb_server_port": 15038,
+    "screen_size": [
+      1080,
+      2360
+    ],
+    "install_mode": "Replace existing package and retain app data. Cold launch after install.",
+    "install": {
+      "timestamp_utc": "2026-11-05T20:06:25.121435+00:00",
+      "device": "127.0.0.1:5559",
+      "adb_server_port": 15038,
+      "previous_activity": [
+        "topResumedActivity=ActivityRecord{56712943 u0 app.lawnchair/.LawnchairLauncher t2}",
+        "ResumedActivity: ActivityRecord{56712943 u0 app.lawnchair/.LawnchairLauncher t2}"
+      ],
+      "android_version": "15",
+      "device_abi": "x86_64",
+      "package": "com.royalmatch.core.recovery",
+      "data_cleared": false,
+      "install_result": "Performing Streamed Install\r\nSuccess: streamed 43639632 bytes\r\nSuccess\r\n",
+      "launch_result": "Starting: Intent { cmp=com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity\r\nTotalTime: 1915\r\nWaitTime: 1925\r\nComplete\r\n",
+      "pid": "41313",
+      "entry_capture": {
+        "path": "android_updated_entry.png",
+        "sha256": "a1e7728447903163694f8ed338febba6f2763fb0c0362cce6988df487c42ed43"
+      }
+    },
+    "activity_restored_to_launcher": true
+  },
+  "level6": {
+    "original_opening": {
+      "moves": 35,
+      "grass": 72,
+      "left_double_grass": 36,
+      "right_single_grass": 36,
+      "separated_by_empty_column_x": 4
+    },
+    "resumed_opening": {
+      "moves": 34,
+      "grass": 68,
+      "capture": "android_updated_entry.png",
+      "previous_attempt_accepted_actions": 1,
+      "previous_apk_source": "7e2c15bbc7c762de139c79874cd1c98a63939754"
+    },
+    "cross_gap_rejection": {
+      "moves": 34,
+      "grass_goal": 68,
+      "hud_pixel_regions_equal": {
+        "moves": true,
+        "goal": true
+      }
+    },
+    "accepted_actions_under_new_apk": 9,
+    "total_accepted_actions_this_attempt": 10,
+    "input_scope": "All moves use Android OS swipes on the formal board, starting from the retained saved attempt.",
+    "states": [
+      {
+        "attempt_move": 2,
+        "capture": "level6_move02_tnt_create.png",
+        "moves_left": 33,
+        "grass_left": 63,
+        "observation": "Five-piece match creates TNT."
+      },
+      {
+        "attempt_move": 3,
+        "capture": "level6_move03_rocket_create.png",
+        "moves_left": 32,
+        "grass_left": 57,
+        "observation": "Four crowns create a vertical rocket adjacent to TNT after refill."
+      },
+      {
+        "attempt_move": 4,
+        "capture": "level6_move04_tnt_rocket_22s.png",
+        "moves_left": 31,
+        "grass_left": 41,
+        "observation": "TNT and rocket combination clears sixteen grass targets. Left-side double grass struck by the cross shows its lighter layer."
+      },
+      {
+        "attempt_move": 5,
+        "capture": "level6_move05_left_rocket.png",
+        "moves_left": 30,
+        "grass_left": 39,
+        "observation": "Left-side four reds create a horizontal rocket."
+      },
+      {
+        "attempt_move": 6,
+        "capture": "level6_move06_lightball.png",
+        "moves_left": 29,
+        "grass_left": 33,
+        "observation": "Five crowns create a lightball."
+      },
+      {
+        "attempt_move": 7,
+        "capture": "level6_move07_settled.png",
+        "moves_left": 28,
+        "grass_left": 19,
+        "observation": "Lightball and purple gem clear purple tiles and start cascades. A vertical rocket and TNT settle adjacent on the left."
+      },
+      {
+        "attempt_move": 8,
+        "capture": "level6_move08_settled.png",
+        "moves_left": 27,
+        "grass_left": 9,
+        "observation": "Left-side TNT and rocket combination chains into the horizontal rocket and clears the remaining right targets."
+      },
+      {
+        "attempt_move": 9,
+        "capture": "level6_move09_lightball.png",
+        "moves_left": 26,
+        "grass_left": 9,
+        "observation": "A line of five blue tiles creates a lightball. A propeller settles directly above it."
+      },
+      {
+        "attempt_move": 10,
+        "capture": "level6_move10_lightball_propeller_6s.png",
+        "moves_left": 25,
+        "grass_left": 0,
+        "observation": "Lightball and propeller combination completes the goal. The win logo starts at twenty-five moves."
+      }
+    ],
+    "settlement": {
+      "moves_before_conversion": 25,
+      "moves_after_conversion": 0,
+      "reward_displayed": 81,
+      "unskipped": true,
+      "level6_well_done_and_continue_visible": true,
+      "capture": "level6_move10_lightball_propeller_22s.png"
+    },
+    "combo_hint_video": {
+      "video": "C:/RMAndroidHints_20261105/level6_move04_tnt_rocket.mp4",
+      "analysed_before_gesture_seconds": 3.8,
+      "decoded_frames": 114,
+      "relative_y_translation_pixels": {
+        "tnt": [
+          0,
+          3
+        ],
+        "rocket": [
+          -3,
+          0
+        ]
+      },
+      "opposite_translation_frames_with_low_patch_error": 54,
+      "max_patch_error": {
+        "tnt": 14.402076318742985,
+        "rocket": 17.365881032547698
+      },
+      "scope": "Pixel patch correlation at 540x1180 for the naturally adjacent TNT and rocket before input. The reference is the first decoded frame. Values estimate visible translation, with integer pixel precision and video compression."
+    }
+  },
+  "level7": {
+    "entered_from_real_continue_button": true,
+    "visual_comparison": {
+      "passed": true,
+      "level_name": "00007v03_L",
+      "original_config_sha256": "730d27ddc6147b788c81f5247f4c783a0d557203cb92ceca617b59ee1f8b608f",
+      "opening": {
+        "moves": 25,
+        "boxes": 17,
+        "grass": 32,
+        "all_81_visible_classes_match_decoded_level": true,
+        "visible_classes": {
+          "E": 32,
+          "X": 17,
+          "R": 10,
+          "Y": 10,
+          "G": 5,
+          "B": 7
+        },
+        "max_template_distance": 17.41496598639456
+      },
+      "cold_restore": {
+        "visible_81_classes_equal": true,
+        "moves": 24,
+        "boxes": 17,
+        "grass": 32,
+        "manually_reviewed_single_layer_boxes": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "all_17_box_interior_patches_pixel_equal": true,
+        "changed_empty_grass_center_patches": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            3
+          ]
+        ],
+        "max_template_distances": [
+          17.41496598639456,
+          17.41496598639456
+        ]
+      },
+      "first_post_cold_swap": {
+        "moves": 23,
+        "boxes": 15,
+        "grass": 32,
+        "newly_filled_lower_columns": [
+          1,
+          2
+        ],
+        "max_template_distance": 17.41496598639456
+      },
+      "scope": "HUD numbers and wooden planks reviewed in the retained full screenshots. Template samples compare ordinary tile colors, box occupancy and empty grass. Independent box interior patches confirm which boxes changed during the first hit and were restored at cold start."
+    },
+    "cold_restart": {
+      "timestamp_utc": "2026-11-05T20:23:17.920778+00:00",
+      "package": "com.royalmatch.core.recovery",
+      "old_pid": "41313",
+      "new_pid": "43500",
+      "before": {
+        "capture": "level7_before_cold.png",
+        "sha256": "3fcb3bae155c736e841e30519696701887c5403c71c075f1ea38939e941c96b0"
+      },
+      "after": {
+        "capture": "level7_cold_restart.png",
+        "sha256": "2e28924143daa1165ff371adc03ff814bb8a2a5dfa333d4d9e02d4aca0a06bbb"
+      },
+      "launch_result": "Starting: Intent { cmp=com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity\r\nTotalTime: 1168\r\nWaitTime: 1169\r\nComplete\r\n",
+      "hud_regions_pixel_equal": {
+        "moves": true,
+        "targets": true
+      },
+      "compared_center_patches": 81,
+      "different_center_patches": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "scope": "Displayed HUD and 32x32 center patches before Home and after a new game process. Visible gameplay evidence, with idle hints and other animations allowed to affect patches."
+    },
+    "final_saved_display": {
+      "moves": 23,
+      "boxes": 15,
+      "grass": 32
+    },
+    "texture_followup": "All fifteen changed 32x32 center patches are empty grass cells. Compare original warm-to-cold sprite variant selection and its random stream during a follow-up. The current view selects its base sprite through OriginalGrassViewAssets.GetBase."
+  },
+  "android_gestures": [
+    {
+      "label": "android_level6_gap_reject",
+      "action": "Android input swipe",
+      "coordinates": [
+        422,
+        1305,
+        658,
+        1305
+      ],
+      "timestamp_utc": "2026-11-05T20:07:31.834106+00:00",
+      "capture": "android_level6_gap_reject.png",
+      "capture_sha256": "16b5ed6f3c0efa0d936fbd64a1fff4765d94c29853b8e4b8b7071ad9a710b094",
+      "duration_ms": 180
+    },
+    {
+      "label": "level6_move02_tnt_create",
+      "action": "Android input swipe",
+      "coordinates": [
+        896,
+        1068,
+        1014,
+        1068
+      ],
+      "timestamp_utc": "2026-11-05T20:08:39.740237+00:00",
+      "capture": "level6_move02_tnt_create.png",
+      "capture_sha256": "ecad186ade351268c5f62e892b4f0b4952b37033f27a40232851183df0bc0a23",
+      "duration_ms": 180
+    },
+    {
+      "label": "level6_move03_rocket_create",
+      "action": "Android input swipe",
+      "coordinates": [
+        896,
+        1424,
+        896,
+        1305
+      ],
+      "timestamp_utc": "2026-11-05T20:09:31.032667+00:00",
+      "capture": "level6_move03_rocket_create.png",
+      "capture_sha256": "4de9e08ef68786af50dfcfb21847e08beae41f02058837fe065c61dbf2196fc4",
+      "duration_ms": 180
+    },
+    {
+      "label": "level6_move04_tnt_rocket",
+      "action": "Android input swipe",
+      "coordinates": [
+        896,
+        1186,
+        896,
+        1305
+      ],
+      "timestamp_utc": "2026-11-05T20:10:16.628985+00:00",
+      "captures": [
+        {
+          "elapsed_seconds": 2.148,
+          "capture": "level6_move04_tnt_rocket_1s.png",
+          "sha256": "e964cfbeca6540fb14fe29e459da92116ffe359b6df34bebc581b0b86710d533"
+        },
+        {
+          "elapsed_seconds": 3.476,
+          "capture": "level6_move04_tnt_rocket_2_5s.png",
+          "sha256": "3c6043bc5b6ca6984d550460195ec3afb556184cab27ed24b47fab5a001b58cf"
+        },
+        {
+          "elapsed_seconds": 4.94,
+          "capture": "level6_move04_tnt_rocket_4s.png",
+          "sha256": "c7520729de33752631695bbb0d3c4a6aa8be32f89d39a91209bf6bad1da61ec0"
+        },
+        {
+          "elapsed_seconds": 6.967,
+          "capture": "level6_move04_tnt_rocket_6s.png",
+          "sha256": "e13c1bf8326a71ffc699770496b3b8de976d9796f524209627153f6dce9fd41b"
+        },
+        {
+          "elapsed_seconds": 9.97,
+          "capture": "level6_move04_tnt_rocket_9s.png",
+          "sha256": "be5bec27a07eba5097a2b466266b01113f56788603e0783b95764ca6b0e5c46c"
+        },
+        {
+          "elapsed_seconds": 13.939,
+          "capture": "level6_move04_tnt_rocket_13s.png",
+          "sha256": "333ed7855b4fa645e1a1bf5df600fec2acdc67938f73bc4cf7f90054ffb73861"
+        },
+        {
+          "elapsed_seconds": 18.993,
+          "capture": "level6_move04_tnt_rocket_18s.png",
+          "sha256": "dc457c13faf0877657a82692d19b78c3cc7e5e0e44383e416f5018d02ebebeeb"
+        },
+        {
+          "elapsed_seconds": 22.856,
+          "capture": "level6_move04_tnt_rocket_22s.png",
+          "sha256": "d5a361819a7a51c8bfc58cdf58c39b9a1fd83271269a1818e035793eb3232efa"
+        }
+      ],
+      "video": "level6_move04_tnt_rocket.mp4",
+      "recording_lead_seconds": 5.0,
+      "before_capture": "level6_move04_tnt_rocket_before.png",
+      "before_capture_sha256": "fe4164354070908217ae28d60594a9a8d06b1499be50f9c97ee9cc8095e92292",
+      "duration_ms": 180
+    },
+    {
+      "label": "level6_move05_left_rocket",
+      "action": "Android input swipe",
+      "coordinates": [
+        185,
+        1186,
+        67,
+        1186
+      ],
+      "timestamp_utc": "2026-11-05T20:11:54.408623+00:00",
+      "capture": "level6_move05_left_rocket.png",
+      "capture_sha256": "566f702e26f6cc06c9fba62aa2179f924258af1b5e1b153fa5e1ec27b7852cc0",
+      "duration_ms": 180
+    },
+    {
+      "label": "level6_move06_lightball",
+      "action": "Android input swipe",
+      "coordinates": [
+        303,
+        1186,
+        185,
+        1186
+      ],
+      "timestamp_utc": "2026-11-05T20:13:14.332583+00:00",
+      "capture": "level6_move06_lightball.png",
+      "capture_sha256": "cab5fdd4731d0a59391f4473796e4e9a3080eb76a3f256d89adc13a124abb24e",
+      "duration_ms": 180
+    },
+    {
+      "label": "level6_move07_lightball_purple",
+      "action": "Android input swipe",
+      "coordinates": [
+        185,
+        1424,
+        303,
+        1424
+      ],
+      "timestamp_utc": "2026-11-05T20:13:59.156671+00:00",
+      "capture": "level6_move07_lightball_purple.png",
+      "capture_sha256": "829e44f924e57616eac6c7708fbc25df45e9fe7b8b517f20dbba0efaf56de691",
+      "duration_ms": 180
+    },
+    {
+      "label": "level6_move08_left_combo",
+      "action": "Android input swipe",
+      "coordinates": [
+        67,
+        1305,
+        67,
+        1186
+      ],
+      "timestamp_utc": "2026-11-05T20:16:16.320632+00:00",
+      "capture": "level6_move08_left_combo.png",
+      "capture_sha256": "288ee7b63f695e3564a8ac160ccb65afc5d553600fa83a74b7f4a63e461db5e0",
+      "duration_ms": 180
+    },
+    {
+      "label": "level6_move09_lightball",
+      "action": "Android input swipe",
+      "coordinates": [
+        422,
+        1068,
+        303,
+        1068
+      ],
+      "timestamp_utc": "2026-11-05T20:17:36.284145+00:00",
+      "capture": "level6_move09_lightball.png",
+      "capture_sha256": "c56a5fe9ffa85a68e7cd7f6e1bbe50c86a066dbb6fcb8836b573ce17c6dc129f",
+      "duration_ms": 180
+    },
+    {
+      "label": "level6_move10_lightball_propeller",
+      "action": "Android input swipe",
+      "coordinates": [
+        303,
+        1305,
+        303,
+        1186
+      ],
+      "timestamp_utc": "2026-11-05T20:18:18.504202+00:00",
+      "captures": [
+        {
+          "elapsed_seconds": 1.906,
+          "capture": "level6_move10_lightball_propeller_1s.png",
+          "sha256": "e1c45a5dff73214b1627be1090020e7993e68ee46b125ce7f79ecfed6fe231fb"
+        },
+        {
+          "elapsed_seconds": 3.46,
+          "capture": "level6_move10_lightball_propeller_2_5s.png",
+          "sha256": "0ab3b51f4bfbea542b2fec908efdc67e3599add11a25fb3fb9d2e5e8ae50ea2b"
+        },
+        {
+          "elapsed_seconds": 4.974,
+          "capture": "level6_move10_lightball_propeller_4s.png",
+          "sha256": "b13e14335f7f5e0f8b7a08e1795f8c2a4ddde07e7994c71d0505ef245f7ddf21"
+        },
+        {
+          "elapsed_seconds": 6.785,
+          "capture": "level6_move10_lightball_propeller_6s.png",
+          "sha256": "dbe0c78811926095865fc87a3d7f8268134b27a9ca5e8c83be2d53b2ce8aa46c"
+        },
+        {
+          "elapsed_seconds": 9.897,
+          "capture": "level6_move10_lightball_propeller_9s.png",
+          "sha256": "949ad39ed0c2d6f57b5ce8b10d1a676a8b9fc558c87bf4d6a848a2ec74f53ad6"
+        },
+        {
+          "elapsed_seconds": 14.04,
+          "capture": "level6_move10_lightball_propeller_13s.png",
+          "sha256": "059e158a808d779373ea748a5bb432b16c06cfa335b759027a58cb01f5dcfdb1"
+        },
+        {
+          "elapsed_seconds": 18.479,
+          "capture": "level6_move10_lightball_propeller_18s.png",
+          "sha256": "7b5751b2d652191db547671b7b8efa2bd95cd76443424e0f1cc4cfcaff64691e"
+        },
+        {
+          "elapsed_seconds": 22.481,
+          "capture": "level6_move10_lightball_propeller_22s.png",
+          "sha256": "c38bd2ce14670fb3fbcf0249d129c418d4ca49df6f6247a92fdb21f610d7fb8b"
+        }
+      ],
+      "video": "level6_move10_lightball_propeller.mp4",
+      "recording_lead_seconds": 4.0,
+      "before_capture": "level6_move10_lightball_propeller_before.png",
+      "before_capture_sha256": "68bb82de43fad16119f8b868f7c0e6d392f959890b03f3426c2abf0423e8ebe3",
+      "duration_ms": 180
+    },
+    {
+      "label": "level7_opening",
+      "action": "Android input tap",
+      "coordinates": [
+        540,
+        1620
+      ],
+      "timestamp_utc": "2026-11-05T20:20:57.329342+00:00",
+      "capture": "level7_opening.png",
+      "capture_sha256": "44c847682584df230cbe9d2a9d26e46f20382bef48c86617e76b4d86e602a822"
+    },
+    {
+      "label": "level7_first_box_hit",
+      "action": "Android input swipe",
+      "coordinates": [
+        303,
+        1068,
+        303,
+        1186
+      ],
+      "timestamp_utc": "2026-11-05T20:21:35.918430+00:00",
+      "capture": "level7_first_box_hit.png",
+      "capture_sha256": "761145c773e44374b9794a4d889f3922fd3230ab3ab9ac62a8a10348db5e600f",
+      "duration_ms": 180
+    },
+    {
+      "label": "level7_post_cold_box_break",
+      "action": "Android input swipe",
+      "coordinates": [
+        67,
+        1186,
+        185,
+        1186
+      ],
+      "timestamp_utc": "2026-11-05T20:25:08.961665+00:00",
+      "capture": "level7_post_cold_box_break.png",
+      "capture_sha256": "4b9b487e893ee4d66846734b24acd3e950ed6a2b8cf9efcb93c5f52c3ab74e36",
+      "duration_ms": 180
+    }
+  ],
+  "log_review": {
+    "timestamp_utc": "2026-11-05T20:26:31.319440+00:00",
+    "current_pid": "43500",
+    "logs": [
+      {
+        "pid": "41313",
+        "file": "android_session_41313_logcat.txt",
+        "sha256": "d7a17139fe3ab2ffec6a22e31149db6951689ddf9d8a51a192545fb32857a457",
+        "retained_lines": 114,
+        "unity_exception_or_crash_matches": [],
+        "stripped_physics_warnings": [
+          "11-05 17:06:35.325 41313 41389 W Unity   : The ParticleSystem uses a gravityModifier, but the Physics Module has been stripped, so using a default value of 9.81 units/sec/sec for gravity. Disable stripping in the Player Settings to fix this, or make sure the physics module is included in the built-in packages in the Package Manager."
+        ]
+      },
+      {
+        "pid": "43500",
+        "file": "android_session_43500_logcat.txt",
+        "sha256": "aee98e318fbdbf248de376a88f117121d090a1c8341d1b0785881e6788e74056",
+        "retained_lines": 92,
+        "unity_exception_or_crash_matches": [],
+        "stripped_physics_warnings": [
+          "11-05 17:23:11.863 43500 43545 W Unity   : The ParticleSystem uses a gravityModifier, but the Physics Module has been stripped, so using a default value of 9.81 units/sec/sec for gravity. Disable stripping in the Player Settings to fix this, or make sure the physics module is included in the built-in packages in the Package Manager."
+        ]
+      }
+    ],
+    "before_activity": [
+      "topResumedActivity=ActivityRecord{235340399 u0 com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity t63}",
+      "ResumedActivity: ActivityRecord{235340399 u0 com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity t63}"
+    ],
+    "finished_activity": [
+      "topResumedActivity=ActivityRecord{56712943 u0 app.lawnchair/.LawnchairLauncher t2}",
+      "ResumedActivity: ActivityRecord{56712943 u0 app.lawnchair/.LawnchairLauncher t2}"
+    ],
+    "finished_on_emulator_launcher": true,
+    "unity_exception_or_crash_match_count": 0
+  },
+  "verification_scope": [
+    "Emulator runtime covers the resumed level 6 win and initial level 7 play with cold resume. The remaining full100 playthroughs, physical device, original render and audio comparisons remain pending.",
+    "The screenshots and videos document rendered recovery gameplay. Original comparison for this round uses decoded level data and the earlier native animation evidence.",
+    "The initial box-layer template pass misclassified visible planks. The final check classifies box occupancy and independently compares the interiors of all seventeen boxes. Plank states were reviewed in the raw screenshots."
+  ],
+  "artifacts": {
+    "build.py": {
+      "path": "C:/RMAndroidHints_20261105/build.py",
+      "bytes": 8108,
+      "sha256": "13f7c119b088ba8bd976acd3fb4cd39410e0fbbf514559a839fd9bcd54419b3d"
+    },
+    "build_source_manifest.json": {
+      "path": "C:/RMAndroidHints_20261105/build_source_manifest.json",
+      "bytes": 809453,
+      "sha256": "bcd64274d51749d256957e5deb74afe8655a9795b23d24496c1974471bd8ab46"
+    },
+    "android_build.log": {
+      "path": "C:/RMAndroidHints_20261105/android_build.log",
+      "bytes": 88567,
+      "sha256": "45b18dbad70313603be48fdee246b8ba211206016983cfd6669caebd24ce8e97"
+    },
+    "apk_verification.json": {
+      "path": "C:/RMAndroidHints_20261105/apk_verification.json",
+      "bytes": 11344,
+      "sha256": "dcc1211ce2d798660fe524e48e3604927e6da566d2951940a538407b608a5cfa"
+    },
+    "apk_resource_comparison.json": {
+      "path": "C:/RMAndroidHints_20261105/apk_resource_comparison.json",
+      "bytes": 1007,
+      "sha256": "276f387b96b195004a9d6f1293f7bd78c3a7d417b8db7928c57220c04ac16e71"
+    },
+    "apk_hint_code_evidence.json": {
+      "path": "C:/RMAndroidHints_20261105/apk_hint_code_evidence.json",
+      "bytes": 1547,
+      "sha256": "000649080bc88858c05c27f1a8b55de1cd7f8eb12946ccdfebff699cf3029e7e"
+    },
+    "production_hint_il2cpp.cpp": {
+      "path": "C:/RMAndroidHints_20261105/production_hint_il2cpp.cpp",
+      "bytes": 35889,
+      "sha256": "925eafa810048b48336584d7dc3c91b4bd315e4658fbb78ce078cdaa9195b075"
+    },
+    "apk_banner_parameters.json": {
+      "path": "C:/RMAndroidHints_20261105/apk_banner_parameters.json",
+      "bytes": 1061,
+      "sha256": "5b71768545c064815a778819ae771fb06b55e7f48451f6f34903ee835a3ea9ce"
+    },
+    "android_install_launch.json": {
+      "path": "C:/RMAndroidHints_20261105/android_install_launch.json",
+      "bytes": 1018,
+      "sha256": "d009b09910e217068a0074dba62e369aef427ee8d279fca9f490b5c76280be26"
+    },
+    "android_gestures.json": {
+      "path": "C:/RMAndroidHints_20261105/android_gestures.json",
+      "bytes": 8516,
+      "sha256": "2e7b825ee3e63f63070a785a39c8d415854725c252e33037b3579986ed87a33c"
+    },
+    "gap_check.json": {
+      "path": "C:/RMAndroidHints_20261105/gap_check.json",
+      "bytes": 118,
+      "sha256": "0b33fcd780e0511b5abf9dbd3183eec2afcf2c2f8079814745100e998aeca184"
+    },
+    "android_cold_restore.json": {
+      "path": "C:/RMAndroidHints_20261105/android_cold_restore.json",
+      "bytes": 1576,
+      "sha256": "c6f2d6e1f65e070208bd39d42149773bf360e0fdf565136a70fd873751328954"
+    },
+    "level7_visible_comparison.json": {
+      "path": "C:/RMAndroidHints_20261105/level7_visible_comparison.json",
+      "bytes": 2069,
+      "sha256": "e7b923b9139b807480112441f3ce879d489395d5729c7be40bc89ddc6d4387bb"
+    },
+    "android_finished_session.json": {
+      "path": "C:/RMAndroidHints_20261105/android_finished_session.json",
+      "bytes": 1975,
+      "sha256": "59bafadeeae8a4c74b2108cddf5c0ccdeb408648e55ece08277affa0064f4571"
+    },
+    "android_combo_hint_video_analysis.json": {
+      "path": "C:/RMAndroidHints_20261105/android_combo_hint_video_analysis.json",
+      "bytes": 667,
+      "sha256": "614f3f78ccd2460b8054f23ef5ea3a68becf77e775b5edb8c8d659e75fee4bed"
+    },
+    "analyze_hint_video.py": {
+      "path": "C:/RMAndroidHints_20261105/analyze_hint_video.py",
+      "bytes": 1916,
+      "sha256": "04ae081ddf73cceb5f9ad7b688f7693f65176a7d7c6509216bbb749cd32cfae0"
+    },
+    "verify_level7.py": {
+      "path": "C:/RMAndroidHints_20261105/verify_level7.py",
+      "bytes": 4370,
+      "sha256": "e55bcc51202bb13ed1f7b6ab28e249f5a7874876294b327ffde47d0ab3949d5d"
+    },
+    "android_updated_entry.png": {
+      "path": "C:/RMAndroidHints_20261105/android_updated_entry.png",
+      "bytes": 2816605,
+      "sha256": "a1e7728447903163694f8ed338febba6f2763fb0c0362cce6988df487c42ed43"
+    },
+    "android_level6_gap_reject.png": {
+      "path": "C:/RMAndroidHints_20261105/android_level6_gap_reject.png",
+      "bytes": 2816399,
+      "sha256": "16b5ed6f3c0efa0d936fbd64a1fff4765d94c29853b8e4b8b7071ad9a710b094"
+    },
+    "level6_move04_tnt_rocket.mp4": {
+      "path": "C:/RMAndroidHints_20261105/level6_move04_tnt_rocket.mp4",
+      "bytes": 8645099,
+      "sha256": "fc0869050b64110ba5b276b5a0afbf0d710fe9320531f4de6d1c5d3c93d44553"
+    },
+    "level6_move10_lightball_propeller.mp4": {
+      "path": "C:/RMAndroidHints_20261105/level6_move10_lightball_propeller.mp4",
+      "bytes": 9044934,
+      "sha256": "b1cb72ca1235592c7cd6430e42b7dd7dab23e0f6c2b60be1262f2940b3e27ac2"
+    },
+    "level6_move10_lightball_propeller_22s.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move10_lightball_propeller_22s.png",
+      "bytes": 1134666,
+      "sha256": "c38bd2ce14670fb3fbcf0249d129c418d4ca49df6f6247a92fdb21f610d7fb8b"
+    },
+    "level7_opening.png": {
+      "path": "C:/RMAndroidHints_20261105/level7_opening.png",
+      "bytes": 2650936,
+      "sha256": "44c847682584df230cbe9d2a9d26e46f20382bef48c86617e76b4d86e602a822"
+    },
+    "level7_first_box_hit.png": {
+      "path": "C:/RMAndroidHints_20261105/level7_first_box_hit.png",
+      "bytes": 2657165,
+      "sha256": "761145c773e44374b9794a4d889f3922fd3230ab3ab9ac62a8a10348db5e600f"
+    },
+    "level7_before_cold.png": {
+      "path": "C:/RMAndroidHints_20261105/level7_before_cold.png",
+      "bytes": 2657109,
+      "sha256": "3fcb3bae155c736e841e30519696701887c5403c71c075f1ea38939e941c96b0"
+    },
+    "level7_cold_restart.png": {
+      "path": "C:/RMAndroidHints_20261105/level7_cold_restart.png",
+      "bytes": 2667022,
+      "sha256": "2e28924143daa1165ff371adc03ff814bb8a2a5dfa333d4d9e02d4aca0a06bbb"
+    },
+    "level7_post_cold_box_break.png": {
+      "path": "C:/RMAndroidHints_20261105/level7_post_cold_box_break.png",
+      "bytes": 2656710,
+      "sha256": "4b9b487e893ee4d66846734b24acd3e950ed6a2b8cf9efcb93c5f52c3ab74e36"
+    },
+    "level6_move02_tnt_create.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move02_tnt_create.png",
+      "bytes": 2791501,
+      "sha256": "ecad186ade351268c5f62e892b4f0b4952b37033f27a40232851183df0bc0a23"
+    },
+    "level6_move03_rocket_create.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move03_rocket_create.png",
+      "bytes": 2741204,
+      "sha256": "4de9e08ef68786af50dfcfb21847e08beae41f02058837fe065c61dbf2196fc4"
+    },
+    "level6_move04_tnt_rocket_22s.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move04_tnt_rocket_22s.png",
+      "bytes": 2554606,
+      "sha256": "d5a361819a7a51c8bfc58cdf58c39b9a1fd83271269a1818e035793eb3232efa"
+    },
+    "level6_move05_left_rocket.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move05_left_rocket.png",
+      "bytes": 2555389,
+      "sha256": "566f702e26f6cc06c9fba62aa2179f924258af1b5e1b153fa5e1ec27b7852cc0"
+    },
+    "level6_move06_lightball.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move06_lightball.png",
+      "bytes": 2508449,
+      "sha256": "cab5fdd4731d0a59391f4473796e4e9a3080eb76a3f256d89adc13a124abb24e"
+    },
+    "level6_move07_settled.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move07_settled.png",
+      "bytes": 2409545,
+      "sha256": "3609ba24ad10a845f584b7065acdb0fd3bf1b3333ea21ec3c169142569d2519a"
+    },
+    "level6_move08_settled.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move08_settled.png",
+      "bytes": 2265302,
+      "sha256": "c54c350b3c34b099167f7e1e5fec8c2b6937a007e85a7f1c3135f05b61591f63"
+    },
+    "level6_move09_lightball.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move09_lightball.png",
+      "bytes": 2285539,
+      "sha256": "c56a5fe9ffa85a68e7cd7f6e1bbe50c86a066dbb6fcb8836b573ce17c6dc129f"
+    },
+    "level6_move10_lightball_propeller_6s.png": {
+      "path": "C:/RMAndroidHints_20261105/level6_move10_lightball_propeller_6s.png",
+      "bytes": 1688616,
+      "sha256": "dbe0c78811926095865fc87a3d7f8268134b27a9ca5e8c83be2d53b2ce8aa46c"
+    },
+    "android_session_41313_logcat.txt": {
+      "path": "C:/RMAndroidHints_20261105/android_session_41313_logcat.txt",
+      "bytes": 17426,
+      "sha256": "d7a17139fe3ab2ffec6a22e31149db6951689ddf9d8a51a192545fb32857a457"
+    },
+    "android_session_43500_logcat.txt": {
+      "path": "C:/RMAndroidHints_20261105/android_session_43500_logcat.txt",
+      "bytes": 14394,
+      "sha256": "aee98e318fbdbf248de376a88f117121d090a1c8341d1b0785881e6788e74056"
+    }
+  }
+}

@@ -1,0 +1,399 @@
+{
+  "full_objective_complete": false,
+  "production_ego_or_dialog_bound": false,
+  "production_win_fail_bound": false,
+  "production_account_startup_bound": false,
+  "mobile_runtime_verified": false,
+  "original_rendered_parity_verified": false,
+  "source_snapshot_sha256": "d8d1a9ef6ce61722b84d649fe4054a9fb926287d47ef21836d0ce578e99afe22",
+  "restored_scope": [
+    "Actual inventory HasEnoughCoins/SpendCoins signed comparison, wrapped subtraction, UpdateCoins/storage callback, OnCoinSpent, optional Home view, current-user coin snapshot and spending payload order.",
+    "Ego catalog index/getter, eligibility, paid/free continuation, success-only accepted count/state/moves/music/charger/step/save/coroutine flow.",
+    "EgoShown/reset/restore/clear, native HasShownEgo!= -1, CoinShop purchase flag and actual InviteFriends.SetEgoPrice.",
+    "Actual operation8 item iterator, rocket/TNT/lightball creation calls, target-list bounds and distinct Unity/gameplay delay behavior; restore replay uses the raw prior package.",
+    "Native OnClose paid/free branches reset WinFail with false; cancel resets it with true and clears offer status."
+  ],
+  "native_methods": [
+    {
+      "rva": "0x28e4f98",
+      "name": "Royal.Player.Context.Data.Persistent.UserInventory$$SpendCoins",
+      "body_sha256": "2578c1b0d405619a85c9e59f76f195741a0fff244e319beb2bdf2005c71effa4"
+    },
+    {
+      "rva": "0x28e4da0",
+      "name": "Royal.Player.Context.Data.Persistent.UserInventory$$HasEnoughCoins",
+      "body_sha256": "3d56e4965856f2f19c1a8100daaafeea233150d16977556c00cbeb98eb2889b9"
+    },
+    {
+      "rva": "0x1ca4f68",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$GetEgoPackage",
+      "body_sha256": "b66d94b4bed0c0e8af2b35bb9ff0fde679947f4aadb17ecf29031b9349f9086d"
+    },
+    {
+      "rva": "0x1ca5020",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$GetEgoPackageIndex",
+      "body_sha256": "a4b63b77ae80fce6c9302e98695feb803938808ae277ad92374adda59da730b9"
+    },
+    {
+      "rva": "0x1ca5374",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$CanPlayOn",
+      "body_sha256": "59c0d5959c80209591e0a552fa6f8d6aa2d8dc4a2e945ef787cce6fbaf66cfdb"
+    },
+    {
+      "rva": "0x1ca53e0",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$PlayOn",
+      "body_sha256": "01b03a5e4f79c518afa52073fe8943e0f83d52a457d2c3d25176cf3c40f6dafd"
+    },
+    {
+      "rva": "0x1ca4d64",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$EgoShown",
+      "body_sha256": "5f92aa0d7c924089ff3fdaa289a03796e45c79813c2e0b7cbbcafc2bcf6f096a"
+    },
+    {
+      "rva": "0x1ca5840",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$Clear",
+      "body_sha256": "0af401f108f289f16cc853452f61acbbb02ba30027c98d082fa553f623a12b57"
+    },
+    {
+      "rva": "0x1ca58b0",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$RestoreFromSaveData",
+      "body_sha256": "401b7aa50aa522547a8844db08d57e60dce70080f5cec4acc749b59f7d6402dd"
+    },
+    {
+      "rva": "0x1ca596c",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$TryThrowEgoPackageItemThrow",
+      "body_sha256": "037ba7b2124285b4ac0b553685e6ed8c6409131f3e1b7251bae4999d6fa99498"
+    },
+    {
+      "rva": "0x1ca5794",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$PutEgoItemsToGrid",
+      "body_sha256": "d99c990e3af2a3f9cab3c0b323f47ea947480676774ddb5aebf05683917fd239"
+    },
+    {
+      "rva": "0x1e29c14",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager.<PutEgoItemsToGrid>d__34$$MoveNext",
+      "body_sha256": "b1f137ffd1dffd9f0fcaafcbf4b0dfa09889c3d56f758f196c25e77fabe5bc2f"
+    },
+    {
+      "rva": "0x12de540",
+      "name": "Royal.Scenes.Game.Mechanics.Replay.WaitForGameplaySeconds$$get_keepWaiting",
+      "body_sha256": "a2d000f2e54320e3e73e44684fca612dac28a642c035ed3892cd627632da8bb8"
+    },
+    {
+      "rva": "0x12de578",
+      "name": "Royal.Scenes.Game.Mechanics.Replay.WaitForGameplaySeconds$$.ctor",
+      "body_sha256": "15eb27c433a9427722d53c081bc8e6c8b317b378fdebce4eabf22efb327dd3f9"
+    },
+    {
+      "rva": "0x1ca5824",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$CancelOffer",
+      "body_sha256": "d60e006be0f13bb7613da39c2b7c19f1302aa8c67eec7033bf1fe5bbb42b9a3c"
+    },
+    {
+      "rva": "0x1ca4edc",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$SetInviteFriendsEgoPrice",
+      "body_sha256": "ed75dd1f3f30710aa825e008d5cedb9a4705506baad3e7a710f2c2e1b992c6f4"
+    },
+    {
+      "rva": "0x32b118c",
+      "name": "Royal.Player.Context.Data.Session.InviteFriendsLevelData$$SetEgoPrice",
+      "body_sha256": "b11dc0bdd5aeecfa51ddbb02bb083d0a81c4317f3c294480ed5947f62b07df9f"
+    },
+    {
+      "rva": "0x1ca5e80",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$HasShownEgo",
+      "body_sha256": "11222c919b1737d6e1b325c62e3a0aa5559b6fb9abbbb2cfa64f66c86102f767"
+    },
+    {
+      "rva": "0x1346c60",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.EgoDialog$$OnClose",
+      "body_sha256": "2e9f0e7b9ccc0f8dea5a3a8b5cff573bc4147cce8e0a95ffe2c7ce3a2c217cc4"
+    },
+    {
+      "rva": "0x1ca5ea0",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$.cctor",
+      "body_sha256": "8f02492b97f31b24831064edac1eec5670509d38103c2b2a1be5e0c55abcdcad"
+    },
+    {
+      "rva": "0x1ca5e18",
+      "name": "Royal.Scenes.Game.Levels.Units.Ego.EgoManager$$GetMoveCount",
+      "body_sha256": "402924d9380fe2de3f97fb9d841d57fb348a379c8c255f4aba98dd4c096cb4a2"
+    }
+  ],
+  "constants": "SourceCatalog/ego_native_constants.json",
+  "native_differential": {
+    "passed": true,
+    "cases": 5310,
+    "scope": "Actual ARM64 coin spending, Ego continuation/state and item coroutine vs C#.\n\nUpdateCoins storage/event transport, current user/home/AB/episode/offer/extra\nmove/audio/save/charger/grid/creator/coroutine-host owners are typed boundaries.\nSpendCoins, HasEnoughCoins, package indexing/getters, Ego flow/state, item\ncoroutine and gameplay waits execute in the ELF. No production dialog binding,\nAB catalog implementation, real rendered item throw or mobile parity is proved.",
+    "original_rvas": [
+      "0x28e4f98",
+      "0x28e4da0",
+      "0x1ca4f68",
+      "0x1ca5020",
+      "0x1ca5374",
+      "0x1ca53e0",
+      "0x1ca4d64",
+      "0x1ca5840",
+      "0x1ca58b0",
+      "0x1ca596c",
+      "0x1ca5794",
+      "0x1e29c14",
+      "0x12de540",
+      "0x12de578",
+      "0x1ca5824",
+      "0x1ca4edc",
+      "0x32b118c",
+      "0x1ca5e80"
+    ],
+    "on_close_core_ranges": [
+      "0x1346f20..0x1346f68",
+      "0x1347368..0x13473bc",
+      "0x1346f6c..0x1346fbc",
+      "0x13474b0..0x1347524"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/EgoHarness.cs",
+        "sha256": "82197e64b902b10c275df036da1172d8a50cfa9c91ec0a5fe60dfacd422650b8"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+        "sha256": "1b5f2aecd84eb65e57f8df2a328c2db2c85cd2d138b1ce20b52de78956d18fea"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalCoinSpending.cs",
+        "sha256": "38e678ec04f7c676f317964df6fe6dd745f27872b7b46dae7d3b6e22a1df7936"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalEgoPackage.cs",
+        "sha256": "77fe2aa41577a4aeb49abb44a07dd21e51bbf01112778c830ec0b82637f15ee3"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalEgoManager.cs",
+        "sha256": "dbd31f7cdffe596fc79be435b6e34374ad468fb15466369f7c24ba89b32a5c91"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGameplayWait.cs",
+        "sha256": "760f433d8b337624e747c260c73065e5ce40fc3a3d6038cbe04fa1b6cc17879d"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalEgoDialogGameActions.cs",
+        "sha256": "1832e5abc9526d5cec720df68ea0cee5c4d72f2475d7d9725efaeffc131072cb"
+      }
+    ]
+  },
+  "balance_regression": {
+    "passed": true,
+    "cases": 1500,
+    "scope": "Execute native BasicUserData progression and UserInventory balance/packing code.\n\nReal native level/league updates, arithmetic, clamping, delegates and Madness\npacking execute. UserKeyValue storage writes, feature gates, leaderboard/mission,\nanalytics, side-progression/story helpers are explicit typed boundaries. Native\ndiagnostic formatting is skipped. This does not prove database loading, real\nsave files, event providers or production account startup composition.",
+    "original_rvas": [
+      "0x2f82d54",
+      "0x2f825d4",
+      "0x2f827f8",
+      "0x28e4db0",
+      "0x28e4bd8",
+      "0x28e4f3c",
+      "0x28e5320",
+      "0x28e5354",
+      "0x28e5390",
+      "0x28e55b8",
+      "0x2f9645c",
+      "0x2f96544",
+      "0x2f965e0"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/AccountKernelHarness.cs",
+        "sha256": "54eb9beca8cadcd8b4254e827a9e6610ac5a7430dfba813ea4a2e654e8304238"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+        "sha256": "060bcc6fd74937b63449baa097985bc303fbb3a334e091b018034d7e2405f3ea"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+        "sha256": "1b5f2aecd84eb65e57f8df2a328c2db2c85cd2d138b1ce20b52de78956d18fea"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalActiveLevelData.cs",
+        "sha256": "99073681633b6c4aed4fc58ff70814a2b461b4829f6ee9e78aaafd27d0546863"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+        "sha256": "6e5847395641c36a54634e099e09c88370db88a546ef2cef69c93e2eeb77d496"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+        "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+      }
+    ]
+  },
+  "user_end_regression": {
+    "passed": true,
+    "cases": 1800,
+    "scope": "Compare native UserManager.LevelEnd/RemainingMovesEnd and LevelManager tail.\n\nActual native BasicUserData progression and UserInventory balance/packing methods\nrun inside the full dispatch. Feature/event aggregation, database writes, restore\nfile deletion, analytics/backend, milestone package and Madness validity are typed\nboundaries. Session data loading and full event helper implementations are outside\nscope. Diagnostic formatting is skipped; production persistence/UI is not proved.",
+    "original_rvas": [
+      "0x2aec860",
+      "0x2aeeb3c",
+      "0x1e1c1f8",
+      "0x2f82d54",
+      "0x28e4f3c",
+      "0x28e4bd8",
+      "0x28e5320",
+      "0x28e5354"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/AccountKernelHarness.cs",
+        "sha256": "54eb9beca8cadcd8b4254e827a9e6610ac5a7430dfba813ea4a2e654e8304238"
+      },
+      {
+        "path": "SourceCatalog/UserEndHarness.cs",
+        "sha256": "d453a5c5ead2fd1131cbeb9f75df5e6147851f56b681ac863c64ed3c5e40e0c3"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+        "sha256": "060bcc6fd74937b63449baa097985bc303fbb3a334e091b018034d7e2405f3ea"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+        "sha256": "1b5f2aecd84eb65e57f8df2a328c2db2c85cd2d138b1ce20b52de78956d18fea"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalUserLevelEnd.cs",
+        "sha256": "8cb4cb468bc1a78a912d546b7488c084640faa4212d936eaf48e4d275b1da1a4"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLevelEnd.cs",
+        "sha256": "9d080c7a2ae48351fa7e3294f86a75a9e4ec1e629ce26d39d739dd8230ae6c9b"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalActiveLevelData.cs",
+        "sha256": "99073681633b6c4aed4fc58ff70814a2b461b4829f6ee9e78aaafd27d0546863"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalSessionValues.cs",
+        "sha256": "607fdf145a1cc7bba00669cef86f048083a78a47cc81eb17b64d9528da1203c0"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+        "sha256": "6e5847395641c36a54634e099e09c88370db88a546ef2cef69c93e2eeb77d496"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+        "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+      }
+    ]
+  },
+  "same_snapshot_runtime_tests": [
+    {
+      "path": "background_ego_continuation_verification.json",
+      "passed": true,
+      "source_sha256": "d8d1a9ef6ce61722b84d649fe4054a9fb926287d47ef21836d0ce578e99afe22",
+      "elapsed_seconds": 112.73
+    },
+    {
+      "path": "background_remaining_coins_normal_verification.json",
+      "passed": true,
+      "source_sha256": "d8d1a9ef6ce61722b84d649fe4054a9fb926287d47ef21836d0ce578e99afe22",
+      "elapsed_seconds": 112.61
+    }
+  ],
+  "formal_board_continuation_result": {
+    "passed": true,
+    "database_reopen_verified": true,
+    "invite_price_snapshot_verified": true,
+    "failure": "",
+    "initial_coin": 2000,
+    "persisted_coin": 1100,
+    "spent_coin": 900,
+    "accepted_swaps": 6,
+    "made_moves": 6,
+    "refills_after_purchase": 40,
+    "ego_shown": 2,
+    "ego_purchase_count": 1,
+    "fail_dispatches": 1,
+    "coin_update_callbacks": 1,
+    "coin_spent_callbacks": 1,
+    "elapsed": 11.642621040344238,
+    "scope": "Formal first-board runtime with recorded listener gestures and explicit one-move starting budget. Actual WinFail enters Ego, actual first default package spends900 from a native-loaded private SQLite account, actual OnClose paid branch restores5 moves and WinFail, and five real accepted swaps consume the restored budget with normal refill. Second Ego cannot afford1900; actual OnClose cancel sets Fail and reenables one failure dispatch. Actual invite-price setter stores900 then1900 in a fixture-created snapshot. Reopened database verifies1100 and native sync flags. Default package catalog/AB/extra moves, dialog close/render/music/home/episode/remaining snapshot/save/charger/failure session-account-UI owners remain fixtures. No physical input, production UI/application binding, later package item throwing or full/mobile/original rendered parity is proved."
+  },
+  "production_gap": "FoundationController still only composes board/input/HUD. New runtime classes are exercised through an explicit Editor verifier; application/account/feature and native prefab UI owners are not installed in the player scene.",
+  "limits": [
+    "Runtime continuation kernels are restored, but this is not a production-visible popup/button integration.",
+    "Default five-package catalog values are explicit test inputs captured from the native initializer. Multiplier/price/region AB selection, extra-move provider and GM are incomplete.",
+    "Formal scenario uses recorded device samples and an explicit one-move starting budget. Dialog closure, episode, CoinShop, music, Home, remaining-item snapshots, level-save/charger and failure-session/account/UI dispatch remain fixture owners.",
+    "The formal scenario verifies the zero-special first package. Later-package target selection, real special-item throw visuals and physical/AB/cross-platform behavior remain incomplete.",
+    "Actual spending writes/reopens a private SQLite database using the runtime Windows factory, not a fake in-memory wallet; full production account startup and Android/iOS transport are unverified.",
+    "Android original SQLite binary adoption remains pending the earlier scope clarification; no binary/SDK/native managed plugin was added.",
+    "Full startup/home/all-level/core gameplay/tutorial/peripheral unlock/country/AB/GM/native visual/lifecycle fidelity remains incomplete."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCoinSpending.cs",
+      "sha256": "38e678ec04f7c676f317964df6fe6dd745f27872b7b46dae7d3b6e22a1df7936"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCoinSpending.cs.meta",
+      "sha256": "7cef1ec44616202c3eecaeaf688034899840de53d0d35663e7623dafae222746"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalEgoPackage.cs",
+      "sha256": "77fe2aa41577a4aeb49abb44a07dd21e51bbf01112778c830ec0b82637f15ee3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalEgoPackage.cs.meta",
+      "sha256": "5640af0a1332206b1076ebdc875bc590f49fe5bb0e39a7fa5139b62b32714fc0"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalEgoManager.cs",
+      "sha256": "dbd31f7cdffe596fc79be435b6e34374ad468fb15466369f7c24ba89b32a5c91"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalEgoManager.cs.meta",
+      "sha256": "c9d915c2cec52f012555bd048072e4c20164d48ad0450b73796bd5005dacece3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalEgoDialogGameActions.cs",
+      "sha256": "1832e5abc9526d5cec720df68ea0cee5c4d72f2475d7d9725efaeffc131072cb"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalEgoDialogGameActions.cs.meta",
+      "sha256": "95132d86285487a106d8be36b22d288fab8eaf564e4bb652b0d48309be154258"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+      "sha256": "1b5f2aecd84eb65e57f8df2a328c2db2c85cd2d138b1ce20b52de78956d18fea"
+    },
+    {
+      "path": "Assets/Foundation/Editor/EgoContinuationVerification.cs",
+      "sha256": "b40cc18b531644ea62a612fb7c5e7d3bf8f9ed06488cf88f513f5cd307969cdc"
+    },
+    {
+      "path": "Assets/Foundation/Editor/EgoContinuationVerification.cs.meta",
+      "sha256": "6490061ee35a87c5a17c4762a4d0e7b45a29257828cb261fb7537d1ec4d5b655"
+    },
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "4cf730bfe98e409b78eb4f799ffa5bfee75f4c51871aa796b0b5e3c5fc86f26d"
+    },
+    {
+      "path": "Assets/Foundation/Editor/LivePlayerInputVerification.cs",
+      "sha256": "0f96ede512a1f235290564cfc020241b2a899170e21ba3c5494bad8e11b84947"
+    },
+    {
+      "path": "SourceCatalog/EgoHarness.cs",
+      "sha256": "82197e64b902b10c275df036da1172d8a50cfa9c91ec0a5fe60dfacd422650b8"
+    },
+    {
+      "path": "SourceCatalog/verify_ego.py",
+      "sha256": "6b5f81f5ef5d91bd42b7a798bd575e42a1ee40ef100dea717109240ab603c39f"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "2b7c5e9ad218b18bff0658bddcc9857d962877b3247d57e227df38e39f757c56"
+    }
+  ],
+  "current_area_data_evidence": "SourceCatalog/area_data_evidence.json",
+  "current_area_data_source_snapshot_sha256": "8fbbab70a4b5bc904fc94ed612d60e629d2ebd3d99a096e0017968b1b40bd1f7"
+}

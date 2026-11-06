@@ -1,0 +1,27 @@
+{
+  "scope": "Read-only ABI inspection of the original Android SQLite binary against the project-owned C# P/Invoke entries. Matching exports do not prove execution, permission to package the library, Android runtime behavior, or whole-game parity.",
+  "source_path": "RoyalMatch_20260929/apk_unpacked/split_config.arm64_v8a/lib/arm64-v8a/libsqlite3.so",
+  "source_sha256": "7af85467a880a097542e4e0b8cf43f6c767abb6a9097eefee72d0037b74deabd",
+  "bytes": 1327456,
+  "machine": "EM_AARCH64",
+  "elf_class": 64,
+  "all_required_exports_present": true,
+  "required_exports": [
+    "sqlite3_bind_int",
+    "sqlite3_bind_null",
+    "sqlite3_bind_text16",
+    "sqlite3_busy_timeout",
+    "sqlite3_changes",
+    "sqlite3_close",
+    "sqlite3_column_int",
+    "sqlite3_column_text16",
+    "sqlite3_errmsg",
+    "sqlite3_finalize",
+    "sqlite3_open_v2",
+    "sqlite3_prepare_v2",
+    "sqlite3_step"
+  ],
+  "binary_added_to_unity_project": false,
+  "native_library_scope_clarification_pending": true,
+  "bindings_sha256": "9c38840a23eac76a0e4f3347d220f014477180872f5c547a646982082c758618"
+}

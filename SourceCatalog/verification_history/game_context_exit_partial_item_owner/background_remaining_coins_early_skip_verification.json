@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "test": "remaining-coins-early-skip",
+  "unity_exit_code": 1,
+  "source_unchanged_during_run": true,
+  "source_sha256": "8e1e27f06b406a82e7012881bb3357d860bdad99e53c121f1ef57bebc2b9bc06",
+  "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+  "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+  "elapsed_seconds": 106.47,
+  "batch": {
+    "passed": false,
+    "test": "remaining-coins-early-skip",
+    "failure": "System.InvalidOperationException: NotSupportedException: This item's native model view-recycle owner must be restored before resetting it.\nWhitebox.Foundation.OriginalPlayableBoard.Whitebox.Foundation.IOriginalCellResetServices.RecycleItemView (Whitebox.Foundation.OriginalBoardItem item) (at Assets/Foundation/Runtime/OriginalFirstBoardReset.cs:23)\nWhitebox.Foundation.OriginalGridCell.Reset (Whitebox.Foundation.IOriginalCellResetServices services) (at Assets/Foundation/Runtime/OriginalCellReset.cs:21)\nWhitebox.Foundation.OriginalPlayableBoard.ResetBoundGridViews () (at Assets/Foundation/Runtime/OriginalFirstBoardReset.cs:13)\nWhitebox.Foundation.Editor.RemainingCoinsVerification+Services.ClearBoundLevelOwners (System.Boolean gameExit) (at Assets/Foundation/Editor/RemainingCoinsVerification.cs:416)\nWhitebox.Foundation.Editor.RemainingCoinsVerification+Services+BoundGameUnit.Clear (System.Boolean gameExit) (at Assets/Foundation/Editor/RemainingCoinsVerification.cs:425)\nWhitebox.Foundation.OriginalGameContextDeactivation.ResetScene (System.Boolean gameExit) (at Assets/Foundation/Runtime/OriginalGameContextDeactivation.cs:89)\nWhitebox.Foundation.OriginalGameContextDeactivation.Deactivate () (at Assets/Foundation/Runtime/OriginalGameContextDeactivation.cs:73)\nWhitebox.Foundation.OriginalGameContextDeactivation.ManualUpdate () (at Assets/Foundation/Runtime/OriginalGameContextDeactivation.cs:64)\nWhitebox.Foundation.OriginalContextUpdateHost.Update () (at Assets/Foundation/Runtime/OriginalContextUpdateHost.cs:41)\n\r\n  at Whitebox.Foundation.Editor.BackgroundVerification.Tick () [0x00017] in F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\Assets\\Foundation\\Editor\\BackgroundVerification.cs:62 ",
+    "timestamp_utc": "2026-10-28T23:54:07.2061202Z",
+    "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+  },
+  "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+}

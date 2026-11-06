@@ -1,0 +1,168 @@
+{
+  "scope": "ARM64 source inspection and formal-scene integration for single TNT tap/swap, normal radius2 damage and source explosion particle prefab. No new ARM64 differential replay claim.",
+  "methods": [
+    {
+      "rva": "0x27b4050",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.SpecialItemModel$$Explode",
+      "disassembly_sha256": "64517b56c4ace2b631db147d1f7f9d1659b492503d8aed7d3c950b1a4424bd3a"
+    },
+    {
+      "rva": "0x27b49e8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.SpecialItemModel$$ExplodeDisabled",
+      "disassembly_sha256": "ad0c34a185421c0fd3e599af3cffb4065425dc4a762e0f4c4f1dd01192d4e745"
+    },
+    {
+      "rva": "0x318d184",
+      "name": "Royal.Scenes.Game.Mechanics.Explode.TriggerExtensions$$IsManualTrigger",
+      "disassembly_sha256": "1056e629f130be3e57b8b0cd00060e499df68f699fb05c91bdb237ea914efe8f"
+    },
+    {
+      "rva": "0x3190884",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$ExplodeCurrentItem",
+      "disassembly_sha256": "fadb4fd3034d1ea48a90ee01047031b6a614cf9db52643493346c263b323b606"
+    },
+    {
+      "rva": "0x27b59a8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.TntItemModel$$TryExplode",
+      "disassembly_sha256": "49dbebc9302c4932420183bdad2e41bdfe574ccd8831c68a67b62eda55d9688d"
+    },
+    {
+      "rva": "0x27b6f4c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.TntItemModel.<WaitAndExplodeViews>d__21$$MoveNext",
+      "disassembly_sha256": "b87c67aa6b47263b7a475fe3a6e476d0d4d7d48ab712b3b140b40af3312c6cd6"
+    },
+    {
+      "rva": "0x27b5cf4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.TntItemModel$$ExplodeViews",
+      "disassembly_sha256": "252cbdaee108dee16de580ebd17dbe353bc3f74943f685cdac9291c4bf57f498"
+    },
+    {
+      "rva": "0x27b6638",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.TntItemModel.<ExplodeCells>d__23$$MoveNext",
+      "disassembly_sha256": "2d3b5904561f68082b9748c11c0165c30385202d6029ce02d30523499dd70b91"
+    },
+    {
+      "rva": "0x27b6104",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.TntItemModel$$ExplodeOuterCells",
+      "disassembly_sha256": "a05c3141303234129f184d69d762197fe457027675a9f024d8937a53bc2cc7c4"
+    },
+    {
+      "rva": "0x27b64a0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.TntItemModel$$ExplodeOuterCell",
+      "disassembly_sha256": "d53b22c18c125dad5eda6f244dfdd224182e2827dd6719ed7d80464ae8251b93"
+    },
+    {
+      "rva": "0x27b654c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.TntItemModel$$Tap",
+      "disassembly_sha256": "5d8b658f2f9330c314aa67a9a143fd249bfb601ec11bca70bcb4f54b9910a497"
+    },
+    {
+      "rva": "0x27b5f1c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemView$$PlayExplode",
+      "disassembly_sha256": "710419f63659ae435d283da5891c08f55906e27e49167d841daed421b48ddb28"
+    },
+    {
+      "rva": "0x27b7a48",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemExplodeParticles$$Play",
+      "disassembly_sha256": "75daa81014c907a8b313e52e0e4d87cd0c533852dc4b225a9908d35f9e3df499"
+    },
+    {
+      "rva": "0x27b7ab4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemExplodeParticles$$SetEmissionCount",
+      "disassembly_sha256": "72ea900ee2d6dfea6efe8884d99eb8c8caf53025eeeeab2249ec60788763ff21"
+    },
+    {
+      "rva": "0x27b7b24",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemExplodeParticles$$SetParticleEmissionBurstCount",
+      "disassembly_sha256": "72c3b08e497c20158a2889128e8c6d6385c3183bd63f6d0247144962c75e31b8"
+    },
+    {
+      "rva": "0x27b75d4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemAssets$$CreateItemPools",
+      "disassembly_sha256": "5865e1e2697ca737be8521407277a5a1192429273926c176b3d5ee55b8cff991"
+    },
+    {
+      "rva": "0x21a6834",
+      "name": "Royal.Scenes.Game.Mechanics.Items.MatchItem.MatchItemModel$$HandleMadness",
+      "disassembly_sha256": "9f888141de793f37990ab0141259aa2b9ae94d5d87dd0df96715ad7e9829f368"
+    },
+    {
+      "rva": "0x32b393c",
+      "name": "Royal.Player.Context.Data.Session.MadnessSessionData$$TryIncrementMadnessForExploderId",
+      "disassembly_sha256": "89d08ac1bf2fa8fe5626220b67fb49747e5be4737779265f829c7914c09e68dc"
+    },
+    {
+      "rva": "0x32b39f8",
+      "name": "Royal.Player.Context.Data.Session.MadnessSessionData$$GetMadnessForExploderId",
+      "disassembly_sha256": "26fd4aec43e862915c15dc055ae17b6d796f03b4161319fda1615b7172eb466f"
+    },
+    {
+      "rva": "0x32b9afc",
+      "name": "Royal.Player.Context.Data.Session.UserActiveLevelData$$TryCollectMadnessForExploder",
+      "disassembly_sha256": "6ea3e4d562935c9e64334542d9e422f754c362ff0052ea1b61f2553ece252854"
+    },
+    {
+      "rva": "0x27b4808",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.SpecialItemModel$$CanSwapWith",
+      "disassembly_sha256": "f8a6bbaacab72f309da49c330c76280adc8f3ce053a57757158ccfb777a115d6"
+    },
+    {
+      "rva": "0x1f3e8c0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.LightballItemModel$$CanSwapWith",
+      "disassembly_sha256": "913ba0e4536fd95c59b4b2a8198c1f47686b3fd7f7c7fbef159d041c3ab6fd17"
+    },
+    {
+      "rva": "0x1ee402c",
+      "name": "Royal.Scenes.Game.Levels.Units.Touch.SwapAction$$GetSwapMoveTypeFromItems",
+      "disassembly_sha256": "8a9947d0047ddad24db70765443531ab7081d9ded8e7a1a5970efa961fa64154"
+    },
+    {
+      "rva": "0x1ee42c0",
+      "name": "Royal.Scenes.Game.Levels.Units.Touch.SwapAction$$ExplodeSpecialItems",
+      "disassembly_sha256": "887f5b9078c7ecbe77733ac3f74be165d2f77f78623ae08fa0172349ab798d92"
+    },
+    {
+      "rva": "0x1ee3ef0",
+      "name": "Royal.Scenes.Game.Levels.Units.Touch.SwapAction$$PlaySwapParticle",
+      "disassembly_sha256": "d9692c058c88569211c41ed58ed304d2866824e0b66e70ece5f3af89cb368cf7"
+    }
+  ],
+  "parameters": {
+    "radius": 2,
+    "ring_interval": 0.02,
+    "chain_tnt_delay": 0.1,
+    "cell_freeze": 0.25,
+    "model_release_freeze": 0.15,
+    "sound_id": 347,
+    "sound_delay": 0.04,
+    "pool_id": 19,
+    "prewarm": 1,
+    "normal_bursts": [
+      25,
+      25,
+      15,
+      2,
+      2
+    ],
+    "reduced_bursts": [
+      5,
+      5,
+      3,
+      1,
+      1
+    ]
+  },
+  "boundaries": [
+    "Only static-free first-level ordinary TNT; no jelly, active Charger/Clash, remaining-moves conversion or super-lightball branch",
+    "Original grid shake remains pending",
+    "Rocket/propeller activation and all special combos remain pending; normal lightball activation/chain response is now composed and verified separately",
+    "New-user UX tap persistence is not composed; optional runtime notifications do not establish persistence parity",
+    "Physical mouse drag timing and original rendered parity remain unverified",
+    "SDK unchanged"
+  ],
+  "verification": [
+    "live_tnt_tap_verification.json",
+    "live_tnt_swap_verification.json"
+  ],
+  "integration_status": "Both formal TNT tap/single-swap runs now pass and each completes one actual chained lightball activation; see matching background source-fingerprint reports."
+}

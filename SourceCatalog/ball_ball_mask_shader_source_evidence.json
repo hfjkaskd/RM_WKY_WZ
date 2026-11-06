@@ -1,0 +1,30 @@
+{
+  "original_shader_name": "Alpha Masked/Sprites Alpha Masked - World Coords",
+  "original_path_id": 26,
+  "original_bundle_sha256": "f4e34bc72c5a50b85150a144849a90d3a44afa05e372cc35d86b0638c7667fd3",
+  "extraction": "UnityPy decompression of the original serialized GPU subprogram tables, platform5/program1 and platform9/program1. The generic shader text exporter omits these player subprograms; dummy ShaderLab exports are not used as code evidence.",
+  "restoration": "Translate the original GLES vertex/fragment equations to Unity HLSL: world/object-to-mask coordinates, optional pixel snapping, UV scale/offset, channel/clamp controls, text/tint handling and premultiplied output. Restore serialized blend One/OneMinusSrcAlpha, color/stencil property bindings, ZTest LEqual, ZWrite Off and Cull Off. Bind the original black material used by BallBall prefab.",
+  "limitations": "Source equations and render-state recovery plus formal-scene GPU alpha observations do not prove complete original-render or cross-platform GPU equivalence; physical Android/iOS comparison remains pending.",
+  "files": [
+    {
+      "path": "SourceCatalog/original_ball_ball_mask_gles100.glsl",
+      "sha256": "129be05a3750a20f3fc70db9df42c77a96072690ae16371b0f00acea4c0cf3e6"
+    },
+    {
+      "path": "SourceCatalog/original_ball_ball_mask_gles300.glsl",
+      "sha256": "b0cbe0d16d99f19d6d6b3f43c975ab0a3e4873a5d5f0fbc809be0169c738ec1d"
+    },
+    {
+      "path": "SourceCatalog/original_ball_ball_mask_render_state.json",
+      "sha256": "bdbddfe9017128c7a02d7c232e05ee52a82f30c6154b3f67aedb48fa2abcfa47"
+    },
+    {
+      "path": "Assets/Foundation/Shaders/OriginalWorldSpaceAlphaMask.shader",
+      "sha256": "9544259edf855a9cd86e27b9197dbebdd3da41e3ee9070064d529652b679b6b5"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Material/TutorialBlackMasked.mat",
+      "sha256": "8d00cebc440f91e76cb215535f20c636ac321cf3a233e65779bfb42994fa3083"
+    }
+  ]
+}

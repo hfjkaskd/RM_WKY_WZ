@@ -1,0 +1,1382 @@
+{
+  "schema": 1,
+  "baseline_commit": "68120bbe9aa8b202a3ebf2d3b1386770151f5353",
+  "verified_utc": "2026-11-05T16:55:44.268390+00:00",
+  "differences": [
+    "The existing banner moved first above the safe center and then below it. Original OnShow uses Vector2.down * 0.6 followed by Vector2.up * 0.1.",
+    "The existing prefab used 0.6 seconds for the final return to the center. The captured original sequence uses 0.1 seconds; its nominal exit cue is 1.5166667 and total duration is 1.95 seconds, not 2.0166667 / 2.45.",
+    "Both ordinary and skipped banner coroutines used raw Unity delta. The original DOTween default is Manual and the application TweenManager dispatches the active level quantized clock."
+  ],
+  "runtime_changes": "Correct both offset directions, configure the prefab return duration to 0.1, and read the existing typed CoreGameFlow.GameplayDeltaTime in all three banner loops. Preserve the standard skip Button, existing asset hierarchy, sounds, easing and core failure/retry route.",
+  "native_construction": {
+    "passed": true,
+    "automatic": [
+      {
+        "callback": {
+          "target": 268435456,
+          "method_info_port": 269485056
+        }
+      },
+      {
+        "target": [
+          1.0,
+          -1.0,
+          0.0
+        ],
+        "duration": 0.25,
+        "ease": 3
+      },
+      {
+        "target": [
+          1.0,
+          -0.30000001192092896,
+          0.0
+        ],
+        "duration": 0.1666666716337204,
+        "ease": 3
+      },
+      {
+        "target": [
+          1.0,
+          -0.4000000059604645,
+          0.0
+        ],
+        "duration": 0.10000000149011612,
+        "ease": 3
+      },
+      {
+        "interval": 1.0
+      },
+      {
+        "callback": {
+          "target": 268435456,
+          "method_info_port": 269486080
+        }
+      },
+      {
+        "callback": {
+          "target": 268435456,
+          "method_info_port": 269487104
+        }
+      },
+      {
+        "target": [
+          1.0,
+          -8.75,
+          -10.0
+        ],
+        "duration": 0.3333333432674408,
+        "ease": 26,
+        "overshoot": 1.0
+      },
+      {
+        "interval": 0.10000000149011612
+      },
+      {
+        "on_complete": {
+          "target": 268435456,
+          "method_info_port": 268468224
+        }
+      }
+    ],
+    "skipped": [
+      {
+        "target": [
+          1.0,
+          -9.0,
+          -10.0
+        ],
+        "duration": 0.30000001192092896,
+        "ease": 8
+      },
+      {
+        "interval": 0.10000000149011612
+      }
+    ],
+    "initial_position": [
+      1.0,
+      8.75,
+      -10.0
+    ],
+    "camera_ports": {
+      "safe": [
+        1,
+        -0.4,
+        0
+      ],
+      "top": [
+        1,
+        8,
+        -10
+      ],
+      "bottom": [
+        1,
+        -8,
+        -10
+      ],
+      "sprite_size": [
+        10,
+        1.5
+      ]
+    },
+    "nominal_exit_start": 1.5166666731238365,
+    "nominal_automatic_duration": 1.9500000178813934,
+    "trace": [
+      "portrait-preparation-port",
+      "kill-original-sequence",
+      "link-close-sequence-to-object",
+      "wait-for-close-sequence-kill"
+    ],
+    "audio_callbacks": [
+      {
+        "clip": 258,
+        "cooldown": 0.03999999910593033
+      },
+      {
+        "clip": 259,
+        "cooldown": 0.03999999910593033
+      }
+    ],
+    "native_methods": {
+      "0x1589e80": {
+        "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner$$OnShow",
+        "body_sha256": "5289b18a049ef5e8362d5894966d020d8969c4366d2b300dad6124651047575c"
+      },
+      "0x158a9a4": {
+        "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner.<CloseAnimation>d__20$$MoveNext",
+        "body_sha256": "68431b3b2ea219601be394a17feac47fd99d13fb55a418097afa3696f2d14d7a"
+      },
+      "0x158a944": {
+        "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner$$<OnShow>b__17_0",
+        "body_sha256": "4f0303c10a82a0d3f7d5bae10ffd394c923d93053e58d5dbbb52358ee561789f"
+      },
+      "0x158a96c": {
+        "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner$$<OnShow>b__17_1",
+        "body_sha256": "2e11dc8009061e834b5ac430d1b552cebba5936e2530654333b0393c4650cc59"
+      },
+      "0x158a978": {
+        "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner$$<OnShow>b__17_2",
+        "body_sha256": "81c03ec6332894407a8cfa468848349e9216f3086043ce224e05acde7134f4d0"
+      },
+      "0x38ffa38": {
+        "name": "Royal.Scenes.Start.Context.Units.TweenManager$$InitializeDoTween",
+        "body_sha256": "84787cbbd0987b0035f01ecac2f937e0af1791371c6369f4e3c75bd7859fbb6f"
+      },
+      "0x38ffc34": {
+        "name": "Royal.Scenes.Start.Context.Units.TweenManager$$GetDeltaTime",
+        "body_sha256": "db923ac8eabca79a3698a59b6d51be06135cb6fe7f60108c9d9c10b87b50bb33"
+      },
+      "0x38ffc88": {
+        "name": "Royal.Scenes.Start.Context.Units.TweenManager$$ManualUpdate",
+        "body_sha256": "949cdb520614ce23f41f5dd455da0a18811cbea4eacefa4d99f546e8c92d4b0e"
+      }
+    },
+    "scope": "Actual ARM64 OutOfMovesBanner.OnShow and CloseAnimation.MoveNext construct the captured target/duration/ease/callback/interval sequence. Unity transform/camera/sprite transport, portrait preparation, metadata/allocation and DOTween sequence objects are supplied ports. Native TweenManager clock selection is audited separately. This does not execute the full native DOTween scheduler or original renderer."
+  },
+  "native_clock": {
+    "passed": true,
+    "native_manual_update_cases": 530,
+    "native_methods": {
+      "0x38ffc34": {
+        "name": "Royal.Scenes.Start.Context.Units.TweenManager$$GetDeltaTime",
+        "body_sha256": "db923ac8eabca79a3698a59b6d51be06135cb6fe7f60108c9d9c10b87b50bb33"
+      },
+      "0x38ffc88": {
+        "name": "Royal.Scenes.Start.Context.Units.TweenManager$$ManualUpdate",
+        "body_sha256": "949cdb520614ce23f41f5dd455da0a18811cbea4eacefa4d99f546e8c92d4b0e"
+      },
+      "0x32037e4": {
+        "name": "Royal.Scenes.Game.Levels.LevelContext$$get_DeltaTime",
+        "body_sha256": "8685f4d8b6266ddca51f418cf0f690b43222bfabe6eda4ae269971c6468aac9a"
+      },
+      "0x318d1c4": {
+        "name": "Royal.Scenes.Game.Mechanics.DeltaTime.DeltaTimeManager$$get_DeltaTime",
+        "body_sha256": "aca3847eb45c7344107992ec16dcf5d9c8db7de77ab984bf1ab9173a5259b678"
+      },
+      "0x25cb6cc": {
+        "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$OnShow",
+        "body_sha256": "9250d0f1f435deb3f036884aad8d85afe5637887638a23b9fc45706cf30941b2"
+      },
+      "0x25c7bf8": {
+        "name": "Royal.Infrastructure.UiComponents.Dialog.DialogBackgroundDark$$Show",
+        "body_sha256": "8ec1b1a3a9e9bd2b3761dd9851ca659e0aae0ed1b7dae3bdbe3259262bec6746"
+      },
+      "0x25c8170": {
+        "name": "Royal.Infrastructure.UiComponents.Dialog.DialogBackgroundDark$$Hide",
+        "body_sha256": "6882d8b22d691cea0b360465cbed5c0ebb5a08da2460eaa79037fbb5684009c3"
+      }
+    },
+    "runtime_scope": "Original ARM64 TweenManager.GetDeltaTime/ManualUpdate, LevelContext clock dispatch and DeltaTimeManager quantization execute from libil2cpp. Unity Time getter, IL2CPP metadata and final DOTween.ManualUpdate transport are supplied ports."
+  },
+  "portable_motion_comparison": {
+    "passed": true,
+    "baseline_commit": "68120bbe9aa8b202a3ebf2d3b1386770151f5353",
+    "scenarios": 25,
+    "commands": 2034,
+    "native_ease_evaluations": 278,
+    "native_quantization_inputs": 9,
+    "native_construction": {
+      "passed": true,
+      "automatic": [
+        {
+          "callback": {
+            "target": 268435456,
+            "method_info_port": 269485056
+          }
+        },
+        {
+          "target": [
+            1.0,
+            -1.0,
+            0.0
+          ],
+          "duration": 0.25,
+          "ease": 3
+        },
+        {
+          "target": [
+            1.0,
+            -0.30000001192092896,
+            0.0
+          ],
+          "duration": 0.1666666716337204,
+          "ease": 3
+        },
+        {
+          "target": [
+            1.0,
+            -0.4000000059604645,
+            0.0
+          ],
+          "duration": 0.10000000149011612,
+          "ease": 3
+        },
+        {
+          "interval": 1.0
+        },
+        {
+          "callback": {
+            "target": 268435456,
+            "method_info_port": 269486080
+          }
+        },
+        {
+          "callback": {
+            "target": 268435456,
+            "method_info_port": 269487104
+          }
+        },
+        {
+          "target": [
+            1.0,
+            -8.75,
+            -10.0
+          ],
+          "duration": 0.3333333432674408,
+          "ease": 26,
+          "overshoot": 1.0
+        },
+        {
+          "interval": 0.10000000149011612
+        },
+        {
+          "on_complete": {
+            "target": 268435456,
+            "method_info_port": 268468224
+          }
+        }
+      ],
+      "skipped": [
+        {
+          "target": [
+            1.0,
+            -9.0,
+            -10.0
+          ],
+          "duration": 0.30000001192092896,
+          "ease": 8
+        },
+        {
+          "interval": 0.10000000149011612
+        }
+      ],
+      "initial_position": [
+        1.0,
+        8.75,
+        -10.0
+      ],
+      "camera_ports": {
+        "safe": [
+          1,
+          -0.4,
+          0
+        ],
+        "top": [
+          1,
+          8,
+          -10
+        ],
+        "bottom": [
+          1,
+          -8,
+          -10
+        ],
+        "sprite_size": [
+          10,
+          1.5
+        ]
+      },
+      "nominal_exit_start": 1.5166666731238365,
+      "nominal_automatic_duration": 1.9500000178813934,
+      "trace": [
+        "portrait-preparation-port",
+        "kill-original-sequence",
+        "link-close-sequence-to-object",
+        "wait-for-close-sequence-kill"
+      ],
+      "audio_callbacks": [
+        {
+          "clip": 258,
+          "cooldown": 0.03999999910593033
+        },
+        {
+          "clip": 259,
+          "cooldown": 0.03999999910593033
+        }
+      ],
+      "native_methods": {
+        "0x1589e80": {
+          "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner$$OnShow",
+          "body_sha256": "5289b18a049ef5e8362d5894966d020d8969c4366d2b300dad6124651047575c"
+        },
+        "0x158a9a4": {
+          "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner.<CloseAnimation>d__20$$MoveNext",
+          "body_sha256": "68431b3b2ea219601be394a17feac47fd99d13fb55a418097afa3696f2d14d7a"
+        },
+        "0x158a944": {
+          "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner$$<OnShow>b__17_0",
+          "body_sha256": "4f0303c10a82a0d3f7d5bae10ffd394c923d93053e58d5dbbb52358ee561789f"
+        },
+        "0x158a96c": {
+          "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner$$<OnShow>b__17_1",
+          "body_sha256": "2e11dc8009061e834b5ac430d1b552cebba5936e2530654333b0393c4650cc59"
+        },
+        "0x158a978": {
+          "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner$$<OnShow>b__17_2",
+          "body_sha256": "81c03ec6332894407a8cfa468848349e9216f3086043ce224e05acde7134f4d0"
+        },
+        "0x38ffa38": {
+          "name": "Royal.Scenes.Start.Context.Units.TweenManager$$InitializeDoTween",
+          "body_sha256": "84787cbbd0987b0035f01ecac2f937e0af1791371c6369f4e3c75bd7859fbb6f"
+        },
+        "0x38ffc34": {
+          "name": "Royal.Scenes.Start.Context.Units.TweenManager$$GetDeltaTime",
+          "body_sha256": "db923ac8eabca79a3698a59b6d51be06135cb6fe7f60108c9d9c10b87b50bb33"
+        },
+        "0x38ffc88": {
+          "name": "Royal.Scenes.Start.Context.Units.TweenManager$$ManualUpdate",
+          "body_sha256": "949cdb520614ce23f41f5dd455da0a18811cbea4eacefa4d99f546e8c92d4b0e"
+        }
+      },
+      "scope": "Actual ARM64 OutOfMovesBanner.OnShow and CloseAnimation.MoveNext construct the captured target/duration/ease/callback/interval sequence. Unity transform/camera/sprite transport, portrait preparation, metadata/allocation and DOTween sequence objects are supplied ports. Native TweenManager clock selection is audited separately. This does not execute the full native DOTween scheduler or original renderer."
+    },
+    "results": {
+      "baseline": {
+        "passed": false,
+        "mismatch_count": 1587,
+        "max_position_error": 10.0,
+        "first_mismatches": [
+          {
+            "command": 1,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,7.85628176,-8.954716|0|1|258",
+            "expected": [
+              [
+                1.0,
+                7.7349090576171875,
+                -8.958881378173828
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 0.12137270238281239
+          },
+          {
+            "command": 2,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,6.972355,-7.9208827|0|1|258",
+            "expected": [
+              [
+                1.0,
+                6.730851173400879,
+                -7.929078102111816
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 0.2415038265991214
+          },
+          {
+            "command": 3,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,6.10790443,-6.90982962|0|1|258",
+            "expected": [
+              [
+                1.0,
+                5.748739242553711,
+                -6.921783447265625
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 0.35916518744628867
+          },
+          {
+            "command": 4,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,5.27240133,-5.9326334|0|1|258",
+            "expected": [
+              [
+                1.0,
+                4.799246788024902,
+                -5.947945594787598
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 0.47315454197509776
+          },
+          {
+            "command": 5,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,4.475,-5|0|1|258",
+            "expected": [
+              [
+                1.0,
+                3.8926949501037598,
+                -5.018148899078369
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 0.5823050498962399
+          },
+          {
+            "command": 6,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,3.72443628,-4.12214756|0|1|258",
+            "expected": [
+              [
+                1.0,
+                3.0389366149902344,
+                -4.142498970031738
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 0.6854996650097656
+          },
+          {
+            "command": 7,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,3.02893329,-3.308694|0|1|258",
+            "expected": [
+              [
+                1.0,
+                2.247250556945801,
+                -3.3305130004882812
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 0.7816827330541991
+          },
+          {
+            "command": 8,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,2.39611149,-2.5685513|0|1|258",
+            "expected": [
+              [
+                1.0,
+                1.5262408256530762,
+                -2.5910162925720215
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 0.8698706643469238
+          },
+          {
+            "command": 9,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,1.8329041,-1.90982938|0|1|258",
+            "expected": [
+              [
+                1.0,
+                0.8837451934814453,
+                -1.932046890258789
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 0.9491589065185546
+          },
+          {
+            "command": 10,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,1.34548247,-1.33974552|0|1|258",
+            "expected": [
+              [
+                1.0,
+                0.32674694061279297,
+                -1.3607654571533203
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 1.0187355293872071
+          },
+          {
+            "command": 11,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,0.9391861,-0.8645451|0|1|258",
+            "expected": [
+              [
+                1.0,
+                -0.1387014389038086,
+                -0.8833827972412109
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 1.0778875389038087
+          },
+          {
+            "command": 12,
+            "scenario": "60fps_skip_None",
+            "input": "T 1015580809 1015545017",
+            "actual": "1,0.6184666,-0.4894346|0|1|258",
+            "expected": [
+              [
+                1.0,
+                -0.5075387954711914,
+                -0.5050878524780273
+              ],
+              0,
+              1,
+              [
+                258
+              ]
+            ],
+            "position_error": 1.1260053954711915
+          }
+        ],
+        "source_sha256": "2278f04a67aaeb63a8d2b4f14c885d1828c9468a2240d82f36d58969a391b93c",
+        "parameters": {
+          "enterDuration": "0.25",
+          "overshootDuration": "0.16666667",
+          "settleDuration": "0.6",
+          "holdDuration": "1",
+          "exitDuration": "0.33333334",
+          "exitPause": "0.1",
+          "enterOffset": "0.6",
+          "overshootOffset": "0.1",
+          "exitOvershoot": "1",
+          "skipDuration": "0.3"
+        }
+      },
+      "fixed": {
+        "passed": true,
+        "mismatch_count": 0,
+        "max_position_error": 1.435021972362449e-06,
+        "first_mismatches": [],
+        "source_sha256": "5a8f84dba2fff6edbb051c12dcb2472d3dc3f4d72d364bee0287036eeb7bdf15",
+        "parameters": {
+          "enterDuration": "0.25",
+          "overshootDuration": "0.16666667",
+          "settleDuration": "0.1",
+          "holdDuration": "1",
+          "exitDuration": "0.33333334",
+          "exitPause": "0.1",
+          "enterOffset": "0.6",
+          "overshootOffset": "0.1",
+          "exitOvershoot": "1",
+          "skipDuration": "0.3"
+        }
+      }
+    },
+    "scope": "Compare actual banner coroutines with native-constructed motion segments.\n\nThe native sequence dispatcher and Unity coroutine/transform transport are\nsupplied. Original ARM64 sequence construction, quantization and easing run;\nthe production Play/SkipExit bodies compile unchanged against explicit ports."
+  },
+  "live_baseline": {
+    "passed": false,
+    "expected_failure": "System.InvalidOperationException: InvalidOperationException: The recovered entrance and exit audio accompany the automatic banner-to-failure timeline.\nWhitebox.Foundation.Editor.CoreFlowVerification.Step () (at Assets/Foundation/Editor/CoreFlowVerification.cs:428)\nWhitebox.Foundation.Editor.CoreFlowVerification.Tick () (at Assets/Foundation/Editor/CoreFlowVerification.cs:145)\nUnityEngine.Debug:LogException(Exception)\nWhitebox.Foundation.Editor.CoreFlowVerification:Tick() (at Assets/Foundation/Editor/CoreFlowVerification.cs:145)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions()\n\r\n  at Whitebox.Foundation.Editor.BackgroundVerification.Tick () [0x00033] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\BackgroundVerification.cs:180 ",
+    "scope": "The actual formal flow uses the original runtime/prefab and the updated native timing assertion. A private read-only pose recorder is attached. The route fails at the automatic banner-to-failure timeline."
+  },
+  "live_fixed": {
+    "passed": true,
+    "out_of_moves_banner_center_verified": true,
+    "out_of_moves_standard_button_skip_verified": true,
+    "out_of_moves_auto_duration": 1.9724006652832031,
+    "out_of_moves_skip_duration": 0.41651153564453125,
+    "actual_retry_reloaded_same_level": true,
+    "retry_reused_scene_pool_and_hud": true
+  },
+  "live_alternating": {
+    "passed": true,
+    "out_of_moves_banner_center_verified": true,
+    "out_of_moves_standard_button_skip_verified": true,
+    "out_of_moves_auto_duration": 1.9598388671875,
+    "out_of_moves_skip_duration": 0.4082984924316406,
+    "actual_retry_reloaded_same_level": true,
+    "retry_reused_scene_pool_and_hud": true
+  },
+  "natural_level55": {
+    "passed": true,
+    "level": 55,
+    "budget": 22,
+    "accepted_gestures": 22,
+    "outcome": "fail",
+    "goals_left": 1,
+    "reloaded_level": 55,
+    "difficulty_seed": 955,
+    "level_try_count": 1,
+    "scope": "A separate unobserved formal authored level uses real legal touch gestures through all 22 original moves. The actual out-of-moves flow fails with one goal left and the real Retry opens a fresh level 55. No fixture board, injected powers or changed move budget."
+  },
+  "reproduction": {
+    "command": "python SourceCatalog/verify_out_of_moves_banner.py . C:/RMBanner_20261105/canonical_motion",
+    "method": "Read the pinned old source/prefab through the local Git library, compare it and the current production bodies against the actual ARM64-constructed segments/quantization/easing, and compile only visibility-adapted serialized fields against explicit typed engine/coroutine/dialog ports."
+  },
+  "sources": {
+    "Assets/Foundation/Runtime/CoreOutOfMovesBanner.cs": {
+      "before_sha256": "eaafa408947fe96b049600a7a13e5af05bbf2e7bd67bbec1098ec12a7585e6d6",
+      "after_sha256": "5a8f84dba2fff6edbb051c12dcb2472d3dc3f4d72d364bee0287036eeb7bdf15"
+    },
+    "Assets/Resources/Foundation/Prefabs/CoreOutOfMovesBanner.prefab": {
+      "before_sha256": "858e7bf2ca73c3d27d197a6cb89038c6f9ed1232bf64cc3a290eaed5e6c45ce8",
+      "after_sha256": "5c4e963b9c02b417e654f6d55b70c3a01d248948e9163343a5bb6700f6db05d6"
+    },
+    "Assets/Foundation/Editor/CoreFlowVerification.cs": {
+      "before_sha256": "adb45b5967d3dfa48f2b7047cbfd4a531533e28d33ff6fd3d938c3a2fc33edef",
+      "after_sha256": "5add8f64715427f6c8bbda6836c4d5e5622aafe5a5e0f02cb6bee1a0118dd614"
+    },
+    "SourceCatalog/verify_out_of_moves_banner.py": {
+      "after_sha256": "3bcd6fbd7a011cae87b34611ab78c5881a762c47ed479d7ae398be1d201976b7"
+    },
+    "SourceCatalog/NativeOutOfMovesBannerReference.py": {
+      "after_sha256": "edf836e6538fbe35d6aceba9182105aeb57f0dbf1675a10747b4e2bbd6b4bbe0"
+    },
+    "SourceCatalog/BannerMotionHarness.cs": {
+      "after_sha256": "7911a031eba4275c483bd4c6b84800299284e22a07ec182e16bc1a8430a3ed63"
+    }
+  },
+  "limits": [
+    "Offline comparison executes native construction, easing and delta quantization, while supplying DOTween sequence dispatch, Unity coroutine scheduling, transforms, metadata and engine resources. It does not execute the complete original DOTween scheduler or prove original rendered-frame/audio phase parity.",
+    "The baseline uses the updated native duration expectation and fails; its older 2.45-second expected timing was an incorrect reconstruction. Historical reports are retained and superseded here for this banner.",
+    "The full controlled formal flow and alternating banner cadence include explicit zero-budget stimuli. The separate authored level 55 uses its unchanged budget and legal moves.",
+    "The first private pose-recorder build tried to access an internal runtime property from the Editor assembly. It was corrected to compute the center through the public camera API. The first successful recorder retained destroyed Unity-object state, so final close timestamps use the corrected alternating-cadence recorder; the formal flow reports independently measure both exit durations.",
+    "This checkpoint does not rebuild the APK yet. Android execution of this banner fix is a separate followup. Full first-100 natural completion and original-device visual/audio/input parity remain unverified."
+  ],
+  "artifacts": {
+    "BannerMotionHarness.cs": {
+      "path": "C:/RMBanner_20261105/BannerMotionHarness.cs",
+      "bytes": 8725,
+      "sha256": "7911a031eba4275c483bd4c6b84800299284e22a07ec182e16bc1a8430a3ed63"
+    },
+    "BannerPoseProbe.cs": {
+      "path": "C:/RMBanner_20261105/BannerPoseProbe.cs",
+      "bytes": 4823,
+      "sha256": "056cefc2e033ab8d4f476253fea9a06cdf01b8febd9431b0c23ab7f1b606b249"
+    },
+    "baseline/Assets/Foundation/Editor/CoreFlowVerification.cs": {
+      "path": "C:/RMBanner_20261105/baseline/Assets/Foundation/Editor/CoreFlowVerification.cs",
+      "bytes": 46912,
+      "sha256": "adb45b5967d3dfa48f2b7047cbfd4a531533e28d33ff6fd3d938c3a2fc33edef"
+    },
+    "baseline/Assets/Foundation/Runtime/CoreOutOfMovesBanner.cs": {
+      "path": "C:/RMBanner_20261105/baseline/Assets/Foundation/Runtime/CoreOutOfMovesBanner.cs",
+      "bytes": 6900,
+      "sha256": "eaafa408947fe96b049600a7a13e5af05bbf2e7bd67bbec1098ec12a7585e6d6"
+    },
+    "baseline_observed/process.json": {
+      "path": "C:/RMBanner_20261105/baseline_observed/process.json",
+      "bytes": 703,
+      "sha256": "abc39f007e82dfa2c05ae4c0d7f7d95a3d13e3431f1cb2118ec8e53116a9df64"
+    },
+    "baseline_observed/unity.log": {
+      "path": "C:/RMBanner_20261105/baseline_observed/unity.log",
+      "bytes": 55763,
+      "sha256": "2a26af686960312666d854880c758275b7f494adfd6dbf3ed79c9039b70a40b9"
+    },
+    "baseline_observed_v2/background_verification.json": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/background_verification.json",
+      "bytes": 1140,
+      "sha256": "8c6294c44a7c419daa7db6119c6e5731546b7acf44f2e511d52e84db5f72a74c"
+    },
+    "baseline_observed_v2/banner_pose_0_0.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/banner_pose_0_0.png",
+      "bytes": 937727,
+      "sha256": "4a3e0f8a1d0ea8202bdcf23526aca17b4df8f54b7e4f851d45d153867e020b87"
+    },
+    "baseline_observed_v2/banner_pose_0_1.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/banner_pose_0_1.png",
+      "bytes": 935842,
+      "sha256": "8fe6c488e0ef4aea7470f58868fa398cfdce2af015254516f38301f7e87afc80"
+    },
+    "baseline_observed_v2/banner_pose_0_2.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/banner_pose_0_2.png",
+      "bytes": 929624,
+      "sha256": "65b3c786a2ab204dd423951dd7e0b8f238e2fee8206813b93abff0a9b73e55f9"
+    },
+    "baseline_observed_v2/banner_pose_0_3.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/banner_pose_0_3.png",
+      "bytes": 930256,
+      "sha256": "e44bb81d926f47232f8b71a006af80aa9a34b23584a40a0f4206c1e9c5ca03af"
+    },
+    "baseline_observed_v2/banner_pose_0_4.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/banner_pose_0_4.png",
+      "bytes": 932770,
+      "sha256": "4104b4cc5136b32bced8039d414f657c74e87832a4292ee57902731ddd334311"
+    },
+    "baseline_observed_v2/banner_pose_0_5.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/banner_pose_0_5.png",
+      "bytes": 932914,
+      "sha256": "4848ecfd9cf3ba6d59518c913a7d17b769080d9ba58278a484fbc393e06dca98"
+    },
+    "baseline_observed_v2/banner_pose_trace.json": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/banner_pose_trace.json",
+      "bytes": 65614,
+      "sha256": "97b75016c90dad42bfd772024922b59271d83a8fc71f3456ff61b57e9fbde26d"
+    },
+    "baseline_observed_v2/core_flow_level2.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/core_flow_level2.png",
+      "bytes": 1134181,
+      "sha256": "a4b39425c3e8cbed1ec6ba1871a0e1957695ef5b8a3886cae9ff3ba2e2768bb3"
+    },
+    "baseline_observed_v2/core_flow_level_entrance.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/core_flow_level_entrance.png",
+      "bytes": 1245187,
+      "sha256": "32819a53421e540fa2fe26e2142ddc69902d079ad73af8337a51f2918c51c6aa"
+    },
+    "baseline_observed_v2/core_flow_out_of_moves.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/core_flow_out_of_moves.png",
+      "bytes": 932758,
+      "sha256": "e5a363b7f9d6d17fab4abd3a4b7e6e29e944020eef6afc336474ec1a13595e04"
+    },
+    "baseline_observed_v2/core_flow_win.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/core_flow_win.png",
+      "bytes": 624762,
+      "sha256": "790dc9b0fcc197053038ffad1557b0d4cc5c8b15be5389f33648243332d91fbf"
+    },
+    "baseline_observed_v2/core_flow_win_text_enter.png": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/core_flow_win_text_enter.png",
+      "bytes": 542926,
+      "sha256": "b1bf5a2100834c8123270f28bce63cbdcad92d724f7d1be79dc7c56ef0317b0e"
+    },
+    "baseline_observed_v2/live_core_flow_verification.json": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/live_core_flow_verification.json",
+      "bytes": 3228,
+      "sha256": "d2b11b6180a78afab9a86a11aa3d023013579b1ab42345453b18245921b8417d"
+    },
+    "baseline_observed_v2/process.json": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/process.json",
+      "bytes": 707,
+      "sha256": "8fb15a2d0e525c668370b4fa0ecd5ee299b2c3cffdb975f2d18caf6c9713ca16"
+    },
+    "baseline_observed_v2/unity.log": {
+      "path": "C:/RMBanner_20261105/baseline_observed_v2/unity.log",
+      "bytes": 112414,
+      "sha256": "1270af17de7fc645e0e69a506e5c092c561a1acb54663204d66dff6f8bac2edd"
+    },
+    "fixed_alternate/background_verification.json": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/background_verification.json",
+      "bytes": 382,
+      "sha256": "4509b91ad7b096c33c85bcbfdfe302c85fa37c8d85b14fb14faa32c2f0d1e2fc"
+    },
+    "fixed_alternate/banner_pose_0_0.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_0_0.png",
+      "bytes": 929904,
+      "sha256": "870a007cf7097b3eef627adf0d83c55a046f5ec46a723caf762d9a9cca1e28e3"
+    },
+    "fixed_alternate/banner_pose_0_1.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_0_1.png",
+      "bytes": 934091,
+      "sha256": "0c851f8cc5880ca630bb9b4b264ddf1c4bf65ca654c8d5e0ac1eeac2d72aabf1"
+    },
+    "fixed_alternate/banner_pose_0_2.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_0_2.png",
+      "bytes": 934591,
+      "sha256": "cbfdd11f3fdffe570991a623991ba994a228da128cbe60f92316e9a22262bdb9"
+    },
+    "fixed_alternate/banner_pose_0_3.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_0_3.png",
+      "bytes": 932315,
+      "sha256": "65af06750429f4600c986eda6e3a1605c8a43eb0d1b982f13fc5f3419415c1dd"
+    },
+    "fixed_alternate/banner_pose_0_4.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_0_4.png",
+      "bytes": 932710,
+      "sha256": "40cdd56e918989b1ba9b40d3be1e4805ffcd8a781e11a2074b3a7e5135381611"
+    },
+    "fixed_alternate/banner_pose_0_5.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_0_5.png",
+      "bytes": 934552,
+      "sha256": "70c22d1e70c1ef613b1098e76fb3d08a272191ad74af83a1b1fa59a7c80e66cb"
+    },
+    "fixed_alternate/banner_pose_1_0.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_1_0.png",
+      "bytes": 929825,
+      "sha256": "54bd55b806fac9a1f4de5ccdf4864ae91b6c05aba8d0cfa4f3c16a37e0c7ca5b"
+    },
+    "fixed_alternate/banner_pose_1_1.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_1_1.png",
+      "bytes": 933955,
+      "sha256": "7d4f5c30c0b5e92162fa97d1a384b35883edb15ad08c8279e95b520b35300829"
+    },
+    "fixed_alternate/banner_pose_1_2.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_1_2.png",
+      "bytes": 934515,
+      "sha256": "53a27bb9aa40c439ee023118b250d9de2653e2eea632dbdb3200dc0360794b8a"
+    },
+    "fixed_alternate/banner_pose_1_3.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_1_3.png",
+      "bytes": 932274,
+      "sha256": "ff3fec683f965ad940fcb3879d7be48809cd60835850d9f7584e7464a74f3588"
+    },
+    "fixed_alternate/banner_pose_1_4.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_1_4.png",
+      "bytes": 934079,
+      "sha256": "695a1282f02df2693397045d05f863f6a7dd590be980954199a99264240066f6"
+    },
+    "fixed_alternate/banner_pose_trace.json": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/banner_pose_trace.json",
+      "bytes": 93377,
+      "sha256": "78cf92fd5bcbb986cc53e26ea042e7f102b58684552f7c440c70885032a277ae"
+    },
+    "fixed_alternate/core_flow_fail.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/core_flow_fail.png",
+      "bytes": 424967,
+      "sha256": "6baa70e0975d0b563e52ff63f42cc23b40967e8f168ea12115507b1e42710dba"
+    },
+    "fixed_alternate/core_flow_level2.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/core_flow_level2.png",
+      "bytes": 1134138,
+      "sha256": "7b30ac7376c05d377af707e76ff03f53a6381059554f31253caadfea54f13205"
+    },
+    "fixed_alternate/core_flow_level3.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/core_flow_level3.png",
+      "bytes": 1137588,
+      "sha256": "1b9c6e15d3b258de76e8589b03c58f91e7e6bd006a2b6b03fc942edb0953c9bf"
+    },
+    "fixed_alternate/core_flow_level_entrance.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/core_flow_level_entrance.png",
+      "bytes": 1245278,
+      "sha256": "214fcece18040966c9706577af787f563d2593a8a6a6fed6b79c09c356c197c3"
+    },
+    "fixed_alternate/core_flow_out_of_moves.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/core_flow_out_of_moves.png",
+      "bytes": 932678,
+      "sha256": "d65485953ca2ead4cbad563d144943e610f9021e93ce97df8f96bb785f4bb925"
+    },
+    "fixed_alternate/core_flow_retry.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/core_flow_retry.png",
+      "bytes": 1134070,
+      "sha256": "6e1ee7171014980cf7fee992cdfcf0396b532bd5beee3761e4a26efea4e56523"
+    },
+    "fixed_alternate/core_flow_win.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/core_flow_win.png",
+      "bytes": 619920,
+      "sha256": "048c94cd70ee2d8058b75003644a9a9094084bf1167b03f8dd8f1a63008b6084"
+    },
+    "fixed_alternate/core_flow_win_text_enter.png": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/core_flow_win_text_enter.png",
+      "bytes": 544120,
+      "sha256": "ac69f83e7f88db37f65658a5d2e6a5b5f6c33424aa19dbda400f981c0fe4cb54"
+    },
+    "fixed_alternate/live_core_flow_verification.json": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/live_core_flow_verification.json",
+      "bytes": 2841,
+      "sha256": "99f81923f857866ee9336ad5891e8d8465b6326c641c46102769fe3d8b3e9b3d"
+    },
+    "fixed_alternate/process.json": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/process.json",
+      "bytes": 731,
+      "sha256": "8638b4049d2bd169264426f0f6e0cae2fea90ed75abe2789c22802d0bdbc0c18"
+    },
+    "fixed_alternate/unity.log": {
+      "path": "C:/RMBanner_20261105/fixed_alternate/unity.log",
+      "bytes": 110280,
+      "sha256": "ae09049605869b498a86193432a27115c2eef0e72791e022ba83f5d7149d59b2"
+    },
+    "fixed_natural55/background_verification.json": {
+      "path": "C:/RMBanner_20261105/fixed_natural55/background_verification.json",
+      "bytes": 394,
+      "sha256": "86bf4117eee0855193d0f733bb01a577ff9b905e6116156635602d338b795ce6"
+    },
+    "fixed_natural55/core_natural_55_fail.png": {
+      "path": "C:/RMBanner_20261105/fixed_natural55/core_natural_55_fail.png",
+      "bytes": 483610,
+      "sha256": "d4f1154f32de0e3b34b298983b19998f72dda0c34bc3c007926629086cb310be"
+    },
+    "fixed_natural55/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMBanner_20261105/fixed_natural55/live_core_natural_attempts_verification.json",
+      "bytes": 15492,
+      "sha256": "11ef34213072a36aefc8a7bc458f070b9116dd302430eb96ae36e525c1b08425"
+    },
+    "fixed_natural55/process.json": {
+      "path": "C:/RMBanner_20261105/fixed_natural55/process.json",
+      "bytes": 754,
+      "sha256": "7f1f857f073dc7d2d4728d90af36d5d7b60e8c79387ff81a2ea7fb8daf6a87db"
+    },
+    "fixed_natural55/unity.log": {
+      "path": "C:/RMBanner_20261105/fixed_natural55/unity.log",
+      "bytes": 104140,
+      "sha256": "6cf80957071e776b28ed8258a738cab947739bbb1893a5cdbe96a8e09c0579c8"
+    },
+    "fixed_observed/background_verification.json": {
+      "path": "C:/RMBanner_20261105/fixed_observed/background_verification.json",
+      "bytes": 382,
+      "sha256": "31b4cf6f89bac9dfda150adae2b416b954ff8eb8c164f89d2f691a9dee1b3453"
+    },
+    "fixed_observed/banner_pose_0_0.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/banner_pose_0_0.png",
+      "bytes": 933107,
+      "sha256": "6b3b675d05c583a7cc75ccb4236ab8ac90374850dd16be1f125cb45c12fe16ef"
+    },
+    "fixed_observed/banner_pose_0_1.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/banner_pose_0_1.png",
+      "bytes": 933665,
+      "sha256": "0f4938073bb2a2b5e0bb0be7703049a5bd34b3b0f3c8ea2bb31b8b880ab2b61a"
+    },
+    "fixed_observed/banner_pose_0_2.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/banner_pose_0_2.png",
+      "bytes": 934534,
+      "sha256": "b2c4a2456ae97e28f1718ecbd0b3b2afe84cabc3bc54e569bf50a5142e8c012d"
+    },
+    "fixed_observed/banner_pose_0_3.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/banner_pose_0_3.png",
+      "bytes": 932384,
+      "sha256": "0d1f936be241e636933610f852eb09e803b6954948ee6f8e8bb01f56a521dbe7"
+    },
+    "fixed_observed/banner_pose_0_4.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/banner_pose_0_4.png",
+      "bytes": 932722,
+      "sha256": "d2ee3bb167d8ca179840695848d8625b312019b065179a4b8b0b4bd3098d45db"
+    },
+    "fixed_observed/banner_pose_0_5.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/banner_pose_0_5.png",
+      "bytes": 934367,
+      "sha256": "2b48db932a4d098818fe00acd6bbf8744d7e1f60328cc0c8ef3c5f5bc9daddbc"
+    },
+    "fixed_observed/banner_pose_trace.json": {
+      "path": "C:/RMBanner_20261105/fixed_observed/banner_pose_trace.json",
+      "bytes": 100830,
+      "sha256": "387fab3caa5ec4412f3d4db8a8309be7b837c4ea6c6e0172b5ceb9a2712f3a6f"
+    },
+    "fixed_observed/core_flow_fail.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/core_flow_fail.png",
+      "bytes": 424983,
+      "sha256": "ff79294df294ac3cf341dfe3644964dbb5c17c70022fa4fa5ddcab2649430451"
+    },
+    "fixed_observed/core_flow_level2.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/core_flow_level2.png",
+      "bytes": 1134152,
+      "sha256": "e02427280775d7ac353b4b93bbcb53ca1fb3deded1ac44e9276c46ba823423b8"
+    },
+    "fixed_observed/core_flow_level3.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/core_flow_level3.png",
+      "bytes": 1137588,
+      "sha256": "1b9c6e15d3b258de76e8589b03c58f91e7e6bd006a2b6b03fc942edb0953c9bf"
+    },
+    "fixed_observed/core_flow_level_entrance.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/core_flow_level_entrance.png",
+      "bytes": 1238386,
+      "sha256": "70b70282fdeb29ef4718ce96d4b979203d3b070d5741504c461773323be11701"
+    },
+    "fixed_observed/core_flow_out_of_moves.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/core_flow_out_of_moves.png",
+      "bytes": 932712,
+      "sha256": "667e12d933ec827c7a636c77c1a1f91db774710697bbcceaf7b3d56a5f50f67a"
+    },
+    "fixed_observed/core_flow_retry.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/core_flow_retry.png",
+      "bytes": 1134044,
+      "sha256": "5b9a2d7aceb1cb5bef3ebeaa1b0c1fbaa56982a8cf26b615d86baed3a881fc69"
+    },
+    "fixed_observed/core_flow_win.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/core_flow_win.png",
+      "bytes": 620063,
+      "sha256": "acac07b41e0d5348b13bff11f6618d1178a7811098b1dac0ece462b3f1887485"
+    },
+    "fixed_observed/core_flow_win_text_enter.png": {
+      "path": "C:/RMBanner_20261105/fixed_observed/core_flow_win_text_enter.png",
+      "bytes": 541250,
+      "sha256": "c385b8de0ce0a984f36e6367ad251435e15ff7473e7dceb165b8520f2a1fd74b"
+    },
+    "fixed_observed/live_core_flow_verification.json": {
+      "path": "C:/RMBanner_20261105/fixed_observed/live_core_flow_verification.json",
+      "bytes": 2845,
+      "sha256": "f5d20cd9a4a67d0afd19daf85de0aaa563b77ca6a5dd5dd00bab35d26843a3e7"
+    },
+    "fixed_observed/process.json": {
+      "path": "C:/RMBanner_20261105/fixed_observed/process.json",
+      "bytes": 698,
+      "sha256": "a7d02b91c6dcf871b938b669b8cd0ccba7ed1090a00d5c2f0e0a5bc708b61521"
+    },
+    "fixed_observed/unity.log": {
+      "path": "C:/RMBanner_20261105/fixed_observed/unity.log",
+      "bytes": 116126,
+      "sha256": "80dea8042bc7a113b1f6e18940c5ba127f1d77916e70289a7b5d8983eaac3437"
+    },
+    "motion/banner_motion_comparison.json": {
+      "path": "C:/RMBanner_20261105/motion/banner_motion_comparison.json",
+      "bytes": 12096,
+      "sha256": "3aac39a61b1758f0886e804d58a579c1f87cbf0608884936e5b24f58ccbcfa64"
+    },
+    "motion/baseline_actual.txt": {
+      "path": "C:/RMBanner_20261105/motion/baseline_actual.txt",
+      "bytes": 52648,
+      "sha256": "77f180803fc6a27621f8d7b61787df21f1d4ff2e12839ff94cdec43cb2538e23"
+    },
+    "motion/baseline_commands.txt": {
+      "path": "C:/RMBanner_20261105/motion/baseline_commands.txt",
+      "bytes": 48443,
+      "sha256": "5626eb88affe708d7dfaef3e21c4e8b09791dfbd2fc91e7704fa131ec6fcdfcc"
+    },
+    "motion/baseline_CoreOutOfMovesBanner.cs": {
+      "path": "C:/RMBanner_20261105/motion/baseline_CoreOutOfMovesBanner.cs",
+      "bytes": 6754,
+      "sha256": "49be2490c988d51e6b11d3f639f8488178e276598f5a2d2dcb4621dc0e23b64c"
+    },
+    "motion/fixed_actual.txt": {
+      "path": "C:/RMBanner_20261105/motion/fixed_actual.txt",
+      "bytes": 52624,
+      "sha256": "1c0d9a3fe0eb3f29fa4512c223f71934f661696c094b4aac97746c597b6ec1a1"
+    },
+    "motion/fixed_commands.txt": {
+      "path": "C:/RMBanner_20261105/motion/fixed_commands.txt",
+      "bytes": 48443,
+      "sha256": "49a0f93f925f6690c6fb702cd4bcdaa3d618e96328eb9411ef476175623f0d1f"
+    },
+    "motion/fixed_CoreOutOfMovesBanner.cs": {
+      "path": "C:/RMBanner_20261105/motion/fixed_CoreOutOfMovesBanner.cs",
+      "bytes": 6781,
+      "sha256": "7a9b39a902e9205a506c19dfb4e6d3a771ba4c292318b35671be9f8d123d382f"
+    },
+    "motion/native/native_1589e80.txt": {
+      "path": "C:/RMBanner_20261105/motion/native/native_1589e80.txt",
+      "bytes": 18591,
+      "sha256": "52dd647402a51fd3d34e28186e0ebb5aad1c7d331b8820e339ed7d956f7f801e"
+    },
+    "motion/native/native_158a944.txt": {
+      "path": "C:/RMBanner_20261105/motion/native/native_158a944.txt",
+      "bytes": 584,
+      "sha256": "12d663ca971004d84d543ef640e151283190e61f50d633271351093eb1684107"
+    },
+    "motion/native/native_158a96c.txt": {
+      "path": "C:/RMBanner_20261105/motion/native/native_158a96c.txt",
+      "bytes": 138,
+      "sha256": "795aad909946e5ed8930574bbe43497fae71f80d034a37359d1fb0f37c6c2088"
+    },
+    "motion/native/native_158a978.txt": {
+      "path": "C:/RMBanner_20261105/motion/native/native_158a978.txt",
+      "bytes": 584,
+      "sha256": "397722018d3f738f007586d1389e3fbf4d76ee60127f0742ef15aa51b65491d0"
+    },
+    "motion/native/native_158a9a4.txt": {
+      "path": "C:/RMBanner_20261105/motion/native/native_158a9a4.txt",
+      "bytes": 6850,
+      "sha256": "2f3a064dc0a22a02292090bbf27ec4378b34ff15be82ef229301d5b4410e716f"
+    },
+    "motion/native/native_38ffa38.txt": {
+      "path": "C:/RMBanner_20261105/motion/native/native_38ffa38.txt",
+      "bytes": 5630,
+      "sha256": "e461bd7aaca5ffbbc1ee6c41d10b7bf9374b8d77411871f8eef03f3cd2a8280d"
+    },
+    "motion/native/native_38ffc34.txt": {
+      "path": "C:/RMBanner_20261105/motion/native/native_38ffc34.txt",
+      "bytes": 1194,
+      "sha256": "d790a8001c737dbc08d631a3ce80966dd3bc7bc19e619340cbe44d467da7399a"
+    },
+    "motion/native/native_38ffc88.txt": {
+      "path": "C:/RMBanner_20261105/motion/native/native_38ffc88.txt",
+      "bytes": 1473,
+      "sha256": "b307b215f553f7871268b33b6a74cdfa68c65d45fbb7cdc25e0a53cbcb223b65"
+    },
+    "motion/native/native_banner_construction.json": {
+      "path": "C:/RMBanner_20261105/motion/native/native_banner_construction.json",
+      "bytes": 4258,
+      "sha256": "3edb242c6bfe88213a96b360681e62e0ae5a858742e72b51db6ad2b0e91393d0"
+    },
+    "native/native_1589e80.txt": {
+      "path": "C:/RMBanner_20261105/native/native_1589e80.txt",
+      "bytes": 18591,
+      "sha256": "52dd647402a51fd3d34e28186e0ebb5aad1c7d331b8820e339ed7d956f7f801e"
+    },
+    "native/native_158a944.txt": {
+      "path": "C:/RMBanner_20261105/native/native_158a944.txt",
+      "bytes": 584,
+      "sha256": "12d663ca971004d84d543ef640e151283190e61f50d633271351093eb1684107"
+    },
+    "native/native_158a96c.txt": {
+      "path": "C:/RMBanner_20261105/native/native_158a96c.txt",
+      "bytes": 138,
+      "sha256": "795aad909946e5ed8930574bbe43497fae71f80d034a37359d1fb0f37c6c2088"
+    },
+    "native/native_158a978.txt": {
+      "path": "C:/RMBanner_20261105/native/native_158a978.txt",
+      "bytes": 584,
+      "sha256": "397722018d3f738f007586d1389e3fbf4d76ee60127f0742ef15aa51b65491d0"
+    },
+    "native/native_158a9a4.txt": {
+      "path": "C:/RMBanner_20261105/native/native_158a9a4.txt",
+      "bytes": 6850,
+      "sha256": "2f3a064dc0a22a02292090bbf27ec4378b34ff15be82ef229301d5b4410e716f"
+    },
+    "native/native_38ffa38.txt": {
+      "path": "C:/RMBanner_20261105/native/native_38ffa38.txt",
+      "bytes": 5630,
+      "sha256": "e461bd7aaca5ffbbc1ee6c41d10b7bf9374b8d77411871f8eef03f3cd2a8280d"
+    },
+    "native/native_38ffc34.txt": {
+      "path": "C:/RMBanner_20261105/native/native_38ffc34.txt",
+      "bytes": 1194,
+      "sha256": "d790a8001c737dbc08d631a3ce80966dd3bc7bc19e619340cbe44d467da7399a"
+    },
+    "native/native_38ffc88.txt": {
+      "path": "C:/RMBanner_20261105/native/native_38ffc88.txt",
+      "bytes": 1473,
+      "sha256": "b307b215f553f7871268b33b6a74cdfa68c65d45fbb7cdc25e0a53cbcb223b65"
+    },
+    "native/native_banner_construction.json": {
+      "path": "C:/RMBanner_20261105/native/native_banner_construction.json",
+      "bytes": 4258,
+      "sha256": "3edb242c6bfe88213a96b360681e62e0ae5a858742e72b51db6ad2b0e91393d0"
+    },
+    "native_banner.py": {
+      "path": "C:/RMBanner_20261105/native_banner.py",
+      "bytes": 9092,
+      "sha256": "edf836e6538fbe35d6aceba9182105aeb57f0dbf1675a10747b4e2bbd6b4bbe0"
+    },
+    "native_clock/native_25c7bf8.txt": {
+      "path": "C:/RMBanner_20261105/native_clock/native_25c7bf8.txt",
+      "bytes": 8342,
+      "sha256": "c6e2107f05c5e6a349b98fb0ace4cb71113eeb86f5dfb8cdd3d2da487dd61387"
+    },
+    "native_clock/native_25c8170.txt": {
+      "path": "C:/RMBanner_20261105/native_clock/native_25c8170.txt",
+      "bytes": 6796,
+      "sha256": "0e35623558c9e9522aa5b73e4e67260381f170fee1891bef4524380ac536683c"
+    },
+    "native_clock/native_25cb6cc.txt": {
+      "path": "C:/RMBanner_20261105/native_clock/native_25cb6cc.txt",
+      "bytes": 11047,
+      "sha256": "64c9aa890d9a1364064b543bf5cfd1d0876decf21ee4fb8f4557a88d7f329bd3"
+    },
+    "native_clock/native_318d1c4.txt": {
+      "path": "C:/RMBanner_20261105/native_clock/native_318d1c4.txt",
+      "bytes": 1835,
+      "sha256": "fb5d6301c88401630b382ac9bd5af0dbb8d70bd31a9d1879a389d1d4244c0e76"
+    },
+    "native_clock/native_32037e4.txt": {
+      "path": "C:/RMBanner_20261105/native_clock/native_32037e4.txt",
+      "bytes": 2536,
+      "sha256": "72b61a37ff628b256585c77c66e79e0cfd97e558b52156907bfeab9b2f2b447f"
+    },
+    "native_clock/native_38ffc34.txt": {
+      "path": "C:/RMBanner_20261105/native_clock/native_38ffc34.txt",
+      "bytes": 1194,
+      "sha256": "d790a8001c737dbc08d631a3ce80966dd3bc7bc19e619340cbe44d467da7399a"
+    },
+    "native_clock/native_38ffc88.txt": {
+      "path": "C:/RMBanner_20261105/native_clock/native_38ffc88.txt",
+      "bytes": 1473,
+      "sha256": "b307b215f553f7871268b33b6a74cdfa68c65d45fbb7cdc25e0a53cbcb223b65"
+    },
+    "native_clock/native_clock_comparison.json": {
+      "path": "C:/RMBanner_20261105/native_clock/native_clock_comparison.json",
+      "bytes": 115318,
+      "sha256": "30867e477689d583457c6675e486a03af6f73cc349cb13f9146643e5a3c7efd7"
+    },
+    "NativeOutOfMovesBannerReference.py": {
+      "path": "C:/RMBanner_20261105/NativeOutOfMovesBannerReference.py",
+      "bytes": 9092,
+      "sha256": "edf836e6538fbe35d6aceba9182105aeb57f0dbf1675a10747b4e2bbd6b4bbe0"
+    },
+    "plan.json": {
+      "path": "C:/RMBanner_20261105/plan.json",
+      "bytes": 1137,
+      "sha256": "0d694f4dd398cc5c3cab038d57a2e4981f9ede823d0c35130210db40c13a75de"
+    },
+    "prepare.py": {
+      "path": "C:/RMBanner_20261105/prepare.py",
+      "bytes": 2293,
+      "sha256": "e8ced1b9c6af194b79ff2183ee47d53870b35ee336e9966c33cf956abd47ad92"
+    },
+    "promote.py": {
+      "path": "C:/RMBanner_20261105/promote.py",
+      "bytes": 10275,
+      "sha256": "fa8e47e8722a21e3d86319b553400b1d33d4f357950037155288ed3755747b31"
+    },
+    "reproducible_motion/banner_motion_comparison.json": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/banner_motion_comparison.json",
+      "bytes": 12162,
+      "sha256": "1b39d577a480d703883502717bb4cc6185799a83e3906613336e860c1bb0953d"
+    },
+    "reproducible_motion/baseline_actual.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/baseline_actual.txt",
+      "bytes": 52648,
+      "sha256": "77f180803fc6a27621f8d7b61787df21f1d4ff2e12839ff94cdec43cb2538e23"
+    },
+    "reproducible_motion/baseline_commands.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/baseline_commands.txt",
+      "bytes": 48443,
+      "sha256": "5626eb88affe708d7dfaef3e21c4e8b09791dfbd2fc91e7704fa131ec6fcdfcc"
+    },
+    "reproducible_motion/baseline_CoreOutOfMovesBanner.cs": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/baseline_CoreOutOfMovesBanner.cs",
+      "bytes": 6754,
+      "sha256": "49be2490c988d51e6b11d3f639f8488178e276598f5a2d2dcb4621dc0e23b64c"
+    },
+    "reproducible_motion/baseline_inputs/Assets/Foundation/Runtime/CoreOutOfMovesBanner.cs": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/baseline_inputs/Assets/Foundation/Runtime/CoreOutOfMovesBanner.cs",
+      "bytes": 6748,
+      "sha256": "2278f04a67aaeb63a8d2b4f14c885d1828c9468a2240d82f36d58969a391b93c"
+    },
+    "reproducible_motion/fixed_actual.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/fixed_actual.txt",
+      "bytes": 52624,
+      "sha256": "1c0d9a3fe0eb3f29fa4512c223f71934f661696c094b4aac97746c597b6ec1a1"
+    },
+    "reproducible_motion/fixed_commands.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/fixed_commands.txt",
+      "bytes": 48443,
+      "sha256": "49a0f93f925f6690c6fb702cd4bcdaa3d618e96328eb9411ef476175623f0d1f"
+    },
+    "reproducible_motion/fixed_CoreOutOfMovesBanner.cs": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/fixed_CoreOutOfMovesBanner.cs",
+      "bytes": 6781,
+      "sha256": "7a9b39a902e9205a506c19dfb4e6d3a771ba4c292318b35671be9f8d123d382f"
+    },
+    "reproducible_motion/native/native_1589e80.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/native/native_1589e80.txt",
+      "bytes": 18591,
+      "sha256": "52dd647402a51fd3d34e28186e0ebb5aad1c7d331b8820e339ed7d956f7f801e"
+    },
+    "reproducible_motion/native/native_158a944.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/native/native_158a944.txt",
+      "bytes": 584,
+      "sha256": "12d663ca971004d84d543ef640e151283190e61f50d633271351093eb1684107"
+    },
+    "reproducible_motion/native/native_158a96c.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/native/native_158a96c.txt",
+      "bytes": 138,
+      "sha256": "795aad909946e5ed8930574bbe43497fae71f80d034a37359d1fb0f37c6c2088"
+    },
+    "reproducible_motion/native/native_158a978.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/native/native_158a978.txt",
+      "bytes": 584,
+      "sha256": "397722018d3f738f007586d1389e3fbf4d76ee60127f0742ef15aa51b65491d0"
+    },
+    "reproducible_motion/native/native_158a9a4.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/native/native_158a9a4.txt",
+      "bytes": 6850,
+      "sha256": "2f3a064dc0a22a02292090bbf27ec4378b34ff15be82ef229301d5b4410e716f"
+    },
+    "reproducible_motion/native/native_38ffa38.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/native/native_38ffa38.txt",
+      "bytes": 5630,
+      "sha256": "e461bd7aaca5ffbbc1ee6c41d10b7bf9374b8d77411871f8eef03f3cd2a8280d"
+    },
+    "reproducible_motion/native/native_38ffc34.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/native/native_38ffc34.txt",
+      "bytes": 1194,
+      "sha256": "d790a8001c737dbc08d631a3ce80966dd3bc7bc19e619340cbe44d467da7399a"
+    },
+    "reproducible_motion/native/native_38ffc88.txt": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/native/native_38ffc88.txt",
+      "bytes": 1473,
+      "sha256": "b307b215f553f7871268b33b6a74cdfa68c65d45fbb7cdc25e0a53cbcb223b65"
+    },
+    "reproducible_motion/native/native_banner_construction.json": {
+      "path": "C:/RMBanner_20261105/reproducible_motion/native/native_banner_construction.json",
+      "bytes": 4258,
+      "sha256": "3edb242c6bfe88213a96b360681e62e0ae5a858742e72b51db6ad2b0e91393d0"
+    },
+    "run_unity.py": {
+      "path": "C:/RMBanner_20261105/run_unity.py",
+      "bytes": 5197,
+      "sha256": "b6334b3560c4e2254c8fb0f927ddfab6ca251a049f0cc501a7cb10042bbedf76"
+    },
+    "verify_motion.py": {
+      "path": "C:/RMBanner_20261105/verify_motion.py",
+      "bytes": 10272,
+      "sha256": "3bcd6fbd7a011cae87b34611ab78c5881a762c47ed479d7ae398be1d201976b7"
+    }
+  },
+  "canonical_reproduction": {
+    "passed": true,
+    "report": "C:/RMBanner_20261105/canonical_motion/banner_motion_comparison.json",
+    "sha256": "1b39d577a480d703883502717bb4cc6185799a83e3906613336e860c1bb0953d",
+    "equal_to_candidate_comparison": true,
+    "scenarios": 25,
+    "commands": 2034
+  },
+  "android_followup": {
+    "source_commit": "994ec940bfc0ba7002298f02f6aeb15f82dcd266",
+    "report": "SourceCatalog/android_out_of_moves_banner_20261105.json",
+    "apk_sha256": "ae1991dcf6c37a4a50e010e58564a7765b6d9c2dcfd1c5ccc711bbab5a8703f9",
+    "apk_bytes": 43639068,
+    "packaged_native_settle_seconds": 0.10000000149011612,
+    "ordinary_level5_budget_exhaustion_auto_banner_failure_and_playable_retry": true,
+    "first_attempt_accepted_moves": 30,
+    "invalid_returned_swaps": 1,
+    "failure_goals_left": 22,
+    "video_path_direction_observed": true,
+    "exact_android_clock_measured": false,
+    "scope": "The production APK contains the committed banner correction and all 100 original level data assets. Thirty real moves exhaust the ordinary fifth-level budget, followed by the unskipped banner, failure popup, Retry and a following accepted swap. A returned invalid swap is excluded from accepted moves. Decoded video visibly corroborates descent/rebound/hold/exit, not exact original-app rendering or Android clock parity. Physical-device and all-100 natural play remain open."
+  }
+}

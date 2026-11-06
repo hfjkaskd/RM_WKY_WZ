@@ -1,0 +1,343 @@
+{
+  "scope": "Source review of actual ARM64 normal first-board rocket model, view, strategies, particles, pool/sorting and camera-query methods. Projectile loop control flow additionally has96 actual ARM64 differential flight traces. Source review of launch/model/pooling is separate from native differential proof. Formal scene interaction evidence is recorded after runtime checks.",
+  "methods": [
+    {
+      "rva": "0x27ba914",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.RocketItemModel$$ExplodeWithPresetData",
+      "disassembly_sha256": "06f60fa846953f90515e5cafcb67f2209a744d8bc310f0d3862d5572076c1690"
+    },
+    {
+      "rva": "0x27ba960",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.RocketItemModel$$TryExplode",
+      "disassembly_sha256": "4a329420eee932c70277436f3b26152f1dee7900b9cdc84740c8a25dec791d91"
+    },
+    {
+      "rva": "0x27bb018",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.RocketItemModel$$AddNeighborsRecursive",
+      "disassembly_sha256": "dc75c9a2106bee1d0ba12e94536e970c7499c7fb183080adef37945ef46c12f7"
+    },
+    {
+      "rva": "0x27bb244",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.RocketItemModel$$Tap",
+      "disassembly_sha256": "cb2310b14b120a98b1e31ca17483fb249b8d86a5d84bacfd641ee629a180b061"
+    },
+    {
+      "rva": "0x27bb1f8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.RocketItemModel$$SwapWith",
+      "disassembly_sha256": "a69c902bd71d4f5f484fd5312a483d049b63204cd85f7dff5fda006c9a22f3ca"
+    },
+    {
+      "rva": "0x27bb0fc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.View.RocketItemView$$Play",
+      "disassembly_sha256": "46e5f718aa223963ea46121d0cbf985bef85e74a7dbcae5cb72b83c97f1cad4a"
+    },
+    {
+      "rva": "0x27bbeb4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.View.RocketItemView$$RocketPartStart",
+      "disassembly_sha256": "5641cf91a8ee9ac2a81ce4b9523d6af5888c532861b91ccd64351b3b812366da"
+    },
+    {
+      "rva": "0x27bbee8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.View.RocketItemView$$RocketPartEnd",
+      "disassembly_sha256": "ac802e1c35e6da2accd077a6fd42da99ab462c7da48baf89f71bee1240f863ff"
+    },
+    {
+      "rva": "0x27bbf1c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.View.RocketItemView$$Recycle",
+      "disassembly_sha256": "0f9e9680d06bbcbae7d473f6a505f691c3ab9113dce3b2d6514ecf950c7a798c"
+    },
+    {
+      "rva": "0x27bb554",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.View.RocketItemAssets$$CreateItemPools",
+      "disassembly_sha256": "dcabd7c78ac391dc960e9d451df0bb205bc0098c24e0d027807d45e12ca24d7d"
+    },
+    {
+      "rva": "0x27bb6ec",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.View.RocketItemParticles$$OnSpawn",
+      "disassembly_sha256": "aba99ef957781d65df570b2df65d9afc0324d9a5b41dfb1785a0d77bb2f48006"
+    },
+    {
+      "rva": "0x27bb780",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.View.RocketItemParticles$$GetPoolId",
+      "disassembly_sha256": "72cf4ad8631376605e1f70b2d88753b568eb4fd100450ad4528b9923c57d1762"
+    },
+    {
+      "rva": "0x27bb788",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.View.RocketItemParticles$$SetParticlePosition",
+      "disassembly_sha256": "b84c2b6c4c1233debb0c05a538d05d734db70b9e76a5b2b2f96a81d45a542ba0"
+    },
+    {
+      "rva": "0x27bb7e0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.View.RocketItemParticles$$StopAndPlay",
+      "disassembly_sha256": "1f543ea816864c3d9040c8485ee22b78531456c8619434efb877a1e923667375"
+    },
+    {
+      "rva": "0x27bcc4c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.RocketStrategy$$GetParticles",
+      "disassembly_sha256": "49f8bbc4e4411e227374c2f30fab15c65111fdd5702937a5d83eb401082225a0"
+    },
+    {
+      "rva": "0x27bc6a8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.HorizontalRocketStrategy$$Play",
+      "disassembly_sha256": "440a79d3b3503df0b28ac48f5d5de760e8f7be876cb4eafacb4c553ec9d8545c"
+    },
+    {
+      "rva": "0x27bc8b4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.HorizontalRocketStrategy$$StartLeftPart",
+      "disassembly_sha256": "ec9f872ec6ec36937c1836d3e4a63ad6be22ab0b9d0a519c2a9fcf7e987fd372"
+    },
+    {
+      "rva": "0x27bcd9c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.HorizontalRocketStrategy$$StartRightPart",
+      "disassembly_sha256": "8b3de7cd6dad301ab193d7e0a0702ef16be977cabd4015e645a4667c14a15df7"
+    },
+    {
+      "rva": "0x27bd7cc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.HorizontalRocketStrategy.<PlayHorizontalRocket>d__11$$MoveNext",
+      "disassembly_sha256": "db82c5771b48af51aa1d2a91092a2e3f28a51cd03976a95f48087cce41078a85"
+    },
+    {
+      "rva": "0x27bd1bc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.HorizontalRocketStrategy.<MoveToGlobalAndDestroy>d__14$$MoveNext",
+      "disassembly_sha256": "d7eeefcba2be44db81291a68ad94c33619998557d8a9dee4dd0ccd38e8849c79"
+    },
+    {
+      "rva": "0x27bd040",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.HorizontalRocketStrategy$$TryUnfreezeAll",
+      "disassembly_sha256": "16d2e65df6ee61e85a9a146a1f1566b7287439c7749fb5f733ecacf47c36362b"
+    },
+    {
+      "rva": "0x27bd0e0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.HorizontalRocketStrategy$$ShouldCallExplode",
+      "disassembly_sha256": "abb7e41cbfde723707b83f35bd795ac2612f548fdcc8e1a1a734b193965d01fc"
+    },
+    {
+      "rva": "0x27be02c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.VerticalRocketStrategy$$Play",
+      "disassembly_sha256": "5b5e76f30584e84fd9e194510de7606eae889e2d4c53592bf321f0120d926ae7"
+    },
+    {
+      "rva": "0x27bec14",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.VerticalRocketStrategy.<PlayVerticalRocket>d__8$$MoveNext",
+      "disassembly_sha256": "55e5ca05a3b98216fbb7cf651c5b7422c8aec39b9d435cbfa9f2cadc7337cdb7"
+    },
+    {
+      "rva": "0x27be674",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.VerticalRocketStrategy.<MoveToGlobalAndDestroy>d__9$$MoveNext",
+      "disassembly_sha256": "71f29179f0a946c04d47a4b350a1f11f564f9e334e05901d8c8a81aacdc74783"
+    },
+    {
+      "rva": "0x27be37c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.VerticalRocketStrategy$$ShouldCallExplode",
+      "disassembly_sha256": "efdb0b4c944d264b2e15e49d53f1e980d830974585e49f7a99bca08c7cf1e791"
+    },
+    {
+      "rva": "0x27be4c4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.VerticalRocketStrategy.<>c__DisplayClass8_0$$<PlayVerticalRocket>g__OnRocketComplete|2",
+      "disassembly_sha256": "185862c47080114aebb26de4f42d5c0e77720e797704a913f3a3c402a9b6584f"
+    },
+    {
+      "rva": "0x27be3b8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.Strategy.VerticalRocketStrategy$$GetYOffsetForMultiBoardLevel",
+      "disassembly_sha256": "7c1ffc7fbc8bc64885973f1a0b91f1437aa2f6cd249efcb4e609abb18d874133"
+    },
+    {
+      "rva": "0x3192018",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$CrossFallFreeze",
+      "disassembly_sha256": "edec2b7bb34e3bdfe0711f6a6a173cf093e994e9ed66a05fb0fe433d299b2db4"
+    },
+    {
+      "rva": "0x3192238",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$CrossFallUnFreeze",
+      "disassembly_sha256": "ae325b7a1e73a2720d61d063028a324ca7c85a47cbbaaf1bf90c7eb499ba9a9f"
+    },
+    {
+      "rva": "0x12d8528",
+      "name": "Royal.Scenes.Game.Mechanics.Sortings.Sorting$$GetRocketUseSorting",
+      "disassembly_sha256": "22fcd55307f238b31017d9b270ebe0c640f26b2bc23b4a82d0943fabffadfcf5"
+    },
+    {
+      "rva": "0x12d8588",
+      "name": "Royal.Scenes.Game.Mechanics.Sortings.Sorting$$GetRocketParticleSorting",
+      "disassembly_sha256": "da091836becd6c9a8e623470d851e36f1843b5104482ebce377f0fd2c42e2792"
+    },
+    {
+      "rva": "0x200568c",
+      "name": "Royal.Infrastructure.Contexts.Units.CameraManager$$IsDeviceWide",
+      "disassembly_sha256": "ec58ad20549fd20a4e61a30c725ae796902bdea85cc0603db8cd26b32b9ff1a9"
+    },
+    {
+      "rva": "0x2003628",
+      "name": "Royal.Infrastructure.Contexts.Units.CameraManager$$GetPortraitAspect",
+      "disassembly_sha256": "3c14886b66eebdca2e5699701a87f624949f06bf3229a09018f72160fbade9b1"
+    },
+    {
+      "rva": "0x2002270",
+      "name": "Royal.Infrastructure.Contexts.Units.CameraManager$$get_IsLandscape",
+      "disassembly_sha256": "3c613c5b2b154a94bbc59d19089bae28e09ffae44282138f9aeba00108cdbd2c"
+    },
+    {
+      "rva": "0x3196c8c",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$IsInCurrentBoard",
+      "disassembly_sha256": "88883af16a7e2671522dd94ee70ef60bc20e471c4a9b2bff5c0a1d1c389dbc3a"
+    }
+  ],
+  "native_projectile_report": "rocket_flight_native_verification.json",
+  "parameters": {
+    "item_type": 2,
+    "tap_move_type": 13,
+    "explosion_trigger": 6,
+    "center_final_freeze": 0.15,
+    "speed": 13.5,
+    "acceleration_per_frame": 0.18,
+    "hit_window_distance": 0.8,
+    "horizontal_margin": 1,
+    "vertical_margin": 2,
+    "wide_device_unfreeze_abs_x": 5.65,
+    "wide_portrait_aspect": 0.57,
+    "tail_after_estimated_duration": 1,
+    "horizontal_bool_array": 9,
+    "vertical_bool_array": 11,
+    "view_pool": 8,
+    "view_prewarm": 20,
+    "particle_pool": 9,
+    "particle_prewarm": "GetParticleAmount(20*2)",
+    "view_use_sorting": [
+      "Particles",
+      -1
+    ],
+    "particle_sorting": [
+      "Item",
+      9200
+    ],
+    "particle_offset": 0.65,
+    "particle_root_local_scale": [
+      1,
+      1,
+      0
+    ],
+    "particle_vectors": {
+      "left": [
+        1,
+        0,
+        0
+      ],
+      "right": [
+        -1,
+        0,
+        0
+      ],
+      "top": [
+        0,
+        -1,
+        0
+      ],
+      "bottom": [
+        0,
+        1,
+        0
+      ]
+    },
+    "vector_field_evidence": "UnityEngine.Vector3 static layout in original dump: up0x18/down0x24/left0x30/right0x3c. Native launch helpers use0x3c/0x30/0x24/0x18 respectively.",
+    "float_arithmetic": "Explicit float32 multiplication/addition boundaries preserve native hit-threshold frames under Mono and IL2CPP; no Editor conditional path."
+  },
+  "source_prefabs": {
+    "rocket": "a34e531e5b83de24687ddac584b2afeb",
+    "particles": "d823d257019779a47af4ffbaf07dfd7a",
+    "particle_component": 114099118695303065,
+    "source_transforms": "Unchanged, verified by special_prefab_bindings_verification.json"
+  },
+  "audio315": {
+    "source_guid": "2557794c4c110064e81086ec85fe7980",
+    "source": "assets\\RecoveredProject\\ExportedProject\\Assets\\AudioClip\\rocket_explode.wav",
+    "resource_path": "Recovered/AudioClip/rocket_explode",
+    "sha256": "1b03b0e090c0d73665cd03cb3a35ad90c0fdadfe444355ab36cf54a79678ce4a",
+    "lazy_load": true,
+    "offset": 0.04
+  },
+  "pending": [
+    "Jelly/above-static propagation, water flight and all rocket combo strategies; formal loader rejects those level definitions",
+    "Original camera size/safe-area/session initialization and orientation event dispatch; flight currently consumes the actual configured game camera",
+    "Remaining-move coin conversion, charger/active event branches, complete win/fail/results/progression",
+    "Physical pointer input, rendered-original visual parity and Android/iOS device execution"
+  ],
+  "native_float_alignment": "96 native traces match every position float bit and every operation/damage/freeze event after explicit float32 arithmetic conversions. Unity bundled Roslyn and bundled Mono run with default options.",
+  "formal_rocket_interactions": {
+    "source_sha256": "da201cde84bdf871790aa09938b166e544506aca7c7b1609fdaa74583bee9404",
+    "tests": {
+      "rocket-horizontal-tap": {
+        "passed": true,
+        "background_report": "background_rocket_horizontal_tap_verification.json",
+        "report": "live_rocket_horizontal_tap_verification.json",
+        "rocket_orientation": 0,
+        "rocket_first_flight": 16.726619720458984,
+        "rocket_second_flight": 12.724532127380371,
+        "rocket_max_operations": 2,
+        "left_moves": 27,
+        "created_refills": 19,
+        "created_specials": 1
+      },
+      "rocket-horizontal-swap": {
+        "passed": true,
+        "background_report": "background_rocket_horizontal_swap_verification.json",
+        "report": "live_rocket_horizontal_swap_verification.json",
+        "rocket_orientation": 0,
+        "rocket_first_flight": 16.758838653564453,
+        "rocket_second_flight": 12.746994972229004,
+        "rocket_max_operations": 2,
+        "left_moves": 27,
+        "created_refills": 19,
+        "created_specials": 1
+      },
+      "rocket-vertical-tap": {
+        "passed": true,
+        "background_report": "background_rocket_vertical_tap_verification.json",
+        "report": "live_rocket_vertical_tap_verification.json",
+        "rocket_orientation": 1,
+        "rocket_first_flight": 10.744429588317871,
+        "rocket_second_flight": 13.701287269592285,
+        "rocket_max_operations": 2,
+        "left_moves": 26,
+        "created_refills": 75,
+        "created_specials": 3
+      },
+      "rocket-vertical-swap": {
+        "passed": true,
+        "background_report": "background_rocket_vertical_swap_verification.json",
+        "report": "live_rocket_vertical_swap_verification.json",
+        "rocket_orientation": 1,
+        "rocket_first_flight": 10.952332496643066,
+        "rocket_second_flight": 13.770888328552246,
+        "rocket_max_operations": 2,
+        "left_moves": 26,
+        "created_refills": 26,
+        "created_specials": 1
+      }
+    }
+  },
+  "regressions": {
+    "source_sha256": "da201cde84bdf871790aa09938b166e544506aca7c7b1609fdaa74583bee9404",
+    "tests": {
+      "tnt-swap": {
+        "passed": true,
+        "background_report": "background_tnt_swap_verification.json",
+        "report": "live_tnt_swap_verification.json",
+        "left_moves": 24,
+        "created_refills": 163,
+        "completed_lightball_activations": 1,
+        "sent_rays": 0,
+        "completed_rays": 0
+      },
+      "lightball-swap": {
+        "passed": true,
+        "background_report": "background_lightball_swap_verification.json",
+        "report": "live_lightball_swap_verification.json",
+        "left_moves": 25,
+        "created_refills": 61,
+        "completed_lightball_activations": 1,
+        "sent_rays": 13,
+        "completed_rays": 13
+      }
+    }
+  }
+}

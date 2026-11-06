@@ -1,0 +1,70 @@
+{
+  "scope": "Actual native SQL, database name literals, open flags and busy timeout. The Windows transport is not proof of mobile transport or production account startup.",
+  "busy_timeout_seconds": 0.1,
+  "busy_timeout_elf_address": "0x403fa78",
+  "sqlite_open_flags": 6,
+  "user_save_interval": 61,
+  "app_save_interval": 67,
+  "strings": [
+    {
+      "field": "begin",
+      "got": "0x5390308",
+      "metadata_address": "0x5625788",
+      "section": "ScriptString",
+      "entry": {
+        "Address": 90331016,
+        "Value": "begin transaction"
+      }
+    },
+    {
+      "field": "commit",
+      "got": "0x53c92d0",
+      "metadata_address": "0x5626c38",
+      "section": "ScriptString",
+      "entry": {
+        "Address": 90336312,
+        "Value": "commit"
+      }
+    },
+    {
+      "field": "update_synced",
+      "got": "0x537f318",
+      "metadata_address": "0x561fe98",
+      "section": "ScriptString",
+      "entry": {
+        "Address": 90308248,
+        "Value": "UPDATE KeyValue SET Synced = ? WHERE Key = ?"
+      }
+    },
+    {
+      "field": "update_sync_blocked",
+      "got": "0x53a4e38",
+      "metadata_address": "0x561fe68",
+      "section": "ScriptString",
+      "entry": {
+        "Address": 90308200,
+        "Value": "UPDATE KeyValue SET SyncBlocked = ? WHERE Key = ?"
+      }
+    },
+    {
+      "field": "app_database_filename",
+      "got": "0x5353f98",
+      "metadata_address": "0x5600a48",
+      "section": "ScriptString",
+      "entry": {
+        "Address": 90180168,
+        "Value": "App"
+      }
+    },
+    {
+      "field": "user_database_prefix",
+      "got": "0x533f630",
+      "metadata_address": "0x561ff88",
+      "section": "ScriptString",
+      "entry": {
+        "Address": 90308488,
+        "Value": "U_"
+      }
+    }
+  ]
+}

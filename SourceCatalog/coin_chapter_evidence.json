@@ -1,0 +1,351 @@
+{
+  "baseline_commit": "a65c04b4650161b99afba36e6631951f6811923b",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "canonical_background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-coin",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "d4ef6f145deabf248d344642cdf019c4dc9054440ac8eb3e96c598de873e9f87",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-coin.log",
+    "elapsed_seconds": 269.62,
+    "batch": {
+      "passed": true,
+      "test": "core-coin",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T04:58:06.9201555Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "actual_level20_verification": {
+    "passed": true,
+    "coin_tap_verified": true,
+    "invalid_coin_swap_verified": true,
+    "coin_flight_verified": true,
+    "initial_combo_and_refill_verified": true,
+    "initial_coins": 79,
+    "initial_tnt": 2,
+    "collected_after_initial_combo": 77,
+    "refilled_tiles": 81,
+    "moves_played": 20,
+    "result_coins": 259,
+    "failure": "",
+    "scope": "Formal GameScene seeded to level 20 in isolated local progress. Input samples drive the original preset TNT combo and legal board moves, without placing specials or forcing the move counter."
+  },
+  "preserved_numbered_coin_level_configs": [
+    {
+      "number": 20,
+      "original_name": "00020v02_L",
+      "resource_path": "Levels/level_20",
+      "decoded_source": "configs/levels/20__15315.json",
+      "raw_source": "configs/textassets/20__15315.bytes",
+      "sha256": "83dba7cf168d5d58d9ac325bf33611de221d46fcc4289505a869c1e31f3d8471",
+      "moves": 20,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        21
+      ],
+      "raw_item_ids": {
+        "40": 2,
+        "60": 79
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 40,
+      "original_name": "00040v02_L",
+      "resource_path": "Levels/level_40",
+      "decoded_source": "configs/levels/40__14502.json",
+      "raw_source": "configs/textassets/40__14502.bytes",
+      "sha256": "a182b90bc78ece63ce30559da10489662bfa533e9319ad723d6af7fd331f35c3",
+      "moves": 20,
+      "width": 8,
+      "height": 9,
+      "goal_types": [
+        21
+      ],
+      "raw_item_ids": {
+        "50": 2,
+        "60": 70
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 60,
+      "original_name": "00060v02_L",
+      "resource_path": "Levels/level_60",
+      "decoded_source": "configs/levels/60__10767.json",
+      "raw_source": "configs/textassets/60__10767.bytes",
+      "sha256": "d3efe9f52b5f052fd68a38f591f3539039993d7d66d71054e0eb10a16658a8cc",
+      "moves": 20,
+      "width": 8,
+      "height": 9,
+      "goal_types": [
+        21
+      ],
+      "raw_item_ids": {
+        "0": 4,
+        "11": 4,
+        "14": 28,
+        "60": 36
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 80,
+      "original_name": "00080v01_L",
+      "resource_path": "Levels/level_80",
+      "decoded_source": "configs/levels/80__1283.json",
+      "raw_source": "configs/textassets/80__1283.bytes",
+      "sha256": "f7c4bd282597b031091de69ec9bca524742b8152798326230c26af2b3dc810fb",
+      "moves": 20,
+      "width": 8,
+      "height": 7,
+      "goal_types": [
+        21
+      ],
+      "raw_item_ids": {
+        "14": 14,
+        "60": 42
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 100,
+      "original_name": "00100v01_L",
+      "resource_path": "Levels/level_100",
+      "decoded_source": "configs/levels/100__11582.json",
+      "raw_source": "configs/textassets/100__11582.bytes",
+      "sha256": "452efab0b4db7b49c379697a185de35b3c38df08f87a3fad47ef77a348b6682a",
+      "moves": 20,
+      "width": 8,
+      "height": 9,
+      "goal_types": [
+        21
+      ],
+      "raw_item_ids": {
+        "0": 18,
+        "11": 3,
+        "40": 4,
+        "50": 2,
+        "60": 45
+      },
+      "nonzero_cell_fields": {
+        "FillType": 7
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "native_paths": {
+    "coin_model": "CoinItemModel 0x242d0f4–0x242d2b8: near-hit, fall, swap, touch, reward departure and arrival.",
+    "coin_view": "CoinItemView 0x21f3968–0x21f42c0, CoinBezierCollect 0x21f4a40, CoinCollectHelper 0x21f6a4c, and FallSquash defaults from 0x2eeaafc.",
+    "column_refill": "LevelParser.ParseSets 0x1c22304 calls ItemCreator.AddSetToColumn 0x23f0a18, using TargetColumnSetContainer 0x1c93318.",
+    "bonus_settlement": "Goal parsing 0x1c206b0, bonus branch at zero moves 0x1edd6a0, ShouldSpeedUpLevelEnd 0x1e18b58, Reward title 0x162f784."
+  },
+  "verification_limits": [
+    "The real GameScene starts at Level 20 from isolated seeded progress. The prior level's Continue button into Level 20 and Level 21 startup are outside this scenario.",
+    "Unity Editor drives recorded gameplay input samples. Physical device input, Android/iOS runtime, and rendered/audio comparisons with the original remain unverified.",
+    "Levels 40, 60, 80 and 100 share the numbered coin goal. Only their installed config hashes were checked in this checkpoint."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "2102725141675afed1abd0dcc743ab166097b96a87155727e61edfa281921c69"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCoinVerification.cs",
+      "sha256": "83d510e10f48cc47f5c22b214f284a7111900c0a76ef948c2f486ecb7396e49f"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCoinVerification.cs.meta",
+      "sha256": "39a0d3c858e1ca94d5e65e083711e8e3375ce8ed8fd3996da9457bb5eaa45a6e"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCupboardVerification.cs",
+      "sha256": "23ea9acc5f222ef889c5caab925de9534c1fbb3d0e33cd977bcbb30a61fc7546"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "e5535bf39474d7534a90b9d72057128832cca9670b5ab503752d55107284cddc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreExcludedPeripheralSystems.cs",
+      "sha256": "6f7f4f90c2436e1302b232eb4b2584a892b47ba2edd91b258e69db9e9580ec61"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreGameFlow.cs",
+      "sha256": "d6487d2e6e00ea2eeb543a518ffe508812f9c961042d59a9a0eec0f5967aec33"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoardFallMotionServices.cs",
+      "sha256": "271774f666e48e903a2704b7ad298db9fea03a9ed6d002a9f4c28b4669698c80"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCoinBoardItem.cs",
+      "sha256": "51a354dea4cf7590991adc6a4870dca98e96f6fb2862a5861af359713c308d65"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCoinBoardItem.cs.meta",
+      "sha256": "af376dc3da2cb30b82ffbd49ed54459ec89e94815ead341fa30bf3646a26eeac"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCoinBurstParticles.cs",
+      "sha256": "b676fad952bd2d15aad27aa8a90f38dba290b1764eb87b19dd078697b6bcb53a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCoinBurstParticles.cs.meta",
+      "sha256": "4a1b7c8b47ce13081f979776340f24239e9374d65901c1ae75c468dcfdde268b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCoinItemSpriteView.cs",
+      "sha256": "ddf67b78e3dc4db9c76c7338395c258561b301ea542d493f2aeab3a713d18c59"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameLateUpdateDispatcher.cs",
+      "sha256": "6877045fc0d6ed9669bc4cd14c7fdeef1cfda941ed7f0d1c09743f2e209697d4"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameplayHud.cs",
+      "sha256": "147b98790e67c5bd447761d42419b22531ca2368d30bdda2dc9f6638f1f6158f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalImpossibleSwapPresentation.cs",
+      "sha256": "073a1d27e80fb099fc45e2a5476ca27fb1cadec6f7f68c763b59a4cb61ca8116"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "42060837803dacddda3d8bd878c07311101746f846e6406a0987d9cb43168d0c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemModelConstruction.cs",
+      "sha256": "41404d9b88290a8967d2b5ade02c9c2d7a61fab437d6c7855a70b6cab66105cc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemSwapView.cs",
+      "sha256": "129156f7cea21080714f5c5f8d003aa73f4b605af898595e46ba42d3b7049d01"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelPresentation.cs",
+      "sha256": "a3ee218ee2620487ef9f7a7eedeee44722fcbca4a7de1d2a5febaefbce2fa7d3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMatchItemSpriteView.cs",
+      "sha256": "6acf0f51e282a91ef8d3898af16a80200449cb05d24718890f618eb42e16939d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalNormalSwapAnimationBackend.cs",
+      "sha256": "1e3c2157102bf190114d237584181147fd3eb6a6f21da069cceec4fa3e257b2e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalNormalSwapPresentation.cs",
+      "sha256": "b65851a481f97cebcd10c5e7c14aea6ba5b69fe05b24fe8e14798ba190ddb3fe"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "2a4541d6b5cc193470980e3d0f036473ff9dbca74a80f520b72b776f0d8a2912"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoardCoins.cs",
+      "sha256": "2c33f0e53fba5c4fa19acfd0b2729e639aa0eccb227df2cd6d1f4e1f54f87310"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoardCoins.cs.meta",
+      "sha256": "d901be8b4d1c898f4bb3526c3b9a3dc50fe03a41f716a31732043dbdc96717cb"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingMovesReplacementServices.cs",
+      "sha256": "5191b00c1e2df9299c1bfd513a7e6d8c2e65d98e6de94d5868327a7ebf57f06f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalSpecialItemFallView.cs",
+      "sha256": "1c42a4463e792c5de4975c6acace1fbc0a9520ac6c7c866a736924838066dd57"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTargetColumnSetContainer.cs",
+      "sha256": "2c1990d3301edc96f95243b0905fb2caa7d1799f38a062a5bb27959264ee40a3"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSfxAssets.asset",
+      "sha256": "fced7ada7794ca1f51d54807e0bc406242ad66035e411683ee466cadbccbe4fe"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalBoardCoinBurst.prefab",
+      "sha256": "91a2ea22938ce0ea64cf2ffc8f43d8bc0498d248e0b64136277ebb7b2c0a99c5"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalBoardCoinBurst.prefab.meta",
+      "sha256": "c15dec90148b029c2ed5ef6decea675c295395892bb5594124ca9945511cae18"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalGameplayHud.prefab",
+      "sha256": "c10be29203f99a592dff62df91c0fe9ee78d2af69bd622d786e236746899429a"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/CoinItemPrefab.prefab",
+      "sha256": "00a2603d6f8c0a2769ee41800c64f1e010bcbdf5c71be8603885518340a5e244"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "2bf07dfa84bca7be93f6677dd53161996d14b4bb866a8ead958d3571f84007c8"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "ca28ef0db93b68ff3b9c075170e54f96aa5cd1e19a7cf5662ea863c44ef7b02f"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "0a2a0e71a9f7635635705db62bb0c50bbb8bc1d4810e621903670e02127a0392"
+    },
+    {
+      "path": "background_core_coin_verification.json",
+      "sha256": "e4ce49460a4f3a1b392a969a4c407524ae41bb63dc5cf4fd8b46d014f28b24a9"
+    },
+    {
+      "path": "core_coin_level20_flight.png",
+      "sha256": "20b29bee05fb93e8a57d43cfd0d613c00f6342091424fd25ec01d374cead293b"
+    },
+    {
+      "path": "core_coin_level20_refill.png",
+      "sha256": "bf4bb03b1bd1411f0a659607a179ed0357d7127ee44f7bcdadeb6d75d6b805fd"
+    },
+    {
+      "path": "core_coin_level20_start.png",
+      "sha256": "43a5918f4a7f57ba2ab0c9a4c41c10874541d4dcdad7fd080b611e808f54c94d"
+    },
+    {
+      "path": "core_coin_level20_win.png",
+      "sha256": "c36c409d9d0967a186f94059f1e186e009357d4450c8b52e4fd15c2dae0747d6"
+    },
+    {
+      "path": "live_core_coin_verification.json",
+      "sha256": "2d86e56a246eb836cf55886d442d83a1937a21de70647b56623ba4372c642ea9"
+    }
+  ]
+}

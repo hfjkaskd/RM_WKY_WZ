@@ -1,0 +1,69 @@
+{
+  "scope": "Native static explosion dispatch and concrete ordinary match destruction/view/freeze/refill composition; player-driven full match-group/session loop remains pending.",
+  "methods": [
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.StaticItemMediator$$ExplodeTopMostAboveItem",
+      "rva": "0x3440544",
+      "disassembly_sha256": "e6b4b453ea229aa4fb4c910224709dfd8abb24d6fab6fedf2049cfb8d204f338"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.StaticItemMediator$$ExplodeStaticItem",
+      "rva": "0x3440658",
+      "disassembly_sha256": "4802c1bcdfff845db3890ccaf519f4435de8a09c0d6c6fb84065a4a442dfd587"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.StaticItemMediator$$ExplodeTopMostBelowItem",
+      "rva": "0x34407f4",
+      "disassembly_sha256": "260b13d9e3a8fb50f1726d77b5f08dffd369e737b26cf716419a3c38efd6f6b9"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Explode.TriggerExtensions$$IsMatchExplodeOrItemSwap",
+      "rva": "0x318d0bc",
+      "disassembly_sha256": "db2ff93024f07b1cd19cff62b2b771c879ffa5cdda6398d1d34cb2ce29f8f914"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Explode.ExplodeData$$ShouldExplodeAll",
+      "rva": "0x2eeb93c",
+      "disassembly_sha256": "a827360c085d4f1947df1419ce5522a3e7ac57eea1218e4cef01bde4178f8d46"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.StaticItemMediator$$GetTopMostBelowItem",
+      "rva": "0x343c794",
+      "disassembly_sha256": "e93ba210bac0f8f5b3d0539c1b2e7fd41df8dda695b19d12557bf460986d4a21"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Items.MatchItem.MatchItemCounts$$ItemExploded",
+      "rva": "0x21a3fb0",
+      "disassembly_sha256": "cb8c1a8451a9d6554cab8317db3fcacfe5701ecac89dde34453eb7f0d1825ae2"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Items.MatchItem.MatchItemModel$$HandleMadness",
+      "rva": "0x21a6834",
+      "disassembly_sha256": "9f888141de793f37990ab0141259aa2b9ae94d5d87dd0df96715ad7e9829f368"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Items.MatchItem.MatchItemModel$$TryExplode",
+      "rva": "0x21a5d90",
+      "disassembly_sha256": "0203e22c2b17f9c7f632d18cdeb24e1418bfb5e0eec65fd82152eb5ae320f1a5"
+    },
+    {
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemModel$$FinalExplodeCompleted",
+      "rva": "0x2b46aa0",
+      "disassembly_sha256": "d7f20c22c034311129321acd7960984f1847f0d66c00315f133d6419d196b5c4"
+    }
+  ],
+  "restored": [
+    "Above dispatch checks its own exploder set first, then the last above item and near-match permission; it records the id in both above/below sets before looking up the type again and dispatching.",
+    "Below dispatch reads the first below item, unlike GetTopMostBelowItem which reads the last. Jelly attempts without spread/trigger6 do not record the id; other accepted attempts do. Non-Jelly trigger25 is skipped, CanExplodeWithMatch gates match/swap triggers2/4/5 and color-bearing trigger15.",
+    "ExplodeStaticItem looks up the current registry entry and preserves null target behavior and normal/ExplodeAll routing. Actual static model factories and damage are still separate.",
+    "Concrete MatchItemModel services use actual GoalManager/InitialItemAmounts, static dispatch, State shifter counts, pooled match view and original merge/explosion coroutines. Optional collector/other-mechanic owners remain required typed dependencies.",
+    "HandleMadness trigger2/4 returns before any context lookup. Other triggers still require the complete original owner. MatchItemCounts static forwarding resolves the current supplied session counter each time."
+  ],
+  "verification": {
+    "native": "static_explosion_dispatch_native_verification.json",
+    "unity": "match_destruction_refill_unity_verification.json",
+    "unity_result": "6 real normal item explosions in two phases, actual animation/particles, HasView false and all cell mediation cleared, native timed freeze/operation1, actual statistics, continuous predefined/random refill/motion.1156frames, maximum landing error0. Original models are re-created through their real CreateView for restoration, and pool/grid/operations restore successfully. The Play session is restarted afterward to discard diagnostic bindings.",
+    "fixture_boundaries": "Explicit individual trigger2 inputs, seed371, single-board not-won status and a diagnostic OriginalMatchItemCounts instance. No group/neighbor damage or player swap is claimed. Full active session, collection owners, other Madness triggers, swap/resolution and auto-match cascades remain pending."
+  },
+  "performance": "Existing configured view/particle pools handle visual reuse. Static id deduplication retains native per-owner exploder containers; the level owns their lifetime. Native model/coroutine allocations remain until original reset/lifecycle is fully restored. No per-frame LINQ, dynamic static UI or replacement tween is introduced; actual device CPU/GC/loading profiling is still required."
+}

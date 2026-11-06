@@ -1,0 +1,158 @@
+{
+  "full_objective_complete": false,
+  "formal_scene_reads_actual_native_local_account": true,
+  "formal_scene_coin_star_start_snapshots_bound": true,
+  "normal_first_board_scene_and_input_regression_passed": true,
+  "production_writable_user_context_bound": false,
+  "production_game_start_life_win_fail_and_end_flow_bound": false,
+  "production_level_selection_from_account_bound": false,
+  "production_ab_or_booster_inventory_selection_use_bound": false,
+  "original_full_scene_or_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "d964311c7e70b177e70ad2b22e5bef79ed232b63cbb945b5cd7fcef8c22e887c",
+  "native_local_load_kernel_evidence": "SourceCatalog/local_account_load_evidence.json",
+  "production_account_projection_verification": {
+    "passed": true,
+    "stored_balance_snapshot_bound_to_actual_scene": true,
+    "persisted_area_restored": true,
+    "read_does_not_write_or_change_sync_flags": true,
+    "fresh_native_defaults_verified": true,
+    "failure": "",
+    "database_path": "C:\\Users\\pc\\AppData\\LocalLow\\DefaultCompany\\UnityFoundation\\U_-1793605252516776",
+    "local_sdk_user_id": -1793605252516776,
+    "scope": "Actual formal-scene controller uses native local-account loading and original user DB path/table for its configured local SDK identity; real ResetValues snapshots take stored balances. Test seeds only an isolated identity in the mirror prefab. Read-only projection, not the writable UserContext, life/GameStart/WinFail/reward/AB or full application composition. Pending NextArea transitions still require their actual availability owner."
+  },
+  "scene_verification": {
+    "passed": true,
+    "normal_scene_and_72_models_verified": true,
+    "original_top_background_verified": true,
+    "original_king_rig_and_atlas_verified": true,
+    "king_vertices": 580,
+    "king_viewport_center": {
+      "x": 0.49988463521003723,
+      "y": 0.9043360948562622,
+      "z": 10.0
+    },
+    "original_bottom_locked_presentation_verified": true,
+    "failure": "",
+    "scope": "Normal GameScene includes playable first board, original camera/top/King idle and portrait bottom background/four locked booster slots with visible standard Button backplates. Native level1 AB201 group0 disabled-lock state is verified; click adapter is instrumented, not physical input. Unlocked booster inventory/selection/use/purchase/tooltip/settings, live AB provider, full KingUi queue/mixing/reactions, production startup/account/settlement/Home and full original parity remain pending."
+  },
+  "player_input_regression": {
+    "passed": true,
+    "physical_drag_verified": false,
+    "tnt_activated": false,
+    "lightball_activated": false,
+    "rocket_activated": false,
+    "propeller_activated": false,
+    "propeller_flight": 0.0,
+    "propeller_trace": [],
+    "propeller_max_scale": 0.0,
+    "blocked_original_box_holes": 0,
+    "propeller_max_loop": 0,
+    "propeller_takeoff_instances": 0,
+    "propeller_hit_instances": 0,
+    "propeller_max_operations": 0,
+    "rocket_orientation": 0,
+    "rocket_max_operations": 0,
+    "rocket_first_flight": 0.0,
+    "rocket_second_flight": 0.0,
+    "sent_rays": 0,
+    "reached_rays": 0,
+    "completed_rays": 0,
+    "completed_lightball_activations": 0,
+    "rocket_created": true,
+    "tnt_created": false,
+    "lightball_created": false,
+    "propeller_created": true,
+    "failure": "",
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "left_moves": 20,
+    "goals_left": 23,
+    "created_refills": 76,
+    "created_specials": 2,
+    "scope": "Frame-separated recorded device samples through native GameTouchListener into formal production scene services. Checks invalid swap spends0, accepted swaps spend1, first triple/three box goals/six refills, 10accepted swaps and naturally observed special creation patterns (each requested type also has its own activation mode), automatic cascades, original creation coroutines and all72 model slots/no holes/no freeze/landing tolerance. Fails on runtime errors/exceptions. Shadow native match search only chooses gestures and never mutates live cells. Does not verify physical drag timing, special activation/combos, complete session startup, settlement or original rendered parity."
+  },
+  "background_verification": {
+    "passed": true,
+    "test": "account-snapshot",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "d964311c7e70b177e70ad2b22e5bef79ed232b63cbb945b5cd7fcef8c22e887c",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_account-snapshot.log",
+    "elapsed_seconds": 655.39,
+    "batch": {
+      "passed": true,
+      "test": "account-snapshot",
+      "failure": "",
+      "timestamp_utc": "2026-11-02T07:43:11.0765246Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "isolated_local_sdk_user_id": -1793605252516776,
+    "scope": "Independent source/cache copy; production scene/runtime code with a unique local SDK identity configured in the isolated prefab to protect working user data. Actual native storage paths/tables/local loading execute. No physical-input, writable-account/WinFail or original rendered-parity claim."
+  },
+  "scope": "The actual formal-scene controller opens the original U_<SDK identity> path through the existing native SQLite transport, then runs the existing native-key local account and area loaders. A private read-only model supplies the actual coin/star inventory to the level ResetValues call; the board constructor requires this input instead of silently constructing an empty inventory. Identity0 is explicit local SDK configuration in the working prefab. All batch modes override only that identity in the isolated prefab, protecting the working user database while retaining runtime storage paths and loading logic. The dedicated check seeds actual SQLite balances4321/stars7 and area task mask5, then verifies scene snapshots, unchanged synchronization flags, and a second fresh identity with native defaults2000/0 and absent stored balance keys. The account is a read-only projection, not a published writable UserContext: reward persistence, life debit/refund, full GameStart, WinFail, settlement, next-level/Home/area availability, live AB/booster owners and full lifecycle remain pending. Existing SDK facades are unchanged. The inherited local-load ARM64 evidence is referenced, not presented as newly rerun. No original rendered parity, physical input or mobile claim.",
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/AccountSnapshotVerification.cs",
+      "sha256": "9124dd2dafca2184957d11256f4751424bbc4023e25a4db2ce734a96d3dbfbf2"
+    },
+    {
+      "path": "Assets/Foundation/Editor/AccountSnapshotVerification.cs.meta",
+      "sha256": "d63306ae57c2b951d5c0ba32bcbbfe5f1a1caa472dc49a3f39458ea12dca04dc"
+    },
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "46bf0e2e25409408687b6cf6e61c40fab977ec30ca59015d5f24736fb122e6c4"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "d067d7d888d691e0bba82855d51afa45e13f0239fbc3d018a1503a42d0f77423"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/FoundationController.cs",
+      "sha256": "464da1b90140384b7840804a24149e405d07032a935758b79f81d2db32ebe418"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLocalAccountSnapshot.cs",
+      "sha256": "5c610ede82b8565efefd075abd9ee3ab970bb200af00ab1a2a1dc811d8c9adf9"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLocalAccountSnapshot.cs.meta",
+      "sha256": "de0bbd7ceccd2e6086140dd2b4b60fcfa1d7827167c45c1a6695d62eff5b1ab5"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "94ab95b3a04de4e188fc5f8474828c7d49ee54a3d12b81f922bf002e3092cb0a"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "36ccb99557a8cc362b7021307d166dc32598fb16841900fa033034a1215cefb0"
+    },
+    {
+      "path": "background_account_snapshot_verification.json",
+      "sha256": "c60cd73f5bed6c02604a032c3c887650de57df099aa54a160f587c8d83f63bd7"
+    },
+    {
+      "path": "game_scene_initial.png",
+      "sha256": "ad9765ff3af6c879e2ef9ed10fd259966ab338de042f1fc5b1b951c16bbccbbb"
+    },
+    {
+      "path": "live_account_snapshot_verification.json",
+      "sha256": "5a6e374fdd6aa45d1c0191606b0e7b5a47210192e6486ef5b71209ed2cf04a4c"
+    },
+    {
+      "path": "live_game_scene_verification.json",
+      "sha256": "8a9047f8452024041dff5da1250dd8d7a0627ba5e75c299db14c867a2b7d3844"
+    },
+    {
+      "path": "live_player_board_observation.json",
+      "sha256": "2f996e9ee505d2eb3e1e689e010c3d924fd82f853f537032b09bf0e4107b2936"
+    },
+    {
+      "path": "live_player_input_verification.json",
+      "sha256": "3fa8ff561c926783f4da42249137c164f5cab754d388482ef36c15e2edcd873b"
+    }
+  ]
+}

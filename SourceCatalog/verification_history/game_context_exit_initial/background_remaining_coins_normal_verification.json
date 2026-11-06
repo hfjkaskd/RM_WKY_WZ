@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "test": "remaining-coins-normal",
+  "unity_exit_code": 1,
+  "source_unchanged_during_run": true,
+  "source_sha256": "a884b90c04041e00aae5a62d271c151a8640605fcdda461c928c66098cdad42c",
+  "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+  "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+  "elapsed_seconds": 78.18,
+  "batch": {
+    "passed": false,
+    "test": "remaining-coins-normal",
+    "failure": "System.InvalidOperationException: NullReferenceException: Object reference not set to an instance of an object\nWhitebox.Foundation.Editor.RemainingCoinsVerification+Services.ManualUpdateGameUnits () (at Assets/Foundation/Editor/RemainingCoinsVerification.cs:383)\nWhitebox.Foundation.OriginalGameContextDeactivation.ManualUpdate () (at Assets/Foundation/Runtime/OriginalGameContextDeactivation.cs:65)\nWhitebox.Foundation.OriginalContextUpdateHost.Update () (at Assets/Foundation/Runtime/OriginalContextUpdateHost.cs:41)\n\r\n  at Whitebox.Foundation.Editor.BackgroundVerification.Tick () [0x00017] in F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\Assets\\Foundation\\Editor\\BackgroundVerification.cs:62 ",
+    "timestamp_utc": "2026-10-28T23:34:40.7110150Z",
+    "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+  },
+  "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+}

@@ -1,0 +1,735 @@
+{
+  "baseline_commit": "50c437ea1a60e03b1428bcd6499fadff367947d3",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "native_dispatch": "0x218cc10",
+  "native_localization_sha256": "1ecb0998307aca8f30c7ed0ef6a3149ce75eda794d3d38543e7738a8215101f8",
+  "native_tutorial_steps": [
+    {
+      "level": 21,
+      "type": "LevelTutorial21",
+      "constructor": "0x24e17ac",
+      "steps": [
+        {
+          "step": "ShowStep1",
+          "address": "0x24e1348",
+          "localized_text": [
+            {
+              "call": "00000000024e1650",
+              "key": "Level21Step1",
+              "english_yaml": "Make matches next to a MAILBOX to collect MAILS!"
+            }
+          ],
+          "authored_cell_calls": [
+            {
+              "call": "00000000024e148c",
+              "x": 0,
+              "y": 0
+            },
+            {
+              "call": "00000000024e14fc",
+              "x": 7,
+              "y": 0
+            },
+            {
+              "call": "00000000024e157c",
+              "x": 1,
+              "y": 0
+            }
+          ],
+          "tutorial_calls": [
+            {
+              "address": "00000000024e15f0",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialTouchHelper$$DisableTouchForAllCells"
+            },
+            {
+              "address": "00000000024e161c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialHighlightHelper$$BringObstaclesFront"
+            },
+            {
+              "address": "00000000024e162c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialDialogHelper$$ShowDialog"
+            },
+            {
+              "address": "00000000024e1650",
+              "method": "Royal.Infrastructure.Utils.String.StringExtensions$$Localize"
+            },
+            {
+              "address": "00000000024e1664",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetText"
+            },
+            {
+              "address": "00000000024e1720",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialPositionProvider$$.ctor"
+            },
+            {
+              "address": "00000000024e173c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetPositions"
+            },
+            {
+              "address": "00000000024e1750",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetOptional"
+            },
+            {
+              "address": "00000000024e1784",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetSize"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 31,
+      "type": "LevelTutorial31",
+      "constructor": "0x24e4ef0",
+      "steps": [
+        {
+          "step": "ShowStep1",
+          "address": "0x24e4b38",
+          "localized_text": [
+            {
+              "call": "00000000024e4db8",
+              "key": "Level31Step1",
+              "english_yaml": "Break the ROYAL EGG by making a match next to it!"
+            }
+          ],
+          "authored_cell_calls": [
+            {
+              "call": "00000000024e4c68",
+              "x": 0,
+              "y": 0
+            },
+            {
+              "call": "00000000024e4cd8",
+              "x": null,
+              "y": 0
+            }
+          ],
+          "tutorial_calls": [
+            {
+              "address": "00000000024e4d58",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialTouchHelper$$DisableTouchForAllCells"
+            },
+            {
+              "address": "00000000024e4d84",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialHighlightHelper$$BringObstaclesFront"
+            },
+            {
+              "address": "00000000024e4d94",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialDialogHelper$$ShowDialog"
+            },
+            {
+              "address": "00000000024e4db8",
+              "method": "Royal.Infrastructure.Utils.String.StringExtensions$$Localize"
+            },
+            {
+              "address": "00000000024e4dcc",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetText"
+            },
+            {
+              "address": "00000000024e4e98",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialPositionProvider$$.ctor"
+            },
+            {
+              "address": "00000000024e4eb4",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetPositions"
+            },
+            {
+              "address": "00000000024e4ec8",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetOptional"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 41,
+      "type": "LevelTutorial41",
+      "constructor": "0x24e87a0",
+      "steps": [
+        {
+          "step": "ShowStep1",
+          "address": "0x24e838c",
+          "localized_text": [
+            {
+              "call": "00000000024e86b8",
+              "key": "Level41Step1",
+              "english_yaml": "Break a POTION BOTTLE by making a colored match next to it!"
+            }
+          ],
+          "authored_cell_calls": [
+            {
+              "call": "00000000024e8470",
+              "x": 1,
+              "y": 1
+            },
+            {
+              "call": "00000000024e84e0",
+              "x": 1,
+              "y": 5
+            },
+            {
+              "call": "00000000024e8550",
+              "x": 5,
+              "y": 1
+            },
+            {
+              "call": "00000000024e85c0",
+              "x": 5,
+              "y": 5
+            }
+          ],
+          "tutorial_calls": [
+            {
+              "address": "00000000024e8630",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialTouchHelper$$DisableTouchForAllCells"
+            },
+            {
+              "address": "00000000024e865c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialHighlightHelper$$BringObstaclesFront"
+            },
+            {
+              "address": "00000000024e866c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialDialogHelper$$ShowDialog"
+            },
+            {
+              "address": "00000000024e8694",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetSize"
+            },
+            {
+              "address": "00000000024e86b8",
+              "method": "Royal.Infrastructure.Utils.String.StringExtensions$$Localize"
+            },
+            {
+              "address": "00000000024e86d4",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetText"
+            },
+            {
+              "address": "00000000024e8754",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialPositionProvider$$.ctor"
+            },
+            {
+              "address": "00000000024e8770",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetPositions"
+            },
+            {
+              "address": "00000000024e8784",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetOptional"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 51,
+      "type": "LevelTutorial51",
+      "constructor": "0x24eb910",
+      "steps": [
+        {
+          "step": "ShowStep1",
+          "address": "0x24eb5f4",
+          "localized_text": [
+            {
+              "call": "00000000024eb808",
+              "key": "Level51Step1",
+              "english_yaml": "\"Make matches 2 times\\nnext to a VASE to break it!\""
+            }
+          ],
+          "authored_cell_calls": [
+            {
+              "call": "00000000024eb728",
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "tutorial_calls": [
+            {
+              "address": "00000000024eb7a8",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialTouchHelper$$DisableTouchForAllCells"
+            },
+            {
+              "address": "00000000024eb7d4",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialHighlightHelper$$BringObstaclesFront"
+            },
+            {
+              "address": "00000000024eb7e4",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialDialogHelper$$ShowDialog"
+            },
+            {
+              "address": "00000000024eb808",
+              "method": "Royal.Infrastructure.Utils.String.StringExtensions$$Localize"
+            },
+            {
+              "address": "00000000024eb81c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetText"
+            },
+            {
+              "address": "00000000024eb88c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialPositionProvider$$.ctor"
+            },
+            {
+              "address": "00000000024eb8a8",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetPositions"
+            },
+            {
+              "address": "00000000024eb8bc",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetOptional"
+            },
+            {
+              "address": "00000000024eb8e8",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetSize"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 71,
+      "type": "LevelTutorial71",
+      "constructor": "0x24f1518",
+      "steps": [
+        {
+          "step": "ShowStep1",
+          "address": "0x24f1244",
+          "localized_text": [
+            {
+              "call": "00000000024f1400",
+              "key": "Level71Step1",
+              "english_yaml": "Make matches 5 times next to a BUSH to spread GRASS!"
+            }
+          ],
+          "authored_cell_calls": [
+            {
+              "call": "00000000024f12f8",
+              "x": 1,
+              "y": 1
+            },
+            {
+              "call": "00000000024f1324",
+              "x": 1,
+              "y": 5
+            },
+            {
+              "call": "00000000024f1350",
+              "x": 6,
+              "y": 1
+            },
+            {
+              "call": "00000000024f137c",
+              "x": 6,
+              "y": 5
+            }
+          ],
+          "tutorial_calls": [
+            {
+              "address": "00000000024f13a0",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialTouchHelper$$DisableTouchForAllCells"
+            },
+            {
+              "address": "00000000024f13bc",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialHighlightHelper$$BringObstaclesFront"
+            },
+            {
+              "address": "00000000024f13dc",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialDialogHelper$$ShowDialog"
+            },
+            {
+              "address": "00000000024f1400",
+              "method": "Royal.Infrastructure.Utils.String.StringExtensions$$Localize"
+            },
+            {
+              "address": "00000000024f141c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetText"
+            },
+            {
+              "address": "00000000024f149c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialPositionProvider$$.ctor"
+            },
+            {
+              "address": "00000000024f14b8",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetPositions"
+            },
+            {
+              "address": "00000000024f14d4",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetOptional"
+            },
+            {
+              "address": "00000000024f14f8",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetSize"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 81,
+      "type": "LevelTutorial81",
+      "constructor": "0x2236ba4",
+      "steps": [
+        {
+          "step": "ShowStep1",
+          "address": "0x22369f8",
+          "localized_text": [
+            {
+              "call": "0000000002236ac4",
+              "key": "Level81Step1",
+              "english_yaml": "Clear HONEY by making a match next to it!"
+            }
+          ],
+          "authored_cell_calls": [],
+          "tutorial_calls": [
+            {
+              "address": "0000000002236a70",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialTouchHelper$$DisableTouchForAllCells"
+            },
+            {
+              "address": "0000000002236a80",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialHighlightHelper$$HighlightAllGrid"
+            },
+            {
+              "address": "0000000002236aa0",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialDialogHelper$$ShowDialog"
+            },
+            {
+              "address": "0000000002236ac4",
+              "method": "Royal.Infrastructure.Utils.String.StringExtensions$$Localize"
+            },
+            {
+              "address": "0000000002236ae0",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetText"
+            },
+            {
+              "address": "0000000002236b60",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialPositionProvider$$.ctor"
+            },
+            {
+              "address": "0000000002236b7c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetPositions"
+            },
+            {
+              "address": "0000000002236b9c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetOptional"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level": 91,
+      "type": "LevelTutorial91",
+      "constructor": "0x223a198",
+      "steps": [
+        {
+          "step": "ShowStep1",
+          "address": "0x2239d60",
+          "localized_text": [
+            {
+              "call": "000000000223a080",
+              "key": "Level91Step1",
+              "english_yaml": "Hit SAFE 5 times with power-ups to break it!"
+            }
+          ],
+          "authored_cell_calls": [
+            {
+              "call": "0000000002239e50",
+              "x": 1,
+              "y": 2
+            },
+            {
+              "call": "0000000002239ec0",
+              "x": 1,
+              "y": 5
+            },
+            {
+              "call": "0000000002239f30",
+              "x": 6,
+              "y": 2
+            },
+            {
+              "call": "0000000002239fa0",
+              "x": 6,
+              "y": 5
+            }
+          ],
+          "tutorial_calls": [
+            {
+              "address": "000000000223a010",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialTouchHelper$$DisableTouchForAllCells"
+            },
+            {
+              "address": "000000000223a03c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialHighlightHelper$$BringObstaclesFront"
+            },
+            {
+              "address": "000000000223a05c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.TutorialDialogHelper$$ShowDialog"
+            },
+            {
+              "address": "000000000223a080",
+              "method": "Royal.Infrastructure.Utils.String.StringExtensions$$Localize"
+            },
+            {
+              "address": "000000000223a09c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetText"
+            },
+            {
+              "address": "000000000223a11c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialPositionProvider$$.ctor"
+            },
+            {
+              "address": "000000000223a138",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetPositions"
+            },
+            {
+              "address": "000000000223a154",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetOptional"
+            },
+            {
+              "address": "000000000223a17c",
+              "method": "Royal.Scenes.Game.Levels.Units.LevelTutorials.View.TutorialDialogView$$SetSize"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "native_layout": {
+    "21": {
+      "portraitGridTopOffset": 1.4,
+      "landscapeWorldOrigin": true,
+      "anchors": [
+        "0x24e17b4",
+        "0x24e1844"
+      ]
+    },
+    "31": {
+      "portraitCell": [
+        3,
+        5
+      ],
+      "portraitOffset": [
+        0.5,
+        0.4
+      ],
+      "landscapeWorldOrigin": true,
+      "anchors": [
+        "0x24e4ef8",
+        "0x24e4fc0"
+      ]
+    },
+    "41": {
+      "textWidth": 7.5,
+      "backgroundHalfWidth": 4.2,
+      "anchors": [
+        "0x24e87a8",
+        "0x24e87c0"
+      ]
+    },
+    "51": {
+      "portraitCell": [
+        4,
+        5
+      ],
+      "portraitOffset": [
+        0,
+        0.4
+      ],
+      "landscapeGridTopOffset": -2,
+      "anchors": [
+        "0x24eb918",
+        "0x24eb968"
+      ]
+    },
+    "71": {
+      "gridTopOffset": 0.6,
+      "anchors": [
+        "0x24f1520",
+        "0x24f1538"
+      ],
+      "rightHandCellsResolveToBushMasters": true
+    }
+  },
+  "test": {
+    "passed": true,
+    "canonical_source_proof": false,
+    "test": "core-modal-tutorials",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": null,
+    "source_sha256": null,
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-modal-tutorials.log",
+    "elapsed_seconds": 43.91,
+    "batch": {
+      "passed": true,
+      "test": "core-modal-tutorials",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T09:00:50.1209154Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "production_observations": {
+    "status": "finished",
+    "failure": "",
+    "passed": true,
+    "steps": [
+      {
+        "level": 21,
+        "raisedGroups": 4,
+        "movesSpent": 1,
+        "instruction": "Make matches next to a MAILBOX to collect MAILS!"
+      },
+      {
+        "level": 31,
+        "raisedGroups": 61,
+        "movesSpent": 1,
+        "instruction": "Break the ROYAL EGG by making a match next to it!"
+      },
+      {
+        "level": 41,
+        "raisedGroups": 5,
+        "movesSpent": 1,
+        "instruction": "Break a POTION BOTTLE by making a colored match next to it!"
+      },
+      {
+        "level": 51,
+        "raisedGroups": 37,
+        "movesSpent": 1,
+        "instruction": "Make matches 2 times\nnext to a VASE to break it!"
+      },
+      {
+        "level": 71,
+        "raisedGroups": 5,
+        "movesSpent": 1,
+        "instruction": "Make matches 5 times next to a BUSH to spread GRASS!"
+      },
+      {
+        "level": 81,
+        "raisedGroups": 2,
+        "movesSpent": 1,
+        "instruction": "Clear HONEY by making a match next to it!"
+      },
+      {
+        "level": 91,
+        "raisedGroups": 5,
+        "movesSpent": 1,
+        "instruction": "Hit SAFE 5 times with power-ups to break it!"
+      }
+    ]
+  },
+  "byte_verified_tested_files": {
+    "Assets/Foundation/Editor/BackgroundVerification.cs": "9ac0f6ce48da1fe87d1b29f5bc79b0dc604d4ff8a0c5e05a0c968eb37bf9cb89",
+    "Assets/Foundation/Editor/CoreMailVerification.cs": "5dfd624db17bb4bd36cc45a19a4064ed033cb2b7693571a538ee137557d8cada",
+    "Assets/Foundation/Editor/CoreMixedChapterVerification.cs": "0fb76ab52c2decbffface75739e4e8143927b4e77f6a773509bc2527226cf852",
+    "Assets/Foundation/Editor/CoreModalTutorialVerification.cs": "29bcf42ca61ce46876f5b327e2899a1387924c179065b72069503e4ab8cd764b",
+    "Assets/Foundation/Editor/CoreModalTutorialVerification.cs.meta": "e469486ae029b81a8c3865156ca9c7cf286563cfaa0891a6462d9d96de3cd249",
+    "Assets/Foundation/Editor/CoreUiAuthoring.cs": "37944e4faebe5b5fc8532d04c5821d676fbab85218d1482e1ed1134e9ac99833",
+    "Assets/Foundation/Runtime/OriginalBushItemView.cs": "1008a139e12166ce4d9c577c140829f2cb3766981098fc9e9c46d00df01d43c4",
+    "Assets/Foundation/Runtime/OriginalEggItemSpriteView.cs": "cbc4ac1a584d0d11b5489bf006ec53d6b4649c07a23e9c8114b6e4e6f13d2798",
+    "Assets/Foundation/Runtime/OriginalMailBoxItemView.cs": "7d754c33ca46e50a5b04296850eea94aa1e306c4d48af8febea6d86e869bf78a",
+    "Assets/Foundation/Runtime/OriginalModalTutorialView.cs": "4a7e400d4dcac7cfaf2351618bd1ca9667942ebca10e991f94c554c530129957",
+    "Assets/Foundation/Runtime/OriginalPotionItemView.cs": "84b126bb0afc4cb535cab0555ba5c84c049f698fcdf18b62158fd3841a633add",
+    "Assets/Foundation/Runtime/OriginalSafeItemView.cs": "12b76dea111b057d70a358e5aa429bee795599d24832f68f4ad518dc837c5794",
+    "Assets/Foundation/Runtime/OriginalVaseItemSpriteView.cs": "7662577a8ab3d55f18f5b261bab7da5eeaa2da1abac3ac3be3de3c2806c23afa",
+    "Assets/Foundation/Scenes/GameScene.unity": "c1449a998237f2ee5ce55b1727dbfeac535f98c1fffe1bfb45b3b9cc88a50d89",
+    "Assets/Resources/Foundation/Prefabs/CoreModalTutorial.prefab": "e6a12b233a8952582c9b0ace7d4d5e956fa189bebb5a61c0c97ea9b7bfd50364",
+    "Packages/manifest.json": "e7526e7aa8730bf51b97e896ef32bfb7830a22cea8920f6b2c97a848909b2197",
+    "ProjectSettings/EditorBuildSettings.asset": "dfd9c22e5754f091bc505c5fea3d5f58c9962944b53d3b36d900ac9b544e046c"
+  },
+  "settings_override": "Separate progress filename, verified after restoring the single filename field.",
+  "verification_limits": [
+    "The background Editor opens the formal GameScene and uses isolated progress to select the seven boards.",
+    "The production modal blocks early clicks and board input, raises the original item view groups, accepts a standard Unity Button click, restores sorting and accepts a legal color swap costing one move on each board.",
+    "This verifies the portrait modal path and authored English resources. Landscape appearance, device touch, other tutorial branches and original rendered parity remain open."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "9ac0f6ce48da1fe87d1b29f5bc79b0dc604d4ff8a0c5e05a0c968eb37bf9cb89"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreMailVerification.cs",
+      "sha256": "5dfd624db17bb4bd36cc45a19a4064ed033cb2b7693571a538ee137557d8cada"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreMixedChapterVerification.cs",
+      "sha256": "0fb76ab52c2decbffface75739e4e8143927b4e77f6a773509bc2527226cf852"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreModalTutorialVerification.cs",
+      "sha256": "29bcf42ca61ce46876f5b327e2899a1387924c179065b72069503e4ab8cd764b"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreModalTutorialVerification.cs.meta",
+      "sha256": "e469486ae029b81a8c3865156ca9c7cf286563cfaa0891a6462d9d96de3cd249"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreUiAuthoring.cs",
+      "sha256": "37944e4faebe5b5fc8532d04c5821d676fbab85218d1482e1ed1134e9ac99833"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBushItemView.cs",
+      "sha256": "1008a139e12166ce4d9c577c140829f2cb3766981098fc9e9c46d00df01d43c4"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalEggItemSpriteView.cs",
+      "sha256": "cbc4ac1a584d0d11b5489bf006ec53d6b4649c07a23e9c8114b6e4e6f13d2798"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailBoxItemView.cs",
+      "sha256": "7d754c33ca46e50a5b04296850eea94aa1e306c4d48af8febea6d86e869bf78a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalModalTutorialView.cs",
+      "sha256": "4a7e400d4dcac7cfaf2351618bd1ca9667942ebca10e991f94c554c530129957"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPotionItemView.cs",
+      "sha256": "84b126bb0afc4cb535cab0555ba5c84c049f698fcdf18b62158fd3841a633add"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalSafeItemView.cs",
+      "sha256": "12b76dea111b057d70a358e5aa429bee795599d24832f68f4ad518dc837c5794"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalVaseItemSpriteView.cs",
+      "sha256": "7662577a8ab3d55f18f5b261bab7da5eeaa2da1abac3ac3be3de3c2806c23afa"
+    },
+    {
+      "path": "Assets/Foundation/Settings/CoreFlowSettings.asset",
+      "sha256": "43ee35b2eafeebd6fc7a38550a863dc3b14de00ca6136771e6e97d692afa1797"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/CoreModalTutorial.prefab",
+      "sha256": "e6a12b233a8952582c9b0ace7d4d5e956fa189bebb5a61c0c97ea9b7bfd50364"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "2bf0d36e49a4609adbd65dad4d6420f98d228c833f4f2dbf6b9b14a0f8cb4fa0"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "71dbab2b0d2cab98355f8d91e3cc116826f87042c2b955942c4f3e773f5cb149"
+    },
+    {
+      "path": "core_modal_level21.png",
+      "sha256": "9ee3899ee8b91e77cce60f0e5c4a3819e93bdc907709fa5ad8250576f2a07a68"
+    },
+    {
+      "path": "core_modal_level31.png",
+      "sha256": "46a518eec550f031caf78e76808cbf70a539d343beaab582574e7929f3524826"
+    },
+    {
+      "path": "core_modal_level41.png",
+      "sha256": "080b19394c6b7da0fb71902925c137dea87251006f9e55b5bfdea2a6cdc07f1d"
+    },
+    {
+      "path": "core_modal_level51.png",
+      "sha256": "8507dd395f1281ee440f0e741d4304fc2a271e878897fa0ab718c99889803916"
+    },
+    {
+      "path": "core_modal_level71.png",
+      "sha256": "6018ca761343dbce646bfe967904dcee83e8b30bb45703c45877a47a2ab1ad10"
+    }
+  ]
+}

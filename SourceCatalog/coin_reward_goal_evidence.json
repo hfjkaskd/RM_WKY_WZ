@@ -1,0 +1,115 @@
+{
+  "production_end_flow_bound": false,
+  "methods": [
+    {
+      "rva": "0x3214efc",
+      "name": "Royal.Scenes.Game.Levels.Units.GoalManager$$ReplaceGoalsWithCoin",
+      "body_sha256": "3571a1563e8b5aa21f6755986a4aeba50218ca2e44d6e8be678dbe3f154fc340"
+    },
+    {
+      "rva": "0x18cbad4",
+      "name": "Royal.Scenes.Game.Ui.Top.Goal.GoalPanelUi$$ReplaceGoalsWithCoin",
+      "body_sha256": "9328e6065faa4171a62f1a0ef4c1efb9c0c951ef4402075e425bbf6ce876bc5c"
+    },
+    {
+      "rva": "0x18cb554",
+      "name": "Royal.Scenes.Game.Ui.Top.Goal.GoalUi$$Init",
+      "body_sha256": "c8d2c8eea5ba015f93ee1aa24536fb8313592caadbaaccb99dc9c7cf0ddbc96b"
+    },
+    {
+      "rva": "0x18cc5cc",
+      "name": "Royal.Scenes.Game.Ui.Top.Goal.GoalUi$$OnGoalUpdated",
+      "body_sha256": "8b7e23725e1e856faa2233b37ec6875910723ed7ed05a0719a1cb8a89faa5de8"
+    },
+    {
+      "rva": "0x18ccc6c",
+      "name": "Royal.Scenes.Game.Ui.Top.Goal.GoalUi$$<OnGoalUpdated>b__22_0",
+      "body_sha256": "a50522dec66b406f3091de9f04e4c1ba1d1db6fdeb34f4a62fab731b8a0ee6a6"
+    },
+    {
+      "rva": "0x1630680",
+      "name": "Royal.Scenes.Game.Ui.Top.TopUi$$AnimateTargetTextAsReward",
+      "body_sha256": "27bb3dd6dddeaed419ea810987908abbbfe9de3378cd9ca4b5eb77c221ce3719"
+    },
+    {
+      "rva": "0x16304a8",
+      "name": "Royal.Scenes.Game.Ui.Top.TopUi$$ChangeTargetTextAsReward",
+      "body_sha256": "41fcc8fde9ff9254857c5a415265ecbd5f7def4ea15670d24b10c66118eb368d"
+    }
+  ],
+  "goal_model_rules": [
+    "Clear prerequisites; preserve board count, replacing each board with GoalTuple21(initialCoins,false).",
+    "Reset flying21 only, retaining unrelated flying entries; emit no model/UI count notifications during replacement.",
+    "Call bound GoalPanel.ReplaceGoalsWithCoin after model mutation; preserve completed-check count.",
+    "CoinGoalCondition always false; IncreaseGoalUi affects only presentation count."
+  ],
+  "presentation": [
+    "Original CoinItemAssets goal21 icon/shadow/offset/alpha/scale serialized into GoalUiAssets.",
+    "Instantiate recovered GoalUi prefab at original single-goal position/count offset and scale0; .25 second OutBack appearance.",
+    "Existing recovered target title changes to configured Reward; US/English original world-Y offset -.022 and .25 second scale-up.",
+    "Native collection particles, default OutQuad icon pulse .8/.8/0 for .1s and return .1s; flying sequence1.1/.9/0 for .08 then .11s return with active-sequence gate.",
+    "Unity time drives reward tweens; current native check animation keeps its existing level-clock transport."
+  ],
+  "literal_resolution": {
+    "GOT": "0x53c0d60",
+    "metadata_slot": "0x5604af8",
+    "value": "BonusUiReward",
+    "other_GOT": "0x537c648",
+    "other_type": "LocalizationHelper"
+  },
+  "native_float_data": {
+    "0x3fb257c": 1.100000023841858,
+    "0x3fb2580": 0.8999999761581421,
+    "0x3fb2760": 0.07999999821186066,
+    "0x3fbe74c": 0.10999999940395355,
+    "0x3fb2544": 0.800000011920929,
+    "0x3fb253c": 0.10000000149011612,
+    "0x3fd70f8": 0.02199999988079071
+  },
+  "background": {
+    "passed": true,
+    "test": "remaining-moves-replacement",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "163f159b1e8162792e9b1c43d4f100c1bf28bc6c58047eac579f2f3c69b6819e",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-moves-replacement.log",
+    "elapsed_seconds": 412.36,
+    "batch": {
+      "passed": true,
+      "test": "remaining-moves-replacement",
+      "failure": "",
+      "timestamp_utc": "2026-10-28T07:21:34.3280673Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "live": {
+    "passed": true,
+    "failure": "",
+    "displayed_moves": "0",
+    "converted_moves": 25,
+    "model_moves": 25,
+    "holes": 0,
+    "reward_ui_count": 11,
+    "reward_model_count": 10,
+    "elapsed": 11.770336151123047,
+    "scope": "Formal36box goal completion then explicit GameState/Session win fixture; production coin goal replacement, original coin/shadow resources, reward title/appearance,25actual pooled particle flights/replacements and real special explosion/cascade/refill. Explicit single reward arrival callback verifies UI/model count separation and hit particles/pulse. Coin pilots/remaining manager, production WinFail/Flow/account/settlement binding, localization/curved title and rendered-original parity remain pending."
+  },
+  "render_inspected": "remaining_moves_reward.png: Reward title, original coin/shadow, count11, no check, Moves0 and filled board. One explicit arrival fixture; coins are not yet collected from actual special explosions.",
+  "runtime_source_sha256": {
+    "OriginalGoalManager.cs": "73a8e2f3f24adb6003af993ff60502444091430030b6104bc3a24005e8969a09",
+    "OriginalGoalPanelUi.cs": "34030f70fd5e3cb5b6d5f340e294e51360cfd1617b9974229c4f0f8542df31e0",
+    "OriginalGoalUi.cs": "84e9d5bbcbdba08ab04ef5d527368881b898c64741de8c6b2f9006d2b6aa029f",
+    "OriginalGameplayHud.cs": "005ebad5f46b9fb2fe1e209a06823b76b0598117369dc08b3f09e1b4920415ed",
+    "OriginalGoalUiAssets.cs": "8245cf2ee900a2cd1339f3f60661ebbb02a6d31dcec65a3dce39b9dde795426d"
+  },
+  "pending": [
+    "Formal WinFail/session/Flow/end result handoff remains unbound.",
+    "RemainingMovesManager and native coin pilot/coin tracer/pools and special explosion collection/account credit are not yet composed.",
+    "Localization owner (including RTL branch) and TextProOnACurve title geometry are pending; no full visual parity claim.",
+    "Own Unity tween scheduling replaces unavailable DOTween runtime; frame-level overlap/scheduling fidelity is not independently ARM64-differential-verified.",
+    "Background scenario uses explicit win/session and single coin arrival fixtures; it is not a natural win or full settlement verification."
+  ],
+  "performance": "One low-frequency prefab replacement and renderer-cache refresh. Resource-path sprite loads and small reused icon pulse list; no per-frame hierarchy creation, resource loading or delegate allocation. No new runtime assemblies."
+}

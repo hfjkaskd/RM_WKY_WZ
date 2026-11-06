@@ -1,0 +1,872 @@
+{
+  "schema": 1,
+  "baseline_commit": "51cfef907e7ff1ec9bb6ee12bbbae96345ef205a",
+  "verified_utc": "2026-11-05T19:56:16.418168+00:00",
+  "current_scope": "Original ordinary levels1-100, core gameplay only; no peripherals; SDK unchanged.",
+  "full_current_scope_complete": false,
+  "problem": "Hint animation advanced on the first prepare frame and combined endpoint sampling, state transition, return preparation and pause cleanup. It also reconstructed match brightness from assumed pulse ratios instead of each current highlight and hid match particles later than native.",
+  "runtime_change": {
+    "path": "Assets/Foundation/Runtime/OriginalMatchHintManager.cs",
+    "sha256": "8ba654518863e70c4940cdf3d4b500d0aa1fb675758d90a3a8b569bfb7ddce68",
+    "native_semantic_states": [
+      "None",
+      "PreFirst",
+      "Interpolate",
+      "PreSecond",
+      "PreWait",
+      "WaitShort",
+      "Complete",
+      "Stop",
+      "StopComplete"
+    ],
+    "changes": [
+      "Separate forward/return/stop preparation, interpolation, transition-only, pre-wait and completion frames for all three kinds.",
+      "Test old elapsed before accumulating the active-level delta; clamp interpolation and defer its transition to the following call.",
+      "Capture actual match brightness and interpolation endpoints at each preparation; use native neutral positions/scales for targets.",
+      "Hide particles at the sixth forward preparation for match, combo and tap, and again at final completion as native.",
+      "Continue gentle stopping before ordinary input/operation guards; preserve the existing live/pool-use/external-pose handoff protection."
+    ],
+    "unchanged_methods_byte_equal_after_line_endings": [
+      "private void Write(Vector3 value)",
+      "private void ResetSearch()",
+      "private void OnSwap(",
+      "private void OnTap(",
+      "private void OnTntOrRocketTapped()",
+      "public void Dispose()"
+    ],
+    "timing_settings_and_prefabs_unchanged": true,
+    "new_runtime_packages_or_reflection": false,
+    "runtime_frame_allocation_added": false,
+    "implementation_cost": "One fixed-state transition per update, existing fixed14 highlight/particle arrays and pooled effects; extra vector/float fields only. No new scene searches, per-frame allocations or dynamic UI construction."
+  },
+  "native_reference": {
+    "version": 38911,
+    "library_sha256": "017f7d4716f9375d86bbbe006740e8e68e65c776bad757d00d8a3c120ee8f5eb",
+    "manual_update_methods": {
+      "match": "0x2188134",
+      "combo": "0x2186574",
+      "tap": "0x2187db8"
+    },
+    "helper_reference_methods": [
+      "0x218b508",
+      "0x2186890",
+      "0x218b9e8"
+    ],
+    "executed_entry_counts": {
+      "0x2186574": 4626,
+      "0x2188134": 7252,
+      "0x2187db8": 5568,
+      "0x2186890": 389,
+      "0x218b508": 496,
+      "0x218b9e8": 0,
+      "0x2186450": 62,
+      "0x2187a00": 62,
+      "0x21879ec": 62
+    },
+    "note": "Tap interpolation setup is inlined in ManualUpdate; its standalone helper entry is not called in this trace.",
+    "ports_and_exclusions": "Explicit current-level delta and Unity Time.time; neutral item-root storage; IHintable get/set/max highlight dispatch; metadata; restoration and particle Hide/Recycle transport. Actual ManualUpdate and interpolation helpers execute. Fixtures enter prepared state1; search, native Start/PrepareHintables, rendered scene, Unity scheduler/audio and external root handoff are outside this oracle."
+  },
+  "portable_differential": {
+    "baseline": {
+      "passed": false,
+      "source": "C:/RMHintMotion_20261105/baseline.cs",
+      "source_sha256": "e2af62b31021414783a788405e410958a0e1213729691218f9244e0a88f54e87",
+      "scenarios": 216,
+      "states": 17446,
+      "numeric_samples": 337154,
+      "tolerance": 3e-06,
+      "maximum_absolute_error": 108.3333740234375,
+      "mismatched_states": 17060,
+      "observable_mismatched_states": 15169,
+      "native_calls": {
+        "manual": 17446,
+        "interpolation_helper": 885,
+        "gentle_stop": 186
+      },
+      "binary32_roundtrip_normalized": true,
+      "post_interrupt_manager_schedule_states_outside_animation_oracle": 1710,
+      "scope": "The complete production manager is compiled; only its declaration gains partial for a strongly typed fixture bridge. No method bodies are edited or called by reflection. Identical explicit root/highlight/clock/particle ports and prepared input match the native oracle. Repeat scheduling is compared before interruption and in every natural cycle; after StopProcess, its cleared search gate is not equated with the native animation-only completionTime field. Search, native Start/PrepareHintables, actual Unity roots/rendering/audio, scheduling and external root takeover are outside this comparison."
+    },
+    "canonical": {
+      "passed": true,
+      "source": "F:/Coin Merge Fortune/RM/Recovery/UnityFoundation/Assets/Foundation/Runtime/OriginalMatchHintManager.cs",
+      "source_sha256": "8ba654518863e70c4940cdf3d4b500d0aa1fb675758d90a3a8b569bfb7ddce68",
+      "scenarios": 216,
+      "states": 17446,
+      "numeric_samples": 337154,
+      "tolerance": 3e-06,
+      "maximum_absolute_error": 2.384185791015625e-07,
+      "mismatched_states": 0,
+      "observable_mismatched_states": 0,
+      "native_calls": {
+        "manual": 17446,
+        "interpolation_helper": 885,
+        "gentle_stop": 186
+      },
+      "binary32_roundtrip_normalized": true,
+      "post_interrupt_manager_schedule_states_outside_animation_oracle": 1710,
+      "scope": "The complete production manager is compiled; only its declaration gains partial for a strongly typed fixture bridge. No method bodies are edited or called by reflection. Identical explicit root/highlight/clock/particle ports and prepared input match the native oracle. Repeat scheduling is compared before interruption and in every natural cycle; after StopProcess, its cleared search gate is not equated with the native animation-only completionTime field. Search, native Start/PrepareHintables, actual Unity roots/rendering/audio, scheduling and external root takeover are outside this comparison."
+    },
+    "native_frames": 17446,
+    "profile_coverage": [
+      "30fps",
+      "60fps",
+      "120fps",
+      "alternating",
+      "zero_delta",
+      "hitch",
+      "large_delta"
+    ],
+    "interrupt_cases": 186,
+    "other_cases": "Complete cycles; pre-existing highlights; up to14 highlighted items; horizontal/vertical directions.",
+    "post_interrupt_schedule_scope": "1710 post-interruption manager search-gate values are intentionally not equated to the native animation-only retained completionTime field. Pose, highlights, events and animation states remain checked in those frames. Natural/pre-interruption repeat timing is compared.",
+    "initial_comparison_adjustment": "The first candidate comparison had444 next_at-only differences: binary32 decimal serialization plus comparing an animation completion field with a reset manager search gate. The initial result is retained; numerical values now round-trip as binary32 and the ownership boundary is explicit. No animation/pose tolerance was loosened."
+  },
+  "unity_native_pose": {
+    "baseline": {
+      "passed": false,
+      "tracks": 2,
+      "kinds": [
+        "match",
+        "match"
+      ],
+      "frames": 18,
+      "numeric_samples": 234,
+      "maximum_absolute_error": 0.09222224354743958,
+      "tolerance": 3e-06,
+      "scope": "An Editor observer records public real Unity hint-root positions/scales and source highlight, one frame after initial selection through the frame before the first test gesture or natural completion. Actual observed presentation delta and Unity Time.time are replayed through original ARM64 animation methods. The match replay observes its source highlight only; additional group members, particles, interruption and sorting are covered by separate functional/portable checks. Controlled input samples, a level2 rocket fixture and test cadence are explicit. No original render/audio/device parity claim."
+    },
+    "candidate_tracks": 13,
+    "candidate_frames": 867,
+    "candidate_numeric_samples": 11006,
+    "candidate_maximum_absolute_error": 1.1920928955078125e-07,
+    "all_passed": true,
+    "scope": "An Editor observer records public real Unity hint-root positions/scales and source highlight, one frame after initial selection through the frame before the first test gesture or natural completion. Actual observed presentation delta and Unity Time.time are replayed through original ARM64 animation methods. The match replay observes its source highlight only; additional group members, particles, interruption and sorting are covered by separate functional/portable checks. Controlled input samples, a level2 rocket fixture and test cadence are explicit. No original render/audio/device parity claim."
+  },
+  "formal_runtime_jobs": {
+    "unity_candidate_match60": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-match-hints",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T19:46:14.5479844Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "functional_report": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "suppressed_during_fixed_tutorial": true,
+        "used_native_particles": true,
+        "forced_release": true,
+        "successful_hinted_swaps": 2,
+        "hint_frame_delay": [
+          42,
+          183
+        ],
+        "particle_counts": [
+          4,
+          0
+        ],
+        "intermediate_stop_frames": [
+          5,
+          5
+        ],
+        "stop_seconds": [
+          0.16666662693023682,
+          0.16666603088378906
+        ]
+      },
+      "native_pose_comparison": {
+        "passed": true,
+        "tracks": 2,
+        "kinds": [
+          "match",
+          "match"
+        ],
+        "frames": 20,
+        "numeric_samples": 260,
+        "maximum_absolute_error": 0.0,
+        "tolerance": 3e-06,
+        "scope": "An Editor observer records public real Unity hint-root positions/scales and source highlight, one frame after initial selection through the frame before the first test gesture or natural completion. Actual observed presentation delta and Unity Time.time are replayed through original ARM64 animation methods. The match replay observes its source highlight only; additional group members, particles, interruption and sorting are covered by separate functional/portable checks. Controlled input samples, a level2 rocket fixture and test cadence are explicit. No original render/audio/device parity claim."
+      }
+    },
+    "unity_candidate_power60": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-power-hints",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T19:47:35.9719707Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "functional_report": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "rocket_tap": true,
+        "authored_combo": true,
+        "combo_source_tap": true,
+        "tap_restored_at_stop": true,
+        "tap_saved_on_pause": false,
+        "tap_saved_during_play": true,
+        "tap_count_reopened": 1,
+        "combo_intermediate_stop_frames": 5,
+        "stop_seconds": [
+          0.1833333969116211,
+          0.16666603088378906
+        ],
+        "tap_peak_observed": 1.0393157005310059,
+        "tap_pause_observed": 0.5,
+        "combo_distance_observed": 0.03830769285559654,
+        "particle_counts": [
+          1,
+          2
+        ],
+        "refills": [
+          9,
+          21
+        ]
+      },
+      "native_pose_comparison": {
+        "passed": true,
+        "tracks": 3,
+        "kinds": [
+          "match",
+          "tap",
+          "combo"
+        ],
+        "frames": 323,
+        "numeric_samples": 4096,
+        "maximum_absolute_error": 1.1920928955078125e-07,
+        "tolerance": 3e-06,
+        "scope": "An Editor observer records public real Unity hint-root positions/scales and source highlight, one frame after initial selection through the frame before the first test gesture or natural completion. Actual observed presentation delta and Unity Time.time are replayed through original ARM64 animation methods. The match replay observes its source highlight only; additional group members, particles, interruption and sorting are covered by separate functional/portable checks. Controlled input samples, a level2 rocket fixture and test cadence are explicit. No original render/audio/device parity claim."
+      }
+    },
+    "unity_candidate_match30": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-match-hints",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T19:48:53.8356217Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "functional_report": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "suppressed_during_fixed_tutorial": true,
+        "used_native_particles": true,
+        "forced_release": true,
+        "successful_hinted_swaps": 2,
+        "hint_frame_delay": [
+          42,
+          183
+        ],
+        "particle_counts": [
+          4,
+          0
+        ],
+        "intermediate_stop_frames": [
+          2,
+          2
+        ],
+        "stop_seconds": [
+          0.23333334922790527,
+          0.23333358764648438
+        ]
+      },
+      "native_pose_comparison": {
+        "passed": true,
+        "tracks": 2,
+        "kinds": [
+          "match",
+          "match"
+        ],
+        "frames": 12,
+        "numeric_samples": 156,
+        "maximum_absolute_error": 0.0,
+        "tolerance": 3e-06,
+        "scope": "An Editor observer records public real Unity hint-root positions/scales and source highlight, one frame after initial selection through the frame before the first test gesture or natural completion. Actual observed presentation delta and Unity Time.time are replayed through original ARM64 animation methods. The match replay observes its source highlight only; additional group members, particles, interruption and sorting are covered by separate functional/portable checks. Controlled input samples, a level2 rocket fixture and test cadence are explicit. No original render/audio/device parity claim."
+      }
+    },
+    "unity_candidate_power30": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-power-hints",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T19:49:33.8720267Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "functional_report": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "rocket_tap": true,
+        "authored_combo": true,
+        "combo_source_tap": true,
+        "tap_restored_at_stop": true,
+        "tap_saved_on_pause": false,
+        "tap_saved_during_play": true,
+        "tap_count_reopened": 1,
+        "combo_intermediate_stop_frames": 2,
+        "stop_seconds": [
+          0.2666664123535156,
+          0.23333358764648438
+        ],
+        "tap_peak_observed": 1.0350526571273804,
+        "tap_pause_observed": 0.5999994277954102,
+        "combo_distance_observed": 0.0384230837225914,
+        "particle_counts": [
+          1,
+          2
+        ],
+        "refills": [
+          9,
+          22
+        ]
+      },
+      "native_pose_comparison": {
+        "passed": true,
+        "tracks": 3,
+        "kinds": [
+          "match",
+          "tap",
+          "combo"
+        ],
+        "frames": 189,
+        "numeric_samples": 2398,
+        "maximum_absolute_error": 5.960464477539063e-08,
+        "tolerance": 3e-06,
+        "scope": "An Editor observer records public real Unity hint-root positions/scales and source highlight, one frame after initial selection through the frame before the first test gesture or natural completion. Actual observed presentation delta and Unity Time.time are replayed through original ARM64 animation methods. The match replay observes its source highlight only; additional group members, particles, interruption and sorting are covered by separate functional/portable checks. Controlled input samples, a level2 rocket fixture and test cadence are explicit. No original render/audio/device parity claim."
+      }
+    },
+    "unity_candidate_pause60": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-progress-pause",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T19:50:19.3577317Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "functional_report": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "rocket_tap": true,
+        "authored_combo": true,
+        "combo_source_tap": true,
+        "tap_restored_at_stop": true,
+        "tap_saved_on_pause": true,
+        "tap_saved_during_play": false,
+        "tap_count_reopened": 1,
+        "combo_intermediate_stop_frames": 5,
+        "stop_seconds": [
+          0.1833333969116211,
+          0.16666603088378906
+        ],
+        "tap_peak_observed": 1.0393157005310059,
+        "tap_pause_observed": 0.5,
+        "combo_distance_observed": 0.03830769285559654,
+        "particle_counts": [
+          1,
+          2
+        ],
+        "refills": [
+          9,
+          11
+        ]
+      },
+      "native_pose_comparison": {
+        "passed": true,
+        "tracks": 3,
+        "kinds": [
+          "match",
+          "tap",
+          "combo"
+        ],
+        "frames": 323,
+        "numeric_samples": 4096,
+        "maximum_absolute_error": 1.1920928955078125e-07,
+        "tolerance": 3e-06,
+        "scope": "An Editor observer records public real Unity hint-root positions/scales and source highlight, one frame after initial selection through the frame before the first test gesture or natural completion. Actual observed presentation delta and Unity Time.time are replayed through original ARM64 animation methods. The match replay observes its source highlight only; additional group members, particles, interruption and sorting are covered by separate functional/portable checks. Controlled input samples, a level2 rocket fixture and test cadence are explicit. No original render/audio/device parity claim."
+      }
+    },
+    "unity_candidate_flow": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-flow",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T19:51:21.6174256Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "functional_report": {
+        "passed": true,
+        "production_win_remaining_result_bound": true,
+        "actual_next_level_loaded": true,
+        "production_zero_move_failure_bound": true,
+        "actual_retry_reloaded_same_level": true,
+        "cap100_and_restart_verified": true,
+        "core_booster_inventory_purchase_ui_absent": true,
+        "king_win_reaction": "k-1sevinme_6",
+        "king_win_connector": "idle_connect_2",
+        "king_win_loop": "idle_connect_1",
+        "king_fail_reaction": "k-1_uzulme",
+        "king_win_mixed": true,
+        "king_connector_mixed": true,
+        "king_fail_mixed": true,
+        "win_logo_backdrop_fade": true,
+        "remaining_moves_backdrop_reused": true,
+        "result_and_failure_backdrops_cleared_on_reload": true,
+        "back_respected_remaining_moves": false,
+        "back_closed_win": false,
+        "back_respected_failure_dialog": false,
+        "castle_garden_background_survives_continue_and_retry": true,
+        "retry_reused_scene_pool_and_hud": true,
+        "retry_recycled_tnt_and_fuse": true,
+        "cold_entry_verified": true,
+        "cold_entry_board_captured": true,
+        "continue_entry_verified": true,
+        "retry_entry_verified": true,
+        "application_random_survives_continue": true,
+        "music_stopped_at_win_logo": true,
+        "music_stopped_at_failure": true,
+        "opening_music": "Gameplay_1",
+        "continue_music": "Gameplay_3",
+        "retry_music": "Gameplay_2",
+        "paused_music_samples": 28223,
+        "out_of_moves_banner_center_verified": true,
+        "out_of_moves_standard_button_skip_verified": true,
+        "out_of_moves_auto_duration": 1.9646759033203125,
+        "out_of_moves_skip_duration": 0.4166717529296875,
+        "win_text_stagger": true,
+        "win_text_overshoot": true,
+        "win_curved_text_settled": true,
+        "win_pillow_started": true,
+        "win_title_curve_verified": true,
+        "fail_title_curve_verified": true,
+        "win_star_hit_time": 28.922773361206055,
+        "win_idle_loop_time": 29.366735458374023,
+        "win_pillow_delay": 0.0,
+        "win_first_glyph_delay": 0.1378917694091797,
+        "original_level3_two_layer_boxes_bound": true,
+        "formal_mock_ad_preview_disconnected": true,
+        "level1_attempt_seed": 111,
+        "level2_attempt_seed": 404,
+        "level2_retry_seed": 167,
+        "level2_second_retry_seed": 985,
+        "level3_attempt_seed": 697,
+        "win_left_moves": 21,
+        "win_remaining_reward": 66,
+        "failure": "",
+        "scope": "The formal scene uses controlled TNT and rocket placements plus recorded gestures to complete level 1. The production win and remaining-moves flow persist progress before the result exit loads level 2. Two explicit zero-budget MoveManager stimuli exercise automatic and Button-skipped banner exits, actual defeat and retry. The King plays the authored celebration and its two connectors on victory, then a single sad reaction on defeat. A separate private progress file exercises the level 100 boundary."
+      }
+    }
+  },
+  "source_alignment": {
+    "audited_core_files": 1281,
+    "scope": "Tracked Assets/Foundation scripts/meta/prefabs/settings/scenes/lighting, all100 level JSON files, package manifest and build scenes. Canonical/mirror match baseline Git content with CRLF normalization, except the explicit tested runtime candidate.",
+    "private_probe_dispatcher_and_progress_filename_restored": true,
+    "existing_user_progress_untouched": true,
+    "unrelated_diagnostic_sha256": "1ceddd9e4f2199561ac52f5ab3feabd0a3d6f8c7e0fcfda7b4ffac0a7f8fb1fa"
+  },
+  "limitations": [
+    "Native animation oracle starts at prepared state1 with explicit scene/highlight/clock/restore/particle ports. Native search and Start/PrepareHintables are outside that oracle.",
+    "Formal gameplay uses recorded pointer samples and existing controlled level2 rocket/TNT/rocket end-flow stimuli. This does not prove natural full-level playthroughs.",
+    "The original app remains at its unaccepted privacy/terms screen; no original pixels, audio, full application scheduling or original-device frame parity is claimed.",
+    "This revision has not been rebuilt into the previously delivered Android APK; this round validates committed-source CPU animation and Windows Unity scene behavior.",
+    "All100 levels and all visual/gameplay branches remain incomplete/unverified as a whole."
+  ],
+  "reproduction": "python SourceCatalog/verify_hint_motion.py <UnityFoundation-root> <C-drive-work-folder>",
+  "artifacts": {
+    "plan.json": {
+      "path": "C:/RMHintMotion_20261105/plan.json",
+      "bytes": 983,
+      "sha256": "aebf9c7bfdb048de4a602c27414315b57ead83cbf86cb94e64a58f4b5d6e732c"
+    },
+    "promoted_source.json": {
+      "path": "C:/RMHintMotion_20261105/promoted_source.json",
+      "bytes": 778,
+      "sha256": "d29eeb95ddd127ffc40435254436e1e2065b8376c45854dd3bc264fa360655ca"
+    },
+    "runtime.diff": {
+      "path": "C:/RMHintMotion_20261105/runtime.diff",
+      "bytes": 14589,
+      "sha256": "dfbe16a0cf693896f734168100a55694e9bad96bec438f5194ac344b3230b1d8"
+    },
+    "baseline.cs": {
+      "path": "C:/RMHintMotion_20261105/baseline.cs",
+      "bytes": 26357,
+      "sha256": "e2af62b31021414783a788405e410958a0e1213729691218f9244e0a88f54e87"
+    },
+    "baseline/comparison.json": {
+      "path": "C:/RMHintMotion_20261105/baseline/comparison.json",
+      "bytes": 16380986,
+      "sha256": "0ae1c8e8871ef7adf6e1206f4ab0749fc2770c6f60868dadc2d62b047ff57607"
+    },
+    "candidate/comparison_before_binary32_normalization.json": {
+      "path": "C:/RMHintMotion_20261105/candidate/comparison_before_binary32_normalization.json",
+      "bytes": 118329,
+      "sha256": "9437b39a19ffada0f9eeb0317ffc7b3c17d122e0c500d4714660a7cb180e132e"
+    },
+    "canonical_recheck/native/native_hint_motion.json": {
+      "path": "C:/RMHintMotion_20261105/canonical_recheck/native/native_hint_motion.json",
+      "bytes": 15619116,
+      "sha256": "e2f23106cacab4b544ca956c7184b8048c2f1d43765fff077a0f9d4c841a4712"
+    },
+    "canonical_recheck/canonical/comparison.json": {
+      "path": "C:/RMHintMotion_20261105/canonical_recheck/canonical/comparison.json",
+      "bytes": 1305,
+      "sha256": "e943badca8e7e521f543bceb16656268d4c258bc408fbbb1ea6f08023b30decb"
+    },
+    "unity_baseline_match_v2/native_pose_comparison.json": {
+      "path": "C:/RMHintMotion_20261105/unity_baseline_match_v2/native_pose_comparison.json",
+      "bytes": 8782,
+      "sha256": "108fe585072022ea5a6d311a63ad826bf424961146ba2c02c2c969ec9da0e82c"
+    },
+    "HintMotionProbe.cs": {
+      "path": "C:/RMHintMotion_20261105/HintMotionProbe.cs",
+      "bytes": 5409,
+      "sha256": "b35ec4a56462e65ce170e9011a9d07f07af0a2e9c81b8ac835b659cb960ecbbc"
+    },
+    "compare_unity.py": {
+      "path": "C:/RMHintMotion_20261105/compare_unity.py",
+      "bytes": 4495,
+      "sha256": "68ca26b887ef4b14c2c8689ce00ddd6d565a8b0c86aa1447c9ea8060853000f3"
+    },
+    "run_unity.py": {
+      "path": "C:/RMHintMotion_20261105/run_unity.py",
+      "bytes": 5698,
+      "sha256": "47092fe8ee28c47501bb050dcc872e8775e527450d027b6d3949685cdb64b7a4"
+    },
+    "unity_candidate_match60/unity.log": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/unity.log",
+      "bytes": 110249,
+      "sha256": "c0ce315b30c0653f55aebff31eb4b5429038261c453cba0c3f72fe75bdf5f0fb"
+    },
+    "unity_candidate_match60/process.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/process.json",
+      "bytes": 815,
+      "sha256": "c19b9b6047c161e9b0a6d33e127257c427cdcdcddc7e1dad21f5b3082d107afc"
+    },
+    "unity_candidate_match60/run_result.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/run_result.json",
+      "bytes": 403,
+      "sha256": "53698a45511acec2a16f43cc169cf6363af67603efe5148e9eb8743c138f0e22"
+    },
+    "unity_candidate_match60/live_core_match_hint_verification.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/live_core_match_hint_verification.json",
+      "bytes": 469,
+      "sha256": "73a65502d319849d114a9a59c290b6d329712cff40019b3718aa327bffb25199"
+    },
+    "unity_candidate_match60/native_pose_comparison.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/native_pose_comparison.json",
+      "bytes": 828,
+      "sha256": "e5f09665818fad1cfa6e0d42f8f26fb1985eda0e0247520fcf3c2b021e2b063c"
+    },
+    "unity_candidate_match60/hint_pose_trace.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/hint_pose_trace.json",
+      "bytes": 21218,
+      "sha256": "591e439b0cb214e98f404edcc4429f399be2a6a6a85b3ea5e1a334950819a5a8"
+    },
+    "unity_candidate_match60/native_definitions.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/native_definitions.json",
+      "bytes": 2504,
+      "sha256": "675a8f8c04eca4474991296df80fb130af51a47d429af47e70404a3a190880e8"
+    },
+    "unity_candidate_match60/native_replay/native_hint_motion.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/native_replay/native_hint_motion.json",
+      "bytes": 21515,
+      "sha256": "805559f15da7a845db1f13fa790701b2be9566f15c76901ba1804789337da08c"
+    },
+    "unity_candidate_match60/core_match_hint_level2.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/core_match_hint_level2.png",
+      "bytes": 1138586,
+      "sha256": "1ccdf776f586f12e78e1bc3cb24ad4fe74bb5992860ce9c114d43157fca1e9c4"
+    },
+    "unity_candidate_match60/core_match_hint_level4.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match60/core_match_hint_level4.png",
+      "bytes": 1234235,
+      "sha256": "09ebfc3bee9e00febb76752921b9f076be48b0aa869ff4f9463ca0b0ff167b12"
+    },
+    "unity_candidate_power60/unity.log": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/unity.log",
+      "bytes": 105880,
+      "sha256": "b72bb2b58834de350f988bbd60882a042243727c18039569ea08933419a3135e"
+    },
+    "unity_candidate_power60/process.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/process.json",
+      "bytes": 814,
+      "sha256": "e735b23e5a462e67c37e07b45b15380436f9143e4fdcf353289df0b03464f809"
+    },
+    "unity_candidate_power60/run_result.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/run_result.json",
+      "bytes": 403,
+      "sha256": "c9e07e7da2d93cc5bee6c5dfee95976a810835ef6375e45a7d5bd0049fbbd5b7"
+    },
+    "unity_candidate_power60/live_core_power_hint_verification.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/live_core_power_hint_verification.json",
+      "bytes": 634,
+      "sha256": "4b91b50353aad7da6e09f6062196c31f18898d092a18184b2cd14fc0223854c1"
+    },
+    "unity_candidate_power60/native_pose_comparison.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/native_pose_comparison.json",
+      "bytes": 861,
+      "sha256": "15269462aed67a9ca592f22ac3fc29ea5342d47b5f47ea3f96211687d3f53e41"
+    },
+    "unity_candidate_power60/hint_pose_trace.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/hint_pose_trace.json",
+      "bytes": 306658,
+      "sha256": "0fb56e938796f33fad6c08011fdf27d1328693e34312244a4599b4a448493460"
+    },
+    "unity_candidate_power60/native_definitions.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/native_definitions.json",
+      "bytes": 31385,
+      "sha256": "939c65708b7614fa72604d621e2a0f3ce66905032b5fcf67c631861ad03510a3"
+    },
+    "unity_candidate_power60/native_replay/native_hint_motion.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/native_replay/native_hint_motion.json",
+      "bytes": 316264,
+      "sha256": "21598b6b6e07d1cc7cea80bb567ded27cb1e57a4abb64e8b9be2b353c30245dd"
+    },
+    "unity_candidate_power60/core_power_hint_level2.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/core_power_hint_level2.png",
+      "bytes": 1140789,
+      "sha256": "154b4bc7a524ded1fe63f419cbcf3f6dca29935c39f53e753e729391a16c49c8"
+    },
+    "unity_candidate_power60/core_power_hint_level38.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power60/core_power_hint_level38.png",
+      "bytes": 1245174,
+      "sha256": "c4d3fd45f0eb165b8def4d345db06250363c85858c1c5b58ce1ff58274398ff3"
+    },
+    "unity_candidate_match30/unity.log": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/unity.log",
+      "bytes": 104806,
+      "sha256": "8b1dc658c358d58ac21348719950262b86a634fc4db0ff9bc0bd8367aa6805d9"
+    },
+    "unity_candidate_match30/process.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/process.json",
+      "bytes": 815,
+      "sha256": "3fff7206e07c698981dbc412c148e991be19ad975e2310801ee32e8e92eb7133"
+    },
+    "unity_candidate_match30/run_result.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/run_result.json",
+      "bytes": 403,
+      "sha256": "6e9596fb6897960d4a5f0ef6f06df7d79471486a2f2c40aab1f6c984786e6ba9"
+    },
+    "unity_candidate_match30/live_core_match_hint_verification.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/live_core_match_hint_verification.json",
+      "bytes": 469,
+      "sha256": "dd64b6c7a217055de632f77f1fbbec149c30653cbf0555d169461d72027f2b20"
+    },
+    "unity_candidate_match30/native_pose_comparison.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/native_pose_comparison.json",
+      "bytes": 828,
+      "sha256": "e8a1ff128e5143a4294eef13d6239d7d054d3cc63f2f3271a85005006d5e3ca4"
+    },
+    "unity_candidate_match30/hint_pose_trace.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/hint_pose_trace.json",
+      "bytes": 13621,
+      "sha256": "2e5a9d3b13f2fb9062fb31e1bf85fcd4dcee7aea95899d35205d84013545e820"
+    },
+    "unity_candidate_match30/native_definitions.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/native_definitions.json",
+      "bytes": 1732,
+      "sha256": "9bd751882e42277fe919258ef9bcce9e39f3b0047ef317112d9341d21f1ff07a"
+    },
+    "unity_candidate_match30/native_replay/native_hint_motion.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/native_replay/native_hint_motion.json",
+      "bytes": 13546,
+      "sha256": "a7fba7b07469528e1894e1106bd4897c991a7074bc972ed9fe3ab9694df6fe9d"
+    },
+    "unity_candidate_match30/core_match_hint_level2.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/core_match_hint_level2.png",
+      "bytes": 1139056,
+      "sha256": "8a2f8b00422efaccf9499cec5a2b1c1c9e870b685f9e4b5cf35bcd3948a0f573"
+    },
+    "unity_candidate_match30/core_match_hint_level4.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_match30/core_match_hint_level4.png",
+      "bytes": 1233937,
+      "sha256": "ff58ba1ddf64eedc8bef333a40473b116efb696a929bc69b041a2b28f131913e"
+    },
+    "unity_candidate_power30/unity.log": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/unity.log",
+      "bytes": 105894,
+      "sha256": "a3f2d3456f849de16660c7c3c3eb699ce8a6ac6a631873cfca56a4b1936c37fa"
+    },
+    "unity_candidate_power30/process.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/process.json",
+      "bytes": 815,
+      "sha256": "0a5d100d0b64f8f75558b0a5710ed5bfb0fb1659772f9d0aa1e9b1c00ada1f0a"
+    },
+    "unity_candidate_power30/run_result.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/run_result.json",
+      "bytes": 403,
+      "sha256": "a5851454cc30ad989631912709d3fd71a50fd836215e94c644639b3187eacec1"
+    },
+    "unity_candidate_power30/live_core_power_hint_verification.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/live_core_power_hint_verification.json",
+      "bytes": 648,
+      "sha256": "1a57d42082d0c041f30c83b8455b93d16662defe18586a94f01ea267ff305ded"
+    },
+    "unity_candidate_power30/native_pose_comparison.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/native_pose_comparison.json",
+      "bytes": 860,
+      "sha256": "8a75121287b48614445a997f5bd2d9ef92e4d617212ea0c4710a0e0011aeaba1"
+    },
+    "unity_candidate_power30/hint_pose_trace.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/hint_pose_trace.json",
+      "bytes": 180151,
+      "sha256": "5a8cc2a2f16a755118ae8ef0814e6dfde076c078809c2d0d8b2632f8e764a75b"
+    },
+    "unity_candidate_power30/native_definitions.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/native_definitions.json",
+      "bytes": 18369,
+      "sha256": "7384b0ab594dd073a6cfa9b2b40644b72f6a2b944f98c7b531f49964b340ddce"
+    },
+    "unity_candidate_power30/native_replay/native_hint_motion.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/native_replay/native_hint_motion.json",
+      "bytes": 184625,
+      "sha256": "3159f0ae1abdedffbb28c3702c0ac701f534fc115853d69ec7fa4d35f412f437"
+    },
+    "unity_candidate_power30/core_power_hint_level2.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/core_power_hint_level2.png",
+      "bytes": 1141093,
+      "sha256": "c02f206563e81edcce663bfb3a8a0d1cc8d22aa81a2d79a9072a563c688937e6"
+    },
+    "unity_candidate_power30/core_power_hint_level38.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_power30/core_power_hint_level38.png",
+      "bytes": 1247314,
+      "sha256": "3e896cee5d1eb52252ee89b7e66d8dff88bc887bfe12b1abf51b91239a604417"
+    },
+    "unity_candidate_pause60/unity.log": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/unity.log",
+      "bytes": 105890,
+      "sha256": "f5bec5d192a5c6d7dd3a139f87208a87a0f129d58d67e73d420dc042bd843abe"
+    },
+    "unity_candidate_pause60/process.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/process.json",
+      "bytes": 818,
+      "sha256": "fc4d1b7c71d2d200b71e85ca550598fa6789f433045f4e792cec28bf42c8989b"
+    },
+    "unity_candidate_pause60/run_result.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/run_result.json",
+      "bytes": 406,
+      "sha256": "793240a46ec9c7e16c210f02712c77c5b2390f5a94fd77dfbeb189747714f107"
+    },
+    "unity_candidate_pause60/live_core_power_hint_verification.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/live_core_power_hint_verification.json",
+      "bytes": 634,
+      "sha256": "016731f5b551c361d9ecdbdcb32b66609f1d46f899f8d14ef74637a356935111"
+    },
+    "unity_candidate_pause60/native_pose_comparison.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/native_pose_comparison.json",
+      "bytes": 861,
+      "sha256": "15269462aed67a9ca592f22ac3fc29ea5342d47b5f47ea3f96211687d3f53e41"
+    },
+    "unity_candidate_pause60/hint_pose_trace.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/hint_pose_trace.json",
+      "bytes": 306666,
+      "sha256": "a356487ddd2cdc4c8ddaa9d9f3d836eb0d1a6ca454f2e094c211f3250fc13a09"
+    },
+    "unity_candidate_pause60/native_definitions.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/native_definitions.json",
+      "bytes": 31393,
+      "sha256": "139c5d0609fcf2558384874e5e4d73655cd3e2b410353c87d09da6105bdb04fe"
+    },
+    "unity_candidate_pause60/native_replay/native_hint_motion.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/native_replay/native_hint_motion.json",
+      "bytes": 316264,
+      "sha256": "e6dba7e3a817ee1ab15de999eb2c8c15d738041f17884b6874b1faafa9f83fbe"
+    },
+    "unity_candidate_pause60/core_power_hint_level2.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/core_power_hint_level2.png",
+      "bytes": 1140590,
+      "sha256": "8426bb39fbb8a5a6e32b1304080c89519c631befbb92a8de43e14ccbcd24a3d5"
+    },
+    "unity_candidate_pause60/core_power_hint_level38.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_pause60/core_power_hint_level38.png",
+      "bytes": 1245072,
+      "sha256": "e807a558cf84b3ac52c7836ee4bce1b20fd28892e78e48110f8bea110e8df80b"
+    },
+    "unity_candidate_flow/unity.log": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/unity.log",
+      "bytes": 111359,
+      "sha256": "c90723103e39f366b8893ed0d9a09ed0bce9d7cdf2a3a67861f06f1858ed1b51"
+    },
+    "unity_candidate_flow/process.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/process.json",
+      "bytes": 814,
+      "sha256": "57576e909bf0a1d49e4ca7c4b748945b2160255a5bd6c615b11ac96807252e77"
+    },
+    "unity_candidate_flow/run_result.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/run_result.json",
+      "bytes": 396,
+      "sha256": "7caf9225316eee409e1557e164559bc102f422ca84dabcfa7a2cfbc6642c6e10"
+    },
+    "unity_candidate_flow/live_core_flow_verification.json": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/live_core_flow_verification.json",
+      "bytes": 2828,
+      "sha256": "c6bce8faf1a4fea549a2345cc3a5891c76dbfc453429f8917ccfc9ac64364a8b"
+    },
+    "unity_candidate_flow/core_flow_fail.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/core_flow_fail.png",
+      "bytes": 425051,
+      "sha256": "f9be4b1b73f361d0843dc492b2667039a104b096acf76c8190da69b1232608af"
+    },
+    "unity_candidate_flow/core_flow_level2.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/core_flow_level2.png",
+      "bytes": 1134112,
+      "sha256": "e078b62102266b5501119fba585ab0d2521116e8463f859dcfaa361efe457d1e"
+    },
+    "unity_candidate_flow/core_flow_level3.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/core_flow_level3.png",
+      "bytes": 1137588,
+      "sha256": "1b9c6e15d3b258de76e8589b03c58f91e7e6bd006a2b6b03fc942edb0953c9bf"
+    },
+    "unity_candidate_flow/core_flow_level_entrance.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/core_flow_level_entrance.png",
+      "bytes": 1237042,
+      "sha256": "05cfae6e1519f29253226306d4a3aec1d44bd1a8c6bac95f374ec430e7d05d71"
+    },
+    "unity_candidate_flow/core_flow_out_of_moves.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/core_flow_out_of_moves.png",
+      "bytes": 932676,
+      "sha256": "3d0640b4a3c4cec7df1bcb7192175dc1c6395eae6b9ad9219b271515216ff39d"
+    },
+    "unity_candidate_flow/core_flow_retry.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/core_flow_retry.png",
+      "bytes": 1134130,
+      "sha256": "047f9565cf405796a827310109a360320cad3c7c97e76dfe3e39d3d3f3c9153d"
+    },
+    "unity_candidate_flow/core_flow_win.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/core_flow_win.png",
+      "bytes": 622195,
+      "sha256": "b36bba8dac76d9dc3826556252979c57da8ed1f933bb2879c57b9edccf8d4edb"
+    },
+    "unity_candidate_flow/core_flow_win_text_enter.png": {
+      "path": "C:/RMHintMotion_20261105/unity_candidate_flow/core_flow_win_text_enter.png",
+      "bytes": 544262,
+      "sha256": "0043648315b11023d882478ba0fdfb5675d23ea7e16696e6a0c0b39002b315db"
+    },
+    "final_source_audit.json": {
+      "path": "C:/RMHintMotion_20261105/final_source_audit.json",
+      "bytes": 354360,
+      "sha256": "de85b888c291b618b2d283b55b3a7a778c4100badc605a76633e5688164776c2"
+    }
+  },
+  "android_followup_20261105": {
+    "evidence": "SourceCatalog/android_hint_revision_20261105.json",
+    "apk_source_commit": "1771c9a8ea335cb497a5a7905a103cef58f25cd3",
+    "apk_sha256": "f62b86f964532dcad76c2cc2924ececc598e179ac3efdb511b21d757bb76fdb9",
+    "packaged_hint_settings_and_generated_states_verified": true,
+    "observed_tnt_rocket_hint_opposite_translation_frames": 54,
+    "emulator_touch_combo_win_continue_and_resume_passed": true,
+    "full_current_scope_complete": false
+  }
+}

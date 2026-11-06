@@ -1,0 +1,1276 @@
+{
+  "schema": 1,
+  "baseline_commit": "5f225b3d2f4c4386f709404c0318ebb696b5cc88",
+  "verified_utc": "2026-11-05T18:28:49.401290+00:00",
+  "finding": "The reconstructed runtime shuffle clamped elapsed to one before easing. The original MoveAllItems checks elapsed < duration before adding the active frame delta and evaluates the unbounded last sample. Its completion restores sorting/input and retains that last position, without snapping to the cell center.",
+  "native_methods": {
+    "move_all_items": "0x1ee8844",
+    "elapsed_test": "0x1ee8c04",
+    "elapsed_add": "0x1ee8d18",
+    "back_in_out": "0x2c962dc",
+    "vector_interpolation": "0x2d7bdf4",
+    "one_second_duration_caller": "0x1ee7990: 0x1ee79c4 loads s0 = 1.0 before calling MoveAllItems at 0x1ee79cc."
+  },
+  "runtime_change": "Remove the non-native Mathf.Min clamp from the existing production AnimateShuffle coroutine. Keep the authored wait, one-second duration, native easing strength, recolor replacement, sorting, orientation, operation ownership and same level clock.",
+  "runtime_cost_change": "No added per-frame work, allocation, asset load or object. Existing cached arrays and views remain in use.",
+  "verification_gate_correction": {
+    "reproduced_old_gate": {
+      "exit_code": 1,
+      "passed": false,
+      "test": "core-bonus-shuffle",
+      "failure": "System.InvalidOperationException: System.InvalidOperationException: Every shuffled view lands on its model cell.\r\n  at Whitebox.Foundation.Editor.CoreBonusShuffleVerification.Advance () [0x0087c] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreBonusShuffleVerification.cs:203 \r\n  at Whitebox.Foundation.Editor.CoreBonusShuffleVerification.Tick () [0x00017] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreBonusShuffleVerification.cs:72 \r\n  at Whitebox.Foundation.Editor.BackgroundVerification.Tick () [0x01ba6] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\BackgroundVerification.cs:371 ",
+      "timestamp_utc": "2026-11-05T18:14:44.4137155Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "old_gate_native_position_comparison": {
+      "passed": true,
+      "label": "fixed_bonus_30fps_old_gate",
+      "trace_sha256": "1fd5acbfe047b838f80a9b8d47b9adac8af2b41338b0229160ba9ea7fdb9b148",
+      "tracks": 1,
+      "motion_frames_including_completion": 32,
+      "scalar_comparisons": 1344,
+      "maximum_absolute_error": 4.76837158203125e-07,
+      "mismatch_count": 0,
+      "tracks_summary": [
+        {
+          "level": 80,
+          "cadence": "30fps",
+          "moving_cells": 14,
+          "first_motion_sample": 11,
+          "motion_frames_including_completion": 32,
+          "first_delta": 0.0333000011742115,
+          "final_sample_delta": 0.0333000011742115,
+          "final_native_elapsed": 1.0322998762130737,
+          "input_locked_during_motion": true,
+          "input_available_on_completion": true
+        }
+      ],
+      "scope": "Real Unity view world positions sampled by a private Editor observer. Feed the same initial/target positions and the observed active-level deltas to the actual original ARM64 coroutine. The observer starts motion at the first changed view position; it does not inspect iterator fields or modify runtime code. Wait dispatch, model/view/sorting/recolor and transform storage remain explicit native ports. No original-rendered pixels/audio or Android execution is claimed."
+    },
+    "finding": "At 30 FPS the fixed native-matching last sample is 0.0181016922 world units from the cell. The old 0.01-distance assertion falsely rejects it despite zero native trajectory differences. Replace center proximity with equality to the observed last motion sample. Preserve coin/goal/move/refill counts, three mediation slots, row sorting, rollback and the following real touch gesture.",
+    "changed_verifiers": [
+      "CoreBonusShuffleVerification",
+      "CoreRecolorShuffleVerification"
+    ]
+  },
+  "portable_native_comparison": {
+    "baseline": {
+      "passed": false,
+      "source": "F:/Coin Merge Fortune/RM/Recovery/UnityFoundation/Assets/Foundation/Runtime/OriginalRuntimeShuffle.cs",
+      "source_sha256": "4826cb45e6b5d98bd5bddde4392bcc0e5a7188edb26aedf7dc290c1fb481b417",
+      "label": "baseline",
+      "scenarios": 64,
+      "states": 2920,
+      "numeric_samples": 203156,
+      "tolerance": 3e-06,
+      "maximum_absolute_error": 5.024383544921875,
+      "mismatched_states": 84,
+      "native_steps": 2920,
+      "native_ease_calls": 2792,
+      "native_vector_calls": 62820,
+      "scope": "Compile the full production OriginalRuntimeShuffle class with field/method visibility-only adaptation. Typed scene/view/clock/notification ports supply the same data as the native harness. Compare the actual coroutine yielded/completed states, events and all positions. Local compiler-generated elapsed is not read or reflected. Wait scheduling, real engine transforms and permutation/search remain outside this portable comparison."
+    },
+    "candidate": {
+      "passed": true,
+      "source": "C:/RMShuffleMotion_20261105/payload/Assets/Foundation/Runtime/OriginalRuntimeShuffle.cs",
+      "source_sha256": "2e2f938110c947e7b437d098e962f4c25fb08d4cac2cfb95747fb6ab3afe5e87",
+      "label": "fixed",
+      "scenarios": 64,
+      "states": 2920,
+      "numeric_samples": 203156,
+      "tolerance": 3e-06,
+      "maximum_absolute_error": 1.4165649417918758e-06,
+      "mismatched_states": 0,
+      "native_steps": 2920,
+      "native_ease_calls": 2792,
+      "native_vector_calls": 62820,
+      "scope": "Compile the full production OriginalRuntimeShuffle class with field/method visibility-only adaptation. Typed scene/view/clock/notification ports supply the same data as the native harness. Compare the actual coroutine yielded/completed states, events and all positions. Local compiler-generated elapsed is not read or reflected. Wait scheduling, real engine transforms and permutation/search remain outside this portable comparison."
+    },
+    "canonical_reproduction": {
+      "passed": true,
+      "source": "F:/Coin Merge Fortune/RM/Recovery/UnityFoundation/Assets/Foundation/Runtime/OriginalRuntimeShuffle.cs",
+      "source_sha256": "2e2f938110c947e7b437d098e962f4c25fb08d4cac2cfb95747fb6ab3afe5e87",
+      "label": "canonical",
+      "scenarios": 64,
+      "states": 2920,
+      "numeric_samples": 203156,
+      "tolerance": 3e-06,
+      "maximum_absolute_error": 1.4165649417918758e-06,
+      "mismatched_states": 0,
+      "native_steps": 2920,
+      "native_ease_calls": 2792,
+      "native_vector_calls": 62820,
+      "scope": "Compile the full production OriginalRuntimeShuffle class with field/method visibility-only adaptation. Typed scene/view/clock/notification ports supply the same data as the native harness. Compare the actual coroutine yielded/completed states, events and all positions. Local compiler-generated elapsed is not read or reflected. Wait scheduling, real engine transforms and permutation/search remain outside this portable comparison."
+    },
+    "native_ports": "Scene grid iteration, eligibility, model/view and transform storage, allocations/metadata, the supplied active-level delta, wait dispatch, sorting, orientation/operation notifications and recolor replacement are ports. The actual native coroutine control flow, elapsed accumulation, Back.InOut and vector interpolation execute. Active-state scenarios only; search/permutation and native Unity scheduling/rendering/audio are not executed here.",
+    "native_library_sha256": "017f7d4716f9375d86bbbe006740e8e68e65c776bad757d00d8a3c120ee8f5eb",
+    "profiles": [
+      "30fps",
+      "60fps",
+      "90fps",
+      "exact quarters",
+      "alternating",
+      "zero delta",
+      "hitch",
+      "third second"
+    ],
+    "synthetic_view_counts": [
+      1,
+      2,
+      14,
+      73
+    ],
+    "recolor_animation_boundary_cases_included": true,
+    "full_production_class_compiled_with_visibility_only_adaptation": true
+  },
+  "actual_unity_positions": {
+    "baseline": {
+      "passed": false,
+      "label": "baseline_bonus_v3",
+      "trace_sha256": "cf4da03a1e5ec6d4ac0314048171c87d103262642008cf315aba2909399d0ae7",
+      "tracks": 1,
+      "motion_frames_including_completion": 62,
+      "scalar_comparisons": 2604,
+      "maximum_absolute_error": 0.002582073211669922,
+      "mismatch_count": 38,
+      "tracks_summary": [
+        {
+          "level": 80,
+          "cadence": "60fps",
+          "moving_cells": 14,
+          "first_motion_sample": 21,
+          "motion_frames_including_completion": 62,
+          "first_delta": 0.016599999740719795,
+          "final_sample_delta": 0.016599999740719795,
+          "final_native_elapsed": 1.0126005411148071,
+          "input_locked_during_motion": true,
+          "input_available_on_completion": true
+        }
+      ],
+      "scope": "Real Unity view world positions sampled by a private Editor observer. Feed the same initial/target positions and the observed active-level deltas to the actual original ARM64 coroutine. The observer starts motion at the first changed view position; it does not inspect iterator fields or modify runtime code. Wait dispatch, model/view/sorting/recolor and transform storage remain explicit native ports. No original-rendered pixels/audio or Android execution is claimed."
+    },
+    "fixed": {
+      "fixed_bonus_30fps": {
+        "passed": true,
+        "label": "fixed_bonus_30fps",
+        "trace_sha256": "a203820cf89cf2f8766d46cedabdd1e05bb5586eb5888c7495fcd731101adf75",
+        "tracks": 1,
+        "motion_frames_including_completion": 32,
+        "scalar_comparisons": 1344,
+        "maximum_absolute_error": 4.76837158203125e-07,
+        "mismatch_count": 0,
+        "tracks_summary": [
+          {
+            "level": 80,
+            "cadence": "30fps",
+            "moving_cells": 14,
+            "first_motion_sample": 11,
+            "motion_frames_including_completion": 32,
+            "first_delta": 0.0333000011742115,
+            "final_sample_delta": 0.0333000011742115,
+            "final_native_elapsed": 1.0322998762130737,
+            "input_locked_during_motion": true,
+            "input_available_on_completion": true
+          }
+        ],
+        "scope": "Real Unity view world positions sampled by a private Editor observer. Feed the same initial/target positions and the observed active-level deltas to the actual original ARM64 coroutine. The observer starts motion at the first changed view position; it does not inspect iterator fields or modify runtime code. Wait dispatch, model/view/sorting/recolor and transform storage remain explicit native ports. No original-rendered pixels/audio or Android execution is claimed."
+      },
+      "fixed_recolor_30fps": {
+        "passed": true,
+        "label": "fixed_recolor_30fps",
+        "trace_sha256": "19d5ee1d2f2e4105489b95058100f5722c4d984a25eb1d42a321717177924e22",
+        "tracks": 1,
+        "motion_frames_including_completion": 32,
+        "scalar_comparisons": 288,
+        "maximum_absolute_error": 2.384185791015625e-07,
+        "mismatch_count": 0,
+        "tracks_summary": [
+          {
+            "level": 55,
+            "cadence": "30fps",
+            "moving_cells": 3,
+            "first_motion_sample": 11,
+            "motion_frames_including_completion": 32,
+            "first_delta": 0.0333000011742115,
+            "final_sample_delta": 0.0333000011742115,
+            "final_native_elapsed": 1.0322998762130737,
+            "input_locked_during_motion": true,
+            "input_available_on_completion": true
+          }
+        ],
+        "scope": "Real Unity view world positions sampled by a private Editor observer. Feed the same initial/target positions and the observed active-level deltas to the actual original ARM64 coroutine. The observer starts motion at the first changed view position; it does not inspect iterator fields or modify runtime code. Wait dispatch, model/view/sorting/recolor and transform storage remain explicit native ports. No original-rendered pixels/audio or Android execution is claimed."
+      },
+      "fixed_bonus_alternate": {
+        "passed": true,
+        "label": "fixed_bonus_alternate",
+        "trace_sha256": "2f26b1146c5dc45838b4f48fba1882d8e3f4cd783aa77d8b29cbd81c89344966",
+        "tracks": 1,
+        "motion_frames_including_completion": 51,
+        "scalar_comparisons": 2142,
+        "maximum_absolute_error": 4.76837158203125e-07,
+        "mismatch_count": 0,
+        "tracks_summary": [
+          {
+            "level": 80,
+            "cadence": "alternate",
+            "moving_cells": 14,
+            "first_motion_sample": 17,
+            "motion_frames_including_completion": 51,
+            "first_delta": 0.008299999870359898,
+            "final_sample_delta": 0.037300001829862595,
+            "final_native_elapsed": 1.0223997831344604,
+            "input_locked_during_motion": true,
+            "input_available_on_completion": true
+          }
+        ],
+        "scope": "Real Unity view world positions sampled by a private Editor observer. Feed the same initial/target positions and the observed active-level deltas to the actual original ARM64 coroutine. The observer starts motion at the first changed view position; it does not inspect iterator fields or modify runtime code. Wait dispatch, model/view/sorting/recolor and transform storage remain explicit native ports. No original-rendered pixels/audio or Android execution is claimed."
+      }
+    },
+    "fixed_frames_including_completion": 115,
+    "fixed_scalar_comparisons": 3774,
+    "fixed_maximum_absolute_error": 4.76837158203125e-07,
+    "scope": "Actual live world positions, input lock/unlock and current active-level deltas are recorded by a private Editor observer. The same endpoints/deltas drive the original ARM64 coroutine. This live comparison covers positions and completion, while native recolor/view/notification boundaries are supplied and checked separately in the portable harness and formal Unity tests."
+  },
+  "formal_unity_tests": {
+    "fixed_bonus_30fps": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-bonus-shuffle",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T18:17:21.0137879Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "result": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "input_locked": true,
+        "animation_captured": true,
+        "coin_identities_preserved": true,
+        "last_motion_sample_retained": true,
+        "maximum_final_cell_distance": 0.01810169219970703,
+        "coin_count": 42,
+        "replaced_colors": 14,
+        "difficulty_draws": 14,
+        "refills_after_touch": 36,
+        "moving_views_at_capture": 14,
+        "from": {
+          "x": 5,
+          "y": 3
+        },
+        "to": {
+          "x": 5,
+          "y": 4
+        },
+        "fixture": {
+          "made": 0,
+          "left": 20,
+          "difficulty_seed": 291,
+          "difficulty_draws": 14,
+          "possible": 0,
+          "ordinary_shuffles": 0,
+          "colored_shuffles": 0,
+          "goal": 0,
+          "immediate_match": false,
+          "rows": [
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60"
+          ]
+        },
+        "shuffle": {
+          "made": 0,
+          "left": 20,
+          "difficulty_seed": 291,
+          "difficulty_draws": 28,
+          "possible": 2,
+          "ordinary_shuffles": 1,
+          "colored_shuffles": 0,
+          "goal": 0,
+          "immediate_match": false,
+          "rows": [
+            "60,60,3,60,60,3,60,60",
+            "60,60,1,60,60,1,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60"
+          ]
+        },
+        "settled": {
+          "made": 0,
+          "left": 20,
+          "difficulty_seed": 291,
+          "difficulty_draws": 28,
+          "possible": 2,
+          "ordinary_shuffles": 1,
+          "colored_shuffles": 0,
+          "goal": 0,
+          "immediate_match": false,
+          "rows": [
+            "60,60,3,60,60,3,60,60",
+            "60,60,1,60,60,1,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60"
+          ]
+        },
+        "after_touch": {
+          "made": 1,
+          "left": 19,
+          "difficulty_seed": 291,
+          "difficulty_draws": 106,
+          "possible": 2,
+          "ordinary_shuffles": 1,
+          "colored_shuffles": 0,
+          "goal": 24,
+          "immediate_match": false,
+          "rows": [
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,1,60,60",
+            "60,60,3,60,60,3,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,3,60,60"
+          ]
+        },
+        "scope": "Explicit fourteen-color dead-board fixture on the authored level 80 geometry. Forty-two coins remain untouched. The actual production finder, gate, shuffle, views and subsequent normal touch gesture execute. This is not an unmodified authored-board attempt or original rendered-frame comparison."
+      }
+    },
+    "fixed_recolor_30fps": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-recolor-shuffle",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T18:18:40.7847309Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "result": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "input_locked": true,
+        "replaced_during_animation": true,
+        "recolor_rollback": true,
+        "last_motion_sample_retained": true,
+        "maximum_final_cell_distance": 0.004266609903424978,
+        "refills_after_touch_swap": 11,
+        "success_difficulty_draws": 251,
+        "rollback_difficulty_draws": 3002
+      }
+    },
+    "fixed_bonus_alternate": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-bonus-shuffle",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T18:20:22.3881927Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "result": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "input_locked": true,
+        "animation_captured": true,
+        "coin_identities_preserved": true,
+        "last_motion_sample_retained": true,
+        "maximum_final_cell_distance": 0.008431434631347656,
+        "coin_count": 42,
+        "replaced_colors": 14,
+        "difficulty_draws": 14,
+        "refills_after_touch": 36,
+        "moving_views_at_capture": 11,
+        "from": {
+          "x": 5,
+          "y": 3
+        },
+        "to": {
+          "x": 5,
+          "y": 4
+        },
+        "fixture": {
+          "made": 0,
+          "left": 20,
+          "difficulty_seed": 291,
+          "difficulty_draws": 14,
+          "possible": 0,
+          "ordinary_shuffles": 0,
+          "colored_shuffles": 0,
+          "goal": 0,
+          "immediate_match": false,
+          "rows": [
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60"
+          ]
+        },
+        "shuffle": {
+          "made": 0,
+          "left": 20,
+          "difficulty_seed": 291,
+          "difficulty_draws": 28,
+          "possible": 2,
+          "ordinary_shuffles": 1,
+          "colored_shuffles": 0,
+          "goal": 0,
+          "immediate_match": false,
+          "rows": [
+            "60,60,3,60,60,3,60,60",
+            "60,60,1,60,60,1,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60"
+          ]
+        },
+        "settled": {
+          "made": 0,
+          "left": 20,
+          "difficulty_seed": 291,
+          "difficulty_draws": 28,
+          "possible": 2,
+          "ordinary_shuffles": 1,
+          "colored_shuffles": 0,
+          "goal": 0,
+          "immediate_match": false,
+          "rows": [
+            "60,60,3,60,60,3,60,60",
+            "60,60,1,60,60,1,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60"
+          ]
+        },
+        "after_touch": {
+          "made": 1,
+          "left": 19,
+          "difficulty_seed": 291,
+          "difficulty_draws": 106,
+          "possible": 2,
+          "ordinary_shuffles": 1,
+          "colored_shuffles": 0,
+          "goal": 24,
+          "immediate_match": false,
+          "rows": [
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,1,60,60",
+            "60,60,3,60,60,3,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,3,60,60"
+          ]
+        },
+        "scope": "Explicit fourteen-color dead-board fixture on the authored level 80 geometry. Forty-two coins remain untouched. The actual production finder, gate, shuffle, views and subsequent normal touch gesture execute. This is not an unmodified authored-board attempt or original rendered-frame comparison."
+      }
+    },
+    "fixed_bonus_unobserved": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-bonus-shuffle",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T18:22:09.7252311Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "result": {
+        "status": "finished",
+        "failure": "",
+        "passed": true,
+        "input_locked": true,
+        "animation_captured": true,
+        "coin_identities_preserved": true,
+        "last_motion_sample_retained": true,
+        "maximum_final_cell_distance": 0.0011315345764160156,
+        "coin_count": 42,
+        "replaced_colors": 14,
+        "difficulty_draws": 14,
+        "refills_after_touch": 36,
+        "moving_views_at_capture": 14,
+        "from": {
+          "x": 5,
+          "y": 3
+        },
+        "to": {
+          "x": 5,
+          "y": 4
+        },
+        "fixture": {
+          "made": 0,
+          "left": 20,
+          "difficulty_seed": 291,
+          "difficulty_draws": 14,
+          "possible": 0,
+          "ordinary_shuffles": 0,
+          "colored_shuffles": 0,
+          "goal": 0,
+          "immediate_match": false,
+          "rows": [
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60"
+          ]
+        },
+        "shuffle": {
+          "made": 0,
+          "left": 20,
+          "difficulty_seed": 291,
+          "difficulty_draws": 28,
+          "possible": 2,
+          "ordinary_shuffles": 1,
+          "colored_shuffles": 0,
+          "goal": 0,
+          "immediate_match": false,
+          "rows": [
+            "60,60,3,60,60,3,60,60",
+            "60,60,1,60,60,1,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60"
+          ]
+        },
+        "settled": {
+          "made": 0,
+          "left": 20,
+          "difficulty_seed": 291,
+          "difficulty_draws": 28,
+          "possible": 2,
+          "ordinary_shuffles": 1,
+          "colored_shuffles": 0,
+          "goal": 0,
+          "immediate_match": false,
+          "rows": [
+            "60,60,3,60,60,3,60,60",
+            "60,60,1,60,60,1,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60"
+          ]
+        },
+        "after_touch": {
+          "made": 1,
+          "left": 19,
+          "difficulty_seed": 291,
+          "difficulty_draws": 106,
+          "possible": 2,
+          "ordinary_shuffles": 1,
+          "colored_shuffles": 0,
+          "goal": 24,
+          "immediate_match": false,
+          "rows": [
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,1,60,60",
+            "60,60,3,60,60,3,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,1,60,60",
+            "60,60,1,60,60,3,60,60",
+            "60,60,3,60,60,3,60,60"
+          ]
+        },
+        "scope": "Explicit fourteen-color dead-board fixture on the authored level 80 geometry. Forty-two coins remain untouched. The actual production finder, gate, shuffle, views and subsequent normal touch gesture execute. This is not an unmodified authored-board attempt or original rendered-frame comparison."
+      }
+    },
+    "fixed_no_moves_unobserved": {
+      "run": {
+        "exit_code": 0,
+        "passed": true,
+        "test": "core-no-moves",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T18:22:59.0620362Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "result": {
+        "passed": true,
+        "restored_board": true,
+        "closed_on_restart": true,
+        "title_curve_verified": true,
+        "music_stopped": true,
+        "music_restarted": true,
+        "reused_scene_and_pool": true,
+        "pending_shift_deferred": true,
+        "shuffle_difficulty_draws": 1002,
+        "status": "finished",
+        "failure": "",
+        "scope": "Production GameScene with an explicitly arranged level 55 board. The actual runtime shuffle exhausts its ordinary search, restores the board and enters the no-moves state. The visible standard Restart Button closes the dialog and rebuilds the authored level in the current scene."
+      }
+    }
+  },
+  "source_alignment": {
+    "passed": true,
+    "files": 1654,
+    "scope": "All C# scripts/asmdefs and core authored Prefab/Scene/Settings/metadata under Assets/Foundation and Assets/Resources/Foundation, with CRLF/LF normalized. Recovered bulk assets and project/package settings are outside this alignment audit. Runtime test sources were the promoted candidate bytes; private probe/settings/dispatcher edits were restored."
+  },
+  "edited_file_hashes": {
+    "Assets/Foundation/Runtime/OriginalRuntimeShuffle.cs": {
+      "before_sha256": "4826cb45e6b5d98bd5bddde4392bcc0e5a7188edb26aedf7dc290c1fb481b417",
+      "after_sha256": "2e2f938110c947e7b437d098e962f4c25fb08d4cac2cfb95747fb6ab3afe5e87"
+    },
+    "Assets/Foundation/Editor/CoreBonusShuffleVerification.cs": {
+      "before_sha256": "0c715fc9e61c530ad717dd59a75c86bbaae16ce457a3cd034c71368e00a6cc07",
+      "after_sha256": "352463a8ed37b2417dd857f7a6ca6ee4c3c69e3430053f560e50f5cbfe1ff954"
+    },
+    "Assets/Foundation/Editor/CoreRecolorShuffleVerification.cs": {
+      "before_sha256": "5210b5053ab2c58a9ee3f5b340669ca8daffbfb1704181b70a1bd33a9c672f03",
+      "after_sha256": "099a056931b2c2f430b30c9c9767ae154ee478756e907eb6bb88a23d064e744d"
+    }
+  },
+  "visually_reviewed_captures": [
+    {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/shuffle_pose_completed.png",
+      "bytes": 1260689,
+      "sha256": "a1bed0d9e5599bec234a1bc6025a38d53f44bf996a04e0693e2b24b7d9545c32"
+    },
+    {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_unobserved/core_bonus80_after_touch.png",
+      "bytes": 1259501,
+      "sha256": "7a3ffbfc7773f08d340dc0b437d131111cdc2fb5f3682aacc5aa7f93a5d41053"
+    }
+  ],
+  "retained_observer_setup_failures": {
+    "baseline_bonus": {
+      "exit_code": 1,
+      "passed": false,
+      "failure": "No current background result."
+    },
+    "baseline_bonus_v2": {
+      "exit_code": 1,
+      "passed": false,
+      "test": "core-bonus-shuffle",
+      "failure": "System.NullReferenceException: Object reference not set to an instance of an object\r\n  at Whitebox.Foundation.Editor.ShuffleMotionProbe.Attach (Whitebox.Foundation.FoundationController controller) [0x0000b] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\ShuffleMotionProbe.cs:21 \r\n  at Whitebox.Foundation.Editor.BackgroundVerification.Tick () [0x01896] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\BackgroundVerification.cs:274 ",
+      "timestamp_utc": "2026-11-05T18:11:21.5872886Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "resolution": "The first private probe used transform on the swap-view interface. The second tried adding an Editor MonoBehaviour, which Unity rejects. The final static Editor update observer uses a typed view cast and changes no production runtime path. Both failed attempts and logs remain retained."
+  },
+  "limits": [
+    "Native scene grid iteration, eligibility, allocations/metadata, transform storage, active-level delta, wait dispatch, sorting, orientation/operation notifications and recolor replacement are explicit ports. Actual coroutine control flow, elapsed accumulation, easing and vector interpolation execute; this is not the complete original Unity renderer or scheduler.",
+    "Portable animation inputs include synthetic counts and recolor cases that need not be reachable from the full native search algorithm. Search/permutation and every possible board geometry are not proved by these animation cases.",
+    "Formal bonus and recolor/no-moves tests explicitly arrange dead/sparse boards on authored levels 80 and 55. They do not claim naturally reached deadlocks or natural completion of all 100 levels.",
+    "Private capture cadence and observers are confined to the verification mirror and are restored. The unobserved bonus and no-moves tests also pass. All 1,654 audited core scripts/configuration/metadata files agree with the promoted sources after line-ending normalization; recovered bulk assets and project/package settings are outside that alignment audit.",
+    "No Android package is built for this source checkpoint. The previously delivered APK from 994ec94 does not include this new shuffle fix. Physical ARM64 input and original-app image/audio/input parity remain unverified.",
+    "The unrelated diagnostic JSON, user editor, emulator/original-app consent state and phone are untouched in this turn. Full current user scope completion remains false."
+  ],
+  "artifacts": {
+    "0x1ee7260.asm": {
+      "path": "C:/RMShuffleMotion_20261105/0x1ee7260.asm",
+      "bytes": 317,
+      "sha256": "ad077ae549c19749b6a9401f87fe377ae9f011413f0c5598ccfafc50abb2eb7f"
+    },
+    "0x1ee86d8.asm": {
+      "path": "C:/RMShuffleMotion_20261105/0x1ee86d8.asm",
+      "bytes": 1196,
+      "sha256": "1ea267959fe8553b7c673269d7eb7363624ed7d144736a31887005c931a4d54b"
+    },
+    "0x1ee8844.asm": {
+      "path": "C:/RMShuffleMotion_20261105/0x1ee8844.asm",
+      "bytes": 13257,
+      "sha256": "d37076432ee60a9239af470463490551327d8e4deb6c5404eb237bbdcf440b3a"
+    },
+    "0x2c962dc.asm": {
+      "path": "C:/RMShuffleMotion_20261105/0x2c962dc.asm",
+      "bytes": 1567,
+      "sha256": "a8a2cfe87ca64e8320d479833c47087b05eca90a7722f427af0ade53325a65bc"
+    },
+    "baseline/comparison.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline/comparison.json",
+      "bytes": 1113992,
+      "sha256": "12bdec9ee6de7766b6dc55b02dce4554fd8ce8f304053acad5224eda3b752593"
+    },
+    "baseline/compile.log": {
+      "path": "C:/RMShuffleMotion_20261105/baseline/compile.log",
+      "bytes": 1050,
+      "sha256": "378e0c8c98f6c2c3f115863d30cb55d23e43c5683fb9d7c77ee8a21d2b30bb6d"
+    },
+    "baseline/inputs.txt": {
+      "path": "C:/RMShuffleMotion_20261105/baseline/inputs.txt",
+      "bytes": 50808,
+      "sha256": "892134709a3311fc749cd994a6e97d41672145a76b9ac7a70c6462c6208bf1b1"
+    },
+    "baseline/OriginalRuntimeShuffle.cs": {
+      "path": "C:/RMShuffleMotion_20261105/baseline/OriginalRuntimeShuffle.cs",
+      "bytes": 15981,
+      "sha256": "52f1254349ed0c2e1bf142cc319fade9f25e03221c303fec5ad3ddd1a2a0b87c"
+    },
+    "baseline_bonus/process.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus/process.json",
+      "bytes": 732,
+      "sha256": "4744dcd7de5d5c8d6d3e03e24d9a84e96caf6abbec0ac95f91e646d441fdc859"
+    },
+    "baseline_bonus/run_result.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus/run_result.json",
+      "bytes": 89,
+      "sha256": "4087056f58fff52c16581cd2cf295c6fd031dbbac506de73085e47749aab35da"
+    },
+    "baseline_bonus/unity.log": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus/unity.log",
+      "bytes": 56828,
+      "sha256": "38739d4dfa300c05a2cb67ee64ba77f1e6058297826f51c8dbf630a41aebe9a6"
+    },
+    "baseline_bonus_v2/background_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v2/background_verification.json",
+      "bytes": 831,
+      "sha256": "1e95ac3bcd5399f297237a00f9dbdd298809b6fb989daa9a0048a3cb3f35d1a5"
+    },
+    "baseline_bonus_v2/process.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v2/process.json",
+      "bytes": 735,
+      "sha256": "7890a409bf0e243d1e44ef6718dd891a78d0eb0a9714ce53b7f3e4ad380f4bf0"
+    },
+    "baseline_bonus_v2/run_result.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v2/run_result.json",
+      "bytes": 845,
+      "sha256": "58b5c3133280ee28d62be95ef490fd8b72da97319759462490368f6cebe19cbf"
+    },
+    "baseline_bonus_v2/unity.log": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v2/unity.log",
+      "bytes": 107580,
+      "sha256": "9c053f6a813faa0cb26269013a95e3508cc031ffa646bbec131b98679dac0949"
+    },
+    "baseline_bonus_v3/background_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/background_verification.json",
+      "bytes": 391,
+      "sha256": "562fa3e1a757a585199fd449ad80a50d23940998775ed27719e41d9535c7e655"
+    },
+    "baseline_bonus_v3/core_bonus80_after_touch.png": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/core_bonus80_after_touch.png",
+      "bytes": 1259613,
+      "sha256": "5837acfa47c7189c10dd13ccde1c87065d5c647cfc23bac838e0974f034a3c2e"
+    },
+    "baseline_bonus_v3/core_bonus80_dead_shuffle_motion.png": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/core_bonus80_dead_shuffle_motion.png",
+      "bytes": 1260827,
+      "sha256": "2ed62b8b7137a682d86e6574106d2779e711b562ebb037369f25c1c8a89dbcd0"
+    },
+    "baseline_bonus_v3/core_bonus80_dead_shuffle_settled.png": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/core_bonus80_dead_shuffle_settled.png",
+      "bytes": 1260730,
+      "sha256": "29334232027922a4a132b2d53c3aa20cd331ae1610d7c1bdc114e0b7dae2cfe4"
+    },
+    "baseline_bonus_v3/live_core_bonus_shuffle_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/live_core_bonus_shuffle_verification.json",
+      "bytes": 2935,
+      "sha256": "6359c03ec5896bf6e2ac8d45ab75a4cf96144ec3afc4867be365df59edece9fe"
+    },
+    "baseline_bonus_v3/native/native_shuffle_motion.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/native/native_shuffle_motion.json",
+      "bytes": 118388,
+      "sha256": "d1ce5469fddc8ef809550baf58076b12733590789de431d86395324aeb67b2f2"
+    },
+    "baseline_bonus_v3/native_live_cases.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/native_live_cases.json",
+      "bytes": 4435,
+      "sha256": "47fd0af210c7f0e2a990cf556b1e425efae9e168a39433a5e37168100bcc74bf"
+    },
+    "baseline_bonus_v3/native_live_comparison.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/native_live_comparison.json",
+      "bytes": 10977,
+      "sha256": "84b45668e82a7faa3e9fc341212c33293b4378252dd86264deb6bd8a2a6db910"
+    },
+    "baseline_bonus_v3/process.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/process.json",
+      "bytes": 735,
+      "sha256": "41f1e71fcb32b21e6efae43e0b5bee67b4fee495b84937e5c56ce63dddf3eafc"
+    },
+    "baseline_bonus_v3/run_result.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/run_result.json",
+      "bytes": 405,
+      "sha256": "5c00018530760c9fcd71db362faf38c52f50757a3349e408a62a002869857063"
+    },
+    "baseline_bonus_v3/shuffle_pose_completed.png": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/shuffle_pose_completed.png",
+      "bytes": 1260730,
+      "sha256": "29334232027922a4a132b2d53c3aa20cd331ae1610d7c1bdc114e0b7dae2cfe4"
+    },
+    "baseline_bonus_v3/shuffle_pose_trace.json": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/shuffle_pose_trace.json",
+      "bytes": 295694,
+      "sha256": "cf4da03a1e5ec6d4ac0314048171c87d103262642008cf315aba2909399d0ae7"
+    },
+    "baseline_bonus_v3/unity.log": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_bonus_v3/unity.log",
+      "bytes": 107030,
+      "sha256": "05f3495a93d55dea9d6e50c53df6384d0fb7cee749536484e98fc5a6985be777"
+    },
+    "baseline_CoreBonusShuffleVerification.cs": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_CoreBonusShuffleVerification.cs",
+      "bytes": 13567,
+      "sha256": "0c715fc9e61c530ad717dd59a75c86bbaae16ce457a3cd034c71368e00a6cc07"
+    },
+    "baseline_CoreRecolorShuffleVerification.cs": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_CoreRecolorShuffleVerification.cs",
+      "bytes": 10910,
+      "sha256": "5210b5053ab2c58a9ee3f5b340669ca8daffbfb1704181b70a1bd33a9c672f03"
+    },
+    "baseline_OriginalRuntimeShuffle.cs": {
+      "path": "C:/RMShuffleMotion_20261105/baseline_OriginalRuntimeShuffle.cs",
+      "bytes": 15617,
+      "sha256": "4826cb45e6b5d98bd5bddde4392bcc0e5a7188edb26aedf7dc290c1fb481b417"
+    },
+    "canonical_reproduction/canonical/comparison.json": {
+      "path": "C:/RMShuffleMotion_20261105/canonical_reproduction/canonical/comparison.json",
+      "bytes": 985,
+      "sha256": "26e9d77fb711e47559cb7edc682edd59570737737b124ed69e7d4acdb1dfbb7d"
+    },
+    "canonical_reproduction/canonical/compile.log": {
+      "path": "C:/RMShuffleMotion_20261105/canonical_reproduction/canonical/compile.log",
+      "bytes": 1230,
+      "sha256": "dd439e74882769453c8593cde063cce00b5fcd03afcc1f517bf2b12da04465ef"
+    },
+    "canonical_reproduction/canonical/inputs.txt": {
+      "path": "C:/RMShuffleMotion_20261105/canonical_reproduction/canonical/inputs.txt",
+      "bytes": 50808,
+      "sha256": "892134709a3311fc749cd994a6e97d41672145a76b9ac7a70c6462c6208bf1b1"
+    },
+    "canonical_reproduction/canonical/OriginalRuntimeShuffle.cs": {
+      "path": "C:/RMShuffleMotion_20261105/canonical_reproduction/canonical/OriginalRuntimeShuffle.cs",
+      "bytes": 16122,
+      "sha256": "e9372013043c7ef0e3b3f6f6de8f41b2b9b0b2774ed0776f08a60cb301d74e3e"
+    },
+    "canonical_reproduction/native/native_shuffle_motion.json": {
+      "path": "C:/RMShuffleMotion_20261105/canonical_reproduction/native/native_shuffle_motion.json",
+      "bytes": 9612778,
+      "sha256": "47b6f38c6b27319db5c70771359001831f421b6fb075afd2f2c7b336b3cc1f16"
+    },
+    "compare_live.py": {
+      "path": "C:/RMShuffleMotion_20261105/compare_live.py",
+      "bytes": 4711,
+      "sha256": "1e42955ffcf7f7a78078cd468ee7c202ebdd0dd0602c8cd88962cb63d3de6d06"
+    },
+    "compare_motion.py": {
+      "path": "C:/RMShuffleMotion_20261105/compare_motion.py",
+      "bytes": 5414,
+      "sha256": "96bde1616dcaa208d2344955b64b9cef93e4e74fff59023f181982b888075f24"
+    },
+    "fixed/comparison.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed/comparison.json",
+      "bytes": 967,
+      "sha256": "54263a258681afb10ecb8f2156520249bf9d9566e9e1df78009d6253a278fa97"
+    },
+    "fixed/compile.log": {
+      "path": "C:/RMShuffleMotion_20261105/fixed/compile.log",
+      "bytes": 1050,
+      "sha256": "378e0c8c98f6c2c3f115863d30cb55d23e43c5683fb9d7c77ee8a21d2b30bb6d"
+    },
+    "fixed/inputs.txt": {
+      "path": "C:/RMShuffleMotion_20261105/fixed/inputs.txt",
+      "bytes": 50808,
+      "sha256": "892134709a3311fc749cd994a6e97d41672145a76b9ac7a70c6462c6208bf1b1"
+    },
+    "fixed/OriginalRuntimeShuffle.cs": {
+      "path": "C:/RMShuffleMotion_20261105/fixed/OriginalRuntimeShuffle.cs",
+      "bytes": 16122,
+      "sha256": "e9372013043c7ef0e3b3f6f6de8f41b2b9b0b2774ed0776f08a60cb301d74e3e"
+    },
+    "fixed_bonus_30fps/background_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/background_verification.json",
+      "bytes": 391,
+      "sha256": "53361791139bb8868079485fb00ec44edf532d9b67f34716217dfa8531d77748"
+    },
+    "fixed_bonus_30fps/core_bonus80_after_touch.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/core_bonus80_after_touch.png",
+      "bytes": 1256640,
+      "sha256": "875b66ffc399bf405eb8513fff984924c3348b78bf4fe103d5b73cd41406d61f"
+    },
+    "fixed_bonus_30fps/core_bonus80_dead_shuffle_motion.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/core_bonus80_dead_shuffle_motion.png",
+      "bytes": 1260425,
+      "sha256": "aee5fae2d5f8feb1f34f4c63fce7ef7c2e91b8a899488ce77bb00ee0a97d6937"
+    },
+    "fixed_bonus_30fps/core_bonus80_dead_shuffle_settled.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/core_bonus80_dead_shuffle_settled.png",
+      "bytes": 1260689,
+      "sha256": "a1bed0d9e5599bec234a1bc6025a38d53f44bf996a04e0693e2b24b7d9545c32"
+    },
+    "fixed_bonus_30fps/live_core_bonus_shuffle_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/live_core_bonus_shuffle_verification.json",
+      "bytes": 3033,
+      "sha256": "d5abbc5b2c6960f5174692bdf66f34f907f562d3a722823069e76c07232b335c"
+    },
+    "fixed_bonus_30fps/native/native_shuffle_motion.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/native/native_shuffle_motion.json",
+      "bytes": 64970,
+      "sha256": "e6e203b67e4189dfd4bce95c2c74a0bb69b395dabcfd4740fffce924737994ba"
+    },
+    "fixed_bonus_30fps/native_live_cases.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/native_live_cases.json",
+      "bytes": 3501,
+      "sha256": "f69ee7042dc8304b7a9f372ac628f06f67cd443d0708ce9f114f633eae73c468"
+    },
+    "fixed_bonus_30fps/native_live_comparison.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/native_live_comparison.json",
+      "bytes": 1248,
+      "sha256": "19091cf3a7ae0b2d0f8af90a08ca4b3e6a9938faf54de5bd4be54ff1a3257217"
+    },
+    "fixed_bonus_30fps/process.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/process.json",
+      "bytes": 732,
+      "sha256": "1c74a651dfb763cdd6765fdf78923507cc80321929b48f25026cbbbee4c13ee9"
+    },
+    "fixed_bonus_30fps/run_result.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/run_result.json",
+      "bytes": 405,
+      "sha256": "71d53a206d5c8e6cf9c0f9ad7f3ccd604d7f628d3795c64ef2884bb1fd32c5f8"
+    },
+    "fixed_bonus_30fps/shuffle_pose_completed.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/shuffle_pose_completed.png",
+      "bytes": 1260689,
+      "sha256": "a1bed0d9e5599bec234a1bc6025a38d53f44bf996a04e0693e2b24b7d9545c32"
+    },
+    "fixed_bonus_30fps/shuffle_pose_trace.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/shuffle_pose_trace.json",
+      "bytes": 156254,
+      "sha256": "a203820cf89cf2f8766d46cedabdd1e05bb5586eb5888c7495fcd731101adf75"
+    },
+    "fixed_bonus_30fps/unity.log": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps/unity.log",
+      "bytes": 102714,
+      "sha256": "a2750f7b2aa7d61b56125c1a5653fdd36bcc7e0f18bec8342c9c40dc7ca7773b"
+    },
+    "fixed_bonus_30fps_old_gate/background_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/background_verification.json",
+      "bytes": 998,
+      "sha256": "b1b0ab71e914371283d10f783adb52741b8e47450d14aff88959a781d1740fb0"
+    },
+    "fixed_bonus_30fps_old_gate/core_bonus80_dead_shuffle_motion.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/core_bonus80_dead_shuffle_motion.png",
+      "bytes": 1260449,
+      "sha256": "28cbd87c53138a301e6307ab97a7e949de37bbec7a56f89bbc4a3eab109e5c5e"
+    },
+    "fixed_bonus_30fps_old_gate/live_core_bonus_shuffle_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/live_core_bonus_shuffle_verification.json",
+      "bytes": 3080,
+      "sha256": "f64db4dac803dd32522e123a564ea47afc0e68f385bec7bbb25cc623e8d58fdd"
+    },
+    "fixed_bonus_30fps_old_gate/native/native_shuffle_motion.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/native/native_shuffle_motion.json",
+      "bytes": 64979,
+      "sha256": "ab828b037a7c217d569ece1e0be4a2562c5c04907bb6b6b80e992a9f9c27e3da"
+    },
+    "fixed_bonus_30fps_old_gate/native_live_cases.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/native_live_cases.json",
+      "bytes": 3510,
+      "sha256": "6e94657522a8f0c82ad3ac89aaae66843c6d62c36199143d5b0b479ca8aeff6c"
+    },
+    "fixed_bonus_30fps_old_gate/native_live_comparison.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/native_live_comparison.json",
+      "bytes": 1257,
+      "sha256": "7583335a3fdbae3c5121ae57bfe8df4bcde6535ed382312ba588a5bc63172aa9"
+    },
+    "fixed_bonus_30fps_old_gate/process.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/process.json",
+      "bytes": 740,
+      "sha256": "6822cf81dacaca4e42b597d407844120a6939b6a45138542833ae06d3e8f9541"
+    },
+    "fixed_bonus_30fps_old_gate/run_result.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/run_result.json",
+      "bytes": 1012,
+      "sha256": "b7449697a81f09703054235293ebfa7d1825f7734fb50be7200a0a9baccf6391"
+    },
+    "fixed_bonus_30fps_old_gate/shuffle_pose_completed.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/shuffle_pose_completed.png",
+      "bytes": 1260670,
+      "sha256": "4212e5425271a9241b74a83bbcffa5b1bf69627fc071b584e13b8522edb77faf"
+    },
+    "fixed_bonus_30fps_old_gate/shuffle_pose_trace.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/shuffle_pose_trace.json",
+      "bytes": 156249,
+      "sha256": "1fd5acbfe047b838f80a9b8d47b9adac8af2b41338b0229160ba9ea7fdb9b148"
+    },
+    "fixed_bonus_30fps_old_gate/unity.log": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_30fps_old_gate/unity.log",
+      "bytes": 107765,
+      "sha256": "1887879e772ffe29d8d24fb1f7f28a34b88e2a77beaaed0ac9cbd9fca3250472"
+    },
+    "fixed_bonus_alternate/background_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/background_verification.json",
+      "bytes": 391,
+      "sha256": "d8892d82a79694a4f3e51fa85ac408350c5698e685803d8688f5fa6b60deb03f"
+    },
+    "fixed_bonus_alternate/core_bonus80_after_touch.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/core_bonus80_after_touch.png",
+      "bytes": 1259519,
+      "sha256": "e3440265fd9321c136007d7795e62c7de452948fe53e7fa4831fa597ebc2103c"
+    },
+    "fixed_bonus_alternate/core_bonus80_dead_shuffle_motion.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/core_bonus80_dead_shuffle_motion.png",
+      "bytes": 1261102,
+      "sha256": "84b204ef68bb77688aa18aa569adf381cd225f5558da435280d9bd025d6c378a"
+    },
+    "fixed_bonus_alternate/core_bonus80_dead_shuffle_settled.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/core_bonus80_dead_shuffle_settled.png",
+      "bytes": 1260576,
+      "sha256": "3fa38bd7d8a1e6c6051c3e76a73813587e6717a5f7606f834401558da86572ba"
+    },
+    "fixed_bonus_alternate/live_core_bonus_shuffle_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/live_core_bonus_shuffle_verification.json",
+      "bytes": 3034,
+      "sha256": "aaea13b9438bda0541aa5aef51931a50eb39c540f2f2f691479df293df95ca21"
+    },
+    "fixed_bonus_alternate/native/native_shuffle_motion.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/native/native_shuffle_motion.json",
+      "bytes": 99067,
+      "sha256": "80c2c25520ce526c5413a2d55bd60445951ca6544400d12afad1ee2ca1e6092c"
+    },
+    "fixed_bonus_alternate/native_live_cases.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/native_live_cases.json",
+      "bytes": 4120,
+      "sha256": "4110dd77f00e779cb6937df653ab8db6a47cc99ebe50eceb4b6f756932a374a7"
+    },
+    "fixed_bonus_alternate/native_live_comparison.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/native_live_comparison.json",
+      "bytes": 1260,
+      "sha256": "e4a67890af1f6becbb1350374b3bd345f6e5c5d6754af43cb75d9206a528cad2"
+    },
+    "fixed_bonus_alternate/process.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/process.json",
+      "bytes": 744,
+      "sha256": "097ef2c9bdf375a2868f320af00c6b0360e565c09afa1a584eff9f8548bb1154"
+    },
+    "fixed_bonus_alternate/run_result.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/run_result.json",
+      "bytes": 405,
+      "sha256": "f2f9b3dcaf9f87e85d94978912c29e939a082dff815b986440c11fa6752d8c38"
+    },
+    "fixed_bonus_alternate/shuffle_pose_completed.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/shuffle_pose_completed.png",
+      "bytes": 1260576,
+      "sha256": "3fa38bd7d8a1e6c6051c3e76a73813587e6717a5f7606f834401558da86572ba"
+    },
+    "fixed_bonus_alternate/shuffle_pose_trace.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/shuffle_pose_trace.json",
+      "bytes": 243827,
+      "sha256": "2f26b1146c5dc45838b4f48fba1882d8e3f4cd783aa77d8b29cbd81c89344966"
+    },
+    "fixed_bonus_alternate/unity.log": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_alternate/unity.log",
+      "bytes": 102364,
+      "sha256": "9caf29d3d9ee91e88b23ffdc7ee17e01828c35621044f6df30f03e202855fccc"
+    },
+    "fixed_bonus_unobserved/background_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_unobserved/background_verification.json",
+      "bytes": 391,
+      "sha256": "0492f33f420c561bec7f7b5912599551cc2f424bbde7ee3be537050cdc1ede61"
+    },
+    "fixed_bonus_unobserved/core_bonus80_after_touch.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_unobserved/core_bonus80_after_touch.png",
+      "bytes": 1259501,
+      "sha256": "7a3ffbfc7773f08d340dc0b437d131111cdc2fb5f3682aacc5aa7f93a5d41053"
+    },
+    "fixed_bonus_unobserved/core_bonus80_dead_shuffle_motion.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_unobserved/core_bonus80_dead_shuffle_motion.png",
+      "bytes": 1260841,
+      "sha256": "a9f6b075f1026fd1be84ddd25510c876dadb74755bdf4567b99af3eedeb1fb1c"
+    },
+    "fixed_bonus_unobserved/core_bonus80_dead_shuffle_settled.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_unobserved/core_bonus80_dead_shuffle_settled.png",
+      "bytes": 1260736,
+      "sha256": "1a1fb102456a09e6eece2f5bc2a70d903c42d26acb0adababe278f7ab4da0457"
+    },
+    "fixed_bonus_unobserved/live_core_bonus_shuffle_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_unobserved/live_core_bonus_shuffle_verification.json",
+      "bytes": 3035,
+      "sha256": "da7f6a79452b0066fd0809e50a7d4f17c978dfffd61437ab586a8c46fc7331f9"
+    },
+    "fixed_bonus_unobserved/process.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_unobserved/process.json",
+      "bytes": 747,
+      "sha256": "0a66ba563e707c403dae9b987a787e9cf4d6a2ba98eae30ac5dab8ca9bfdd2c0"
+    },
+    "fixed_bonus_unobserved/run_result.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_unobserved/run_result.json",
+      "bytes": 405,
+      "sha256": "1ca205b3826047ef6240ec0e6e0f8aaadba569cf6859374120dc1ff15c91be2c"
+    },
+    "fixed_bonus_unobserved/unity.log": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_bonus_unobserved/unity.log",
+      "bytes": 103015,
+      "sha256": "cfa8412125db94968a3416e742df900ae071418a09cc3e193c3fe7c5a81da7f6"
+    },
+    "fixed_no_moves_unobserved/background_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_no_moves_unobserved/background_verification.json",
+      "bytes": 386,
+      "sha256": "179883434d36ee7eff07433251d69cbd9a7d253f3292096afe3b96cf82f123da"
+    },
+    "fixed_no_moves_unobserved/live_core_no_moves_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_no_moves_unobserved/live_core_no_moves_verification.json",
+      "bytes": 622,
+      "sha256": "c6a30a733d9f5f20c106b1b948110d9c8c75344d9e0d9cf73a97be28a1ae5236"
+    },
+    "fixed_no_moves_unobserved/process.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_no_moves_unobserved/process.json",
+      "bytes": 745,
+      "sha256": "2ba3961f1fc53e9312400fc04b1ae6661315ebd518bda6d7287fe78a74897ccd"
+    },
+    "fixed_no_moves_unobserved/run_result.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_no_moves_unobserved/run_result.json",
+      "bytes": 400,
+      "sha256": "0e679ca23d71d989ea08d57b9c4f6dd04deccdcb56786d1d11574defce8d4e0e"
+    },
+    "fixed_no_moves_unobserved/unity.log": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_no_moves_unobserved/unity.log",
+      "bytes": 101625,
+      "sha256": "8f0fa567c9607f372c8b2ba3f4075784df317899fa079eb79ba0fba949d1fa8e"
+    },
+    "fixed_recolor_30fps/background_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/background_verification.json",
+      "bytes": 393,
+      "sha256": "646885601ef55b072e1ef3b704d8593defba868ad4de97bf836c2215597fec64"
+    },
+    "fixed_recolor_30fps/live_core_recolor_shuffle_verification.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/live_core_recolor_shuffle_verification.json",
+      "bytes": 373,
+      "sha256": "d505da1c30c68f814891b0f72e517543a63b44f44084f7772cfbd9bb46a116b2"
+    },
+    "fixed_recolor_30fps/native/native_shuffle_motion.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/native/native_shuffle_motion.json",
+      "bytes": 20152,
+      "sha256": "0a96246bcf1763fce53cd23e84cf6bf2402828dbe5d3f019426f74ed7801ff80"
+    },
+    "fixed_recolor_30fps/native_live_cases.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/native_live_cases.json",
+      "bytes": 1546,
+      "sha256": "3abdacc0e9e1a90bffdba4bbede6ee9bd59336784e1f13f756ed0e1a4ff3a214"
+    },
+    "fixed_recolor_30fps/native_live_comparison.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/native_live_comparison.json",
+      "bytes": 1249,
+      "sha256": "ed2e79283ce32230cba328df6c18e2e9c27d7be436eee35a85373d7c7c8aa335"
+    },
+    "fixed_recolor_30fps/process.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/process.json",
+      "bytes": 736,
+      "sha256": "87894bed4fb05a985fae97f4cc6b5b6dd7ee1903cd62cb8efa71b3c3e3313394"
+    },
+    "fixed_recolor_30fps/run_result.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/run_result.json",
+      "bytes": 407,
+      "sha256": "49146af6009e97a7703cb118f738a9076035c1cd4789abc66060925e8e8bfe45"
+    },
+    "fixed_recolor_30fps/shuffle_pose_completed.png": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/shuffle_pose_completed.png",
+      "bytes": 1269690,
+      "sha256": "ed7ace217ce9a8304304f06ad7a0ce26b1de13e2a8c90082a248f93deecc8d99"
+    },
+    "fixed_recolor_30fps/shuffle_pose_trace.json": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/shuffle_pose_trace.json",
+      "bytes": 50927,
+      "sha256": "19d5ee1d2f2e4105489b95058100f5722c4d984a25eb1d42a321717177924e22"
+    },
+    "fixed_recolor_30fps/unity.log": {
+      "path": "C:/RMShuffleMotion_20261105/fixed_recolor_30fps/unity.log",
+      "bytes": 103350,
+      "sha256": "fa02012d389a0dd23f74c912a421109bbf24f53072704c03e53713ac7554208b"
+    },
+    "inspect_native.py": {
+      "path": "C:/RMShuffleMotion_20261105/inspect_native.py",
+      "bytes": 1376,
+      "sha256": "10588e2c72624428a73a217eff5d209bf9f0418a45409065b5699d7b9e7f3498"
+    },
+    "mirror_source_alignment.json": {
+      "path": "C:/RMShuffleMotion_20261105/mirror_source_alignment.json",
+      "bytes": 378358,
+      "sha256": "10d727777dcb933b9f377b73473bfbf0a96c8b2087af533fa7565c7e9764bc8d"
+    },
+    "native/native_shuffle_motion.json": {
+      "path": "C:/RMShuffleMotion_20261105/native/native_shuffle_motion.json",
+      "bytes": 9612778,
+      "sha256": "47b6f38c6b27319db5c70771359001831f421b6fb075afd2f2c7b336b3cc1f16"
+    },
+    "native_shuffle_motion.py": {
+      "path": "C:/RMShuffleMotion_20261105/native_shuffle_motion.py",
+      "bytes": 10804,
+      "sha256": "7790581a0a2062cd6e4a1c214922d860beefbfea1490c38b6b8c08b36241782c"
+    },
+    "plan.json": {
+      "path": "C:/RMShuffleMotion_20261105/plan.json",
+      "bytes": 1149,
+      "sha256": "b23360efe07cf71dfd2d5ff73884a5f6b0686e8e6665fa6b614aad0c3b5d05e4"
+    },
+    "prepare.py": {
+      "path": "C:/RMShuffleMotion_20261105/prepare.py",
+      "bytes": 2238,
+      "sha256": "62b50d6421f1551454a0d0bfbffd815b912ca5c27abaa26cf39dd2b9aa607553"
+    },
+    "prepare_scripts.py": {
+      "path": "C:/RMShuffleMotion_20261105/prepare_scripts.py",
+      "bytes": 1587,
+      "sha256": "479ff17d0b3b89a839e2877687b54a02cc4b7d4488487b202ed511c8d879a485"
+    },
+    "prepare_verifiers.py": {
+      "path": "C:/RMShuffleMotion_20261105/prepare_verifiers.py",
+      "bytes": 5720,
+      "sha256": "baed03cf1ec86b6a44d2cfb76aa382aed661637b25119c4f6ab1dde258fe9922"
+    },
+    "promote_sources.py": {
+      "path": "C:/RMShuffleMotion_20261105/promote_sources.py",
+      "bytes": 3501,
+      "sha256": "ef1d4f3092a9e252b9c60dfd965a0059c67098c2815aa327fec5ed200190fb29"
+    },
+    "run_unity.py": {
+      "path": "C:/RMShuffleMotion_20261105/run_unity.py",
+      "bytes": 5178,
+      "sha256": "4cf669ddd02e0250a2c0cffd15219b9f484918b4112516c47caa95207114a7ee"
+    },
+    "ShuffleMotionHarness.cs": {
+      "path": "C:/RMShuffleMotion_20261105/ShuffleMotionHarness.cs",
+      "bytes": 10031,
+      "sha256": "4ac665aa144089b108ffe0b508fba4b6c2cff363bf51c1b88cbd0026755980d5"
+    },
+    "ShuffleMotionProbe.cs": {
+      "path": "C:/RMShuffleMotion_20261105/ShuffleMotionProbe.cs",
+      "bytes": 4701,
+      "sha256": "b3d068e14ec4079fbe6b611ada60c9acbdcb9441f73cd95ccbe274617d51e159"
+    },
+    "source_stage_paths.json": {
+      "path": "C:/RMShuffleMotion_20261105/source_stage_paths.json",
+      "bytes": 332,
+      "sha256": "b045c14ab27e98436b6ce9dda361afe794fa1cee692b1dd614849a54aaa51ac4"
+    },
+    "0x1ee7990.asm": {
+      "path": "C:/RMShuffleMotion_20261105/0x1ee7990.asm",
+      "bytes": 953,
+      "sha256": "20b3c08b83a3a53c495d63f3e622ecc3e0d2d412e6ae042e66860ed729832a30"
+    }
+  },
+  "android_followup": {
+    "source_commit": "7e2c15bbc7c762de139c79874cd1c98a63939754",
+    "report": "SourceCatalog/android_shuffle_revision_20261105.json",
+    "apk_sha256": "55a1aad25b7f0e9b9396ba8c7627ec342a529a5e5c8652213e80e83c6762eb49",
+    "apk_bytes": 43639054,
+    "shuffle_correction_packaged": true,
+    "android_shuffle_triggered": false,
+    "natural_resumed_level5_win_result_and_continue6": true,
+    "accepted_level5_moves_in_this_apk": 14,
+    "win_left_moves": 15,
+    "final_reward": 54,
+    "level6_cold_restart_and_following_swap": true,
+    "scope": "Build the committed native shuffle correction into the ARM64 APK. Normal OS gestures complete the resumed fifth level, automatically convert 15 remaining moves, show the 54-reward result, Continue to level 6 and cold-restore its playable board. Android shuffle itself is not triggered; exact original rendering/audio/input and all-100 natural play remain unverified."
+  }
+}

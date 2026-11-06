@@ -1,0 +1,637 @@
+{
+  "full_objective_complete": false,
+  "production_database_bound": false,
+  "production_startup_user_flow_bound": false,
+  "mobile_storage_provider_bound": false,
+  "final_result_dialog_rendered": false,
+  "windows_sqlite_reward_reopen_verified": true,
+  "source_snapshot_sha256": "41033b23ecbc16572b7e6c4750a4b876868582e267e2672b8bc717cf287f45c3",
+  "restored_scope": "Native KeyValueTable rows/defaults/sync flags, UserKeyValue context cache/increment, DatabaseService dirty/frame/save/pause/quit ordering and actual Windows OS SQLite transport. Native account keys now persist the formal-scene automatic win/remaining rewards and progression; each of three scenarios commits and independently reopens its private seeded database.",
+  "implementation_constraint": "Project-owned strongly typed code avoids the original reflected ORM and adds no third-party Unity managed assembly. Windows transport is an explicit supported-OS adapter, not an Editor-only fallback. It is not selected by production startup or substituted for an Android/iOS provider.",
+  "native_constants": {
+    "scope": "Actual native SQL, database name literals, open flags and busy timeout. The Windows transport is not proof of mobile transport or production account startup.",
+    "busy_timeout_seconds": 0.1,
+    "busy_timeout_elf_address": "0x403fa78",
+    "sqlite_open_flags": 6,
+    "user_save_interval": 61,
+    "app_save_interval": 67,
+    "strings": [
+      {
+        "field": "begin",
+        "got": "0x5390308",
+        "metadata_address": "0x5625788",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90331016,
+          "Value": "begin transaction"
+        }
+      },
+      {
+        "field": "commit",
+        "got": "0x53c92d0",
+        "metadata_address": "0x5626c38",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90336312,
+          "Value": "commit"
+        }
+      },
+      {
+        "field": "update_synced",
+        "got": "0x537f318",
+        "metadata_address": "0x561fe98",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90308248,
+          "Value": "UPDATE KeyValue SET Synced = ? WHERE Key = ?"
+        }
+      },
+      {
+        "field": "update_sync_blocked",
+        "got": "0x53a4e38",
+        "metadata_address": "0x561fe68",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90308200,
+          "Value": "UPDATE KeyValue SET SyncBlocked = ? WHERE Key = ?"
+        }
+      },
+      {
+        "field": "app_database_filename",
+        "got": "0x5353f98",
+        "metadata_address": "0x5600a48",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90180168,
+          "Value": "App"
+        }
+      },
+      {
+        "field": "user_database_prefix",
+        "got": "0x533f630",
+        "metadata_address": "0x561ff88",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90308488,
+          "Value": "U_"
+        }
+      }
+    ]
+  },
+  "native_keys": {
+    "scope": "Native string metadata addresses used by coin/star/event-inventory/level writes and level flags. Resolving these keys does not restore DatabaseService or any production storage binding.",
+    "keys": [
+      {
+        "field": "coin",
+        "got": "0x535ebc0",
+        "metadata_address": "0x56071a0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90206624,
+          "Value": "Coins"
+        }
+      },
+      {
+        "field": "star",
+        "got": "0x5398ac0",
+        "metadata_address": "0x561b690",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90289808,
+          "Value": "Stars"
+        }
+      },
+      {
+        "field": "event_inventory",
+        "got": "0x5382240",
+        "metadata_address": "0x560aaa0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90221216,
+          "Value": "EventInventory"
+        }
+      },
+      {
+        "field": "level",
+        "got": "0x534b450",
+        "metadata_address": "0x5610ca8",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90246312,
+          "Value": "Level"
+        }
+      },
+      {
+        "field": "league_level",
+        "got": "0x5394160",
+        "metadata_address": "0x5610aa0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90245792,
+          "Value": "LeagueLevel"
+        }
+      },
+      {
+        "field": "level_try_count",
+        "got": "0x53f1998",
+        "metadata_address": "0x56112b8",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90247864,
+          "Value": "LevelTryCount"
+        }
+      },
+      {
+        "field": "hard_level_background_index",
+        "got": "0x53e74b0",
+        "metadata_address": "0x560cde0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90230240,
+          "Value": "HardLevelBackgroundIndex"
+        }
+      }
+    ]
+  },
+  "native_and_sqlite_tests": [
+    {
+      "path": "storage_kernels_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 1360,
+        "scope": "Compare actual ARM64 KeyValueTable/UserKeyValue increment/DatabaseService save lifecycle.\n\nSQLite commands, generic Find/Delete, sync SQL builders, corruption processing,\nservice lookup and BCL string/number conversion are typed boundaries. Native\nrow/flag construction, null/default selection, return comparisons, increment\noverflow, dirty/commit/begin ordering, frame modulo and re-reading the connection\nexecute from the original ELF. This does not verify complete SQLite ORM, account\nloading, corruption repair, all tables, mobile storage or production startup.",
+        "original_rvas": [
+          "0x25d4a44",
+          "0x25d4bf0",
+          "0x25d4e00",
+          "0x25d4b44",
+          "0x25d4cf4",
+          "0x25d4f04",
+          "0x25d4928",
+          "0x25d9834",
+          "0x25d98a8",
+          "0x25d98cc",
+          "0x25d49b4",
+          "0x25d2234",
+          "0x25d21f8",
+          "0x25d2268",
+          "0x25d2284",
+          "0x25d23ec",
+          "0x25e5100",
+          "0x25ce920"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/StorageKernelHarness.cs",
+            "sha256": "c3853e3b9acc75ec0bb86fb90fb3b7e9a22583112c3f45d2b15bf4b6590dc152"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+            "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+          }
+        ]
+      }
+    },
+    {
+      "path": "sqlite_account_storage_verification.json",
+      "report": {
+        "passed": true,
+        "checks": 28,
+        "scope": "Real Windows OS SQLite persistence and captured native database schema check.\n\nExecutes project runtime storage/account adapters with actual SQL, independent\nconnection visibility, commit/reopen/rollback and native sync flags. The original\ncaptured database is read-only; writes target only a temporary copy. No database\ncontents or identifiers are exported. Mobile transports, full database migration,\naccount constructor defaults and production startup are not verified.",
+        "native_captured_schema_sql": "CREATE TABLE \"KeyValue\"(\n\"Key\" varchar primary key not null ,\n\"Value\" varchar ,\n\"Synced\" integer ,\n\"SyncBlocked\" integer )",
+        "schema_columns": [
+          [
+            0,
+            "Key",
+            "varchar",
+            1,
+            null,
+            1
+          ],
+          [
+            1,
+            "Value",
+            "varchar",
+            0,
+            null,
+            0
+          ],
+          [
+            2,
+            "Synced",
+            "INTEGER",
+            0,
+            null,
+            0
+          ],
+          [
+            3,
+            "SyncBlocked",
+            "INTEGER",
+            0,
+            null,
+            0
+          ]
+        ],
+        "original_capture_unchanged": true,
+        "files": [
+          {
+            "path": "SourceCatalog/SqliteAccountHarness.cs",
+            "sha256": "a02d50e5a29575dc446056d7ccb2971673a4aa032966309c6be79a2eec169afd"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+            "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalAccountStorage.cs",
+            "sha256": "43130ad16b9c41fe6ef7e685c1c081029e18daeed92b42d71c8031948596e517"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalWindowsSqliteConnection.cs",
+            "sha256": "1dd9fe2f4b1fdedf70c01f853afee81d153f0ba0517e94dabd78a70c992ad09f"
+          }
+        ],
+        "api_sources": [
+          "https://www.sqlite.org/c3ref/open.html",
+          "https://www.sqlite.org/c3ref/bind_blob.html",
+          "https://www.sqlite.org/c3ref/step.html",
+          "https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/custom-versions"
+        ]
+      }
+    }
+  ],
+  "differential_native_methods": [
+    {
+      "rva": "0x25d4a44",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$SetString",
+      "body_sha256": "7a68bb84c4abe336bdf6d95d58385fff80a148cef03fffb3c4c9cf9559e061fd"
+    },
+    {
+      "rva": "0x25d4bf0",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$SetInt",
+      "body_sha256": "942abacc55d5c228def428ba5e3ae7c85b5303d972df82e38ecc5b7eac165326"
+    },
+    {
+      "rva": "0x25d4e00",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$SetLong",
+      "body_sha256": "d4f452459f50b7f6645b41cd4e841f1e318f709d04adf46b94f9c2a2e3d441d3"
+    },
+    {
+      "rva": "0x25d4b44",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$GetString",
+      "body_sha256": "67a9fd774ea7e215a09d8f1ce6a1d07bbad9bc87da8669d2e4c608e0ffc433ff"
+    },
+    {
+      "rva": "0x25d4cf4",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$GetInt",
+      "body_sha256": "efbf577319a4aba2383b32f4ae7aa1efa76e8f9ad4a627b897bad8a77242b637"
+    },
+    {
+      "rva": "0x25d4f04",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$GetLong",
+      "body_sha256": "4b53815f9fe1c370c81780b47cdddc5fb020d6838c0ca3f8793744486c43cb76"
+    },
+    {
+      "rva": "0x25d4928",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$HasKey",
+      "body_sha256": "26b971f9000346f757f3703d6731ab00ff03db5a97db8853e3fcc756bd550043"
+    },
+    {
+      "rva": "0x25d9834",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$GetSyncBlocked",
+      "body_sha256": "6cdb120d39581ba48642270e505d6460e42a661c07b862e3cdf65ded1fab0c00"
+    },
+    {
+      "rva": "0x25d98a8",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$SetSyncBlocked",
+      "body_sha256": "1c7a10452ee8d1bda4d73dd89e9512b270ba0659c660a65720d2cd3630b9e2b2"
+    },
+    {
+      "rva": "0x25d98cc",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$SetSynced",
+      "body_sha256": "b8230f71db6b80eb35dd84717cb3e65e413658da7c02f37312e720d73a3dff5f"
+    },
+    {
+      "rva": "0x25d49b4",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.KeyValueTable$$DeleteKey",
+      "body_sha256": "537b835827dcccf6554d6e096924a805a11fb1791e07bbde343d80a49f0201ee"
+    },
+    {
+      "rva": "0x25d2234",
+      "name": "Royal.Infrastructure.Services.Storage.DatabaseService$$Save",
+      "body_sha256": "17956aaeda9a6f9e80eb1cbbfc3c047b8930c4ea9bbe9db7e70a50876dc4f0e3"
+    },
+    {
+      "rva": "0x25d21f8",
+      "name": "Royal.Infrastructure.Services.Storage.DatabaseService$$ManualUpdate",
+      "body_sha256": "ed4199286b56346086ade618f71dc8fbec41fd1a7832f5038b79d77f5e027a91"
+    },
+    {
+      "rva": "0x25d2268",
+      "name": "Royal.Infrastructure.Services.Storage.DatabaseService$$OnApplicationResume",
+      "body_sha256": "c2300afa6bb7a0980ba13d50942b76038f22d7fe9d33ca3c9e6f4f72404368b8"
+    },
+    {
+      "rva": "0x25d2284",
+      "name": "Royal.Infrastructure.Services.Storage.DatabaseService$$OnApplicationPause",
+      "body_sha256": "48ba3bca7167f4b1cafb255540d3d5090585163ac40824cbe28b411fa9412f0c"
+    },
+    {
+      "rva": "0x25d23ec",
+      "name": "Royal.Infrastructure.Services.Storage.DatabaseService$$OnApplicationQuit",
+      "body_sha256": "d99c005e06e9bbfd0b45661af7cac5a73f3677802577bc3aa031a1d514a6fbc0"
+    },
+    {
+      "rva": "0x25e5100",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.UserKeyValue$$IncrementInt",
+      "body_sha256": "0b971a3ede79c509b056a24b141ec974fe8506e5cf501b583c5b8f4e2e41b4bb"
+    },
+    {
+      "rva": "0x25ce920",
+      "name": "Royal.Infrastructure.Services.Storage.DatabaseService$$InsertOrReplace",
+      "body_sha256": "38b25c2f078c5c32691cdc4f2ae9ef3905013967edfb8f19601b48a87c99aeb4"
+    }
+  ],
+  "same_snapshot_runtime_tests": [
+    {
+      "path": "background_remaining_coins_normal_verification.json",
+      "report": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "41033b23ecbc16572b7e6c4750a4b876868582e267e2672b8bc717cf287f45c3",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+        "elapsed_seconds": 107.44,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-normal",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T19:19:04.7572074Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "live_path": "live_remaining_coins_normal_verification.json",
+      "live": {
+        "passed": true,
+        "skipped": false,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-f4fc5fec8d844fba85e08a9cb0c3ada1.sqlite",
+        "initial_remaining_moves": 25,
+        "converted_moves": 25,
+        "unconverted_moves": 0,
+        "reward_coins": 75,
+        "collections": 27,
+        "peak_coin_views": 65,
+        "peak_pilots": 65,
+        "peak_operation5": 65,
+        "native_departure_count": 65,
+        "active_board_coin_value_at_end": 0,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 75,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "elapsed": 11.02419662475586,
+        "scope": "Formal36box goal scenario. Actual WinFail, WinTransition, WinFlow/main queue/dialog actions, logo, remaining conversion/flights and Session end execute. Actual user-end/progression/balance/storage kernels write native account keys to a private Windows OS SQLite database, commit and reopen it to verify level, stars, coins and local sync flags. Account seeds/feature/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Native account loading, full database/table migration/corruption handling, production/mobile startup, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      },
+      "independent_read_only_sqlite_check": true,
+      "database_sha256": "6b2c11117db907bc55ddb105bd34af13622da4e69b7038e5abd20f93d52bbe17",
+      "account_keys": {
+        "Coins": "75",
+        "EventInventory": "16384",
+        "HardLevelBackgroundIndex": "0",
+        "LeagueLevel": "0",
+        "Level": "2",
+        "LevelTryCount": "0",
+        "Stars": "1"
+      }
+    },
+    {
+      "path": "background_remaining_coins_skip_verification.json",
+      "report": {
+        "passed": true,
+        "test": "remaining-coins-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "41033b23ecbc16572b7e6c4750a4b876868582e267e2672b8bc717cf287f45c3",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-skip.log",
+        "elapsed_seconds": 97.02,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T19:20:43.1868082Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "live_path": "live_remaining_coins_skip_verification.json",
+      "live": {
+        "passed": true,
+        "skipped": true,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-26753d4f4a81455db50eb32fb2808556.sqlite",
+        "initial_remaining_moves": 25,
+        "converted_moves": 25,
+        "unconverted_moves": 0,
+        "reward_coins": 83,
+        "collections": 1,
+        "peak_coin_views": 3,
+        "peak_pilots": 3,
+        "peak_operation5": 3,
+        "native_departure_count": 3,
+        "active_board_coin_value_at_end": 70,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 83,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "elapsed": 9.289583206176758,
+        "scope": "Formal36box goal scenario. Actual WinFail, WinTransition, WinFlow/main queue/dialog actions, logo, remaining conversion/flights and Session end execute. Actual user-end/progression/balance/storage kernels write native account keys to a private Windows OS SQLite database, commit and reopen it to verify level, stars, coins and local sync flags. Account seeds/feature/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Native account loading, full database/table migration/corruption handling, production/mobile startup, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      },
+      "independent_read_only_sqlite_check": true,
+      "database_sha256": "689e56bea1618b8f49a112149627e7ddd46cf48a649990fc88b21f1be20d956f",
+      "account_keys": {
+        "Coins": "83",
+        "EventInventory": "16384",
+        "HardLevelBackgroundIndex": "0",
+        "LeagueLevel": "0",
+        "Level": "2",
+        "LevelTryCount": "0",
+        "Stars": "1"
+      }
+    },
+    {
+      "path": "background_remaining_coins_early_skip_verification.json",
+      "report": {
+        "passed": true,
+        "test": "remaining-coins-early-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "41033b23ecbc16572b7e6c4750a4b876868582e267e2672b8bc717cf287f45c3",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+        "elapsed_seconds": 97.99,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-early-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T19:22:20.6283557Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "live_path": "live_remaining_coins_early_skip_verification.json",
+      "live": {
+        "passed": true,
+        "skipped": true,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-850775e11c974f099adf1d5471c16d35.sqlite",
+        "initial_remaining_moves": 24,
+        "converted_moves": 2,
+        "unconverted_moves": 22,
+        "reward_coins": 80,
+        "collections": 0,
+        "peak_coin_views": 0,
+        "peak_pilots": 0,
+        "peak_operation5": 0,
+        "native_departure_count": 0,
+        "active_board_coin_value_at_end": 15,
+        "unconverted_move_coin_value": 55,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 80,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "elapsed": 6.475313186645508,
+        "scope": "Formal36box goal scenario. Actual WinFail, WinTransition, WinFlow/main queue/dialog actions, logo, remaining conversion/flights and Session end execute. Actual user-end/progression/balance/storage kernels write native account keys to a private Windows OS SQLite database, commit and reopen it to verify level, stars, coins and local sync flags. Account seeds/feature/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Native account loading, full database/table migration/corruption handling, production/mobile startup, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      },
+      "independent_read_only_sqlite_check": true,
+      "database_sha256": "e475114e73a0b61dea7c8ba1bceeb9059b70689deac56179c8afc3543c566d45",
+      "account_keys": {
+        "Coins": "80",
+        "EventInventory": "16384",
+        "HardLevelBackgroundIndex": "0",
+        "LeagueLevel": "0",
+        "Level": "2",
+        "LevelTryCount": "0",
+        "Stars": "1"
+      }
+    }
+  ],
+  "limits": [
+    "Account inputs in these scene checks are explicit seeds, not proof of native fresh-user constructor/load behavior.",
+    "Mobile SQLite transports, actual user/app service registration, path initialization, complete database tables/migrations/corruption repair and level save-file restore/delete remain unbound.",
+    "Actual backend/events/features and King/Life/Ego/reactivation owners, complete loss/retry/continue/home/result-dialog lifecycle remain unbound.",
+    "Original rendered/physical/cross-platform/all-level/country/AB/GM fidelity is unproved. SDK handling is unchanged."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+      "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs.meta",
+      "sha256": "4b731eb753d293391a4c679b36d0336bc0cca6cc9c643bf2809f2bc0869f752b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAccountStorage.cs",
+      "sha256": "43130ad16b9c41fe6ef7e685c1c081029e18daeed92b42d71c8031948596e517"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAccountStorage.cs.meta",
+      "sha256": "e86d399f1a57cc566f6cb4651bca824401b28a225d903fee8a030f1764387384"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWindowsSqliteConnection.cs",
+      "sha256": "1dd9fe2f4b1fdedf70c01f853afee81d153f0ba0517e94dabd78a70c992ad09f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWindowsSqliteConnection.cs.meta",
+      "sha256": "77e9d45423d88b4ebaa00daef0e1bf86496f2821b91353a4df0b67103754c7f7"
+    },
+    {
+      "path": "Assets/Foundation/Editor/UserEndFixtureContext.cs",
+      "sha256": "70ee5bfd10be8a193eda42ee19805b2baf85b715fe03ca168e94f86221360110"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "97c9eb8140b52a09a56aa5844a117987e392e7fa2b9855f3d922bacf728512db"
+    },
+    {
+      "path": "SourceCatalog/StorageKernelHarness.cs",
+      "sha256": "c3853e3b9acc75ec0bb86fb90fb3b7e9a22583112c3f45d2b15bf4b6590dc152"
+    },
+    {
+      "path": "SourceCatalog/verify_storage_kernels.py",
+      "sha256": "55dd013e779d98228cff8a0422ccb52da46ce92eb4982fa69e3f47b807e13577"
+    },
+    {
+      "path": "SourceCatalog/SqliteAccountHarness.cs",
+      "sha256": "a02d50e5a29575dc446056d7ccb2971673a4aa032966309c6be79a2eec169afd"
+    },
+    {
+      "path": "SourceCatalog/verify_sqlite_account.py",
+      "sha256": "b5631fa40d7a9e9ea43b1293b0dde24a6682b3a3ea004afd67d0b4798dcfae09"
+    },
+    {
+      "path": "SourceCatalog/storage_native_constants.json",
+      "sha256": "171d7d1d01d5c805005e4215b6bb0a1d9b869cb1c0f75cee337b5c79fd535a9a"
+    },
+    {
+      "path": "SourceCatalog/user_balance_native_keys.json",
+      "sha256": "24d24ce6881025a9b92482867b53e2843c93b2ae4eaa3b87eb462c8ef68c0d82"
+    }
+  ],
+  "historical_checkpoint": "d8ae536af3fa988b8c08eaa510f7902528a3b203",
+  "historical_snapshot_preserved": true,
+  "current_local_account_load_evidence": "SourceCatalog/local_account_load_evidence.json",
+  "current_native_storage_composition_evidence": "SourceCatalog/native_storage_composition_evidence.json",
+  "current_coin_spending_and_ego_evidence": "SourceCatalog/ego_continuation_evidence.json"
+}

@@ -1,0 +1,264 @@
+{
+  "full_objective_complete": false,
+  "production_win_fail_bound": false,
+  "production_loss_dialog_bound": false,
+  "rendered_loss_dialog_original_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "feb38cd9c3330f359cf231f0afc3832c98ccdb76da2661761cf0d1ee5af28f00",
+  "restored_scope": [
+    "Native extra-move, Ego, no-possible-move, fail and offer dispatch sequence.",
+    "Lava Quest then Ancient Adventure deferred fail callbacks; ShowFailDialog method metadata is resolved from original ScriptMetadataMethod.",
+    "Out-of-moves interrupt action and priority Ego action; portal/current-session/league/difficulty/download/missing-bundle branches.",
+    "Native reference-null bundle checks preserved separately from Unity destroyed-object equality; non-null destroyed bundle fixtures take the native reference-present branch.",
+    "Banner continuation orientation reason35, landscape sorting, Clear(false) and Ego origin10/addCoinfalse/fade0.2.",
+    "No reflected members, Editor-only fallbacks, new native binary, SDK or generated static UI."
+  ],
+  "methods": [
+    {
+      "rva": "0x1ede230",
+      "name": "Royal.Scenes.Game.Levels.Units.WinFail.WinFailManager$$StartExtraMoveFlow",
+      "body_sha256": "f8c6b7e429be478f2926c037af6a29e93db99c94302e6f117cace239ef22b727"
+    },
+    {
+      "rva": "0x1ede420",
+      "name": "Royal.Scenes.Game.Levels.Units.WinFail.WinFailManager$$StartEgoFlow",
+      "body_sha256": "10cc3a56618e481a776d93476575af05c5285f958760e5442c3b8607ec27f706"
+    },
+    {
+      "rva": "0x1ede668",
+      "name": "Royal.Scenes.Game.Levels.Units.WinFail.WinFailManager$$StartNoPossibleMoveFlow",
+      "body_sha256": "f1d786ce02adee31e9fca98bbe9afd5b4c913c7bb544f7220d7a416f4712ff19"
+    },
+    {
+      "rva": "0x1ede7f0",
+      "name": "Royal.Scenes.Game.Levels.Units.WinFail.WinFailManager$$StartFailFlow",
+      "body_sha256": "d9069f14715609085d56c29653b3cca69d2e379bf08c2b2f12c7ac8a6bb520df"
+    },
+    {
+      "rva": "0x1edeae8",
+      "name": "Royal.Scenes.Game.Levels.Units.WinFail.WinFailManager$$ShowFailDialog",
+      "body_sha256": "8ac77cf1e12502a1f287c9cf22a83c24a2e6e77c6179645da357f434537dc17d"
+    },
+    {
+      "rva": "0x159562c",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.ShowOutOfMovesBannerAction$$get_Type",
+      "body_sha256": "ee72c9342289e87b880308f8dadca58c663c27dbda26c89f77492c1eae05f047"
+    },
+    {
+      "rva": "0x1595634",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.ShowOutOfMovesBannerAction$$Execute",
+      "body_sha256": "a46f826f85a41d1affed9509fec0dbb1d5d073567be7620d0784a0bcc3699374"
+    },
+    {
+      "rva": "0x15958a4",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.ShowOutOfMovesBannerAction$$InstantiateDefaultDialog",
+      "body_sha256": "e674fb89d8155cb66d2588dd70a29579e0f7d2bd3f3f4f629bba477e64105f66"
+    },
+    {
+      "rva": "0x158a8fc",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.ShowEgoDialogAction$$.ctor",
+      "body_sha256": "0ec247ae95791a853a3c09a90cbff9ff2853f6ea21f6297a160749dab5a03755"
+    },
+    {
+      "rva": "0x1594a20",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.ShowEgoDialogAction$$get_Type",
+      "body_sha256": "5d48b57d90f78ca4be9f0a7c771ef948bae592e42cfd412754d881088edc1d61"
+    },
+    {
+      "rva": "0x1594a28",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.ShowEgoDialogAction$$Execute",
+      "body_sha256": "913ed138186624b9bfbd46a2a87e9892f4a135e213d72f3044441390cf1d0b0b"
+    },
+    {
+      "rva": "0x1594cbc",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.ShowEgoDialogAction$$InstantiateDefaultDialog",
+      "body_sha256": "e03e9dd9193aa6910e00b0d8db4269616b15fdf014dee68bbb07ead6444b20d4"
+    },
+    {
+      "rva": "0x158a754",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelFail.OutOfMovesBanner$$PushEgoDialog",
+      "body_sha256": "af29338aac8b0d4a4d41ae13daa16862d9faf1a3fe8e93e03d8be35ffd2596f2"
+    }
+  ],
+  "callback_metadata": {
+    "got": "0x53b9168",
+    "metadata_address": 90103664,
+    "name": "Method$Royal.Scenes.Game.Levels.Units.WinFail.WinFailManager.ShowFailDialog()",
+    "method_address": 32369384
+  },
+  "native_differential": {
+    "passed": true,
+    "cases": 9982,
+    "loss_cases": 1320,
+    "banner_cases": 2160,
+    "ego_cases": 6480,
+    "continuation_cases": 22,
+    "scope": "Actual ARM64 loss-flow, out-of-moves banner and Ego action vs production C#.\n\nExternal session fail/refund, account/event/King/audio, resource instantiation,\nUiDialog rendering/lifecycle and FlowManager.Push/Clear are recorded boundaries.\nThe original loss order, event callback deferral, offer selection and banner\nleague/portal/bundle decisions execute in the ELF. No production scene binding,\nactual failure persistence, rendered popup or mobile parity is established.",
+    "original_rvas": [
+      "0x1ede230",
+      "0x1ede420",
+      "0x1ede668",
+      "0x1ede7f0",
+      "0x1edeae8",
+      "0x159562c",
+      "0x1595634",
+      "0x15958a4",
+      "0x158a8fc",
+      "0x1594a20",
+      "0x1594a28",
+      "0x1594cbc",
+      "0x158a754"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/LossFlowHarness.cs",
+        "sha256": "e60d01031428398dbcd1a3f527180ad9b7d90bf47941393d7bf363083f58d728"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLossFlowCoordinator.cs",
+        "sha256": "ddf41aa958b9f901e6550ac36c86d26fac42293fd04560fcb3b9aa2f46a0e597"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalOutOfMovesBannerAction.cs",
+        "sha256": "14ab27c8c62f20c3fa773c62eec747819db9eee616baeea782a5b0634e37e908"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalEgoDialogAction.cs",
+        "sha256": "2dcdb7ade2986c8629d67f33717f81c940fbba68ecef5b0e0bc5b57919a8f6fd"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalOutOfMovesContinuation.cs",
+        "sha256": "f0eb604c95a28493e5d2e198aa868a40c07ac3e47df394e169442ae1e64ad167"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalActiveLevelData.cs",
+        "sha256": "99073681633b6c4aed4fc58ff70814a2b461b4829f6ee9e78aaafd27d0546863"
+      }
+    ]
+  },
+  "runtime_queue_composition": {
+    "passed": true,
+    "scenarios": 6,
+    "scope": "Exercise actual move/state/WinFail/loss and main-queue runtime composition.\n\nUses a fixture accepted swap and explicit UiDialog close completion. Goal/auto\nmodels, DisableCounter, session/account/event/King/audio/orientation owners and\nprefab rendering remain fixtures. The banner animation, Ego purchase/cancel,\nactual failure persistence and production FoundationController are not bound.",
+    "files": [
+      {
+        "path": "SourceCatalog/LossQueueHarness.cs",
+        "sha256": "a23febe6e26b08c968ea119e050421b709e2e5de1c7536e3456c9bc286c0f1d9"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalMoveManager.cs",
+        "sha256": "0059633ce3877a2e2952037724d3f69a3b538834d007428f4d2a32c75b562fff"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGameOperations.cs",
+        "sha256": "662d440885e29acdf95801f1a6627599cb2a64cbe0fc52ebb51c1a93d9dd4ea4"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGameStateManager.cs",
+        "sha256": "4cdb09430b54f20fef0afa9b607153c035ffb6817ed479f44d2e3f707f52cf9e"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalWinFailManager.cs",
+        "sha256": "5eb744e9563beadf2962048bfbc83aa39ec9d61e37a12de3e93ca063e259d68d"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalFlowExecutor.cs",
+        "sha256": "2d6b0aca609d1284e48ea2d8c947ec910041069fc0a8b550bf715fb8efa3f556"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLossFlowCoordinator.cs",
+        "sha256": "ddf41aa958b9f901e6550ac36c86d26fac42293fd04560fcb3b9aa2f46a0e597"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalOutOfMovesBannerAction.cs",
+        "sha256": "14ab27c8c62f20c3fa773c62eec747819db9eee616baeea782a5b0634e37e908"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalEgoDialogAction.cs",
+        "sha256": "2dcdb7ade2986c8629d67f33717f81c940fbba68ecef5b0e0bc5b57919a8f6fd"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalOutOfMovesContinuation.cs",
+        "sha256": "f0eb604c95a28493e5d2e198aa868a40c07ac3e47df394e169442ae1e64ad167"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalActiveLevelData.cs",
+        "sha256": "99073681633b6c4aed4fc58ff70814a2b461b4829f6ee9e78aaafd27d0546863"
+      }
+    ]
+  },
+  "same_snapshot_runtime_regression": {
+    "path": "background_remaining_coins_normal_verification.json",
+    "passed": true,
+    "source_sha256": "feb38cd9c3330f359cf231f0afc3832c98ccdb76da2661761cf0d1ee5af28f00",
+    "elapsed_seconds": 107.09,
+    "scope": "Unity compilation of the runtime additions plus existing explicit first-board win/remaining/storage reload scenario. New loss dialog rendering and production binding are not exercised."
+  },
+  "observed_formal_scene_gap": "FoundationController constructs board/input/HUD but does not call BindWinFail or compose application/account/King/Life/Ego/UiDialog owners.",
+  "next_native_core_link": {
+    "method": "EgoDialog.OnClose",
+    "rva": "0x1346c60",
+    "win_fail_unit_lookup": "0x1346dac..0x1346db0 resolves level unit16",
+    "paid_play_on": "0x1346f20..0x1346f30 calls EgoManager.PlayOn(false)",
+    "cancel": "0x1346f6c..0x1346f78 calls EgoManager.CancelOffer, which sets game state Fail at0x1ca5824",
+    "win_fail_reset": "Corrected by actual OnClose core-range execution: paid/free uses Clear(false); cancel uses Clear(true), then OfferManager.SetEgoOfferStatus(false,false). See current_ego_continuation_evidence; full dialog lifecycle remains incomplete."
+  },
+  "limits": [
+    "New loss-flow classes are runtime ports awaiting actual application and prefab composition; they do not by themselves change the current player scene.",
+    "Session.Fail/NoPossibleMove/refund, event owners, music/King/orientation and UiDialog lifecycle/animation/rendering are required external dependencies in these checks.",
+    "Queue scenarios use an accepted-swap fixture and explicit dialog-close completion. Fail and no-possible-move states are injected for their independent paths; Ego purchase/cancel and retry are not established.",
+    "Android SQLite binary adoption remains pending the earlier user scope question; no mobile storage or iOS implementation is verified.",
+    "Full startup/home/progression/all-level/gameplay/tutorial/peripheral unlock/country/AB/GM/native visual and physical-input fidelity remain incomplete."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLossFlowCoordinator.cs",
+      "sha256": "ddf41aa958b9f901e6550ac36c86d26fac42293fd04560fcb3b9aa2f46a0e597"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLossFlowCoordinator.cs.meta",
+      "sha256": "907c2a49eda6e4c99966b7620946a772801804eb848fb4f53749ce90c1c2a418"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOutOfMovesBannerAction.cs",
+      "sha256": "14ab27c8c62f20c3fa773c62eec747819db9eee616baeea782a5b0634e37e908"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOutOfMovesBannerAction.cs.meta",
+      "sha256": "ed55bf45e93bcda386d56d990c40d5883fba7fd2d6b1cbc6ce4122b9edf38c21"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalEgoDialogAction.cs",
+      "sha256": "2dcdb7ade2986c8629d67f33717f81c940fbba68ecef5b0e0bc5b57919a8f6fd"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalEgoDialogAction.cs.meta",
+      "sha256": "a3c25d004f16a01df6fe010c678a0fd028a6671cda1cee78b304fd5953f7fa54"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOutOfMovesContinuation.cs",
+      "sha256": "f0eb604c95a28493e5d2e198aa868a40c07ac3e47df394e169442ae1e64ad167"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOutOfMovesContinuation.cs.meta",
+      "sha256": "9c644b280022feb04c96ba0248ba6a13870006afb44dd8d18cc6be30201ea2c6"
+    },
+    {
+      "path": "SourceCatalog/LossFlowHarness.cs",
+      "sha256": "e60d01031428398dbcd1a3f527180ad9b7d90bf47941393d7bf363083f58d728"
+    },
+    {
+      "path": "SourceCatalog/LossQueueHarness.cs",
+      "sha256": "a23febe6e26b08c968ea119e050421b709e2e5de1c7536e3456c9bc286c0f1d9"
+    },
+    {
+      "path": "SourceCatalog/verify_loss_flow.py",
+      "sha256": "c076fa8227cafca331c04bcfc9e6aa5acab91c9f42f6bc4ab8fb3e16fdfbadd3"
+    },
+    {
+      "path": "SourceCatalog/verify_loss_queue.py",
+      "sha256": "e0377f0ab9d8fcb14b832dbc24e65c97528e106a3635be7fd56f0b59ef9779eb"
+    }
+  ],
+  "current_ego_continuation_evidence": "SourceCatalog/ego_continuation_evidence.json"
+}

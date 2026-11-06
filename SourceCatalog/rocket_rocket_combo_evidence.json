@@ -1,0 +1,196 @@
+{
+  "status": "Runtime bound;96nativecontrol/data cases and4formal scene fixture drags pass; TNTpair2drag regression passes identicalsource8861116.",
+  "methods": [
+    {
+      "rva": "0x1e2f164",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.RocketRocketCombo$$get_ComboType",
+      "body_sha256": "c05ddf020ff8b6a396ad5b20d85dcbd3b487aa0c365c0c460305d57ba0a46469"
+    },
+    {
+      "rva": "0x1e2f16c",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.RocketRocketCombo$$Prepare",
+      "body_sha256": "24a3ba0d0e4948dc55ec35530e1e36cfca008990e6fa0e6e70ed186700a54f41"
+    },
+    {
+      "rva": "0x1e2f314",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.RocketRocketCombo$$Explode",
+      "body_sha256": "5dc8ae4b720ddfbf116a5fac042d06b4c2397a58777b7a5e4db83a7849534e11"
+    },
+    {
+      "rva": "0x1e30a9c",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.RocketRocketCombo$$Clear",
+      "body_sha256": "3363a03162ed1c23db12c80411aad06246c60af0aafeaab0cee67b2663d65503"
+    },
+    {
+      "rva": "0x27bb2b0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.RocketItemModel$$ChangeOrientation",
+      "body_sha256": "f60d7e9d8b0039381e8d692f1f568d4400da2b4ad12e31e4888aa14bb0f9f588"
+    },
+    {
+      "rva": "0x27b4740",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.SpecialItemModel$$ChangePosition",
+      "body_sha256": "8f95a95ce78e37bd317d8b1a772e47f5ae8c4295e01f71c66db9fa5e92a62a66"
+    },
+    {
+      "rva": "0x2b4ad78",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemView$$ChangePosition",
+      "body_sha256": "e2a8301b6ca920d21b0008b10657bf0f6e0f943a9634e92ec5c4b3d6dd663e88"
+    },
+    {
+      "rva": "0x27ba914",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.RocketItem.RocketItemModel$$ExplodeWithPresetData",
+      "body_sha256": "06f60fa846953f90515e5cafcb67f2209a744d8bc310f0d3862d5572076c1690"
+    },
+    {
+      "rva": "0x2b489ac",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemOrientationExtensions$$Opposite",
+      "body_sha256": "3cea3ffd30b3f86df6d783e51e71b687e0370c3912c0204b295e5d7afe499cb9"
+    },
+    {
+      "rva": "0x1ee402c",
+      "name": "Royal.Scenes.Game.Levels.Units.Touch.SwapAction$$GetSwapMoveTypeFromItems",
+      "body_sha256": "8a9947d0047ddad24db70765443531ab7081d9ded8e7a1a5970efa961fa64154"
+    },
+    {
+      "rva": "0x1ee42c0",
+      "name": "Royal.Scenes.Game.Levels.Units.Touch.SwapAction$$ExplodeSpecialItems",
+      "body_sha256": "887f5b9078c7ecbe77733ac3f74be165d2f77f78623ae08fa0172349ab798d92"
+    },
+    {
+      "rva": "0x1e2ca8c",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.ComboManager$$Explode",
+      "body_sha256": "165a9f0086bb39713fab6be5afb76b61c3b7b056794ea0356afdf2dd90144c1c"
+    }
+  ],
+  "native_rules": [
+    "Prepare captures empty cell from toItem and shared center from fromItem, then clears from mediation before to mediation.",
+    "Empty cell freeze0.15seconds; moving/from rocket changes orientation using original signed Opposite and reinitializes its original source view/strategy.",
+    "Move from view local position to shared center; use new trigger7 and preset6 IDs, both trigger/preset Points set to center. Both rockets receive identical56byte trigger/preset valuecopies; no independent row/column IDs.",
+    "from explodes before to. Original per-axis views/fourpart operations/damage/pooling remain owners.",
+    "Combo7 count once; swap moveType11; combo swap animates primary view only, completion ends both views.",
+    "Clear releases emptyCell/from/to and intentionally retains center cell/point."
+  ],
+  "scope": "Admitted static-free first board only. No new static UI/game hierarchy or effect substitute; source rocket Prefab/animation/material/particle resources reused.",
+  "pending": [
+    "Eightothercombos; wholewin/fail/remainingmoves/results/progression, originalsession/HUD/camera, regions/AB/GM/unlocks and original renderedparity.",
+    "Locked event/charger/King combo-win analysis remains unbound; SDK unchanged.",
+    "Natural two-rocket creation and physicaldevice input not established by fixtures."
+  ],
+  "native_verification": {
+    "passed": true,
+    "native_combo_cases": 96,
+    "methods": [
+      {
+        "rva": "0x1e2f16c",
+        "name": "Royal.Scenes.Game.Levels.Units.Combo.RocketRocketCombo$$Prepare",
+        "body_sha256": "24a3ba0d0e4948dc55ec35530e1e36cfca008990e6fa0e6e70ed186700a54f41"
+      },
+      {
+        "rva": "0x1e2f314",
+        "name": "Royal.Scenes.Game.Levels.Units.Combo.RocketRocketCombo$$Explode",
+        "body_sha256": "5dc8ae4b720ddfbf116a5fac042d06b4c2397a58777b7a5e4db83a7849534e11"
+      },
+      {
+        "rva": "0x1e30a9c",
+        "name": "Royal.Scenes.Game.Levels.Units.Combo.RocketRocketCombo$$Clear",
+        "body_sha256": "3363a03162ed1c23db12c80411aad06246c60af0aafeaab0cee67b2663d65503"
+      },
+      {
+        "rva": "0x2b489ac",
+        "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemOrientationExtensions$$Opposite",
+        "body_sha256": "3cea3ffd30b3f86df6d783e51e71b687e0370c3912c0204b295e5d7afe499cb9"
+      },
+      {
+        "rva": "0x343b790",
+        "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellPoint$$ToVector",
+        "body_sha256": "1c2e516f733198c73326cb159994428fef79811da2698f0589e111e363864154"
+      }
+    ],
+    "scope": "Actual ARM64 RocketRocketCombo Prepare/Explode/Clear, Opposite and CellPoint.ToVector vs compiled production OriginalRocketRocketCombo with production OriginalExplodeData/Exploder. Exact clear/freeze/orientation/position/explosion order and both56byte trigger/preset payloads, repeatedowner reuse, horizontal/vertical points and signedorientation boundaries. Unity/model view reinitialization, managed allocation, cell freeze implementation, actual rocket damage/flight and locked event/charger ownership are supplied boundaries; no rendered-original/session/SDK parity claim."
+  },
+  "runtime_resource_integrity": {
+    "GameObject/RocketItemPrefab.prefab": "04936dde0746f3c61f588a218e2ca387c31cb6eec590b36e58ffc8642101e86b",
+    "GameObject/RocketItemParticles.prefab": "3c2c4333a2c0f13f5c61bfe2e5e81c8f9b576e2fccf8647a4bac668bfd151e1a"
+  },
+  "formal_verification": {
+    "source_sha256": "88611161610a4afaea1f14d4cfe15e1e61928c0f23e4995ccdb878f8b9d7f721",
+    "source_unchanged": true,
+    "live_report": {
+      "passed": true,
+      "failure": "",
+      "completed_combos": 4,
+      "left_moves": 26,
+      "accepted_swaps": 4,
+      "goals_left": 20,
+      "created_refills": 70,
+      "peak_operations": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "peak_particles": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "blocked_box_holes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "part_distances": [
+        10.341726303100586,
+        15.196806907653809,
+        16.010143280029297,
+        13.776446342468262,
+        11.009276390075684,
+        18.779808044433594,
+        9.959799766540527,
+        14.881378173828125,
+        10.012703895568848,
+        14.915694236755371,
+        13.777347564697266,
+        16.01388931274414,
+        19.094158172607422,
+        11.27982234954834,
+        9.95411205291748,
+        14.87801456451416
+      ],
+      "scope": "Explicit production-factory two-rocket fixtures in unchanged formal first-board scene, four initial HH/HV/VH/VV combinations with center/edge horizontal/vertical recorded gestures. Real source views/flight/damage/pools/goals/moves/fall/refill/input unlock. Does not establish natural two-rocket creation, physical input, rendered-original/camera/audio/charger/session/othercombos/settlement parity."
+    }
+  },
+  "fixture_mapping": "Original tiled30=horizontal0, tiled20=vertical1; fixture explicitly asserts factory mapping before each command.",
+  "tnt_pair_regression": {
+    "passed": true,
+    "source_sha256": "88611161610a4afaea1f14d4cfe15e1e61928c0f23e4995ccdb878f8b9d7f721",
+    "source_unchanged": true,
+    "live_report": {
+      "passed": true,
+      "failure": "",
+      "completed_combos": 2,
+      "particles_spawned": 2,
+      "left_moves": 28,
+      "accepted_swaps": 2,
+      "goals_left": 18,
+      "created_refills": 81,
+      "animation_seconds": [
+        1.597324252128601,
+        1.599977970123291
+      ],
+      "blocked_box_holes": [
+        0,
+        0
+      ],
+      "scope": "Explicit production-factory two-TNT fixture in unchanged formal first-board scene; horizontal center and vertical edge drags via recorded device samples. Real combo/Animator/pools/radius damage/move/goal/fall/refill/unlock owners. Does not prove natural two-TNT creation, physical input, rendered-original/audio/charger parity, other combinations or full settlement."
+    }
+  },
+  "git_checkpoint": {
+    "commit": "c8890baac82fab0b6e7d1e6460d4857ee8f571ce",
+    "pushed": true,
+    "via": "Local Git GUI only",
+    "evidence": "Green push Success and read-only head/origin refs equality; force unchecked. Audit follow-up does not change Assets."
+  }
+}

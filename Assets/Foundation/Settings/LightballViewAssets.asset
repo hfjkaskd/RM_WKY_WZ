@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801a52ca34e24625a850e83cb0523be4, type: 3}
+  m_Name: LightballViewAssets
+  m_EditorClassIdentifier:
+  backgroundSpritePaths:
+  - Recovered/Sprite/Items-SpecialItems-LightballItem-lightball_shield_bg
+  - Recovered/Sprite/Items-SpecialItems-LightballItem-lightball_leaf_bg
+  - Recovered/Sprite/Items-SpecialItems-LightballItem-lightball_book_bg
+  - Recovered/Sprite/Items-SpecialItems-LightballItem-lightball_crown_bg
+  - Recovered/Sprite/Items-SpecialItems-LightballItem-lightball_gem_bg
+  - Recovered/Sprite/Items-SpecialItems-LightballItem-lightball_gem_bg
+  colorBackgroundScale: 2.3
+  whiteBackgroundScale: 2.1
+  purpleWhiteBackgroundScale: 2.2
+  speedIncrease: 0
+  chargeFadeSeconds: 0.1
+  rayDelay: 0.07
+  fastRayDelay: 0.03
+  rayReachFrames: 11
+  rayFinishFrames: 18
+  rayFadeStartFrames: 8
+  rayFadeEndFrames: 16
+  fastRayFinishFrames: 10
+  fastRayFadeStartFrames: 4
+  fastRayFadeEndFrames: 8
+  rayInitialWidthScale: 1.2
+  rayReachDistance: 0.4
+  rayWhiteWidth15: 0.18
+  rayColorWidth15: 0.36
+  rayWhiteWidth24: 0.13
+  rayColorWidth24: 0.26
+  rayWhiteWidth3: 0.2
+  rayColorWidth3: 0.4
+  positionOffset: 0.016
+  positionOffsetDuration: 0.025
+  minShakeScale: 0.98
+  maxShakeScale: 1.04
+  scaleSpeed: 0.7
+  shakeTolerance: 0.001
+  useState: Base Layer.LightballUseAnimation
+  rocketPositionOffset: 0.01
+  rocketMaxShakeScale: 1.02
+  rocketConversionStartTime: 0.5476190447807312
+  rocketExplodeDelay: 0.15
+  propellerExplodeDelay: 0.07
+  ballBall:
+    fastState: Base Layer.BallBallExplodeAnimationFast
+    animatorSpeed: 1.2
+    fastAnimatorSpeed: 1.6
+    initialMaskScale: 0.0001
+    startMaskScale: 4
+    endMaskScale: 40
+    maskDuration: 1
+    blackAlpha: 0.6
+    fadeDuration: 0.35
+    soundDelay: 0.04
+    shake:
+      Delay: 0
+      Duration: 0.4
+      MinVibrate: -0.2
+      MidVibrate: 0
+      MaxVibrate: 0.2
+      ShouldScale: 0
+      ShouldVisitCenter: 0
+      Direction: 0

@@ -1,0 +1,1181 @@
+{
+  "baseline_commit": "99ec0bb2e8a9c782c534856f3f939cb0416b8c8e",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "background_verification": {
+    "passed": true,
+    "canonical_source_proof": false,
+    "test": "core-bush-chapter",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": null,
+    "source_sha256": null,
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-bush-chapter.log",
+    "elapsed_seconds": 548.36,
+    "batch": {
+      "passed": true,
+      "test": "core-bush-chapter",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T08:19:08.5069811Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity.",
+    "byte_verified_tested_files": {
+      "Assets/Foundation/Editor/BackgroundVerification.cs": "07bd2891f9f214309ac8e04301f27571a535ec857c9157d9483500389a938f64",
+      "Assets/Foundation/Editor/CoreMixedChapterVerification.cs": "5854904e7d70001c448224dc43ab6fc21867297faa02060995a9b182bc57e789",
+      "Assets/Foundation/Prefabs/Foundation.prefab": "b847105dfe7f29106e36740b0b6656bfe315273f2acaf837bf85fddb6575a4fc",
+      "Assets/Foundation/Runtime/OriginalBushBoardItem.cs": "a15bf3d214fd6307ad3397e35723ce6fbdf04c52a331514e1f8a60f98f10a969",
+      "Assets/Foundation/Runtime/OriginalBushBoardItem.cs.meta": "4cc80bee9aeb94dd97df6bb3aeddc8b4cb23dd83df49ad0ab7ef777747fb4adf",
+      "Assets/Foundation/Runtime/OriginalBushBurstParticles.cs": "97d80589717382fba0850f4a16e4a943b801583ab91fa0baaf49c200536a8492",
+      "Assets/Foundation/Runtime/OriginalBushBurstParticles.cs.meta": "7274b10180290c4cf9637770f72f7436fa374d0f506c955c3a854ba909408823",
+      "Assets/Foundation/Runtime/OriginalBushItemView.cs": "991b7635240862e9aa9af26af149ef45b0e0fbf1faf25405ea69157d096aef01",
+      "Assets/Foundation/Runtime/OriginalBushItemView.cs.meta": "7ef837f1ccc446190e9aa6fd9b85dfd47318007357ab84a1c14a9cd174b6b75f",
+      "Assets/Foundation/Runtime/OriginalBushVisualAssets.cs": "17dd07f4fd66b4400d1be0fd2d9ebf1d2d64d90b6eac13162682c44a67bec01f",
+      "Assets/Foundation/Runtime/OriginalBushVisualAssets.cs.meta": "b4470d37661424f97bdaf76ae0301357f48596ea932ad869ab5de28f4db3cb7b",
+      "Assets/Foundation/Runtime/OriginalFirstBoardExplodeTargets.cs": "2e8d25f314e4dbcf22dbef1f25e0c1258b78e5e009e197091f5914f59cc3d905",
+      "Assets/Foundation/Runtime/OriginalGrassBoardItem.cs": "e6389bcc1311583d6648966ab3d266f88dd570279050a6f4262361108838ca96",
+      "Assets/Foundation/Runtime/OriginalGrassItemView.cs": "5be8475e118c008b03c349ed4c5526a1ce9408794e595eae3a0ea819788015d9",
+      "Assets/Foundation/Runtime/OriginalGrassSpreadView.cs": "8ba38c3f68830a4200b8811a7c379214943bb85a7093d6cb0bbd9472797b3c6b",
+      "Assets/Foundation/Runtime/OriginalGrassSpreadView.cs.meta": "8acc9b248ac871464398638d3003c122a6cd6974663bfd61536a6db527bb894d",
+      "Assets/Foundation/Runtime/OriginalInitialBoardView.cs": "567b183ea74b4bd8bc5a7bfc1177751de99cf0a9f8214a641d7c8fa24171c175",
+      "Assets/Foundation/Runtime/OriginalItemModelConstruction.cs": "53c16169a0a8d133fbf007347c619727bb75b8158b0fccf3dca0dc40d17f7b46",
+      "Assets/Foundation/Runtime/OriginalKingPose.cs": "465c7cc4d6e2743d16084b6680d1583079da9e7697406cafd61800b9e29ce9eb",
+      "Assets/Foundation/Runtime/OriginalKingRigData.cs": "69fc3c1c5d3bbe7b4d42ce6c7d421983746625f5182fc723bd5411f0023df6a9",
+      "Assets/Foundation/Runtime/OriginalLevelPresentation.cs": "cde006a07ecd98d0cb59dd9107a017d46ae30719005d6be93d0f83274e1d31b1",
+      "Assets/Foundation/Runtime/OriginalMailBoxBoardItem.cs": "db020df52ad28c7275feab6472ac8e99ad22e16f59b006b21de282f18061c120",
+      "Assets/Foundation/Runtime/OriginalMailRigView.cs": "9397efc1376fb8f9b23e52b88a3055ca66a0dbae86d2c805066d6a99ae6fdaac",
+      "Assets/Foundation/Runtime/OriginalMatchItemSpriteView.cs": "50a95ab03a97809533f7154f2e7e04e1a664f29521fa96b3396eea3988440df1",
+      "Assets/Foundation/Runtime/OriginalMatchSearch.cs": "9948a33493dab710b07408f7382f9f464da031ab8e7f911fa6233bb1a738ea92",
+      "Assets/Foundation/Runtime/OriginalPlayableBoard.cs": "e989f2809197361065de1c0bb74350c9246b4c4beaf4b280792f1c5fbb453a3f",
+      "Assets/Foundation/Runtime/OriginalPlayableBoardBush.cs": "e81e451999a3820f1c0c5784f108cdcf67d058e6338e977f9d8e937aa8cf14d4",
+      "Assets/Foundation/Runtime/OriginalPlayableBoardBush.cs.meta": "6be8fbf3f5ccc44c30743bed20f93370aea8bc78aebcc147bbd7c5ea98e16898",
+      "Assets/Foundation/Runtime/OriginalRuntimeShuffle.cs": "51578a8851de414628368ed98fd8ac0a9ba219dbf42101548e8f61daa5f5e86d",
+      "Assets/Foundation/Runtime/OriginalRuntimeShuffle.cs.meta": "04828f052981073b721a9f93ac85cb0dae946f6465db56d5ef04dde5f98410a0",
+      "Assets/Foundation/Settings/GameSfxAssets.asset": "e267e4ccacbea2e249ac97202da6f0007d34761287b286a3ec463860607a9b56",
+      "Assets/Foundation/Settings/GoalUiAssets.asset": "68a7c340cf758cf1d2cab11dfb9ddb883528084222f741e2746388e6007aa783",
+      "Assets/Resources/Foundation/Animation/OriginalBush.bytes": "ba27d6c7e37b0d24364a77e081ed82f1a88259e3db573636648d311597f4d6be",
+      "Assets/Resources/Foundation/Animation/OriginalBush.bytes.meta": "e1126573a4c4e18aef6d53f8b8b5c546bbebdd06c1cbd28d06f3afeb04fdf012",
+      "Assets/Resources/Foundation/BushVisualAssets.asset": "cd7516d5e6b1c0d8dbfe57277f9601e0a87340e8f3cc8fd224d371200aec8496",
+      "Assets/Resources/Foundation/BushVisualAssets.asset.meta": "164bedb7fe72e2f74bdafb13d9255c70d909dd30764dac9f11ae4adf82991dbf",
+      "Assets/Resources/Recovered/GameObject/BushItemExplodeParticles.prefab": "bbd3bca8670d433f7af5e0e565da86a1a0ad415b81c9a1444afcba346e362e8e",
+      "Assets/Resources/Recovered/GameObject/BushItemPrefab.prefab": "067dc99599adc61f5c673f35e4478e02e8faa48da588e4cd0336bf2c34297e73",
+      "Assets/Resources/Recovered/GameObject/GrassSpreadAnimationPrefab.prefab": "355a76481df0d4eefa4d993fc2e0241a631bd8cc63145c63941c6b7d4428a974",
+      "Assets/Resources/Recovered/Texture2D/bush_export.png.meta": "6b7e07520b9c681a1683f8d3956a080ac89e22b5fa82030af298dce80ef2e0f1",
+      "Assets/Foundation/Scenes/GameScene.unity": "c1449a998237f2ee5ce55b1727dbfeac535f98c1fffe1bfb45b3b9cc88a50d89",
+      "ProjectSettings/EditorBuildSettings.asset": "dfd9c22e5754f091bc505c5fea3d5f58c9962944b53d3b36d900ac9b544e046c",
+      "Packages/manifest.json": "e7526e7aa8730bf51b97e896ef32bfb7830a22cea8920f6b2c97a848909b2197"
+    },
+    "only_test_settings_override": "Separate progress filename, verified against production asset after restoring the single filename field."
+  },
+  "actual_chapter_verification": {
+    "passed": true,
+    "projection_during_shake_verified": false,
+    "egg_tap_verified": false,
+    "egg_reject_verified": false,
+    "egg_fall_verified": false,
+    "egg_burst_verified": false,
+    "egg_swap_verified": false,
+    "egg_natural_swap": false,
+    "potion_tap_animation": false,
+    "potion_color_hit": false,
+    "potion_repeated_color_rejected": false,
+    "potion_tnt_rocket_verified": false,
+    "dynamic_egg_refill": false,
+    "vase_tap": false,
+    "vase_reject": false,
+    "vase_first_layer": false,
+    "vase_final_layer": false,
+    "vase_natural_swap": false,
+    "vase_swap": false,
+    "vase_fall": false,
+    "owl_tap": false,
+    "owl_drag_blocked": false,
+    "owl_rocket_burst": false,
+    "owl_rocket_hit": false,
+    "owl_tnt_hit": false,
+    "owl_resists_adjacent_match": false,
+    "dynamic_vase_refill": false,
+    "dynamic_owl_chapter_egg_refill": false,
+    "cupboard_door_materials": false,
+    "bush_tap": true,
+    "bush_drag_blocked": true,
+    "bush_near_match": true,
+    "bush_grass_landed": true,
+    "bush_cavity_refilled": true,
+    "bush_grass_layer_refill": true,
+    "no_move_native_result": 0,
+    "coin_shuffles": 2,
+    "bush_shadow_components": 17,
+    "no_move_board": [],
+    "bush_grass_flights": 16,
+    "owl_rocket_refills": 0,
+    "vase_fall_setup_hits": 0,
+    "eggs_from_opening_match": 0,
+    "failure": "",
+    "status": "finished",
+    "levels": [
+      {
+        "level": 71,
+        "width": 8,
+        "height": 8,
+        "target_count": 4,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 4,
+        "moves": 8,
+        "move_budget": 32,
+        "natural_actions": 1,
+        "fixture_actions": 7,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 72,
+        "width": 8,
+        "height": 9,
+        "target_count": 52,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 48,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 4,
+        "moves": 7,
+        "move_budget": 30,
+        "natural_actions": 0,
+        "fixture_actions": 7,
+        "fixture_combos": 7,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 73,
+        "width": 9,
+        "height": 8,
+        "target_count": 54,
+        "mailboxes": 8,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 4,
+        "moves": 8,
+        "move_budget": 26,
+        "natural_actions": 0,
+        "fixture_actions": 8,
+        "fixture_combos": 8,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 74,
+        "width": 9,
+        "height": 9,
+        "target_count": 50,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 24,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 2,
+        "vases": 40,
+        "owls": 0,
+        "bushes": 2,
+        "moves": 6,
+        "move_budget": 21,
+        "natural_actions": 1,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 75,
+        "width": 8,
+        "height": 10,
+        "target_count": 44,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 41,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 3,
+        "moves": 5,
+        "move_budget": 24,
+        "natural_actions": 0,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 76,
+        "width": 9,
+        "height": 9,
+        "target_count": 78,
+        "mailboxes": 0,
+        "cupboards": 1,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 36,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 8,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 0,
+        "moves": 5,
+        "move_budget": 23,
+        "natural_actions": 0,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 77,
+        "width": 6,
+        "height": 11,
+        "target_count": 79,
+        "mailboxes": 6,
+        "cupboards": 0,
+        "boxes": 18,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 21,
+        "bushes": 0,
+        "moves": 6,
+        "move_budget": 22,
+        "natural_actions": 0,
+        "fixture_actions": 6,
+        "fixture_combos": 6,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 78,
+        "width": 8,
+        "height": 10,
+        "target_count": 61,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 60,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 1,
+        "moves": 7,
+        "move_budget": 25,
+        "natural_actions": 0,
+        "fixture_actions": 7,
+        "fixture_combos": 7,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 79,
+        "width": 9,
+        "height": 10,
+        "target_count": 38,
+        "mailboxes": 0,
+        "cupboards": 3,
+        "boxes": 16,
+        "grass": 0,
+        "eggs": 20,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 2,
+        "moves": 7,
+        "move_budget": 24,
+        "natural_actions": 0,
+        "fixture_actions": 7,
+        "fixture_combos": 7,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 80,
+        "width": 8,
+        "height": 7,
+        "target_count": 0,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 42,
+        "propellers": 0,
+        "collected_coins": 368,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 0,
+        "moves": 20,
+        "move_budget": 20,
+        "natural_actions": 20,
+        "fixture_actions": 0,
+        "fixture_combos": 0,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      }
+    ],
+    "scope": "Actual GameScene from level 71 using real Continue buttons. Records bush tap, rejected drag, an adjacent match, controlled TNT placements, real grass spread and completion. Level 80 uses twenty legal moves on the original coin board."
+  },
+  "native_bush_reference": {
+    "scope": "Read-only native reference and external prototype. No changes to the canonical Unity project.",
+    "boards": [
+      {
+        "level": 71,
+        "masters": 4,
+        "goal_types": [
+          13,
+          22
+        ],
+        "cells": 64
+      },
+      {
+        "level": 72,
+        "masters": 4,
+        "goal_types": [
+          13,
+          22,
+          16
+        ],
+        "cells": 72
+      },
+      {
+        "level": 73,
+        "masters": 4,
+        "goal_types": [
+          13,
+          22,
+          18
+        ],
+        "cells": 72
+      },
+      {
+        "level": 74,
+        "masters": 2,
+        "goal_types": [
+          19,
+          12,
+          13,
+          22
+        ],
+        "cells": 81
+      },
+      {
+        "level": 75,
+        "masters": 3,
+        "goal_types": [
+          11,
+          13,
+          22
+        ],
+        "cells": 80
+      },
+      {
+        "level": 78,
+        "masters": 1,
+        "goal_types": [
+          11,
+          13,
+          22
+        ],
+        "cells": 80
+      },
+      {
+        "level": 79,
+        "masters": 2,
+        "goal_types": [
+          13,
+          22,
+          11,
+          16
+        ],
+        "cells": 90
+      },
+      {
+        "level": 84,
+        "masters": 2,
+        "goal_types": [
+          17,
+          13,
+          22,
+          14
+        ],
+        "cells": 80
+      },
+      {
+        "level": 87,
+        "masters": 3,
+        "goal_types": [
+          11,
+          16,
+          13,
+          22
+        ],
+        "cells": 81
+      },
+      {
+        "level": 89,
+        "masters": 4,
+        "goal_types": [
+          13,
+          22,
+          11,
+          14
+        ],
+        "cells": 81
+      },
+      {
+        "level": 95,
+        "masters": 2,
+        "goal_types": [
+          13,
+          22,
+          20,
+          11
+        ],
+        "cells": 99
+      },
+      {
+        "level": 98,
+        "masters": 3,
+        "goal_types": [
+          20,
+          13,
+          22,
+          14
+        ],
+        "cells": 80
+      }
+    ],
+    "model": {
+      "master": 55,
+      "proxies": [
+        45,
+        46,
+        56
+      ],
+      "goal": 22,
+      "swappable": false,
+      "fallable": false,
+      "near_match": true,
+      "can_receive_grass": false,
+      "view_pool": 62,
+      "particle_pool": 63,
+      "grass_spread_pool": 64,
+      "layer": 5
+    },
+    "grass": {
+      "goal": 13,
+      "static_item_type": 2,
+      "created_raw_id": 32,
+      "operation": 12,
+      "prerequisite_release_delay": 0.2,
+      "initial_spread_delay": 0.05,
+      "min_offset": -1,
+      "max_offset": 2,
+      "source_center_offset": 0.5,
+      "blocked_or_full_grass_bypasses_flight": true,
+      "existing_one_layer_grass_refilled_without_new_target": true,
+      "new_grass_increases_model_and_ui_goal": true
+    },
+    "native": {
+      "create_view": "0x2bc2f4c",
+      "try_explode": "0x2bc3270",
+      "spread": "0x2bc3608",
+      "spread_single": "0x2bc3810",
+      "play_spread": "0x2bc3a68",
+      "prerequisite_release": "0x2bc40e4",
+      "spread_delay_by_cell": "0x2bc5004",
+      "spread_completion": "0x2bc5520",
+      "can_receive_grass": "0x319dd10",
+      "refill_layers": "0x349d3cc",
+      "sounds": "0x2bc4a64"
+    },
+    "audio": {
+      "tap_ids": [
+        49,
+        48,
+        47,
+        46,
+        45
+      ],
+      "last_hit_ids": [
+        40,
+        44
+      ],
+      "damage_layer_four": 41,
+      "other_damage": [
+        42,
+        43
+      ]
+    },
+    "asset_sha256": {
+      "skeleton": "9F7D236A2BCCC28F0E2B0A242CB13935ABE32D6566614BF2C2196A7D06B59D33",
+      "atlas": "689442ED0460C7D8700C82913223A55FB9BB6496356F136AF0CAFED3D425B6E3",
+      "rig": "BA27D6C7E37B0D24364A77E081ED82F1A88259E3DB573636648D311597F4D6BE",
+      "view_prefab": "194273C8FC87ACA20042452B0C44DEDD356762ED36EEB725ACC79B84F07D4A53",
+      "spread_prefab": "1B5409654E3338D0A6415CBE46BABDE23784777F64A7866E9A68C3B4D98AF56B"
+    },
+    "offline_animation": {
+      "passed": true,
+      "animations": 10,
+      "pose_samples": 3664,
+      "scalar_comparisons": 2782982,
+      "max_absolute_error": 0,
+      "oracle": "recovered Spine 3.8 reference decoder/runtime outside Unity; not native ARM execution",
+      "includes_key_boundaries_loop_weighted_mesh_deform_draw_order": true,
+      "clipped_mesh_samples": 376,
+      "clipped_mesh_max_error": 0,
+      "pose_and_mesh_managed_bytes_1000_frames": 0
+    }
+  },
+  "native_runtime_shuffle_reference": {
+    "manual_update": "0x1ee690c",
+    "should_shuffle": "0x1ee6a48",
+    "prepare_items": "0x1ee6e64",
+    "permute_and_check": "0x1ee6ad0",
+    "single_placement_pass": "0x1ee72d8",
+    "select_candidate": "0x1ee7e58",
+    "excluded_colors": "0x1ee8004",
+    "recolor_path": "0x1ee70b8",
+    "animate": "0x1ee8844",
+    "restore_failed_permutation": "0x1ee7a1c",
+    "level80_before_fix": {
+      "moves_left": 18,
+      "native_possible_move_result": 0,
+      "board": [
+        "60,60,3,60,60,3,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,1,60,60,1,60,60",
+        "60,60,3,60,60,1,60,60",
+        "60,60,3,60,60,3,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,1,60,60,1,60,60"
+      ]
+    }
+  },
+  "preserved_original_configs": [
+    {
+      "number": 71,
+      "original_name": "00071v01_L",
+      "resource_path": "Levels/level_71",
+      "decoded_source": "configs/levels/71__3276.json",
+      "raw_source": "configs/textassets/71__3276.bytes",
+      "sha256": "fd6d20a8d7a4b21871165f8be72c09065a4850f3b2bca163553e090a4903170a",
+      "moves": 32,
+      "width": 8,
+      "height": 8,
+      "goal_types": [
+        13,
+        22
+      ],
+      "raw_item_ids": {
+        "1": 15,
+        "3": 13,
+        "4": 13,
+        "5": 7,
+        "45": 4,
+        "46": 4,
+        "55": 4,
+        "56": 4
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 72,
+      "original_name": "00072v01_L",
+      "resource_path": "Levels/level_72",
+      "decoded_source": "configs/levels/72__11747.json",
+      "raw_source": "configs/textassets/72__11747.bytes",
+      "sha256": "96645e1a76a792cee180d78a44f6ac2258e73d2656ef32b880d00b89bb2faa4b",
+      "moves": 30,
+      "width": 8,
+      "height": 9,
+      "goal_types": [
+        13,
+        22,
+        16
+      ],
+      "raw_item_ids": {
+        "1": 1,
+        "2": 3,
+        "3": 3,
+        "4": 1,
+        "26": 48,
+        "45": 4,
+        "46": 4,
+        "55": 4,
+        "56": 4
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 73,
+      "original_name": "00073v02_L",
+      "resource_path": "Levels/level_73",
+      "decoded_source": "configs/levels/73__3189.json",
+      "raw_source": "configs/textassets/73__3189.bytes",
+      "sha256": "f91917eec06f4ba38cc0cce22805d5dafe4899f988e1ec5185373e9698681845",
+      "moves": 26,
+      "width": 9,
+      "height": 8,
+      "goal_types": [
+        13,
+        22,
+        18
+      ],
+      "raw_item_ids": {
+        "0": 7,
+        "1": 3,
+        "3": 2,
+        "4": 3,
+        "11": 1,
+        "14": 24,
+        "15": 8,
+        "34": 8,
+        "45": 4,
+        "46": 4,
+        "55": 4,
+        "56": 4
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 74,
+      "original_name": "00074v04_L",
+      "resource_path": "Levels/level_74",
+      "decoded_source": "configs/levels/74__15955.json",
+      "raw_source": "configs/textassets/74__15955.bytes",
+      "sha256": "6e9b9b252737577cb376765408a9ab227b04c62060927349e919a115b27e70c0",
+      "moves": 21,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        19,
+        12,
+        13,
+        22
+      ],
+      "raw_item_ids": {
+        "21": 24,
+        "25": 40,
+        "40": 1,
+        "43": 2,
+        "44": 2,
+        "45": 2,
+        "46": 2,
+        "53": 2,
+        "54": 2,
+        "55": 2,
+        "56": 2
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 75,
+      "original_name": "00075v03_L",
+      "resource_path": "Levels/level_75",
+      "decoded_source": "configs/levels/75__8554.json",
+      "raw_source": "configs/textassets/75__8554.bytes",
+      "sha256": "c60c3fd43cdfa6cc371e44838e45627da093f7665e2237bc7b553cda692d8d4c",
+      "moves": 24,
+      "width": 8,
+      "height": 10,
+      "goal_types": [
+        11,
+        13,
+        22
+      ],
+      "raw_item_ids": {
+        "0": 10,
+        "1": 9,
+        "4": 6,
+        "11": 2,
+        "21": 21,
+        "22": 20,
+        "45": 3,
+        "46": 3,
+        "55": 3,
+        "56": 3
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 76,
+      "original_name": "00076v03_L",
+      "resource_path": "Levels/level_76",
+      "decoded_source": "configs/levels/76__2157.json",
+      "raw_source": "configs/textassets/76__2157.bytes",
+      "sha256": "e504784b6833218fbbfc193623004f477ba08624ae30fce9d5bb77a4f3276ac1",
+      "moves": 23,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        16,
+        19,
+        15
+      ],
+      "raw_item_ids": {
+        "1": 4,
+        "4": 5,
+        "26": 36,
+        "41": 1,
+        "42": 1,
+        "43": 8,
+        "44": 8,
+        "51": 1,
+        "52": 1,
+        "53": 8,
+        "54": 8
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 77,
+      "original_name": "00077v03_L",
+      "resource_path": "Levels/level_77",
+      "decoded_source": "configs/levels/77__7399.json",
+      "raw_source": "configs/textassets/77__7399.bytes",
+      "sha256": "024ca5892c58c8686c27e0ee765ad3393af3cc135bd71fd506478d9bb578835b",
+      "moves": 22,
+      "width": 6,
+      "height": 11,
+      "goal_types": [
+        17,
+        11,
+        18
+      ],
+      "raw_item_ids": {
+        "0": 15,
+        "2": 3,
+        "3": 3,
+        "21": 18,
+        "27": 21,
+        "34": 6
+      },
+      "nonzero_cell_fields": {
+        "FillType": 6,
+        "IsPredefined": 6
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 78,
+      "original_name": "00078v03_L",
+      "resource_path": "Levels/level_78",
+      "decoded_source": "configs/levels/78__7484.json",
+      "raw_source": "configs/textassets/78__7484.bytes",
+      "sha256": "89a2a1152b2a22d70744a1df48fea6e5a9b8272b57459c8b64608c4f64adfc3e",
+      "moves": 25,
+      "width": 8,
+      "height": 10,
+      "goal_types": [
+        11,
+        13,
+        22
+      ],
+      "raw_item_ids": {
+        "1": 1,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "14": 6,
+        "21": 48,
+        "24": 12,
+        "45": 1,
+        "46": 1,
+        "55": 1,
+        "56": 1
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 79,
+      "original_name": "00079v03_L",
+      "resource_path": "Levels/level_79",
+      "decoded_source": "configs/levels/79__6349.json",
+      "raw_source": "configs/textassets/79__6349.bytes",
+      "sha256": "ddd398fae2831220c3a943eb08bab3f948785ec702b5f4b0a00a9d2d0c6b535d",
+      "moves": 24,
+      "width": 9,
+      "height": 10,
+      "goal_types": [
+        13,
+        22,
+        11,
+        16
+      ],
+      "raw_item_ids": {
+        "0": 18,
+        "1": 4,
+        "3": 6,
+        "11": 6,
+        "21": 16,
+        "26": 20,
+        "41": 3,
+        "42": 3,
+        "45": 2,
+        "46": 2,
+        "51": 3,
+        "52": 3,
+        "55": 2,
+        "56": 2
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 80,
+      "original_name": "00080v01_L",
+      "resource_path": "Levels/level_80",
+      "decoded_source": "configs/levels/80__1283.json",
+      "raw_source": "configs/textassets/80__1283.bytes",
+      "sha256": "f7c4bd282597b031091de69ec9bca524742b8152798326230c26af2b3dc810fb",
+      "moves": 20,
+      "width": 8,
+      "height": 7,
+      "goal_types": [
+        21
+      ],
+      "raw_item_ids": {
+        "14": 14,
+        "60": 42
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "verification_limits": [
+    "The production GameScene starts at level 71 and runs through level 80 using the standard Continue buttons.",
+    "Ordinary boards use recorded gestures and controlled special placements. The level 71 first color match uses the authored tiles.",
+    "Level 80 uses twenty legal gestures. The shuffle locks input while preserving the coin cells, collected goal count, and move budget.",
+    "Offline geometry checks compare against the recovered decoder. The runtime uses Unity Animator and Mesh. Original tutorials, physical mobile touch, rendered-original parity and level 81 onward remain open."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "07bd2891f9f214309ac8e04301f27571a535ec857c9157d9483500389a938f64"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreMixedChapterVerification.cs",
+      "sha256": "5854904e7d70001c448224dc43ab6fc21867297faa02060995a9b182bc57e789"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "b847105dfe7f29106e36740b0b6656bfe315273f2acaf837bf85fddb6575a4fc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBushBoardItem.cs",
+      "sha256": "a15bf3d214fd6307ad3397e35723ce6fbdf04c52a331514e1f8a60f98f10a969"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBushBoardItem.cs.meta",
+      "sha256": "4cc80bee9aeb94dd97df6bb3aeddc8b4cb23dd83df49ad0ab7ef777747fb4adf"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBushBurstParticles.cs",
+      "sha256": "97d80589717382fba0850f4a16e4a943b801583ab91fa0baaf49c200536a8492"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBushBurstParticles.cs.meta",
+      "sha256": "7274b10180290c4cf9637770f72f7436fa374d0f506c955c3a854ba909408823"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBushItemView.cs",
+      "sha256": "991b7635240862e9aa9af26af149ef45b0e0fbf1faf25405ea69157d096aef01"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBushItemView.cs.meta",
+      "sha256": "7ef837f1ccc446190e9aa6fd9b85dfd47318007357ab84a1c14a9cd174b6b75f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBushVisualAssets.cs",
+      "sha256": "17dd07f4fd66b4400d1be0fd2d9ebf1d2d64d90b6eac13162682c44a67bec01f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBushVisualAssets.cs.meta",
+      "sha256": "b4470d37661424f97bdaf76ae0301357f48596ea932ad869ab5de28f4db3cb7b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardExplodeTargets.cs",
+      "sha256": "2e8d25f314e4dbcf22dbef1f25e0c1258b78e5e009e197091f5914f59cc3d905"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassBoardItem.cs",
+      "sha256": "e6389bcc1311583d6648966ab3d266f88dd570279050a6f4262361108838ca96"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassItemView.cs",
+      "sha256": "5be8475e118c008b03c349ed4c5526a1ce9408794e595eae3a0ea819788015d9"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassSpreadView.cs",
+      "sha256": "8ba38c3f68830a4200b8811a7c379214943bb85a7093d6cb0bbd9472797b3c6b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassSpreadView.cs.meta",
+      "sha256": "8acc9b248ac871464398638d3003c122a6cd6974663bfd61536a6db527bb894d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "567b183ea74b4bd8bc5a7bfc1177751de99cf0a9f8214a641d7c8fa24171c175"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemModelConstruction.cs",
+      "sha256": "53c16169a0a8d133fbf007347c619727bb75b8158b0fccf3dca0dc40d17f7b46"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingPose.cs",
+      "sha256": "465c7cc4d6e2743d16084b6680d1583079da9e7697406cafd61800b9e29ce9eb"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingRigData.cs",
+      "sha256": "69fc3c1c5d3bbe7b4d42ce6c7d421983746625f5182fc723bd5411f0023df6a9"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelPresentation.cs",
+      "sha256": "cde006a07ecd98d0cb59dd9107a017d46ae30719005d6be93d0f83274e1d31b1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailBoxBoardItem.cs",
+      "sha256": "db020df52ad28c7275feab6472ac8e99ad22e16f59b006b21de282f18061c120"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailRigView.cs",
+      "sha256": "9397efc1376fb8f9b23e52b88a3055ca66a0dbae86d2c805066d6a99ae6fdaac"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMatchItemSpriteView.cs",
+      "sha256": "50a95ab03a97809533f7154f2e7e04e1a664f29521fa96b3396eea3988440df1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMatchSearch.cs",
+      "sha256": "9948a33493dab710b07408f7382f9f464da031ab8e7f911fa6233bb1a738ea92"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "e989f2809197361065de1c0bb74350c9246b4c4beaf4b280792f1c5fbb453a3f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoardBush.cs",
+      "sha256": "e81e451999a3820f1c0c5784f108cdcf67d058e6338e977f9d8e937aa8cf14d4"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoardBush.cs.meta",
+      "sha256": "6be8fbf3f5ccc44c30743bed20f93370aea8bc78aebcc147bbd7c5ea98e16898"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRuntimeShuffle.cs",
+      "sha256": "51578a8851de414628368ed98fd8ac0a9ba219dbf42101548e8f61daa5f5e86d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRuntimeShuffle.cs.meta",
+      "sha256": "04828f052981073b721a9f93ac85cb0dae946f6465db56d5ef04dde5f98410a0"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSfxAssets.asset",
+      "sha256": "e267e4ccacbea2e249ac97202da6f0007d34761287b286a3ec463860607a9b56"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GoalUiAssets.asset",
+      "sha256": "68a7c340cf758cf1d2cab11dfb9ddb883528084222f741e2746388e6007aa783"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Animation/OriginalBush.bytes",
+      "sha256": "ba27d6c7e37b0d24364a77e081ed82f1a88259e3db573636648d311597f4d6be"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Animation/OriginalBush.bytes.meta",
+      "sha256": "e1126573a4c4e18aef6d53f8b8b5c546bbebdd06c1cbd28d06f3afeb04fdf012"
+    },
+    {
+      "path": "Assets/Resources/Foundation/BushVisualAssets.asset",
+      "sha256": "cd7516d5e6b1c0d8dbfe57277f9601e0a87340e8f3cc8fd224d371200aec8496"
+    },
+    {
+      "path": "Assets/Resources/Foundation/BushVisualAssets.asset.meta",
+      "sha256": "164bedb7fe72e2f74bdafb13d9255c70d909dd30764dac9f11ae4adf82991dbf"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/BushItemExplodeParticles.prefab",
+      "sha256": "bbd3bca8670d433f7af5e0e565da86a1a0ad415b81c9a1444afcba346e362e8e"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/BushItemPrefab.prefab",
+      "sha256": "067dc99599adc61f5c673f35e4478e02e8faa48da588e4cd0336bf2c34297e73"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/GrassSpreadAnimationPrefab.prefab",
+      "sha256": "355a76481df0d4eefa4d993fc2e0241a631bd8cc63145c63941c6b7d4428a974"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Texture2D/bush_export.png.meta",
+      "sha256": "6b7e07520b9c681a1683f8d3956a080ac89e22b5fa82030af298dce80ef2e0f1"
+    },
+    {
+      "path": "SourceCatalog/ExportKingRig.cs",
+      "sha256": "a5455a9c67c10a1da1552c8d927cac2212bd4b34db3409a1b74ed1afe80d3b1a"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "f379f09d6e089d974efa6cd6fd51293c6b0f4a48fd642cbd0b19e3596c2b57e0"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "014cf152bfec57de5ab954ce5ab51e554b3c861ce9109089636c23128a7287fd"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "ea324e365f7fd908ddfec6a4ec8c35e0f7697b2676158c4c7b37e76b59ff1834"
+    },
+    {
+      "path": "background_core_bush_chapter_verification.json",
+      "sha256": "f037dbd05317aa9ef1b53f52669641dd8277d720f4055f52a4ab247d2a4d59bb"
+    },
+    {
+      "path": "core_bush_level71_damage.png",
+      "sha256": "9aadb4a2f6945c0c00230bd8fdf1d789d5e6bb3bb9aa05d557214a1381edb982"
+    },
+    {
+      "path": "core_bush_level71_grass.png",
+      "sha256": "1439cc7becec2855f3132f12d890b0bc97fbe7b43c3bd00c89f6d5d9af8f0ab0"
+    },
+    {
+      "path": "core_bush_level71_spread.png",
+      "sha256": "caff97efaee8c0ad1bad3574970782c5ca11886a7b4c59407e8684f5c0a5ea25"
+    },
+    {
+      "path": "core_bush_level71_start.png",
+      "sha256": "5aa0fafb6fedea4c25d9b93c745b71e5fe6118123cba0317745d0c8310debd3c"
+    },
+    {
+      "path": "core_bush_level74_start.png",
+      "sha256": "b220e2f390c6adc48de2a7314f53a2b3d63825cabfd96b746499067f0f806bda"
+    },
+    {
+      "path": "core_bush_level78_start.png",
+      "sha256": "84a68d06dcbcbad9d9b0e9c45db25497967826031e76e8bbd8a049f1ec04b97c"
+    },
+    {
+      "path": "core_bush_level80_shuffle.png",
+      "sha256": "d335f0c4d965909a4170323628f2fba78092428cce170c8fe60ca3aa63366a29"
+    },
+    {
+      "path": "core_bush_level80_start.png",
+      "sha256": "81544790ca34b14b31933e2748f3e6b42b4965968ac639769b89ed818b441c4b"
+    },
+    {
+      "path": "core_bush_level80_win.png",
+      "sha256": "613e084eec2679c267a8c12ba0beba9761333784107a75912fb147b7d22b4127"
+    },
+    {
+      "path": "live_core_bush_chapter_verification.json",
+      "sha256": "eab651880e48deda35c38f97274d1408576aecdd5c98c60c4b8e962b47c09b2b"
+    }
+  ]
+}

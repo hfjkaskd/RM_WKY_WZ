@@ -1,0 +1,55 @@
+{
+    "passed": true,
+    "portrait_hud_and_background_verified": true,
+    "actual_camera_ports_and_round_trips_verified": true,
+    "cell_round_trips": 360,
+    "samples": [
+        {
+            "width": 720,
+            "height": 1280,
+            "camera_width": 9.300000190734864,
+            "camera_height": 16.53333282470703,
+            "aspect": 0.5625,
+            "viewport_width": 1.0,
+            "cropped": false
+        },
+        {
+            "width": 640,
+            "height": 480,
+            "camera_width": 12.699999809265137,
+            "camera_height": 9.524999618530274,
+            "aspect": 1.3333333730697632,
+            "viewport_width": 1.0,
+            "cropped": false
+        },
+        {
+            "width": 480,
+            "height": 480,
+            "camera_width": 12.699999809265137,
+            "camera_height": 18.14285659790039,
+            "aspect": 0.699999988079071,
+            "viewport_width": 0.699999988079071,
+            "cropped": true
+        },
+        {
+            "width": 1280,
+            "height": 720,
+            "camera_width": 12.699999809265137,
+            "camera_height": 7.143749713897705,
+            "aspect": 1.7777777910232545,
+            "viewport_width": 1.0,
+            "cropped": false
+        },
+        {
+            "width": 720,
+            "height": 1440,
+            "camera_width": 9.300000190734864,
+            "camera_height": 18.600000381469728,
+            "aspect": 0.5,
+            "viewport_width": 1.0,
+            "cropped": false
+        }
+    ],
+    "failure": "",
+    "scope": "Native projection kernel bound to actual scene camera and active session; original portrait-only HUD and background; five RenderTexture camera targets with360 actual camera/cell round trips. Test targets exercise real Camera ports, not physical display orientation/safe areas. Full CameraManager device/safe-area/flags/blocker lifecycle, GridPositioner, startup/Home/King/bottom controls and original rendered/mobile parity remain incomplete."
+}

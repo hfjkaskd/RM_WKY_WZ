@@ -1,0 +1,323 @@
+{
+  "full_objective_complete": false,
+  "production_win_flow_bound": false,
+  "source_snapshot_sha256": "fbc5f00d716f5d7fc19f0f6a0b38b2540017c99fb187e6dfafaab8e8a697a7e8",
+  "restored_scope": "Native Session.RemainingMovesEnd data writes, ordered remaining-event calls, remaining-special weighting and mission compensation, with actual session invocation in the three formal-scene remaining-move cases.",
+  "native_methods": [
+    {
+      "rva": "0x32b9bf0",
+      "name": "Royal.Player.Context.Data.Session.UserActiveLevelData$$RemainingMovesEnd",
+      "body_sha256": "352bd5e4a4c5245cb6f3a833c22605d926cb07c690f84a769089dead7e9d3160"
+    },
+    {
+      "rva": "0x32b9df4",
+      "name": "Royal.Player.Context.Data.Session.UserActiveLevelData$$AddLightningForRushLightballsOnBoard",
+      "body_sha256": "8fdb9e3c31f3a6388d68650f46ed004628f01bcb0f0614956a9886e5b610756f"
+    },
+    {
+      "rva": "0x32b38e4",
+      "name": "Royal.Player.Context.Data.Session.MadnessSessionData$$TryAddMadnessForRemainingMoves",
+      "body_sha256": "8bfa79608272d8a05ff2d8ee6e173d40a9b5cf1999ae10877f93dcdf28fccc2a"
+    },
+    {
+      "rva": "0x338df68",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$AddLightningForRushRemainingMoves",
+      "body_sha256": "e5c7f7bfcba785921144a2f31081cbba6dd1738abc01595998ae762d90599c8e"
+    },
+    {
+      "rva": "0x338e00c",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$AddLightningForRushLightballsOnBoard",
+      "body_sha256": "58f622464d4c919f04d5a56deee1577f0f9966b21149df99d2b35901abcc03d8"
+    },
+    {
+      "rva": "0x338d14c",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$IncrementScoreForRemainingSpecialItems",
+      "body_sha256": "c7d2506d2fd6c3b4971a335d4c514be5a65caa4c680c77e009ac5f1d92f0844c"
+    },
+    {
+      "rva": "0x338b92c",
+      "name": "Royal.Player.Context.Data.Session.AnimationData$$AddMissionEvents",
+      "body_sha256": "f6522c11ca919843fff845ae50974f1cd8a272e4898ba2ee0cd0ba60309c20b2"
+    },
+    {
+      "rva": "0x338b130",
+      "name": "Royal.Player.Context.Data.Session.BeforeAfterData$$AddExtra",
+      "body_sha256": "809bf5351e6cc85df63ac4facad3b17cb3d25464b39598da705097b7becf0e34"
+    },
+    {
+      "rva": "0x338c6f0",
+      "name": "Royal.Player.Context.Data.Session.BeforeAfterData$$GetMultiplierValueForDifficulty",
+      "body_sha256": "56068d84d0d79cb85f88ca3f1f8762cecc7e850ab9b29d0d7dc4afc53e7b012c"
+    },
+    {
+      "rva": "0x338d704",
+      "name": "Royal.Player.Context.Data.Session.DailyLightningRushLevelData$$IncrementCount",
+      "body_sha256": "3f9668118bf8d9cca9861d7469f234bce179428b6abfaa45b003b4171ef5e483"
+    },
+    {
+      "rva": "0x338cea0",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$IncrementScore",
+      "body_sha256": "9fae07cf9dbee87103ae4b88b2f0f75adb0ef213abe63c1b92db64568e339083"
+    }
+  ],
+  "native_differential": {
+    "passed": true,
+    "cases": 730,
+    "case_counts": {
+      "s": 220,
+      "m": 160,
+      "d": 20,
+      "l": 20,
+      "a": 150,
+      "c": 160
+    },
+    "scope": "Execute original ARM64 remaining-session orchestration and reward arithmetic.\n\nSession RemainingMovesEnd and its real BeforeAfterData writes execute from the\nELF. Event-owner calls are typed trace boundaries. Separate native executions\ncover Madness remaining rewards, both Lightning reward multipliers, Clash\nremaining-special weighting/overflow and AnimationData mission difficulty\nmultipliers. Context/metadata, event validity, score sink, dictionary iterator\nand event-owner calls are explicit boundaries; no account persistence, active\nevent presentation, production win trigger or original rendered parity claim.",
+    "files": [
+      {
+        "path": "SourceCatalog/RemainingSessionHarness.cs",
+        "sha256": "a356142919251591bdca47e1d43b66f58682313dc8db9dbe04f83513c0021c39"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalRemainingSessionEnd.cs",
+        "sha256": "9b45dcc76a44ee983733a01f74b98d7cfd5d34521b447181ed6a1a7861a0674f"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalRemainingEventRewards.cs",
+        "sha256": "08e80a0ec9267f0aaf7e98b240a40d9b102aa6961a9da73f453262d561dcfdde"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalSessionValues.cs",
+        "sha256": "607fdf145a1cc7bba00669cef86f048083a78a47cc81eb17b64d9528da1203c0"
+      }
+    ]
+  },
+  "runtime_cases": [
+    {
+      "background": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "fbc5f00d716f5d7fc19f0f6a0b38b2540017c99fb187e6dfafaab8e8a697a7e8",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+        "elapsed_seconds": 249.91,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-normal",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T16:28:09.1680412Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "runtime": {
+        "passed": true,
+        "skipped": false,
+        "failure": "",
+        "initial_remaining_moves": 25,
+        "converted_moves": 25,
+        "unconverted_moves": 0,
+        "reward_coins": 85,
+        "collections": 33,
+        "peak_coin_views": 68,
+        "peak_pilots": 73,
+        "peak_operation5": 68,
+        "native_departure_count": 75,
+        "active_board_coin_value_at_end": 0,
+        "unconverted_move_coin_value": 0,
+        "elapsed": 11.36219596862793,
+        "scope": "Formal36box goal scenario then explicit Win/Session fixture. Actual remaining-move manager, replacement/exploder and coin68/pilot76 collection/flight/recycling run, followed by real Session.RemainingMovesEnd, real locked-event snapshots/gates and unsent-move mission counters. Event availability is an explicit locked first-board fixture. Item-creator/LevelManager/account/dialog/skip-view owners remain recorded boundaries; production WinFail/Session.Win/Flow/physical Button/account persistence/settlement and original rendered/cross-platform parity remain incomplete."
+      }
+    },
+    {
+      "background": {
+        "passed": true,
+        "test": "remaining-coins-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "fbc5f00d716f5d7fc19f0f6a0b38b2540017c99fb187e6dfafaab8e8a697a7e8",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-skip.log",
+        "elapsed_seconds": 97.28,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T16:29:47.5746948Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "runtime": {
+        "passed": true,
+        "skipped": true,
+        "failure": "",
+        "initial_remaining_moves": 25,
+        "converted_moves": 25,
+        "unconverted_moves": 0,
+        "reward_coins": 79,
+        "collections": 1,
+        "peak_coin_views": 2,
+        "peak_pilots": 2,
+        "peak_operation5": 2,
+        "native_departure_count": 2,
+        "active_board_coin_value_at_end": 67,
+        "unconverted_move_coin_value": 0,
+        "elapsed": 5.894800186157227,
+        "scope": "Formal36box goal scenario then explicit Win/Session fixture. Actual remaining-move manager, replacement/exploder and coin68/pilot76 collection/flight/recycling run, followed by real Session.RemainingMovesEnd, real locked-event snapshots/gates and unsent-move mission counters. Event availability is an explicit locked first-board fixture. Item-creator/LevelManager/account/dialog/skip-view owners remain recorded boundaries; production WinFail/Session.Win/Flow/physical Button/account persistence/settlement and original rendered/cross-platform parity remain incomplete."
+      }
+    },
+    {
+      "background": {
+        "passed": true,
+        "test": "remaining-coins-early-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "fbc5f00d716f5d7fc19f0f6a0b38b2540017c99fb187e6dfafaab8e8a697a7e8",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+        "elapsed_seconds": 96.19,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-early-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T16:31:23.1521035Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "runtime": {
+        "passed": true,
+        "skipped": true,
+        "failure": "",
+        "initial_remaining_moves": 24,
+        "converted_moves": 2,
+        "unconverted_moves": 22,
+        "reward_coins": 74,
+        "collections": 0,
+        "peak_coin_views": 0,
+        "peak_pilots": 0,
+        "peak_operation5": 0,
+        "native_departure_count": 0,
+        "active_board_coin_value_at_end": 9,
+        "unconverted_move_coin_value": 55,
+        "elapsed": 3.2040138244628906,
+        "scope": "Formal36box goal scenario then explicit Win/Session fixture. Actual remaining-move manager, replacement/exploder and coin68/pilot76 collection/flight/recycling run, followed by real Session.RemainingMovesEnd, real locked-event snapshots/gates and unsent-move mission counters. Event availability is an explicit locked first-board fixture. Item-creator/LevelManager/account/dialog/skip-view owners remain recorded boundaries; production WinFail/Session.Win/Flow/physical Button/account persistence/settlement and original rendered/cross-platform parity remain incomplete."
+      }
+    }
+  ],
+  "native_rules": [
+    "Coin.AddExtra executes first, then Session.extraCoins is stored. The native order is Madness remaining, Lightning remaining, PropellerRush5*n, Clash remaining, separate super-lightball lookup, Clash remaining specials, Lightning for board lightballs, mission counters and special-item-id clear.",
+    "Madness queries event validity even for nonpositive remaining counts, adds only positive valid counts, applies native difficulty multiplier and factor5, and has no table-game gate in this method.",
+    "Lightning remaining contributes5*n, board lightballs20*n; super lightball doubles each before the existing event/difficulty/table gates. All three super-lightball lookups in the composed Session end are required even with locked events.",
+    "Clash totals typed remaining-special counts with rocket/propeller/TNT/lightball score weights, doubles only the lightball weight for super lightball, then applies remaining-special multiplier through the existing score sink. All arithmetic retains signed32-bit overflow.",
+    "If the Madness icon is shown and event type is3, mission propeller count receives the full remaining count. Otherwise rocket then TNT receive signed remaining/2 truncated toward zero. Mission counters apply the native signed-byte difficulty multiplier.",
+    "The real session extraCoins field, Coin before/after snapshot and mission counters now update in formal-scene conversion/skip checks. The prior direct verifier Coin.AddExtra call has been replaced by the actual runtime Session method.",
+    "Formal-scene event availability remains an explicit locked first-board fixture. Actual Madness/Lightning/PropellerRush/Clash snapshot classes execute their native gates and receive no locked-event progression; unexpected bundle/pool/score-owner access throws.",
+    "Native differential covers220 session protocol/partial-failure cases,160 Madness,20 Lightning remaining,20 board-lightball,150 mission multiplier and160 Clash weighting/null/overflow cases. Protocol event calls, event validity, dictionaries, context and score sinks are explicitly bounded."
+  ],
+  "performance": {
+    "recommended": "Use the actual per-level snapshots and one typed event adapter. Reuse the manager remaining-special dictionary and its allocation-free struct enumeration.",
+    "costs": "Low-frequency settlement arithmetic and at most the small remaining-special dictionary; no frame-loop allocations, asset loads, UI rebuilds or new third-party assemblies are introduced by these methods."
+  },
+  "remaining_scope": [
+    "Production WinFail OnWin/StartWinFlow, Session.Win, LevelEnd/account persistence and actual Flow/dialog/skip/result/ego/banner composition remain unbound. The full requested player lifecycle is not complete.",
+    "Unlocked event availability, remote/account providers, active event presentation and production event composition remain incomplete. The formal-scene locked-event fixture does not prove those systems.",
+    "Pure native tests use typed event boundaries and scalar score sinks; they do not prove full active-event/account persistence or null/failure behavior of every adapter dependency.",
+    "All-level/static/helper/multi-board input coverage, original rendered/camera/HUD/scene parity and country/AB/GM remain incomplete. SDK handling is unchanged."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "092d4d2f96962e4ae513640f7e4135fba3455ed3b35a77ef8d6141fea20c2fc2"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalClashOfChampionsLevelData.cs",
+      "sha256": "f0df548ca2595f20e223058ead01b586bf979bbd927e4f2afc3e255b598687d1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDailyLightningRushLevelData.cs",
+      "sha256": "50cba3a2498d5e9a1fe38ccc7d7fbb5e6023d6ae03a0f4eff879ca1f5d55c7cc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingEventRewards.cs",
+      "sha256": "08e80a0ec9267f0aaf7e98b240a40d9b102aa6961a9da73f453262d561dcfdde"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingEventRewards.cs.meta",
+      "sha256": "cbe78f5339664e6d0c4ab7117577d13d5ba64e267bf64df7178b89e6f55126ed"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingSessionEnd.cs",
+      "sha256": "9b45dcc76a44ee983733a01f74b98d7cfd5d34521b447181ed6a1a7861a0674f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingSessionEnd.cs.meta",
+      "sha256": "7615607e697572264a346e1f2e549fe780083d6260cd1d9bf468834e557de0d0"
+    },
+    {
+      "path": "SourceCatalog/RemainingSessionHarness.cs",
+      "sha256": "a356142919251591bdca47e1d43b66f58682313dc8db9dbe04f83513c0021c39"
+    },
+    {
+      "path": "SourceCatalog/verify_remaining_session.py",
+      "sha256": "57edbebe3217e25476b2a8c9b258d87e489405312f999c069318c46411947f60"
+    },
+    {
+      "path": "remaining_session_native_verification.json",
+      "sha256": "03b39fb88d39250e0537d0b26d7ac08a5a731cd8ccf6dd040595649f8a3ae064"
+    },
+    {
+      "path": "background_remaining_coins_normal_verification.json",
+      "sha256": "fbbc9066472573b889cf2731ede9e9b661fce41cf3dfbe7ed11ced05b32c2dfe"
+    },
+    {
+      "path": "live_remaining_coins_normal_verification.json",
+      "sha256": "484daa116739980bf3b49533cb1d9c6299c5eea6bf007d2ac9713a203531c66a"
+    },
+    {
+      "path": "remaining_coins_normal_flying.png",
+      "sha256": "9ee82e3eda05dcd035dc2843e3ee38ecd7c81abc4d21f8d9261e23f0d6858a5d"
+    },
+    {
+      "path": "remaining_coins_normal_reward.png",
+      "sha256": "2665789718ba4dc62d67a790db25fb413a95a439e8d0ea57abb60dba7de52cd3"
+    },
+    {
+      "path": "background_remaining_coins_skip_verification.json",
+      "sha256": "0aab6c96408b6b61548b8799b851c500dc1bc7612ba64666c0e451da77504787"
+    },
+    {
+      "path": "live_remaining_coins_skip_verification.json",
+      "sha256": "2e10b2d3ee6f07ecd6cbb440f71c1aca4033282e88cfebb2c9e3f0166df9745d"
+    },
+    {
+      "path": "remaining_coins_skip_flying.png",
+      "sha256": "5d783c88cb072c429517b06bbcb807f00a36ca0de765a18791712cf7ea912275"
+    },
+    {
+      "path": "remaining_coins_skip_reward.png",
+      "sha256": "4e6cba2951fb026b60e90e4434e3dd3146bb61f7bdc10d84b60962ce42ea17b9"
+    },
+    {
+      "path": "background_remaining_coins_early_skip_verification.json",
+      "sha256": "b5b0a8ad278975786a1f6c975063680b07465482407c08f9ced4b5b86a4c80b3"
+    },
+    {
+      "path": "live_remaining_coins_early_skip_verification.json",
+      "sha256": "cb633228f1c7619ab4480124f48f66913147a184b698e23726ba802a34be3e7f"
+    },
+    {
+      "path": "remaining_coins_early_skip_flying.png",
+      "sha256": "ac6722fbf32f5f16d803da4cc6bac81ba0eb3ed115e8bddf22bc53894e08e627"
+    },
+    {
+      "path": "remaining_coins_early_skip_reward.png",
+      "sha256": "3e5279aefa67dece2b87a18bb5740bb112dd9efc0cdb0b56a0b9c158c906db0f"
+    }
+  ],
+  "historical_checkpoint": "95604839702d858d64b6bc2182e3e014103664d0",
+  "current_session_win_evidence": "SourceCatalog/session_win_evidence.json",
+  "session_win_integration_update": "Current formal-scene evidence invokes actual Session.Win before the actual remaining manager/Session end. This artifact retains its historical remaining-end checkpoint hashes."
+}

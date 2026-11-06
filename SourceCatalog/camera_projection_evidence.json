@@ -1,0 +1,282 @@
+{
+  "full_objective_complete": false,
+  "native_projection_arithmetic_restored": true,
+  "formal_scene_actual_camera_and_session_bound": true,
+  "original_build_portrait_hud_branch_restored": true,
+  "original_default_portrait_project_setting_restored": true,
+  "complete_camera_manager_and_grid_positioner_restored": false,
+  "square_device_side_blockers_and_flag_cameras_restored": false,
+  "production_application_account_win_fail_bound": false,
+  "full_original_game_scene_restored": false,
+  "home_start_interval_flow_restored": false,
+  "original_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "c207ecce7f26f43a84b598ec301e110fcd39e5f75dc3eb0f59b85b26a1f3d420",
+  "native_verification": {
+    "passed": true,
+    "cases": 852,
+    "scope": "Differential verification of original ARM64 camera projection arithmetic.\n\nExecute UpdateSizeParameters from its real prologue through orthographic-size\npublication. Unity Camera/Rect and table-kind queries are explicit supplied\nports; width/height/aspect selection, captured/live reads, branch thresholds\nand viewport equations execute from ELF. Safe-area correction, square side\nblockers/flag cameras, orientation/device lifecycle and logging are outside\nthis projection test. The build's private GetIsLandscape body also executes.",
+    "original_rvas": [
+      "0x2003ce0",
+      "0x2003628",
+      "0x20022cc"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/CameraProjectionHarness.cs",
+        "sha256": "131591a2b3348e9fd2f5fa1b9699ef8ca1acad6285db6a280384cacd3f7adf97"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalCameraProjection.cs",
+        "sha256": "1885a44556b2d2606f86e2979527f654de69880e9bd50ba9f038d7fb89f7a987"
+      },
+      {
+        "path": "SourceCatalog/verify_camera_projection.py",
+        "sha256": "947992a5433b44e4c695b16f2809f29ac60ff5514ee8aaf9cec01eb4ed74b8a0"
+      }
+    ]
+  },
+  "original_methods": [
+    {
+      "rva": "0x2003ce0",
+      "name": "Royal.Infrastructure.Contexts.Units.CameraManager$$UpdateSizeParameters",
+      "body_sha256": "a1afaec040881a74461d9a51b616b406ca3d460836a2897448de6f8ec79ea1cd"
+    },
+    {
+      "rva": "0x2003628",
+      "name": "Royal.Infrastructure.Contexts.Units.CameraManager$$GetPortraitAspect",
+      "body_sha256": "3c14886b66eebdca2e5699701a87f624949f06bf3229a09018f72160fbade9b1"
+    },
+    {
+      "rva": "0x20022cc",
+      "name": "Royal.Infrastructure.Contexts.Units.CameraManager$$GetIsLandscape",
+      "body_sha256": "af716fb1557d398ebab51c02a8908f1fc15c58146c5efdf65d0fec267fdce2ff"
+    },
+    {
+      "rva": "0x2002270",
+      "name": "Royal.Infrastructure.Contexts.Units.CameraManager$$get_IsLandscape",
+      "body_sha256": "3c613c5b2b154a94bbc59d19089bae28e09ffae44282138f9aeba00108cdbd2c"
+    }
+  ],
+  "actual_camera_and_hud_verification": {
+    "passed": true,
+    "portrait_hud_and_background_verified": true,
+    "actual_camera_ports_and_round_trips_verified": true,
+    "locked_hud_pose_verified": true,
+    "cell_round_trips": 360,
+    "preview_width": 720,
+    "preview_height": 1280,
+    "samples": [
+      {
+        "width": 720,
+        "height": 1280,
+        "camera_width": 9.300000190734863,
+        "camera_height": 16.53333282470703,
+        "aspect": 0.5625,
+        "viewport_width": 1.0,
+        "cropped": false
+      },
+      {
+        "width": 640,
+        "height": 480,
+        "camera_width": 12.699999809265137,
+        "camera_height": 9.524999618530273,
+        "aspect": 1.3333333730697632,
+        "viewport_width": 1.0,
+        "cropped": false
+      },
+      {
+        "width": 480,
+        "height": 480,
+        "camera_width": 12.699999809265137,
+        "camera_height": 18.14285659790039,
+        "aspect": 0.699999988079071,
+        "viewport_width": 0.699999988079071,
+        "cropped": true
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "camera_width": 12.699999809265137,
+        "camera_height": 7.143749713897705,
+        "aspect": 1.7777777910232544,
+        "viewport_width": 1.0,
+        "cropped": false
+      },
+      {
+        "width": 720,
+        "height": 1440,
+        "camera_width": 9.300000190734863,
+        "camera_height": 18.600000381469727,
+        "aspect": 0.5,
+        "viewport_width": 1.0,
+        "cropped": false
+      }
+    ],
+    "failure": "",
+    "scope": "Native projection kernel bound to actual scene camera and active session; original portrait-only HUD and background; five RenderTexture camera targets with360 actual camera/cell round trips. Test targets exercise real Camera ports, not physical display orientation/safe areas. Full CameraManager device/safe-area/flags/blocker lifecycle, GridPositioner, startup/Home/King/bottom controls and original rendered/mobile parity remain incomplete."
+  },
+  "actual_game_scene": {
+    "passed": true,
+    "normal_scene_and_72_models_verified": true,
+    "original_top_background_verified": true,
+    "failure": "",
+    "scope": "Normal GameScene starts existing real first-board gameplay, retains original serialized camera/render/bake settings and imports recovered Top/Background under actual HUD. Physical input, dynamic camera/orientation, King/boosters, startup/account/settlement/Home/navigation and full original rendered parity remain incomplete."
+  },
+  "player_input_regression": {
+    "passed": true,
+    "physical_drag_verified": false,
+    "tnt_activated": false,
+    "lightball_activated": false,
+    "rocket_activated": false,
+    "propeller_activated": false,
+    "propeller_flight": 0.0,
+    "propeller_trace": [],
+    "propeller_max_scale": 0.0,
+    "blocked_original_box_holes": 0,
+    "propeller_max_loop": 0,
+    "propeller_takeoff_instances": 0,
+    "propeller_hit_instances": 0,
+    "propeller_max_operations": 0,
+    "rocket_orientation": 0,
+    "rocket_max_operations": 0,
+    "rocket_first_flight": 0.0,
+    "rocket_second_flight": 0.0,
+    "sent_rays": 0,
+    "reached_rays": 0,
+    "completed_rays": 0,
+    "completed_lightball_activations": 0,
+    "rocket_created": true,
+    "tnt_created": false,
+    "lightball_created": false,
+    "propeller_created": true,
+    "failure": "",
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "left_moves": 20,
+    "goals_left": 23,
+    "created_refills": 76,
+    "created_specials": 2,
+    "scope": "Frame-separated recorded device samples through native GameTouchListener into formal production scene services. Checks invalid swap spends0, accepted swaps spend1, first triple/three box goals/six refills, 10accepted swaps and naturally observed special creation patterns (each requested type also has its own activation mode), automatic cascades, original creation coroutines and all72 model slots/no holes/no freeze/landing tolerance. Fails on runtime errors/exceptions. Shadow native match search only chooses gestures and never mutates live cells. Does not verify physical drag timing, special activation/combos, complete session startup, settlement or original rendered parity."
+  },
+  "background_verification": {
+    "passed": true,
+    "test": "camera-projection",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "c207ecce7f26f43a84b598ec301e110fcd39e5f75dc3eb0f59b85b26a1f3d420",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_camera-projection.log",
+    "elapsed_seconds": 149.34,
+    "batch": {
+      "passed": true,
+      "test": "camera-projection",
+      "failure": "",
+      "timestamp_utc": "2026-11-02T04:07:59.7681730Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "restored_scope": [
+    "The original build private GetIsLandscape body returns false; the public getter also requires its current owner then returns false. Restore the false orientation result used by the actual HUD instead of deriving an unsupported landscape branch from host-window dimensions. This does not recreate the public singleton lookup/failure lifecycle.",
+    "Restore GetPortraitAspect and the projection portion of UpdateSizeParameters: live Camera reads, >=0.8 crop, original viewport equations, captured aspect, scene2 square width, normal aspect thresholds and widths, table-game override, published height and orthographic size. Safe-area/decoration/logging portions remain separate required work.",
+    "The ARM64 comparison exposed a real one-bit Mono intermediate precision difference in the crop equation. Explicit f32 conversion at the native multiply boundary now retains the original f32 result on Mono as well as IL2CPP, without per-call allocation.",
+    "The normal GameScene owns a serialized camera component, binds it to the actual active-session table flag and uses the shared projection kernel before creating HUD/input bindings. Dimension changes recalculate once and notify the HUD through code-bound events; disable unsubscribes. Existing HUD orientation disabling also gates these notifications so result-pose changes are retained.",
+    "Restore defaultScreenOrientation0 from the original exported ProjectSettings instead of the foundation value4. Runtime code is identical across Editor and players. The normal scene Editor open/menu and a safe non-Play saved-scene authoring refresh configure720x1280 via the installed public UnityEditor.PlayModeWindow.SetCustomRenderingResolution API. This only configures the Game preview and reopens unmodified saved scene data; it does not install runtime services or bypass core initialization.",
+    "Five actual Unity RenderTexture targets exercise real Camera aspect/viewport/orthographic ports.360 real camera/cell coordinate round trips retain the same playable cell identities, portrait targets retain all72 cell centers, and the actual HUD uses portrait positions/scale with its recovered background active. A temporary result-pose lock probe verifies projection refresh does not overwrite a locked HUD transform.",
+    "Retain the earlier640x480 passing projection/input reports and image: visual inspection revealed portrait HUD overlap in that unsupported wide preview. The final720x1280 full-scene screenshot is separately inspected. Neither screenshot is an original-frame comparison, and synthetic RenderTexture camera probes are not physical display/safe-area proof.",
+    "Recorded actual-scene input regression retains10 accepted and1 rejected swaps,76 refills,2 specials and20 moves, plus existing72-slot/no-hole/no-freeze/landing checks. No special activation/combination or full settlement claim is inferred from this mode."
+  ],
+  "remaining_gaps": [
+    "Full CameraManager safe-area/notch/device/orientation-lock/event lifecycle, square side blockers/flag cameras, and native GridPositioner/scroll/portal/story/table/Clash layout remain required. This adds projection and the original portrait HUD decision, not an entire camera/board presentation manager.",
+    "The formal scene retains its existing limited first-board gameplay composition and centered grid root. Original grid offsets/entrance animation, King, bottom settings/booster controls and unlock logic, background bundles and all remaining presentation branches are not restored here.",
+    "Application/account/GameManager/WinFail startup, full112 factories, Home/Start/Interval scenes and original scene indices/navigation, all levels/events/regions/AB/GM routes and physical Android/iOS/rendered parity remain incomplete. SDK facade behavior is unchanged."
+  ],
+  "performance": "Projection runs at entry or when dimensions change and keeps its state/camera/session references. HUD notifications are code-bound and respect existing layout locks. No per-frame collections, reflection, new large asset preloads or additional assemblies are added. Camera-target/coordinate probes and preview configuration exist only in explicit Editor authoring/verification.",
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "b165c5b496daf2f3c916f4ffce369eff43f8a6aa4eb146f1299e95ef79619185"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CameraProjectionVerification.cs",
+      "sha256": "3ac6f2f78350bb343a0752d8743654d676f0ed9ab8f856c7a9333a905f74e0e1"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CameraProjectionVerification.cs.meta",
+      "sha256": "b0230001d5c2adad70bf43d8fc11220af53a1544fcb31fbf7c020936521fa752"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GameSceneVerification.cs",
+      "sha256": "0abaeda08ce7f4acf18945afbf9aef6531b81931b25e149d477e039cfd25eaa3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/FoundationController.cs",
+      "sha256": "b05702cc0d4d5fe2fc0bde28277cef2c9c96b396fb55e1b005d169a136a4eefe"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCameraProjection.cs",
+      "sha256": "1885a44556b2d2606f86e2979527f654de69880e9bd50ba9f038d7fb89f7a987"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCameraProjection.cs.meta",
+      "sha256": "b4ead92f954e92838dd49ac92d74b00ad2a309279c7a9148ed5914c16e364569"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameSceneProjection.cs",
+      "sha256": "52589b92ab67d18f856ace4d695a0d918c53c7af467cbb8952a0945d0cf88267"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameSceneProjection.cs.meta",
+      "sha256": "377cc8d40ff826d7772d0e97e4d71fe0f8c39ee3a3a94fc46d806ecca9cb7e9b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameplayHud.cs",
+      "sha256": "a458df2f4bd090013edf4db32ccbdf5f2bd5c5cde883b28e905a3d6718a03692"
+    },
+    {
+      "path": "Assets/Foundation/Scenes/GameScene.unity",
+      "sha256": "c1449a998237f2ee5ce55b1727dbfeac535f98c1fffe1bfb45b3b9cc88a50d89"
+    },
+    {
+      "path": "ProjectSettings/ProjectSettings.asset",
+      "sha256": "78e9c03defe46a26762e78cb8c9486e84f7d692f0b75b7d5b956db1beff8ad97"
+    },
+    {
+      "path": "SourceCatalog/CameraProjectionHarness.cs",
+      "sha256": "131591a2b3348e9fd2f5fa1b9699ef8ca1acad6285db6a280384cacd3f7adf97"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "fdaa4e40996b0536b386c2569b7ed38e1b4b3bdedeba0c2704fef9d08386df19"
+    },
+    {
+      "path": "SourceCatalog/verification_history/camera_projection_wide_preview/background.json",
+      "sha256": "b699d046f4f69245ba6c893b67f5f544dcfc29e4fcc35514099918e693e76505"
+    },
+    {
+      "path": "SourceCatalog/verification_history/camera_projection_wide_preview/game_scene_initial.png",
+      "sha256": "50cdc0f5788db0a32093e18f8dd88f12d5edb143d80da2e940f2f0a15c4c189c"
+    },
+    {
+      "path": "SourceCatalog/verification_history/camera_projection_wide_preview/player.json",
+      "sha256": "3fa8ff561c926783f4da42249137c164f5cab754d388482ef36c15e2edcd873b"
+    },
+    {
+      "path": "SourceCatalog/verification_history/camera_projection_wide_preview/projection.json",
+      "sha256": "caf2b4f81d5eba487a144f93a78c658ad5e67235e40a0e129097460cc1008cd8"
+    },
+    {
+      "path": "SourceCatalog/verification_history/camera_projection_wide_preview/reason.json",
+      "sha256": "1d6929f4ed2a77e1e5478ec0d30a7d23df68c1557e1db226aab7235b97cc9133"
+    },
+    {
+      "path": "SourceCatalog/verify_camera_projection.py",
+      "sha256": "947992a5433b44e4c695b16f2809f29ac60ff5514ee8aaf9cec01eb4ed74b8a0"
+    },
+    {
+      "path": "game_scene_initial.png",
+      "sha256": "54334233166dfa49c30b7af89c4790abd3a1d9d2da8f0b5138aca792ab466d5f"
+    }
+  ]
+}

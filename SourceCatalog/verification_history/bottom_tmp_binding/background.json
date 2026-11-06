@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "test": "camera-projection",
+  "unity_exit_code": 1,
+  "source_unchanged_during_run": true,
+  "source_sha256": "26deb16182d3932db15e9c6ad2000629e87e392aa0a794bccc7a33c63cf10bdc",
+  "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+  "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_camera-projection.log",
+  "elapsed_seconds": 275.09,
+  "batch": {
+    "passed": false,
+    "test": "camera-projection",
+    "failure": "System.InvalidOperationException: NullReferenceException: Object reference not set to an instance of an object\nWhitebox.Foundation.OriginalInGameBoosterSlot.Refresh (System.Int32 level, System.Boolean newUserFlowAb, System.Boolean tutorial, Whitebox.Foundation.IOriginalBoosterInventoryPresentation inventory) (at Assets/Foundation/Runtime/OriginalInGameBoosterSlot.cs:37)\nWhitebox.Foundation.OriginalInGameBoosterSlot.Initialize (System.Int32 level, System.Boolean newUserFlowAb, Whitebox.Foundation.IOriginalBoosterInventoryPresentation inventory) (at Assets/Foundation/Runtime/OriginalInGameBoosterSlot.cs:32)\nWhitebox.Foundation.OriginalBottomUi.Initialize (Whitebox.Foundation.OriginalActiveLevelData session, UnityEngine.Camera camera, Whitebox.Foundation.IOriginalBoosterInventoryPresentation inventory) (at Assets/Foundation/Runtime/OriginalBottomUi.cs:22)\nWhitebox.Foundation.FoundationController.Start () (at Assets/Foundation/Runtime/FoundationController.cs:79)\n\r\n  at Whitebox.Foundation.Editor.BackgroundVerification.Tick () [0x00017] in F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\Assets\\Foundation\\Editor\\BackgroundVerification.cs:64 ",
+    "timestamp_utc": "2026-11-02T06:44:46.4629529Z",
+    "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+  },
+  "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+}

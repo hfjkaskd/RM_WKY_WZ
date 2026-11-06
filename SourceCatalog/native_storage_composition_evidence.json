@@ -1,0 +1,433 @@
+{
+  "full_objective_complete": false,
+  "production_startup_user_flow_bound": false,
+  "production_database_bound": false,
+  "android_runtime_verified": false,
+  "android_native_binary_packaged": false,
+  "native_library_scope_clarification_pending": true,
+  "ios_native_transport_bound": false,
+  "windows_shared_native_api_and_factory_verified": true,
+  "source_snapshot_sha256": "63cf578d9b6893056191ea763d477ef744ab3c396982fd5aa57834c31e424c65",
+  "restored_scope": "One project-owned SQLite C API implementation now owns SQL, UTF16/NUL binding, transactions and errors; Windows and Android adapters supply the native entry points. Native FileHelper directory selection and App/U_id naming are restored, including the shared Exception -> persistentDataPath/GetFullPath branch, without Editor-only core logic. Formal-scene checks use the runtime OS factory for actual Windows SQL writes/reopen/native account reload.",
+  "inspected_directory_methods": [
+    {
+      "rva": "0x2d7a8c0",
+      "name": "Royal.Infrastructure.Utils.Native.FileHelper$$.cctor",
+      "body_sha256": "93217c76c59945acc8d60bd60837ae1105c8d4fd2112825e5b50148b5381eb74"
+    },
+    {
+      "rva": "0x25d03b4",
+      "name": "Royal.Infrastructure.Services.Storage.DbFileHelper$$GetAppDbPath",
+      "body_sha256": "2f0ad712a5735f418b9e109c7c0285f139610c337edc326639031204ac3bfa99"
+    },
+    {
+      "rva": "0x25d1ad8",
+      "name": "Royal.Infrastructure.Services.Storage.DbFileHelper$$GetUserDbPath",
+      "body_sha256": "d77ef72eec87bcefa2b6679d93ad73da3753d2185004ce0737b9d7e9eb948cec"
+    }
+  ],
+  "android_abi_inspection": {
+    "scope": "Read-only ABI inspection of the original Android SQLite binary against the project-owned C# P/Invoke entries. Matching exports do not prove execution, permission to package the library, Android runtime behavior, or whole-game parity.",
+    "source_path": "RoyalMatch_20260929/apk_unpacked/split_config.arm64_v8a/lib/arm64-v8a/libsqlite3.so",
+    "source_sha256": "7af85467a880a097542e4e0b8cf43f6c767abb6a9097eefee72d0037b74deabd",
+    "bytes": 1327456,
+    "machine": "EM_AARCH64",
+    "elf_class": 64,
+    "all_required_exports_present": true,
+    "required_exports": [
+      "sqlite3_bind_int",
+      "sqlite3_bind_null",
+      "sqlite3_bind_text16",
+      "sqlite3_busy_timeout",
+      "sqlite3_changes",
+      "sqlite3_close",
+      "sqlite3_column_int",
+      "sqlite3_column_text16",
+      "sqlite3_errmsg",
+      "sqlite3_finalize",
+      "sqlite3_open_v2",
+      "sqlite3_prepare_v2",
+      "sqlite3_step"
+    ],
+    "binary_added_to_unity_project": false,
+    "native_library_scope_clarification_pending": true,
+    "bindings_sha256": "9c38840a23eac76a0e4f3347d220f014477180872f5c547a646982082c758618"
+  },
+  "sqlite_regression": {
+    "passed": true,
+    "checks": 28,
+    "scope": "Real Windows OS SQLite persistence and captured native database schema check.\n\nExecutes project runtime storage/account adapters with actual SQL, independent\nconnection visibility, commit/reopen/rollback and native sync flags. The original\ncaptured database is read-only; writes target only a temporary copy. No database\ncontents or identifiers are exported. Mobile transports, full database migration,\naccount constructor defaults and production startup are not verified.",
+    "native_captured_schema_sql": "CREATE TABLE \"KeyValue\"(\n\"Key\" varchar primary key not null ,\n\"Value\" varchar ,\n\"Synced\" integer ,\n\"SyncBlocked\" integer )",
+    "schema_columns": [
+      [
+        0,
+        "Key",
+        "varchar",
+        1,
+        null,
+        1
+      ],
+      [
+        1,
+        "Value",
+        "varchar",
+        0,
+        null,
+        0
+      ],
+      [
+        2,
+        "Synced",
+        "INTEGER",
+        0,
+        null,
+        0
+      ],
+      [
+        3,
+        "SyncBlocked",
+        "INTEGER",
+        0,
+        null,
+        0
+      ]
+    ],
+    "original_capture_unchanged": true,
+    "files": [
+      {
+        "path": "SourceCatalog/SqliteAccountHarness.cs",
+        "sha256": "a02d50e5a29575dc446056d7ccb2971673a4aa032966309c6be79a2eec169afd"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+        "sha256": "3a04593f1c1b6c86dd8f244d772e90ed20131297e43179f4d0fc8f98a4122962"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalAccountStorage.cs",
+        "sha256": "43130ad16b9c41fe6ef7e685c1c081029e18daeed92b42d71c8031948596e517"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalWindowsSqliteConnection.cs",
+        "sha256": "41e7f5e70166cbff801d74f83d50c4e9f34c221750dbca44076f5f6b4fc77e67"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalNativeSqliteConnection.cs",
+        "sha256": "471d5c6cca45abce173fb9c08181d5c99859fe0df77b008c103c27053e85a9f2"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalNativeSqliteApi.cs",
+        "sha256": "9c38840a23eac76a0e4f3347d220f014477180872f5c547a646982082c758618"
+      }
+    ],
+    "api_sources": [
+      "https://www.sqlite.org/c3ref/open.html",
+      "https://www.sqlite.org/c3ref/bind_blob.html",
+      "https://www.sqlite.org/c3ref/step.html",
+      "https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/custom-versions"
+    ]
+  },
+  "same_snapshot_runtime_tests": [
+    {
+      "path": "background_remaining_coins_normal_verification.json",
+      "report": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "63cf578d9b6893056191ea763d477ef744ab3c396982fd5aa57834c31e424c65",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+        "elapsed_seconds": 128.14,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-normal",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T20:21:08.8506787Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "live_path": "live_remaining_coins_normal_verification.json",
+      "live": {
+        "passed": true,
+        "skipped": false,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "account_native_reload_verified": true,
+        "runtime_storage_factory_verified": true,
+        "directory_rules_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-cf06b96800ba4910b097fe30adf8088f.sqlite",
+        "initial_remaining_moves": 24,
+        "converted_moves": 24,
+        "unconverted_moves": 0,
+        "reward_coins": 73,
+        "collections": 27,
+        "peak_coin_views": 63,
+        "peak_pilots": 63,
+        "peak_operation5": 63,
+        "native_departure_count": 63,
+        "active_board_coin_value_at_end": 0,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 2073,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "account_initial_coin": 2000,
+        "account_area_load_calls": 2,
+        "elapsed": 11.040763854980469,
+        "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      },
+      "independent_sqlite_rows": {
+        "Coins": "2073",
+        "Level": "2",
+        "Stars": "1"
+      }
+    },
+    {
+      "path": "background_remaining_coins_skip_verification.json",
+      "report": {
+        "passed": true,
+        "test": "remaining-coins-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "63cf578d9b6893056191ea763d477ef744ab3c396982fd5aa57834c31e424c65",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-skip.log",
+        "elapsed_seconds": 100.31,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T20:22:49.8331556Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "live_path": "live_remaining_coins_skip_verification.json",
+      "live": {
+        "passed": true,
+        "skipped": true,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "account_native_reload_verified": true,
+        "runtime_storage_factory_verified": true,
+        "directory_rules_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-f431a796e7074969a95dfa0b4ed21d4a.sqlite",
+        "initial_remaining_moves": 24,
+        "converted_moves": 24,
+        "unconverted_moves": 0,
+        "reward_coins": 73,
+        "collections": 1,
+        "peak_coin_views": 3,
+        "peak_pilots": 3,
+        "peak_operation5": 3,
+        "native_departure_count": 3,
+        "active_board_coin_value_at_end": 60,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 2073,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "account_initial_coin": 2000,
+        "account_area_load_calls": 2,
+        "elapsed": 9.237516403198242,
+        "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      },
+      "independent_sqlite_rows": {
+        "Coins": "2073",
+        "Level": "2",
+        "Stars": "1"
+      }
+    },
+    {
+      "path": "background_remaining_coins_early_skip_verification.json",
+      "report": {
+        "passed": true,
+        "test": "remaining-coins-early-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "63cf578d9b6893056191ea763d477ef744ab3c396982fd5aa57834c31e424c65",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+        "elapsed_seconds": 95.83,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-early-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T20:24:26.2547418Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "live_path": "live_remaining_coins_early_skip_verification.json",
+      "live": {
+        "passed": true,
+        "skipped": true,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "account_native_reload_verified": true,
+        "runtime_storage_factory_verified": true,
+        "directory_rules_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-0b916d815d0b46da86ac878f2e8847e1.sqlite",
+        "initial_remaining_moves": 24,
+        "converted_moves": 2,
+        "unconverted_moves": 22,
+        "reward_coins": 72,
+        "collections": 0,
+        "peak_coin_views": 0,
+        "peak_pilots": 0,
+        "peak_operation5": 0,
+        "native_departure_count": 0,
+        "active_board_coin_value_at_end": 7,
+        "unconverted_move_coin_value": 55,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 2072,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "account_initial_coin": 2000,
+        "account_area_load_calls": 2,
+        "elapsed": 6.476146697998047,
+        "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      },
+      "independent_sqlite_rows": {
+        "Coins": "2072",
+        "Level": "2",
+        "Stars": "1"
+      }
+    }
+  ],
+  "initial_compile_failure": {
+    "passed": false,
+    "resolved": true,
+    "source_snapshot_sha256": "c9227a75f90d787567b74ec27476756a149a35a9430301f2c176b8df0b97c80d",
+    "scope": "First native-storage/path composition run stopped before scene execution because the project did not declare Unity official com.unity.modules.androidjni. This is a compile/dependency failure, not a gameplay pass.",
+    "diagnostic": "CS0103 AndroidJNI and CS1069 jvalue / UnityEngine.AndroidJNIModule reference missing.",
+    "archive": "F:\\Coin Merge Fortune\\RM\\Recovery\\Checkpoints\\native-storage-missing-jni-20261028-161852",
+    "resolution": "Declared the missing official Unity com.unity.modules.androidjni builtin module. No Editor-only bypass or dummy JNI implementation.",
+    "resolved_source_snapshot_sha256": "63cf578d9b6893056191ea763d477ef744ab3c396982fd5aa57834c31e424c65"
+  },
+  "permission_scope": "The original Android libsqlite3.so was only read for ABI inspection. The user has been asked whether the official-package/project-code rule permits preserving this native binary; no answer or packaging approval is assumed.",
+  "limits": [
+    "Android native code binding is declared and its exports match, but the binary is not packaged and Android execution is not verified. No Android pass or mobile parity is claimed.",
+    "Full application/current-user/service/path/database lifecycle composition and iOS native transport remain incomplete.",
+    "Home-area/clock/features/events/backend and King/Life/Ego/reactivation owners, complete win/loss/settlement/continue/retry/home UI remain incomplete.",
+    "Original rendered/physical/all-level/country/AB/GM fidelity remains unproved; SDK behavior is unchanged."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalNativeSqliteApi.cs",
+      "sha256": "9c38840a23eac76a0e4f3347d220f014477180872f5c547a646982082c758618"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalNativeSqliteApi.cs.meta",
+      "sha256": "ad6036dd01e04fd5317e70e570746785c3be433332c00d9eacbb3eb278e158cb"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalNativeSqliteConnection.cs",
+      "sha256": "471d5c6cca45abce173fb9c08181d5c99859fe0df77b008c103c27053e85a9f2"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalNativeSqliteConnection.cs.meta",
+      "sha256": "715bc8376977b62d13bc06c8599d01bb60a7975839367b72e1fdf5ac340785eb"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAndroidSqliteConnection.cs",
+      "sha256": "6f367b05b553d4abbe505b18042ec47ac7508782fe8a025ad777d78d07328a4a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAndroidSqliteConnection.cs.meta",
+      "sha256": "44271b0eb026d30ae82342c363832cf9c7791a1c973a1aa67150b6fe1aa20e96"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDbFilePaths.cs",
+      "sha256": "502d51ef1b1002d13678a813f0915bee6211e3765e43bb2e1a91663c5d10ab0b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDbFilePaths.cs.meta",
+      "sha256": "a4f7b38119c4ad5fa6298d8747fe7d6c9437ed64e714e519a0f495dffe5ad8c6"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalUnityStorageDirectory.cs",
+      "sha256": "7ad25aa7d8a37da43311f7a45bd6444721b24b85ec9dfd1c7a2005ff72684f31"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalUnityStorageDirectory.cs.meta",
+      "sha256": "8ac36f980fa8941509791aefd8d75c4c2092985081a6d4195eed087b5ee35153"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRuntimeStorage.cs",
+      "sha256": "d23892da05affdbdafa069ae7d19adef5fa15c1c39f1bc44b67defb9e37f59a3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRuntimeStorage.cs.meta",
+      "sha256": "f3b02fa35a7051a3a9d7c04e82ab1cdf5b3a80a137e4126d8a903a8d1b646a40"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWindowsSqliteConnection.cs",
+      "sha256": "41e7f5e70166cbff801d74f83d50c4e9f34c221750dbca44076f5f6b4fc77e67"
+    },
+    {
+      "path": "Assets/Foundation/Editor/UserEndFixtureContext.cs",
+      "sha256": "a609b0d673267bf433a1527058156617cb11738dbbb30cafefb2243cc02d1542"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "a4124f3a01465bba3a34158d2a9302259a3bb919698e3ee08f1d643a50b4308e"
+    },
+    {
+      "path": "Packages/manifest.json",
+      "sha256": "e7526e7aa8730bf51b97e896ef32bfb7830a22cea8920f6b2c97a848909b2197"
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "sha256": "ed89c31739ecd629ea15e4c465f5bcf0b93fbf1467b97746171569ee3137aede"
+    },
+    {
+      "path": "SourceCatalog/verify_sqlite_account.py",
+      "sha256": "4e121f58df9a0edfd6823a1f29284071672dd9e7fa145cf26b9f35aff5be1fde"
+    },
+    {
+      "path": "SourceCatalog/android_sqlite_abi_inspection.json",
+      "sha256": "5f0fc81a0317f5225e3a3add5eb05d4d438a351bacd611ce51b8248b34a3e727"
+    }
+  ]
+}

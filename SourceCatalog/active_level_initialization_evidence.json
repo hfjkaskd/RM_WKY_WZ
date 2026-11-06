@@ -1,0 +1,70 @@
+{
+  "source": "RoyalMatch_20260929 ARM64 libil2cpp.so; metadata dump used for signatures/layout only",
+  "methods": {
+    "UserActiveLevelData.ctor": "0x32b6324",
+    "UserActiveLevelData.ResetValues": "0x32b7060",
+    "UserActiveLevelData.IncrementStoryLevelTryCount": "0x32b8894",
+    "UserActiveLevelData.ResetCumulativeProgress": "0x32b8904",
+    "BeforeAfterData.ctor": "0x338adc4",
+    "BeforeAfterData.Init": "0x338c6a8",
+    "BeforeAfterData.FullReset": "0x338c6b4",
+    "BeforeAfterData.Update": "0x338c6c0",
+    "BeforeAfterData.AddExtra": "0x338b130",
+    "BeforeAfterData.Consume": "0x338c6dc",
+    "BeforeAfterData.GetCollectedAmount": "0x338c6e4",
+    "BeforeAfterData.GetSaveData": "0x338c714",
+    "BeforeAfterData.LoadSaveData": "0x338c7a8",
+    "BeforeAfterData.GetDataLength": "0x338c800",
+    "BeforeAfterData.GetIsDataSigned": "0x338c82c",
+    "RestorableData": "0x23e5778..0x23e5d18",
+    "MatchItemCounts.ctor": "0x21a4194",
+    "MatchItemCounts.Reset": "0x21a3f58",
+    "MatchItemCounts.IncrementCount": "0x21a4028",
+    "MatchItemCounts.GetCount": "0x21a4094",
+    "SpecialItemCounts.ctor": "0x27b3d08",
+    "SpecialItemCounts.Reset": "0x27b2874",
+    "SpecialItemCount.ctor": "0x27b310c",
+    "SpecialItemCount.GetSaveData": "0x27b3b74",
+    "SpecialItemCount.LoadSaveData": "0x27b3ebc",
+    "SpecialItemCount.GetDataLength": "0x27b3f48",
+    "SpecialItemCount.GetIsDataSigned": "0x27b3f74",
+    "ClampByBits": "0x2d7bd18",
+    "LevelRestartData.ctor": "0x32b2dfc",
+    "LevelRestartData.Reset": "0x32b27e0",
+    "LevelRestartData.OnStartedWithUnlimitedPrelevel": "0x32b1428",
+    "LevelRestartData.HadUnlimitedPrelevel": "0x32b1464",
+    "LevelRestartData.SetIsInGameBoosterAnimationActive": "0x32b17c8",
+    "LevelRestartData.IsInGameBoosterAnimationActive": "0x32b2da8"
+  },
+  "literal": {
+    "address": "0x5618dd0",
+    "value": "SLTC"
+  },
+  "verified": [
+    "Constructor owns five separate snapshots, restart data, match/special counts and lists; event multiplier=1/useful=true. AnimationData is supplied, including null.",
+    "ResetValues keeps loaded move budgets, cumulative win, event multiplier and useful/match/special counts; SetStartValues owns later resets.",
+    "State=2 and restart reset precede story attempt storage. Shift/difficulty/snapshot clear happen only after successful storage; failed manager getters retain earlier inventory snapshots.",
+    "Snapshot List.Clear invalidates enumerators even when already empty. Match counts Reset allocates a new 5-element array, and match type 6 remains unsupported in this statistic.",
+    "RestorableData writes OR rather than replacement; PrepareData zeros before checking array, signed magnitude and 64-bit masked shift semantics match native.",
+    "BeforeAfter uses unsigned 1/20/20 bits. SpecialItemCount uses unsigned 13/13/12/12/12 bits with upper-only clamps and short load casts.",
+    "UsefulMoveState can operate directly on active-level counters; King relief callback runs before useful flag becomes true."
+  ],
+  "verification": {
+    "active_level_initialization_native_verification.json": {
+      "sequences": 180,
+      "commands": 2352
+    },
+    "session_values_native_verification.json": {
+      "sequences": 159,
+      "commands": 2588
+    },
+    "active_level_initialization_unity_verification.json": "First-level JSON, constructor/Load/reset, shared counters, partial failure writes and save packing passed."
+  },
+  "required_not_restored": [
+    "UserActiveLevelData.SetStartValues 0x32b7244 (full shared AnimationData and manager initialization), Start 0x32b6ed0 and Restart 0x32b7a6c wrappers",
+    "Application inventory/manager/progress/session composition and full animation/event constructors and save lifecycle",
+    "LevelRestartData refund/purchase/save, special count creation/static game-context forwarding and serialization beyond nested count data",
+    "Formal playable swap/resolution/fall/refill/cascade/HUD/settlement and rendered 1:1 parity"
+  ],
+  "sdk": "unchanged"
+}

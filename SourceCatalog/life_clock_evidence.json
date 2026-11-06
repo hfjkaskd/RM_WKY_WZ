@@ -1,0 +1,437 @@
+{
+  "full_objective_complete": false,
+  "native_life_clock_state_and_lifecycle_portion_restored": true,
+  "win_flow_fixture_returns_actual_persisted_life": true,
+  "complete_time_helper_restored": false,
+  "production_application_account_win_fail_bound": false,
+  "full_original_game_scene_restored": false,
+  "home_start_interval_flow_restored": false,
+  "original_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "a47a153158cd4c16fe78e4572119cd1a4e21f6deae87d17f9698c182ae63add3",
+  "native_verification": {
+    "passed": true,
+    "cases": 2760,
+    "scope": "Differential execution of TimeHelper life-clock state, lifecycle and UpdateTime.\n\nExecute actual ARM64 methods and nested clock methods. Life queries, client time,\nfeature/time-hack checks, inventory ResetTimes, ping and typed table writes are\nexplicit ports; diagnostic logging is skipped. Bind is limited to its two clock\nreads/stores. This does not restore the HTTP/ping implementation, full context\nbinding, life-hack detector or full production application lifecycle.",
+    "original_rvas": [
+      "0x239649c",
+      "0x2396a88",
+      "0x2395c14",
+      "0x2395f04",
+      "0x239773c",
+      "0x2395bf8",
+      "0x2395e34",
+      "0x2393a9c",
+      "0x239766c",
+      "0x2395804"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/LifeClockHarness.cs",
+        "sha256": "c4b8f24b9848c6b9542be3b3ba8e5eb0dd40617de868eafad0fd843fa29dedeb"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLifeClock.cs",
+        "sha256": "7d2fb2db2972745b124b98db13d5bf7907e16dc7f7311db87891f224a4b9da50"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLifeHelper.cs",
+        "sha256": "b2118571b9d5a8b902e6df065a3b65bab0e0e134f3dd598639356624fabbe3b5"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLifeData.cs",
+        "sha256": "f1667062509afbe069af49601063b62dc652d52b8ebdc461811418e6cb1bbae1"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+        "sha256": "5063c0c1d553ac2d2f3250a0e96b607a1baca1d5267997b0664a57858939b729"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+        "sha256": "1b5f2aecd84eb65e57f8df2a328c2db2c85cd2d138b1ce20b52de78956d18fea"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+        "sha256": "676525d80ce0c6c48ecefffaf0957e699105eece9acc5330a0aef55e9155ce80"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+        "sha256": "a75e6b7b3bb4978ea826257aff33a705064e6561547ea212473593b5d1310f48"
+      },
+      {
+        "path": "SourceCatalog/verify_life_clock.py",
+        "sha256": "344ed2a429346b3deba2145feef5c6e0eb6ff6575c3e24ba682ca2938fa712f2"
+      }
+    ]
+  },
+  "original_methods": [
+    {
+      "rva": "0x239649c",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$CurrentServerTimeInMs",
+      "body_sha256": "f7f568e94877253efc41b0cbea64708ca4a60bf21cf9a69114c725089c967a3a"
+    },
+    {
+      "rva": "0x2396a88",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$CurrentServerTimeInSeconds",
+      "body_sha256": "e9ec0986de2dc6f9ae13e01809c37904d9e33e705d8df489057100e244420664"
+    },
+    {
+      "rva": "0x2395c14",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$CheckClientTime",
+      "body_sha256": "6298574b415a6b1bf9dcc27a12ef8bf7a8b8eed8fbeb270d3b4219ada4efe3e5"
+    },
+    {
+      "rva": "0x2395f04",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$OnAppPause",
+      "body_sha256": "47911f1124dd73777ed531db4beb15555e180282d23ed842d05d32c7fdc42fda"
+    },
+    {
+      "rva": "0x239773c",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$RecalculateAfterPause",
+      "body_sha256": "a3a00b2c18bc0bee3a5387584c7b59691ad30d8d2eb0c4790260159bffa03f56"
+    },
+    {
+      "rva": "0x2395bf8",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$OnAppStart",
+      "body_sha256": "572127651edaef2f9b2b6ba77d9ff758c6b4cc579c88b3b8bd7701f2c74e714a"
+    },
+    {
+      "rva": "0x2395e34",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$OnAppResume",
+      "body_sha256": "83dc86f8a8fb8bceeaabe85420d9284c07423a51e23d4e9af8dba97b7ba599d3"
+    },
+    {
+      "rva": "0x2393a9c",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$UpdateTime",
+      "body_sha256": "1b80f8cf164cfc799ea5ec167d486d66e555dbd43d0ea1696388a664b440a279"
+    },
+    {
+      "rva": "0x239766c",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$HasServerTimeSetAtLeastOnce",
+      "body_sha256": "7a9a4d84dd15589c0709e158c82fcc2cb63b328ccfa87be3c69cfc58ffd26baa"
+    },
+    {
+      "rva": "0x2395804",
+      "name": "Royal.Infrastructure.Services.Backend.Http.TimeHelper$$Bind",
+      "body_sha256": "214cb01fc9af392a79a23513440d8c94648943360c2719165592f6941b98faba"
+    },
+    {
+      "rva": "0x29d6ef8",
+      "name": "Royal.Infrastructure.Utils.Time.TimeUtil$$CurrentTimeInMs",
+      "body_sha256": "a849fd4badecd782d80359fcf046a12f62f26eeafc090f8e8ce4fa162d08dd54"
+    },
+    {
+      "rva": "0x25d4844",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.AppKeyValue$$get_DatabaseService",
+      "body_sha256": "48d6d74b6105fa2829f609ccdb71451ce713289797bdb2ebdf225411c2fce27e"
+    },
+    {
+      "rva": "0x25d4a18",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.AppKeyValue$$SetString",
+      "body_sha256": "71428c35cfc73d9549265ab88c14e4253cf4d5c2d63b76385cab534e73381f6f"
+    },
+    {
+      "rva": "0x25d4bc4",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.AppKeyValue$$SetInt",
+      "body_sha256": "77a0c47104219b8c8eda8f0653861c604283aa514c08a8ead592a3aeba715b58"
+    },
+    {
+      "rva": "0x25d4edc",
+      "name": "Royal.Infrastructure.Services.Storage.Tables.AppKeyValue$$GetLong",
+      "body_sha256": "ce8ff1b23f869c47bee0c3d8045a65f1034185000cfcc5f96189ee29cfc92299"
+    },
+    {
+      "rva": "0x1edd734",
+      "name": "Royal.Scenes.Game.Levels.Units.WinFail.WinFailManager$$Win",
+      "body_sha256": "73aee6fd0b599aacc600fee2ef578b45fd3baba95be3c8d82728d9e0c79e6ee1"
+    }
+  ],
+  "native_keys": {
+    "scope": "Original TimeHelper Bind clock reads, CheckClientTime, OnAppPause and UpdateTime application storage keys, resolved through ELF relocations and ScriptString metadata. This does not bind backend/application startup.",
+    "keys": [
+      {
+        "field": "server_client_diff",
+        "got": "0x53dfed8",
+        "metadata_address": "0x5618ef8",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90279672,
+          "Value": "STD"
+        }
+      },
+      {
+        "field": "last_client_time",
+        "got": "0x536f8a8",
+        "metadata_address": "0x560ff78",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90242936,
+          "Value": "LCT"
+        }
+      },
+      {
+        "field": "life_server_reference",
+        "got": "0x53a02b8",
+        "metadata_address": "0x5610090",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90243216,
+          "Value": "LST"
+        }
+      },
+      {
+        "field": "remaining_unlimited_ms",
+        "got": "0x5351ab8",
+        "metadata_address": "0x56148a0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90261664,
+          "Value": "OULT"
+        }
+      },
+      {
+        "field": "last_lives",
+        "got": "0x53dad18",
+        "metadata_address": "0x560ff70",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90242928,
+          "Value": "LCP"
+        }
+      },
+      {
+        "field": "earned_lives",
+        "got": "0x5341108",
+        "metadata_address": "0x5609c40",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90217536,
+          "Value": "ELC"
+        }
+      },
+      {
+        "field": "last_server_time",
+        "got": "0x53a2218",
+        "metadata_address": "0x5618ee0",
+        "section": "ScriptString",
+        "entry": {
+          "Address": 90279648,
+          "Value": "ST"
+        }
+      }
+    ]
+  },
+  "life_clock_storage_verification": {
+    "passed": true,
+    "validated_pause_and_entry_debit_verified": true,
+    "offline_resume_and_pause_storage_verified": true,
+    "rollback_and_server_offset_verified": true,
+    "life_grant_recalculates_actual_clock_verified": true,
+    "rejected_time_and_ad_resume_verified": true,
+    "separate_app_user_databases_and_reopen_verified": true,
+    "failure": "",
+    "scope": "Actual runtime LifeClock/LifeHelper/Basic and typed AppKeyValue/UserKeyValue with separate private Windows SQLite connections, native local-account/area load,67/61 save intervals and reopen. Supplied client/server times, daily/weekly/life-hack detector results, inventory ResetTimes and ping transport are explicit verification ports. Not full TimeHelper context/HTTP/detector implementations, production scene/account binding, Home or mobile proof."
+  },
+  "actual_remaining_move_win_flow": {
+    "actual_life_entry_debit_verified": true,
+    "actual_win_life_refund_verified": true,
+    "account_life_reopen_verified": true,
+    "entry_life_timestamp": 1793597601494,
+    "win_life_timestamp": 1793595801494,
+    "account_area_data_restored": true,
+    "actual_game_context_deactivation_verified": true,
+    "actual_level_pool_recycled": true,
+    "inactive_level_updates_stopped": true,
+    "home_scene_load_requests": 1,
+    "actual_game_exit_manager_verified": true,
+    "result_dialog_cleared": true,
+    "result_view_destroyed": true,
+    "result_flow_completed": true,
+    "game_state_after_continue": 0,
+    "passed": true,
+    "skipped": false,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": false,
+    "first_level_skip_rejected": true,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-e3b6021739624b95bfca289f74dc0e74.sqlite",
+    "result_exit_requests": 1,
+    "skip_ui_level": 1,
+    "initial_remaining_moves": 25,
+    "converted_moves": 25,
+    "unconverted_moves": 0,
+    "reward_coins": 81,
+    "collections": 28,
+    "peak_coin_views": 69,
+    "peak_pilots": 71,
+    "peak_operation5": 69,
+    "native_departure_count": 71,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2081,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 13.06365966796875,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. Actual TimeUtil client clock, LifeClock offset storage reads and LifeHelper now pre-debit entry and return that life through WinTransition/Basic/UserKeyValue; database reopen verifies the life timestamp and sync flags. No backend time response or paused app is injected in this account fixture; weekly-pass eligibility is explicitly false. The original logo/remaining/result prefabs own runtime UiDialog lifecycle, real DialogManager registration, remaining-move/special/coin flights and standard Continue/Skip buttons. Continue reaches actual GameExit/NoGame, dialog clear, flow completion and real context exit dispatch, late/local-move/manual coroutine cleanup and pool recycling. Home-load request is checked, not actual Home navigation. Feature/event eligibility, full112-slot factory, global camera/tween/touch/Home/localization/haptic/audio/King/Ego/reactivation/download/tutorial/save-file/backend and production application composition remain fixture boundaries. Original area parser/six-task config and reopened account loader run without default writes. Full production settlement composition, themes/footer/orientation layout, physical input, Android/iOS and original rendered parity remain incomplete."
+  },
+  "background_verification": {
+    "passed": true,
+    "test": "life-clock-win",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "a47a153158cd4c16fe78e4572119cd1a4e21f6deae87d17f9698c182ae63add3",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_life-clock-win.log",
+    "elapsed_seconds": 101.37,
+    "batch": {
+      "passed": true,
+      "test": "life-clock-win",
+      "failure": "",
+      "timestamp_utc": "2026-11-02T05:03:53.7734654Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "restored_scope": [
+    "Restore TimeHelper clock reads/stores from Bind, server/client offset arithmetic, seconds, CheckClientTime, OnAppStart/Resume/Pause, RecalculateAfterPause, UpdateTime and shared HasServerTimeSetAtLeastOnce publication. Required life, feature/tracker, inventory-reset, ping and application owners remain typed ports; full Bind and those owners are not supplied by default.",
+    "System client time executes the original TimeUtil DateTimeOffset.UtcNow.ToUnixTimeMilliseconds body. AppKeyValue caches its required application DatabaseService and uses the existing shared typed table with native local sync flags, separate from the user database.",
+    "2760 ARM64 differential cases cover exact60000 rollback/offset boundaries, signed overflow, float pause conversion including NaN/infinities, accepted/rejected server time, current owner mutation and callback order, missing owners, partial writes/failures, validation events, ad resume, publication caching and Bind clock reads. Actual clock/nested lifecycle/native model stores execute; time/life/feature/transport/table ports and diagnostic-log skips are explicit.",
+    "The first Unity attempt rejected the manually authored verification meta with a33-character GUID. Preserve that source-unchanged failed report and diagnostics, correct the GUID to32 characters, and run normal Unity import/compilation again. No verification or runtime bypass is used.",
+    "Actual Unity LifeHelper/LifeClock/Basic/AppKeyValue/UserKeyValue run against separate private application/user SQLite connections. The test checks server validation, native pause reference/earned-life/unlimited writes, elapsed recovery, rollback, grant-triggered real RecalculateAfterPause, rejected-time publication, ad resume,67-frame application flush and reopened life/clock state. Client/server/detector/reset/ping inputs remain controlled verification ports.",
+    "The existing WinFail\u2192WinTransition\u2192remaining-moves\u2192result/Continue fixture now pre-debits and returns a real life using the same account model and SQLite row. Its previous count-only IncrementLives boundary forwards to actual LifeHelper.IncrementLives. Reopening verifies the native timestamp decreased by exactly1800000, once, with local sync flags preserved.",
+    "Normal remaining-move replacement, pooled special/coin flights, account level/star/coin rewards, result Button, GameExit/NoGame, dialog/context/pool cleanup and the Home-load request boundary execute on the same frozen snapshot. This explicit verifier opens RecoveryPreview; it does not install its feature/Home/King/application fixtures into production GameScene or prove real Home navigation."
+  ],
+  "remaining_gaps": [
+    "Production FoundationController still lacks full Application/UserContext/account/GameManager/WinFail composition. The clock portion does not recreate HTTP/ping responses, complete Bind/subscription/localization, actual daily/weekly/life-hack detection, UserInventory.ResetTimes, notification or timezone owners.",
+    "The win-flow fixture retains explicit King/Ego/feature/Home/scene loading/camera/touch/audio/event/localization boundaries. Its goal-completion input is controlled, not physical play. Normal scenario passing does not verify skip variants on this new snapshot or establish original rendered/mobile parity.",
+    "Full normal scene presentation, Home/Start/Interval and native indices/navigation,112 factories, all levels/events/region/AB/GM branches and Android/iOS remain required. Existing SDK facade behavior is unchanged."
+  ],
+  "performance": "Clock methods use scalar state and cached owners; database work occurs at lifecycle/reward changes with native67/61-frame commit intervals. No reflection, per-frame collection/asset preload or new assembly. Verification reuses the existing independent incremental cache with the source editor left in background.",
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "a903a20ce74ec4d3c52a6f42df1bd57141d81df4572e316ec5af770f256ddc1d"
+    },
+    {
+      "path": "Assets/Foundation/Editor/LifeClockVerification.cs",
+      "sha256": "e63b6ac274c37606c89fe6cc437c1fefe3c76cda6e6ae150c7a3386d957864e2"
+    },
+    {
+      "path": "Assets/Foundation/Editor/LifeClockVerification.cs.meta",
+      "sha256": "c56932ea95c64796cbfebaf05de651b653c140ef939d950d4608e2edc07105ca"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "cbc3c6ebc5a3c84c36582f584c2e85b7dbdc5cad9cea3d63ff272b670475a5ec"
+    },
+    {
+      "path": "Assets/Foundation/Editor/UserEndFixtureContext.cs",
+      "sha256": "5b61250b2299662b56ca16c8b5e6d37d6acc76970c51a3d20b5a0c59f2da8113"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAppKeyValue.cs",
+      "sha256": "1e41e502bd0b87e97d0ed324cf0f3ac7323b5634182828e11ee58d2b2b45833e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAppKeyValue.cs.meta",
+      "sha256": "aef0ae0f5729126e992b59061abe6ca40746396d6b2c3ec5e27209afc61c085a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+      "sha256": "5063c0c1d553ac2d2f3250a0e96b607a1baca1d5267997b0664a57858939b729"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+      "sha256": "a75e6b7b3bb4978ea826257aff33a705064e6561547ea212473593b5d1310f48"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLifeClock.cs",
+      "sha256": "7d2fb2db2972745b124b98db13d5bf7907e16dc7f7311db87891f224a4b9da50"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLifeClock.cs.meta",
+      "sha256": "5832b62a4c8d7aad324d7001675ee2794b5b3b72823c7722d562e7dd9ae96c16"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLifeData.cs",
+      "sha256": "f1667062509afbe069af49601063b62dc652d52b8ebdc461811418e6cb1bbae1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLifeHelper.cs",
+      "sha256": "b2118571b9d5a8b902e6df065a3b65bab0e0e134f3dd598639356624fabbe3b5"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+      "sha256": "676525d80ce0c6c48ecefffaf0957e699105eece9acc5330a0aef55e9155ce80"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+      "sha256": "1b5f2aecd84eb65e57f8df2a328c2db2c85cd2d138b1ce20b52de78956d18fea"
+    },
+    {
+      "path": "SourceCatalog/LifeClockHarness.cs",
+      "sha256": "c4b8f24b9848c6b9542be3b3ba8e5eb0dd40617de868eafad0fd843fa29dedeb"
+    },
+    {
+      "path": "SourceCatalog/life_clock_native_keys.json",
+      "sha256": "2863930f629282f77ca4196e06db70c58ea73279389e0e14ea8b2fff353b4004"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "8835b0c06307d41998b6320ff04f506e51e0934f7d9a2ab3b955f14f5f493281"
+    },
+    {
+      "path": "SourceCatalog/verification_history/life_clock_meta_guid/background.json",
+      "sha256": "124d0ccd39a4bc6950bec349614b2ec3d4e185331b4b487790367e916fbf23c9"
+    },
+    {
+      "path": "SourceCatalog/verification_history/life_clock_meta_guid/invalid_meta.txt",
+      "sha256": "72277f05cc2aa96f25ef8361a17362a071f05c13cc4064a4fa9993f2b8cfe3a3"
+    },
+    {
+      "path": "SourceCatalog/verification_history/life_clock_meta_guid/reason.json",
+      "sha256": "60936f2d0383a225ed96a5ec06667f37d30a65bb37875c394cd030bc185dde30"
+    },
+    {
+      "path": "SourceCatalog/verify_life_clock.py",
+      "sha256": "344ed2a429346b3deba2145feef5c6e0eb6ff6575c3e24ba682ca2938fa712f2"
+    },
+    {
+      "path": "remaining_coins_normal_after_continue.png",
+      "sha256": "25526dc67b2905d9fdfb5beb76f8fbc6d161560b5f07d4ef353e0e318e281842"
+    },
+    {
+      "path": "remaining_coins_normal_flying.png",
+      "sha256": "702b5a20dbb88fab29e7a2204575be5699a58da851d7e13f22d11515e4291bb3"
+    },
+    {
+      "path": "remaining_coins_normal_reward.png",
+      "sha256": "c87997361133a63bac335201fb019bb6bdcf670a1d6282a890463d7215aa6cf2"
+    }
+  ],
+  "current_inventory_time_reset_evidence": "SourceCatalog/inventory_time_reset_evidence.json",
+  "current_inventory_time_reset_source_snapshot_sha256": "0a28f7a3f228db46104aa696c37bd350ded51f87ea02f01ba01e5a0251df34fc"
+}

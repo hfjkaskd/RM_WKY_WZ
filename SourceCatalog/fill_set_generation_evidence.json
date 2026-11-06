@@ -1,0 +1,105 @@
+{
+  "functions": [
+    {
+      "rva": "0x23eb73c",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$AddAvailableSets",
+      "disassembly_sha256": "25456aac5d92b5dad501da23d90ac9b38a9ea138b8a2da703fcf8bdad6086dd5"
+    },
+    {
+      "rva": "0x23eb758",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$SetupAvailableFillItems",
+      "disassembly_sha256": "a422819c8c7c708d4788360a597aa9e5eb4ec158ce5a968903f2331237572c9a"
+    },
+    {
+      "rva": "0x23eb28c",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$CalculateRandomFactors",
+      "disassembly_sha256": "511beba33291fe6cb04a75498b9ebe23d3c84c5f16235e309ef5d753b5e0b3fa"
+    },
+    {
+      "rva": "0x23f02dc",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$IsAvailableForFill",
+      "disassembly_sha256": "2d32e2f2c2c8a414db72e4fa6d0ad78ef9d938f4063cc1e665522e7ef75d7406"
+    },
+    {
+      "rva": "0x23f0328",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetRandomPrioritizedSet",
+      "disassembly_sha256": "d6d5d3d014bbc68d1119af7bf0e26ae9302a8db41f889767e299996aaa1b829f"
+    },
+    {
+      "rva": "0x23efa00",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetRandomTargetColumnItem",
+      "disassembly_sha256": "342ff1075ea3f64cba70c5ccd8a091e0a0c4188619eefc992ec1b2ccc427484f"
+    },
+    {
+      "rva": "0x23efcec",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetRandomFillItem",
+      "disassembly_sha256": "b9c7d3e2223d4350d4f4edfd021300b2563bf33b2e91e41c437d33069739b240"
+    },
+    {
+      "rva": "0x23efec0",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetRandomColor",
+      "disassembly_sha256": "aec102a45a93c2af53972e498f46cfedbde6a73700764bc06435967be334daf4"
+    },
+    {
+      "rva": "0x23ef5b0",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$OnNewItemCreated",
+      "disassembly_sha256": "e5baa95f6cf5c15dbd39de7aded6c6b936eb173d31c5b26af480639a2edd11e4"
+    },
+    {
+      "rva": "0x2b452f8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemExtensions$$IsFillingObstacle",
+      "disassembly_sha256": "2114e9b586f5508010b9efbeb5ab914292fc093a903bf4ed9378c9f6df9a211d"
+    },
+    {
+      "rva": "0x190fd14",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelSet$$HasAnyTargetColumn",
+      "disassembly_sha256": "f90cea11eb22f3058bc23f095ef20ed014a1dedc9b4ad4c4f14f04fe54454553"
+    },
+    {
+      "rva": "0x190fd64",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelSet$$HasTargetColumn",
+      "disassembly_sha256": "0988574e8161a62c453541699ad28994bba99521f2ed5b03b1c5df7e6a0ec10e"
+    },
+    {
+      "rva": "0x190fe1c",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelSet$$ContainsMatchItem",
+      "disassembly_sha256": "de93fd5cdaa76f619c758486440863152f5e0d2f7a4b1c024bdaa209be7ffc89"
+    },
+    {
+      "rva": "0x190fe8c",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelSet$$CanGetPrioritizedItem",
+      "disassembly_sha256": "b4272a65b5f49275ab47cade88a15010507b940b9a225a7e7415484e13e536a0"
+    },
+    {
+      "rva": "0x1910000",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelSet$$CanFillNewItemWithMaxCount",
+      "disassembly_sha256": "60d8515f689ac664c9daca5bff97cf865f0f48d2b67041747cf63a3a34f20615"
+    },
+    {
+      "rva": "0x19103a8",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelSet$$CalculateRatio",
+      "disassembly_sha256": "524c39e5ad38cfbc1ef97fabceaad55522d0778e1060448867e0edc055eb3d26"
+    },
+    {
+      "rva": "0x19103e0",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelSet$$AddToItemInBoards",
+      "disassembly_sha256": "38432372458a8b0b4c6f376ef51c7a2a6b2c68dddb8fab026c48681c9be6e0c0"
+    }
+  ],
+  "verification_reports": [
+    "fill_set_generation_native_verification.json",
+    "set_availability_native_verification.json",
+    "fill_set_generation_unity_verification.json"
+  ],
+  "implementation_notes": [
+    "Original array ordering, unchecked ratios/count arithmetic, exact DifficultyNext bounds and draw order are retained.",
+    "Original Enum.GetValues traversal is restored as explicit original numeric CellFillType values1..4 to avoid reflection under Obfuz.",
+    "Temporary candidate lists and per-frame item-ID HashSets are reused to reduce per-fill/per-frame allocations. This intentionally changes temporary allocation strategy, not the verified behavior/state.",
+    "Tuning, flying throws and frame/grid ownership are explicit typed services; no invented fallback seed, goal or session context is installed."
+  ],
+  "remaining": [
+    "Original application/session random ownership, ParsePredefined/model factories and automatic FallManager/refill production composition.",
+    "Player swap/damage/collection/cascade loop, original HUD/camera and later lifecycle remain incomplete."
+  ],
+  "sdk_handling": "Unchanged."
+}

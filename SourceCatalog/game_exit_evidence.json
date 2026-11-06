@@ -1,0 +1,442 @@
+{
+  "full_objective_complete": false,
+  "production_application_account_win_fail_bound": false,
+  "formal_scene_native_exit_manager_bound": true,
+  "formal_scene_actual_result_close_and_flow_completion_verified": true,
+  "full_game_context_deactivation_bound": false,
+  "actual_home_scene_load_or_navigation_verified": false,
+  "original_rendered_parity_verified": false,
+  "physical_pointer_input_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "5ba86cfdbf811aa7929d6c11e1d5dbd53fb599db7e256ec5c3010c1181e31831",
+  "restored_scope": [
+    "GameManager.ExitGameWhenPossible sets the actual GameState to NoGame before querying loading. On the no-loading path it prepares UI, dispatches OnGameExit, then writes shouldExitGame. Callback exceptions and reentrant Clear retain native partial state.",
+    "SceneChangeManager.WillShowLoadingOnLoadHome retains short-circuit order: previous-load history, story, table, Lava/required Home area existence, then forceLoadHomeScene. No inactive production scene or event owners are fabricated.",
+    "GameContextController.PrepareUiForHomeWhenNoLoadingDisplayed preserves hide GameUi, TryShowLandscapeFlags(true,false), prepare Home background, required DialogManager.ClearDialogs, HideSlidingText order.",
+    "DialogManager.CloseDialogs captures an ascending snapshot before ForceClose callbacks mutate registration; ClearDialogs resets only after successful closes; HardReset clears the dictionary plus ID/sorting counters without extra callbacks.",
+    "The formal scene no longer returns a counter-only result exit owner. Continue reaches the actual exit manager and GameState, hides the live gameplay HUD and closes the actual result through DialogManager/UiDialog. The real FlowAction completes; deferred Unity destruction, loop-stop boundary and post-exit move rejection are verified two frames later."
+  ],
+  "native_verifications": [
+    {
+      "passed": true,
+      "cases": 3808,
+      "scope": "Actual ARM64 game-exit, no-loading UI preparation and home-loading decision.\n\nGameState.SetStateToNoGame, level-kind getters, scene UI/background/flags,\nDialogManager.ClearDialogs and sliding text are typed ports. Native decision\nshort-circuits, exit-event order, flag writes and Clear mutations execute from\nELF. Dialog clear and actual state/view composition have separate checks;\nthis does not prove full context deactivation, HomeScene or mobile execution.",
+      "original_rvas": [
+        "0x1e3b604",
+        "0x1e3b62c",
+        "0x1e3ac98",
+        "0x1e3a2bc",
+        "0x3908264"
+      ],
+      "files": [
+        {
+          "path": "SourceCatalog/GameExitHarness.cs",
+          "sha256": "bc07277c8ea7a555152b30a9e805c394c142e13b91bbe9d54933ab9cfae35110"
+        },
+        {
+          "path": "Assets/Foundation/Runtime/OriginalGameExitManager.cs",
+          "sha256": "59fd78326def7232ea7c722abc5da97f2db8cee81107040d133c4b0e292a8af4"
+        },
+        {
+          "path": "Assets/Foundation/Runtime/OriginalGameExitUi.cs",
+          "sha256": "c1097aa220b19e6ab4c37faad2b6c319d4214312470618fb70cb14dc6fd77a79"
+        },
+        {
+          "path": "Assets/Foundation/Runtime/OriginalLevelWinActions.cs",
+          "sha256": "db8f26f729fefc984231327d832c883bea651330f357a343bccfcc0ce256761b"
+        },
+        {
+          "path": "SourceCatalog/verify_game_exit.py",
+          "sha256": "357597c3909a2793aa80cb2a775fec954c29a0a845e6e2d1614b2f7aba1058ae"
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "cases": 642,
+      "scope": "Actual ARM64 CloseDialogs/ClearDialogs/HardReset vs the runtime manager.\n\nManaged collection/list copies and ForceClose are typed boundaries. Callback\nports may remove, re-register or add dialogs, throw, or reset the manager.\nThe actual native snapshot loop, ordering, reset timing and partial counters\nexecute from ELF. The UiDialog Close coroutine is separately verified.",
+      "original_rvas": [
+        "0x25ca8c8",
+        "0x25ca8b0",
+        "0x25c948c"
+      ],
+      "files": [
+        {
+          "path": "SourceCatalog/DialogClearHarness.cs",
+          "sha256": "1c2a0c4361210a565db3cdd370e2361c8b0999774245bdde40ed81c3565571ea"
+        },
+        {
+          "path": "Assets/Foundation/Runtime/OriginalDialogManager.cs",
+          "sha256": "8a05a6457d9aa3064e7bb270043869388c19d319bcef31cab7562d5a82475969"
+        },
+        {
+          "path": "SourceCatalog/verify_dialog_clear.py",
+          "sha256": "cf6f36402bf53f428d515d53e1bc796bda304ffe97fea29a3ced9390d386611e"
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "cases": 823,
+      "scope": "Actual ARM64 DialogManager registration, close handoff, close removal and touch sorting vs runtime C#.\n\nManaged dictionary/enumerator operations, Unity sorting/view calls, background,\nscene touch and events are typed boundaries; original manager control flow,\nID/sorting counters, dictionary mutation order and event timing execute in ELF.\nDiagnostic formatting and empty-sequence exception transport are omitted.\nDestroyed Unity-object equality, backdrop tween rendering, app/mobile binding\nand all other DialogManager entry points remain outside this check.",
+      "original_rvas": [
+        "0x25c97f0",
+        "0x25ca07c",
+        "0x25ca498",
+        "0x25c9eec",
+        "0x25c8be8",
+        "0x25c8c44"
+      ],
+      "files": [
+        {
+          "path": "SourceCatalog/DialogManagerHarness.cs",
+          "sha256": "cb35baf488b8b7ab7e317f0ddc8d12340ff819d382f8ddafaf587d274233649d"
+        },
+        {
+          "path": "Assets/Foundation/Runtime/OriginalUiDialog.cs",
+          "sha256": "ced37ee976456d40feeda9c27a76dde1f3d9c3caeed264491d8e5dc93455a14c"
+        },
+        {
+          "path": "Assets/Foundation/Runtime/OriginalDialogManager.cs",
+          "sha256": "8a05a6457d9aa3064e7bb270043869388c19d319bcef31cab7562d5a82475969"
+        }
+      ]
+    }
+  ],
+  "original_methods": [
+    {
+      "rva": "0x1e3b604",
+      "name": "Royal.Scenes.Game.Context.Units.GameManager$$ExitGameWhenPossible",
+      "body_sha256": "c7cab6b1744ff70ee8df940d5b0fca5a81d49cee08859daddb9fb2ce1f354456"
+    },
+    {
+      "rva": "0x1e3b62c",
+      "name": "Royal.Scenes.Game.Context.Units.GameManager$$GameExit",
+      "body_sha256": "53b4b7ec678ee800a689a095450063270ac93e381e83e7fa1bc315b5685e4598"
+    },
+    {
+      "rva": "0x1e3ac98",
+      "name": "Royal.Scenes.Game.Context.Units.GameManager$$Clear",
+      "body_sha256": "10e8ea3e9f5626e455b9529eaa6924153ee6515eb1e0f7d346887f4da867777f"
+    },
+    {
+      "rva": "0x1e3a2bc",
+      "name": "Royal.Scenes.Game.Context.GameContextController$$PrepareUiForHomeWhenNoLoadingDisplayed",
+      "body_sha256": "6cf32ce4ef7365fff33626dbdbd4e63939d45d61e377ce63b1216553c4c07d74"
+    },
+    {
+      "rva": "0x3908264",
+      "name": "Royal.Scenes.Start.Context.Units.Scene.SceneChangeManager$$WillShowLoadingOnLoadHome",
+      "body_sha256": "33ecf998d626a3b410ca2c70ad5df850c03c15f3fb0f2188b3241016f1324b48"
+    },
+    {
+      "rva": "0x25ca8c8",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogManager$$CloseDialogs",
+      "body_sha256": "3c8ebb9cf15ef4dc6f1951eec29ce5ab4f55d6ad0076a0a184ba565618473efb"
+    },
+    {
+      "rva": "0x25ca8b0",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogManager$$ClearDialogs",
+      "body_sha256": "ea27c376540f9b1f4051d0ad4b45cd26558dce6c3447265c30f2507c39afbfdb"
+    },
+    {
+      "rva": "0x25c948c",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogManager$$HardReset",
+      "body_sha256": "89eb1a623f56c22ba0778d8807065a1101223f56f8de0ad73317ffe5fad2a3b8"
+    },
+    {
+      "rva": "0x1e39ba0",
+      "name": "Royal.Scenes.Game.Context.GameContext$$ManualUpdate",
+      "body_sha256": "ecdea61b758f1c38ac78ec071db75fbaf7abfe06c8d87a33a5bccaf9153c17ab"
+    },
+    {
+      "rva": "0x1e39488",
+      "name": "Royal.Scenes.Game.Context.GameContext$$Deactivate",
+      "body_sha256": "7b409912d9625d088d5d2f04217b2ff33aeec523d9bf923a7f8c41bcd4093cb0"
+    }
+  ],
+  "background_verifications": [
+    {
+      "passed": true,
+      "test": "remaining-coins-normal",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "5ba86cfdbf811aa7929d6c11e1d5dbd53fb599db7e256ec5c3010c1181e31831",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+      "elapsed_seconds": 111.5,
+      "batch": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "failure": "",
+        "timestamp_utc": "2026-10-28T23:13:09.1611853Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    },
+    {
+      "passed": true,
+      "test": "remaining-coins-early-skip",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "5ba86cfdbf811aa7929d6c11e1d5dbd53fb599db7e256ec5c3010c1181e31831",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+      "elapsed_seconds": 97.14,
+      "batch": {
+        "passed": true,
+        "test": "remaining-coins-early-skip",
+        "failure": "",
+        "timestamp_utc": "2026-10-28T23:15:18.8235469Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    },
+    {
+      "passed": true,
+      "test": "win-logo-skip",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "5ba86cfdbf811aa7929d6c11e1d5dbd53fb599db7e256ec5c3010c1181e31831",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_win-logo-skip.log",
+      "elapsed_seconds": 95.51,
+      "batch": {
+        "passed": true,
+        "test": "win-logo-skip",
+        "failure": "",
+        "timestamp_utc": "2026-10-28T23:16:55.1868500Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    }
+  ],
+  "normal_exit": {
+    "actual_game_exit_manager_verified": true,
+    "result_dialog_cleared": true,
+    "result_view_destroyed": true,
+    "result_flow_completed": true,
+    "game_state_after_continue": 0,
+    "passed": true,
+    "skipped": false,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": false,
+    "first_level_skip_rejected": true,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-ab17e289b47b4473bb48063a4426faeb.sqlite",
+    "result_exit_requests": 1,
+    "skip_ui_level": 1,
+    "initial_remaining_moves": 24,
+    "converted_moves": 24,
+    "unconverted_moves": 0,
+    "reward_coins": 77,
+    "collections": 24,
+    "peak_coin_views": 67,
+    "peak_pilots": 67,
+    "peak_operation5": 67,
+    "native_departure_count": 67,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2077,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 11.629812240600586,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches the actual GameExit manager, NoGame state, no-loading UI preparation and real DialogManager.ClearDialogs/UiDialog force-close/flow completion once. Its native exit event precedes the shouldExitGame write; actual Unity destruction and input rejection are checked two frames later. Backdrop, full context deactivation/scene loading, Home flags/area/sliding text, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "partial_skip_exit": {
+    "actual_game_exit_manager_verified": true,
+    "result_dialog_cleared": true,
+    "result_view_destroyed": true,
+    "result_flow_completed": true,
+    "game_state_after_continue": 0,
+    "passed": true,
+    "skipped": true,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": true,
+    "first_level_skip_rejected": false,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-64c09ad26dc84406b817f92da22e2cb3.sqlite",
+    "result_exit_requests": 1,
+    "skip_ui_level": 2,
+    "initial_remaining_moves": 25,
+    "converted_moves": 2,
+    "unconverted_moves": 23,
+    "reward_coins": 80,
+    "collections": 0,
+    "peak_coin_views": 0,
+    "peak_pilots": 0,
+    "peak_operation5": 0,
+    "native_departure_count": 0,
+    "active_board_coin_value_at_end": 13,
+    "unconverted_move_coin_value": 57,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2080,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 6.554952621459961,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches the actual GameExit manager, NoGame state, no-loading UI preparation and real DialogManager.ClearDialogs/UiDialog force-close/flow completion once. Its native exit event precedes the shouldExitGame write; actual Unity destruction and input rejection are checked two frames later. Backdrop, full context deactivation/scene loading, Home flags/area/sliding text, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "immediate_skip_exit": {
+    "actual_game_exit_manager_verified": true,
+    "result_dialog_cleared": true,
+    "result_view_destroyed": true,
+    "result_flow_completed": true,
+    "game_state_after_continue": 0,
+    "passed": true,
+    "skipped": true,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": false,
+    "skip_button_entry_verified": true,
+    "first_level_skip_rejected": false,
+    "remaining_dialog_started_ready": false,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": false,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "",
+    "result_exit_requests": 1,
+    "skip_ui_level": 2,
+    "initial_remaining_moves": 25,
+    "converted_moves": 0,
+    "unconverted_moves": 25,
+    "reward_coins": 84,
+    "collections": 0,
+    "peak_coin_views": 0,
+    "peak_pilots": 0,
+    "peak_operation5": 0,
+    "native_departure_count": 0,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 0,
+    "session_win_state": 0,
+    "native_win_cloche_calls": 0,
+    "win_trigger_calls": 0,
+    "win_flow_calls": 0,
+    "low_match_total": 0,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 0,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 0,
+    "reactivation_calls": 0,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2084,
+    "account_coin_update_calls": 0,
+    "account_star_update_calls": 0,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 0,
+    "elapsed": 3.5282421112060547,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches the actual GameExit manager, NoGame state, no-loading UI preparation and real DialogManager.ClearDialogs/UiDialog force-close/flow completion once. Its native exit event precedes the shouldExitGame write; actual Unity destruction and input rejection are checked two frames later. Backdrop, full context deactivation/scene loading, Home flags/area/sliding text, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameExitManager.cs",
+      "sha256": "59fd78326def7232ea7c722abc5da97f2db8cee81107040d133c4b0e292a8af4"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameExitManager.cs.meta",
+      "sha256": "6eca2621820ca99ae9deedd8ddd3399e7e02f5fc4f01a50c8542181679f6bd5f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameExitUi.cs",
+      "sha256": "c1097aa220b19e6ab4c37faad2b6c319d4214312470618fb70cb14dc6fd77a79"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameExitUi.cs.meta",
+      "sha256": "2375ec3e594fcf83726ed3dbaf7e9c5b6c78bd17fe3d5d2f038b7c6ad7461ff7"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDialogManager.cs",
+      "sha256": "8a05a6457d9aa3064e7bb270043869388c19d319bcef31cab7562d5a82475969"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "845f683beb379e270ee8e9deb21f54669339438d6c9d62d908bd1540f06a78ee"
+    },
+    {
+      "path": "SourceCatalog/GameExitHarness.cs",
+      "sha256": "bc07277c8ea7a555152b30a9e805c394c142e13b91bbe9d54933ab9cfae35110"
+    },
+    {
+      "path": "SourceCatalog/verify_game_exit.py",
+      "sha256": "357597c3909a2793aa80cb2a775fec954c29a0a845e6e2d1614b2f7aba1058ae"
+    },
+    {
+      "path": "SourceCatalog/DialogClearHarness.cs",
+      "sha256": "1c2a0c4361210a565db3cdd370e2361c8b0999774245bdde40ed81c3565571ea"
+    },
+    {
+      "path": "SourceCatalog/verify_dialog_clear.py",
+      "sha256": "cf6f36402bf53f428d515d53e1bc796bda304ffe97fea29a3ced9390d386611e"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "1e0ecb945e25fd6726201c8687c7a90c337f18bd636f7331e7cbdb1ceaac9bcd"
+    }
+  ],
+  "visual_inspection": [
+    "remaining_coins_normal_after_continue.png: actual result prefab and gameplay HUD are gone after the native close protocol; the filled board remains because full GameContext.Deactivate/reset and Home loading are not yet composed.",
+    "remaining_coins_early_skip_after_continue.png and win_logo_skip_after_continue.png inspect the same actual UI teardown after distinct remaining-move branches. They are not HomeScene screenshots or proof of original complete transition parity."
+  ],
+  "remaining_gaps": [
+    "FoundationController still composes the first-board preview/input/HUD without production account/application/WinFail/dialog factories. New runtime exit owners are currently bound by formal-scene integration checks.",
+    "GameContext.ManualUpdate must consume shouldExitGame and run the original Deactivate/reset/container/event/camera/touch/scene protocol. HomeScene loading, AreaManager Home view and next-level navigation remain unbound; the board remains visible in post-continue captures.",
+    "Home landscape flags, AreaManager/background, sliding text, loading history ownership, localization, event/ad eligibility and full audio playback/shutdown remain explicit fixture ports in these scene checks.",
+    "Only exit-owned GameManager.Clear fields are restored here. Restart/life/booster/tutorial/context startup and the complete GameManager owner remain separate work.",
+    "Complete visual animation/theme/footer/backdrop/orientation parity, failure/retry flows, all levels/lifecycle event branches and country/AB/GM/US version requirements remain incomplete.",
+    "No physical pointer or Android/iOS execution is established. Original Android SQLite binary packaging remains unapproved and no libsqlite3.so was added. SDK behavior is unchanged."
+  ],
+  "performance": "Dialog snapshot allocation occurs only during low-frequency scene transitions, matching native snapshot semantics. The frame paths gain no LINQ, Find/GetComponent, UI construction or repeated allocation.",
+  "current_game_context_exit_evidence": "SourceCatalog/game_context_exit_evidence.json",
+  "current_game_context_exit_source_snapshot_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332",
+  "current_area_data_evidence": "SourceCatalog/area_data_evidence.json",
+  "current_area_data_source_snapshot_sha256": "8fbbab70a4b5bc904fc94ed612d60e629d2ebd3d99a096e0017968b1b40bd1f7"
+}

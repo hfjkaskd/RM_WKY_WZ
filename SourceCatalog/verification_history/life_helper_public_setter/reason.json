@@ -1,0 +1,10 @@
+{
+  "scope": "First independent Unity run rejected the entry fixture because the runtime model restricted the original public setter to internal. Compiler error is preserved; no runtime verification passed on this snapshot.",
+  "errors": [
+    "Assets\\Foundation\\Editor\\GameStartVerification.cs(183,109): error CS0200: Property or indexer 'OriginalBasicLevelProgress.FullLivesTimeInMs' cannot be assigned to -- it is read only",
+    "Assets\\Foundation\\Editor\\GameStartVerification.cs(183,109): error CS0200: Property or indexer 'OriginalBasicLevelProgress.FullLivesTimeInMs' cannot be assigned to -- it is read only",
+    "Assets\\Foundation\\Editor\\GameStartVerification.cs(183,109): error CS0200: Property or indexer 'OriginalBasicLevelProgress.FullLivesTimeInMs' cannot be assigned to -- it is read only"
+  ],
+  "native_public_setter_rva": "0x2f81bec",
+  "fix": "Restore the public FullLivesTimeInMs setter declared by the original metadata. No Editor-only runtime fallback or relaxed compiler check."
+}

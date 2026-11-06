@@ -1,0 +1,451 @@
+{
+  "baseline_commit": "68ad09865bf36c8cfab4924349fd6ae643b7edfb",
+  "verified_utc": "2026-11-05T09:26:01.032830+00:00",
+  "source_files": {
+    "SourceCatalog/ExportKingRig.cs": {
+      "before": "7b0f6909df2670ad5bfcbd9903fe0a17b9e7300fc2d14f974724b4abf48bec8e",
+      "after": "e7f2d0e40bfd5a6b3b47d12c3f97d362cadbe8b1d6d22959fe2d729929ab1e63"
+    },
+    "Assets/Resources/Recovered/Resources/JesterHatPrefab.prefab": {
+      "before": "de65e983442be0b409d2b26f05ba7165e5611520197c5c1d52fd9b50c63b32f9",
+      "after": "87aea0c9ae7bfc730178acb49eef5b6b980734fd9081261f2c95c84142fa6026"
+    },
+    "Assets/Resources/Foundation/Animation/OriginalJesterRig.bytes": {
+      "before": null,
+      "after": "767ddaf61003178c807dda011ed38a013aaaf6488b9f5c04f47019d2927e36a7"
+    },
+    "Assets/Resources/Foundation/Animation/OriginalJesterRig.bytes.meta": {
+      "before": null,
+      "after": "72daa603ad9ecafb3d10fc2e0d3e606c3b8b09549ceb7474e12b5fe2ab53bd89"
+    },
+    "Assets/Foundation/Editor/CoreJesterVerification.cs": {
+      "before": "caab27d31c1312abf4b12e08bbb08abada762f1bc30a33035eee086705e58b72",
+      "after": "b5fee8165f5f26a16ea5ff1a9151024ed43972f09c1d9b999fc38a9c108024d6"
+    },
+    "Assets/Foundation/Runtime/OriginalJesterHatBoosterView.cs": {
+      "before": "50a54c46a1e29b28447495ff7bc9bcf70c807a9ebddca5afb5775994cb1077a1",
+      "after": "f46fde7ca0f00b216df5fe6e0275c6e152856bb3435cd65e07303ff424e36342"
+    },
+    "Assets/Foundation/Runtime/OriginalJesterRigView.cs": {
+      "before": null,
+      "after": "5634476e0afa52c29cd794cd7b95b64c5dcef4d969a43dc718dea2b6520c06ff"
+    },
+    "Assets/Foundation/Runtime/OriginalJesterRigView.cs.meta": {
+      "before": null,
+      "after": "a8927c09b5b20ddec839810a0eef948406d6af3aef152a1d5a23635db9213041"
+    },
+    "Assets/Foundation/Runtime/OriginalKingMesh.cs": {
+      "before": "95ac70afc25ea82a347195a3c8782c92f1551768c9c7523dc3dd89c7681a40cb",
+      "after": "a13af266ff0b1c82b7c2c152543c7640f3da809d36a9200ea21e1c48394ab66d"
+    }
+  },
+  "native_view": {
+    "pinned_version": 38911,
+    "play": "0x318eeb4",
+    "exit_coroutine": "0x318f9f8",
+    "entry_speed": 1.6,
+    "exit_speed": 1.15,
+    "exit_delay_unity_seconds": 0.9,
+    "portrait_mix_unity_seconds": 0.2,
+    "track": 1,
+    "skeleton_sha256": "c36af871bea356febff27490ac442d9906c7b0ffc086f061afbbf37f01985573",
+    "atlas_sha256": "4b33845317b3b22adeff50f773627e74b61af1b296c68536f3f9ea911cf3a8d2"
+  },
+  "representation": {
+    "bones": 37,
+    "slots": 14,
+    "normal_multiply_mesh_runs": 10,
+    "clips": [
+      "enter_animation",
+      "exit_animation"
+    ],
+    "follower": "particles",
+    "old_baked_bytes": 1104126,
+    "new_rig_bytes": 69584,
+    "old_bakes_retained_in_source_only": true,
+    "static_prefab_hierarchy_and_materials_unchanged": true,
+    "particle_sequence_and_audio_owners_unchanged": true,
+    "event_export": "Explicit --pose-only export omits the non-pose play_particles timeline. The existing StartHatAnimation particle callback remains the runtime owner."
+  },
+  "verification": {
+    "pose_and_bind_geometry": {
+      "passed": true,
+      "bones": 37,
+      "paths": 0,
+      "clips": 2,
+      "pose_samples": 3250,
+      "scalar_comparisons": 4826250,
+      "max_absolute_error": 9.536743e-07,
+      "mesh_samples": 185,
+      "mesh_max_error": 2.38418579e-07,
+      "managed_bytes_10000_frames": 0,
+      "milliseconds_10000_frames": 210.3013
+    },
+    "same_track_playback": {
+      "passed": true,
+      "playbacks": 96,
+      "frames": 20976,
+      "mesh_max_error": 9.536743e-07,
+      "local_max_error": 7.62939453e-06,
+      "follower_max_error": 0,
+      "old_bake_entry_max_error": 0.626081347,
+      "old_fixed_exit_max_error": 0.426065683,
+      "managed_bytes_10000_frames": 0,
+      "milliseconds_10000_frames": 197,
+      "old_bake_sample_key_max_error": 4.76837158e-06,
+      "old_bake_worst_entry_time": 0.432789147
+    },
+    "actual_unity_uploads_and_follower": {
+      "passed": true,
+      "files": 4,
+      "frames": 687,
+      "exit_transitions": 4,
+      "mesh_scalars": 1302552,
+      "mesh_max_error": 9.536743e-07,
+      "follower_xy_max_error": 9.536743e-07,
+      "follower_direction_max_error": 0,
+      "color_max_byte_error": 0
+    },
+    "legacy_king": {
+      "passed": true,
+      "animations": 32,
+      "pose_samples": 35663,
+      "scalar_comparisons": 81986555,
+      "max_absolute_error": 0,
+      "oracle": "recovered 3.8.84 reference decoder/runtime outside Unity; not native ARM execution",
+      "includes_key_boundaries_loop_weighted_mesh_deform_draw_order": true,
+      "clipped_mesh_samples": 2978,
+      "clipped_mesh_max_error": 4.76837158e-07,
+      "pose_and_mesh_managed_bytes_1000_frames": 0,
+      "animation_track": {
+        "passed": true,
+        "mix_seconds": 0.2,
+        "compared_frames": 4020,
+        "scalar_comparisons": 4299468,
+        "max_absolute_error": 3.05175781e-05,
+        "queued_and_interrupted_transitions": true,
+        "managed_bytes_1000_frames": 0
+      }
+    },
+    "export_roundtrip": {
+      "jester_byte_identical": true,
+      "king_default_scale_pose_only_byte_identical": true
+    },
+    "formal_scenes": {
+      "baseline_verified_profile": {
+        "passed": true,
+        "dismiss_cancel_reselect_verified": true,
+        "special_piece_relocated": true,
+        "normal_play_resumes": true,
+        "guided_pieces_relocated": 16,
+        "moves_after_shuffle": 27,
+        "status": "finished",
+        "failure": ""
+      },
+      "candidate60": {
+        "passed": true,
+        "dismiss_cancel_reselect_verified": true,
+        "special_piece_relocated": true,
+        "normal_play_resumes": true,
+        "guided_pieces_relocated": 16,
+        "moves_after_shuffle": 27,
+        "status": "finished",
+        "failure": ""
+      },
+      "candidate_variable": {
+        "passed": true,
+        "dismiss_cancel_reselect_verified": true,
+        "special_piece_relocated": true,
+        "normal_play_resumes": true,
+        "guided_pieces_relocated": 16,
+        "moves_after_shuffle": 27,
+        "status": "finished",
+        "failure": ""
+      },
+      "jester_unobserved": {
+        "passed": true,
+        "dismiss_cancel_reselect_verified": true,
+        "special_piece_relocated": true,
+        "normal_play_resumes": true,
+        "guided_pieces_relocated": 16,
+        "moves_after_shuffle": 27,
+        "status": "finished",
+        "failure": ""
+      },
+      "core_flow": {
+        "passed": true,
+        "production_win_remaining_result_bound": true,
+        "actual_next_level_loaded": true,
+        "production_zero_move_failure_bound": true,
+        "actual_retry_reloaded_same_level": true,
+        "cap100_and_restart_verified": true,
+        "core_booster_inventory_purchase_ui_absent": true,
+        "king_win_reaction": "k-1sevinme_6",
+        "king_win_connector": "idle_connect_1",
+        "king_win_loop": "idle_connect_2",
+        "king_fail_reaction": "k-1_uzulme",
+        "king_win_mixed": true,
+        "king_connector_mixed": true,
+        "king_fail_mixed": true,
+        "win_logo_backdrop_fade": true,
+        "remaining_moves_backdrop_reused": true,
+        "result_and_failure_backdrops_cleared_on_reload": true,
+        "back_respected_remaining_moves": false,
+        "back_closed_win": false,
+        "back_respected_failure_dialog": false,
+        "castle_garden_background_survives_continue_and_retry": true,
+        "retry_reused_scene_pool_and_hud": true,
+        "retry_recycled_tnt_and_fuse": true,
+        "cold_entry_verified": true,
+        "cold_entry_board_captured": true,
+        "continue_entry_verified": true,
+        "retry_entry_verified": true,
+        "application_random_survives_continue": true,
+        "music_stopped_at_win_logo": true,
+        "music_stopped_at_failure": true,
+        "opening_music": "Gameplay_1",
+        "continue_music": "Gameplay_2",
+        "retry_music": "Gameplay_3",
+        "paused_music_samples": 29164,
+        "out_of_moves_banner_center_verified": true,
+        "out_of_moves_standard_button_skip_verified": true,
+        "out_of_moves_auto_duration": 2.456085205078125,
+        "out_of_moves_skip_duration": 0.41674041748046875,
+        "win_text_stagger": true,
+        "win_text_overshoot": true,
+        "win_curved_text_settled": true,
+        "win_pillow_started": true,
+        "win_title_curve_verified": true,
+        "fail_title_curve_verified": true,
+        "win_star_hit_time": 29.340246200561523,
+        "win_idle_loop_time": 29.783723831176758,
+        "win_pillow_delay": 0.0,
+        "win_first_glyph_delay": 0.1373271942138672,
+        "original_level3_two_layer_boxes_bound": true,
+        "formal_mock_ad_preview_disconnected": true,
+        "level1_attempt_seed": 111,
+        "level2_attempt_seed": 404,
+        "level2_retry_seed": 167,
+        "level2_second_retry_seed": 985,
+        "level3_attempt_seed": 697,
+        "win_left_moves": 22,
+        "win_remaining_reward": 69,
+        "failure": "",
+        "scope": "The formal scene uses controlled TNT and rocket placements plus recorded gestures to complete level 1. The production win and remaining-moves flow persist progress before the result exit loads level 2. Two explicit zero-budget MoveManager stimuli exercise automatic and Button-skipped banner exits, actual defeat and retry. The King plays the authored celebration and its two connectors on victory, then a single sad reaction on defeat. A separate private progress file exercises the level 100 boundary."
+      }
+    },
+    "staged_numbered_levels": 100,
+    "resource_paths_resolved": true,
+    "final_jester_play_has_no_runtime_observation_hooks": true
+  },
+  "limits": [
+    "The 0.6261 maximum old entry error is in the original 0.01-scaled local mesh coordinates between baked samples. It is not an original-device pixel measurement.",
+    "The old exit comparison varies the outgoing entry time across 0.9, 0.9166667 and 0.9333333 seconds. The live comparison supplies the exact observed SetAnimation order and Unity deltas.",
+    "CPU time and zero managed allocations cover the standalone pose/track/mesh evaluation on this PC, not Unity mesh upload, Android performance or GPU time.",
+    "The formal level 19 verifier exercises its original free-use guide, normal shuffle, cancellation, a second-attempt rocket fixture and a real following swap. This is not a natural full-level solve.",
+    "The new rig was verified in hidden Unity play; an Android build of this revision and original-app pixel/audio/particle-simulation parity remain unverified."
+  ],
+  "artifacts": {
+    "pose_comparison.json": {
+      "path": "C:/RMJesterRig_20261105/pose_comparison.json",
+      "sha256": "66d7d4aca889bfce93da6704a8deceb215fea94c23a5b862ba777350b16c737c",
+      "bytes": 249
+    },
+    "track_comparison.json": {
+      "path": "C:/RMJesterRig_20261105/track_comparison.json",
+      "sha256": "6e853059c5308d599f12a942915ec9efc3d3a513f945bb468ab99699eaedbf1b",
+      "bytes": 423
+    },
+    "live_mesh_comparison.json": {
+      "path": "C:/RMJesterRig_20261105/live_mesh_comparison.json",
+      "sha256": "5acf55f2bbfc975ea436a157f944d25f8d19b7d0977ab56914087b72a367ae4d",
+      "bytes": 208
+    },
+    "legacy_king_comparison.json": {
+      "path": "C:/RMJesterRig_20261105/legacy_king_comparison.json",
+      "sha256": "b499bff01d878eec74f7bc5da25761fbbe9ee92bbf9592d2c464c095f7e055fa",
+      "bytes": 592
+    },
+    "export_roundtrip.json": {
+      "path": "C:/RMJesterRig_20261105/export_roundtrip.json",
+      "sha256": "7553c502604e86a585199278dc038a22ae9ed5474d40810e5466b1c3fd495a5f",
+      "bytes": 93
+    },
+    "baseline_verified_profile/background_verification.json": {
+      "path": "C:/RMJesterRig_20261105/baseline_verified_profile/background_verification.json",
+      "sha256": "edb72c3fa053688049456fb6e2683030470fdf17791ee0623a06633677818372",
+      "bytes": 384
+    },
+    "baseline_verified_profile/live_core_jester_verification.json": {
+      "path": "C:/RMJesterRig_20261105/baseline_verified_profile/live_core_jester_verification.json",
+      "sha256": "5e6bf4fd1d03715b38759ea7dc584fd68a357ddeac00008eaa9845ebfe877c42",
+      "bytes": 250
+    },
+    "baseline_verified_profile/unity.log": {
+      "path": "C:/RMJesterRig_20261105/baseline_verified_profile/unity.log",
+      "sha256": "bcb88c8b3b6edfff930378810d0c5caaf7c83cba2e46e67cef1b0220a590b818",
+      "bytes": 107530
+    },
+    "candidate60/background_verification.json": {
+      "path": "C:/RMJesterRig_20261105/candidate60/background_verification.json",
+      "sha256": "ef375924b591ce7375476aa86ee3f5630ba963630d786635275498b07c87aa0a",
+      "bytes": 384
+    },
+    "candidate60/live_core_jester_verification.json": {
+      "path": "C:/RMJesterRig_20261105/candidate60/live_core_jester_verification.json",
+      "sha256": "5e6bf4fd1d03715b38759ea7dc584fd68a357ddeac00008eaa9845ebfe877c42",
+      "bytes": 250
+    },
+    "candidate60/unity.log": {
+      "path": "C:/RMJesterRig_20261105/candidate60/unity.log",
+      "sha256": "cb27e0b95bede647bd124695b88de5f2d9999419ce740f9eedd192014cf2bd9b",
+      "bytes": 110948
+    },
+    "candidate_variable/background_verification.json": {
+      "path": "C:/RMJesterRig_20261105/candidate_variable/background_verification.json",
+      "sha256": "393f93a79c35eef969dcabf23df8a711053a71ea8065b005dfe1f1d5b6058a66",
+      "bytes": 384
+    },
+    "candidate_variable/live_core_jester_verification.json": {
+      "path": "C:/RMJesterRig_20261105/candidate_variable/live_core_jester_verification.json",
+      "sha256": "5e6bf4fd1d03715b38759ea7dc584fd68a357ddeac00008eaa9845ebfe877c42",
+      "bytes": 250
+    },
+    "candidate_variable/unity.log": {
+      "path": "C:/RMJesterRig_20261105/candidate_variable/unity.log",
+      "sha256": "eeb07a14a52e72c9060be7bdcd3c1d844bcbecec4b15032b9362d41f36a1c390",
+      "bytes": 108313
+    },
+    "jester_unobserved/background_verification.json": {
+      "path": "C:/RMJesterRig_20261105/jester_unobserved/background_verification.json",
+      "sha256": "4022426ed931cc0404ea3c6a184d10122b83cc6e4e120050414092087c1da4e6",
+      "bytes": 384
+    },
+    "jester_unobserved/live_core_jester_verification.json": {
+      "path": "C:/RMJesterRig_20261105/jester_unobserved/live_core_jester_verification.json",
+      "sha256": "5e6bf4fd1d03715b38759ea7dc584fd68a357ddeac00008eaa9845ebfe877c42",
+      "bytes": 250
+    },
+    "jester_unobserved/unity.log": {
+      "path": "C:/RMJesterRig_20261105/jester_unobserved/unity.log",
+      "sha256": "d4fb0f64a15bec415245a7ea983d667f6027f6e2241c8f4be3a477bc44e6743e",
+      "bytes": 100694
+    },
+    "core_flow/background_verification.json": {
+      "path": "C:/RMJesterRig_20261105/core_flow/background_verification.json",
+      "sha256": "d8cc2640720153628bb82922aae30409668da19e8599f183df0d675953d2fc4d",
+      "bytes": 382
+    },
+    "core_flow/live_core_flow_verification.json": {
+      "path": "C:/RMJesterRig_20261105/core_flow/live_core_flow_verification.json",
+      "sha256": "abea1caaab75b6374f2b12603e7e84d6ffc2d722f3fab48deb21a2283ee3f74c",
+      "bytes": 2828
+    },
+    "core_flow/unity.log": {
+      "path": "C:/RMJesterRig_20261105/core_flow/unity.log",
+      "sha256": "dbfaa61d8988d9ecdef396446f1e70254d0126d7219a6188edec93305c1b4dce",
+      "bytes": 115430
+    },
+    "candidate60/rig_-49062.bin": {
+      "path": "C:/RMJesterRig_20261105/candidate60/rig_-49062.bin",
+      "sha256": "1925efc287dab58dd236d6fd6d5fac1166ee41703e94b305802f00f38997f8b8",
+      "bytes": 3343848
+    },
+    "candidate60/rig_-49626.bin": {
+      "path": "C:/RMJesterRig_20261105/candidate60/rig_-49626.bin",
+      "sha256": "4b2fb11988874828f20b8279b4b892e979753d1791ef043100b1b7769a166cb5",
+      "bytes": 3343848
+    },
+    "candidate_variable/rig_-49000.bin": {
+      "path": "C:/RMJesterRig_20261105/candidate_variable/rig_-49000.bin",
+      "sha256": "9b6749d088973a4590f6130c74af6d414734bdfee4f238e62ad66a802207af54",
+      "bytes": 2478776
+    },
+    "candidate_variable/rig_-49564.bin": {
+      "path": "C:/RMJesterRig_20261105/candidate_variable/rig_-49564.bin",
+      "sha256": "a4daaa237912ee9f02a038efd8778f4ad3edcc4e97e04e27102d438cb5766bc1",
+      "bytes": 2262508
+    },
+    "inspection.txt": {
+      "path": "C:/RMJesterRig_20261105/inspection.txt",
+      "sha256": "ee579687e140f3e47a5c3c9e834de7ed9abf94409de91a2c3143112cd2ad7203",
+      "bytes": 1758
+    },
+    "original_stepped_keys.txt": {
+      "path": "C:/RMJesterRig_20261105/original_stepped_keys.txt",
+      "sha256": "27315b9c72d93c62eaea07f8744bd34cbf71c80852fb071427d3f1c67630fb5a",
+      "bytes": 1039
+    },
+    "InspectJesterRig.cs": {
+      "path": "C:/RMJesterRig_20261105/InspectJesterRig.cs",
+      "sha256": "802490376b64a35daec3db5106c41dcd691bb4661b2bfce8e900339c892fa937",
+      "bytes": 1120
+    },
+    "InspectJesterStep.cs": {
+      "path": "C:/RMJesterRig_20261105/InspectJesterStep.cs",
+      "sha256": "47ad49c3abd84999dca375476f3df29b1e65b16b29a2cc331f968767bd17fe36",
+      "bytes": 1328
+    },
+    "JesterTrackHarness.cs": {
+      "path": "C:/RMJesterRig_20261105/JesterTrackHarness.cs",
+      "sha256": "94f735238dcfb6a6f8f7921c4e2342db99623fc4d56325f38073c51144d3ab64",
+      "bytes": 9058
+    },
+    "JesterMeshReference.cs": {
+      "path": "C:/RMJesterRig_20261105/JesterMeshReference.cs",
+      "sha256": "0c5cb4d2839dc724c138812da6b8445921160ae29990c5bd36ed381ecb6cdf06",
+      "bytes": 3382
+    },
+    "JesterPoseHarness.cs": {
+      "path": "C:/RMJesterRig_20261105/JesterPoseHarness.cs",
+      "sha256": "70e9eeb7fb6e6845ccb70fe85bd73c65c4d2661eaf988d13bb5908fcd82c978b",
+      "bytes": 5300
+    },
+    "LiveJesterReference.cs": {
+      "path": "C:/RMJesterRig_20261105/LiveJesterReference.cs",
+      "sha256": "c5ebd3ad6925dc3f63153d707e36effbeea51ce681bc720e27c4fc8c0634a17f",
+      "bytes": 7219
+    },
+    "run_unity.py": {
+      "path": "C:/RMJesterRig_20261105/run_unity.py",
+      "sha256": "f9e61af244d4876a71a227a2460589693013bd28ab047f8096deb15477bc7812",
+      "bytes": 8682
+    },
+    "offline.py": {
+      "path": "C:/RMJesterRig_20261105/offline.py",
+      "sha256": "05e82a2da083b88406d33fcb5cc2b4d64c8422ca323dfc36ded6c085806d3655",
+      "bytes": 4029
+    },
+    "prepare.py": {
+      "path": "C:/RMJesterRig_20261105/prepare.py",
+      "sha256": "c8504e83f60aa3ccef2fbd9e6d5b86c701068d6910d70a5c8c29c4c655f09aa4",
+      "bytes": 6653
+    },
+    "mirror_restored.json": {
+      "path": "C:/RMJesterRig_20261105/mirror_restored.json",
+      "sha256": "30a75a230c311ddcd9b50d07b02a40a63dac04137a9246c117564bdd10812b5b",
+      "bytes": 616
+    },
+    "baseline.json": {
+      "path": "C:/RMJesterRig_20261105/baseline.json",
+      "sha256": "39392cf3487444f13d4141482c80f8e450463fb921a950af5661bdfe8a358a76",
+      "bytes": 962
+    },
+    "candidate60/core_jester_level19_hat.png": {
+      "path": "C:/RMJesterRig_20261105/candidate60/core_jester_level19_hat.png",
+      "sha256": "7ce81303490398e3d5e3ba5295c3ff666e9e1feea86822bf0746fb465008daac",
+      "bytes": 1230373
+    },
+    "candidate60/core_jester_level19_shuffled.png": {
+      "path": "C:/RMJesterRig_20261105/candidate60/core_jester_level19_shuffled.png",
+      "sha256": "85ec195db06db9737a17ec3aff236bbe7281bbb51ca3e105e7c874362360916f",
+      "bytes": 1267915
+    },
+    "android-dependencies/asset_selection.json": {
+      "path": "C:/RMJesterRig_20261105/android-dependencies/asset_selection.json",
+      "sha256": "ca3c8863dbb87e30845bf7b407e15579ecf90901d90bafee81e833306e7ba87c",
+      "bytes": 36706
+    }
+  },
+  "preexisting_unstaged_diagnostic_preserved_sha256": "1ceddd9e4f2199561ac52f5ab3feabd0a3d6f8c7e0fcfda7b4ffac0a7f8fb1fa"
+}

@@ -1,0 +1,262 @@
+{
+  "scope": "Native LevelRandomManager lifecycle and ordinary/difficulty stream composition; required user/session/storage/save/SDK providers remain explicit boundaries. Real application random owner is compatible through a typed range interface. Production user/session startup is not yet installed. SDK unchanged. Actual packed GameStateSaveData provider now supplies seed/cursor for scoped Unity restoration; numeric-only save stub is removed from this fixture. Production user/session/database transport remains pending.",
+  "methods": [
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$.ctor",
+      "rva": "0x1ed9b6c",
+      "disassembly_sha256": "fc2b6f9249ba9688e904796039233f72f883f4f6c14f1cfe861f0ab39748471c"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$get_Id",
+      "rva": "0x1ed904c",
+      "disassembly_sha256": "fe74b088293a9a995e89aaee044a52a77e92b3f7a141bc06b41e53d9b6ae32fa"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$Bind",
+      "rva": "0x1ed9054",
+      "disassembly_sha256": "6a45e6d52ac4ebfdfeec1d478ed9f925fda8073bbc980816da464618e338ce50"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$ResetSeed",
+      "rva": "0x1ed9160",
+      "disassembly_sha256": "c637b313869d4989c9ae68f8af8d65082108f7f3e70608d8d268164c8c9d4194"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$SetSeed",
+      "rva": "0x1ed923c",
+      "disassembly_sha256": "0fea6e003fcbb999f7da418c39421c50a3824ec044284eb5452d8598b4370515"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$Next",
+      "rva": "0x1ed9438",
+      "disassembly_sha256": "0adb1c8fe8f0461f95b94dedad85fdb41b18de525d5e3216f69b3639dc40a7cf"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$NextBool",
+      "rva": "0x1ed9458",
+      "disassembly_sha256": "7eca6f09c8910af51ad449d523a8c58f6dcde7ae2cc31ae984f64bba12abb3bc"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$ResetDifficultySeed",
+      "rva": "0x1ed92b4",
+      "disassembly_sha256": "090023911c9a7712f6b94838640caaa5cf4cde0d7921418495afd263fd340757"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$GenerateTrySeeds",
+      "rva": "0x1ed95bc",
+      "disassembly_sha256": "60bb2869314f3d50d903e92b273cc64440350e329964f88bb7b53181ca511947"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$get_DeviceIdKey",
+      "rva": "0x1ed8f04",
+      "disassembly_sha256": "30f4d7aa9c082d1d90d9b8422d03894adfaad2099d4d52682fc1e83a0ba00637"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$GetDeviceIdKey",
+      "rva": "0x1ed8f28",
+      "disassembly_sha256": "dc5085a780c3bbf72a2be45ffa9ae068060a05c18b7f4b9e0e913dcacce98640"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$SetDifficultySeed",
+      "rva": "0x1ed9840",
+      "disassembly_sha256": "7ea89c7a5be0af5249aa1dc9dd6d878c45d4328c20731a6681ec6ed03e24f2ca"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$GetDifficultyNext",
+      "rva": "0x1ed98c8",
+      "disassembly_sha256": "5fb4e80e5240b8801fa5f5a1c4f21f752a650197f7dfa59604f31abbec9239e7"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$ClearUserCaches",
+      "rva": "0x1ed9a00",
+      "disassembly_sha256": "898788fdb65887c9ecb62af388c3b7e56f6cd3288e16536018a5afc513f842b1"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$Clear",
+      "rva": "0x1ed9a10",
+      "disassembly_sha256": "6e2b9a25665fe8141347b651db5012d239a4d0ad61146346cae7588f7b63d099"
+    },
+    {
+      "name": "Royal.Scenes.Game.Levels.Units.LevelRandomManager$$RestoreFromSaveData",
+      "rva": "0x1ed9a8c",
+      "disassembly_sha256": "3976fffaaae076d6c7deedb47a271f57a1e90e96e3c643022bae707788e92785"
+    }
+  ],
+  "native_lifecycle": {
+    "passed": true,
+    "native_sequences": 350,
+    "native_commands": 5275,
+    "device_parser_cases": 108,
+    "scope": "Actual ARM64 LevelRandomManager ctor/Bind/ResetSeed/SetSeed/ResetDifficultySeed/GenerateTrySeeds/DeviceIdKey/device digit parser/ClearUserCaches/Clear/RestoreFromSaveData/Next/NextBool/DifficultyNext plus actual System.Random ctor/sample/range arithmetic and ushort difficulty shuffle. Compares independent general/difficulty streams, 1000-entry attempt permutation checksum, lazy device caching, generated flag before persistence read, cache retention across level changes/loss and reset on user change/win, id/admin/remote/switch state, remove-before-add subscription, saved-count Next(1) replay including negative counts, and partial state after injected provider failures. CLR metadata/allocation/list/delegate/string/char/integer parsing, Unity application random, current user/session/save/storage and SDK device string are supplied boundaries. Diagnostic boxing/logging omitted. Actual user/storage/save providers, remaining ordinary shuffle specializations and complete application/player startup remain pending."
+  },
+  "source_regression": {
+    "passed": true,
+    "native_sequence_values": 1620,
+    "native_shuffle_cases": 54,
+    "native_attempt_cases": 18,
+    "seeds": [
+      0,
+      1,
+      -1,
+      999,
+      1000,
+      38911,
+      161803398,
+      2147483647,
+      -2147483648
+    ],
+    "original_rvas": [
+      "0x2616540",
+      "0x2616720",
+      "0x2616824",
+      "0x260ecc4",
+      "0x1ed98c8",
+      "0x1ed95bc",
+      "0x1ed92b4",
+      "0x1ed9a00",
+      "0x1c24f70",
+      "0x260ebc4"
+    ],
+    "scope": "Seeded sequences, list shuffle, generation/selection/reuse of attempt seeds and cache invalidation. Device ID parsing and storage reads are supplied at their boundaries; their implementations and full game initialization are not verified. Special tile selection, replacement and repeated cache calls are compared with original native branches; dictionary/list storage operations are supplied at managed boundaries.",
+    "native_tile_color_sequences": 45
+  },
+  "findings": [
+    "ResetSeed gets application random and draws Next(0,20000000), constructs a separate ordinary System.Random, checks the current user session, then resets difficulty. Failure after ordinary seed creation retains that ordinary stream.",
+    "The attempt bank is lazily created from level number plus low32(userId) plus a cached device key, using native ushort shuffle and 1000 entries. The generated flag is set before the persisted attempt lookup; retries and level-number changes reuse the bank until user-cache invalidation.",
+    "DeviceIdKey caches nonzero values. The native parser starts from the empty string literal at0x55fc738, collects the first5 char.IsDigit UTF16 code units, then calls Int32.Parse; null/no digits/Unicode decimal parse failures propagate. SDK DeviceHelper.DeviceId transport is unchanged.",
+    "Bind removes then adds the same user-change handler. User cache reset clears remote/generated/switched flags while retaining streams/list/device/admin values. Clear ignores gameExit and only invalidates on an actual won level.",
+    "Restore performs two current-save lookups. After seeding, it stores the saved count and consumes Random.Next(1) exactly count times without adding to that count. Negative counts remain negative and consume nothing; ordinary random state is retained.",
+    "Unity fixture uses actual manager ResetSeed before context BindAll, actual application Unity random, and diagnostic level1/user1/device12345/attempt362 selecting seed371. Native permutation checksum244698400 confirms that diagnostic index. No production fake user/storage provider is installed."
+  ],
+  "performance": {
+    "recommended": "Preserve native sequential Next(1) replay for verified cursor fidelity. The tested normal cursor range is acceptable; any state-equivalent fast-forward alternative must be separately proven before adoption.",
+    "cpu_loading": "Replay is O(saved count), so very large cursors increase main-thread CPU and loading duration.",
+    "gc_memory": "No allocation per replay step; random reconstruction and the1000-entry bank are low-frequency fixed allocations. Do not cache an unbounded random sequence."
+  },
+  "unity_regression": {
+    "cascade": {
+      "passed": true,
+      "frames": 1376,
+      "box_events": 3,
+      "match_count": 6,
+      "created_views": 9,
+      "goal_left": 33,
+      "match_sounds": 2,
+      "haptic_requests": 2,
+      "auto_groups": 1,
+      "auto_attempts": 23,
+      "shuffle_draws": 2,
+      "host_updates": 1376,
+      "clock_late_updates": 1376,
+      "random_context_id": 0,
+      "difficulty_seed": 371,
+      "random_user_bindings": 1,
+      "native_auto_before_fall": true,
+      "max_position_error": 0.0,
+      "timestamp_utc": "2026-10-20T05:54:05.8100295Z",
+      "scope": "Actual first-level swap/group/box-goal/refill path followed by native AutoExplodeManager and actual FindAllMatches/readiness/group explosion of a blue triple created by nine diagnostic predefined items (column1:3,1,3;column2:2,1,2;column3:3,1,4). Actual per-frame automatic scan/retry/idle gates, original difficulty-shuffle consumption, trigger4 delayed freeze, original match/swipe/fall/box SFX/particles/recycle, active-level counts, goals36to33 and nine automatic refill views. Predefined queues are explicit diagnostic inputs, not original first-level content. Actual prefab context host Update dispatches restored ContextContainer in native auto7-before-fall8 registration order; Editor update only observes. Binding/providers are explicit diagnostic bridges. Full27permanent-unit factories, late units, original game-context activation/session ownership remain pending. Also retains original fixture seed371/state2/inactive-Madness/normal-final-board/not-won/unworried contexts, traced haptic/cache-clear and normal-only special boundary. No manual item removal or direct automatic-group trigger. Full player input/session startup/moves, arbitrary cascades/special combos/collection/King/HUD/settlement and rendered-original parity remain pending. Restart Play to restore initial board; no production no-op installed; SDK unchanged. Formal board uses native DeltaTimeManager construction and GameContext-style multicast late dispatcher through the configured prefab host. Clock progression must equal completed host LateUpdate callbacks; full parent GameContext activation/deactivation is separate. Random seed371 is now selected through actual LevelRandomManager.ResetSeed before context BindAll, using real application Unity random and explicit diagnostic level1/user1/device12345/attempt362. User/storage providers are diagnostic inputs, not a production player context."
+    },
+    "original_predefined": {
+      "passed": true,
+      "frames": 1231,
+      "box_events": 3,
+      "match_count": 3,
+      "created_views": 6,
+      "goal_left": 33,
+      "match_sounds": 1,
+      "haptic_requests": 1,
+      "auto_groups": 0,
+      "auto_attempts": 0,
+      "shuffle_draws": 0,
+      "host_updates": 1231,
+      "clock_late_updates": 1231,
+      "random_context_id": 0,
+      "difficulty_seed": 371,
+      "random_user_bindings": 1,
+      "native_auto_before_fall": false,
+      "max_position_error": 0.0,
+      "timestamp_utc": "2026-10-20T05:55:02.1281915Z",
+      "scope": "Actual formal first-level models: valid3,5to3,4 swap, coroutine tween/particles, saved-group resolution and native match-group orchestration, real match/static/neighbor/box model and configured box view particles/recycle, actual36to33 model/UI/display goal counts, active-level match statistics/useful counters and delayed King relief, automatic planner/fill/native pooled-view creation and frame motion for six holes. Explicit diagnostic command, seed371, state2 inactive-Madness session, normal-final-board/not-won/unworried contexts and animation constants are inputs. Haptic and propeller-cache-clear requests are traced boundaries; normal-item special dispatch is asserted only. Full input/application startup, move consumption, auto-match cascades, special combos, King analysis/UI, HUD, later lifecycle and original rendered parity remain pending. No production no-op providers installed. Destructive Play-only diagnostic is reset by restarting Play; scene/prefab assets are unchanged. SDK unchanged. Actual prefab context host drives restored ContextContainer/FallManager in Unity Update; Editor only observes. Full original unit factories, late lifecycle and application activation remain pending. Formal board uses native DeltaTimeManager construction and GameContext-style multicast late dispatcher through the configured prefab host. Clock progression must equal completed host LateUpdate callbacks; full parent GameContext activation/deactivation is separate. Random seed371 is now selected through actual LevelRandomManager.ResetSeed before context BindAll, using real application Unity random and explicit diagnostic level1/user1/device12345/attempt362. User/storage providers are diagnostic inputs, not a production player context."
+    }
+  },
+  "packed_state_native": {
+    "passed": true,
+    "native_sequences": 615,
+    "native_commands": 11559,
+    "state_widths": [
+      7,
+      7,
+      13,
+      7,
+      1,
+      10,
+      30,
+      1,
+      1,
+      1,
+      5,
+      1,
+      1,
+      1
+    ],
+    "state_total_bits": 86,
+    "state_array_length": 2,
+    "field_initializer_sha256": "6E8ABEB607AC371B7F4CA439BAB8A685D5D78ECD4DE301C89828FE32150B31FC",
+    "metadata_blob_offset": "0xa40af8",
+    "scope": "Actual ARM64 GenericSaveDataConfig offset/size/count/total/bit read-write; AGenericSaveDataHelper SetConfig, SetData, GetData, IsDataReadable and PrepareData; GameStateSaveDataHelper constructor/static initializer, all14 getters and ordered PrepareStateSaveData. Tests cross-long MSB-first fields, 64-bit shift masking, unmasked write spill, signed/overflow/zero layouts, null and truncated data, borrowed width/data mutation, preparation without loaded-data replacement, extra-move+15 encoding, context lookup/null order and callback failure. Metadata field SHA256 and exact56-byte blob verified. Supplied boundaries: CLR metadata/allocation/errors, context lookup, tutorial method and explicit owner fields. Large allocations are bounded by fixtures; no transport/database/user-session integration or rendered parity claim. SDK unchanged."
+  },
+  "packed_state_unity": {
+    "cascade": {
+      "passed": true,
+      "frames": 1394,
+      "box_events": 3,
+      "match_count": 6,
+      "created_views": 9,
+      "goal_left": 33,
+      "match_sounds": 2,
+      "haptic_requests": 2,
+      "auto_groups": 1,
+      "auto_attempts": 24,
+      "shuffle_draws": 2,
+      "host_updates": 1394,
+      "clock_late_updates": 1394,
+      "random_context_id": 0,
+      "difficulty_seed": 371,
+      "random_user_bindings": 1,
+      "packed_state_longs": 2,
+      "restored_random_cursor": 5,
+      "restored_future_draws": 16,
+      "restored_left_moves": 26,
+      "native_auto_before_fall": true,
+      "max_position_error": 0.0,
+      "timestamp_utc": "2026-10-20T06:15:04.6718066Z",
+      "scope": "Actual first-level swap/group/box-goal/refill path followed by native AutoExplodeManager and actual FindAllMatches/readiness/group explosion of a blue triple created by nine diagnostic predefined items (column1:3,1,3;column2:2,1,2;column3:3,1,4). Actual per-frame automatic scan/retry/idle gates, original difficulty-shuffle consumption, trigger4 delayed freeze, original match/swipe/fall/box SFX/particles/recycle, active-level counts, goals36to33 and nine automatic refill views. Predefined queues are explicit diagnostic inputs, not original first-level content. Actual prefab context host Update dispatches restored ContextContainer in native auto7-before-fall8 registration order; Editor update only observes. Binding/providers are explicit diagnostic bridges. Full27permanent-unit factories, late units, original game-context activation/session ownership remain pending. Also retains original fixture seed371/state2/inactive-Madness/normal-final-board/not-won/unworried contexts, traced haptic/cache-clear and normal-only special boundary. No manual item removal or direct automatic-group trigger. Full player input/session startup/moves, arbitrary cascades/special combos/collection/King/HUD/settlement and rendered-original parity remain pending. Restart Play to restore initial board; no production no-op installed; SDK unchanged. Formal board uses native DeltaTimeManager construction and GameContext-style multicast late dispatcher through the configured prefab host. Clock progression must equal completed host LateUpdate callbacks; full parent GameContext activation/deactivation is separate. Random seed371 is now selected through actual LevelRandomManager.ResetSeed before context BindAll, using real application Unity random and explicit diagnostic level1/user1/device12345/attempt362. User/storage providers are diagnostic inputs, not a production player context. Packed-state preflight uses actual GameStateSaveData preparation and two-long readback, actual MoveManager restoration and LevelRandomManager save-provider replay. Sixteen future draws must match after restoring cursor5; the initial packed cursor0 is then restored before the board command. User/database transport and inactive tutorial/Ego contexts remain explicit diagnostic boundaries."
+    },
+    "original_predefined": {
+      "passed": true,
+      "frames": 1281,
+      "box_events": 3,
+      "match_count": 3,
+      "created_views": 6,
+      "goal_left": 33,
+      "match_sounds": 1,
+      "haptic_requests": 1,
+      "auto_groups": 0,
+      "auto_attempts": 0,
+      "shuffle_draws": 0,
+      "host_updates": 1281,
+      "clock_late_updates": 1281,
+      "random_context_id": 0,
+      "difficulty_seed": 371,
+      "random_user_bindings": 1,
+      "packed_state_longs": 2,
+      "restored_random_cursor": 5,
+      "restored_future_draws": 16,
+      "restored_left_moves": 26,
+      "native_auto_before_fall": false,
+      "max_position_error": 9.5367431640625e-07,
+      "timestamp_utc": "2026-10-20T06:15:54.8480891Z",
+      "scope": "Actual formal first-level models: valid3,5to3,4 swap, coroutine tween/particles, saved-group resolution and native match-group orchestration, real match/static/neighbor/box model and configured box view particles/recycle, actual36to33 model/UI/display goal counts, active-level match statistics/useful counters and delayed King relief, automatic planner/fill/native pooled-view creation and frame motion for six holes. Explicit diagnostic command, seed371, state2 inactive-Madness session, normal-final-board/not-won/unworried contexts and animation constants are inputs. Haptic and propeller-cache-clear requests are traced boundaries; normal-item special dispatch is asserted only. Full input/application startup, move consumption, auto-match cascades, special combos, King analysis/UI, HUD, later lifecycle and original rendered parity remain pending. No production no-op providers installed. Destructive Play-only diagnostic is reset by restarting Play; scene/prefab assets are unchanged. SDK unchanged. Actual prefab context host drives restored ContextContainer/FallManager in Unity Update; Editor only observes. Full original unit factories, late lifecycle and application activation remain pending. Formal board uses native DeltaTimeManager construction and GameContext-style multicast late dispatcher through the configured prefab host. Clock progression must equal completed host LateUpdate callbacks; full parent GameContext activation/deactivation is separate. Random seed371 is now selected through actual LevelRandomManager.ResetSeed before context BindAll, using real application Unity random and explicit diagnostic level1/user1/device12345/attempt362. User/storage providers are diagnostic inputs, not a production player context. Packed-state preflight uses actual GameStateSaveData preparation and two-long readback, actual MoveManager restoration and LevelRandomManager save-provider replay. Sixteen future draws must match after restoring cursor5; the initial packed cursor0 is then restored before the board command. User/database transport and inactive tutorial/Ego contexts remain explicit diagnostic boundaries."
+    }
+  }
+}

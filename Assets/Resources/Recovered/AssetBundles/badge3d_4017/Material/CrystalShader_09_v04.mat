@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrystalShader_09_v04
+  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+      _Caustic_Texture:
+        m_Texture: {fileID: 2800000, guid: 22d549c4e72a436489e7e9f6a58060f9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _CubemapAsset_03c8d353c554467db589d7ec44ea7154_Out_0:
+        m_Texture: {fileID: 8900000, guid: c43bfa54b7692ec4c978dca24f2551e1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _Reflection_Texture:
+        m_Texture: {fileID: 8900000, guid: c43bfa54b7692ec4c978dca24f2551e1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _SampleTexture2D_bfd9e15e55f84fe08c8eea8197194e55_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 08fbe30c23473714d9943696d1628df9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _SampleTexture2D_e4c677d91200494587cceb74be9cc3b7_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 4c51959105a5cfa498ce3e7f1e4b1e4c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _Texture2DAsset_a05e549ecbf2476abc280fc447e6caaa_Out_0:
+        m_Texture: {fileID: 2800000, guid: 5d2197de73539f54f95291ac57293a58, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: {}
+    m_Floats:
+      _BUILTIN_QueueControl: 0
+      _BUILTIN_QueueOffset: 0
+      _Gradient_Contrast: 0
+      _Metallic: 0
+      _Metalness: 0.6
+      _Parallax_Amplitude: -40
+      _Parallax_Occlusion: -100
+      _Smoothness: 1
+      _crystal_edge: 0.053
+      _crystal_texture: 0
+      _crystal_texture_inside: 0.4
+      _hdri_fake_light: 0.214
+      _inside_crystal_texture: 0
+      _light_instensity: 0
+      _light_intensity: 0.377
+      _light_power: 0
+      _light_roughness: 59.4
+      _line_color: 0.3
+      _offset: 1
+      _outside_crystal_texture: 0
+      _parallax: -20
+      _rim_light: 0.3
+    m_Colors:
+      _Color: {r: 0.5188679, g: 0, b: 0, a: 1}
+      _Crack_Grow_Color: {r: 0, g: 0, b: 0, a: 0}
+      _Rim_Color: {r: 1, g: 1, b: 1, a: 0}
+      _Tiling: {r: 0, g: 0, b: 0, a: 0}
+      _light_direction: {r: 0, g: 3.43, b: -0.94, a: 0}
+  m_BuildTextureStacks: []

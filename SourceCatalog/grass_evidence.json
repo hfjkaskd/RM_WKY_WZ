@@ -1,0 +1,579 @@
+{
+  "baseline_commit": "2fa0b4a52a68a965cb38c5a91c73cb27e8e0126e",
+  "current_scope": "Original ordinary levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "all100_levels_playable": false,
+  "canonical_background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-grass",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "6263a489eb32adfd00c6363a536a4bfed89c2d5d16db7bdc3edabcb050da290f",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-grass.log",
+    "elapsed_seconds": 325.97,
+    "batch": {
+      "passed": true,
+      "test": "core-grass",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T03:04:46.8933777Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "actual_level4_verification": {
+    "passed": true,
+    "propeller_hit": true,
+    "result_goal_replacement_verified": true,
+    "initial_grass": 49,
+    "gems": 17,
+    "grass_after_swap": 46,
+    "refills_after_swap": 3,
+    "fixture_tnt_taps": 4,
+    "remaining_moves": 24,
+    "remaining_move_reward": 68,
+    "failure": "",
+    "scope": "Actual original level 4, one swap on the unmodified original board, followed by an explicitly placed propeller and TNT items activated through recorded player input. Production grass model, HUD, fall, moves, WinFail, remaining conversion, result and SQLite progress. Level 4 has only single-layer grass. Physical input, natural full-level solves, original render parity and level 5 are outside this verification."
+  },
+  "original_level4_config": {
+    "number": 4,
+    "original_name": "00004v02_L",
+    "resource_path": "Levels/level_4",
+    "decoded_source": "configs/levels/4__2330.json",
+    "raw_source": "configs/textassets/4__2330.bytes",
+    "sha256": "2c6739354629ce2360a82ce95bf0d29c103078671fb4849fd3efc6e9537114cb",
+    "moves": 30,
+    "width": 9,
+    "height": 9,
+    "goal_types": [
+      13
+    ],
+    "raw_item_ids": {
+      "1": 19,
+      "2": 10,
+      "3": 17,
+      "4": 18,
+      "5": 17
+    },
+    "nonzero_cell_fields": {
+      "FillType": 9,
+      "Grass": 49,
+      "IsPredefined": 9
+    },
+    "scroll": false,
+    "shifter_boards": 0,
+    "water_cells": 0
+  },
+  "native_assets": "SourceCatalog/grass_asset_authoring.json",
+  "native_implementation": {
+    "static_creation": "CellGridManager.CreateStaticItems 0x320f87c and 0x320fab8; grass tiled IDs 31/32",
+    "static_hit": "GrassItemModel.TryExplode 0x349ce68 and StaticItemModel.FinalExplode 0x2b524b0",
+    "damage_and_goals": "Layers clear in order; last layer removes the below static and decrements goal 13 in model and HUD.",
+    "target_reservations": "ExplodeTargetMediator score 0x343bf04, remaining 0x343c39c and incoming 0x343c80c; cell goal hits 0x319d6cc",
+    "view_and_pools": "GrassViewData 0x187cfbc; GrassItemView.UpdatePatches 0x349d500; GrassItemAssets.CreateItemPools 0x349da58",
+    "presentation_cost": "Only grass levels load the weak sprite paths and allocate view pools sized by the actual grass count. The two particle families prewarm one instance each, and edge updates touch only the affected cells."
+  },
+  "verification_limits": [
+    "Level 4 naturally executed one swap, then used explicitly placed specials to exercise actual damage and completion.",
+    "The original level 4 uses only single-layer grass. Two-layer grass, grass tap VFX and the transition into level 5 remain unverified.",
+    "Unity Editor batch rendering is available. Original frame-by-frame and mobile parity remain unverified.",
+    "Previous diagnostic runs identified a serialized cache issue, an SFX YAML list binding issue and an assertion that read the replaced HUD goal after conversion. The canonical run checks the corrected paths."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "ab9160fe7326edaebfb489a9b3e0c1079b8b692701013fb1ff1abd71d4afddc0"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GrassGameplayVerification.cs",
+      "sha256": "2ef70b10cbdbc8eee700743803191eccdf84cd85dd413dfc87cb24697bc06b63"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GrassGameplayVerification.cs.meta",
+      "sha256": "0bab1d3ca1c6c7ad92f1e2533f5d15fc6f187a3c56f02f0ae312d8cab6c059bb"
+    },
+    {
+      "path": "Assets/Foundation/Editor/PropellerRocketComboVerification.cs",
+      "sha256": "0960c2d03f06608dbd757880e3d51b13cb87d86b3fabf73a62943c011e25bfb0"
+    },
+    {
+      "path": "Assets/Foundation/Editor/PropellerTargetVerification.cs",
+      "sha256": "3f5353f9a7375f80b12f7cfa4ade0186ab6d36d05f3810906871facc4cfcf6c5"
+    },
+    {
+      "path": "Assets/Foundation/Editor/TntPropellerComboVerification.cs",
+      "sha256": "a75afb9bf163ce2fa73e7f55cdbdba50aecb92020b5e5d26d22b692ef8399e7d"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "52a48e80647eb04b2480ee50a64562d4379c9652b8b9df1e30b0d1dc257ec3af"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAreaExplodeTargetFinder.cs",
+      "sha256": "eaac32a370038d8213d40d9bf2a407ffcdb297ee7fc269ccc26ddb81c1102c69"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAutoShadowParticles.cs",
+      "sha256": "9e29566c555e97539f95209de86bab0082a82713715ff630d545cca55650e8ed"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAutoShadowParticles.cs.meta",
+      "sha256": "eb733500e1cf4b24c4d79dad3ba6cafadf95a69d446994ebbaeb7b6321ac9a77"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCellExplosion.cs",
+      "sha256": "b54e7c961b6fbbb71a64e3b166beb38cde0c12fc393eac24e63c160a6630e42b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDefaultPropellerStrategy.cs",
+      "sha256": "4f50ce918a7059f663f5afd919886c85b5a22bb3fe10d8776f89d8a611f10fb4"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalExplodeTarget.cs",
+      "sha256": "2cb2c77d0ab5623ea4b91348f8caa942d7ba005b7dbebb49d725360152bd2e28"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalExplodeTarget.cs.meta",
+      "sha256": "4eb0d5e311516382a8eabd342656c37f6cb1be610bba051eb1003431afb880bc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardAreaTargets.cs",
+      "sha256": "118dac941fdfaa02006c1a3b4a2690895441f5ed189176e70f831eca3c1f8d26"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardExplodeTargets.cs",
+      "sha256": "13fcd7b5f4d48ee675469962c04bf9dc2880a1c709256955b4c3cb9c560b5a3c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardLineTargets.cs",
+      "sha256": "3f11ec6391ea8ca8f41e77ee1dccb7a951a88cfdf5a2bdab412caaae0bf7faca"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGoalUi.cs",
+      "sha256": "23d69c5035cb0595372734dd7bda7f8876a788bec8a5a955efe39bb3133a626f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassBoardItem.cs",
+      "sha256": "70ab8c7706d9a739fce154691c3405439939ab41635e02302b5f957e2169edfb"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassBoardItem.cs.meta",
+      "sha256": "ce9e1eeae6f14a278360138cde3c4a827c96201fa1b85431af7ea5699016f1b8"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassExplodeParticles.cs",
+      "sha256": "253e2f30d25cab952fe73591737834b55a125336cb0e9b26500d9803e4662493"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassExplodeParticles.cs.meta",
+      "sha256": "30aeb382f620b17d118444a8d52121d5e5e86539056f207771d84c1bc7c710cd"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassItemView.cs",
+      "sha256": "47a65db8f215da89831774d493928c8eb9e8b22e06d1b18203bc3a25b29ec748"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassItemView.cs.meta",
+      "sha256": "c7d646300ad89793aef0d0ee620ad2894479dd8b628b5c0af3a9f8de74af1acc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassPresentation.cs",
+      "sha256": "6e03392510bbcd50f3154ee35d968f7d8e8cbbcc002697b7b866c25c67c8aa86"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassPresentation.cs.meta",
+      "sha256": "3a1a42d8fa67c2e6ea54675809d23de5aef14b830211cea8776b816e18b7f7f8"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassTapParticles.cs",
+      "sha256": "4338dd90113c9ba59f17288f44b69579e29e9b2ee182c7f945f52c59b262933f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassTapParticles.cs.meta",
+      "sha256": "00142c5eb81c553cbf58e2d6b60814bded007d22871c2b393e87301a5bfaa3a6"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassViewAssets.cs",
+      "sha256": "34009e25049d45ea80b26942088f5f7f4a2dd27d418ab5f59db40325a2df7bcc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGrassViewAssets.cs.meta",
+      "sha256": "da0d1ab9c65bfb6418ab1b96dd34f2a6ceaa397d6301ad75a324a56042ce1554"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGuidedExploderBoardItem.cs",
+      "sha256": "a4f8a14d3eac12fdc1a5ae1a051b5cc0d988bdc95e427d5f5f8aa8bd674aea59"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "167e65a7a35d6005a724e07663fdebef48e538a1a2541233cbe886af7c24a64f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelPresentation.cs",
+      "sha256": "af06fdf21e63ac43257a586f8ec8d8f6548fbe529d83b28a9810cac0c8d7dc64"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLineExplodeTargetFinder.cs",
+      "sha256": "26d3e23edfbaeb69c88ef97b7d9c586c578722ce1ed545ebcdf965b06c9a15fd"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "1739e97a13f32271b80bc4371524737cb92ca4de33e4856797fc7dd6e2e051c1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPropellerRuntimeServices.cs",
+      "sha256": "199871f9232cec493d02127e55b25e9815f5196c9dd1dbfdca304894b0aec2cd"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalSingleExplodeTargetFinder.cs",
+      "sha256": "16f43a9c7c10b52b15418870d8d8468300ff93eaa26434b141693a7dbcc409ef"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalSpecialItemExplosion.cs",
+      "sha256": "2e37fd4f52664b53993d7fa52ac95030952f459066d3b0e138d0e83ec2b8440a"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSfxAssets.asset",
+      "sha256": "1d86bb74c76a7c147168178764877297c50f30e554de6c13b7924c43ba6f2603"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GoalUiAssets.asset",
+      "sha256": "358f885dd0883d196ea3f1f98e2cb39d7180d15c9e748305b853ecf91b1abffc"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GrassViewAssets.asset",
+      "sha256": "f01a7a583b72a4c2f1ed587db6e3e611afec81ffc6f162a696b71a9d380c3f6c"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GrassViewAssets.asset.meta",
+      "sha256": "16510cedb0e6fd74b4ec716db4d6bfcad7e60fc283b14d61a4e9c4dede369ebc"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalGrassExplodeParticles.prefab",
+      "sha256": "a0c7fc2bc6ff374799dfb224611080456e41a1ba66a383d2a672fe3fa3a425b2"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalGrassExplodeParticles.prefab.meta",
+      "sha256": "e97f534f1fda89848561d67162a63662503df932b91f7c71ee76623c7c3d4bc1"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalGrassItem.prefab",
+      "sha256": "907a95c549e4d9900590edfd2bb004dfdc1f8fc82e72680298e4e3907675fb81"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalGrassItem.prefab.meta",
+      "sha256": "f3381a0e16bf8a3a8b7506f51bf0f3a97b1e5a2884b62d519c1ec931b3b4d7e0"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalGrassTapParticles.prefab",
+      "sha256": "0da70746338a299d7879666adc52c7162d2516d7624bbe2ca7530eaf7e01a978"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalGrassTapParticles.prefab.meta",
+      "sha256": "cba5300f8728807382b122f83e4673e38f4252c5a43cf8d061087068211d6771"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "a05749685aa85c9072761f5b6e281386949ab171c4335cc14213b6ee75dc463d"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "c8f9b214cba1a890a754920ee064737ea5127c6548b5038bcb9c343a232b3ff3"
+    },
+    {
+      "path": "SourceCatalog/grass_asset_authoring.json",
+      "sha256": "bfed06275c5ba56a43284090eb28cf2df47de9b1ed93889d3bcd9975165c134e"
+    },
+    {
+      "path": "SourceCatalog/grass_preflight.json",
+      "sha256": "c0c5df7a0987bdb3960d5a4c708112f9b6ae9e3653ef2de1b4f09e0e0d1713a1"
+    },
+    {
+      "path": "SourceCatalog/grass_source_data.json",
+      "sha256": "4d0fe917efb3d72210f333ad5810b71c4f0ccc1b4d898e0f3bed249795b7be2a"
+    },
+    {
+      "path": "SourceCatalog/grass_source_objects.json",
+      "sha256": "439fca81e4c95ba16c9e28eb324e1b25f1c28e301591dd8f0d51e9ec7930141d"
+    },
+    {
+      "path": "SourceCatalog/grass_target_contract_migration.json",
+      "sha256": "ff7ccd09672cc79a1123e0b4803ba07a631aec47d29b677d3d8dcdd1406c954b"
+    },
+    {
+      "path": "SourceCatalog/prepare_grass_assets.py",
+      "sha256": "400160009f9f82c44a8750cbe31061bfaf3f576c4a608ff773fc66f34cb16064"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "032acd16a5aab3e8b5c6a9338c01e2065cd8214fe34414dc145137a90be71730"
+    },
+    {
+      "path": "background_core_grass_verification.json",
+      "sha256": "fc6c460e502ca879a952ca06444f8700563d563c182f4efbc10b9f06d5b94309"
+    },
+    {
+      "path": "grass_after_match.png",
+      "sha256": "e8f040e43a93a521a7cb16a67541718cdf6d66cbd283443a1a9776507b6b1ed7"
+    },
+    {
+      "path": "grass_initial.png",
+      "sha256": "f399fd7d507e6da07fa8960b7f808b6fee7f94bfaaa78f788f3ecd895afaae94"
+    },
+    {
+      "path": "grass_win.png",
+      "sha256": "dbb67204340906f96c5f44a95874746941ebe91f1045c6fbbf06424efee7fc0f"
+    },
+    {
+      "path": "live_grass_gameplay_verification.json",
+      "sha256": "f591b23d1e344e107f0c08325e61d18fb0394999e9646d93e5400bebc9a09c09"
+    }
+  ],
+  "formal_grass_view_lifecycle_and_resume_20261105": {
+    "baseline_commit": "3ea48ed33802e357b9f3e0dc8f93d870aaa9acf8",
+    "verified_utc": "2026-11-05T21:06:28.135228+00:00",
+    "cold_restore_observation": {
+      "android_evidence": "SourceCatalog/android_hint_revision_20261105.json",
+      "level": 7,
+      "different_empty_grass_patches": 15,
+      "native_regular_random": [
+        "ResetSeed 0x1ed9160",
+        "SetSeed 0x1ed923c",
+        "GetBase 0x349d93c",
+        "ShuffleArray 0x260e574"
+      ],
+      "native_saved_difficulty_restore": "RestoreFromSaveData 0x1ed9a8c",
+      "regular_object_and_state_preserved_by_difficulty_restore": true,
+      "native_level7_test_pairs": 48,
+      "authored_grass_cells": 32,
+      "different_sprite_cells_histogram": {
+        "10": 1,
+        "11": 2,
+        "12": 4,
+        "13": 4,
+        "14": 3,
+        "15": 6,
+        "16": 6,
+        "17": 7,
+        "18": 5,
+        "19": 3,
+        "20": 5,
+        "21": 2
+      },
+      "saved_difficulty_sequence_equal_for_every_pair": true,
+      "managed_comparison": {
+        "cases": 105,
+        "views": 3350,
+        "draws": 1680
+      },
+      "scope": "The original can change grass base variants after cold startup while preserving saved difficulty. The managed comparison checks authored base, patch and shadow names, bit-exact shadow alpha, final array order and subsequent regular and difficulty draws. Seed sources, save getters and retained asset array order are explicit inputs. The fifteen changed Android image patches are an observation of the recovery build."
+    },
+    "view_lifecycle": {
+      "native_update_events": [
+        "patches",
+        "neighbors"
+      ],
+      "native_damage_events": [
+        "patches",
+        "neighbors",
+        "particle",
+        "neighbors"
+      ],
+      "native_layer_refill_events": [
+        "patches",
+        "neighbors"
+      ],
+      "native_full_layer_refill_events": [],
+      "native_ordinary_recycle_cases": 8,
+      "native_recycle_order": [
+        "right_patch_disabled",
+        "top_patch_disabled",
+        "show_if_hidden"
+      ],
+      "recycled_root_deactivated_before_reset": true,
+      "runtime": "Refresh neighboring patches inside UpdateView for initial grass, damage and spread. Preserve the second refresh after the damage particle. Reset both patch renderers and restore the child display state after the pool deactivates the root.",
+      "native_scope": "Original ResetSeed and System.Random, saved difficulty restore, GrassViewData.Init, GetBase, ShuffleArray, sorting formulas, Damage, UpdateView, RefillLayers, OnRecycle and Show. Explicit ports supply application seed, user and save getters, original sprite handles, board bottom, renderer and neighbor notifications. Grass view recycle uses ordinary unmasked views. Asset cache order is an explicit scenario input.",
+      "native_library_sha256": "017f7d4716f9375d86bbbe006740e8e68e65c776bad757d00d8a3c120ee8f5eb",
+      "native_entry_counts": {
+        "0x187cfbc": 3352,
+        "0x349d93c": 3352,
+        "0x260e574": 3352,
+        "0x349cfa8": 1,
+        "0x349d3cc": 2,
+        "0x349d430": 3,
+        "0x349e2e0": 8,
+        "0x349e3a0": 8
+      }
+    },
+    "unity": {
+      "version": "2022.3.62f2",
+      "project": "C:/RMV_20261104",
+      "scene": "Assets/Foundation/Scenes/GameScene.unity",
+      "audited_source_files": 1281,
+      "verified_candidate_sha256": {
+        "Assets/Foundation/Runtime/OriginalGrassItemView.cs": "3c19d39e9104d53a69398794f07595c08952cf217d46b2c58126d70fa11edbf8",
+        "Assets/Foundation/Runtime/OriginalPlayableBoardBush.cs": "0c745b3e2cc8c9d376ff04df0dc70ffc2ee4144c4be75abac072402dcde347a0",
+        "Assets/Foundation/Editor/GrassGameplayVerification.cs": "b65508dc9db6badb221df1003f35ced6fd0eb3b00fff2c41f93fc02a859a0442"
+      },
+      "old_level4_recycle_regression_failed": true,
+      "level4": {
+        "passed": true,
+        "propeller_hit": true,
+        "result_goal_replacement_verified": true,
+        "initial_grass": 49,
+        "gems": 17,
+        "grass_after_swap": 46,
+        "refills_after_swap": 3,
+        "recycled_grass_views": 3,
+        "fixture_tnt_taps": 4,
+        "remaining_moves": 24,
+        "remaining_move_reward": 67,
+        "failure": "",
+        "scope": "Actual original level 4, one swap on the unmodified original board, followed by an explicitly placed propeller and TNT items activated through recorded player input. Production grass model, HUD, fall, moves, WinFail, remaining conversion, result and SQLite progress. Level 4 has only single-layer grass. Physical input, natural full-level solves, original render parity and level 5 are outside this verification."
+      },
+      "level7_resume": {
+        "passed": true,
+        "level": 7,
+        "moves_after_reopen": 24,
+        "difficulty_draws": 6,
+        "difficulty_seed": 871,
+        "level_try_count": 1,
+        "recovery_seed": 661,
+        "corruption_rejected": true,
+        "optional_ready": false,
+        "statistics_restored": true,
+        "failure": ""
+      },
+      "level71_bush": {
+        "passed": true,
+        "grass_pool_ready": true,
+        "spread_finished": true,
+        "emitter_count": 8,
+        "inner_spread_clips": 12,
+        "edge_spread_clips": 4,
+        "waiting_patches": 24,
+        "landings_in_update": 16,
+        "landings_after_update": 0,
+        "max_distance": 0.0,
+        "inner_patch_min_alpha": 0.00010341405868530273,
+        "edge_patch_min_alpha": 0.0,
+        "expected": {
+          "x": -2.0,
+          "y": -2.75,
+          "z": 0.0
+        },
+        "cell_origin": {
+          "x": -2.5,
+          "y": -3.25,
+          "z": 0.0
+        },
+        "reference_particle": {
+          "x": -1.9900000095367432,
+          "y": -2.8299999237060547,
+          "z": 0.0
+        },
+        "observed_particle": {
+          "x": -1.9900000095367432,
+          "y": -2.8299999237060547,
+          "z": 0.0
+        },
+        "failure": ""
+      },
+      "level4_to_level7": {
+        "passed": true,
+        "level5_loaded": true,
+        "level5_interior_refill": true,
+        "level6_loaded": true,
+        "level6_first_layer": true,
+        "level6_final_layer": true,
+        "level7_loaded": true,
+        "level7_box_cavity_refilled": true,
+        "level5_tnt_taps": 5,
+        "level6_tnt_taps": 4,
+        "dynamic_guides_dismissed": 0,
+        "failure": "",
+        "scope": "The actual original core scene starts at level 4 via isolated SQLite. Real result buttons advance into levels 5–7. Recorded natural swaps exercise the fixed original boards, with explicit TNT and rocket placements for follow-up paths. Level 7 checks the originally blocked empty cells and their refill after the box barrier opens. Full natural solves, device input and original rendered parity remain outside this run."
+      },
+      "temporary_mirror_edits_restored": true,
+      "user_diagnostic_sha256": "1ceddd9e4f2199561ac52f5ab3feabd0a3d6f8c7e0fcfda7b4ffac0a7f8fb1fa"
+    },
+    "artifacts": {
+      "native_grass.py": {
+        "path": "C:/RMGrassRestore_20261105/native_grass.py",
+        "bytes": 10174,
+        "sha256": "2354e050149e8dde47746ec1965cc1d58dd19f83c3ffd6dae5807eeaacf58995"
+      },
+      "native_grass.json": {
+        "path": "C:/RMGrassRestore_20261105/native_grass.json",
+        "bytes": 2009771,
+        "sha256": "0a218d803efe68012ff548ded3e312ef92c9ea740ecbea239e22ad5137bec1e9"
+      },
+      "GrassRandomParityProbe.cs": {
+        "path": "C:/RMGrassRestore_20261105/GrassRandomParityProbe.cs",
+        "bytes": 5867,
+        "sha256": "babc27fdabced0693b6452ebbdcef7ab8c37af93148a1b3b2c7e1e3bc68a6cae"
+      },
+      "grass_parity_input.json": {
+        "path": "C:/RMGrassRestore_20261105/grass_parity_input.json",
+        "bytes": 620063,
+        "sha256": "e6ed874962bc20ce060cbf7aa49132a4a17b66811172922aa3b73e27cc456525"
+      },
+      "run_unity.py": {
+        "path": "C:/RMGrassRestore_20261105/run_unity.py",
+        "bytes": 9130,
+        "sha256": "3796f043aba3738f8be5dd66c8e794b18485a62f9e178aa5378792e07e12a424"
+      },
+      "source_manifest.json": {
+        "path": "C:/RMGrassRestore_20261105/source_manifest.json",
+        "bytes": 166054,
+        "sha256": "d7fd2e2d839540f36b7e2c0527905186e2932a3e0976491a78b132c3df77b8a5"
+      },
+      "levels4to7/grass_random_parity.json": {
+        "path": "C:/RMGrassRestore_20261105/levels4to7/grass_random_parity.json",
+        "bytes": 59,
+        "sha256": "6bf27abcfff3422c09661fbb034fb35b670e97bff5d8b5348b987fe59fe66431"
+      },
+      "level4/grass_after_match.png": {
+        "path": "C:/RMGrassRestore_20261105/level4/grass_after_match.png",
+        "bytes": 1222215,
+        "sha256": "083cbc8e7770cd4e24527385ed8f1b4cbe02807e22b2fa62fd4f81add5cbcfe2"
+      },
+      "levels4to7/core_grass_level6_light.png": {
+        "path": "C:/RMGrassRestore_20261105/levels4to7/core_grass_level6_light.png",
+        "bytes": 1329333,
+        "sha256": "414c1525de210dcc1483cd3c6666278957c7992da4f83369a0cacc0bd72d5364"
+      },
+      "baseline/result.json": {
+        "path": "C:/RMGrassRestore_20261105/baseline/result.json",
+        "bytes": 2269,
+        "sha256": "87280d21fb06912347403913f4bb4226684976f253e287d011761a9fa45dea45"
+      },
+      "level4/result.json": {
+        "path": "C:/RMGrassRestore_20261105/level4/result.json",
+        "bytes": 1218,
+        "sha256": "c6099c7eb9b73d96da105d09b611e574cf47dd5a40cb8e30aa47f8c2e687979b"
+      },
+      "level7/result.json": {
+        "path": "C:/RMGrassRestore_20261105/level7/result.json",
+        "bytes": 975,
+        "sha256": "70e16693f7bf6df4a41bf38c4e2ceb56af72b88484bf55c9acbc68f16b644e68"
+      },
+      "level71/result.json": {
+        "path": "C:/RMGrassRestore_20261105/level71/result.json",
+        "bytes": 1246,
+        "sha256": "038c93ef1acbdfe1acb2ba019e3c29d2d58fc186626092d4ec55c82891308954"
+      },
+      "levels4to7/result.json": {
+        "path": "C:/RMGrassRestore_20261105/levels4to7/result.json",
+        "bytes": 1254,
+        "sha256": "5f53eea249f4304d95409fc4cb3e6e43fc6cfa3bade1428679933829c9bfe5b7"
+      }
+    },
+    "limits": [
+      "Native renderer, neighbor notification and particle boundaries are instrumented ports.",
+      "Unity uses isolated progress and recorded gestures. Some later special activations are explicit verifier fixtures.",
+      "The original device pixels and complete 100-level parity remain unverified."
+    ]
+  }
+}

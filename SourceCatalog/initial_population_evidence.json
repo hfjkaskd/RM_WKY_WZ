@@ -1,0 +1,394 @@
+{
+  "full_objective_complete": false,
+  "production_application_account_win_fail_bound": false,
+  "production_game_manager_start_restore_bound": false,
+  "full_112_slot_level_factory_verified": false,
+  "runtime_game_manager_population_retry_restored": true,
+  "formal_first_board_population_kernel_bound": true,
+  "all_static_item_creation_restored": false,
+  "all_initial_item_models_restored": false,
+  "actual_home_scene_navigation_or_view_verified": false,
+  "original_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "9072c2a51bc5fff8719241c52128d601d53f948a5940676984151c993ba58915",
+  "restored_scope": [
+    "GameManager.StartLevel now calls its restored CreateItems implementation instead of a whole-method fixture/service boundary. Static-grid creation precedes filling models; restore updates non-predefined creation counts and returns1; fresh entry requires the parser and follows its live randomized flag and ShouldTryAgain decisions.",
+    "Each native retry removes late units, clears non-predefined generated counts, randomizes the captured parser and rereads the live grid before populating again. Static obstacles are not recreated by this retry loop. The exact original cap allows500 retries after the initial population but reports500; tests cover498/499/500/501 requested retries, errors and callback mutations.",
+    "CellGridManager.CreateItems is restored as OriginalGridItemPopulation. Its retained total iterator resets on each call, reads tiled/original IDs before skip decisions, skips cellType0 for non-restore and IDs0/13 for all origins, creates models, clears old mediation slots, publishes all three new slots, restores signed16-bit item data only for origin3, then emits the optional completion event.",
+    "Native OnCellGridInitialization chooses total iterator4, the total-bottom-left-vertical strategy. Formal first-board initialization now executes this runtime kernel and the existing real CoreItemModels/CellMediation owners, in72-model column-first order. Match prefab views are created after model population; box prefab views still await their actual goal/audio bindings. All72 models/cells/views and36 boxes are checked in actual Unity runtime.",
+    "The complete ILevelDataProvider shares the item-access contract with the population kernel. The current first-board raw fixed-data adapter explicitly covers supported fixed IDs; it does not impersonate a randomized LevelParser or a saved-level loader. Unsupported static/item/restore compositions still fail explicitly.",
+    "Real active-session Start, fresh and packed saved move getters, goal tuples, shared exit flag, Stopwatch and private SQLite attempt/reopen still pass through the entry integration. Actual player input transport still reaches swap/explosion/refill/move owners; normal victory conversion, result/reward, Continue, grid reset and pooled-view cleanup remain operational under the existing explicit service composition."
+  ],
+  "entry_native_verification": {
+    "passed": true,
+    "cases": 4616,
+    "scope": "Execute original ARM64 GameManager.StartGame/RestoreGame/StartLevel/CreateItems.\n\nSession.Start, feature services, life/storage/network/analytics, LevelContext\nactivation, goals/moves/parser/grid/item/tutorial/save/sorting and Stopwatch\nare explicit typed boundaries. Native branching, captured/re-read owners,\nprovider dispatch, entry origin/exit flag writes and failure order execute\nfrom the ELF, including initial population/retry/cap/restore ordering. Only\nside-level diagnostic formatting is skipped. This does\nnot prove a production application factory, real scene startup, restore-file\nformat, Home navigation, rendered parity or mobile execution.",
+    "original_rvas": [
+      "0x1e38b40",
+      "0x1e38a30",
+      "0x1e3acd0",
+      "0x1e3bb98"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/GameStartHarness.cs",
+        "sha256": "608e675ee6a22fcd946bd7fbc39da3abfb9c66330007bc36807424486dea2305"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGameStart.cs",
+        "sha256": "63a4246172d1baf20faa8dbc7d0a5b25d40f904679e35053cfbb2f36528231a1"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGameInitialPopulation.cs",
+        "sha256": "ed63b4914c2a6656007d6fffe587e7c4757c0bc619e2798942d7240d4d3edca0"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGameExitManager.cs",
+        "sha256": "59fd78326def7232ea7c722abc5da97f2db8cee81107040d133c4b0e292a8af4"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGridItemPopulationData.cs",
+        "sha256": "9fad46ee95232b89a2bc242836164375aaf12aa95d23bb6c3a1e9211bb8c6d99"
+      },
+      {
+        "path": "SourceCatalog/verify_game_start.py",
+        "sha256": "847adc477ff9a5a7b965cd46c8eb738ac91562fcc8615e25c4470ffe5a7988aa"
+      }
+    ]
+  },
+  "grid_population_native_verification": {
+    "passed": true,
+    "cases": 2428,
+    "scope": "Execute original ARM64 CellGridManager.CreateItems and GridIterator traversal.\n\nData-provider, item-model creation, cell mediation, saved-cell/nullable/value\ndecode, item-save loading and initialized-event callbacks are explicit ports.\nThe original loops, skip gates, late null failures, signed short restore,\nevent order and repeated iterator reset execute from ELF. Actual production\nmediation/models/prefab views are separately checked in the unchanged scene;\nthis does not prove all item/static/restore implementations or mobile parity.",
+    "original_rvas": [
+      "0x320f5a0",
+      "0x318ec2c",
+      "0x318ecc8"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/GridItemPopulationHarness.cs",
+        "sha256": "4a66252263d5a6ee54174e5bf5cbc3cc8824190e0e0bc9fd057d73601eb29c37"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGridItemPopulation.cs",
+        "sha256": "868d42001aa8459c3db19a27b4e0dfda1a7e99b777ca37f4c698f1ff81663336"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGridIterator.cs",
+        "sha256": "0b9e6deb38a95eb3fa389de27b391c84963959c444c49747f051d9f244896b60"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGridItemPopulationData.cs",
+        "sha256": "9fad46ee95232b89a2bc242836164375aaf12aa95d23bb6c3a1e9211bb8c6d99"
+      },
+      {
+        "path": "SourceCatalog/verify_grid_item_population.py",
+        "sha256": "64fa4c6e53bd1b9c05a9c3215859553be80b980ef6d94f3336d8a6176e064c92"
+      }
+    ]
+  },
+  "original_methods": [
+    {
+      "rva": "0x1e38a30",
+      "name": "Royal.Scenes.Game.Context.Units.GameManager$$RestoreGame",
+      "body_sha256": "41b35adad38268eec06e647e3c959ee4e13d769626ec6d9deec78efbab52ed30"
+    },
+    {
+      "rva": "0x1e38b40",
+      "name": "Royal.Scenes.Game.Context.Units.GameManager$$StartGame",
+      "body_sha256": "9a974ece76bec85fe245af9ede8c7676b40ef24133479e7722e4f237e3be3a6a"
+    },
+    {
+      "rva": "0x1e3acd0",
+      "name": "Royal.Scenes.Game.Context.Units.GameManager$$StartLevel",
+      "body_sha256": "ccfc20f3ff7378271b98f92784c03e9de21db1371c999e2a98a53d5fe59e8950"
+    },
+    {
+      "rva": "0x1e3bb98",
+      "name": "Royal.Scenes.Game.Context.Units.GameManager$$CreateItems",
+      "body_sha256": "b4bd5fc865171764f702f35e848b72b48d0872cb9b6a1ea9288207b4b1b892a4"
+    },
+    {
+      "rva": "0x318ec2c",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.GridIterator$$Reset",
+      "body_sha256": "18dde40135f7c30f5e75caf2d9d52d624ed7c32f84ebf53f28a7155eb11b91c3"
+    },
+    {
+      "rva": "0x318ecc8",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.GridIterator$$MoveNext",
+      "body_sha256": "feb5e5407140372d43e7aff3addbc6c435e6ea51541c3f03bcdedb3f5dfac12d"
+    },
+    {
+      "rva": "0x320a5e4",
+      "name": "Royal.Scenes.Game.Levels.Units.CellGridManager$$InitIterators",
+      "body_sha256": "81c233f4062c1823cb167d5ca854bdfb0797b20cc62c964cfb7a45ddad5b4c53"
+    },
+    {
+      "rva": "0x320adfc",
+      "name": "Royal.Scenes.Game.Levels.Units.CellGridManager$$OnCellGridInitialization",
+      "body_sha256": "7ddca8083afb5b240f733ad2fe5971ea22e342614ac6249da372db5163e72cff"
+    },
+    {
+      "rva": "0x320f5a0",
+      "name": "Royal.Scenes.Game.Levels.Units.CellGridManager$$CreateItems",
+      "body_sha256": "7edd8cd497fa171e80f01cfcf409ba413c103abe46e1e0afcdc3788c5e88bfb5"
+    }
+  ],
+  "background_verifications": [
+    {
+      "passed": true,
+      "test": "initial-population",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "9072c2a51bc5fff8719241c52128d601d53f948a5940676984151c993ba58915",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_initial-population.log",
+      "elapsed_seconds": 106.29,
+      "batch": {
+        "passed": true,
+        "test": "initial-population",
+        "failure": "",
+        "timestamp_utc": "2026-10-29T01:11:18.0397492Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    },
+    {
+      "passed": true,
+      "test": "remaining-coins-normal",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "9072c2a51bc5fff8719241c52128d601d53f948a5940676984151c993ba58915",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+      "elapsed_seconds": 101.27,
+      "batch": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "failure": "",
+        "timestamp_utc": "2026-10-29T01:13:49.4362447Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    }
+  ],
+  "game_start_integration": {
+    "passed": true,
+    "actual_session_start_verified": true,
+    "fresh_move_goal_models_verified": true,
+    "restore_move_goal_models_verified": true,
+    "restore_preserves_session_verified": true,
+    "sqlite_reopen_verified": true,
+    "formal_initial_models_verified": true,
+    "fresh_left_moves": 30,
+    "restored_left_moves": 19,
+    "restored_made_moves": 11,
+    "restored_box_goal": 7,
+    "level_try_count": 1,
+    "formal_models": 72,
+    "formal_boxes": 36,
+    "failure": "",
+    "trace": [
+      "team",
+      "prepare-fresh",
+      "cells",
+      "static",
+      "views-fresh",
+      "before",
+      "prepare-saved",
+      "cells",
+      "static",
+      "counts-update",
+      "views-saved",
+      "after"
+    ],
+    "scope": "Formal72 initial models/cells/prefab views now use the runtime population kernel and real mediation. Separate entry fixture uses real active-session Start, fresh/saved goal/move models,86-bit getters, shared exit flag, Stopwatch and SQLite attempt/reopen. Entry fixture application/feature/lives/context/grid/tutorial/save/restore/sorting/analytics remain explicit boundaries; this is not full production startup, all-item/static/restore implementations, original-rendered parity or mobile proof."
+  },
+  "player_input_regression": {
+    "passed": true,
+    "physical_drag_verified": false,
+    "tnt_activated": false,
+    "lightball_activated": false,
+    "rocket_activated": false,
+    "propeller_activated": false,
+    "propeller_flight": 0.0,
+    "propeller_trace": [],
+    "propeller_max_scale": 0.0,
+    "blocked_original_box_holes": 0,
+    "propeller_max_loop": 0,
+    "propeller_takeoff_instances": 0,
+    "propeller_hit_instances": 0,
+    "propeller_max_operations": 0,
+    "rocket_orientation": 0,
+    "rocket_max_operations": 0,
+    "rocket_first_flight": 0.0,
+    "rocket_second_flight": 0.0,
+    "sent_rays": 0,
+    "reached_rays": 0,
+    "completed_rays": 0,
+    "completed_lightball_activations": 0,
+    "rocket_created": true,
+    "tnt_created": false,
+    "lightball_created": false,
+    "propeller_created": true,
+    "failure": "",
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "left_moves": 20,
+    "goals_left": 23,
+    "created_refills": 76,
+    "created_specials": 2,
+    "scope": "Frame-separated recorded device samples through native GameTouchListener into formal production scene services. Checks invalid swap spends0, accepted swaps spend1, first triple/three box goals/six refills, 10accepted swaps and naturally observed special creation patterns (each requested type also has its own activation mode), automatic cascades, original creation coroutines and all72 model slots/no holes/no freeze/landing tolerance. Fails on runtime errors/exceptions. Shadow native match search only chooses gestures and never mutates live cells. Does not verify physical drag timing, special activation/combos, complete session startup, settlement or original rendered parity."
+  },
+  "normal_settlement_regression": {
+    "account_area_data_restored": true,
+    "actual_game_context_deactivation_verified": true,
+    "actual_level_pool_recycled": true,
+    "inactive_level_updates_stopped": true,
+    "home_scene_load_requests": 1,
+    "actual_game_exit_manager_verified": true,
+    "result_dialog_cleared": true,
+    "result_view_destroyed": true,
+    "result_flow_completed": true,
+    "game_state_after_continue": 0,
+    "passed": true,
+    "skipped": false,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": false,
+    "first_level_skip_rejected": true,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-1ff1c6c0e96e4f7cb1fe403655bb45fb.sqlite",
+    "result_exit_requests": 1,
+    "skip_ui_level": 1,
+    "initial_remaining_moves": 25,
+    "converted_moves": 25,
+    "unconverted_moves": 0,
+    "reward_coins": 79,
+    "collections": 27,
+    "peak_coin_views": 69,
+    "peak_pilots": 69,
+    "peak_operation5": 69,
+    "native_departure_count": 69,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2079,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 11.513275146484375,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches the actual GameExit manager, NoGame state, no-loading UI preparation and real DialogManager.ClearDialogs/UiDialog force-close/flow completion once. Its native exit event precedes the shouldExitGame write; actual Unity destruction and input rejection are checked two frames later. Actual Unity GameContext exit dispatch now clears late callbacks and active publication, resets the fixture-bound functional units, stops real local-move/manual coroutines and recycles every spawned level-pool view. Inactive game-unit/clock dispatch and the Home-load request boundary are checked. The full112-slot level factory, global tween/Animator/camera/touch owners, backdrop, scene loading, Home flags/area/sliding text, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Area restoration now executes the native parser and original six-task Resources config on initial load and reopened-account load, without saving defaults. Feature/clock/Home view/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "fbf1c1fa46d5673e438500e98796dce356fd3c1747fde34788b63414617e5f6c"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GameStartVerification.cs",
+      "sha256": "0598718764ffa4dedf2a15d5f8c5d42ecd32776bba9293c8b7e9f1b4e8dfb0f2"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameExitManager.cs",
+      "sha256": "59fd78326def7232ea7c722abc5da97f2db8cee81107040d133c4b0e292a8af4"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameInitialPopulation.cs",
+      "sha256": "ed63b4914c2a6656007d6fffe587e7c4757c0bc619e2798942d7240d4d3edca0"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameInitialPopulation.cs.meta",
+      "sha256": "196c392bf85737b3150150ab38b4010e380b1120b049d58282c4cbf562f39c07"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameStart.cs",
+      "sha256": "63a4246172d1baf20faa8dbc7d0a5b25d40f904679e35053cfbb2f36528231a1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameStartOwners.cs",
+      "sha256": "15f30481712a59a9cec367b4a5d626be3129ca336d96af2ad0e52ae37d16d440"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGridItemPopulation.cs",
+      "sha256": "868d42001aa8459c3db19a27b4e0dfda1a7e99b777ca37f4c698f1ff81663336"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGridItemPopulation.cs.meta",
+      "sha256": "156749f75a18661e2060bb89927f7bef0e066e9e0cf239813cb9cfc2852c05d9"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGridItemPopulationData.cs",
+      "sha256": "9fad46ee95232b89a2bc242836164375aaf12aa95d23bb6c3a1e9211bb8c6d99"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGridItemPopulationData.cs.meta",
+      "sha256": "cbbaa61e3420b04baf80181ddd9056c2362a5740d5e3ceded61364fd879b3d5c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGridIterator.cs",
+      "sha256": "0b9e6deb38a95eb3fa389de27b391c84963959c444c49747f051d9f244896b60"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "e6659709c4afaea0cd115a4c0118f2de5eb2159981c1e1af03c9adcdd6851ace"
+    },
+    {
+      "path": "SourceCatalog/GameStartHarness.cs",
+      "sha256": "608e675ee6a22fcd946bd7fbc39da3abfb9c66330007bc36807424486dea2305"
+    },
+    {
+      "path": "SourceCatalog/GridItemPopulationHarness.cs",
+      "sha256": "4a66252263d5a6ee54174e5bf5cbc3cc8824190e0e0bc9fd057d73601eb29c37"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "ab6d22956c1d2086c97b30d0b569d59744c7127d802fa5389acffda43e928361"
+    },
+    {
+      "path": "SourceCatalog/verify_game_start.py",
+      "sha256": "847adc477ff9a5a7b965cd46c8eb738ac91562fcc8615e25c4470ffe5a7988aa"
+    },
+    {
+      "path": "SourceCatalog/verify_grid_item_population.py",
+      "sha256": "64fa4c6e53bd1b9c05a9c3215859553be80b980ef6d94f3336d8a6176e064c92"
+    }
+  ],
+  "failure_history": {
+    "report": "SourceCatalog/verification_history/initial_population_meta_guid/background.json",
+    "log": "SourceCatalog/verification_history/initial_population_meta_guid/batch.log",
+    "root_cause": "New population script meta GUID had33 hexadecimal characters. Unity ignored the script and compilation failed. Fixed the source meta to32 characters, then reran the unchanged-source background checks; no Editor-only runtime fallback or cache deletion."
+  },
+  "remaining_gaps": [
+    "FoundationController still constructs the local first board without the production Application/UserContext/account/WinFail/GameManager entry factory. The full user lifecycle is incomplete; explicit fixture boundaries are not production services.",
+    "CreateStaticItems concrete obstacle models, complete LevelParser PrepareGrid/RandomizeTileGrid, Shuffle/PossibleMatchFinder, full item/filling model factories, non-predefined creation-count owners and actual saved loader/item-data behavior are still required. The retry orchestration and populated fixed first-board kernel are restored, not all of their service implementations.",
+    "The formal first-board composition rejects static obstacle/water/shifter/unsupported initial item data and has no bound saved-level loader. This change does not open unsupported levels using approximations.",
+    "Home/retry/next-level navigation, every level/event branch, exact visual/audio/animation parity, country/AB/GM/default US routing and Android/iOS execution remain unproven. Existing SDK behavior is unchanged; Android SQLite approval remains unanswered and no libsqlite3.so is added."
+  ],
+  "performance": "Native low-frequency initialization uses retained iterator/model state and existing prefab pools; no per-frame allocations or bulk artwork preload are added. Retry cap and order are preserved. Concrete randomization should operate on models/data before views to avoid CPU/GC/resource-loading spikes; high-cost full-scene recreation is not introduced. Validation reuses the isolated cache and hidden two-worker editor sequentially; source files stay frozen through final fingerprinting.",
+  "current_possible_moves_evidence": "SourceCatalog/possible_moves_evidence.json",
+  "current_possible_moves_source_snapshot_sha256": "f23eef56f3dc4694bbe871ae4109995105f180b5c2dfe04102241392a33c3975",
+  "current_generated_counts_evidence": "SourceCatalog/generated_counts_evidence.json",
+  "current_generated_counts_source_snapshot_sha256": "486e64b0a987d902779db5b557aa56714f48871c99f5a89012c7023e9a071fb7"
+}

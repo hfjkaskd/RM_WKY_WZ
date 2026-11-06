@@ -1,0 +1,368 @@
+{
+  "schema": 1,
+  "baseline_commit": "4a71fef646a19acec38cd25a7e5a7dc97fbce9cb",
+  "verified_utc": "2026-11-05T08:26:32.662066+00:00",
+  "source": {
+    "canonical_commit": "4a71fef646a19acec38cd25a7e5a7dc97fbce9cb",
+    "build_method": "Canonical Git blobs for the existing dependency selection; existing Unity build cache retained.",
+    "selected_source_files": 3526,
+    "build_helper_sha256": "0b8521fa89bf36c0053843386562cc024cc0497e3b959a9bffb7d770888c5ed7",
+    "runtime_test_hooks_added": false
+  },
+  "apk": {
+    "path": "C:/RMAndroidRuntime_20261105/RoyalMatch-Core-1-100-4a71fef-arm64.apk",
+    "sha256": "5b3747cc0c664585d4673cad0537d2455ebb4115b2af0fafd66243fd6462f2b4",
+    "bytes": 46648361,
+    "package": "com.royalmatch.core.recovery",
+    "abi": "arm64-v8a",
+    "version_name": "1.0",
+    "version_code": 1,
+    "signature_valid": true,
+    "certificate": "Android Debug",
+    "numbered_level_files_verified": 100,
+    "level_101_absent": true,
+    "all_native_elf_load_segments_at_least_16k_aligned": true,
+    "tutorial_hand_rig": {
+      "TutorialHandRig": {
+        "sha256": "9619f3f5b0d430b9509edde720e23be270cafce24a3c01ad21340fae8dc30aec",
+        "bytes": 33553
+      }
+    }
+  },
+  "execution": {
+    "platform": "Android 15 emulator (SDK 35)",
+    "hardware": "MuMu x86_64 with ARM64 native translation",
+    "render_size": [
+      1080,
+      2360
+    ],
+    "input": "Android OS input tap/swipe delivered to the production UnityPlayer input path",
+    "physical_touch_verified": false,
+    "fresh_install_on_previously_unused_emulator": true,
+    "save_edits_or_power_fixtures": false,
+    "accepted_level1_gameplay_actions": 10,
+    "recorded_actions_including_rejected_swipes_and_continue": 14,
+    "level1_win_result_visible": true,
+    "continue_loaded_level2": true,
+    "cold_restart_restored_level2_attempt": true,
+    "cold_restart_cell_center_comparison": {
+      "method": "Exact RGB comparison of 32x32 center patches in all 81 cells; screenshot observations also confirm 26 moves and 34 boxes before and after restart.",
+      "compared_cells": 81,
+      "different_cells": [],
+      "patch_pixels_per_cell": 1024,
+      "passed": true
+    },
+    "unity_exception_or_crash_log_matches": 0,
+    "log_limit": "Emulator platform E-level translation, graphics and debugger messages remain in the captured logs. No Unity error, exception, assertion or native crash matched the review filters.",
+    "device_properties": {
+      "ro.build.version.release": "15",
+      "ro.build.version.sdk": "35",
+      "ro.product.cpu.abi": "x86_64"
+    }
+  },
+  "observations": [
+    {
+      "capture": "android_first_entry.png",
+      "level": 1,
+      "moves": 30,
+      "boxes": 36,
+      "observation": "Fresh first entry shows the fixed opening board, original guide text, lit cells, live hand, King, garden, HUD and four locked toolbar slots."
+    },
+    {
+      "capture": "android_guide_wrong_cell.png",
+      "level": 1,
+      "moves": 30,
+      "boxes": 36,
+      "observation": "Swipe outside the directed cells is rejected; opening guide remains."
+    },
+    {
+      "capture": "android_first_match.png",
+      "level": 1,
+      "moves": 29,
+      "boxes": 33,
+      "observation": "The directed (5,5) to (5,4) swap is accepted; guide disappears, three boxes break and the board refills."
+    },
+    {
+      "capture": "android_second_match.png",
+      "level": 1,
+      "moves": 28,
+      "boxes": 28,
+      "observation": "The ordinary (4,4) to (3,4) swap leaves one TNT at (3,2). The lightball and rocket in the historical user screenshot are absent from this input sequence."
+    },
+    {
+      "capture": "android_tnt_tap.png",
+      "level": 1,
+      "moves": 27,
+      "boxes": 15,
+      "observation": "TNT tap activates, consumes one move and resolves refills and another generated TNT."
+    },
+    {
+      "capture": "android_after_four_moves.png",
+      "level": 1,
+      "moves": 26,
+      "boxes": 12,
+      "observation": "TNT swap from (3,2) to (2,2) activates, breaks the remaining left boxes and generates a rocket through the resulting cascade."
+    },
+    {
+      "capture": "android_right_crowns_match.png",
+      "level": 1,
+      "moves": 25,
+      "boxes": 9
+    },
+    {
+      "capture": "android_right_leaves_match.png",
+      "level": 1,
+      "moves": 24,
+      "boxes": 7
+    },
+    {
+      "capture": "android_right_vertical_match.png",
+      "level": 1,
+      "moves": 23,
+      "boxes": 6
+    },
+    {
+      "capture": "android_right_red_match.png",
+      "level": 1,
+      "moves": 22,
+      "boxes": 3
+    },
+    {
+      "capture": "android_bottom_leaves_match.png",
+      "level": 1,
+      "moves": 21,
+      "boxes": 2
+    },
+    {
+      "capture": "android_penultimate_box.png",
+      "level": 1,
+      "phase": "remaining moves",
+      "moves_displayed_during_conversion": 10,
+      "reward_displayed_during_conversion": 10,
+      "observation": "The tenth accepted gesture completes the last two boxes through a cascade. The capture is during automatic remaining-move conversion, not at its entry."
+    },
+    {
+      "capture": "android_level1_result.png",
+      "level": 1,
+      "phase": "win result",
+      "moves": 0,
+      "displayed_reward": 61,
+      "observation": "Automatic conversion completes and Level 1 / Well Done / Continue appears. Ten accepted actions spent ten of the initial thirty moves before conversion."
+    },
+    {
+      "capture": "android_continue_to_level2.png",
+      "level": 2,
+      "moves": 27,
+      "boxes": 36,
+      "observation": "An Android tap on the standard Continue Button enters the authored 9x9 second board."
+    },
+    {
+      "capture": "android_level2_first_match.png",
+      "level": 2,
+      "moves": 26,
+      "boxes": 34,
+      "observation": "A normal swap at (4,7) to (4,6) creates a rocket, removes two boxes and refills."
+    },
+    {
+      "capture": "android_invalid_swap_return.png",
+      "level": 2,
+      "moves": 26,
+      "boxes": 34,
+      "observation": "Nonmatching top-row swap returns to its original cells without spending a move."
+    },
+    {
+      "capture": "android_cold_restart.png",
+      "level": 2,
+      "moves": 26,
+      "boxes": 34,
+      "observation": "After Home, force-stop of this package and a cold launch with a new PID, the second-level attempt is restored without clearing data."
+    }
+  ],
+  "original_comparison": {
+    "pinned_original_version": 38911,
+    "recovered_level1": "00001v02_L",
+    "opening_moves": 30,
+    "opening_boxes": 36,
+    "opening_size": [
+      9,
+      8
+    ],
+    "opening_guide_swap": [
+      [
+        5,
+        5
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "coordinate_origin": "bottom-left, zero-based",
+    "historical_user_screenshot": "First level after two spent moves; not the fresh opening. The second input and original cascade behind that saved screenshot have not been identified.",
+    "original_current_screen": "First terms/privacy consent on the original app; no consent button pressed by the agent.",
+    "live_original_level_frame_parity_verified": false
+  },
+  "limitations": [
+    "This run verifies level 1 to its result and level 2 input and restoration on an emulator, not all 100 levels on Android.",
+    "The emulator translates ARM64 on x86_64. Physical ARM64-device input, performance and pixels are unverified.",
+    "The original app remains at its first consent screen. No live original level or frame comparison was made.",
+    "Android defeat/retry, all later-level guides and iOS execution are outside this run."
+  ],
+  "artifacts": {
+    "build_source_manifest.json": {
+      "path": "C:/RMAndroidRuntime_20261105/build_source_manifest.json",
+      "bytes": 805911,
+      "sha256": "b9962c2142dcd03ee99e6a57ee03d23a546451258a5b50b2c4997891e2608495"
+    },
+    "android_build.log": {
+      "path": "C:/RMAndroidRuntime_20261105/android_build.log",
+      "bytes": 723619,
+      "sha256": "a26e7fdbedfd0fdea4a88d334a741b105f236abbdc1fe2b43e3efe9b6f904954"
+    },
+    "apk_verification.json": {
+      "path": "C:/RMAndroidRuntime_20261105/apk_verification.json",
+      "bytes": 11346,
+      "sha256": "fbe99d294dd1c13227e1283fd17a8348d352efc82461af1d62c7a46f4bb856f1"
+    },
+    "apk_hand_rig.json": {
+      "path": "C:/RMAndroidRuntime_20261105/apk_hand_rig.json",
+      "bytes": 138,
+      "sha256": "f1959c21f64f4d9838395742d092972911415b0faa878d2282bfe37f02dabef0"
+    },
+    "android_launch.json": {
+      "path": "C:/RMAndroidRuntime_20261105/android_launch.json",
+      "bytes": 789,
+      "sha256": "e214b8c1589e9a880b3e8adfb275147abc0b8b15f9d56042d61837b83663c117"
+    },
+    "android_gestures.json": {
+      "path": "C:/RMAndroidRuntime_20261105/android_gestures.json",
+      "bytes": 4912,
+      "sha256": "7fc5ab3747a134974e61ad2778f73341db12ec3cebacd03e842c65b421a76ab7"
+    },
+    "android_full_run.log": {
+      "path": "C:/RMAndroidRuntime_20261105/android_full_run.log",
+      "bytes": 15105,
+      "sha256": "7cd165aa0edb2d81d26f16e7c4a9d71d3f65acf63904fc939dac39ab7b100882"
+    },
+    "android_restart.log": {
+      "path": "C:/RMAndroidRuntime_20261105/android_restart.log",
+      "bytes": 14353,
+      "sha256": "00180f1a53901f87388572a24afa4f4dccee941dfe3701ed690f7b1ab10654e5"
+    },
+    "android_error_review.json": {
+      "path": "C:/RMAndroidRuntime_20261105/android_error_review.json",
+      "bytes": 1570,
+      "sha256": "ce47495ebd392ff52a7bbd9c5bf6339b669691dc8900a5c59fb57ee731440c62"
+    },
+    "android_restart.json": {
+      "path": "C:/RMAndroidRuntime_20261105/android_restart.json",
+      "bytes": 2129,
+      "sha256": "68437a404c8210be81b880045704c4115ce141b9c64d9caa6b9b42d132eec09b"
+    },
+    "android_restart_board_comparison.json": {
+      "path": "C:/RMAndroidRuntime_20261105/android_restart_board_comparison.json",
+      "bytes": 272,
+      "sha256": "037770d5724f0744c15d1070e0b58d03d68297cdb119085539d60acd8b353e71"
+    },
+    "android_action.py": {
+      "path": "C:/RMAndroidRuntime_20261105/android_action.py",
+      "bytes": 1784,
+      "sha256": "778fd8bcc5e219564ebf13869690967ee7fe490f2bda87513307ca838467fa2e"
+    },
+    "build_current.py": {
+      "path": "C:/RMAndroidRuntime_20261105/build_current.py",
+      "bytes": 5668,
+      "sha256": "d89d139a9c6634432160310b478a8159deef13b6ddec2df6c4fc6b1ddb649810"
+    },
+    "verify_current.py": {
+      "path": "C:/RMAndroidRuntime_20261105/verify_current.py",
+      "bytes": 3839,
+      "sha256": "887fa90fefb4f06cf9c0bf76285696086f900144843680084171236fcd3274ec"
+    },
+    "android_first_entry.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_first_entry.png",
+      "bytes": 1945116,
+      "sha256": "5f6ace5d47515cff45783db29e4b555e7ed20fed83541b63b83f2f89cc648203"
+    },
+    "android_guide_wrong_cell.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_guide_wrong_cell.png",
+      "bytes": 1943202,
+      "sha256": "23497728fd1f7f0e32a958f344cb7ee4a7c81e55622c667886c983268a254ec3"
+    },
+    "android_first_match.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_first_match.png",
+      "bytes": 2636116,
+      "sha256": "1c4faa9dd948b38a3c765e464d49ec324921d70fbd018c4266ffd966954149a3"
+    },
+    "android_second_match.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_second_match.png",
+      "bytes": 2641996,
+      "sha256": "638c79a47a30f8361cca71a7f78e60c5ac9493601e9f038496c01d2164e9668e"
+    },
+    "android_tnt_tap.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_tnt_tap.png",
+      "bytes": 2644664,
+      "sha256": "90915dc396e95cb56ea31501249e1288a889a0730458ea2529d48b53076625ae"
+    },
+    "android_after_four_moves.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_after_four_moves.png",
+      "bytes": 2656006,
+      "sha256": "4ab72a1f3701a726440b3afb41db2d52f83a9f39260d0b534ff0de490a38b303"
+    },
+    "android_right_crowns_match.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_right_crowns_match.png",
+      "bytes": 2648268,
+      "sha256": "7cf9023bf3866f8d8c49bc448a473464e6e8c8ba0ac1ad2ba81d09d718cb6f2e"
+    },
+    "android_right_leaves_match.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_right_leaves_match.png",
+      "bytes": 2636790,
+      "sha256": "ef37a91dbf382aebfaafdb2f55a29c936bb4454aa7e6b0e594c9cd4abf1d6488"
+    },
+    "android_right_vertical_match.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_right_vertical_match.png",
+      "bytes": 2638990,
+      "sha256": "6f3aca07ee9d3273816f46a6f2ff43df356f3b792936cab0e03252678a1e9439"
+    },
+    "android_right_red_match.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_right_red_match.png",
+      "bytes": 2626955,
+      "sha256": "6e890866b03d0b4f782812c3077e3e66b3bd20caf31b8c220ddd62e61ce82c23"
+    },
+    "android_bottom_leaves_match.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_bottom_leaves_match.png",
+      "bytes": 2624705,
+      "sha256": "1c59879d5ccb0f004a166ba21e82bfd42bb6029aea7351bf9de4b3996c81b726"
+    },
+    "android_penultimate_box.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_penultimate_box.png",
+      "bytes": 2709893,
+      "sha256": "2927d81e221074917e49fdc690f0a48569cd6248c649cdeacd27b23cd81e4b33"
+    },
+    "android_level1_result.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_level1_result.png",
+      "bytes": 1450337,
+      "sha256": "0f630e9da5fd52ba4028729e5d83506b563b87f96b1b81e826847c678e79ba0d"
+    },
+    "android_continue_to_level2.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_continue_to_level2.png",
+      "bytes": 2645954,
+      "sha256": "051c1a5e72d4995c114cbedceb087143ba0a69c2cf801f788abb59c10d516c5e"
+    },
+    "android_level2_first_match.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_level2_first_match.png",
+      "bytes": 2651995,
+      "sha256": "9bcd947d6a9b1985de47fb38c43cc04de48cb55579ab04044fab251e2dc4aaef"
+    },
+    "android_invalid_swap_return.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_invalid_swap_return.png",
+      "bytes": 2649597,
+      "sha256": "7d79bd1fb28aff2c14f675769ee95de484396edcce01afd9d0f56d007b0c0e39"
+    },
+    "android_cold_restart.png": {
+      "path": "C:/RMAndroidRuntime_20261105/android_cold_restart.png",
+      "bytes": 2650651,
+      "sha256": "3dc2bca10b2bea76d416f82cf3370938d79e728345289e70e88593dd576cb019"
+    }
+  }
+}

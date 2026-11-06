@@ -1,0 +1,89 @@
+{
+  "functions": [
+    {
+      "rva": "0x2ee896c",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$CopyFrom",
+      "disassembly_sha256": "fcdb22ccb32c588f4b4c87e6c7419476c78715c1e32916870bf71d88a52255e3"
+    },
+    {
+      "rva": "0x2ee89f4",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$SetFillingCell",
+      "disassembly_sha256": "4efb9362ef1309fc145377684d50576ea065feee0de589021ca98ec201e06ce5"
+    },
+    {
+      "rva": "0x2ee89fc",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$SetFallState",
+      "disassembly_sha256": "6d6af1f76081646251b069b2be4f701c335b201715aee2b3b013c24e0e687b8e"
+    },
+    {
+      "rva": "0x2ee8b1c",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$ManualUpdate",
+      "disassembly_sha256": "674afcc59ac718b7a81638eb805b14c744c903424f8178469b313a7881e910a6"
+    },
+    {
+      "rva": "0x2ee8cc8",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$StopIfReached",
+      "disassembly_sha256": "0483dccddebea1b757c140aeba418b72839a8ce452d8385bdd23c43e7ab452b6"
+    },
+    {
+      "rva": "0x2ee8dec",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$FallWithConstantSpeed",
+      "disassembly_sha256": "db5673e3005277d7e3f6b4d6fd202d2ba9717ecfab921eecae9a1e09a1527f34"
+    },
+    {
+      "rva": "0x2ee8e3c",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$ArrangeIsUnderNonFallBlockingAboveStaticItem",
+      "disassembly_sha256": "9c7f34c63cb4464fd5def77e67dba387120239af6d31765df663228fb3da1e81"
+    },
+    {
+      "rva": "0x2ee8fbc",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$FallToFillingCell",
+      "disassembly_sha256": "c495b8852a319691b80320c4c398bbb783477ebeca5fc7b3199ae4c848c658b4"
+    },
+    {
+      "rva": "0x2ee923c",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$FallToNextCell",
+      "disassembly_sha256": "7e9275c32e1c65840672973e93a08604277ff2b87c1fe50a1dfdf3487b59460b"
+    },
+    {
+      "rva": "0x2ee9404",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$GetAcceleratedSpeed",
+      "disassembly_sha256": "8da0be6817204094e4b3c2ac06974cadcbf3f97ed165367f783a18e1dc2e319d"
+    },
+    {
+      "rva": "0x2ee9458",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$SelectNextCell",
+      "disassembly_sha256": "1bf6003b2d1087ec6489d1726a49305f0e178690db662bf8626a215f8580123c"
+    },
+    {
+      "rva": "0x2ee9768",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$FallStraight",
+      "disassembly_sha256": "e43dca807a0f4399324e5471eab5cd4ac1a05d275d4b48054d9f08bdc0e535e5"
+    },
+    {
+      "rva": "0x2ee9dbc",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$FallCross",
+      "disassembly_sha256": "4016fbb354fb18361d4e586347da33ba65d28fe4ef7b54225f6ff3f7b64ccc48"
+    },
+    {
+      "rva": "0x2eea438",
+      "name": "Royal.Scenes.Game.Mechanics.Fall.FallComponent$$AngleTo",
+      "disassembly_sha256": "17368bd2598a06c1ff14c1b5d8ee7b6a591ac051f3923b6b95dd8db4447acf6a"
+    },
+    {
+      "rva": "0x2d742c0",
+      "name": "Royal.Infrastructure.Utils.Math.NumberExtensions$$Approximately",
+      "disassembly_sha256": "6a90aeb65efcb246d68a251c01d9cb0c71785c385fa0a5e8459c70dc7d788cde"
+    }
+  ],
+  "notes": [
+    "Normal FallComponent state changes, per-frame dispatch, accelerated movement, filling entry, next reservation and current-cell advancement are restored from actual ARM64 instructions. CopyFrom retains local start/animation state; SetFallState resets speed even when state is unchanged.",
+    "The StopIfReached and static-under arrangement comparisons use the actual ARM instruction direction; reconstructed pseudocode represented these float comparisons incorrectly. Approximate thresholds explicitly round to float32 so x64 Mono and ARM choose the same branch at boundaries.",
+    "Straight/cross collision blocking follows the lower item speed (0.9); filling admission follows 0.8 and the 1.5 gap. Mask, sorting, state/squash, fall-animation and SFX callbacks retain the native call order and partial state on callback failure.",
+    "271 sequences / 7105 commands execute actual native methods across full trajectories, target/current/next topology, freeze/occupancy, 20/28 speed caps, callback failures, missing services and exact threshold cases. Speed/time, discrete state and ordered callbacks compare exactly; position/start-position tolerance is 1e-6 cell. Maximum observed position error was 2.384185791015625e-7 cell. Do not describe cross-platform positions as bit-identical.",
+    "Native item/view/Transform/grid/static/time/SFX and CLR/type/interface/mediation storage are supplied boundaries. Native NumberExtensions.Approximately and angle calculation execute, including the Vector2.right static initialization. Managed comparison executes concrete runtime motion and bidirectional mediation.",
+    "Unity integration runs actual manager, target planner, board/grid traversal, filling placement/admission, motion, mediation and operation accounting for 180 simulated frames: four created items plus two initial items settle, current/next/target converge and operation zero releases. View/static/creation/SFX remain diagnostic inputs, not production bindings. The availability fixture honors the native missing-current-cell rejection (ItemModel 0x2b462f8), with fallable/non-swapping/no-static-blocker supplied.",
+    "Motion uses value structs, cached item/owner services and no per-frame LINQ, allocations, scene searches or transform lookup. Service setup is explicit. No Editor-only runtime fallback or substitute tween path is installed.",
+    "Full native constructor context lookup, master/fake motion and CopyFromMaster remain pending. Production ItemView mask/squash/roof/sorting/static/SFX ownership and availability predicates still require restoration and composition. The formal scene still has unbound per-item motion and lacks the player-driven resolution/refill/cascade loop."
+  ]
+}

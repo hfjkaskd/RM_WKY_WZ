@@ -1,0 +1,3245 @@
+{
+  "schema": 1,
+  "baseline": "e9120e9657e46117192623a528ccc78c23bdcc28",
+  "verified_utc": "2026-11-06T00:14:24.114263+00:00",
+  "original_version": 38911,
+  "full_current_scope_complete": false,
+  "original": {
+    "restore_entry": "GameUi.StartLevelWithoutAnimation.MoveNext 0x162c9c4 initializes top and bottom UI, visits current goals on the final board, and refreshes completed goals without prerequisites.",
+    "goal_panel": "GoalPanelUi.ForceUpdateGoalWithoutAnimation 0x18cc064 activates the check, hides the count and decrements the pending check count if the fast win flow is enabled.",
+    "win_gate": "WinFailManager.ManualUpdate 0x1edd990 waits for the complete set of goal checks before starting the win presentation."
+  },
+  "fix": {
+    "files": {
+      "Assets/Foundation/Runtime/CoreGameFlow.cs": {
+        "base": "c0ec07522dbd28a4ec8ebe0ed1f2ab512304c4436ce046d550a897a7aa72f472",
+        "current": "90e37bd366a71ee238335ab197174998219677035b47f1c092615d6c616f7d68"
+      },
+      "Assets/Foundation/Runtime/OriginalGoalPanelUi.cs": {
+        "base": "6266f42775b16e0699eb0bb3f37a519a5ad3bdbae8ab2d39e99896ad8b7dc5e0",
+        "current": "1002c1529c83d786ec16818c06f5c2fd8d39784534940ffde8d27764228dedcf"
+      },
+      "Assets/Foundation/Editor/CoreAttemptResumeVerification.cs": {
+        "base": "f208dfbef1822aa78895483e09943fb8598d4c19f89774fa2bfcd3de9a9818a3",
+        "current": "3b84e5054848c08a63d3a21b61c343c8560ae6b531a21e2efe075cdc0ee1d596"
+      }
+    },
+    "runtime": "Apply native completed-goal presentation before enabling play on the restored final board. Keep the silent check idempotent and apply the original no-entrance-animation route to saved attempts.",
+    "save_version_changed": false
+  },
+  "android_before_fix": {
+    "apk_source_commit": "e9120e9657e46117192623a528ccc78c23bdcc28",
+    "apk": "C:\\RMAndroidArrow_20261105\\RoyalMatch-Core-1-100-e9120e9-arm64.apk",
+    "sha256": "d0e46f4019b531b32d3afd778b02f0408dbe5aa9dadd545737af2a67c5317d95",
+    "signature_v2_verified": true,
+    "packaged_levels": 100,
+    "particle_depth_included": true,
+    "old_arrow_scenario": {
+      "wrong_row_cancel_preserved_free_use": true,
+      "boxes_cleared_by_free_arrow": 8,
+      "moves_before_after": [
+        27,
+        27
+      ]
+    },
+    "cold_resume": {
+      "verified_utc": "2026-11-05T23:59:38.597496+00:00",
+      "old_pid": "48510",
+      "pid": "50217",
+      "previous_apk_sha256": "54f870626c64afbc68000426481b7e2febfd17352c464a9cead2c2cedb27c102",
+      "installed_apk_sha256": "d0e46f4019b531b32d3afd778b02f0408dbe5aa9dadd545737af2a67c5317d95",
+      "install": "Performing Streamed Install\r\nSuccess: streamed 43640192 bytes\r\nSuccess\r\n",
+      "launch": "Starting: Intent { cmp=com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity\r\nTotalTime: 1052\r\nWaitTime: 1055\r\nComplete\r\n",
+      "android_version": "15",
+      "emulator_abi": "x86_64",
+      "serial": "127.0.0.1:5559",
+      "adb_server_port": 15038,
+      "data_cleared": false,
+      "matching_all_64_board_classes": true,
+      "capture": "l14_updated_resume.png",
+      "capture_sha256": "68b48c254a89c02213e0b0d11effeb5f16de737c8b4687e04efea80fdc735c78",
+      "state": {
+        "moves": 27,
+        "cupboards": [
+          {
+            "master": [
+              0,
+              0
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              6,
+              0
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              0,
+              2
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              6,
+              2
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              0,
+              4
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              6,
+              4
+            ],
+            "state": "Q"
+          }
+        ],
+        "regions": {
+          "(0, 0)": [
+            0.0,
+            0.0
+          ],
+          "(6, 0)": [
+            0.0,
+            0.0
+          ],
+          "(0, 2)": [
+            0.0,
+            0.0
+          ],
+          "(6, 2)": [
+            0.0,
+            0.0
+          ],
+          "(0, 4)": [
+            0.0,
+            0.0
+          ],
+          "(6, 4)": [
+            0.0,
+            0.0
+          ]
+        },
+        "boxes": 0,
+        "visible_grass": [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "rows": [
+          "YBGRGBGG",
+          "RYRBYRBR",
+          "QQGYRGQQ",
+          "QQYBGYQQ",
+          "QQBGRGQQ",
+          "QQYRBYQQ",
+          "QQRYGYQQ",
+          "QQRBRBQQ"
+        ],
+        "suspect": [],
+        "pending_matches": []
+      }
+    },
+    "first_swap_opened_cupboards": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "last_settled_move": {
+      "level": 14,
+      "move": 19,
+      "choice": {
+        "action": "swipe",
+        "source": [
+          4,
+          3
+        ],
+        "target": [
+          5,
+          3
+        ],
+        "score": 10.04,
+        "hit_cells": [],
+        "creation": 0
+      },
+      "accepted_move_count_confirmed": true,
+      "capture": "l14_move19_settled1.png",
+      "state": {
+        "moves": 8,
+        "cupboards": [],
+        "regions": {
+          "(0, 0)": [
+            109.33,
+            76.12
+          ],
+          "(6, 0)": [
+            100.84,
+            76.61
+          ],
+          "(0, 2)": [
+            101.94,
+            75.13
+          ],
+          "(6, 2)": [
+            98.96,
+            72.12
+          ],
+          "(0, 4)": [
+            105.39,
+            80.18
+          ],
+          "(6, 4)": [
+            102.07,
+            73.98
+          ]
+        },
+        "boxes": 0,
+        "visible_grass": [],
+        "rows": [
+          "BGRRYRBG",
+          "GRBGRYRR",
+          "GYYGRYCG",
+          "RRYBGBYR",
+          "BGGRBYBB",
+          "YRGHBRYR",
+          "CGBRFRYB",
+          "RBBRBVBB"
+        ],
+        "suspect": [],
+        "pending_matches": []
+      }
+    },
+    "settled_moves": [
+      {
+        "level": 14,
+        "move": 1,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            2,
+            2
+          ],
+          "target": [
+            3,
+            2
+          ],
+          "score": 40.3,
+          "hit_cells": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move01_two_doors.png",
+        "state": {
+          "moves": 26,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "Q"
+            },
+            {
+              "master": [
+                0,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "Q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "Q"
+            },
+            {
+              "master": [
+                6,
+                4
+              ],
+              "state": "Q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              54.31,
+              1.46
+            ],
+            "(6, 0)": [
+              0.0,
+              0.0
+            ],
+            "(0, 2)": [
+              55.03,
+              0.7
+            ],
+            "(6, 2)": [
+              0.0,
+              0.0
+            ],
+            "(0, 4)": [
+              0.0,
+              0.0
+            ],
+            "(6, 4)": [
+              0.0,
+              0.0
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "rows": [
+            "YBGRGBGG",
+            "RYGBYRBR",
+            "QQBYRGQQ",
+            "QQGBGYQQ",
+            "qqRGRGQQ",
+            "qqGYBYQQ",
+            "qqYYGYQQ",
+            "qqBBRBQQ"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 2,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            2,
+            3
+          ],
+          "target": [
+            3,
+            3
+          ],
+          "score": 48.1,
+          "hit_cells": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move02.png",
+        "state": {
+          "moves": 25,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "Q"
+            },
+            {
+              "master": [
+                0,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "Q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                4
+              ],
+              "state": "Q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              54.31,
+              1.46
+            ],
+            "(6, 0)": [
+              0.0,
+              0.0
+            ],
+            "(0, 2)": [
+              52.39,
+              0.7
+            ],
+            "(6, 2)": [
+              0.0,
+              0.0
+            ],
+            "(0, 4)": [
+              55.47,
+              0.58
+            ],
+            "(6, 4)": [
+              0.0,
+              0.0
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "rows": [
+            "YBYRGBGG",
+            "RYRBYRBR",
+            "qqYYRGQQ",
+            "qqGBGYQQ",
+            "qqGRRGQQ",
+            "qqBYBYQQ",
+            "qqYYGYQQ",
+            "qqBBRBQQ"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 3,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            5,
+            3
+          ],
+          "target": [
+            5,
+            4
+          ],
+          "score": 40.3,
+          "hit_cells": [
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              3
+            ]
+          ],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move03.png",
+        "state": {
+          "moves": 24,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                4
+              ],
+              "state": "Q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              54.31,
+              1.46
+            ],
+            "(6, 0)": [
+              54.43,
+              1.87
+            ],
+            "(0, 2)": [
+              52.39,
+              0.7
+            ],
+            "(6, 2)": [
+              53.63,
+              1.23
+            ],
+            "(0, 4)": [
+              55.47,
+              0.58
+            ],
+            "(6, 4)": [
+              0.0,
+              0.0
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "rows": [
+            "YBYGBRGG",
+            "RYRRGRBR",
+            "qqYBYYQQ",
+            "qqGYRYQQ",
+            "qqGBGBqq",
+            "qqBYBGqq",
+            "qqYYGGqq",
+            "qqBBRBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 4,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            4,
+            2
+          ],
+          "target": [
+            4,
+            3
+          ],
+          "score": 87.58,
+          "hit_cells": [
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              3
+            ]
+          ],
+          "creation": 12
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move04.png",
+        "state": {
+          "moves": 23,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              54.31,
+              1.46
+            ],
+            "(6, 0)": [
+              52.91,
+              1.87
+            ],
+            "(0, 2)": [
+              52.24,
+              0.7
+            ],
+            "(6, 2)": [
+              52.36,
+              1.23
+            ],
+            "(0, 4)": [
+              53.93,
+              0.58
+            ],
+            "(6, 4)": [
+              55.6,
+              1.15
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "rows": [
+            "YBYRYRGG",
+            "RYBBYYBR",
+            "qqYYGGqq",
+            "qqRGBRqq",
+            "qqYFYRqq",
+            "qqBRRYqq",
+            "qqYBFYqq",
+            "qqBBRBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 5,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            2,
+            1
+          ],
+          "target": [
+            2,
+            2
+          ],
+          "score": 63.28,
+          "hit_cells": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "creation": 12
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move05.png",
+        "state": {
+          "moves": 22,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              51.69,
+              1.47
+            ],
+            "(6, 0)": [
+              52.91,
+              1.87
+            ],
+            "(0, 2)": [
+              52.24,
+              0.7
+            ],
+            "(6, 2)": [
+              52.36,
+              1.23
+            ],
+            "(0, 4)": [
+              53.93,
+              0.58
+            ],
+            "(6, 4)": [
+              55.6,
+              1.15
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "rows": [
+            "YBGYYRGG",
+            "RYYRYYBR",
+            "qqBRGGqq",
+            "qqYBBRqq",
+            "qqRYYRqq",
+            "qqYGRYqq",
+            "qqYFFYqq",
+            "qqFRRBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 6,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            2,
+            3
+          ],
+          "target": [
+            2,
+            4
+          ],
+          "score": 57.58,
+          "hit_cells": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "creation": 22
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move06.png",
+        "state": {
+          "moves": 21,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              51.55,
+              1.47
+            ],
+            "(6, 0)": [
+              52.91,
+              1.87
+            ],
+            "(0, 2)": [
+              49.51,
+              0.7
+            ],
+            "(6, 2)": [
+              52.36,
+              1.23
+            ],
+            "(0, 4)": [
+              53.93,
+              0.58
+            ],
+            "(6, 4)": [
+              55.6,
+              1.15
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "rows": [
+            "YBYBYYGG",
+            "RYGYRGBR",
+            "qqBYGGqq",
+            "qqGRYRqq",
+            "qqYRGRqq",
+            "qqRGRYqq",
+            "qqTFFYqq",
+            "qqFRRBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 7,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            2,
+            1
+          ],
+          "target": [
+            2,
+            2
+          ],
+          "score": 108.58,
+          "hit_cells": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move07.png",
+        "state": {
+          "moves": 20,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              50.17,
+              1.46
+            ],
+            "(6, 0)": [
+              52.91,
+              1.87
+            ],
+            "(0, 2)": [
+              56.65,
+              74.45
+            ],
+            "(6, 2)": [
+              51.74,
+              1.23
+            ],
+            "(0, 4)": [
+              52.42,
+              2.15
+            ],
+            "(6, 4)": [
+              55.6,
+              1.15
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "rows": [
+            "YBRYGRGG",
+            "RYRRBYBR",
+            "qqBGRGqq",
+            "qqYYRGqq",
+            "AARRGRqq",
+            "AAYBYRqq",
+            "qqGYRYqq",
+            "qqBYGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 8,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            4,
+            3
+          ],
+          "target": [
+            5,
+            3
+          ],
+          "score": 80.68,
+          "hit_cells": [
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              5
+            ]
+          ],
+          "creation": 22
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move08.png",
+        "state": {
+          "moves": 19,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              50.17,
+              1.46
+            ],
+            "(6, 0)": [
+              52.91,
+              1.87
+            ],
+            "(0, 2)": [
+              56.65,
+              74.45
+            ],
+            "(6, 2)": [
+              51.01,
+              1.23
+            ],
+            "(0, 4)": [
+              52.42,
+              2.15
+            ],
+            "(6, 4)": [
+              52.18,
+              1.15
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "YBYYGBGG",
+            "RYRYRYBR",
+            "qqRRGBqq",
+            "qqBGBBqq",
+            "AAYYTYqq",
+            "AAYBYRqq",
+            "qqGYRYqq",
+            "qqBYGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 9,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            4,
+            3
+          ],
+          "target": [
+            5,
+            3
+          ],
+          "score": 73.58,
+          "hit_cells": [
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              4
+            ]
+          ],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move09.png",
+        "state": {
+          "moves": 18,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              50.17,
+              1.46
+            ],
+            "(6, 0)": [
+              51.67,
+              1.87
+            ],
+            "(0, 2)": [
+              56.65,
+              74.45
+            ],
+            "(6, 2)": [
+              50.92,
+              1.22
+            ],
+            "(0, 4)": [
+              52.42,
+              2.15
+            ],
+            "(6, 4)": [
+              50.54,
+              1.15
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "YBRGVGGR",
+            "RYYGYRBR",
+            "qqRYYGqq",
+            "qqRHGBqq",
+            "AABRBRqq",
+            "AAYGGBqq",
+            "qqGRRYqq",
+            "qqBRGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 10,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            3,
+            4
+          ],
+          "target": [
+            3,
+            5
+          ],
+          "score": 42.84,
+          "hit_cells": [
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              5
+            ]
+          ],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move10.png",
+        "state": {
+          "moves": 17,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              50.17,
+              1.46
+            ],
+            "(6, 0)": [
+              51.67,
+              1.87
+            ],
+            "(0, 2)": [
+              56.65,
+              74.45
+            ],
+            "(6, 2)": [
+              50.92,
+              1.22
+            ],
+            "(0, 4)": [
+              50.3,
+              2.15
+            ],
+            "(6, 4)": [
+              111.9,
+              71.75
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "YBBYYRRG",
+            "RYRGVGRY",
+            "qqYGYRGR",
+            "qqRYGBBR",
+            "AABRBRqq",
+            "AAYGGBqq",
+            "qqGRRYqq",
+            "qqBRGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 11,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            5,
+            5
+          ],
+          "target": [
+            5,
+            6
+          ],
+          "score": 29.24,
+          "hit_cells": [],
+          "creation": 12
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move11.png",
+        "state": {
+          "moves": 16,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                2
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              50.17,
+              1.46
+            ],
+            "(6, 0)": [
+              51.67,
+              1.87
+            ],
+            "(0, 2)": [
+              56.65,
+              74.45
+            ],
+            "(6, 2)": [
+              50.92,
+              1.22
+            ],
+            "(0, 4)": [
+              50.3,
+              2.15
+            ],
+            "(6, 4)": [
+              111.9,
+              71.75
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "YBBRBVYG",
+            "RYRGVFYY",
+            "qqYGYGGR",
+            "qqRYGBBR",
+            "AABRBRqq",
+            "AAYGGBqq",
+            "qqGRRYqq",
+            "qqBRGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 12,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            5,
+            7
+          ],
+          "target": [
+            6,
+            7
+          ],
+          "score": 35.84,
+          "hit_cells": [
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              3
+            ]
+          ],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move12.png",
+        "state": {
+          "moves": 15,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              50.17,
+              1.46
+            ],
+            "(6, 0)": [
+              50.33,
+              1.87
+            ],
+            "(0, 2)": [
+              56.65,
+              74.45
+            ],
+            "(6, 2)": [
+              104.18,
+              74.9
+            ],
+            "(0, 4)": [
+              50.3,
+              2.15
+            ],
+            "(6, 4)": [
+              110.53,
+              72.73
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "YBBRBYYR",
+            "RYRGVYBB",
+            "qqYGYFGB",
+            "qqRYGGBG",
+            "AABRBBGY",
+            "AAYGGBBR",
+            "qqGRRYqq",
+            "qqBRGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 13,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            6,
+            3
+          ],
+          "target": [
+            6,
+            4
+          ],
+          "score": 60.06,
+          "hit_cells": [
+            [
+              6,
+              1
+            ]
+          ],
+          "creation": 34
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move13.png",
+        "state": {
+          "moves": 14,
+          "cupboards": [
+            {
+              "master": [
+                0,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              50.17,
+              1.46
+            ],
+            "(6, 0)": [
+              48.94,
+              1.87
+            ],
+            "(0, 2)": [
+              56.65,
+              74.45
+            ],
+            "(6, 2)": [
+              89.76,
+              74.83
+            ],
+            "(0, 4)": [
+              50.3,
+              2.15
+            ],
+            "(6, 4)": [
+              107.73,
+              72.37
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "YBBRYGGY",
+            "RYRGYBYR",
+            "qqYGBRBB",
+            "qqRYVYGB",
+            "AABRYYVY",
+            "AAYGGFFR",
+            "qqGRRYqq",
+            "qqBRGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 14,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            6,
+            3
+          ],
+          "target": [
+            6,
+            2
+          ],
+          "score": 29.0,
+          "hit_cells": [
+            [
+              6,
+              1
+            ]
+          ],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move14.png",
+        "state": {
+          "moves": 13,
+          "cupboards": [
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            },
+            {
+              "master": [
+                0,
+                4
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              56.95,
+              76.56
+            ],
+            "(6, 0)": [
+              49.63,
+              1.87
+            ],
+            "(0, 2)": [
+              57.0,
+              75.76
+            ],
+            "(6, 2)": [
+              94.74,
+              76.85
+            ],
+            "(0, 4)": [
+              51.57,
+              2.14
+            ],
+            "(6, 4)": [
+              108.53,
+              73.35
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              2,
+              5
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "YYGYYBYB",
+            "RBRYBGYR",
+            "qqYRFYBB",
+            "qqRYBRGG",
+            "AABRVGYB",
+            "AAYGYRGY",
+            "AAGRRYqq",
+            "AABRGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 15,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            2,
+            5
+          ],
+          "target": [
+            3,
+            5
+          ],
+          "score": 57.38,
+          "hit_cells": [
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ]
+          ],
+          "creation": 12
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move15.png",
+        "state": {
+          "moves": 12,
+          "cupboards": [
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              96.57,
+              81.84
+            ],
+            "(6, 0)": [
+              49.63,
+              1.87
+            ],
+            "(0, 2)": [
+              105.32,
+              78.01
+            ],
+            "(6, 2)": [
+              94.74,
+              76.85
+            ],
+            "(0, 4)": [
+              100.15,
+              73.35
+            ],
+            "(6, 4)": [
+              108.53,
+              73.35
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "YRGYYBYB",
+            "BGBGBGYR",
+            "BBRGFYBB",
+            "YGGHBRGG",
+            "YRBRVGYB",
+            "RGYGYRGY",
+            "YYGRRYqq",
+            "RBBRGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 16,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            1,
+            6
+          ],
+          "target": [
+            2,
+            6
+          ],
+          "score": 16.24,
+          "hit_cells": [],
+          "creation": 12
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move16.png",
+        "state": {
+          "moves": 11,
+          "cupboards": [
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              96.57,
+              81.84
+            ],
+            "(6, 0)": [
+              49.63,
+              1.87
+            ],
+            "(0, 2)": [
+              101.54,
+              77.77
+            ],
+            "(6, 2)": [
+              94.74,
+              76.85
+            ],
+            "(0, 4)": [
+              106.85,
+              75.13
+            ],
+            "(6, 4)": [
+              108.53,
+              73.35
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "GYGYYBYB",
+            "GRGGBGYR",
+            "RFRGFYBB",
+            "BGGHBRGG",
+            "YRBRVGYB",
+            "CGYGYRGY",
+            "YYGRRYqq",
+            "RBBRGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 17,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            2,
+            4
+          ],
+          "target": [
+            2,
+            5
+          ],
+          "score": 41.14,
+          "hit_cells": [],
+          "creation": 22
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move17.png",
+        "state": {
+          "moves": 10,
+          "cupboards": [
+            {
+              "master": [
+                6,
+                0
+              ],
+              "state": "q"
+            }
+          ],
+          "regions": {
+            "(0, 0)": [
+              96.57,
+              81.84
+            ],
+            "(6, 0)": [
+              49.63,
+              1.87
+            ],
+            "(0, 2)": [
+              101.54,
+              77.77
+            ],
+            "(6, 2)": [
+              94.74,
+              76.85
+            ],
+            "(0, 4)": [
+              106.85,
+              75.13
+            ],
+            "(6, 4)": [
+              108.53,
+              73.35
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "GYGRYBYB",
+            "GRYYBGYR",
+            "RFFYFYBB",
+            "BGRHBRGG",
+            "YRBRVGYB",
+            "CGYGYRGY",
+            "YYGRRYqq",
+            "RBBRGBqq"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 18,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            1,
+            5
+          ],
+          "target": [
+            2,
+            5
+          ],
+          "score": 16.2,
+          "hit_cells": [],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move18.png",
+        "state": {
+          "moves": 9,
+          "cupboards": [],
+          "regions": {
+            "(0, 0)": [
+              96.57,
+              81.84
+            ],
+            "(6, 0)": [
+              94.37,
+              76.77
+            ],
+            "(0, 2)": [
+              101.54,
+              77.77
+            ],
+            "(6, 2)": [
+              108.37,
+              73.55
+            ],
+            "(0, 4)": [
+              112.77,
+              73.38
+            ],
+            "(6, 4)": [
+              94.18,
+              77.75
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [
+            [
+              5,
+              0
+            ]
+          ],
+          "rows": [
+            "GRYGYBYG",
+            "GYYRBGBR",
+            "RRGYFYYB",
+            "BGGHBRYR",
+            "YRBRVGBB",
+            "CGYGYRGG",
+            "YYGRRYYB",
+            "RBBRGBGY"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      },
+      {
+        "level": 14,
+        "move": 19,
+        "choice": {
+          "action": "swipe",
+          "source": [
+            4,
+            3
+          ],
+          "target": [
+            5,
+            3
+          ],
+          "score": 10.04,
+          "hit_cells": [],
+          "creation": 0
+        },
+        "accepted_move_count_confirmed": true,
+        "capture": "l14_move19_settled1.png",
+        "state": {
+          "moves": 8,
+          "cupboards": [],
+          "regions": {
+            "(0, 0)": [
+              109.33,
+              76.12
+            ],
+            "(6, 0)": [
+              100.84,
+              76.61
+            ],
+            "(0, 2)": [
+              101.94,
+              75.13
+            ],
+            "(6, 2)": [
+              98.96,
+              72.12
+            ],
+            "(0, 4)": [
+              105.39,
+              80.18
+            ],
+            "(6, 4)": [
+              102.07,
+              73.98
+            ]
+          },
+          "boxes": 0,
+          "visible_grass": [],
+          "rows": [
+            "BGRRYRBG",
+            "GRBGRYRR",
+            "GYYGRYCG",
+            "RRYBGBYR",
+            "BGGRBYBB",
+            "YRGHBRYR",
+            "CGBRFRYB",
+            "RBBRBVBB"
+          ],
+          "suspect": [],
+          "pending_matches": []
+        }
+      }
+    ],
+    "stall_observation": "After restoring the completed box goal, its HUD slot showed 0 without a check. Clearing the final grass and plates with eight moves remaining left the game on the settled board without the win presentation.",
+    "old_save_for_retest": {
+      "old_pid": "50217",
+      "new_pid": "50803",
+      "launch": "Starting: Intent { cmp=com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.royalmatch.core.recovery/com.unity3d.player.UnityPlayerActivity\r\nTotalTime: 643\r\nWaitTime: 651\r\nComplete\r\n",
+      "prompt_sha256": "09c644bda43653bd7636ea8264ec40ff8568a0a5677a97edc39828ccb3e3d89d",
+      "shot": {
+        "label": "l14_legacy_saved_after_arrow",
+        "level": 0,
+        "pid": "50803",
+        "started_utc": "2026-11-06T00:08:38.850716+00:00",
+        "action": "tap",
+        "coordinates": [
+          482,
+          1008
+        ],
+        "capture": {
+          "file": "l14_legacy_saved_after_arrow.png",
+          "sha256": "55d3b883fd0f1fca55ec788abd579c5505c1f9b392ec0e8d8150b23925dafe01",
+          "delay": 5.0
+        }
+      },
+      "state": {
+        "moves": 27,
+        "cupboards": [
+          {
+            "master": [
+              0,
+              0
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              6,
+              0
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              0,
+              2
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              6,
+              2
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              0,
+              4
+            ],
+            "state": "Q"
+          },
+          {
+            "master": [
+              6,
+              4
+            ],
+            "state": "Q"
+          }
+        ],
+        "regions": {
+          "(0, 0)": [
+            0.0,
+            0.0
+          ],
+          "(6, 0)": [
+            0.0,
+            0.0
+          ],
+          "(0, 2)": [
+            0.0,
+            0.0
+          ],
+          "(6, 2)": [
+            0.0,
+            0.0
+          ],
+          "(0, 4)": [
+            0.0,
+            0.0
+          ],
+          "(6, 4)": [
+            0.0,
+            0.0
+          ]
+        },
+        "boxes": 0,
+        "visible_grass": [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "rows": [
+          "YBGRGBGG",
+          "RYRBYRBR",
+          "QQGYRGQQ",
+          "QQYBGYQQ",
+          "QQBGRGQQ",
+          "QQYRBYQQ",
+          "QQRYGYQQ",
+          "QQRBRBQQ"
+        ],
+        "suspect": [],
+        "pending_matches": []
+      }
+    }
+  },
+  "unity": {
+    "arrow_flight_positions": {
+      "passed": true,
+      "skip_and_free_row_verified": true,
+      "wrong_row_cancel_keeps_free_use": true,
+      "back_cancels_aim": true,
+      "guided_boxes_cleared": 8,
+      "guided_refills": 32,
+      "remaining_moves": 27,
+      "first_impact_cells": [
+        1,
+        1
+      ],
+      "first_impact_delay": [
+        0.24899840354919434,
+        0.24899840354919434
+      ],
+      "last_impact_to_unfreeze": [
+        0.3984031677246094,
+        0.3984031677246094
+      ],
+      "launch_arrow_row_y_error": [
+        0.0,
+        0.0
+      ],
+      "launch_target_row_y_error": [
+        0.0,
+        0.0
+      ],
+      "first_hit_arrow_row_y_error": [
+        0.0,
+        0.0
+      ],
+      "first_hit_target_row_y_error": [
+        0.0,
+        0.0
+      ],
+      "fall_arrow_row_y_error": [
+        -0.08502054214477539,
+        -0.08502054214477539
+      ],
+      "fall_below_row_verified": [
+        true,
+        true
+      ],
+      "status": "finished",
+      "failure": ""
+    },
+    "resume_baseline": {
+      "exit_code": 1,
+      "report": {
+        "passed": false,
+        "level": 14,
+        "moves_after_reopen": 26,
+        "difficulty_draws": 6,
+        "difficulty_seed": 925,
+        "level_try_count": 1,
+        "recovery_seed": 0,
+        "restored_goal_checks": 0,
+        "corruption_rejected": false,
+        "optional_ready": false,
+        "statistics_restored": true,
+        "arrow_used_before_save": true,
+        "failure": "System.InvalidOperationException: Restored goal marks must be present immediately, without replaying their animations.\r\n  at Whitebox.Foundation.Editor.CoreAttemptResumeVerification.VerifyRestoredGoalChecks () [0x000ee] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreAttemptResumeVerification.cs:203 \r\n  at Whitebox.Foundation.Editor.CoreAttemptResumeVerification.Step () [0x001ac] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreAttemptResumeVerification.cs:100 \r\n  at Whitebox.Foundation.Editor.CoreAttemptResumeVerification.Tick () [0x00017] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreAttemptResumeVerification.cs:66 ",
+        "save_file": "C:\\Users\\pc\\AppData\\LocalLow\\DefaultCompany\\UnityFoundation\\CoreLevels_verify_goal_check_restore_1793923867627306700.level",
+        "sample_file": "C:\\RMV_20261104\\core_attempt_resume_sample.bytes"
+      },
+      "batch": {
+        "passed": false,
+        "test": "core-attempt-resume",
+        "failure": "System.InvalidOperationException: System.InvalidOperationException: Restored goal marks must be present immediately, without replaying their animations.\r\n  at Whitebox.Foundation.Editor.CoreAttemptResumeVerification.VerifyRestoredGoalChecks () [0x000ee] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreAttemptResumeVerification.cs:203 \r\n  at Whitebox.Foundation.Editor.CoreAttemptResumeVerification.Step () [0x001ac] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreAttemptResumeVerification.cs:100 \r\n  at Whitebox.Foundation.Editor.CoreAttemptResumeVerification.Tick () [0x00017] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreAttemptResumeVerification.cs:66 \r\n  at Whitebox.Foundation.Editor.BackgroundVerification.Tick () [0x01b9f] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\BackgroundVerification.cs:371 ",
+        "timestamp_utc": "2026-11-06T00:11:35.1228079Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      }
+    },
+    "resume_candidate": {
+      "exit_code": 0,
+      "report": {
+        "passed": true,
+        "level": 14,
+        "moves_after_reopen": 26,
+        "difficulty_draws": 6,
+        "difficulty_seed": 925,
+        "level_try_count": 1,
+        "recovery_seed": 554,
+        "restored_goal_checks": 1,
+        "corruption_rejected": true,
+        "optional_ready": false,
+        "statistics_restored": true,
+        "arrow_used_before_save": true,
+        "failure": "",
+        "save_file": "C:\\Users\\pc\\AppData\\LocalLow\\DefaultCompany\\UnityFoundation\\CoreLevels_verify_goal_check_restore_1793923896489094100.level",
+        "sample_file": "C:\\RMV_20261104\\core_attempt_resume_sample.bytes"
+      },
+      "batch": {
+        "passed": true,
+        "test": "core-attempt-resume",
+        "failure": "",
+        "timestamp_utc": "2026-11-06T00:12:05.7109799Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      }
+    },
+    "resume_candidate_unused_arrow": {
+      "exit_code": 0,
+      "report": {
+        "passed": true,
+        "level": 14,
+        "moves_after_reopen": 26,
+        "difficulty_draws": 6,
+        "difficulty_seed": 925,
+        "level_try_count": 1,
+        "recovery_seed": 554,
+        "restored_goal_checks": 0,
+        "corruption_rejected": true,
+        "optional_ready": true,
+        "statistics_restored": true,
+        "arrow_used_before_save": false,
+        "failure": "",
+        "save_file": "C:\\Users\\pc\\AppData\\LocalLow\\DefaultCompany\\UnityFoundation\\CoreLevels_verify_goal_check_restore_1793923927227499100.level",
+        "sample_file": "C:\\RMV_20261104\\core_attempt_resume_sample.bytes"
+      },
+      "batch": {
+        "passed": true,
+        "test": "core-attempt-resume",
+        "failure": "",
+        "timestamp_utc": "2026-11-06T00:12:33.5306349Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      }
+    },
+    "scope": "Real GameScene with the standard Arrow Button, typed input through the production touch listener, and the actual background save writer. Reopens the scene, checks model and HUD, continues a natural move, and confirms rejection of a deliberately truncated private snapshot."
+  },
+  "unrelated_user_file_sha256": "1ceddd9e4f2199561ac52f5ab3feabd0a3d6f8c7e0fcfda7b4ffac0a7f8fb1fa",
+  "artifacts": {
+    "162c9c4.c": {
+      "path": "C:/RMAndroidArrow_20261105/162c9c4.c",
+      "sha256": "d929eb19335c3dee25ec3db3ce50ca6cb7da896b36869b28fd5049c8fa0d86a5",
+      "bytes": 7044
+    },
+    "18cc064.c": {
+      "path": "C:/RMAndroidArrow_20261105/18cc064.c",
+      "sha256": "c0c09161e06e9feb387e9cde02874e0874441478bd802e439663652815848afd",
+      "bytes": 2115
+    },
+    "1edd990.c": {
+      "path": "C:/RMAndroidArrow_20261105/1edd990.c",
+      "sha256": "7481e64e4fa6eff0e34a795650a0b317197fc42a5f10d2d8e65d28ba9b4ea515",
+      "bytes": 11371
+    },
+    "31939f8.asm": {
+      "path": "C:/RMAndroidArrow_20261105/31939f8.asm",
+      "sha256": "6c48bb0328b60a37f8a96c1a1f05910c35325b87a7426af3b69efb1c29813a93",
+      "bytes": 5616
+    },
+    "3194aa8.c": {
+      "path": "C:/RMAndroidArrow_20261105/3194aa8.c",
+      "sha256": "24940661fafff58823d3e772c8af6062c3360600e635f962b64a2dba7a644581",
+      "bytes": 10691
+    },
+    "arrow/result.json": {
+      "path": "C:/RMAndroidArrow_20261105/arrow/result.json",
+      "sha256": "64360e840c4eb1ce2bb47525fb064922b4d0db37a5104aec1b78c993a847b966",
+      "bytes": 1401
+    },
+    "resume_source_audit.json": {
+      "path": "C:/RMAndroidArrow_20261105/resume_source_audit.json",
+      "sha256": "1600a4d5bb17597120db87267c9bf91b2ff7e13df68179d136572cba2aa22e6d",
+      "bytes": 299278
+    },
+    "resume_baseline_arrow/result.json": {
+      "path": "C:/RMAndroidArrow_20261105/resume_baseline_arrow/result.json",
+      "sha256": "a46f27a1787987c3c268b4ac5b72793d573132524b359d9a8d61edb704b77e4d",
+      "bytes": 2535
+    },
+    "resume_candidate_arrow/result.json": {
+      "path": "C:/RMAndroidArrow_20261105/resume_candidate_arrow/result.json",
+      "sha256": "3176f507363ded78d4fc5d4fecce64c68fd64730a2b44e0aaea9e80883454013",
+      "bytes": 1050
+    },
+    "resume_candidate_unused_arrow/result.json": {
+      "path": "C:/RMAndroidArrow_20261105/resume_candidate_unused_arrow/result.json",
+      "sha256": "ae8d8798fc7d5bd51cb899093839b7dd2b6d2a229d22fa62a546126a48b2982d",
+      "bytes": 1050
+    },
+    "build_source_manifest.json": {
+      "path": "C:/RMAndroidArrow_20261105/build_source_manifest.json",
+      "sha256": "867e6b0ac31916fe20c459870845d0f9967054fc47f680ca082ed8dd3c5e1820",
+      "bytes": 809470
+    },
+    "apk_verification.json": {
+      "path": "C:/RMAndroidArrow_20261105/apk_verification.json",
+      "sha256": "605a9407edcaf8c1927b21d04d7936680a9823b040301e414597d97029189578",
+      "bytes": 11344
+    },
+    "apk_particle_code_evidence.json": {
+      "path": "C:/RMAndroidArrow_20261105/apk_particle_code_evidence.json",
+      "sha256": "3e545c3cfa5b964afd99898e73ed7b09ac9c71718207af3f3a8e152a3bb814da",
+      "bytes": 1128
+    },
+    "l14_wrong_row_comparison.json": {
+      "path": "C:/RMAndroidArrow_20261105/l14_wrong_row_comparison.json",
+      "sha256": "10f6c54050d749a0ac8372e8283d90b8908475b965c3ae8a295af1a50b4be376",
+      "bytes": 2684
+    },
+    "l14_arrow_row6.png": {
+      "path": "C:/RMAndroidArrow_20261105/l14_arrow_row6.png",
+      "sha256": "bb7de60632aa9cb73e3c497e78b811e15e6e4615bb8a60d21a136a1296af9e2d",
+      "bytes": 2445339
+    },
+    "l14_updated_resume.png": {
+      "path": "C:/RMAndroidArrow_20261105/l14_updated_resume.png",
+      "sha256": "68b48c254a89c02213e0b0d11effeb5f16de737c8b4687e04efea80fdc735c78",
+      "bytes": 2444455
+    },
+    "l14_move01_two_doors_0_28s.png": {
+      "path": "C:/RMAndroidArrow_20261105/l14_move01_two_doors_0_28s.png",
+      "sha256": "7ce7eb38d9d7e2ca58442bc0c7997584d00bfac56e2a2b112928c047a01200fc",
+      "bytes": 2500967
+    },
+    "l14_result.png": {
+      "path": "C:/RMAndroidArrow_20261105/l14_result.png",
+      "sha256": "5909711e93f3a82cdd63b34d0b329126d8e31a55040336d2a6f5324fa49bed0e",
+      "bytes": 2220561
+    },
+    "l14_old_save_checkpoint.json": {
+      "path": "C:/RMAndroidArrow_20261105/l14_old_save_checkpoint.json",
+      "sha256": "cff388f92e7070df9899e54660fd8c97352dbd1a7ef409533084459bc90807a6",
+      "bytes": 3140
+    },
+    "l14_legacy_saved_after_arrow.png": {
+      "path": "C:/RMAndroidArrow_20261105/l14_legacy_saved_after_arrow.png",
+      "sha256": "55d3b883fd0f1fca55ec788abd579c5505c1f9b392ec0e8d8150b23925dafe01",
+      "bytes": 2446210
+    },
+    "cupboard_path.jsonl": {
+      "path": "C:/RMAndroidArrow_20261105/cupboard_path.jsonl",
+      "sha256": "30ab9b0c1f54f2887b95d8c5ea852610cccc7af6782c717268cc21318e1b592d",
+      "bytes": 14981
+    },
+    "gestures.jsonl": {
+      "path": "C:/RMAndroidArrow_20261105/gestures.jsonl",
+      "sha256": "1bf1976d80dfcc26f508e72a3aa2d22c88efa82fda0c8c8c486b060d1fdf92c0",
+      "bytes": 8476
+    }
+  }
+}

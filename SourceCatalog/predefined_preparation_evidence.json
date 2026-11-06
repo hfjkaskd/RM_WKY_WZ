@@ -1,0 +1,15 @@
+{
+  "functions": [
+    {
+      "rva": "0x1c24788",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelParser$$ParsePredefined",
+      "disassembly_sha256": "e894422728b0602be01f01ced082a5c570ca552f7b47e4d826a1c71fca6977d6"
+    }
+  ],
+  "verification_reports": [
+    "predefined_preparation_native_verification.json",
+    "predefined_preparation_unity_verification.json"
+  ],
+  "scope": "Original ParsePredefined control flow and decoded-data provider. Concrete application/session model factory is a typed required dependency, not a production fallback. Y is deliberately ignored; per-entry source order/Ids order are retained. Early random lookup and creator re-read are preserved.",
+  "remaining": "Production seed/session ownership, original model factory/unique identity and automatic fall/refill composition. SDK unchanged."
+}

@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "test": "game-scene",
+  "unity_exit_code": 1,
+  "source_unchanged_during_run": true,
+  "source_sha256": "bfb8c74b1f75870a2f158a183627c5b5eff1af4d4574f70e8379f3b6e26c9872",
+  "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+  "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_game-scene.log",
+  "elapsed_seconds": 350.58,
+  "batch": {
+    "passed": false,
+    "test": "game-scene",
+    "failure": "System.InvalidOperationException: Original render and baking settings are active\r\n  at Whitebox.Foundation.Editor.GameSceneVerification.Run () [0x001ce] in F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\Assets\\Foundation\\Editor\\GameSceneVerification.cs:48 \r\n  at Whitebox.Foundation.Editor.BackgroundVerification.Tick () [0x00706] in F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\Assets\\Foundation\\Editor\\BackgroundVerification.cs:79 ",
+    "timestamp_utc": "2026-11-02T03:29:15.8494228Z",
+    "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+  },
+  "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+}

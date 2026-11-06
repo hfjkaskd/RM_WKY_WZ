@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "cases": 173,
+  "source_sha256": "5eb744e9563beadf2962048bfbc83aa39ec9d61e37a12de3e93ca063e259d68d",
+  "original_rvas": [
+    "0x1edd990",
+    "0x1edd6a0",
+    "0x1edd92c",
+    "0x1eddeac",
+    "0x1edec84"
+  ],
+  "scope": "Decision gates/state flags/call order versus actual original ARM64, with identical recorded presentation/account/flow call boundaries. Includes last-move goal priority, .2s operation/check gates, pending automatic matches, out-of-moves/extra token, normal/bonus, timeout recovery, clear. Does not verify omitted Win/Flow/Session/UI implementations or establish production binding.",
+  "production_bound": false,
+  "remaining_dependencies": [
+    "Original presentation/Win/StartWinFlow services",
+    "remaining moves conversion and settlement owners",
+    "Session.Win/LevelEnd and account progression"
+  ]
+}

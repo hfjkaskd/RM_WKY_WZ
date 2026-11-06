@@ -1,0 +1,212 @@
+{
+  "baseline_commit": "4495504799f4b723cd22a3de6671fd4161baafe0",
+  "scope": "Core lightball-only shuffle fallback and dynamic tap guide.",
+  "full_scope_verified": false,
+  "native_reference": {
+    "fallback": "0x1ee7290 restores the original cells and publishes the lightball-only flag",
+    "creator": "0x2246210 sparse update and five-second steady state, 0x2246350 bottom-left horizontal scan, 0x2246424 neighbor exclusion",
+    "lifecycle": "0x22428d4 consumes the creator after one guide per level context, 0x2245ab8 permits touch only on its target and allows skip after three seconds",
+    "english_text_key": "NewUXSpecialItemTutorial",
+    "english_text": "You can tap on power-ups to explode them!",
+    "position": "0x224605c returns a centered dialog with cell-relative Y, 0x276ad4c selects tap state 3 with hand offset (0.03, -0.08)"
+  },
+  "original_hand": {
+    "clip": "tap_animation_2",
+    "frames": 139,
+    "duration": 1.149999976158142,
+    "sample_rate": 120,
+    "atlas_sha256": "a4ce05c237e8778810e8f5719928f52ad8caaf1fe35bb12ebd56a27cbeb2b4db",
+    "skeleton_sha256": "9b213da0f27b19e749dfad8454aea9d58622851b2fc3e4a45aec58c96b632156",
+    "mesh_sha256": "79a7768bb314ceb962ff812a76e4f7b8a2591cd0dc577c5ff3a9050a2fc2b8e5"
+  },
+  "tests": {
+    "core-directed-tutorial-author": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-directed-tutorial-author",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-directed-tutorial-author.log",
+      "elapsed_seconds": 30.99,
+      "batch": {
+        "passed": true,
+        "test": "core-directed-tutorial-author"
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-lightball-tap-guide": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-lightball-tap-guide",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-lightball-tap-guide.log",
+      "elapsed_seconds": 53.38,
+      "batch": {
+        "passed": true,
+        "test": "core-lightball-tap-guide",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:29:03.8854104Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-directed-tutorials": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-directed-tutorials",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-directed-tutorials.log",
+      "elapsed_seconds": 40.31,
+      "batch": {
+        "passed": true,
+        "test": "core-directed-tutorials",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:29:44.4872707Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-optional-tutorials": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-optional-tutorials",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-optional-tutorials.log",
+      "elapsed_seconds": 29.73,
+      "batch": {
+        "passed": true,
+        "test": "core-optional-tutorials",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:30:14.4177627Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-no-moves": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-no-moves",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-no-moves.log",
+      "elapsed_seconds": 25.61,
+      "batch": {
+        "passed": true,
+        "test": "core-no-moves",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:30:40.2574433Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-flow": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-flow",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-flow.log",
+      "elapsed_seconds": 57.12,
+      "batch": {
+        "passed": true,
+        "test": "core-flow",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:31:37.5786548Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    }
+  },
+  "guide_observations": {
+    "status": "finished",
+    "failure": "",
+    "passed": true,
+    "focused_input": true,
+    "dialog_within_viewport": true,
+    "tap_activated": true,
+    "skipped_without_move": true,
+    "restored_boards": 2,
+    "tap_refills": 13,
+    "dismiss_delay": 2.9903006553649902,
+    "guide_delay": [
+      5.317397594451904,
+      5.318198204040527
+    ]
+  },
+  "preserved_original_level": {
+    "number": 55,
+    "original_name": "00055v05_L",
+    "resource_path": "Levels/level_55",
+    "decoded_source": "configs/levels/55__10501.json",
+    "raw_source": "configs/textassets/55__10501.bytes",
+    "sha256": "6baba031b2b828cf54722acc520bbb02b3c87c6b40b3c00be2b3613ce13deb82",
+    "moves": 22,
+    "width": 9,
+    "height": 11,
+    "goal_types": [
+      16,
+      12,
+      18
+    ],
+    "raw_item_ids": {
+      "0": 21,
+      "3": 21,
+      "25": 28,
+      "26": 21,
+      "34": 8
+    },
+    "nonzero_cell_fields": {
+      "FillType": 9
+    },
+    "scroll": false,
+    "shifter_boards": 0,
+    "water_cells": 0
+  },
+  "byte_verified_tested_files": {
+    "Assets/Foundation/Editor/BackgroundVerification.cs": "460785919494f49db6980ea00a258d626a1941ed3a233465d1800bb82a6e1779",
+    "Assets/Foundation/Editor/CoreDirectedTutorialAuthoring.cs": "f2c8725fae32a4cfe9873b36e9299c005279de4e0fe5a9907bdfa543379ab467",
+    "Assets/Foundation/Editor/CoreLightballTapGuideVerification.cs": "ca0f020d4bceea311404efbe54d6b6c13685c37a24c06fed8205c127104c533e",
+    "Assets/Foundation/Editor/CoreLightballTapGuideVerification.cs.meta": "ee4328445791697c9daf3dc963e3ce8c478d3f6901b7a3ce9ca3b35ab91570f2",
+    "Assets/Foundation/Runtime/CoreFlowSettings.cs": "c1864dee73dca33e9e07365e997a98be2311f0612319de912f0343ce3ea02688",
+    "Assets/Foundation/Runtime/CoreGameFlow.cs": "cbc422019052b5527a09dd4c622054dc1a320ef261fb689fbba138450a365242",
+    "Assets/Foundation/Runtime/OriginalDirectedTutorialView.cs": "30539153749a13eaf3579c2202e0f8b3948ca36f9fbb3f0b546998a766cbede7",
+    "Assets/Foundation/Runtime/OriginalPlayableBoard.cs": "d257c39516a73c80789f80722b499e1e035ca3934aa4117132174fb0a2140ab9",
+    "Assets/Foundation/Runtime/OriginalPossibleMoveFinder.cs": "cc99d4fa1d4520424e425723f4026e64eabac61d3cfce2e08ccb82e7bfdedc0e",
+    "Assets/Foundation/Runtime/OriginalRuntimeShuffle.cs": "51578a8851de414628368ed98fd8ac0a9ba219dbf42101548e8f61daa5f5e86d",
+    "Assets/Foundation/Runtime/OriginalTutorialDismissImage.cs": "b98cbbe9561329fc54494371dfcc56025678e7897c20d76537ad5b269cb1a479",
+    "Assets/Foundation/Runtime/OriginalTutorialDismissImage.cs.meta": "4f24e01228d1cdd25daa3c9d7d3f66840858e5218fb6ca45e5e1bdc4fbd0fb3c",
+    "Assets/Foundation/Scenes/GameScene.unity": "c1449a998237f2ee5ce55b1727dbfeac535f98c1fffe1bfb45b3b9cc88a50d89",
+    "Assets/Resources/Foundation/Prefabs/CoreLightballTapGuide.prefab": "5fcd9f0004d52ce6ecf7f2f25218f91f6451de6f1e9a1e35b24e3f4b87e5a60c",
+    "Assets/Resources/Foundation/Prefabs/CoreLightballTapGuide.prefab.meta": "d54460b21715bf915b16f00cabe76861c516fd7055803ad5bf65fd211bdf0f42",
+    "Assets/Resources/Foundation/Tutorials/tap_animation_2.bytes": "79a7768bb314ceb962ff812a76e4f7b8a2591cd0dc577c5ff3a9050a2fc2b8e5",
+    "Assets/Resources/Foundation/Tutorials/tap_animation_2.bytes.meta": "82dc1b71ba8aa8ab1e006952932ddb2427aa27264c91bb8d38f560fa828ff67e",
+    "Assets/Resources/Recovered/GameObject/TutorialBlack.prefab": "a24dbb6d2a761807a62c05bc4ca4bcdf5d0e903ca371270430391b57affbcbc4",
+    "Assets/Resources/Recovered/GameObject/TutorialCellMask.prefab": "14c74b196b45d54710e4565521b678c2d9b6a8e80f9c59a3cf6fbd2a7752236e",
+    "Assets/Resources/Recovered/GameObject/TutorialDialog.prefab": "bcf21a65e8307d8cf1602020084a6bbcf8e196514a826b204275d5cf4e18e399",
+    "Assets/Resources/Recovered/GameObject/TutorialHand.prefab": "8e2d35b1e565b46baeb7b29d8f499e875e43377fc6d6b1b31ad4b0ee8c9e4040",
+    "Packages/manifest.json": "e7526e7aa8730bf51b97e896ef32bfb7830a22cea8920f6b2c97a848909b2197",
+    "ProjectSettings/EditorBuildSettings.asset": "dfd9c22e5754f091bc505c5fea3d5f58c9962944b53d3b36d900ac9b544e046c",
+    "Assets/Foundation/Settings/CoreFlowSettings.asset": "646a6eda718a5c8b3738bc38289c1b6b6a97f124dbd3d5b909c1ab682e3ea7f1"
+  },
+  "render_sha256": "d418ca0ece1ce92e229501fd5469d30888bd64b69920df94737c49811c2dba3a",
+  "verification_limits": [
+    "The isolated test uses the original level 55 geometry and a controlled board with one lightball and two match tiles. A board operation marks it dirty so the production shuffle owns the search and restoration.",
+    "The portrait run drives the production board input with recorded world-space gestures and the standard EventSystem Button.",
+    "The comparison covers the recovered English presentation. Physical-device timing and full original frame parity remain open."
+  ]
+}

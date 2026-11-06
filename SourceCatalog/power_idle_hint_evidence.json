@@ -1,0 +1,265 @@
+{
+  "baseline_commit": "0980f0f447811d4f871884132bfd4f7dd94a8ce4",
+  "scope": "Numbered levels 1–100, core-only gameplay, default tap-hint policy.",
+  "full_scope_verified": false,
+  "native_reference": {
+    "scan_and_rank": [
+      "0x2189710 special and ordinary candidate branches",
+      "0x21897fc cardinal special neighbors and endpoint check",
+      "0x2189ecc and 0x2186f90 insertion and TNT/rocket damage score",
+      "0x1e2d558 combo IDs and 0x404073c combo score table",
+      "0x218a578 cycle cutoff after a higher-scoring action"
+    ],
+    "tap_gate": [
+      "0x2841a98 level below 19 and fewer than five prior TNT/rocket taps",
+      "0x2841bb8 records accepted TNT/rocket taps through level 19"
+    ],
+    "presentation": [
+      "0x2186574 combo 0.05 units, 0.13 seconds forward and 0.17 back",
+      "0x2187db8 tap scale 1.05, 0.19 seconds per direction and 0.4 between bursts",
+      "0x218765c pooled hint particles, shared edge suppressed"
+    ]
+  },
+  "tests": {
+    "core-power-hints": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-power-hints",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-power-hints.log",
+      "elapsed_seconds": 44.68,
+      "batch": {
+        "passed": true,
+        "test": "core-power-hints",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:08:34.0859867Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-match-hints": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-match-hints",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-match-hints.log",
+      "elapsed_seconds": 34.86,
+      "batch": {
+        "passed": true,
+        "test": "core-match-hints",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:09:09.3802070Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-optional-tutorials": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-optional-tutorials",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-optional-tutorials.log",
+      "elapsed_seconds": 30.69,
+      "batch": {
+        "passed": true,
+        "test": "core-optional-tutorials",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:09:39.9373565Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-flow": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-flow",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-flow.log",
+      "elapsed_seconds": 62.33,
+      "batch": {
+        "passed": true,
+        "test": "core-flow",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:10:42.7588217Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "lightball-combo-regression": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "lightball-combo-regression",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_lightball-combo-regression.log",
+      "elapsed_seconds": 158.91,
+      "batch": {
+        "passed": true,
+        "test": "lightball-combo-regression",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T10:07:49.0717031Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    }
+  },
+  "power_hint_observations": {
+    "status": "finished",
+    "failure": "",
+    "passed": true,
+    "rocket_tap": true,
+    "authored_combo": true,
+    "tap_count_reopened": 1,
+    "tap_peak_observed": 1.0391578674316406,
+    "tap_pause_observed": 0.4335041046142578,
+    "combo_distance_observed": 0.03838461637496948,
+    "particle_counts": [
+      1,
+      2
+    ],
+    "refills": [
+      9,
+      14
+    ]
+  },
+  "ordinary_hint_regression": {
+    "status": "finished",
+    "failure": "",
+    "passed": true,
+    "suppressed_during_fixed_tutorial": true,
+    "used_native_particles": true,
+    "successful_hinted_swaps": 2,
+    "hint_frame_delay": [
+      40,
+      183
+    ],
+    "particle_counts": [
+      4,
+      0
+    ]
+  },
+  "lightball_combo_regression": {
+    "passed": true,
+    "propeller_combos": 4,
+    "tnt_combos": 4,
+    "default_lightballs": 2,
+    "rocket_combos": 8,
+    "left_moves": 12,
+    "timestamp_utc": "2026-11-03T10:07:49.0619641Z",
+    "scope": "One unchanged formal runtime/board sequentially runs 18 operations through the existing recorded input: 4 lightball/propeller combos, four lightball/TNT combos, normal lightball tap/swap and eight lightball/rocket combos. Individual reports retain detailed assertions; this transport verifies continuation, move consumption and shared pool reuse. Natural combination creation, physical input, full lifecycle and rendered-original parity remain unverified."
+  },
+  "preserved_original_configs": [
+    {
+      "number": 2,
+      "original_name": "00002v02_L",
+      "resource_path": "Levels/level_2",
+      "decoded_source": "configs/levels/2__9632.json",
+      "raw_source": "configs/textassets/2__9632.bytes",
+      "sha256": "77a4dd20c7bb43651912efd3dc6d05506b0973a2b01c4a1713d7015be9c48fa4",
+      "moves": 27,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11
+      ],
+      "raw_item_ids": {
+        "1": 12,
+        "2": 10,
+        "3": 12,
+        "4": 11,
+        "21": 36
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 38,
+      "original_name": "00038v03_L",
+      "resource_path": "Levels/level_38",
+      "decoded_source": "configs/levels/38__4667.json",
+      "raw_source": "configs/textassets/38__4667.bytes",
+      "sha256": "46f8f989c52c1222e8c353348c27575c0589b142699c5fe9299c9aa1f3a33ffb",
+      "moves": 24,
+      "width": 8,
+      "height": 11,
+      "goal_types": [
+        15,
+        16,
+        13
+      ],
+      "raw_item_ids": {
+        "0": 8,
+        "10": 8,
+        "13": 24,
+        "26": 32,
+        "41": 4,
+        "42": 4,
+        "51": 4,
+        "52": 4
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8,
+        "Grass": 24
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "byte_verified_tested_files": {
+    "Assets/Foundation/Editor/BackgroundVerification.cs": "c98c4c5d0777fe81d400b6758e157f6cd86837814e2532c2a7e79792da68985b",
+    "Assets/Foundation/Editor/CorePowerHintVerification.cs": "cd1e6f069976c88adaf77b2c9913fe0624f8a3eab5e18c4459c8a49f895b08bf",
+    "Assets/Foundation/Editor/CorePowerHintVerification.cs.meta": "57501536877696fa7753e4112c2a8cbe7aa93a046ee9bd9b7a27ca7ca6df6fc1",
+    "Assets/Foundation/Runtime/CoreGameFlow.cs": "9748c5fa46a74b93adf7afc85694531e6862ecd9655a75096eb6d77b79afa3f4",
+    "Assets/Foundation/Runtime/CoreLevelProgress.cs": "e2a5a2e7e9bd1b0052eff8c16c26833dd339aaca48da6278bcd7ee09e8466879",
+    "Assets/Foundation/Runtime/OriginalItemSwapView.cs": "9b6e82c918000fa9be7477a9684cb95076f02b3fd4bc99694743580637d146d0",
+    "Assets/Foundation/Runtime/OriginalMatchHintManager.cs": "056a1bbc1b1ed2effdd941970c8806ad3303c287a53c5a6aff32fc6b47565ca4",
+    "Assets/Foundation/Runtime/OriginalPlayableBoard.cs": "9fad947cc1df0b1836b2ec48301922307d6f70f222b0ec1d3370ab7f4da15475",
+    "Assets/Foundation/Scenes/GameScene.unity": "c1449a998237f2ee5ce55b1727dbfeac535f98c1fffe1bfb45b3b9cc88a50d89",
+    "Assets/Resources/Foundation/Prefabs/OriginalHintParticles.prefab": "a3b7a460e92a8b5e7c3289fcd3b57d5f7b3cff6d4f0c515a7fb1ae10c3b8e3dc",
+    "Packages/manifest.json": "e7526e7aa8730bf51b97e896ef32bfb7830a22cea8920f6b2c97a848909b2197",
+    "ProjectSettings/EditorBuildSettings.asset": "dfd9c22e5754f091bc505c5fea3d5f58c9962944b53d3b36d900ac9b544e046c",
+    "Assets/Foundation/Settings/CoreFlowSettings.asset": "56335c789420c808b98a7b9dc385e560ef38834e556ae1e18c30f07b25e0f5cf"
+  },
+  "verification_limits": [
+    "Level 2 uses one controlled rocket placement with the actual input, explosion, refill and progress owners.",
+    "Level 38 uses the authored propeller pair and actual input, combo and refill owners.",
+    "Tap count persistence is verified after one rocket use. Exact interruptions and configured priority overrides remain open.",
+    "Both checks use a 720x1280 isolated Unity play session with sampled world-space gestures."
+  ],
+  "formal_idle_hint_native_frame_states_20261105": {
+    "evidence": "SourceCatalog/idle_hint_motion_evidence.json",
+    "baseline_commit": "51cfef907e7ff1ec9bb6ee12bbbae96345ef205a",
+    "canonical_runtime_sha256": "8ba654518863e70c4940cdf3d4b500d0aa1fb675758d90a3a8b569bfb7ddce68",
+    "native_scenarios": 216,
+    "native_frames": 17446,
+    "native_numeric_samples": 337154,
+    "baseline_observable_mismatched_frames": 15169,
+    "canonical_mismatched_frames": 0,
+    "maximum_absolute_error": 2.384185791015625e-07,
+    "formal_unity_jobs_passed": 6,
+    "formal_unity_pose_frames": 867,
+    "formal_unity_pose_samples": 11006,
+    "source_aligned_core_files": 1281,
+    "scope": "Restore native hint animation frame states, interpolation capture, particle-hide and stop/cleanup timing. Keep actual swapping/tapping/cascades/pool handoff functional. Typed diagnostic inputs and explicit native ports; no original pixels/audio/full100 parity or new Android APK claimed.",
+    "full_current_scope_complete": false
+  }
+}

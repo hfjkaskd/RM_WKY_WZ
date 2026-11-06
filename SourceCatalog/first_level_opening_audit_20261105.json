@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "baseline_commit": "fae68ee602e5e5fde727ae2845867006457ebab6",
+  "verified_utc": "2026-11-05T19:27:22.501794+00:00",
+  "question": "Does the user screenshot with 28 moves, 28 boxes, lightball, rocket and TNT show the original first-level opening?",
+  "reference": {
+    "original_version": 38911,
+    "decoded_original": "F:/Coin Merge Fortune/RM/Recovery/configs/levels/1__1448.json",
+    "runtime_resource": "Assets/Resources/Levels/level_1.json",
+    "byte_identical": true,
+    "sha256": "4936046bea78b2c82c2c960de795ba33a0faa124773b25c1a537cd24edd7696b",
+    "name": "00001v02_L",
+    "moves": 30,
+    "width": 9,
+    "height": 8,
+    "box_goal": 36,
+    "single_layer_box_tile_id": 21,
+    "initial_item_counts": {
+      "1": 7,
+      "2": 11,
+      "3": 10,
+      "4": 8,
+      "21": 36
+    },
+    "initial_special_items": 0,
+    "guide_swap_bottom_left_zero_based": [
+      [
+        5,
+        5
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "instruction": "Make a match next to a BOX to break it!"
+  },
+  "screenshot_assessment": {
+    "board_geometry_consistent_with_first_level": true,
+    "visible_moves": 28,
+    "visible_boxes": 28,
+    "fresh_original_opening": false,
+    "difference_from_opening": {
+      "moves": -2,
+      "boxes": -8
+    },
+    "visible_specials": [
+      "lightball",
+      "rocket",
+      "TNT"
+    ],
+    "exact_input_history_verified": false,
+    "specials_naturally_generated_or_fixture_injected_verified": false,
+    "conclusion": "The geometry is consistent with level1, but this is not its fresh opening. Its two-move history and the provenance of the three powers are unresolved; no test-injection or original-frame-parity claim is made."
+  },
+  "current_production_verification": {
+    "test": "core-directed-tutorials",
+    "runtime_source_changed": false,
+    "private_mirror": "C:/RMV_20261104",
+    "scene": "Assets/Foundation/Scenes/GameScene.unity",
+    "fresh_private_progress_file": "CoreLevels_verify_first_level_audit_1793906669281156100",
+    "source_alignment": {
+      "canonical_and_mirror_match_git_with_crlf_normalization": true,
+      "audited_files": 1281,
+      "scope": "Tracked Assets/Foundation scripts/meta/prefabs/settings/scenes/lighting; all100 level JSON files; EditorBuildSettings and package manifest. This is a scoped content audit, not every recovered texture/audio/mesh file."
+    },
+    "initial_moves": 30,
+    "initial_box_goal": 36,
+    "all72_original_opening_tiles_verified": true,
+    "initial_powers": 0,
+    "wrong_guide_gesture_rejected_without_spending_move": true,
+    "first_legal_guide_gesture": {
+      "moves_after": 29,
+      "box_goal_after": 33,
+      "boxes_removed": 3,
+      "refill_views": 6,
+      "specials_created": 0,
+      "all72_post_swap_tiles_verified": true,
+      "guide_and_mask_released_in_swap_callback": true,
+      "box_sorting_restored": true
+    },
+    "verification_report": {
+      "status": "finished",
+      "failure": "",
+      "passed": true,
+      "original_context_before_cell_updates": true,
+      "original_game_late_update_order": true,
+      "level1_opening_tiles_verified": true,
+      "original_ui_input_order": true,
+      "level_flow_units_registered": true,
+      "level_flow_units_released": true,
+      "level1_guided_swap_completed": true,
+      "level1_waited_for_stable_board": true,
+      "level28_initial_input_open": true,
+      "level28_guided_combo_completed": true,
+      "level28_early_combo_skips_guide": true,
+      "level28_guide_during_operation": true,
+      "level1_box_sorting_restored": true,
+      "level1_guide_released_at_swap": true,
+      "level28_guide_released_at_swap": true,
+      "level1_hand_mecanim_clock": true,
+      "level28_hand_mecanim_clock": true,
+      "level1_hand_native_rig": true,
+      "level28_hand_native_rig": true,
+      "level1_mask_cells": 7,
+      "level1_raised_groups": 37,
+      "level1_boxes_removed": 3,
+      "level1_refills": 6,
+      "level1_game_late_updates": 86,
+      "level1_stable_wait_seconds": 0.19909995794296265,
+      "level28_delay_seconds": 4.016814231872559
+    },
+    "exit_code": 0,
+    "private_settings_restored": true,
+    "existing_user_progress_untouched": true,
+    "unrelated_diagnostic_unchanged_sha256": "1ceddd9e4f2199561ac52f5ab3feabd0a3d6f8c7e0fcfda7b4ffac0a7f8fb1fa",
+    "stimulus_scope": "Real runtime owners and guide prefabs; typed recorded samples drive the production touch listener. The verifier supplies one operation-during-entrance gate before the first move. Later scenarios explicitly select level28 and Retry to check its double-lightball guide. No power or board-item placement occurs in level1."
+  },
+  "limits": [
+    "The current screenshot is a recovery-project capture, not a capture of the original installed application.",
+    "The original app remains on its unaccepted terms/privacy screen and was not operated.",
+    "No physical-device input, original-render pixel/animation/audio parity, or reproduction of the user screenshot's second move is asserted.",
+    "No runtime correction was needed for the current fresh first-level data and guide entry.",
+    "Full first100 gameplay and original presentation parity remain incomplete."
+  ],
+  "full_current_scope_complete": false,
+  "artifacts": {
+    "source_manifest.json": {
+      "path": "C:/RMFirstLevelAudit_20261105/source_manifest.json",
+      "bytes": 301840,
+      "sha256": "6e5d89915e089e8642a6e490953f225149c968a7468c89bf729c3646d6a29c0e"
+    },
+    "process.json": {
+      "path": "C:/RMFirstLevelAudit_20261105/process.json",
+      "bytes": 943,
+      "sha256": "89cbe5065a50fe0c02c3f9dfab6cb61b8a6bf5079c445dfd60cf5147892a4f24"
+    },
+    "unity.log": {
+      "path": "C:/RMFirstLevelAudit_20261105/unity.log",
+      "bytes": 104102,
+      "sha256": "75c8813906386bbd22109af6f9292bb76a7a33107a0aaf305a832c0676fa8157"
+    },
+    "run_result.json": {
+      "path": "C:/RMFirstLevelAudit_20261105/run_result.json",
+      "bytes": 412,
+      "sha256": "935ee7c3d25a104b8dadc175dbe47beb824b2801b66aba5554444aa990a3cd7b"
+    },
+    "live_core_directed_tutorials_verification.json": {
+      "path": "C:/RMFirstLevelAudit_20261105/live_core_directed_tutorials_verification.json",
+      "bytes": 1117,
+      "sha256": "4eb0ee571acd763def7c2222a87fc2dc375f1c947835ce821e455ceb9c323101"
+    },
+    "restored.json": {
+      "path": "C:/RMFirstLevelAudit_20261105/restored.json",
+      "bytes": 147,
+      "sha256": "61ad337eb7778b7dd3a3be03156caf6334c8c8d7be2af347d332213f7befbc36"
+    },
+    "core_directed_level1.png": {
+      "path": "C:/RMFirstLevelAudit_20261105/core_directed_level1.png",
+      "bytes": 852597,
+      "sha256": "4db403b8459b193fd4b24366d782c19868e49e4e05925d09b2c4b23e760625fd"
+    },
+    "core_directed_level28.png": {
+      "path": "C:/RMFirstLevelAudit_20261105/core_directed_level28.png",
+      "bytes": 911455,
+      "sha256": "23126a2a43a08366137fd81e0d36e160149cce787e4e7cec44226bf29900d4f6"
+    },
+    "run.py": {
+      "path": "C:/RMFirstLevelAudit_20261105/run.py",
+      "bytes": 6598,
+      "sha256": "fec42e4e78bfe807f60d126ffffda2f7779c45baa80ee40de02dd2242b7b2969"
+    }
+  }
+}

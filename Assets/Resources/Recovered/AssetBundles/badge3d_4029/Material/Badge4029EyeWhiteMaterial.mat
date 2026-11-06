@@ -1,0 +1,310 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Badge4029EyeWhiteMaterial
+  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords:
+  - _AGRAD
+  - _AGRADLAYER_UST
+  - _AGRADMODE_MULTIPLY
+  - _AMBIENT
+  - _CRACKGRADMODE_TINT
+  - _CRACKLIGHT
+  - _CRACKMASK
+  - _CRACKS
+  - _DIFFUSE
+  - _FRESNEL
+  - _GRADFOLLOW
+  - _GRADIENT
+  - _GRADMODE_OVERLAY
+  - _HDRI
+  - _LAYERROT_SMOOTH
+  - _LINSHADE
+  - _POSTGRADE
+  m_InvalidKeywords:
+  - _INVTEXFLIP_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+      _AmbientMap:
+        m_Texture: {fileID: 2800000, guid: 8a68f41889c958c408c4c3c446738888, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _ColorMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _CrackMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _CrackNormalMap:
+        m_Texture: {fileID: 2800000, guid: 32c08ecca1f8f834387870661abe1dbd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _CrackTex:
+        m_Texture: {fileID: 2800000, guid: 1d23b96fc1364b744aee6eed89301600, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _Cube:
+        m_Texture: {fileID: 8900000, guid: b73220d102c0c24448abc787a2d02afd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _CurvatureMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _HeightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _POMNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: {}
+    m_Floats:
+      _AGRADLAYER: 0
+      _AGRADMODE: 1
+      _AGradBlur: 1
+      _AGradOffset: 0
+      _AGradOn: 1
+      _AGradScale: 0.16
+      _AGradSpeed: 0.22
+      _AGradStrength: 0.5
+      _Alpha: 1
+      _AmbientLevel: 1.067
+      _AmbientOn: 1
+      _BumpScale: 1
+      _CRACKGRADMODE: 0
+      _ChromaAmount: 0.3
+      _ChromaOn: 0
+      _ColorMaskBlur: 0
+      _ColorMaskCrackHide: 1
+      _ColorMaskFlatOn: 0
+      _ColorMaskGradOffset: 0
+      _ColorMaskGradOn: 0
+      _ColorMaskGradScale: 1
+      _ColorMaskInvert: 0
+      _ColorMaskOn: 0
+      _ColorMaskPower: 1
+      _ColorMaskSize: 1
+      _ColorMaskStrength: 1
+      _ColorMaskTriplanar: 0
+      _CrackDepth: 0.086
+      _CrackDepthBlur: 0
+      _CrackDewarp: 0
+      _CrackFade: 0.508
+      _CrackGradOffset: 0.5
+      _CrackGradOn: 0
+      _CrackGradScale: 1
+      _CrackInnerLightAmount: 0.3
+      _CrackInnerLightOn: 0
+      _CrackInnerLightScale: 1
+      _CrackLightOn: 1
+      _CrackMaskContrast: 1
+      _CrackMaskInvert: 0
+      _CrackMaskOn: 1
+      _CrackMaskSize: 1
+      _CrackMipBias: 0.5
+      _CrackNormalDepth: 0.08
+      _CrackNormalDepthOn: 0
+      _CrackNormalDepthStability: 1
+      _CrackNormalOn: 0
+      _CrackNormalScale: 0.5
+      _CrackNormalSize: 0.16
+      _CrackNormalSpec: 1.5
+      _CrackNormalSpecPower: 40
+      _CrackNormalStrength: 1.294
+      _CrackNormalUV: 0
+      _CrackSize: 1.2
+      _CrackSlideLock: 0
+      _CrackStability: 0
+      _CrackSteps: 2
+      _CrackStrength: 2.1
+      _CrackTexMaskOn: 0
+      _CrackTexMaskStrength: 1
+      _CrackTriplanar: 0
+      _CracksOn: 1
+      _CubeBlur: 0.995
+      _CubeOpacity: 0.503
+      _CubeRotation: 14
+      _CubeRotationX: 3
+      _CurvatureBlur: 0
+      _CurvatureLightOn: 0
+      _CurvatureLightSharp: 8
+      _CurvatureLightWidth: 0
+      _CurvatureOn: 0
+      _CurvatureStrength: 1
+      _Cutoff: 0.5
+      _DepthVariation: 1.426
+      _DetailNormalMapScale: 1
+      _DiffuseOn: 1
+      _DiffuseSmoothOn: 0
+      _DstBlend: 0
+      _FormSpecFacet: 0
+      _FormSpecIntensity: 1
+      _FormSpecOn: 0
+      _FormSpecSharp: 0.04
+      _FormSpecSize: 0.5
+      _FresnelOn: 1
+      _GRADMODE: 0
+      _GemBodyOn: 0
+      _GlassBend: 1
+      _GlitterDensity: 24
+      _GlitterIntensity: 3
+      _GlitterLightTight: 1
+      _GlitterOn: 0
+      _GlitterSize: 0.5
+      _GlitterSpeed: 3
+      _GlossMapScale: 1
+      _Glossiness: 0.5
+      _GlossyReflections: 1
+      _GradAnimOn: 0
+      _GradBaseOn: 0
+      _GradFollowOn: 1
+      _GradHighlightProtect: 0
+      _GradLinBlendOn: 0
+      _GradOffset: -0.49
+      _GradScale: 6.98
+      _GradSpeed: 1
+      _GradStrength: 0.667
+      _GradientOn: 1
+      _HDRIOn: 1
+      _HDRIOuterOn: 0
+      _ISparkleDensity: 18
+      _ISparkleIntensity: 2
+      _ISparkleOn: 0
+      _ISparkleSharp: 80
+      _InvTexFlip: 1
+      _InvTexOn: 0
+      _InvTexStrength: 1
+      _LayerRotSmoothOn: 1
+      _LayerRotate: 0.046
+      _LinShadeOn: 1
+      _MaskFollow: 0
+      _MaskRange: 0.627
+      _MaskSoftness: 0.295
+      _MaskStrength: 0.551
+      _Metallic: 0
+      _Mode: 0
+      _OcclusionStrength: 1
+      _POMChroma: 0.3
+      _POMChromaOn: 0
+      _POMContrast: 1
+      _POMDepth: 0.1
+      _POMGlassBend: 0
+      _POMNormalOn: 0
+      _POMNormalSpec: 1.5
+      _POMNormalSpecPower: 40
+      _POMNormalStrength: 1
+      _POMOn: 0
+      _POMSize: 1
+      _POMSteps: 12
+      _POMStrength: 1
+      _Parallax: 0.02
+      _PostContrast: 1.036
+      _PostExposure: 1.27
+      _PostGradeOn: 1
+      _PostSaturation: 1
+      _ReflStrength: 0.299
+      _ReflectOn: 0
+      _RefractStrength: 0.783
+      _RimMode: 0
+      _RimPower: 0.87
+      _RimStrength: 0.87
+      _RotFadeAmount: 1
+      _RotFadeOn: 0
+      _RotFadeSoft: 0.15
+      _ShadeSoftness: 0.349
+      _SmoothnessTextureChannel: 0
+      _SparkleDensity: 8
+      _SparkleIntensity: 2
+      _SparkleOn: 0
+      _SparkleSharp: 32
+      _Spec1Intensity: 1.33
+      _Spec1On: 0
+      _Spec1Power: 256
+      _Spec1Size: 1
+      _Spec2Intensity: 1.01
+      _Spec2On: 0
+      _Spec2Power: 90
+      _Spec2Size: 1
+      _Spec3Intensity: 1.3
+      _Spec3On: 0
+      _Spec3Power: 31
+      _Spec3Size: 1
+      _Spec4Intensity: 1
+      _Spec4On: 0
+      _Spec4Power: 30
+      _Spec4Size: 1
+      _SpecCurve: 1
+      _SpecIntensity: 2.97
+      _SpecPower: 30
+      _SpecularHighlights: 1
+      _SrcBlend: 1
+      _SweepScale: 1
+      _UVSec: 0
+      _ZBiasFactor: 0
+      _ZBiasUnits: 0
+      _ZTestMode: 4
+      _ZWrite: 1
+    m_Colors:
+      _AGradColorA: {r: 0.86995924, g: 0.6509433, b: 1, a: 1}
+      _AGradColorB: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+      _AGradDir: {r: 0, g: 1, b: 0, a: 0}
+      _AmbientColor: {r: 0, g: 0.086648464, b: 1, a: 1}
+      _Color: {r: 1, g: 1, b: 1, a: 1}
+      _ColorMaskColor: {r: 1, g: 0.4, b: 0.4, a: 1}
+      _ColorMaskColor2: {r: 0.4, g: 0.5, b: 1, a: 1}
+      _ColorMaskGradDir: {r: 0, g: 1, b: 0, a: 0}
+      _CrackColor: {r: 1, g: 0, b: 0.980392, a: 1}
+      _CrackColor2: {r: 0.85, g: 0.92, b: 1, a: 1}
+      _CrackGradBottom: {r: 0.5, g: 0.29999998, b: 1, a: 1}
+      _CrackGradTop: {r: 0.85, g: 0.92, b: 1, a: 1}
+      _CrackNormalOffset: {r: -1.85, g: -0.79, b: 0, a: 0}
+      _CurvatureColor: {r: 1, g: 1, b: 1, a: 1}
+      _CurvatureLightDir: {r: 0.5, g: 0.8, b: -0.3, a: 0}
+      _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+      _FormSpecColor: {r: 1, g: 1, b: 1, a: 1}
+      _FormSpecDir: {r: 0.5, g: 0.8, b: -0.3, a: 0}
+      _GlitterColor: {r: 1, g: 1, b: 1, a: 1}
+      _GradBottom: {r: 0.7098809, g: 0.8270656, b: 0.899371, a: 1}
+      _GradTop: {r: 1, g: 0.86477983, b: 0.9887317, a: 1}
+      _ISparkleColor: {r: 1, g: 1, b: 1, a: 1}
+      _InnerColor: {r: 0.6672769, g: 0.56289303, b: 1, a: 1}
+      _InvTexColor: {r: 0.17999998, g: 0.15999997, b: 0.27999997, a: 1}
+      _LightColor2: {r: 1, g: 1, b: 1, a: 1}
+      _LightDir: {r: 0.03, g: 0.41, b: -0.05, a: 0}
+      _MaskObjDir: {r: 0, g: 0, b: 1, a: 0}
+      _POMColor: {r: 0.6, g: 0.85, b: 1, a: 1}
+      _PostTint: {r: 1, g: 1, b: 1, a: 1}
+      _RefractColor: {r: 0.54088044, g: 0, b: 0.10345955, a: 1}
+      _RimColor: {r: 1, g: 0.60062885, b: 0.60062885, a: 1}
+      _ShadowColor: {r: 0.9222487, g: 0.83333325, b: 1, a: 1}
+      _SkyBottom: {r: 0.8018867, g: 0.8448637, b: 1, a: 1}
+      _SkyTop: {r: 0, g: 0.8317566, b: 1, a: 1}
+      _SparkleColor: {r: 1, g: 1, b: 1, a: 1}
+      _Spec1Color: {r: 1, g: 1, b: 1, a: 1}
+      _Spec1Dir: {r: 0, g: 0.01, b: -0.02, a: 0}
+      _Spec2Color: {r: 0.5943395, g: 0.88407886, b: 1, a: 1}
+      _Spec2Dir: {r: 0.47, g: 0.36, b: -1.06, a: 0}
+      _Spec3Color: {r: 0.99056596, g: 0.9981132, b: 1, a: 1}
+      _Spec3Dir: {r: 0.74, g: -5.56, b: -0.93, a: 0}
+      _Spec4Color: {r: 0.39999998, g: 0.7, b: 1, a: 1}
+      _Spec4Dir: {r: 0, g: -0.8, b: 0.2, a: 0}
+      _SpecColor2: {r: 1, g: 1, b: 1, a: 1}
+      _SweepAxis: {r: 1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

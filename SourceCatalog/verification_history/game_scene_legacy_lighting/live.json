@@ -1,0 +1,7 @@
+{
+    "passed": false,
+    "normal_scene_and_72_models_verified": false,
+    "original_top_background_verified": false,
+    "failure": "System.InvalidOperationException: Original render and baking settings are active\r\n  at Whitebox.Foundation.Editor.GameSceneVerification.Run () [0x000cf] in F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\Assets\\Foundation\\Editor\\GameSceneVerification.cs:33 ",
+    "scope": "Normal GameScene starts existing real first-board gameplay, retains original serialized camera/render/bake settings and imports recovered Top/Background under actual HUD. Physical input, dynamic camera/orientation, King/boosters, startup/account/settlement/Home/navigation and full original rendered parity remain incomplete."
+}

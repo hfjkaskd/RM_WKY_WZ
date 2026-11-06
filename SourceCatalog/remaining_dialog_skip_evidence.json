@@ -1,0 +1,452 @@
+{
+  "full_objective_complete": false,
+  "production_application_account_win_fail_bound": false,
+  "production_result_dialog_rendered": false,
+  "actual_level2_startup_or_layout_verified": false,
+  "physical_pointer_input_verified": false,
+  "original_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "af195c40f8130efbbdd8f41ae3a75fc28b3465590985f80e175d1b6699326b65",
+  "restored_scope": [
+    "Actual TapToSkip state machine: Hide, captured session reference, first-level exclusion, signed Number!=1&&Number<31 text gate, show-once reset and callback-failure state order.",
+    "Preserved original tap text font/material/gradient/layout subtree inside a standard full-panel Unity Button/Canvas prefab with code-bound events; original separate proprietary TapButton/collider subtree removed from this runtime prefab.",
+    "Win-logo0.75second attachment now transfers the actual tap view to RemainingMovesManager. Button dispatch reaches native skip callback/audio boundary, reverse/time-stop control and delayed dialog destruction. The native43/60 reference,1.233333 cutoff and landscape/portrait end times are retained.",
+    "Runtime RemainingMovesDialog owns Show, manager start, position/scale and UI sorting, typed0.3second callback, top sorting reset, ShowSkipText and real UiDialog close. No verifier callback completes this dialog action directly.",
+    "Formal scene owns a configured standard EventSystem/StandaloneInputModule in its prefab. First-level rejection, remaining-phase Button skip and logo-phase Button skip are verified through Unity ExecuteEvents.pointerClickHandler, with actual remaining/account/queue kernels."
+  ],
+  "native_methods": [
+    {
+      "rva": "0x18d084c",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.TapToSkip$$Hide",
+      "body_sha256": "2e97b1c8996bc06e23b6690b46af4bd075cff33ec5f784a297267ad7197d03ff"
+    },
+    {
+      "rva": "0x18d088c",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.TapToSkip$$EnableSkipWithoutText",
+      "body_sha256": "92dab09ed17902affc995aa1615b4f5c5116687b585827a917d0326e55399cc1"
+    },
+    {
+      "rva": "0x18d0970",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.TapToSkip$$ShowSkipText",
+      "body_sha256": "fa97f28ab397224acebebc01ecb9a697a1a40b81debc6a73c0245c5b4fd51951"
+    },
+    {
+      "rva": "0x18d0ecc",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.TapToSkip$$TapToSkipClicked",
+      "body_sha256": "207ecfa46bfe70cff64c1a7fdb8be33f8d39659187d0ec9484e80cf63bd528d1"
+    },
+    {
+      "rva": "0x18d0cec",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.TapToSkip$$ShouldShowTapToSkipText",
+      "body_sha256": "7d382c5606ed6ebf0e2604c0209150aadc5f15de3e39b41d1875636c16dd195e"
+    },
+    {
+      "rva": "0x18d17e0",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.WinLogoAnimationDialog$$AttachToTapToSkip",
+      "body_sha256": "3e7c964bf0240bed09636c8dccb1f119e38aa821b6e6265f9059272e1a3b2765"
+    },
+    {
+      "rva": "0x18d18b8",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.WinLogoAnimationDialog$$OnTapToSkip",
+      "body_sha256": "71a06eb5912f30449e0cb6b2dc8f946b5b53b137ba0ba442996c2896d1af96a5"
+    },
+    {
+      "rva": "0x18d1b04",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.WinLogoAnimationDialog$$StopAnimation",
+      "body_sha256": "24aa5da0bd7cba8f6c82bd2b9b99b34164b0d467acdb4b1799ac3ae3e97989df"
+    },
+    {
+      "rva": "0x18d2240",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.WinLogoAnimationDialog$$GetConfig",
+      "body_sha256": "45c7da4ca18c5cc8e45f580fd5683cb0344f278d3a29823cf10734a3454c4c37"
+    },
+    {
+      "rva": "0x29d6968",
+      "name": "Royal.Infrastructure.Utils.Time.TimeUtil$$FramesToSeconds",
+      "body_sha256": "7e3694d7228947446cd1c002458bc62ffdac7d2cb05a70935b478238096db690"
+    },
+    {
+      "rva": "0x11187b0",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesDialog$$OnShow",
+      "body_sha256": "531f375eceae82b5b33a84719add122df624651561daff0807bfd41e9998922c"
+    },
+    {
+      "rva": "0x1118924",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesDialog$$OnBlackFadeOutCompleted",
+      "body_sha256": "00366a1d092fef8a667f544dee51aacf1ec3d246a1c87e0b43b822c0e843dd8c"
+    },
+    {
+      "rva": "0x11189f0",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesDialog$$GetConfig",
+      "body_sha256": "4a1030af74fb287ff1bae610f21152799d8810bcaa1323eabd478a02fd9ac75c"
+    },
+    {
+      "rva": "0x1119c88",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemReplacer$$SkipClicked",
+      "body_sha256": "d71e168db6cda566397720cd2a3ce2ddc60e9ebdb8a108109291dcbbe8f109ec"
+    },
+    {
+      "rva": "0x1119ee0",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemReplacer$$SkipClickedImmediately",
+      "body_sha256": "f2d3c54ce7b3236af5c27209ad452d4a5d11890bc252873e4ce6e717fe74439e"
+    }
+  ],
+  "tap_native_differential": {
+    "passed": true,
+    "cases": 1364,
+    "scope": "Actual ARM64 TapToSkip guards, captured level owner, show-once and dispatch state vs runtime C#.\n\nUnity Button/Collider and TMP rendering, localization/tweening, account/context\nlookup and RemainingMovesManager dispatch are typed boundaries. Original\nstate writes, first-level gate, signed text-level limit, retained reference,\ncallback ordering and failure mutations execute from the ELF. This is not\nphysical pointer input, full skip visual or production account composition.",
+    "original_rvas": [
+      "0x18d084c",
+      "0x18d088c",
+      "0x18d0970",
+      "0x18d0ecc",
+      "0x18d0cec"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/TapToSkipHarness.cs",
+        "sha256": "393f24aa69da839ab733922542e1c489b0cf518623479c5564bc3b6b9d7788aa"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalTapToSkip.cs",
+        "sha256": "ba79c0813adc97a6fbbf8f59a48378ad8bfa3fe0290a3d8ca11b443bae72be0e"
+      }
+    ]
+  },
+  "prefab_structure_verification": {
+    "passed": true,
+    "scope": "Check preserved tap text/style, standard Button ownership and native dialog configuration.",
+    "standard_button_root_contains_original_visual_subtree": true,
+    "persistent_button_events": 0,
+    "collider_input_components": 0,
+    "original_font_style_preserved": true,
+    "native_full_panel_size": [
+      100,
+      100
+    ],
+    "transport_difference": "Native100x100 BoxCollider2D/proprietary UiButton is replaced by a100x100 world Canvas/Image/standard Button root containing the original visual subtree, per the user requirement. Text font/material/gradient/layout subtree are preserved. This is not the identical native interaction implementation.",
+    "physical_pointer_or_rendered_original_parity_verified": false,
+    "files": [
+      {
+        "path": "Assets/Resources/Foundation/Prefabs/OriginalTapToSkip.prefab",
+        "sha256": "1c9407950aa272959af8ca9c0e30ae1d644971a79fcb74a390e21fdd1d34d8b8"
+      },
+      {
+        "path": "Assets/Resources/Foundation/Prefabs/OriginalRemainingMovesDialog.prefab",
+        "sha256": "b71a881bdea8987d1fcbd4a1cb29d34244122451dc3a637d9c5b7af009c1f67e"
+      },
+      {
+        "path": "Assets/Resources/Foundation/Prefabs/OriginalWinLogoVisual.prefab",
+        "sha256": "4e323190430b9f90dca60f4e21eb22174822a840e9bad496eea0b092456313f2"
+      },
+      {
+        "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+        "sha256": "cf9a596102e22000131cdcd8f32476a9885f33a1ff94b5ea7d262c35a5b447a0"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalTapToSkipView.cs",
+        "sha256": "14e9a532a4cad5c7cc15eed2453c0e2d9c686167c6111e61523fd973ce3f70a5"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalRemainingMovesDialog.cs",
+        "sha256": "0739f9f270cbe3ad4c865b4a6cd2f25b3ddfdc7a2d67ae2597d5d285fbaccd20"
+      }
+    ]
+  },
+  "unchanged_dialog_kernel_reports": [
+    {
+      "path": "dialog_lifecycle_native_verification.json",
+      "cases": 1292,
+      "files_match": true
+    },
+    {
+      "path": "dialog_manager_native_verification.json",
+      "cases": 823,
+      "files_match": true
+    }
+  ],
+  "same_snapshot_runtime_tests": [
+    {
+      "path": "background_win_logo_skip_verification.json",
+      "source_sha256": "af195c40f8130efbbdd8f41ae3a75fc28b3465590985f80e175d1b6699326b65",
+      "elapsed_seconds": 107.91
+    },
+    {
+      "path": "background_remaining_coins_normal_verification.json",
+      "source_sha256": "af195c40f8130efbbdd8f41ae3a75fc28b3465590985f80e175d1b6699326b65",
+      "elapsed_seconds": 112.01
+    },
+    {
+      "path": "background_remaining_coins_early_skip_verification.json",
+      "source_sha256": "af195c40f8130efbbdd8f41ae3a75fc28b3465590985f80e175d1b6699326b65",
+      "elapsed_seconds": 104.38
+    },
+    {
+      "path": "background_player_input_verification.json",
+      "source_sha256": "af195c40f8130efbbdd8f41ae3a75fc28b3465590985f80e175d1b6699326b65",
+      "elapsed_seconds": 110.33
+    }
+  ],
+  "normal_result": {
+    "passed": true,
+    "skipped": false,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": false,
+    "first_level_skip_rejected": true,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-256dcd858660413fa6d53e552d9f4c65.sqlite",
+    "skip_ui_level": 1,
+    "initial_remaining_moves": 25,
+    "converted_moves": 25,
+    "unconverted_moves": 0,
+    "reward_coins": 86,
+    "collections": 32,
+    "peak_coin_views": 76,
+    "peak_pilots": 76,
+    "peak_operation5": 76,
+    "native_departure_count": 76,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2086,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 11.807167053222656,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. Backdrop, scene, localization, haptic/audio and final result owners remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "remaining_phase_skip_result": {
+    "passed": true,
+    "skipped": true,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": true,
+    "first_level_skip_rejected": false,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-42935aac66bc435a93bd3d996f792ba8.sqlite",
+    "skip_ui_level": 2,
+    "initial_remaining_moves": 25,
+    "converted_moves": 2,
+    "unconverted_moves": 23,
+    "reward_coins": 77,
+    "collections": 0,
+    "peak_coin_views": 0,
+    "peak_pilots": 0,
+    "peak_operation5": 0,
+    "native_departure_count": 0,
+    "active_board_coin_value_at_end": 10,
+    "unconverted_move_coin_value": 57,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2077,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 6.4959259033203125,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. Backdrop, scene, localization, haptic/audio and final result owners remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "logo_phase_skip_result": {
+    "passed": true,
+    "skipped": true,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": false,
+    "skip_button_entry_verified": true,
+    "first_level_skip_rejected": false,
+    "remaining_dialog_started_ready": false,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": false,
+    "failure": "",
+    "account_database_path": "",
+    "skip_ui_level": 2,
+    "initial_remaining_moves": 25,
+    "converted_moves": 0,
+    "unconverted_moves": 25,
+    "reward_coins": 81,
+    "collections": 0,
+    "peak_coin_views": 0,
+    "peak_pilots": 0,
+    "peak_operation5": 0,
+    "native_departure_count": 0,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 0,
+    "session_win_state": 0,
+    "native_win_cloche_calls": 0,
+    "win_trigger_calls": 0,
+    "win_flow_calls": 0,
+    "low_match_total": 0,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 0,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 0,
+    "reactivation_calls": 0,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2081,
+    "account_coin_update_calls": 0,
+    "account_star_update_calls": 0,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 0,
+    "elapsed": 3.5087642669677734,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. Backdrop, scene, localization, haptic/audio and final result owners remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "skip_fixture_boundary": "The actual formal board/account/session stay on recovered level1. Skip scenarios provide a separate captured Number2 session only to the typed tap context. This proves the Button/skip/remaining integration on that board, not actual level2 startup/account/layout support.",
+  "displayed_moves_on_skip": "Native regular SkipClicked0x1119c88 stops routines and preserves the displayed in-progress count; SkipClickedImmediately0x1119ee0 used by the logo shortcut sets it to0. Do not normalize both paths to0. The missing final result popup leaves that background count exposed in these captures.",
+  "initial_failed_attempt": {
+    "source_snapshot_sha256": "2ac2175004c9018b151429b8cc84a4597291a63c9e1ef823e8281c8f9d6b8854",
+    "test": "win-logo-skip",
+    "failure": "GoalUiVerification: Delay, actual check sprite and original particles observed, before the Button click ran.",
+    "correction": "Observe actual ParticleSystem.isPlaying on the completion frame as well as working frames. A runtime Tick can cross particle and completion stages together. The actual particle assertion and check timings remain required; no runtime animation/gameplay fallback was introduced."
+  },
+  "rendered_captures_inspected": [
+    "win_logo_skip_before.png: real original logo, flags/trumpets, native text style and Tap to Skip are visible over the board; camera/backdrop/slot-mask parity remains incomplete.",
+    "remaining_coins_early_skip_reward.png and win_logo_skip_reward.png: inspect actual board/reward state; result view is still an explicit owner and no original settlement popup parity is claimed."
+  ],
+  "limits": [
+    "FoundationController still does not compose production account/application/WinFail/dialog factories. The new runtime UI components are invoked by explicit formal-scene verifiers; player-facing complete startup/settlement flow remains unfinished.",
+    "Final result dialog, Ego warning/shop/cancel views, failure settlement and their standard buttons remain unbound.",
+    "Backdrop fade, camera/UI scale/grid/bottom positions, localization, orientation, haptic and audio owners remain explicit fixtures. Input calls use standard Button pointer handler transport, not a physical device or screen-coordinate raycast proof.",
+    "Offline baked logo cannot yet reproduce native dynamic screenshot atlas, camera-dependent trumpets and the four slot-attachment removals on close. Reverse/stop control is present, but complete visual/runtime implementation parity is not proved.",
+    "Tap control has1364 actual ARM64 differential cases; RemainingMovesDialog component and logo adapter are checked by native body inspection and isolated scene integration, not by a complete native renderer differential.",
+    "Full all-level/home/tutorial/unlocks/country AB/GM/US defaults and Android/iOS runtime remain incomplete. SDK behavior is unchanged. Pending Android SQLite binary scope was not assumed approved."
+  ],
+  "performance": "Prefab instantiation occurs only on dialog transitions. Cached Button/text/canvas references and struct color/scale updates avoid per-frame Find/GetComponent/LINQ/allocations. Original font and existing baked logo load on demand with the logo prefab; no bulk runtime UI construction was added.",
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTapToSkip.cs",
+      "sha256": "ba79c0813adc97a6fbbf8f59a48378ad8bfa3fe0290a3d8ca11b443bae72be0e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTapToSkip.cs.meta",
+      "sha256": "04f64e3b28ccb3afc2ab891d47f1a2e4bcf389135283751155e1c2f005fab8e0"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTapToSkipView.cs",
+      "sha256": "14e9a532a4cad5c7cc15eed2453c0e2d9c686167c6111e61523fd973ce3f70a5"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTapToSkipView.cs.meta",
+      "sha256": "e57c22a0cfaa4280f14524a0318ddb5d278acc5f3cd56f0c29959c81c63d2d7f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingMovesDialog.cs",
+      "sha256": "0739f9f270cbe3ad4c865b4a6cd2f25b3ddfdc7a2d67ae2597d5d285fbaccd20"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingMovesDialog.cs.meta",
+      "sha256": "920e10ac668842b03fa8f5dd25a2e019c87929e27c87df503edb90809191ec99"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWinLogoDialog.cs",
+      "sha256": "66332909ddf652152c51231498694d8dcf8a71b56691bfb4c936445c8d7f95b7"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWinLogoVisual.cs",
+      "sha256": "f92c0e2312bfa6809c70d0745df114e45382f502b96e2961a7b2a8208edc14df"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBakedMeshAnimation.cs",
+      "sha256": "379cc52ebe41a4fbddd62f404e0e81de8893794cc06b91bb6c42f1a1ddc97f95"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingMovesManager.cs",
+      "sha256": "7e84f6fd18331bbdba299910879f0268631f0b259fa55338eefca9a83a0c317f"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalTapToSkip.prefab",
+      "sha256": "1c9407950aa272959af8ca9c0e30ae1d644971a79fcb74a390e21fdd1d34d8b8"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalTapToSkip.prefab.meta",
+      "sha256": "2df3e739094942756c0ec5c3b1f84cd9e8a4a69af9f29456153c017d7d604a9d"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalRemainingMovesDialog.prefab",
+      "sha256": "b71a881bdea8987d1fcbd4a1cb29d34244122451dc3a637d9c5b7af009c1f67e"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalRemainingMovesDialog.prefab.meta",
+      "sha256": "89fae708af2d96aa4c00486d348dca086300bc9cebe58d9080f6ea6109b9bf8b"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalWinLogoVisual.prefab",
+      "sha256": "4e323190430b9f90dca60f4e21eb22174822a840e9bad496eea0b092456313f2"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "cf9a596102e22000131cdcd8f32476a9885f33a1ff94b5ea7d262c35a5b447a0"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "4e2843d056556fc854e3807c7658f0e03331a3b53d250ca7d270b0de8074f4a7"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GoalUiVerification.cs",
+      "sha256": "3a7f7542e029611a4e6e0e967bf1a0cf4aef0337196db24aa276bcc429021c41"
+    },
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "02affd64bf063e16bebb8ec185e54a47052bc4491cb7fbd5e767fa339be97367"
+    },
+    {
+      "path": "SourceCatalog/TapToSkipHarness.cs",
+      "sha256": "393f24aa69da839ab733922542e1c489b0cf518623479c5564bc3b6b9d7788aa"
+    },
+    {
+      "path": "SourceCatalog/verify_tap_to_skip.py",
+      "sha256": "7285ef21f78d58290109483c913dcdb9f039d7fe24e6ee9b12d7bfa2b3dcfb33"
+    },
+    {
+      "path": "SourceCatalog/verify_skip_prefabs.py",
+      "sha256": "1b1aa6555e93af6c645224b0448877d3416237539ad41568d59a5c4e27f49623"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "a81d3ae316cd29d4cdc16a452fc86beb2546f4845783a37e9099357cbfe82479"
+    }
+  ],
+  "current_level_win_dialog_evidence": "SourceCatalog/level_win_dialog_evidence.json",
+  "current_level_win_dialog_source_snapshot_sha256": "79557e533b0777f36a4699640241fc7dc1872ac45251314a68d191617ea5b35c",
+  "current_game_exit_evidence": "SourceCatalog/game_exit_evidence.json",
+  "current_game_exit_source_snapshot_sha256": "5ba86cfdbf811aa7929d6c11e1d5dbd53fb599db7e256ec5c3010c1181e31831",
+  "current_game_context_exit_evidence": "SourceCatalog/game_context_exit_evidence.json",
+  "current_game_context_exit_source_snapshot_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332"
+}

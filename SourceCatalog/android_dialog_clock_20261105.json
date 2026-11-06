@@ -1,0 +1,512 @@
+{
+  "schema": 1,
+  "baseline_commit": "a1e8526539f04770d694d9db72fdd3859a58d961",
+  "verified_utc": "2026-11-05T12:05:17.495256+00:00",
+  "source": {
+    "canonical_commit": "a1e8526539f04770d694d9db72fdd3859a58d961",
+    "selected_source_files": 3528,
+    "method": "Canonical Git blobs for the existing dependency selection; existing Unity build cache retained.",
+    "build_helper_sha256": "0b8521fa89bf36c0053843386562cc024cc0497e3b959a9bffb7d770888c5ed7",
+    "runtime_observation_hooks_added": false,
+    "hidden_build_cpu_affinity_mask": 3,
+    "job_worker_count": 2
+  },
+  "apk": {
+    "apk": "C:\\RMAndroidDialogClock_20261105\\RoyalMatch-Core-1-100-a1e8526-arm64.apk",
+    "bytes": 43633835,
+    "sha256": "245abff1bfc3079ae9fb4bf327c501e7a8e32df84e037a9cc36f606e3b56e737",
+    "package": "com.royalmatch.core.recovery",
+    "abi": "arm64-v8a",
+    "version_name": "1.0",
+    "version_code": 1,
+    "elf_load_alignment": {
+      "lib/arm64-v8a/lib_burst_generated.so": 16384,
+      "lib/arm64-v8a/libil2cpp.so": 16384,
+      "lib/arm64-v8a/libmain.so": 16384,
+      "lib/arm64-v8a/libunity.so": 16384
+    }
+  },
+  "packaging": {
+    "signature_v2_verified": true,
+    "certificate": "Android Debug",
+    "zip_and_alignment_verified": true,
+    "numbered_level_assets": 100,
+    "level_101_absent": true,
+    "all_level_git_blob_bytes_verified": true,
+    "rigs": {
+      "TutorialHandRig": {
+        "bytes": 33553,
+        "sha256": "9619f3f5b0d430b9509edde720e23be270cafce24a3c01ad21340fae8dc30aec",
+        "canonical_source_equal": true
+      },
+      "OriginalJesterRig": {
+        "bytes": 69584,
+        "sha256": "767ddaf61003178c807dda011ed38a013aaaf6488b9f5c04f47019d2927e36a7",
+        "canonical_source_equal": true
+      },
+      "OriginalWinLogoRig": {
+        "bytes": 100222,
+        "sha256": "e3d747b460b3b3e0d7dfc75432b25a91f75fcd69bd39c9f50da5813fbe7df2e1",
+        "canonical_source_equal": true
+      }
+    },
+    "old_mesh_bakes_absent": [
+      "OriginalWinLogo",
+      "OriginalWinLogoTrumpetGroups",
+      "tap_animation_2",
+      "swipe_left",
+      "swipe_down",
+      "OriginalJesterEnter",
+      "OriginalJesterExit"
+    ]
+  },
+  "execution": {
+    "platform": "Android 15 (SDK 35) MuMu x86_64 emulator with ARM64 native translation",
+    "render_size": [
+      1080,
+      2360
+    ],
+    "input": "Android OS tap/swipe through production UnityPlayer input",
+    "cleared_data_or_edited_save": false,
+    "arranged_powers_or_runtime_test_hooks": false,
+    "settings_quit_cancel_preserves_attempt": true,
+    "quit_opens_failure": true,
+    "retry_restores_play": true,
+    "post_retry_accepted_match": true,
+    "cold_restart_visible_state_retained": true,
+    "cold_restart_exact_cell_pixel_equality": false,
+    "reviewed_process_ids": [
+      "25374",
+      "25785"
+    ],
+    "unity_exception_or_crash_log_matches": 0,
+    "finished_on_emulator_launcher": true,
+    "log_limit": "Scoped logs retain emulator translation/graphics/debugger E-level messages and the pre-existing Unity particle stripped-physics warning (default gravity 9.81 matches configured gravity). No Unity error/exception/assertion or native crash matched the recorded filters."
+  },
+  "observations": [
+    {
+      "capture": "android_updated_entry.png",
+      "level": 3,
+      "moves": 27,
+      "boxes": 25,
+      "observation": "APK replacement retains the prior level-3 progress and board."
+    },
+    {
+      "capture": "android_settings_open.png",
+      "level": 3,
+      "moves": 27,
+      "boxes": 25,
+      "observation": "The visible gear opens settings with the dark background and three standard option Buttons."
+    },
+    {
+      "capture": "android_quit_confirm_open.png",
+      "level": 3,
+      "moves": 27,
+      "boxes": 25,
+      "observation": "The Quit Button opens the real authored confirmation popup."
+    },
+    {
+      "capture": "android_quit_cancel.png",
+      "level": 3,
+      "moves": 27,
+      "boxes": 25,
+      "observation": "The close Button dismisses confirmation and restores the playable board without spending a move."
+    },
+    {
+      "capture": "android_quit_failed.png",
+      "level": 3,
+      "moves": 27,
+      "boxes": 25,
+      "observation": "Confirming Quit shows Level 3 / Level Failed / Try Again, the incomplete goal icon, retained shade and sad King."
+    },
+    {
+      "capture": "android_retry_level3.png",
+      "level": 3,
+      "moves": 27,
+      "boxes": 25,
+      "observation": "Try Again creates a fresh third-level attempt and clears the failure overlay."
+    },
+    {
+      "capture": "android_retry_accepted_match.png",
+      "level": 3,
+      "moves": 26,
+      "boxes": 23,
+      "observation": "A normal (1,2) to (1,3) swipe is accepted, consumes one move and resolves cascades/refill with three TNTs and a vertical rocket."
+    },
+    {
+      "capture": "android_level3_cold_restart.png",
+      "level": 3,
+      "moves": 26,
+      "boxes": 23,
+      "observation": "Cold restart preserves the visible board contents, box layers and power positions. Exact center-pixel equality is not achieved because the captures have different active hint/idle render states; the comparison and manual transcription are retained."
+    }
+  ],
+  "gestures": [
+    {
+      "label": "android_settings_open",
+      "action": "Android input tap",
+      "coordinates": [
+        965,
+        2250
+      ],
+      "timestamp_utc": "2026-11-05T11:50:52.513512+00:00",
+      "capture": "android_settings_open.png",
+      "capture_sha256": "c49613460c4329ba781ba775e1f626c3e194375bf34ac328c60657af00c17444"
+    },
+    {
+      "label": "android_quit_confirm_open",
+      "action": "Android input tap",
+      "coordinates": [
+        965,
+        1600
+      ],
+      "timestamp_utc": "2026-11-05T11:52:08.587985+00:00",
+      "capture": "android_quit_confirm_open.png",
+      "capture_sha256": "7186a625b6b53e83c870bd03e29554cb2c7bd790d8f48158441b767cb58fa5f6"
+    },
+    {
+      "label": "android_quit_cancel",
+      "action": "Android input tap",
+      "coordinates": [
+        975,
+        640
+      ],
+      "timestamp_utc": "2026-11-05T11:53:38.093280+00:00",
+      "capture": "android_quit_cancel.png",
+      "capture_sha256": "3dc73c84400352a450851524f271fa2b0a8ebbb83cbaae41984ee0d406fa9829"
+    },
+    {
+      "label": "android_settings_reopen",
+      "action": "Android input tap",
+      "coordinates": [
+        965,
+        2250
+      ],
+      "timestamp_utc": "2026-11-05T11:54:24.205769+00:00",
+      "capture": "android_settings_reopen.png",
+      "capture_sha256": "7a97f752121a316ad5684e877f1443767f1b69e874b26e1e8a760b7869861ca0"
+    },
+    {
+      "label": "android_quit_reopen",
+      "action": "Android input tap",
+      "coordinates": [
+        965,
+        1600
+      ],
+      "timestamp_utc": "2026-11-05T11:54:53.055124+00:00",
+      "capture": "android_quit_reopen.png",
+      "capture_sha256": "64aca31fc9551ca401e7fabc0950459bc17369b6f03203e231a77844326576ef"
+    },
+    {
+      "label": "android_quit_failed",
+      "action": "Android input tap",
+      "coordinates": [
+        540,
+        1550
+      ],
+      "timestamp_utc": "2026-11-05T11:55:28.689788+00:00",
+      "capture": "android_quit_failed.png",
+      "capture_sha256": "6121bd61f71e2b6dbf7b6bb37d1acd99e57b53648ae5d711070502782c04519b"
+    },
+    {
+      "label": "android_retry_level3",
+      "action": "Android input tap",
+      "coordinates": [
+        540,
+        1620
+      ],
+      "timestamp_utc": "2026-11-05T11:56:14.024472+00:00",
+      "capture": "android_retry_level3.png",
+      "capture_sha256": "bfc387dddaf8b699d486d548ed46719a55d6c9cd151cf1e0db5c779aec66da95"
+    },
+    {
+      "label": "android_retry_accepted_match",
+      "action": "Android input swipe",
+      "coordinates": [
+        185,
+        1542,
+        185,
+        1424
+      ],
+      "timestamp_utc": "2026-11-05T11:57:12.083339+00:00",
+      "capture": "android_retry_accepted_match.png",
+      "capture_sha256": "111288c6d9f72d51ebef67fd9774b01ac9e7fe91cec4929438cd890850684cf6",
+      "duration_ms": 180
+    }
+  ],
+  "cold_restart_difference_review": {
+    "compared_cells": 81,
+    "exactly_equal_center_patches": 73,
+    "different_patches": [
+      {
+        "cell": [
+          1,
+          8
+        ],
+        "visual_role": "old blue-match hint participant",
+        "different_pixels": 1024,
+        "total_pixels": 1024,
+        "mean_absolute_channel_difference": 14.725260416666666,
+        "maximum_channel_difference": 51
+      },
+      {
+        "cell": [
+          1,
+          7
+        ],
+        "visual_role": "old blue-match hint participant",
+        "different_pixels": 1024,
+        "total_pixels": 1024,
+        "mean_absolute_channel_difference": 14.710286458333334,
+        "maximum_channel_difference": 51
+      },
+      {
+        "cell": [
+          0,
+          6
+        ],
+        "visual_role": "old blue-match hint moving tile",
+        "different_pixels": 1024,
+        "total_pixels": 1024,
+        "mean_absolute_channel_difference": 19.281575520833332,
+        "maximum_channel_difference": 130
+      },
+      {
+        "cell": [
+          2,
+          6
+        ],
+        "visual_role": "idle TNT render",
+        "different_pixels": 106,
+        "total_pixels": 1024,
+        "mean_absolute_channel_difference": 1.1448567708333333,
+        "maximum_channel_difference": 72
+      },
+      {
+        "cell": [
+          1,
+          5
+        ],
+        "visual_role": "old blue-match hint participant",
+        "different_pixels": 1024,
+        "total_pixels": 1024,
+        "mean_absolute_channel_difference": 14.621744791666666,
+        "maximum_channel_difference": 51
+      },
+      {
+        "cell": [
+          3,
+          5
+        ],
+        "visual_role": "new rocket/TNT combination hint",
+        "different_pixels": 1001,
+        "total_pixels": 1024,
+        "mean_absolute_channel_difference": 9.802408854166666,
+        "maximum_channel_difference": 142
+      },
+      {
+        "cell": [
+          4,
+          5
+        ],
+        "visual_role": "new rocket/TNT combination hint",
+        "different_pixels": 1005,
+        "total_pixels": 1024,
+        "mean_absolute_channel_difference": 14.243815104166666,
+        "maximum_channel_difference": 186
+      },
+      {
+        "cell": [
+          1,
+          3
+        ],
+        "visual_role": "idle TNT render",
+        "different_pixels": 31,
+        "total_pixels": 1024,
+        "mean_absolute_channel_difference": 0.032552083333333336,
+        "maximum_channel_difference": 6
+      }
+    ],
+    "interpretation": "The visible piece types, box layers, three TNTs, vertical rocket, 26 moves and 23 boxes are retained. Six differences coincide with the two different hint animations; the other two are idle TNT renders. This classification is a screenshot-based inference, not an isolated causal test or proof of identical animation state.",
+    "manual_visible_grid_rows_top_to_bottom": [
+      "RBYRRGYBR",
+      "RBYRYBGYY",
+      "BGTYGYRGR",
+      "YBGVTGGYB",
+      "YRBRGGYBY",
+      "BTYR22BYR",
+      "GB12222YG",
+      "G2222222R",
+      "222222222"
+    ],
+    "grid_legend": {
+      "R": "red",
+      "B": "blue",
+      "Y": "yellow",
+      "G": "green",
+      "T": "TNT",
+      "V": "vertical rocket",
+      "1": "one-layer box",
+      "2": "two-layer box"
+    },
+    "grid_read_method": "Manually transcribed and compared from both screenshots; not runtime instrumentation or save-file decoding."
+  },
+  "limits": [
+    "This Android run exercises the latest quit/failure/retry and background binding using real OS input. It does not instrument animation clock values in the APK; original native and live Unity clock comparisons are in dialog_tween_clock_evidence.json.",
+    "The eight unequal rendered patches are retained as differences. Their classification as hint/idle effects is a screenshot-based inference; no exact animation-state or original-device pixel parity is claimed.",
+    "The latest APK packages the three current rigs and all 100 original ordinary levels. This run does not replay natural victory, Android Jester activation, no-possible-moves or all 100 levels.",
+    "Original-app first-run terms/privacy confirmation remains untouched; live original-device image/audio/input parity and physical ARM64 touch are unverified."
+  ],
+  "artifacts": {
+    "android_action.py": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_action.py",
+      "bytes": 1784,
+      "sha256": "778fd8bcc5e219564ebf13869690967ee7fe490f2bda87513307ca838467fa2e"
+    },
+    "android_build.log": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_build.log",
+      "bytes": 94163,
+      "sha256": "7b9ecdea55736675b52c068861ef29be1e4bf71a84faeff527d160444f72a973"
+    },
+    "android_cold_restore.json": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_cold_restore.json",
+      "bytes": 2620,
+      "sha256": "cb22505d2a990cb6258490dfebc885f50bb7ee3520fac4fda57ccb5dfb26d116"
+    },
+    "android_cold_restore.py": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_cold_restore.py",
+      "bytes": 3475,
+      "sha256": "3ac1c0261458488a26bf74479196d174c58ff1caec322c2b64063967298066d9"
+    },
+    "android_first_session_logcat.txt": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_first_session_logcat.txt",
+      "bytes": 16357,
+      "sha256": "f6b84589f5f51005a4af19af5cc7c379407e4f6ddd20bdae1d5366a7054a3eb4"
+    },
+    "android_gestures.json": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_gestures.json",
+      "bytes": 2732,
+      "sha256": "b39c0019e3620ae7ef4ef908eb0516ec000fc571d07b8898194bc4ac2a058d6b"
+    },
+    "android_install_launch.json": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_install_launch.json",
+      "bytes": 1018,
+      "sha256": "2e99a8fcdfeb0018845c626ba176fe13c1564a038faa05d35b9778ee66e4676f"
+    },
+    "android_launch.py": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_launch.py",
+      "bytes": 2052,
+      "sha256": "091ffaccaa1cf7abd1be44ed0de125a429f840424fd864738f6d16694da7fc2d"
+    },
+    "android_level3_before_restart.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_level3_before_restart.png",
+      "bytes": 2699018,
+      "sha256": "6ce54f6f8deeb53c4388ad931068fca1927d8b6c8e3944b78b4082ec9e4e4325"
+    },
+    "android_level3_cold_restart.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_level3_cold_restart.png",
+      "bytes": 2686229,
+      "sha256": "14417bfa428bcb9a715dd208929c3215f07a4542e2c14bf76956a979a8c0e410"
+    },
+    "android_quit_cancel.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_quit_cancel.png",
+      "bytes": 2652894,
+      "sha256": "3dc73c84400352a450851524f271fa2b0a8ebbb83cbaae41984ee0d406fa9829"
+    },
+    "android_quit_confirm_open.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_quit_confirm_open.png",
+      "bytes": 1112423,
+      "sha256": "7186a625b6b53e83c870bd03e29554cb2c7bd790d8f48158441b767cb58fa5f6"
+    },
+    "android_quit_failed.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_quit_failed.png",
+      "bytes": 1040790,
+      "sha256": "6121bd61f71e2b6dbf7b6bb37d1acd99e57b53648ae5d711070502782c04519b"
+    },
+    "android_quit_reopen.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_quit_reopen.png",
+      "bytes": 1112154,
+      "sha256": "64aca31fc9551ca401e7fabc0950459bc17369b6f03203e231a77844326576ef"
+    },
+    "android_restart_difference_review.json": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_restart_difference_review.json",
+      "bytes": 3258,
+      "sha256": "642f87a2b5d6a5f35a2687861168b833190c0e6c23ecb0a17bf675caad3f85c9"
+    },
+    "android_restart_logcat.txt": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_restart_logcat.txt",
+      "bytes": 14085,
+      "sha256": "cbfcb811974a5a94409cd889fb12985fd838d2e46dae4d083f04d7c17cead6f7"
+    },
+    "android_retry_accepted_match.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_retry_accepted_match.png",
+      "bytes": 2673372,
+      "sha256": "111288c6d9f72d51ebef67fd9774b01ac9e7fe91cec4929438cd890850684cf6"
+    },
+    "android_retry_level3.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_retry_level3.png",
+      "bytes": 2652893,
+      "sha256": "bfc387dddaf8b699d486d548ed46719a55d6c9cd151cf1e0db5c779aec66da95"
+    },
+    "android_settings_open.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_settings_open.png",
+      "bytes": 1476478,
+      "sha256": "c49613460c4329ba781ba775e1f626c3e194375bf34ac328c60657af00c17444"
+    },
+    "android_settings_reopen.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_settings_reopen.png",
+      "bytes": 1475785,
+      "sha256": "7a97f752121a316ad5684e877f1443767f1b69e874b26e1e8a760b7869861ca0"
+    },
+    "android_updated_entry.png": {
+      "path": "C:/RMAndroidDialogClock_20261105/android_updated_entry.png",
+      "bytes": 2684536,
+      "sha256": "997802ff5be99d9f6d09633f06b8a6e44b74c6794cc4855e1a758c11571579fb"
+    },
+    "apk_resource_comparison.json": {
+      "path": "C:/RMAndroidDialogClock_20261105/apk_resource_comparison.json",
+      "bytes": 1013,
+      "sha256": "aa9d3e2d90616c9d83e794c64862f79c087dde18c905c077cdf2c75e0504a96c"
+    },
+    "apk_verification.json": {
+      "path": "C:/RMAndroidDialogClock_20261105/apk_verification.json",
+      "bytes": 11350,
+      "sha256": "a6f392c600a87056f5b9d96f2b22008b6958f44e02f300dafe6fdf1f6deed99c"
+    },
+    "build_current.py": {
+      "path": "C:/RMAndroidDialogClock_20261105/build_current.py",
+      "bytes": 5759,
+      "sha256": "2449d4548eb7e2bb86efbea1159462ac9e16676c3a5ed417ce70f0c24ecffe76"
+    },
+    "build_source_manifest.json": {
+      "path": "C:/RMAndroidDialogClock_20261105/build_source_manifest.json",
+      "bytes": 806282,
+      "sha256": "6e72bcedb8d24b5db23daca1d64c98016d9d588c8652814557f0012ab7e4d5dd"
+    },
+    "commit_body.txt": {
+      "path": "C:/RMAndroidDialogClock_20261105/commit_body.txt",
+      "bytes": 923,
+      "sha256": "1bf6df235e380feb8c2b864933a467c29d7fd800fd45e49b5a471a3f9d85dd63"
+    },
+    "inspect_restart_differences.py": {
+      "path": "C:/RMAndroidDialogClock_20261105/inspect_restart_differences.py",
+      "bytes": 2356,
+      "sha256": "710423ccae52a1992d6695d4c45e141b72b408a5b60abe75e3b07e01f12bb7bd"
+    },
+    "promote.py": {
+      "path": "C:/RMAndroidDialogClock_20261105/promote.py",
+      "bytes": 8080,
+      "sha256": "5e6e8dc64f12d76ba18540f3d8bc2b0444272fd5d2ca8bb90e26300013ceb2ee"
+    },
+    "verify_current.py": {
+      "path": "C:/RMAndroidDialogClock_20261105/verify_current.py",
+      "bytes": 3839,
+      "sha256": "887fa90fefb4f06cf9c0bf76285696086f900144843680084171236fcd3274ec"
+    },
+    "verify_resources.py": {
+      "path": "C:/RMAndroidDialogClock_20261105/verify_resources.py",
+      "bytes": 2885,
+      "sha256": "cdf1bab3bd3550eb10704d05212a6b96317ff3a7ff030b9fdbd7ddbe71f250f0"
+    }
+  }
+}

@@ -1,0 +1,700 @@
+{
+  "baseline_commit": "217e7616bbcd2a3e641b4de095c71d5f5cef0c64",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "original_fixed_dispatch": {
+    "factory": "0x218cc10",
+    "fixed_tutorials": [
+      {
+        "level": 1,
+        "type": "NewUserNewUx2LevelTutorial1",
+        "constructor": "0x223c6f0"
+      },
+      {
+        "level": 4,
+        "type": "LevelTutorial4",
+        "constructor": "0x24e7814"
+      },
+      {
+        "level": 21,
+        "type": "LevelTutorial21",
+        "constructor": "0x24e17ac"
+      },
+      {
+        "level": 28,
+        "type": "LevelTutorial28",
+        "constructor": "0x24e38b4"
+      },
+      {
+        "level": 31,
+        "type": "LevelTutorial31",
+        "constructor": "0x24e4ef0"
+      },
+      {
+        "level": 41,
+        "type": "LevelTutorial41",
+        "constructor": "0x24e87a0"
+      },
+      {
+        "level": 51,
+        "type": "LevelTutorial51",
+        "constructor": "0x24eb910"
+      },
+      {
+        "level": 61,
+        "type": "LevelTutorial61",
+        "constructor": "0x24ee1c4"
+      },
+      {
+        "level": 71,
+        "type": "LevelTutorial71",
+        "constructor": "0x24f1518"
+      },
+      {
+        "level": 81,
+        "type": "LevelTutorial81",
+        "constructor": "0x2236ba4"
+      },
+      {
+        "level": 91,
+        "type": "LevelTutorial91",
+        "constructor": "0x223a198"
+      }
+    ]
+  },
+  "native_reference": {
+    "grass": {
+      "show": "0x24e7528",
+      "localized_key": "Level9Step1",
+      "cell_rectangle": [
+        [
+          1,
+          1
+        ],
+        [
+          7,
+          7
+        ]
+      ],
+      "portrait_grid_top_offset": [
+        0,
+        0.6
+      ],
+      "landscape_grid_top_offset": [
+        0,
+        0.4
+      ]
+    },
+    "owl": {
+      "show": "0x24ede84",
+      "localized_key": "Level61Step1",
+      "touchable_cells": [
+        [
+          0,
+          9
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "whole_grid_sort_offset": 1,
+      "portrait_cell": [
+        4,
+        5
+      ],
+      "portrait_offset": [
+        0,
+        -0.6
+      ],
+      "text_width": 7.5,
+      "background_half_width": 4.2
+    },
+    "optional_release": [
+      "0x276a508 SetOptional",
+      "0x2769c9c MouseDown",
+      "0x2769d44 MouseUp",
+      "0x276a864 delayed continuation",
+      "0x276bcf8 advance on valid board action"
+    ]
+  },
+  "tests": {
+    "core-directed-tutorial-author": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-directed-tutorial-author",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-directed-tutorial-author.log",
+      "elapsed_seconds": 27.31,
+      "batch": {
+        "passed": true,
+        "test": "core-directed-tutorial-author"
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-optional-tutorials": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-optional-tutorials",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-optional-tutorials.log",
+      "elapsed_seconds": 35.66,
+      "batch": {
+        "passed": true,
+        "test": "core-optional-tutorials",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T09:17:10.4986924Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-directed-tutorials": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-directed-tutorials",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-directed-tutorials.log",
+      "elapsed_seconds": 40.94,
+      "batch": {
+        "passed": true,
+        "test": "core-directed-tutorials",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T09:18:03.8542568Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-grass-chain": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-grass-chain",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-grass-chain.log",
+      "elapsed_seconds": 107.23,
+      "batch": {
+        "passed": true,
+        "test": "core-grass-chain",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T09:19:50.8525387Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-owl-chapter": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-owl-chapter",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-owl-chapter.log",
+      "elapsed_seconds": 389.62,
+      "batch": {
+        "passed": true,
+        "test": "core-owl-chapter",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T09:26:21.2602364Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    }
+  },
+  "optional_tutorials": {
+    "status": "finished",
+    "failure": "",
+    "passed": true,
+    "level4_button_dismisses": true,
+    "level61_button_dismisses": true,
+    "level61_rocket_dismisses": true,
+    "level4_enabled_cells": 49,
+    "level61_enabled_cells": 5,
+    "level61_rocket_owls_cleared": 9
+  },
+  "previous_directed_tutorial_regression": {
+    "status": "finished",
+    "failure": "",
+    "passed": true,
+    "level1_guided_swap_completed": true,
+    "level28_initial_input_open": true,
+    "level28_guided_combo_completed": true,
+    "level28_early_combo_skips_guide": true,
+    "level1_boxes_removed": 3,
+    "level28_delay_seconds": 3.988539934158325
+  },
+  "grass_gameplay": {
+    "passed": true,
+    "propeller_hit": true,
+    "result_goal_replacement_verified": true,
+    "initial_grass": 49,
+    "gems": 17,
+    "grass_after_swap": 46,
+    "refills_after_swap": 3,
+    "fixture_tnt_taps": 4,
+    "remaining_moves": 24,
+    "remaining_move_reward": 74,
+    "failure": "",
+    "scope": "Actual original level 4, one swap on the unmodified original board, followed by an explicitly placed propeller and TNT items activated through recorded player input. Production grass model, HUD, fall, moves, WinFail, remaining conversion, result and SQLite progress. Level 4 has only single-layer grass. Physical input, natural full-level solves, original render parity and level 5 are outside this verification."
+  },
+  "grass_chain": {
+    "passed": true,
+    "level5_loaded": true,
+    "level5_interior_refill": true,
+    "level6_loaded": true,
+    "level6_first_layer": true,
+    "level6_final_layer": true,
+    "level7_loaded": true,
+    "level7_box_cavity_refilled": true,
+    "level5_tnt_taps": 5,
+    "level6_tnt_taps": 5,
+    "failure": "",
+    "scope": "The actual original core scene starts at level 4 via isolated SQLite. Real result buttons advance into levels 5–7. Recorded natural swaps exercise the fixed original boards, with explicit TNT and rocket placements for follow-up paths. Level 7 checks the originally blocked empty cells and their refill after the box barrier opens. Full natural solves, device input and original rendered parity remain outside this run."
+  },
+  "owl_chapter": {
+    "passed": true,
+    "projection_during_shake_verified": false,
+    "egg_tap_verified": false,
+    "egg_reject_verified": false,
+    "egg_fall_verified": false,
+    "egg_burst_verified": false,
+    "egg_swap_verified": false,
+    "egg_natural_swap": false,
+    "potion_tap_animation": false,
+    "potion_color_hit": false,
+    "potion_repeated_color_rejected": false,
+    "potion_tnt_rocket_verified": false,
+    "dynamic_egg_refill": false,
+    "vase_tap": false,
+    "vase_reject": false,
+    "vase_first_layer": false,
+    "vase_final_layer": false,
+    "vase_natural_swap": false,
+    "vase_swap": false,
+    "vase_fall": false,
+    "owl_tap": true,
+    "owl_drag_blocked": true,
+    "owl_rocket_burst": true,
+    "owl_rocket_hit": true,
+    "owl_tnt_hit": true,
+    "owl_resists_adjacent_match": true,
+    "dynamic_vase_refill": true,
+    "dynamic_owl_chapter_egg_refill": true,
+    "cupboard_door_materials": true,
+    "bush_tap": false,
+    "bush_drag_blocked": false,
+    "bush_near_match": false,
+    "bush_grass_landed": false,
+    "bush_cavity_refilled": false,
+    "bush_grass_layer_refill": false,
+    "no_move_native_result": 0,
+    "coin_shuffles": 0,
+    "bush_shadow_components": 0,
+    "honey_blocks_drag": false,
+    "honey_natural_reveal": false,
+    "honey_reveals_intact_box": false,
+    "honey_first_swap_removed": 0,
+    "safe_blocks_drag": false,
+    "safe_resists_match": false,
+    "safe_power_damage": false,
+    "level_cap_restarts": false,
+    "honey_tutorial_dismissed": false,
+    "safe_tutorial_dismissed": false,
+    "no_move_board": [],
+    "bush_grass_flights": 0,
+    "owl_rocket_refills": 13,
+    "vase_fall_setup_hits": 0,
+    "eggs_from_opening_match": 0,
+    "failure": "",
+    "status": "finished",
+    "levels": [
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 61,
+        "width": 9,
+        "height": 10,
+        "target_count": 85,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 85,
+        "bushes": 0,
+        "moves": 4,
+        "move_budget": 30,
+        "natural_actions": 2,
+        "fixture_actions": 2,
+        "fixture_combos": 2,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 62,
+        "width": 9,
+        "height": 9,
+        "target_count": 72,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 36,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 36,
+        "bushes": 0,
+        "moves": 2,
+        "move_budget": 25,
+        "natural_actions": 1,
+        "fixture_actions": 1,
+        "fixture_combos": 1,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 63,
+        "width": 9,
+        "height": 9,
+        "target_count": 104,
+        "mailboxes": 9,
+        "cupboards": 0,
+        "boxes": 25,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 29,
+        "bushes": 0,
+        "moves": 5,
+        "move_budget": 25,
+        "natural_actions": 0,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 64,
+        "width": 9,
+        "height": 9,
+        "target_count": 74,
+        "mailboxes": 0,
+        "cupboards": 3,
+        "boxes": 24,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 20,
+        "bushes": 0,
+        "moves": 4,
+        "move_budget": 20,
+        "natural_actions": 0,
+        "fixture_actions": 4,
+        "fixture_combos": 4,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 65,
+        "width": 9,
+        "height": 10,
+        "target_count": 68,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 12,
+        "eggs": 20,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 6,
+        "vases": 0,
+        "owls": 12,
+        "bushes": 0,
+        "moves": 3,
+        "move_budget": 23,
+        "natural_actions": 0,
+        "fixture_actions": 3,
+        "fixture_combos": 3,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 66,
+        "width": 9,
+        "height": 10,
+        "target_count": 110,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 30,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 30,
+        "owls": 0,
+        "bushes": 0,
+        "moves": 5,
+        "move_budget": 31,
+        "natural_actions": 0,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 67,
+        "width": 9,
+        "height": 9,
+        "target_count": 120,
+        "mailboxes": 8,
+        "cupboards": 0,
+        "boxes": 40,
+        "grass": 40,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 0,
+        "moves": 5,
+        "move_budget": 25,
+        "natural_actions": 0,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 68,
+        "width": 8,
+        "height": 11,
+        "target_count": 74,
+        "mailboxes": 0,
+        "cupboards": 3,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 32,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 3,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 0,
+        "moves": 6,
+        "move_budget": 23,
+        "natural_actions": 0,
+        "fixture_actions": 6,
+        "fixture_combos": 6,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 69,
+        "width": 9,
+        "height": 10,
+        "target_count": 78,
+        "mailboxes": 6,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 21,
+        "owls": 27,
+        "bushes": 0,
+        "moves": 5,
+        "move_budget": 25,
+        "natural_actions": 0,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 70,
+        "width": 9,
+        "height": 9,
+        "target_count": 549,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 32,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 49,
+        "bushes": 0,
+        "moves": 9,
+        "move_budget": 20,
+        "natural_actions": 1,
+        "fixture_actions": 8,
+        "fixture_combos": 8,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      }
+    ],
+    "scope": "Actual GameScene from level 61 using real Continue buttons. Records owl tap, blocked drag, authored rocket and TNT, and an adjacent match. Verifies dynamic Vase and Egg refills, authored Propeller pair, and ordinary wins using controlled TNT placements."
+  },
+  "preserved_original_configs": [
+    {
+      "number": 4,
+      "original_name": "00004v02_L",
+      "resource_path": "Levels/level_4",
+      "decoded_source": "configs/levels/4__2330.json",
+      "raw_source": "configs/textassets/4__2330.bytes",
+      "sha256": "2c6739354629ce2360a82ce95bf0d29c103078671fb4849fd3efc6e9537114cb",
+      "moves": 30,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        13
+      ],
+      "raw_item_ids": {
+        "1": 19,
+        "2": 10,
+        "3": 17,
+        "4": 18,
+        "5": 17
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 49,
+        "IsPredefined": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 61,
+      "original_name": "00061v01_L",
+      "resource_path": "Levels/level_61",
+      "decoded_source": "configs/levels/61__5734.json",
+      "raw_source": "configs/textassets/61__5734.bytes",
+      "sha256": "648f10557230957afa435b973d1b2bc5cb7716c61f981d6831bebc4b9146a77e",
+      "moves": 30,
+      "width": 9,
+      "height": 10,
+      "goal_types": [
+        17
+      ],
+      "raw_item_ids": {
+        "20": 4,
+        "27": 85,
+        "40": 1
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "byte_verified_tested_files": {
+    "Assets/Foundation/Editor/BackgroundVerification.cs": "a75fe230873a2d0c706d99fc5f6e7d006ac7eff66f03d37f34a199c1866b3215",
+    "Assets/Foundation/Editor/CoreDirectedTutorialAuthoring.cs": "36ab81c30fa1f6c12b2bfccf28ef839be53c9c26391ad124a76b3d060f29977f",
+    "Assets/Foundation/Editor/CoreMixedChapterVerification.cs": "84346fb8d56fbd1cbbbbf40c530b77c5f33efa9210a8ff15beb01f5bfed2ac39",
+    "Assets/Foundation/Editor/CoreOptionalTutorialVerification.cs": "03637e1f2c42398a2b748d600d1e7b92c415a541b9087324f28cc7b156e26154",
+    "Assets/Foundation/Editor/CoreOptionalTutorialVerification.cs.meta": "705c8ede733db9996cd5d5c6ee152b2f7cde78829842925214e53406bc7fecf8",
+    "Assets/Foundation/Editor/GrassGameplayVerification.cs": "4f8070342fafc4bcee46bf99f293686686185c0d91ba7c9e4eb3d4053caef32a",
+    "Assets/Foundation/Runtime/OriginalDirectedTutorialView.cs": "a65611497d87d68445317e2b1c5f9981f5adf0e0380a94ec548d16d13945a8fe",
+    "Assets/Foundation/Runtime/OriginalGameTouchListener.cs": "e7c1c7fe6c6dea0b1869f1fad09d70be390927a84f2f1b73cabfb3b6cec8e2ec",
+    "Assets/Foundation/Scenes/GameScene.unity": "c1449a998237f2ee5ce55b1727dbfeac535f98c1fffe1bfb45b3b9cc88a50d89",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelFourGrassGuide.prefab": "39e70b5e7f689d6b435bf5f556c51783330550a48ced7c43be9b4d015b5dd68f",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelFourGrassGuide.prefab.meta": "da15f35a173f7b36f9a20cb1ff08cccca540571af3e6b098431e77061c3ffc31",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelSixtyOneOwlGuide.prefab": "f461be8883b6a719703cdf475b2155f7f10d9f28a55a599056db2ac14fa93603",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelSixtyOneOwlGuide.prefab.meta": "a356fbffc8750ac69bbe31df92131f14b322ef565f50cedf7a6e1947c897bad3",
+    "Packages/manifest.json": "e7526e7aa8730bf51b97e896ef32bfb7830a22cea8920f6b2c97a848909b2197",
+    "ProjectSettings/EditorBuildSettings.asset": "dfd9c22e5754f091bc505c5fea3d5f58c9962944b53d3b36d900ac9b544e046c"
+  },
+  "settings_override": "Separate progress filename, verified after restoring the single filename field.",
+  "verification_limits": [
+    "Production GameScene in the 720x1280 portrait batch project. Actual board listener receives recorded world-space gestures and the standard EventSystem processes the shade Button.",
+    "A real grass match resolves level 4 guidance. The original rocket tap and independent Button dismissal are both exercised at level 61. The wider chapter uses controlled special placements where reported.",
+    "Landscape and square-device layout, physical touch, original frame-by-frame visuals and Android/iOS runtime are unverified."
+  ],
+  "screenshots": {
+    "core_optional_level4.png": "d58f0b0325097547ef464cf8927a1995f17528345a2b5a0b724c7d6e3b6df699",
+    "core_optional_level61.png": "504a0b0aae3e44038c1128f0af79f4228fe43018b83bb965594bcf2bbb8db9e7"
+  }
+}

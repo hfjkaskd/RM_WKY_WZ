@@ -1,0 +1,13 @@
+{
+  "reason": "PMA atlas has all RGB channels <= alpha and transparent RGB=0. Unity alphaIsTransparency dilates transparent RGB and causes visible PMA color stripes. Disable dilation for Editor and player; do not alter PNG or add a platform fallback.",
+  "png_pixels": 1257984,
+  "fully_transparent_pixels": 713359,
+  "transparent_nonblack_pixels": 0,
+  "pixels_rgb_above_alpha": 0,
+  "first_capture_resolution": [
+    640,
+    480
+  ],
+  "portrait_reverification_mode": "camera-projection",
+  "runtime_or_native_reference_failure": false
+}

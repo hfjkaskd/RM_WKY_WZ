@@ -1,0 +1,51 @@
+{
+  "functions": [
+    {
+      "rva": "0x21a4fd8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.MatchItem.MatchItemModel$$CreateView",
+      "disassembly_sha256": "0ce900bb442c608a2b97f9468fb9e54bafee47c06a20c9c721342cc40626e7b1"
+    },
+    {
+      "rva": "0x21a5094",
+      "name": "Royal.Scenes.Game.Mechanics.Items.MatchItem.View.MatchItemView$$Init",
+      "disassembly_sha256": "c80a5cde3fb19ee05dea7653052a650efa3ef4bfbf98705d0328ec90e0ee5b0e"
+    },
+    {
+      "rva": "0x2b41e40",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemView$$InitTransform",
+      "disassembly_sha256": "e3b743c5dbdcc66c33c8bada3e7a13a8c300c663ce9bda42ed4d04acbdd40f1c"
+    },
+    {
+      "rva": "0x23f0038",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$CreateItemAt",
+      "disassembly_sha256": "7dc4ac9bf840740a6bc89f9dba7f7f11ff57e8dd51a86bc298a64f17dec06a5c"
+    },
+    {
+      "rva": "0x23f00bc",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$CreateItemWithSettings",
+      "disassembly_sha256": "fb0b1d558858ed3c58ac043e5e20ecc42620083b6e36b16d376584e282750afd"
+    },
+    {
+      "rva": "0x23f0154",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$CreateItemAtCell",
+      "disassembly_sha256": "5e62a2508f0f1186f865fe32e63a8c0760dd27c45a5f074f91eba1f6f6af230a"
+    },
+    {
+      "rva": "0x343b790",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellPoint$$ToVector",
+      "disassembly_sha256": "1c2e516f733198c73326cb159994428fef79811da2698f0589e111e363864154"
+    }
+  ],
+  "verification_reports": [
+    "item_view_creation_native_verification.json",
+    "filling_view_creation_unity_verification.json"
+  ],
+  "scope": "Native model CreateView and generic item-with-view creation orchestration. Formal normal-match views use model creation and configured pooled initialization. Concrete filling backend composes actual predefined/set/view owners.",
+  "boundaries": [
+    "MatchItemView.Init renderer/Transform operations and ItemView.InitTransform are sourced from original methods and exercised with actual configured prefab/Unity transforms; their full ARM64 engine-call sequence is not claimed by the orchestration verifier.",
+    "Unity test provides explicit seed, holes and placement; full automatic target planning, application/session/factory/tuning/flying ownership and player resolution remain incomplete.",
+    "Other item view classes, static/chain initialization, full original HUD/camera and later lifecycle remain required."
+  ],
+  "performance": "Existing prewarmed view pool and path-cached resources retained. Models and mediator/containers still allocate with original per-item lifetime; model pooling is not introduced without full native state reset.",
+  "sdk_handling": "Unchanged."
+}

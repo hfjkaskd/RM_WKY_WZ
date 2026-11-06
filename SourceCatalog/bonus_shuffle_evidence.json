@@ -1,0 +1,1116 @@
+{
+  "schema": 1,
+  "baseline_commit": "6dad67de61c39d15fbaa128a73884d17989aa118",
+  "verified_utc": "2026-11-05T15:58:46.377851+00:00",
+  "runtime_changed": false,
+  "finding": "The old level-80 route incorrectly required at least one shuffle. Twenty-one recorded stable states all have an ordinary legal move, confirmed by the actual ARM64 finder. A separate controlled dead-board test exercises mandatory shuffle coverage instead of relying on that accidental route outcome.",
+  "verification_changes": [
+    "Add the public background core-bonus-shuffle verifier on authored level-80 geometry, preserving 42 coin models/views/world positions while explicitly replacing the 14 color pieces with allowed red/blue alternation.",
+    "Require no initial match or move, normal operation gating, real shuffle input lock and movement, preserved coin identities/positions and counters, valid post-shuffle mediation/view positions, and a real follow-up touch swap with one move spent and refill.",
+    "Retain the ordinary 20-move bonus result and King idle/celebration assertions. Check every naturally observed shuffle through the existing coin/counter/possible-move/capture checks, but remove the unsupported requirement that this particular natural route must trigger one.",
+    "Keep the previous failed reports as historical evidence. Compare their sampled board decisions with the original ARM64 body; no runtime shuffle behavior is changed to satisfy a test."
+  ],
+  "ordinary_route_trace": {
+    "finished": true,
+    "states": [
+      {
+        "made": 0,
+        "left": 20,
+        "difficulty_seed": 291,
+        "difficulty_draws": 14,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 0,
+        "immediate_match": false,
+        "rows": [
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 1,
+        "left": 19,
+        "difficulty_seed": 291,
+        "difficulty_draws": 60,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 14,
+        "immediate_match": false,
+        "rows": [
+          "60,60,3,60,60,1,60,60",
+          "60,60,30,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 2,
+        "left": 18,
+        "difficulty_seed": 291,
+        "difficulty_draws": 192,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 54,
+        "immediate_match": false,
+        "rows": [
+          "60,60,30,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,30,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 3,
+        "left": 17,
+        "difficulty_seed": 291,
+        "difficulty_draws": 208,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 60,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,3,60,60",
+          "60,60,30,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 4,
+        "left": 16,
+        "difficulty_seed": 291,
+        "difficulty_draws": 244,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 72,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 5,
+        "left": 15,
+        "difficulty_seed": 291,
+        "difficulty_draws": 322,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 96,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 6,
+        "left": 14,
+        "difficulty_seed": 291,
+        "difficulty_draws": 340,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 102,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 7,
+        "left": 13,
+        "difficulty_seed": 291,
+        "difficulty_draws": 386,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 116,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,3,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,30,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 8,
+        "left": 12,
+        "difficulty_seed": 291,
+        "difficulty_draws": 490,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 148,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,30,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,3,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 9,
+        "left": 11,
+        "difficulty_seed": 291,
+        "difficulty_draws": 630,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 190,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,50,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,30,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,3,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 10,
+        "left": 10,
+        "difficulty_seed": 291,
+        "difficulty_draws": 886,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 266,
+        "immediate_match": false,
+        "rows": [
+          "60,60,30,60,60,50,60,60",
+          "60,60,50,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,30,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 11,
+        "left": 9,
+        "difficulty_seed": 291,
+        "difficulty_draws": 970,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 294,
+        "immediate_match": false,
+        "rows": [
+          "60,60,50,60,60,30,60,60",
+          "60,60,30,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 12,
+        "left": 8,
+        "difficulty_seed": 291,
+        "difficulty_draws": 986,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 300,
+        "immediate_match": false,
+        "rows": [
+          "60,60,50,60,60,30,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 13,
+        "left": 7,
+        "difficulty_seed": 291,
+        "difficulty_draws": 1102,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 338,
+        "immediate_match": false,
+        "rows": [
+          "60,60,30,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 14,
+        "left": 6,
+        "difficulty_seed": 291,
+        "difficulty_draws": 1118,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 344,
+        "immediate_match": false,
+        "rows": [
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 15,
+        "left": 5,
+        "difficulty_seed": 291,
+        "difficulty_draws": 1182,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 364,
+        "immediate_match": false,
+        "rows": [
+          "60,60,30,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 16,
+        "left": 4,
+        "difficulty_seed": 291,
+        "difficulty_draws": 1198,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 370,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 17,
+        "left": 3,
+        "difficulty_seed": 291,
+        "difficulty_draws": 1244,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 384,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,1,60,60",
+          "60,60,30,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60"
+        ]
+      },
+      {
+        "made": 18,
+        "left": 2,
+        "difficulty_seed": 291,
+        "difficulty_draws": 1280,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 396,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 19,
+        "left": 1,
+        "difficulty_seed": 291,
+        "difficulty_draws": 1298,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 402,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60"
+        ]
+      },
+      {
+        "made": 20,
+        "left": 0,
+        "difficulty_seed": 291,
+        "difficulty_draws": 1319,
+        "possible": 2,
+        "ordinary_shuffles": 0,
+        "colored_shuffles": 0,
+        "goal": 408,
+        "immediate_match": false,
+        "rows": [
+          "60,60,1,60,60,3,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60",
+          "60,60,1,60,60,3,60,60",
+          "60,60,1,60,60,1,60,60",
+          "60,60,3,60,60,3,60,60",
+          "60,60,3,60,60,1,60,60"
+        ]
+      }
+    ]
+  },
+  "legacy_route_failure_retained": {
+    "passed": false,
+    "test": "core-bush-coin-opening",
+    "failure": "System.InvalidOperationException: System.InvalidOperationException: Level 80. The original level 80 recovers its dead board and celebrates after twenty moves.\r\n  at Whitebox.Foundation.Editor.CoreMixedChapterVerification.Require (System.Boolean condition, System.String detail) [0x00023] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreMixedChapterVerification.cs:2177 \r\n  at Whitebox.Foundation.Editor.CoreMixedChapterVerification.VerifyResult () [0x005ad] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreMixedChapterVerification.cs:2118 \r\n  at Whitebox.Foundation.Editor.CoreMixedChapterVerification.Advance () [0x00448] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreMixedChapterVerification.cs:872 \r\n  at Whitebox.Foundation.Editor.CoreMixedChapterVerification.Tick () [0x00052] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\CoreMixedChapterVerification.cs:568 \r\n  at Whitebox.Foundation.Editor.BackgroundVerification.Tick () [0x01b54] in C:\\RMV_20261104\\Assets\\Foundation\\Editor\\BackgroundVerification.cs:368 ",
+    "timestamp_utc": "2026-11-05T15:41:07.2502639Z",
+    "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+  },
+  "dead_fixture": {
+    "status": "finished",
+    "failure": "",
+    "passed": true,
+    "input_locked": true,
+    "animation_captured": true,
+    "coin_identities_preserved": true,
+    "coin_count": 42,
+    "replaced_colors": 14,
+    "difficulty_draws": 14,
+    "refills_after_touch": 36,
+    "moving_views_at_capture": 14,
+    "from": {
+      "x": 5,
+      "y": 3
+    },
+    "to": {
+      "x": 5,
+      "y": 4
+    },
+    "fixture": {
+      "made": 0,
+      "left": 20,
+      "difficulty_seed": 291,
+      "difficulty_draws": 14,
+      "possible": 0,
+      "ordinary_shuffles": 0,
+      "colored_shuffles": 0,
+      "goal": 0,
+      "immediate_match": false,
+      "rows": [
+        "60,60,1,60,60,3,60,60",
+        "60,60,3,60,60,1,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,3,60,60,1,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,3,60,60,1,60,60",
+        "60,60,1,60,60,3,60,60"
+      ]
+    },
+    "shuffle": {
+      "made": 0,
+      "left": 20,
+      "difficulty_seed": 291,
+      "difficulty_draws": 28,
+      "possible": 2,
+      "ordinary_shuffles": 1,
+      "colored_shuffles": 0,
+      "goal": 0,
+      "immediate_match": false,
+      "rows": [
+        "60,60,3,60,60,3,60,60",
+        "60,60,1,60,60,1,60,60",
+        "60,60,3,60,60,1,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,3,60,60,1,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,3,60,60,1,60,60"
+      ]
+    },
+    "settled": {
+      "made": 0,
+      "left": 20,
+      "difficulty_seed": 291,
+      "difficulty_draws": 28,
+      "possible": 2,
+      "ordinary_shuffles": 1,
+      "colored_shuffles": 0,
+      "goal": 0,
+      "immediate_match": false,
+      "rows": [
+        "60,60,3,60,60,3,60,60",
+        "60,60,1,60,60,1,60,60",
+        "60,60,3,60,60,1,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,3,60,60,1,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,3,60,60,1,60,60"
+      ]
+    },
+    "after_touch": {
+      "made": 1,
+      "left": 19,
+      "difficulty_seed": 291,
+      "difficulty_draws": 106,
+      "possible": 2,
+      "ordinary_shuffles": 1,
+      "colored_shuffles": 0,
+      "goal": 24,
+      "immediate_match": false,
+      "rows": [
+        "60,60,3,60,60,1,60,60",
+        "60,60,1,60,60,1,60,60",
+        "60,60,3,60,60,3,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,3,60,60,1,60,60",
+        "60,60,1,60,60,3,60,60",
+        "60,60,3,60,60,3,60,60"
+      ]
+    },
+    "scope": "Explicit fourteen-color dead-board fixture on the authored level 80 geometry. Forty-two coins remain untouched. The actual production finder, gate, shuffle, views and subsequent normal touch gesture execute. This is not an unmodified authored-board attempt or original rendered-frame comparison."
+  },
+  "corrected_original_route": {
+    "passed": true,
+    "coin_shuffles": 0,
+    "king_idle": true,
+    "king_celebration": true,
+    "levels": [
+      {
+        "honey": 0,
+        "safes": 0,
+        "level": 80,
+        "width": 8,
+        "height": 7,
+        "target_count": 0,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 42,
+        "propellers": 0,
+        "collected_coins": 478,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "bushes": 0,
+        "moves": 20,
+        "move_budget": 20,
+        "natural_actions": 20,
+        "fixture_actions": 0,
+        "fixture_combos": 0,
+        "original_lightball_combo": false,
+        "won": true,
+        "result_title_curve_verified": true,
+        "center_y": -0.75
+      }
+    ]
+  },
+  "natural_result_and_continue": {
+    "passed": true,
+    "level": 80,
+    "accepted_moves": 20,
+    "outcome": "win",
+    "reloaded_level": 81,
+    "bonus_coins": 390,
+    "difficulty_seed": 291,
+    "level_try_count": 1
+  },
+  "native_comparison": {
+    "passed": true,
+    "cases": 25,
+    "native_rva": "0x1ee5c64",
+    "reference_port_sha256": "9cad49467274d8b9884cf906fd4abd0e8480785ae836f08bf3d3f63a1a8c8743",
+    "input_sha256": "fcf292dc157ee384aeefbaea6335ec780dab0ecf87ddfd88b3d49bb4434d76cd",
+    "scope": "Compare observed level-80 move decisions with the actual ARM64 finder.\n\nThe original finder executes with the existing verification ports extended\nfrom 3x3 to the observed 8x7 board. Eligibility, neighbor lookup, current\nitem capabilities and metadata are supplied; no Unity engine is emulated.",
+    "results": [
+      {
+        "case": 0,
+        "label": "unmodified_route_0",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 248
+      },
+      {
+        "case": 1,
+        "label": "unmodified_route_1",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 153
+      },
+      {
+        "case": 2,
+        "label": "unmodified_route_2",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 19
+      },
+      {
+        "case": 3,
+        "label": "unmodified_route_3",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 153
+      },
+      {
+        "case": 4,
+        "label": "unmodified_route_4",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 36
+      },
+      {
+        "case": 5,
+        "label": "unmodified_route_5",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 396
+      },
+      {
+        "case": 6,
+        "label": "unmodified_route_6",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 97
+      },
+      {
+        "case": 7,
+        "label": "unmodified_route_7",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 380
+      },
+      {
+        "case": 8,
+        "label": "unmodified_route_8",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 36
+      },
+      {
+        "case": 9,
+        "label": "unmodified_route_9",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 36
+      },
+      {
+        "case": 10,
+        "label": "unmodified_route_10",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 19
+      },
+      {
+        "case": 11,
+        "label": "unmodified_route_11",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 22
+      },
+      {
+        "case": 12,
+        "label": "unmodified_route_12",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 47
+      },
+      {
+        "case": 13,
+        "label": "unmodified_route_13",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 19
+      },
+      {
+        "case": 14,
+        "label": "unmodified_route_14",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 170
+      },
+      {
+        "case": 15,
+        "label": "unmodified_route_15",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 19
+      },
+      {
+        "case": 16,
+        "label": "unmodified_route_16",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 97
+      },
+      {
+        "case": 17,
+        "label": "unmodified_route_17",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 97
+      },
+      {
+        "case": 18,
+        "label": "unmodified_route_18",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 36
+      },
+      {
+        "case": 19,
+        "label": "unmodified_route_19",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 416
+      },
+      {
+        "case": 20,
+        "label": "unmodified_route_20",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 97
+      },
+      {
+        "case": 21,
+        "label": "controlled_dead_fixture",
+        "native": 0,
+        "observed": 0,
+        "native_port_calls": 1121
+      },
+      {
+        "case": 22,
+        "label": "controlled_dead_shuffle",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 248
+      },
+      {
+        "case": 23,
+        "label": "controlled_dead_settled",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 248
+      },
+      {
+        "case": 24,
+        "label": "controlled_dead_after_touch",
+        "native": 2,
+        "observed": 2,
+        "native_port_calls": 407
+      }
+    ]
+  },
+  "native_reproduction": {
+    "script": "SourceCatalog/verify_bonus_move_trace.py",
+    "input": "SourceCatalog/bonus_shuffle_cases.json",
+    "command": "python SourceCatalog/verify_bonus_move_trace.py . SourceCatalog/bonus_shuffle_cases.json C:/RMBonusShuffle_20261105/canonical_native_comparison.json",
+    "scope": "Actual ARM64 PossibleMoveFinder body with supplied metadata, cell/item capabilities, eligibility and neighbor ports on the sampled 8x7 boards. This does not execute the original Unity scheduler or renderer."
+  },
+  "unity_reproduction": {
+    "test": "core-bonus-shuffle",
+    "execute_method": "Whitebox.Foundation.Editor.BackgroundVerification.Run",
+    "requires": "Independent verification mirror with an isolated CoreLevels_verify_ progressFileName and a rendered 720x1280 production GameScene; never alter the user save.",
+    "tests": [
+      "core-bonus-shuffle",
+      "core-bush-coin-opening",
+      "core-natural-attempts -recoveryOpeningLevels 80"
+    ]
+  },
+  "sources": {
+    "Assets/Foundation/Editor/BackgroundVerification.cs": "12bc35f8e236d83f9a19c41572e674a15644f70521c81aa0d44cd304dfc57371",
+    "Assets/Foundation/Editor/CoreMixedChapterVerification.cs": "9772a784294d84d91ec19c1f79fb9f772bc43d9f77d616a78fab4f284e1b6187",
+    "Assets/Foundation/Editor/CoreBonusShuffleVerification.cs": "0c715fc9e61c530ad717dd59a75c86bbaae16ce457a3cd034c71368e00a6cc07",
+    "Assets/Foundation/Editor/CoreBonusShuffleVerification.cs.meta": "ea4e98ed085ce7c332f151581196d4cc479a735a3fcf14e8c1ceb8e1eb1aea5b",
+    "SourceCatalog/verify_bonus_move_trace.py": "c26f66c22ff370fd5082af1669f2ebad6e7c704798544c2a0140588cf0c37dc0",
+    "SourceCatalog/bonus_shuffle_cases.json": "fcf292dc157ee384aeefbaea6335ec780dab0ecf87ddfd88b3d49bb4434d76cd"
+  },
+  "limits": [
+    "This checkpoint changes Editor verification and evidence only. The shipped runtime and latest APK gameplay source remain unchanged.",
+    "The independent dead-board test changes fourteen color models through the production factory. It is explicitly a controlled fixture, not an unmodified original level attempt.",
+    "The legacy trace reads the production board before each selected legal action. It records stable samples, not every intermediate frame; the actual dead-board fixture separately proves the runtime recovery branch.",
+    "Coin totals vary between the recorded selection strategies and application-random/timing histories. They are observed results, not original-device expected totals.",
+    "The original required-shuffle assertion is corrected after native decision and actual runtime branch verification. It is not reported as a repaired gameplay bug.",
+    "The first temporary probe failed to compile at two typed view calls; those calls were corrected before all live result reports used here. No runtime source was affected.",
+    "Original-device visual/audio/input parity, physical ARM64 play and natural completion of all 100 levels remain unverified."
+  ],
+  "artifacts": {
+    "BonusShuffleProbe.cs": {
+      "path": "C:/RMBonusShuffle_20261105/BonusShuffleProbe.cs",
+      "bytes": 12322,
+      "sha256": "f2f05d1c76e41b17ae5eee4abc1a6d13344577aa70d38f44f6e56f4f36caa1dd"
+    },
+    "candidate_plan.json": {
+      "path": "C:/RMBonusShuffle_20261105/candidate_plan.json",
+      "bytes": 1416,
+      "sha256": "312e3ce53b1cda7bd070d47a4a7cc66557eaf4f7e6e3cce748f25f725f79acf4"
+    },
+    "dead/background_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/dead/background_verification.json",
+      "bytes": 395,
+      "sha256": "443403666ef090472ad3dcec00d163cfbf258ca7e3343c98e08f6a8a47c99ed9"
+    },
+    "dead/bonus80_after_touch.png": {
+      "path": "C:/RMBonusShuffle_20261105/dead/bonus80_after_touch.png",
+      "bytes": 1259349,
+      "sha256": "d656c6e223d40fb58ba3498fa37075e682effbe47ec06ec6d09f7d71ba1c917f"
+    },
+    "dead/bonus80_dead_shuffle_motion.png": {
+      "path": "C:/RMBonusShuffle_20261105/dead/bonus80_dead_shuffle_motion.png",
+      "bytes": 1260565,
+      "sha256": "5a1f50d7bf31977af73000279d6c8bd15451546d8943f6c383621891a16c2083"
+    },
+    "dead/bonus80_dead_shuffle_settled.png": {
+      "path": "C:/RMBonusShuffle_20261105/dead/bonus80_dead_shuffle_settled.png",
+      "bytes": 1260721,
+      "sha256": "f7de424f7a9d7b5476fd167fc91afd068d5b3754d9dd6531ac607381b01365e1"
+    },
+    "dead/live_core_bush_chapter_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/dead/live_core_bush_chapter_verification.json",
+      "bytes": 2901,
+      "sha256": "3ddeeffab8923e9aaf3241881ba1bafcc79b52692fe2cb46f3f2262ac86a84a5"
+    },
+    "dead/process.json": {
+      "path": "C:/RMBonusShuffle_20261105/dead/process.json",
+      "bytes": 678,
+      "sha256": "d08b3f19f5c2c2f1a5b3a193ae199035fdd3f17878f4d8ae17d4ce8d72542cb6"
+    },
+    "dead/unity.log": {
+      "path": "C:/RMBonusShuffle_20261105/dead/unity.log",
+      "bytes": 102570,
+      "sha256": "6fb0270d8db8d02d9d2661fd4ac71e179dfd404f88c980d13395e94248ca171e"
+    },
+    "final_dead/background_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/final_dead/background_verification.json",
+      "bytes": 391,
+      "sha256": "9348d257114a6b28c38a7c7c3f5febbc4637d33c9ac1205c901aeb1b411e32c9"
+    },
+    "final_dead/core_bonus80_after_touch.png": {
+      "path": "C:/RMBonusShuffle_20261105/final_dead/core_bonus80_after_touch.png",
+      "bytes": 1259339,
+      "sha256": "3028e46cc88163ed8df578563c4828a71bd2dd31f4c53b5e7805665a740e432a"
+    },
+    "final_dead/core_bonus80_dead_shuffle_motion.png": {
+      "path": "C:/RMBonusShuffle_20261105/final_dead/core_bonus80_dead_shuffle_motion.png",
+      "bytes": 1261068,
+      "sha256": "e33e2addbcd3af007bc1c1163e2779c520476d4a8482a13db9bd5d49eb89db7f"
+    },
+    "final_dead/core_bonus80_dead_shuffle_settled.png": {
+      "path": "C:/RMBonusShuffle_20261105/final_dead/core_bonus80_dead_shuffle_settled.png",
+      "bytes": 1260726,
+      "sha256": "89d733ecdc4dea7ba5fa5ce3ebd6f87d6f72e28d708c8a21bc5f668f2ccf5680"
+    },
+    "final_dead/live_core_bonus_shuffle_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/final_dead/live_core_bonus_shuffle_verification.json",
+      "bytes": 2901,
+      "sha256": "3ddeeffab8923e9aaf3241881ba1bafcc79b52692fe2cb46f3f2262ac86a84a5"
+    },
+    "final_dead/process.json": {
+      "path": "C:/RMBonusShuffle_20261105/final_dead/process.json",
+      "bytes": 661,
+      "sha256": "38912836b63e961888c67116193adb94fb35f3ce16dca389f4cc6176e14ccbed"
+    },
+    "final_dead/unity.log": {
+      "path": "C:/RMBonusShuffle_20261105/final_dead/unity.log",
+      "bytes": 101534,
+      "sha256": "af7ab8299af0c04bf5952d29406e03993b3fc1e0764f8d907c9c38b93306deb0"
+    },
+    "final_motion/background_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/final_motion/background_verification.json",
+      "bytes": 391,
+      "sha256": "f40f5607c78d08ab0a2cec7ab4dd1b3cf92e11da74e55106bf3f3a8970ec2a02"
+    },
+    "final_motion/core_bonus80_after_touch.png": {
+      "path": "C:/RMBonusShuffle_20261105/final_motion/core_bonus80_after_touch.png",
+      "bytes": 1259401,
+      "sha256": "93d9e27c588da787755cd754566add45c1d4217386f8cce2b9dda26b7607f8f8"
+    },
+    "final_motion/core_bonus80_dead_shuffle_motion.png": {
+      "path": "C:/RMBonusShuffle_20261105/final_motion/core_bonus80_dead_shuffle_motion.png",
+      "bytes": 1260426,
+      "sha256": "428c948ec1c57f98e2ba9ff8a87f5f16fa463cec4916c5a840af236904b14dab"
+    },
+    "final_motion/core_bonus80_dead_shuffle_settled.png": {
+      "path": "C:/RMBonusShuffle_20261105/final_motion/core_bonus80_dead_shuffle_settled.png",
+      "bytes": 1260732,
+      "sha256": "3aee1be81470ea8c86e46e13e0687fdbaf675d8903740c5ed2a200de68018d85"
+    },
+    "final_motion/live_core_bonus_shuffle_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/final_motion/live_core_bonus_shuffle_verification.json",
+      "bytes": 2936,
+      "sha256": "2f3fb566a3087061523fefc42323d77d909fc2350d47533678501ac043795e91"
+    },
+    "final_motion/process.json": {
+      "path": "C:/RMBonusShuffle_20261105/final_motion/process.json",
+      "bytes": 662,
+      "sha256": "abadf54f8acf46cc1456ffd8c9435b72f15481359f3d1b20acb20e29487cd49a"
+    },
+    "final_motion/unity.log": {
+      "path": "C:/RMBonusShuffle_20261105/final_motion/unity.log",
+      "bytes": 101482,
+      "sha256": "eb0d529962f7179d418a12718db90ce2a231e25ba184f4c56411c3e44a9fc963"
+    },
+    "final_source_plan.json": {
+      "path": "C:/RMBonusShuffle_20261105/final_source_plan.json",
+      "bytes": 2623,
+      "sha256": "f4dd01bda13b15991baf7a0479479473cf57a3b4496f7a06cf99b50842649cbb"
+    },
+    "fixed_dead/background_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_dead/background_verification.json",
+      "bytes": 391,
+      "sha256": "fc3aedb2afb0b9d38ae72545457f72ca8cd0239889d4e797cb002ed772c5547d"
+    },
+    "fixed_dead/core_bonus80_after_touch.png": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_dead/core_bonus80_after_touch.png",
+      "bytes": 1259402,
+      "sha256": "464724fb55c546ae560a8fc343ed4f6348a994d1ba0392ee68dabac1acba5f98"
+    },
+    "fixed_dead/core_bonus80_dead_shuffle_motion.png": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_dead/core_bonus80_dead_shuffle_motion.png",
+      "bytes": 1261197,
+      "sha256": "67147811b8064d865d479b67cd93f346e5afbebb605c097200cad000c319fda6"
+    },
+    "fixed_dead/core_bonus80_dead_shuffle_settled.png": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_dead/core_bonus80_dead_shuffle_settled.png",
+      "bytes": 1260725,
+      "sha256": "fda58a0f3da44691e7567d60d65b8fcb494155e7dcb02c570ac8e48666a2be21"
+    },
+    "fixed_dead/live_core_bonus_shuffle_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_dead/live_core_bonus_shuffle_verification.json",
+      "bytes": 2901,
+      "sha256": "3ddeeffab8923e9aaf3241881ba1bafcc79b52692fe2cb46f3f2262ac86a84a5"
+    },
+    "fixed_dead/process.json": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_dead/process.json",
+      "bytes": 661,
+      "sha256": "65d64ffd08bd921ac5f31f71fb0b50e0c8bef019b2b139cd2f29cd5962657a02"
+    },
+    "fixed_dead/unity.log": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_dead/unity.log",
+      "bytes": 103588,
+      "sha256": "ebfcaf5aada84c56357ab5c88cdc5f269a11bb4bf0152703e19d12a275502489"
+    },
+    "fixed_natural_continue/background_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_natural_continue/background_verification.json",
+      "bytes": 394,
+      "sha256": "51a0c9f44db11643c80517a085d0f22497aa9923e53082a6b0d0a1664a53b22c"
+    },
+    "fixed_natural_continue/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_natural_continue/live_core_natural_attempts_verification.json",
+      "bytes": 13735,
+      "sha256": "c98015f4838bb6a523abc617a5c3ec1e0981d3445a3e34e480ca2ab260e370d7"
+    },
+    "fixed_natural_continue/process.json": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_natural_continue/process.json",
+      "bytes": 718,
+      "sha256": "3f4aa75f9d52c460af41d3a772f5dc3f2e0d624e92ce758b4ec51dc7b49ab7b8"
+    },
+    "fixed_natural_continue/unity.log": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_natural_continue/unity.log",
+      "bytes": 101628,
+      "sha256": "37f529af877a9587d576963937e55342dcabd45ab681f75a35a07edeec4c9956"
+    },
+    "fixed_original_route/background_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_original_route/background_verification.json",
+      "bytes": 395,
+      "sha256": "d618dea0cf737fff7c0c7565bc41784f465a30f64a4b1b39d9d79cc086bb0933"
+    },
+    "fixed_original_route/core_bush_level80_start.png": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_original_route/core_bush_level80_start.png",
+      "bytes": 1259539,
+      "sha256": "6fb0bd062fdf3d74adfbafd4cad6007e9577523fb7e32a530c3c14e6b7724265"
+    },
+    "fixed_original_route/core_bush_level80_win.png": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_original_route/core_bush_level80_win.png",
+      "bytes": 659696,
+      "sha256": "9c22a6bfb7826fee27acdf31d91bf456bdf2c0c946cacf462c710b054948302b"
+    },
+    "fixed_original_route/live_core_bush_chapter_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_original_route/live_core_bush_chapter_verification.json",
+      "bytes": 3616,
+      "sha256": "616832241d6da9026d0ba7a6dc309a776b17047faee47a0ea20933f859d0bd6e"
+    },
+    "fixed_original_route/process.json": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_original_route/process.json",
+      "bytes": 675,
+      "sha256": "11e6725910c2c44a4c0e162e6ddbbb880370437dbe83541b57295263381b7f23"
+    },
+    "fixed_original_route/unity.log": {
+      "path": "C:/RMBonusShuffle_20261105/fixed_original_route/unity.log",
+      "bytes": 99881,
+      "sha256": "24acd5cfde4670e6bb2bf7eaf28ec36b6902c401675f23319147cc4e77d87adb"
+    },
+    "move_finder_input.json": {
+      "path": "C:/RMBonusShuffle_20261105/move_finder_input.json",
+      "bytes": 13881,
+      "sha256": "fcf292dc157ee384aeefbaea6335ec780dab0ecf87ddfd88b3d49bb4434d76cd"
+    },
+    "native_comparison.json": {
+      "path": "C:/RMBonusShuffle_20261105/native_comparison.json",
+      "bytes": 4250,
+      "sha256": "784ab6a88224a568175978c5b6d7224c9473f847599fef6804ee3782f7ccd585"
+    },
+    "natural/process.json": {
+      "path": "C:/RMBonusShuffle_20261105/natural/process.json",
+      "bytes": 684,
+      "sha256": "d18a2c8d897101d717d99644b72e68a7c13339cd815f25e7860bc2b55f88aaff"
+    },
+    "natural/unity.log": {
+      "path": "C:/RMBonusShuffle_20261105/natural/unity.log",
+      "bytes": 56647,
+      "sha256": "4e8f394a64f523c486dd96892a1355b9a14dfa0d1222afa6af4fb33e025ec837"
+    },
+    "natural_v2/background_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/natural_v2/background_verification.json",
+      "bytes": 1444,
+      "sha256": "5d1abb8fd801f0b8b825d74ffe50a925661f76187576763faff0ff5afbeb0921"
+    },
+    "natural_v2/bonus_natural_trace.json": {
+      "path": "C:/RMBonusShuffle_20261105/natural_v2/bonus_natural_trace.json",
+      "bytes": 13171,
+      "sha256": "a77d284bc42876cac6adc7fd34b0757d019e775542ce1eaa3966164cd0d39a58"
+    },
+    "natural_v2/live_core_bush_chapter_verification.json": {
+      "path": "C:/RMBonusShuffle_20261105/natural_v2/live_core_bush_chapter_verification.json",
+      "bytes": 4475,
+      "sha256": "67253b01885a671ee11d6d68614cac681f7047de4169d1d2e767a90d454806ea"
+    },
+    "natural_v2/process.json": {
+      "path": "C:/RMBonusShuffle_20261105/natural_v2/process.json",
+      "bytes": 687,
+      "sha256": "4efd451f54c4bd8fac5a1af19a0dd19861bc127b9d324d1d1fec8c00065cecf8"
+    },
+    "natural_v2/unity.log": {
+      "path": "C:/RMBonusShuffle_20261105/natural_v2/unity.log",
+      "bytes": 102736,
+      "sha256": "d84183a951ba2aedbe12677584acf80561772941ef0344a17f749b9a36a1fc54"
+    },
+    "prepare_candidate.py": {
+      "path": "C:/RMBonusShuffle_20261105/prepare_candidate.py",
+      "bytes": 5707,
+      "sha256": "6e51c544844c1014b8471761d7843ce624ad91014a4f432df25ffbe063234349"
+    },
+    "prepare_move_input.py": {
+      "path": "C:/RMBonusShuffle_20261105/prepare_move_input.py",
+      "bytes": 622,
+      "sha256": "5b33a48f4246b6a11fae18f8c023be54ca94f3f0a86c61a638bbcc7b302ac933"
+    },
+    "promote.py": {
+      "path": "C:/RMBonusShuffle_20261105/promote.py",
+      "bytes": 10727,
+      "sha256": "d9773e772d1a229cc5050f60955a638e20aa14471fa05207dd1ce82ad9264103"
+    },
+    "run.py": {
+      "path": "C:/RMBonusShuffle_20261105/run.py",
+      "bytes": 5951,
+      "sha256": "0260c405eb66520bc674eae7286ba1c78234fb0423a207055d566283e72fba9f"
+    },
+    "run_candidate.py": {
+      "path": "C:/RMBonusShuffle_20261105/run_candidate.py",
+      "bytes": 3962,
+      "sha256": "61e8f2ee8ca1ee979f5ad765dda8c9940699076a8fbb7ca1b8db458c7e58b0cf"
+    },
+    "verify_bonus_move_trace.py": {
+      "path": "C:/RMBonusShuffle_20261105/verify_bonus_move_trace.py",
+      "bytes": 3420,
+      "sha256": "c26f66c22ff370fd5082af1669f2ebad6e7c704798544c2a0140588cf0c37dc0"
+    }
+  },
+  "canonical_reproduction": {
+    "passed": true,
+    "cases": 25,
+    "report": "C:\\RMBonusShuffle_20261105\\canonical_native_comparison.json",
+    "sha256": "784ab6a88224a568175978c5b6d7224c9473f847599fef6804ee3782f7ccd585",
+    "equal_to_candidate_comparison": true
+  },
+  "native_motion_followup": {
+    "baseline_commit": "5f225b3d2f4c4386f709404c0318ebb696b5cc88",
+    "report": "SourceCatalog/runtime_shuffle_motion_evidence.json",
+    "runtime_changed": true,
+    "native_unclamped_last_sample_restored": true,
+    "portable_scenarios": 64,
+    "portable_states": 2920,
+    "baseline_mismatched_states": 84,
+    "fixed_mismatches": 0,
+    "unity_motion_frames_including_completion": 115,
+    "unity_position_scalar_comparisons": 3774,
+    "unity_maximum_position_error": 4.76837158203125e-07,
+    "bonus_recolor_rollback_no_moves_restart_and_post_shuffle_touch_verified": true,
+    "scope": "Restore the actual native elapsed accumulation and last eased sample instead of clamping shuffle progress. Native/compiled-production comparisons and real Unity 30-FPS/alternating motion pass. Replace the unsupported center-snap assertion with retained-last-sample coverage while keeping mediation, counts, sorting, restart and follow-up input checks. Synthetic fixtures, supplied engine ports, Android follow-up and original rendering/audio/input parity remain explicitly bounded."
+  }
+}

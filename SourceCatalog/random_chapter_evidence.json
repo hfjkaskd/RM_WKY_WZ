@@ -1,0 +1,507 @@
+{
+  "baseline_commit": "a131656867168346100406af1af65701c561a10f",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "canonical_background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-random-chapter",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "a58abe6f18f67be746c50124465d4b8f014a9bbb47bed3df30516eecf6bba868",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-random-chapter.log",
+    "elapsed_seconds": 770.71,
+    "batch": {
+      "passed": true,
+      "test": "core-random-chapter",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T04:38:27.2316673Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "actual_chapter_verification": {
+    "passed": true,
+    "closed_and_open_taps_verified": false,
+    "door_only_hit": false,
+    "rocket_shared_plate_hits": false,
+    "guided_cupboard_hit": false,
+    "cupboard_win": false,
+    "box_tap_verified": true,
+    "box_drag_rejected": true,
+    "random_opening_swap_verified": true,
+    "blocked_cells_refilled_after_clear": true,
+    "cupboards": 0,
+    "proxy_cells": 0,
+    "chapter_wins": 8,
+    "cupboard_tnt_taps": 0,
+    "difficulty_samples_before_swap": 38,
+    "difficulty_samples_after_swap": 66,
+    "temporarily_box_blocked_cells": 4,
+    "swap_coordinates": [
+      3,
+      2,
+      3,
+      3
+    ],
+    "rows_after_swap": [
+      "21 21 21 4 3 2 2 21 21",
+      "21 21 21 2 3 1 4 21 21",
+      "21 21 21 3 4 4 2 21 21",
+      "3 3 cross 2 1 2 4 3 3",
+      "3 2 cross 2 3 2 3 3 4",
+      "2 2 cross 3 3 1 1 4 4",
+      "21 21 1 3 2 4 21 21 21",
+      "21 21 4 1 2 4 21 21 21",
+      "21 21 3 4 1 3 cross 21 21"
+    ],
+    "chapter_openings": [
+      {
+        "level": 12,
+        "population_attempts": 1,
+        "generated_colors": 0,
+        "boxes": 32,
+        "grass": 0,
+        "grass_under_cupboards": 0,
+        "cupboards": 4
+      },
+      {
+        "level": 13,
+        "population_attempts": 1,
+        "generated_colors": 0,
+        "boxes": 40,
+        "grass": 12,
+        "grass_under_cupboards": 0,
+        "cupboards": 3
+      },
+      {
+        "level": 14,
+        "population_attempts": 1,
+        "generated_colors": 0,
+        "boxes": 8,
+        "grass": 24,
+        "grass_under_cupboards": 0,
+        "cupboards": 6
+      },
+      {
+        "level": 15,
+        "population_attempts": 1,
+        "generated_colors": 38,
+        "boxes": 36,
+        "grass": 36,
+        "grass_under_cupboards": 0,
+        "cupboards": 0
+      },
+      {
+        "level": 16,
+        "population_attempts": 1,
+        "generated_colors": 0,
+        "boxes": 0,
+        "grass": 24,
+        "grass_under_cupboards": 24,
+        "cupboards": 6
+      },
+      {
+        "level": 17,
+        "population_attempts": 1,
+        "generated_colors": 0,
+        "boxes": 63,
+        "grass": 0,
+        "grass_under_cupboards": 0,
+        "cupboards": 2
+      },
+      {
+        "level": 18,
+        "population_attempts": 1,
+        "generated_colors": 0,
+        "boxes": 18,
+        "grass": 16,
+        "grass_under_cupboards": 16,
+        "cupboards": 4
+      },
+      {
+        "level": 19,
+        "population_attempts": 1,
+        "generated_colors": 0,
+        "boxes": 20,
+        "grass": 32,
+        "grass_under_cupboards": 0,
+        "cupboards": 4
+      }
+    ],
+    "failure": "",
+    "scope": "Actual GameScene and production Continue buttons from levels 12 through 19. Tests replay a box tap and drag, a natural swap on the generated level 15 opening, and controlled TNT taps to exercise all goals, refill and result owners."
+  },
+  "preserved_original_configs": [
+    {
+      "number": 12,
+      "original_name": "00012v04_L",
+      "resource_path": "Levels/level_12",
+      "decoded_source": "configs/levels/12__4291.json",
+      "raw_source": "configs/textassets/12__4291.bytes",
+      "sha256": "eff3f8c1c2a0a4b0790d2c405846078d04d5737579d1e2527f2468361ce7d837",
+      "moves": 30,
+      "width": 8,
+      "height": 9,
+      "goal_types": [
+        15,
+        11
+      ],
+      "raw_item_ids": {
+        "1": 6,
+        "2": 5,
+        "3": 7,
+        "4": 6,
+        "21": 32,
+        "41": 4,
+        "42": 4,
+        "51": 4,
+        "52": 4
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 13,
+      "original_name": "00013v02_L",
+      "resource_path": "Levels/level_13",
+      "decoded_source": "configs/levels/13__3978.json",
+      "raw_source": "configs/textassets/13__3978.bytes",
+      "sha256": "5ce029e6c2ec3c9abaf1be92412ad85e2cd6f59c1418a3c004942922e1140867",
+      "moves": 30,
+      "width": 9,
+      "height": 8,
+      "goal_types": [
+        15,
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "1": 3,
+        "4": 5,
+        "13": 12,
+        "21": 40,
+        "41": 3,
+        "42": 3,
+        "51": 3,
+        "52": 3
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 12,
+        "IsPredefined": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 14,
+      "original_name": "00014v03_L",
+      "resource_path": "Levels/level_14",
+      "decoded_source": "configs/levels/14__7476.json",
+      "raw_source": "configs/textassets/14__7476.bytes",
+      "sha256": "96680e44f16ab6a4fd50bdca87c2a18f73825edc1cba2cea722acbce3f771f71",
+      "moves": 27,
+      "width": 8,
+      "height": 8,
+      "goal_types": [
+        15,
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "1": 3,
+        "3": 4,
+        "4": 1,
+        "13": 24,
+        "21": 8,
+        "41": 6,
+        "42": 6,
+        "51": 6,
+        "52": 6
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8,
+        "Grass": 24,
+        "IsPredefined": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 15,
+      "original_name": "00015v04_L",
+      "resource_path": "Levels/level_15",
+      "decoded_source": "configs/levels/15__2660.json",
+      "raw_source": "configs/textassets/15__2660.bytes",
+      "sha256": "e7fa12e66e6bf5f6b5885f0a679063d7bea6d627e6e20a37e55d8a4c4581aa0e",
+      "moves": 23,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "1": 3,
+        "3": 3,
+        "4": 1,
+        "14": 38,
+        "21": 36
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 36
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 16,
+      "original_name": "00016v04_L",
+      "resource_path": "Levels/level_16",
+      "decoded_source": "configs/levels/16__3741.json",
+      "raw_source": "configs/textassets/16__3741.bytes",
+      "sha256": "eb51cdf1c6bb3fd3d89d0677dda1b7341420b770eb1d0386826d9c860dc2a46e",
+      "moves": 35,
+      "width": 8,
+      "height": 10,
+      "goal_types": [
+        15,
+        13
+      ],
+      "raw_item_ids": {
+        "1": 11,
+        "2": 13,
+        "3": 17,
+        "4": 15,
+        "41": 6,
+        "42": 6,
+        "51": 6,
+        "52": 6
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8,
+        "Grass": 24
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 17,
+      "original_name": "00017v05_L",
+      "resource_path": "Levels/level_17",
+      "decoded_source": "configs/levels/17__7812.json",
+      "raw_source": "configs/textassets/17__7812.bytes",
+      "sha256": "b0e83b1f62929726233622d8e02c66aa936a0a406bcd609114613846c94fdd7d",
+      "moves": 23,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11,
+        15
+      ],
+      "raw_item_ids": {
+        "0": 2,
+        "1": 3,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "21": 63,
+        "41": 2,
+        "42": 2,
+        "51": 2,
+        "52": 2
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "IsPredefined": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 18,
+      "original_name": "00018v03_L",
+      "resource_path": "Levels/level_18",
+      "decoded_source": "configs/levels/18__2176.json",
+      "raw_source": "configs/textassets/18__2176.bytes",
+      "sha256": "7cadce1e84f1c9a91225fbb0a6afafff32e41653cb35ee636ca016d135aaca74",
+      "moves": 24,
+      "width": 8,
+      "height": 9,
+      "goal_types": [
+        11,
+        15,
+        13
+      ],
+      "raw_item_ids": {
+        "0": 2,
+        "1": 9,
+        "2": 9,
+        "3": 9,
+        "4": 9,
+        "21": 18,
+        "41": 4,
+        "42": 4,
+        "51": 4,
+        "52": 4
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8,
+        "Grass": 16
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 19,
+      "original_name": "00019v03_L",
+      "resource_path": "Levels/level_19",
+      "decoded_source": "configs/levels/19__3174.json",
+      "raw_source": "configs/textassets/19__3174.bytes",
+      "sha256": "3c4f81a7123f359df348647202177d35f3b9908beedf7a8d140bc649a4c427b7",
+      "moves": 27,
+      "width": 9,
+      "height": 10,
+      "goal_types": [
+        15,
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "0": 6,
+        "3": 10,
+        "4": 6,
+        "13": 32,
+        "21": 20,
+        "41": 4,
+        "42": 4,
+        "51": 4,
+        "52": 4
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 32
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "native_paths": {
+    "box_press": "Model 0x2bc5d50, view 0x2bc5d70, eight coroutine phases 0x2bc64ac, row sorting 0x12d7c10. Preserved sound id 39.",
+    "random_opening": "PrepareGrid 0x1c22064, grid transform 0x1c24a78, remap/retry 0x1c2543c, creation retry cap 0x1e3bb98 and validation 0x1ee6c20. Initial colors and refill consume a shared local difficulty stream.",
+    "blocked_cavities": "Native cross-target check 0x3211d28 defers cavities under a normal upper cell without a suitable target. Four observed cavities stay under the remaining boxes until the barriers clear, then all 81 cells refill."
+  },
+  "verification_limits": [
+    "Level 15 uses one natural exchange on the actual generated opening. The chapter uses controlled TNT placement for the remaining moves.",
+    "The core uses the configured local seed. Original account and device seed transport and SDK haptics are excluded.",
+    "Full natural solves, original rendered and audio comparisons, mobile input and levels 20–100 remain unverified."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "318f6906bf17b5f293feac2af6d1dd7e3d06d3eb28af33d587aa7bb8ab58bdcc"
+    },
+    {
+      "path": "Assets/Foundation/Editor/BoxPresentationVerification.cs",
+      "sha256": "9b31de6012273ea432769b9ffe26e10795628971ce56248a4d0193680ac8bac6"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCupboardVerification.cs",
+      "sha256": "33e8b0677a85c3c61a6fdc782fc81f6c48f6e9f08aa0d4ba3da9a6971062c4af"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/FoundationController.cs",
+      "sha256": "0b21d4c0724a92599ba3d8ef7a5674b713dc834a349d3464f0d2758d21b6330f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoardBoxViewServices.cs",
+      "sha256": "a95a7584b033d69bac3050d4104478d2e75ad93e47dddc09dbc9a406bebb9d03"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoxItemSpriteView.cs",
+      "sha256": "238254d820d2afae4628fb745232fadf82302f2f5e3c327223db311c4bbb0076"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoxViewAssets.cs",
+      "sha256": "807c602c992804ef90b4ed61e56184fd54ef3686636dda52266c89d80c609b4d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGridTransform.cs",
+      "sha256": "b459ddd786a62abd86d64b829393b9119ba99a13e2125b480ff73cbd19789788"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "bb6aa1506896218d96c038abce074f67f223324710cf9d6e19b0bf2ee30263bc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemPress.cs",
+      "sha256": "5dafec9a0e9193b051e41ee259c6734431d93a455c9e8ac5fae35e7860682066"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelPresentation.cs",
+      "sha256": "1f5797ccc33877d0d9c13f8df1c3fe40844ede3e706b632b605a196c08a38339"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMatchItemRandomizer.cs",
+      "sha256": "8a22a075b2a8f7a42ae26e7c3cfb3f740ecf743c2e8072ce77e93c79c0b9364f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMatchItemSorting.cs",
+      "sha256": "1554dd7e478e0c359a3179a078fe9e65808c2ffcd6a4271624b1f0a7758e41b3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "d4b21f8a2c0f235a59f44806de8cde29b559e6236f69f849e449feb90fe9f249"
+    },
+    {
+      "path": "Assets/Foundation/Settings/BoxViewAssets.asset",
+      "sha256": "ffb7053c7a9e14671bc441ce66de2ebdd5e9e098d85d0a22184e7744b686e037"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "3471c67aad80c89148cb7c78eacc2fd0a81697f03b49c718e6b071fd7ec66ac6"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "91ee29fcf405b37c4f7e780b78a1cab144b4557470ab4e6327dd50dcd495af50"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "c86f7d3b94dd6bd3f8c25ed17c57bf33bb400cb7e82ee2783348454db7725037"
+    },
+    {
+      "path": "background_core_random_chapter_verification.json",
+      "sha256": "e4cef429ce31a6bd6d72516c124a430891419b9bfbceb9a5566130129a8fbfff"
+    },
+    {
+      "path": "core_random_level15_opening.png",
+      "sha256": "406120be9af033996c73a7c05767ce3f7cb823d4554e030d635d450786a8bce0"
+    },
+    {
+      "path": "core_random_level15_refill.png",
+      "sha256": "c7ce98d119d9003c3732ebd8de6e3a80096f5625404cd3b5432136cae279dd04"
+    },
+    {
+      "path": "core_random_level19_win.png",
+      "sha256": "8a82c4b26611f9c7a8f3af0382c0485216f3a36cd49d4399ef81b4fcd64047e5"
+    },
+    {
+      "path": "live_core_random_chapter_verification.json",
+      "sha256": "e08d927b02444aefd489e8410c3b8a2577540ae614e976e7a20189deee1815ae"
+    }
+  ]
+}

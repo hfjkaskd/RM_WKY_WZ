@@ -1,0 +1,300 @@
+{
+  "baseline_commit": "49533bdf04003f4d97eeb4787b09c64bc96236a6",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "canonical_background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-mail",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "9d2e13c1c26bdce561b6b8cca50be7c06da7755e9041592d7004253663e6150f",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-mail.log",
+    "elapsed_seconds": 272.14,
+    "batch": {
+      "passed": true,
+      "test": "core-mail",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T05:15:03.1708208Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "actual_level21_verification": {
+    "passed": true,
+    "board_centered": true,
+    "tap_verified": true,
+    "fixed_mailbox_verified": true,
+    "flight_verified": true,
+    "next_level_verified": true,
+    "initial_mailboxes": 22,
+    "natural_match_letters": 4,
+    "closed_mailboxes": 22,
+    "fixture_tnt_actions": 6,
+    "moves_played": 7,
+    "failure": "",
+    "scope": "Formal GameScene opened with isolated progress at level 21. Recorded tap and natural adjacent match, followed by explicit TNT placement through the production factory and actual tap input. The real win dialog Continue loads original level 22."
+  },
+  "preserved_original_configs": [
+    {
+      "number": 21,
+      "original_name": "00021v02_L",
+      "resource_path": "Levels/level_21",
+      "decoded_source": "configs/levels/21__7315.json",
+      "raw_source": "configs/textassets/21__7315.bytes",
+      "sha256": "e7c6cb6ef8ba4302fa5234838a1dc4417ffacc24abaaff1a705d314c7c75342e",
+      "moves": 28,
+      "width": 8,
+      "height": 8,
+      "goal_types": [
+        18
+      ],
+      "raw_item_ids": {
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "14": 30,
+        "34": 22
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 22,
+      "original_name": "00022v01_L",
+      "resource_path": "Levels/level_22",
+      "decoded_source": "configs/levels/22__3281.json",
+      "raw_source": "configs/textassets/22__3281.bytes",
+      "sha256": "64437b64830f05d45c9f18c98b2e77df8d8a425da52da4cf8ff99f4c92139d9b",
+      "moves": 25,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        18
+      ],
+      "raw_item_ids": {
+        "0": 32,
+        "1": 3,
+        "2": 3,
+        "11": 8,
+        "14": 26,
+        "34": 9
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "rig_source": {
+    "original_skeleton_sha256": "9619102c204a7967eba8c50edb5aa0d1a4fa0c75682bbac6b9e6c270f524af0f",
+    "original_atlas_sha256": "64af4e95b53774db39fe9d49533ba506517fba0f4d58263f57568b3fd182cba6",
+    "export_sha256": "9c5e555b7b5a94b759e844bf91b349cbc6e8ba37da4743562b370267997b281d",
+    "authoring": "Existing SourceCatalog/ExportKingRig.cs offline tool accepts the original mailbox atlas and rig. Native Unity Animator and Mesh consume exported keys and weights. Static mailboxes reuse their last mesh.",
+    "offline_mailbox_pose_and_mesh_reference": {
+      "passed": true,
+      "animations": 7,
+      "pose_samples": 1864,
+      "scalar_comparisons": 465954,
+      "max_absolute_error": 5.96046448e-08,
+      "oracle": "recovered Spine 3.8 reference decoder/runtime outside Unity; not native ARM execution",
+      "includes_key_boundaries_loop_weighted_mesh_deform_draw_order": true,
+      "clipped_mesh_samples": 307,
+      "clipped_mesh_max_error": 5.96046448e-08,
+      "pose_and_mesh_managed_bytes_1000_frames": 0
+    },
+    "offline_king_regression": {
+      "passed": true,
+      "animations": 32,
+      "pose_samples": 35663,
+      "scalar_comparisons": 81986555,
+      "max_absolute_error": 0,
+      "oracle": "recovered Spine 3.8 reference decoder/runtime outside Unity; not native ARM execution",
+      "includes_key_boundaries_loop_weighted_mesh_deform_draw_order": true,
+      "clipped_mesh_samples": 2669,
+      "clipped_mesh_max_error": 0,
+      "pose_and_mesh_managed_bytes_1000_frames": 0
+    }
+  },
+  "native_paths": {
+    "mailbox_model": "TiledId.MailBox 34, ItemType.MailBox 11, GoalType.Mail 18. MailBoxItemModel 0x24ad26c and 0x24ad7c0–0x24adf38.",
+    "mailbox_view": "Mailbox opening and close 0x24ad8e8 and 0x24adb64, touch 0x24adf60, recovered animation states.",
+    "board_center": "GridPositioner 0x1e33b68 and 0x1e33c50 compute the horizontal origin from the center of the board cells.",
+    "letter_flight": "MailBoxCollectHelper 0x24ae40c and 0x24ae73c, MailGoalView 0x24ae908, 0x24afbe8 and tracer 0x24af7b4."
+  },
+  "verification_limits": [
+    "The real GameScene starts from isolated Level 21 progress. One natural adjacent swap is followed by explicit TNT fixture placement and recorded taps through actual touch dispatch.",
+    "The scenario verifies Level 22 startup through the real Continue button. It does not verify a complete Level 22 playthrough.",
+    "Unity Editor portrait is verified. Physical touch, mobile runtime, original visual comparison and full first-100 coverage remain pending."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "8782e24891d86a97ace927e4ef7393c11ee4395d9d9aa797e0592b703acaa7e5"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCupboardVerification.cs",
+      "sha256": "231b8d36d1e92672766f2c858aeea1d472a128eca89a53ee249617e1ac34e6c1"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreMailVerification.cs",
+      "sha256": "c4f343d5d7173f10efe8c0abaf7b083d8cf29cc44121c59bbec93c6dec6c4af8"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreMailVerification.cs.meta",
+      "sha256": "8e8214686c70d08f43dcd9cb7382bfa92ddaeb181406b4a1f33c3dd289222f5e"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "8a1db0a7ec73e59e9cdf0341d07f5dec3792ab7069dab732aa0732b5f7bb8c22"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardExplodeTargets.cs",
+      "sha256": "a68dfc5facb550b50768103fc486d4fbaf66dbe461758aaacdba5ceff3a0b812"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGoalUi.cs",
+      "sha256": "453bde99f38d3fe6c1e2443dff1d5b767d1c6caadc00c08891a31976ca8b5224"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "584f04566d48724562ff4459ae9e539b33a9caeef8023712b55220899965beb0"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemModelConstruction.cs",
+      "sha256": "14c217f70d907193fb0c7508459d51262111f1b1157032779310f6f4aeba7eb5"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingMesh.cs",
+      "sha256": "1670a2909facb5460316a7ebde070c3bac009e1e70b96c00ed6da17151d89b27"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKingRigData.cs",
+      "sha256": "c5c115ebd8f284f25bd255a5d75f5535b40dffff8deea4c0a54bc080d6825d18"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelPresentation.cs",
+      "sha256": "771c719775a8088173bfcacd79ebeed25d6b8e2edb8c608728a6ffce9292ad15"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailBoxBoardItem.cs",
+      "sha256": "1d85db513546a2557aac77022f2a18d3dd47dbf1a738d1ce4fc238ed034924fd"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailBoxBoardItem.cs.meta",
+      "sha256": "ec6e7a0c3671a3e6e1888a1c519e49c0b7e49009d4db7748f49524632012c2be"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailBoxItemView.cs",
+      "sha256": "c8264315c3adaec056a377fa76969f3c57a60a118fd345749affbed8b8926e29"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailBoxItemView.cs.meta",
+      "sha256": "4ae0923341c1542becf456928b867640119213f2aeb66f51ff2403aae2191e62"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailGoalFlight.cs",
+      "sha256": "f040af4f61fa6bd80c1acc9c5bdbfa3f8eec1393576e6ee7e6c6d9a66a451023"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailGoalFlight.cs.meta",
+      "sha256": "50ad9b6c232c314b1922a1d185e10a98c52a2e4d4f31c500cbfb3260603f24d8"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailRigView.cs",
+      "sha256": "c0d93380045b678de7c8f0fa2a4512f8b46bb210bc38c97abf0b0f7687d7087d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailRigView.cs.meta",
+      "sha256": "525a28fbef590a0843688888d4dd87f10c2656ef45b69c80995768f2c6d549cb"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailTracer.cs",
+      "sha256": "b6ee8d9fa80cb78c310d13cbceaac8df40d235e34d89ca261d8cc17d003decb7"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMailTracer.cs.meta",
+      "sha256": "b68ab092cef2a53ef1457627c940daed2c4f4c80192de0b23788b605294c4767"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "21500872132cd38fcd3c804c4498191e97e30a64781f5dea9cacbcd3f8590dd8"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoardMail.cs",
+      "sha256": "3e210cdc62877e91303160baba54b3ca58d7966e2749a743b03d7521b94b21b3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoardMail.cs.meta",
+      "sha256": "f025f0903a281de2b990caeac743aced8f94bbb396863191e3e2708baf8156b8"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSfxAssets.asset",
+      "sha256": "284376e8ed877b51d21e6d5318a4b97e2f3c36d5530cbd3c461a04555495986d"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GoalUiAssets.asset",
+      "sha256": "8c5daf682f7945ec28701ef196aaf61363b4d7c9af20bcfdf8340fdbb3c5f199"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Animation/OriginalMailBox.bytes",
+      "sha256": "9c5e555b7b5a94b759e844bf91b349cbc6e8ba37da4743562b370267997b281d"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Animation/OriginalMailBox.bytes.meta",
+      "sha256": "9692e39e5e9cb48bd3ced1239eb06f4298a3d626aa9da362dc6cc30e04b05c34"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/MailBoxItemPrefab.prefab",
+      "sha256": "09cfb649c209125d8e0a923db0b94e52635c7e4984ad49b466d8d6ecb4897037"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/MailGoalPrefab.prefab",
+      "sha256": "be9de39430f15226a366f42223c070b09bc347552aab07276f872a17b20dcf4f"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/MailGoalTracerParticles.prefab",
+      "sha256": "8797c67cc99802d852e1ea64f58bdf7da95552b9f88001fdda5c18f0351678cf"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "ee1a0cb5017d1434fad3700a2b3b33a25b356a4e9fcc7863f239b2a6bc544f48"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "54a04140dd21ab5c92997f07c576d610dc1517e55a9c8fc38be7fe02d30905a1"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "6f0bcba04366b855dd6be96529c4e7d64aff9019626e96fc5b582e3d3fcc2e5e"
+    },
+    {
+      "path": "background_core_mail_verification.json",
+      "sha256": "9fae58a3598817e13d2b984747a7ff53be74a60e21df70f1edbf2070d53ca2fa"
+    },
+    {
+      "path": "core_mail_level21_flight.png",
+      "sha256": "491b64aed3cfdaca7842fb8d4404b0369a662904d9536189c071ba4ba0a5df25"
+    },
+    {
+      "path": "core_mail_level21_start.png",
+      "sha256": "6eb49b46673108febaf588cb78e80709b10935bbfdd6bda7c5ca1ffd082a9e2a"
+    },
+    {
+      "path": "core_mail_level21_win.png",
+      "sha256": "348e253869136ab0886e88765eb5fd229982484764e344cdae294298ce1f31d0"
+    },
+    {
+      "path": "live_core_mail_verification.json",
+      "sha256": "0d96a19f239fe53c42abb3038164338c0128db25a9f88635f2c37d7beaac4b89"
+    }
+  ]
+}

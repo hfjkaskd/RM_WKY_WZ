@@ -1,0 +1,236 @@
+{
+  "baseline_commit": "e923147e928c4acf09fa267d08d93f7c28db5bfe",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "native_reference": {
+    "level_one": [
+      "0x223bd20 StepCount 1",
+      "0x223bd3c ShowStep1",
+      "0x223c6f8 tall",
+      "0x223c77c short",
+      "0x223c7fc landscape"
+    ],
+    "level_twenty_eight": [
+      "0x24e36a4 valid early swap",
+      "0x24e36b4 ShowBallBallTutorial",
+      "0x24e3920 original delay/tap threshold"
+    ],
+    "presentation": [
+      "0x21945d0 R8 isolated render target",
+      "0x2194990 top left",
+      "0x2194b90 top right",
+      "0x2194e3c bottom",
+      "0x276ad4c hand orientation",
+      "0x2005868 tall aspect"
+    ]
+  },
+  "tests": {
+    "core-directed-tutorial-author": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-directed-tutorial-author",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-directed-tutorial-author.log",
+      "elapsed_seconds": 33.96,
+      "batch": {
+        "passed": true,
+        "test": "core-directed-tutorial-author"
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-directed-tutorials": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-directed-tutorials",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-directed-tutorials.log",
+      "elapsed_seconds": 44.06,
+      "batch": {
+        "passed": true,
+        "test": "core-directed-tutorials",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T09:11:22.2525899Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    },
+    "core-flow": {
+      "passed": true,
+      "canonical_source_proof": false,
+      "test": "core-flow",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": null,
+      "source_sha256": null,
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-flow.log",
+      "elapsed_seconds": 66.49,
+      "batch": {
+        "passed": true,
+        "test": "core-flow",
+        "failure": "",
+        "timestamp_utc": "2026-11-03T09:12:29.0588325Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+    }
+  },
+  "directed_opening": {
+    "status": "finished",
+    "failure": "",
+    "passed": true,
+    "level1_guided_swap_completed": true,
+    "level28_initial_input_open": true,
+    "level28_guided_combo_completed": true,
+    "level28_early_combo_skips_guide": true,
+    "level1_boxes_removed": 3,
+    "level28_delay_seconds": 3.9876976013183594
+  },
+  "win_fail_regression": {
+    "passed": true,
+    "production_win_remaining_result_bound": true,
+    "actual_next_level_loaded": true,
+    "production_zero_move_failure_bound": true,
+    "actual_retry_reloaded_same_level": true,
+    "cap100_and_restart_verified": true,
+    "core_booster_inventory_purchase_ui_absent": true,
+    "original_level3_two_layer_boxes_bound": true,
+    "formal_mock_ad_preview_disconnected": true,
+    "win_left_moves": 21,
+    "win_remaining_reward": 66,
+    "failure": "",
+    "scope": "Actual GameScene/CoreGameFlow owners run without Editor runtime substitutions or account/event fixture services. Existing explicit TNT/rocket board setup and recorded gestures stimulate real goal collection; this is not a natural full-level player solve. Real WinFail16/session Win/check gate/remaining moves/dialog flow commit core-only SQLite progress; a standard EventSystem raycast and Button click load original level2. Native MoveManager zero-budget stimulus verifies actual failure/retry and real scene reload, not27 physical turns. Separate private progress verifies the100 cap/restart. Remaining first100 obstacles, full natural playthroughs, no-moves shuffle, complete King animation queue/mixing, full original visual/audio/mobile parity remain pending."
+  },
+  "preserved_original_configs": [
+    {
+      "number": 1,
+      "original_name": "00001v02_L",
+      "resource_path": "Levels/level_1",
+      "decoded_source": "configs/levels/1__1448.json",
+      "raw_source": "configs/textassets/1__1448.bytes",
+      "sha256": "4936046bea78b2c82c2c960de795ba33a0faa124773b25c1a537cd24edd7696b",
+      "moves": 30,
+      "width": 9,
+      "height": 8,
+      "goal_types": [
+        11
+      ],
+      "raw_item_ids": {
+        "1": 7,
+        "2": 11,
+        "3": 10,
+        "4": 8,
+        "21": 36
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "IsPredefined": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 28,
+      "original_name": "00028v03_L",
+      "resource_path": "Levels/level_28",
+      "decoded_source": "configs/levels/28__13595.json",
+      "raw_source": "configs/textassets/28__13595.bytes",
+      "sha256": "40645a56a5effe3e2c4b1475eeccc94259e3ac34f6a40c5b12aeb9b44ad47a28",
+      "moves": 27,
+      "width": 8,
+      "height": 10,
+      "goal_types": [
+        15,
+        11
+      ],
+      "raw_item_ids": {
+        "21": 30,
+        "41": 12,
+        "42": 12,
+        "50": 2,
+        "51": 12,
+        "52": 12
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "original_hand_mesh_samples": {
+    "scope": "Independent authoring preflight. The recovered runtime selects enum 4 on level 1 and enum 1 on level 28. The samples match the existing Unity-only mesh animation format. No formal-scene integration or rendered parity is implied.",
+    "original_atlas_sha256": "a4ce05c237e8778810e8f5719928f52ad8caaf1fe35bb12ebd56a27cbeb2b4db",
+    "original_skeleton_sha256": "9b213da0f27b19e749dfad8454aea9d58622851b2fc3e4a45aec58c96b632156",
+    "original_and_imported_texture_sha256": "c38fc9021268f4997f7e4596c698f66249f4e925ec61c15f270da1ff284f6dff",
+    "animations": {
+      "swipe_down": {
+        "level": 1,
+        "frames": 253,
+        "duration": 2.0999999046325684,
+        "sample_rate": 120,
+        "vertices_peak": 80,
+        "indices_peak": 246,
+        "bytes": 655800,
+        "distinct_mesh_frames": 253,
+        "sha256": "4337945301ac4dd8a4b66d9626e0642318f1a712892797156595e0d4dd261cf8"
+      },
+      "swipe_left": {
+        "level": 28,
+        "frames": 241,
+        "duration": 2.0,
+        "sample_rate": 120,
+        "vertices_peak": 80,
+        "indices_peak": 246,
+        "bytes": 624696,
+        "distinct_mesh_frames": 241,
+        "sha256": "2e169e3e350a63ffbb2588d409a9a47b03afd156408c93e9037598a51018665f"
+      }
+    }
+  },
+  "byte_verified_tested_files": {
+    "Assets/Foundation/Editor/BackgroundVerification.cs": "e51d0777ca8c6cbc72d8a74e372d45fe737945ef96854df64322e8969250909a",
+    "Assets/Foundation/Editor/CoreDirectedTutorialAuthoring.cs": "a8209337fd5a76652e19d62112ab58939df65e2d09b7149f7f2e9bd265571f65",
+    "Assets/Foundation/Editor/CoreDirectedTutorialAuthoring.cs.meta": "04e3c4c33d05f3de5f20e78866eda9d70323c15cb331dd3237047aa593c01970",
+    "Assets/Foundation/Editor/CoreDirectedTutorialVerification.cs": "4c1aae44071799c15b3a58f51f2bd107e782452e7ef166175b41d0b476566d31",
+    "Assets/Foundation/Editor/CoreDirectedTutorialVerification.cs.meta": "0dd8058473acf3aa6892fc09f6253f62f8d4427e80a061ca1ac717aaf61f9967",
+    "Assets/Foundation/Editor/CoreFlowVerification.cs": "9bb9bc6df793cdc1c2cc34ce13f812a931e15002f4dd159eab3b2857a6161956",
+    "Assets/Foundation/Editor/CoreModalTutorialVerification.cs": "463910dfca686fdfffa2f0f9758ab5e72fda65a347482df992bf46f09813aa7e",
+    "Assets/Foundation/Editor/GoalUiVerification.cs": "25d683a6376f47a7488f049fa61d4f3827a3865a0aaf487ad7adf1402e171704",
+    "Assets/Foundation/Editor/TntRocketComboVerification.cs": "5d56cfb321fbd0053070e3238d0687b18728f8ae56971bc248f0b8dff6999769",
+    "Assets/Foundation/Runtime/CoreFlowSettings.cs": "0cc097d9690f338258e628660e979d1d258ede394d08dd13b433df8884853890",
+    "Assets/Foundation/Runtime/CoreGameFlow.cs": "32f5b1853c4076efa411c7909554a90936ee81a6d2baf4af04f0997b6a68616d",
+    "Assets/Foundation/Runtime/OriginalDirectedTutorialView.cs": "2ba08ba631b2d6b4c439969ef24fa06d3b8f349b8bee883c0b3e6f7844e6e7bf",
+    "Assets/Foundation/Runtime/OriginalDirectedTutorialView.cs.meta": "1f4535b5480e586156be6931f5511ad545692ced2c24c09567a44ecbe848f953",
+    "Assets/Foundation/Scenes/GameScene.unity": "c1449a998237f2ee5ce55b1727dbfeac535f98c1fffe1bfb45b3b9cc88a50d89",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelOneOpeningGuide.prefab": "52fcf72571dd81369221b910ad26513cbf8c7b7fef5eddb5e28833b62a6ec43d",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelOneOpeningGuide.prefab.meta": "315c50d0392daf891383141d661e700f927ea571782e871e9e1fe825ec4319d6",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelTwentyEightGuide.prefab": "f9468be1a2c8c7a6000904e3f635a61eafa7b1edac6d36c347523e5f83ee8284",
+    "Assets/Resources/Foundation/Prefabs/CoreLevelTwentyEightGuide.prefab.meta": "75f38e560672a89c046116b5185bb1c3eb90b92c591b92018d0aa1ee9784137a",
+    "Assets/Resources/Foundation/Tutorials.meta": "d10a8b213162b1b85f2c6786054c011cd1be140afad6e9de1ce0d81e4aaaf1da",
+    "Assets/Resources/Foundation/Tutorials/swipe_down.bytes": "4337945301ac4dd8a4b66d9626e0642318f1a712892797156595e0d4dd261cf8",
+    "Assets/Resources/Foundation/Tutorials/swipe_down.bytes.meta": "1e5f725f2798d0ea703e2f8f242b4176ea0f4852c876f89c616062cc3258f67f",
+    "Assets/Resources/Foundation/Tutorials/swipe_left.bytes": "2e169e3e350a63ffbb2588d409a9a47b03afd156408c93e9037598a51018665f",
+    "Assets/Resources/Foundation/Tutorials/swipe_left.bytes.meta": "c46ba04cb03206ab2c007015d6230ef2354cdeafe6ec790cf2b087c37e0113d3",
+    "Packages/manifest.json": "e7526e7aa8730bf51b97e896ef32bfb7830a22cea8920f6b2c97a848909b2197",
+    "ProjectSettings/EditorBuildSettings.asset": "dfd9c22e5754f091bc505c5fea3d5f58c9962944b53d3b36d900ac9b544e046c"
+  },
+  "settings_override": "Separate progress filename, verified after restoring the single filename field.",
+  "verification_limits": [
+    "Production GameScene in the 720x1280 portrait batch project with the actual touch listener driven by recorded world-space samples.",
+    "The level 28 wait and valid early-swap outcomes are verified. Three pre-prompt lightball taps and other aspect ratios were not exercised.",
+    "The end-flow regression starts with the original level 1 swipe, then uses explicit controlled TNT/rocket placements and the native zero-budget stimulus for retry.",
+    "Native assets and positions were reconstructed offline. No physical mobile input, GPU parity on device, or frame-by-frame original comparison was measured."
+  ],
+  "screenshots": {
+    "core_directed_level1.png": "49d0e671caf2c1d712f7dc8d3f17888d5dd4c3ac437da4cf6c884d09031c27c6",
+    "core_directed_level28.png": "571785124484e0117443a04393b5a1709b0959b432ce151fdd4b0f7cd22f212a"
+  }
+}

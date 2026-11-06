@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="RecoveryView.uss" />
+    <ui:VisualElement class="panel">
+        <ui:Label text="ROYAL MATCH / RECOVERY FOUNDATION" class="eyebrow" />
+        <ui:Label text="Original data. Native Unity foundation." class="title" />
+        <ui:Label name="level-summary" class="summary" />
+        <ui:Label name="moves" text="Moves: 30" />
+        <ui:Label name="goals" text="Boxes: 36" />
+        <ui:Label text="Drag adjacent colored pieces. Match three to damage neighboring boxes." class="note" />
+        <ui:Button name="reward-ad" text="Run local rewarded-ad callback" />
+        <ui:Label name="status" text="Ready. No commercial SDK or network calls." />
+        <ui:Label name="reward-count" text="Mock rewards: 0" />
+    </ui:VisualElement>
+</ui:UXML>

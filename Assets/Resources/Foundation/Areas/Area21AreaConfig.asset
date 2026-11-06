@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561357b6d452458a9269c3d129c696e0, type: 3}
+  m_Name: Area21AreaConfig
+  m_EditorClassIdentifier:
+  areaId: 21
+  areaName: TailorRoom
+  tasks:
+  - id: 1
+    price: 6
+    dependency: -1
+    dependencies:
+    replayConfig:
+      order: 1
+      blending: 0
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: 0
+  - id: 2
+    price: 5
+    dependency: -1
+    dependencies:
+    replayConfig:
+      order: 2
+      blending: 0.8
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: 0
+  - id: 3
+    price: 4
+    dependency: 2
+    dependencies:
+    replayConfig:
+      order: 3
+      blending: 0.8
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: -1.3
+  - id: 4
+    price: 6
+    dependency: 3
+    dependencies:
+    replayConfig:
+      order: 4
+      blending: 0.8
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: 2.5
+  - id: 5
+    price: 4
+    dependency: 4
+    dependencies:
+    replayConfig:
+      order: 5
+      blending: 0.8
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: -1.3
+  - id: 6
+    price: 3
+    dependency: 3
+    dependencies:
+    replayConfig:
+      order: 6
+      blending: 0.8
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: 0
+  - id: 7
+    price: 8
+    dependency: -1
+    dependencies: 0100000006000000
+    replayConfig:
+      order: 7
+      blending: 0.8
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: 0
+  - id: 8
+    price: 3
+    dependency: -1
+    dependencies: 0100000005000000
+    replayConfig:
+      order: 8
+      blending: 0.8
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: 0
+  - id: 9
+    price: 6
+    dependency: 8
+    dependencies:
+    replayConfig:
+      order: 9
+      blending: 0.8
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: 0
+  - id: 10
+    price: 5
+    dependency: 8
+    dependencies:
+    replayConfig:
+      order: 10
+      blending: 0.8
+      hasAudio: 1
+      disableHaptic: 0
+    positionOffset: -1.3
+  tallDeviceReplayDelay: 0.5
+  positionOffset: 0
+  useGameBackground: 0
+  useGameBackgroundAlways: 0
+  mainTexturePath: 
+  shadowTexturePath: 
+  distortTexturePath: 
+  crcNumbers:
+    ios: 0
+    android: 0

@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LightningVfxFallback
+  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords:
+  - LOWEND
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+      _FlowMap:
+        m_Texture: {fileID: 2800000, guid: 9a7e0944ee2b9f643957f966f94f6d3c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: {}
+    m_Floats:
+      _AlphaFadeThreshold: 1
+      _BumpScale: 1
+      _CumulativeWaveOffset: 0
+      _CustomTime: 0.5
+      _Cutoff: 0.5
+      _DetailNormalMapScale: 1
+      _DeviceIsLandscape: 0
+      _DisplaceVertices: 0
+      _DstBlend: 0
+      _ExtraEmitRate: 0.641
+      _FlowMapEnabled: 0
+      _FlowScalar: 0
+      _FlowScrollSpeed: 1
+      _GenerationCount: 5
+      _GlossMapScale: 1
+      _Glossiness: 0.5
+      _GlossyReflections: 1
+      _GrowthIndex: 0
+      _InnerGlowFalloff: 0.45
+      _InnerGlowWidth: 0.153
+      _LightningXOffsetScalar: 1
+      _LowEndEnabled: 1
+      _Metallic: 0
+      _MinFlowThreshold: 0
+      _Mode: 0
+      _OcclusionStrength: 1
+      _OuterGlowFalloff: 0.665
+      _OuterGlowWidth: 0.171
+      _Parallax: 0.02
+      _QuadYScale: 1
+      _RefreshRateScalar: 1
+      _SmoothnessTextureChannel: 0
+      _SpecularHighlights: 1
+      _SrcBlend: 1
+      _UVSec: 0
+      _WaveAmplitude: 0
+      _WaveBandwidth: 0.6
+      _WaveFrequency: 2.5
+      _WaveSpeed: 0.71
+      _ZWrite: 1
+    m_Colors:
+      _Color: {r: 1, g: 1, b: 1, a: 1}
+      _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+      _InnerGlowColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+      _LightningColor: {r: 0.21226418, g: 0.30288893, b: 1, a: 1}
+      _OuterGlowColor: {r: 0.3607843, g: 1, b: 0.9333334, a: 1}
+  m_BuildTextureStacks: []

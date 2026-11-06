@@ -1,0 +1,456 @@
+{
+  "full_objective_complete": false,
+  "production_application_account_win_fail_bound": false,
+  "production_scene_exit_bound": false,
+  "formal_scene_result_prefab_rendered": true,
+  "formal_scene_continue_button_reaches_exit_boundary": true,
+  "physical_pointer_input_verified": false,
+  "mobile_runtime_verified": false,
+  "original_rendered_parity_verified": false,
+  "source_snapshot_sha256": "79557e533b0777f36a4699640241fc7dc1872ac45251314a68d191617ea5b35c",
+  "restored_scope": [
+    "LevelWinDialog Continue guard is set before ad lookup, rewarded callback closes only on true, Close/Escape retain their independent ad dispatch, Lava state2 precedes Ancient(false,true), and no-event path requests ExitGameWhenPossible without directly closing/completing the dialog.",
+    "The original game manager lookup is captured before either event gate; deferred event completion uses that captured owner even when the current owner changes.",
+    "Recovered result prefab replaces the ResultFixtureDialog counter in the formal win queue. It owns actual UiDialog/manager registration, original title/star/pillow/particle/button visual hierarchy and code-bound standard Unity Buttons.",
+    "Native star entrance position/scale/rotation, .25second move/scale/rotation, bounce constants, .1second original Pillow Animator state cue, .2second text cue and reason37 orientation/359loop boundaries are restored. Curved per-character text animation is still incomplete.",
+    "Original TMP material shader f26bfc47475a6f746bd99a5e0bedf953 resolves to TextMeshPro/Mobile/Distance Field in raw Resources/shaders/tmp_sdf-mobile.shader. Four used font materials now reference the official Unity TMP shader; atlas, colors, gradient, outline, underlay and font settings remain preserved.",
+    "Normal conversion, partial remaining-phase skip and immediate logo skip all reach the actual rendered result prefab and standard Continue Button. Two Button pointer-click handler dispatches request the explicit scene-exit owner once without fabricated navigation or forced Close."
+  ],
+  "native_action_verification": {
+    "passed": true,
+    "cases": 940,
+    "scope": "Execute the original ARM64 result actions against the runtime C# control path.\n\nAd transport, event eligibility/flow scheduling, orientation, dialog Close and\nscene exit are explicit hooked ports. Actual Continue/Close/Rewarded guards,\ncallback filtering, event order and captured manager references execute from\nlibil2cpp. This does not prove actual SDK, event UI, scene exit or mobile parity.",
+    "original_rvas": [
+      "0x11205f0",
+      "0x112060c",
+      "0x1120754",
+      "0x1121aa0",
+      "0x1121b74",
+      "0x1121f50",
+      "0x133ef20",
+      "0x133ef3c"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/LevelWinActionsHarness.cs",
+        "sha256": "7cc12cb66afb2d9324a02f515272912d458b941a312f427cdfb437c3b9e4f8c1"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLevelWinActions.cs",
+        "sha256": "db8f26f729fefc984231327d832c883bea651330f357a343bccfcc0ce256761b"
+      },
+      {
+        "path": "SourceCatalog/verify_level_win_actions.py",
+        "sha256": "98a817fdcc5ecc320c3f140ec4735ed82172d66ec4ca8c5dcea8916b7755bcae"
+      }
+    ]
+  },
+  "prefab_structural_verification": {
+    "passed": true,
+    "scope": "Verify result prefab preserves source layout/art and owns standard Buttons.\n\nThis is structural fidelity evidence, not a claim of rendered original parity.",
+    "unchanged_original_blocks": 324,
+    "modified_go_or_button_transform_blocks": 9,
+    "colliders_replaced": 5,
+    "standard_buttons": 4,
+    "all_original_tmp_style_blocks_preserved": true,
+    "all_button_visual_children_preserved": true,
+    "files": [
+      {
+        "path": "Assets/Resources/Recovered/GameObject/LevelWinDialog.prefab",
+        "sha256": "e791508d5514c6c0088aaa6c651781fb75c182050ad4a7218b3df3bebb060624"
+      },
+      {
+        "path": "Assets/Resources/Foundation/Prefabs/OriginalLevelWinDialog.prefab",
+        "sha256": "acb6c8c7ced2e5479e8929f5efc8b254beede6f38154da26ccb40622607587a9"
+      },
+      {
+        "path": "Assets/Resources/Recovered/Material/MikadoBlack_CurvedAnimatedBack.mat",
+        "sha256": "3a69d88b453cf2a3ec5e7988fcf90fd3235e5d4e8d48b9d4671ee69077ef287d"
+      },
+      {
+        "path": "Assets/Resources/Recovered/Material/MikadoBlack_CurvedAnimatedText.mat",
+        "sha256": "73f19ec0236d78d900040f522c487e177b94ae40feda1655f4e2a390066c1cef"
+      },
+      {
+        "path": "Assets/Resources/Recovered/Material/MikadoBlack_GreenOutlineUnderlay2.mat",
+        "sha256": "d9e51444d16a140322794b6b59d0c85149140445d37d4bd2e91b20a1fc7568e1"
+      },
+      {
+        "path": "Assets/Resources/Recovered/Material/MikadoBlack_GreenOutlineUnderlay5.mat",
+        "sha256": "b86d83e60018fe8900faa49766695929c82437756c8b23c6b1061f120f6be39b"
+      }
+    ]
+  },
+  "original_methods": [
+    {
+      "rva": "0x11205f0",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$OnContinueButton",
+      "body_sha256": "945c94610e205c269c4c4b518f2f4fc8ee908f0adbc729ce226406b6a284bb1a"
+    },
+    {
+      "rva": "0x112060c",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$ShowAd",
+      "body_sha256": "0cf1db58f07a4097a6b165f3f39b0a9c5d229ffcd6fd1c0de2f6f4065bb6ebb0"
+    },
+    {
+      "rva": "0x1120754",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$OnCoinRewardedAdButtonClicked",
+      "body_sha256": "416913478d0d808204446d0c3b6a7d55c160679f98c04375e4215eb68ba36b69"
+    },
+    {
+      "rva": "0x1121aa0",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$OnClosePressed",
+      "body_sha256": "0e9378baabfb426ab17044ebf9b883b1c0b94dd84d2c7a247e544bf28cb77cff"
+    },
+    {
+      "rva": "0x1121b74",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$TryCloseDialog",
+      "body_sha256": "a64e7992f950f1d33d387a90721d28390ffa934b72d67d46c6fc13caa88add7e"
+    },
+    {
+      "rva": "0x1121f50",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$<ShowAd>b__59_0",
+      "body_sha256": "ced0bf74ebc1990494adf779b313c6d9890baf7c9c456aed2608d5555153401f"
+    },
+    {
+      "rva": "0x133ef20",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog.<>c__DisplayClass73_0$$<TryCloseDialog>b__0",
+      "body_sha256": "ce88efdf31118edb8c0eb310a14f46389664036177073a25c4274f6962d4e53e"
+    },
+    {
+      "rva": "0x133ef3c",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog.<>c__DisplayClass73_0$$<TryCloseDialog>b__1",
+      "body_sha256": "e102d33ec4bd5fcc6d5191f26829c385baa20e5bb87f6f3b5594a449d81ead82"
+    },
+    {
+      "rva": "0x112075c",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$OnShow",
+      "body_sha256": "06a714dbc62771708a90488f97da1facda9b6dfba3a9edc72f405e27dc393a36"
+    },
+    {
+      "rva": "0x11210b4",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$ShowStarImage",
+      "body_sha256": "e2584794de24a75a35e35e5b94822950c45e7190f7f4f94258ad033b5bb09ac4"
+    },
+    {
+      "rva": "0x1121834",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$AfterShowAnimation",
+      "body_sha256": "746298a726cd33b78f3ef2bada38c9b6b03a513b1dbc62c2ece8d35452b6da12"
+    },
+    {
+      "rva": "0x11218d8",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$OnDestroy",
+      "body_sha256": "4cf140122d68a542c37b1eec44d30a0b019de4230d34f5b349c32e08cf266faa"
+    },
+    {
+      "rva": "0x1121944",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$GetConfig",
+      "body_sha256": "e87300321ae228454968b27c996344f979bfcdc1b65625bb597562e23d992841"
+    },
+    {
+      "rva": "0x1121f84",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$<ShowStarImage>b__64_1",
+      "body_sha256": "51c88439c78ccaf56d353c6ee325e865feea28f4856ed3d22b5def299952b477"
+    },
+    {
+      "rva": "0x1122000",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.LevelWin.LevelWinDialog$$<ShowStarImage>b__64_2",
+      "body_sha256": "a7b12249e22d0fd1ca71e94a446691249a6e37eae0096212ae7bc015832663e3"
+    }
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelWinDialog.cs",
+      "sha256": "a0e1ecdfdc500f16af76801c11bcc4342e3b070fce890defe4bb2027a2b838c5"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelWinDialog.cs.meta",
+      "sha256": "1f1496230f27f35c938051c57dba18c5d407abcdf4efcd7eec28283dabb7a355"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelWinActions.cs",
+      "sha256": "db8f26f729fefc984231327d832c883bea651330f357a343bccfcc0ce256761b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelWinActions.cs.meta",
+      "sha256": "d80b3a89095ee98f3b4b127c4be6a7579dcb935ed35a41708866c2ec295e08ed"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalLevelWinDialog.prefab",
+      "sha256": "acb6c8c7ced2e5479e8929f5efc8b254beede6f38154da26ccb40622607587a9"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalLevelWinDialog.prefab.meta",
+      "sha256": "5686c66877702debcf12162bf429391927a3deef37ab419a8eb6572f8c0d86e1"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "63a700cd296ee45be0b00b2b95d0583d9882657f154c65ee350dc605b64bdc96"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Material/MikadoBlack_CurvedAnimatedBack.mat",
+      "sha256": "3a69d88b453cf2a3ec5e7988fcf90fd3235e5d4e8d48b9d4671ee69077ef287d"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Material/MikadoBlack_CurvedAnimatedText.mat",
+      "sha256": "73f19ec0236d78d900040f522c487e177b94ae40feda1655f4e2a390066c1cef"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Material/MikadoBlack_GreenOutlineUnderlay2.mat",
+      "sha256": "d9e51444d16a140322794b6b59d0c85149140445d37d4bd2e91b20a1fc7568e1"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Material/MikadoBlack_GreenOutlineUnderlay5.mat",
+      "sha256": "b86d83e60018fe8900faa49766695929c82437756c8b23c6b1061f120f6be39b"
+    },
+    {
+      "path": "SourceCatalog/LevelWinActionsHarness.cs",
+      "sha256": "7cc12cb66afb2d9324a02f515272912d458b941a312f427cdfb437c3b9e4f8c1"
+    },
+    {
+      "path": "SourceCatalog/verify_level_win_actions.py",
+      "sha256": "98a817fdcc5ecc320c3f140ec4735ed82172d66ec4ca8c5dcea8916b7755bcae"
+    },
+    {
+      "path": "SourceCatalog/verify_level_win_prefab.py",
+      "sha256": "782655bc4c2b412b5282f8ccadcdac9c6ae1331854a4c90731c579be91dc2103"
+    },
+    {
+      "path": "SourceCatalog/prepare_level_win_dialog.py",
+      "sha256": "d0bb10a4735303bfee8cdc37bb72e21d1e1087ba5b1bf96767e40c90ef1ab89d"
+    },
+    {
+      "path": "SourceCatalog/material_preview_conversions.json",
+      "sha256": "7771603ed4b4d39f130e8a96d1c8d52fa40fd69dc0c9db6087340701a97ca6f3"
+    }
+  ],
+  "background_verifications": [
+    {
+      "passed": true,
+      "test": "remaining-coins-normal",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "79557e533b0777f36a4699640241fc7dc1872ac45251314a68d191617ea5b35c",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+      "elapsed_seconds": 104.82,
+      "batch": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "failure": "",
+        "timestamp_utc": "2026-10-28T22:57:28.4723182Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    },
+    {
+      "passed": true,
+      "test": "remaining-coins-early-skip",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "79557e533b0777f36a4699640241fc7dc1872ac45251314a68d191617ea5b35c",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+      "elapsed_seconds": 98.58,
+      "batch": {
+        "passed": true,
+        "test": "remaining-coins-early-skip",
+        "failure": "",
+        "timestamp_utc": "2026-10-28T22:59:07.3675152Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    },
+    {
+      "passed": true,
+      "test": "win-logo-skip",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "79557e533b0777f36a4699640241fc7dc1872ac45251314a68d191617ea5b35c",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_win-logo-skip.log",
+      "elapsed_seconds": 95.03,
+      "batch": {
+        "passed": true,
+        "test": "win-logo-skip",
+        "failure": "",
+        "timestamp_utc": "2026-10-28T23:00:42.9032531Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    }
+  ],
+  "normal_result": {
+    "passed": true,
+    "skipped": false,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": false,
+    "first_level_skip_rejected": true,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-cbbfa8da680f4089ac4d63539e5b72e0.sqlite",
+    "result_exit_requests": 1,
+    "skip_ui_level": 1,
+    "initial_remaining_moves": 25,
+    "converted_moves": 25,
+    "unconverted_moves": 0,
+    "reward_coins": 81,
+    "collections": 29,
+    "peak_coin_views": 71,
+    "peak_pilots": 71,
+    "peak_operation5": 71,
+    "native_departure_count": 71,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2081,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 11.866287231445312,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches native ad/event/scene-exit ports once. Backdrop, scene exit, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "partial_skip_result": {
+    "passed": true,
+    "skipped": true,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": true,
+    "first_level_skip_rejected": false,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-0e3e3bd2460c47e1a6a16bfb66456854.sqlite",
+    "result_exit_requests": 1,
+    "skip_ui_level": 2,
+    "initial_remaining_moves": 25,
+    "converted_moves": 2,
+    "unconverted_moves": 23,
+    "reward_coins": 79,
+    "collections": 0,
+    "peak_coin_views": 0,
+    "peak_pilots": 0,
+    "peak_operation5": 0,
+    "native_departure_count": 0,
+    "active_board_coin_value_at_end": 12,
+    "unconverted_move_coin_value": 57,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2079,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 6.479795455932617,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches native ad/event/scene-exit ports once. Backdrop, scene exit, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "immediate_skip_result": {
+    "passed": true,
+    "skipped": true,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": false,
+    "skip_button_entry_verified": true,
+    "first_level_skip_rejected": false,
+    "remaining_dialog_started_ready": false,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": false,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "",
+    "result_exit_requests": 1,
+    "skip_ui_level": 2,
+    "initial_remaining_moves": 24,
+    "converted_moves": 0,
+    "unconverted_moves": 24,
+    "reward_coins": 72,
+    "collections": 0,
+    "peak_coin_views": 0,
+    "peak_pilots": 0,
+    "peak_operation5": 0,
+    "native_departure_count": 0,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 0,
+    "session_win_state": 0,
+    "native_win_cloche_calls": 0,
+    "win_trigger_calls": 0,
+    "win_flow_calls": 0,
+    "low_match_total": 0,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 0,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 0,
+    "reactivation_calls": 0,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2072,
+    "account_coin_update_calls": 0,
+    "account_star_update_calls": 0,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 0,
+    "elapsed": 3.4759273529052734,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches native ad/event/scene-exit ports once. Backdrop, scene exit, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "visual_inspection": [
+    "Initial rendered review found blank Continue and Well Done labels despite the first flow fixture passing. Historical capture/report are preserved under SourceCatalog/verification_history/level_win_initial; fixture success was not treated as visual parity.",
+    "After SDF shader restoration, remaining_coins_normal_reward.png visibly contains Level1, Well Done!, the star, original pillow and Continue. The same shader/glyph checks are now required by all three scene fixtures."
+  ],
+  "implementation_differences": [
+    "Native proprietary collider-button input is intentionally replaced with standard Unity Button/Canvas/GraphicRaycaster on each original visual container per user requirement. Original child art and collider-equivalent rectangle extents are preserved; this is not identical native input plumbing.",
+    "Native DOTween sequencing is evaluated by the project runtime using extracted constants and the original Unity Animator; no third-party tween assembly is introduced."
+  ],
+  "remaining_gaps": [
+    "FoundationController still lacks production application/account/WinFail/dialog factory composition. These runtime views are exercised by formal scene verifiers; the full player startup-to-settlement loop is not yet bound.",
+    "Actual GameManager.ExitGameWhenPossible scene/home transition, ad eligibility/transport, Lava/Ancient progression, footer ownership, localization, audio shutdown/playback and camera/orientation owners remain explicit fixture ports in this verification.",
+    "Curved character text animation, title curvature, hard/extreme/sapphire themes, league crown, activity footer, squarish/portrait/landscape arrangement, dialog backdrop, shiny shader effects and original full rendered parity remain incomplete.",
+    "The rendered three-mode fixture covers first-board ordinary result layout. Rewarded eligibility/multiplier layout is not a production-rendered branch in these scene checks; its control callbacks are covered by the native differential.",
+    "Failure/Ego/warning/shop/retry views, full level catalog/startup, all lifecycle event branches, country/AB/GM version switching and real Android/iOS validation remain incomplete.",
+    "Original Android SQLite binary packaging approval remains unanswered; no libsqlite3.so was copied into Assets and no mobile database execution is claimed. SDK handling remains unchanged."
+  ],
+  "performance": "Result prefab and its art load on demand at the dialog transition. Cached references and value-type scale/rotation updates avoid per-frame LINQ, Find, GetComponent and allocation. No static UI hierarchy is constructed at runtime.",
+  "current_game_exit_evidence": "SourceCatalog/game_exit_evidence.json",
+  "current_game_exit_source_snapshot_sha256": "5ba86cfdbf811aa7929d6c11e1d5dbd53fb599db7e256ec5c3010c1181e31831",
+  "current_game_context_exit_evidence": "SourceCatalog/game_context_exit_evidence.json",
+  "current_game_context_exit_source_snapshot_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332",
+  "current_area_data_evidence": "SourceCatalog/area_data_evidence.json",
+  "current_area_data_source_snapshot_sha256": "8fbbab70a4b5bc904fc94ed612d60e629d2ebd3d99a096e0017968b1b40bd1f7"
+}

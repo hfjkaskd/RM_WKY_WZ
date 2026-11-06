@@ -1,0 +1,489 @@
+{
+  "restored_branch": "Normal lightball + normal propeller, native combo3, admitted static-free first board",
+  "full_objective_complete": false,
+  "native_methods": [
+    {
+      "rva": "0x1e2fa90",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.LightballPropellerCombo$$get_ComboType",
+      "body_sha256": "1e93ab8c909f8df99a917c41a1de2ab2fc9bfe3037e93f999908a723e1f00d44"
+    },
+    {
+      "rva": "0x1e2fa98",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.LightballPropellerCombo$$Prepare",
+      "body_sha256": "46a21aa5d8d273db6b01b17d970e5ddf81144dc73e09b6a3fa405660a7feb475"
+    },
+    {
+      "rva": "0x1e2fcf8",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.LightballPropellerCombo$$Explode",
+      "body_sha256": "dd4c454c57876d4f03490e55a3b282f9d6d8bb3668a606ec162b3e3b62db1aea"
+    },
+    {
+      "rva": "0x1e2ff08",
+      "name": "Royal.Scenes.Game.Levels.Units.Combo.LightballPropellerCombo$$SetAllItems",
+      "body_sha256": "8393d6dfdc5957e87a1628a0e05a17a6de154a64df290894b543704a204a5ca0"
+    },
+    {
+      "rva": "0x1f46d64",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballPropellerStrategy$$get_ComboItemType",
+      "body_sha256": "bb68e3f214049b02d35060c1c218ea1aba65bbe11e247576b8b178d6783e0c49"
+    },
+    {
+      "rva": "0x1f46d6c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballPropellerStrategy$$Start",
+      "body_sha256": "5348050cf74a50a1541db1928f5956827318196d61e263b918fea34b18e7ebb8"
+    },
+    {
+      "rva": "0x1f471f0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballPropellerStrategy$$Reset",
+      "body_sha256": "93c6c54d5b45182f50392160831b0968bbc6906a0687c0e0a4fbdee449b20711"
+    },
+    {
+      "rva": "0x1f472c4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballPropellerStrategy$$GetReplacedItemForLightball",
+      "body_sha256": "abb6277696db132ea5d03c5d1e2a924e51a59fcc99bedd4d759cdfe8fdc19f85"
+    },
+    {
+      "rva": "0x1f472cc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballPropellerStrategy$$CreateBgForReplacedItemForLightball",
+      "body_sha256": "dd55a9e4692a72dc4defb8bf75fce5073efcb2174e4e81a4eb0871b635eeb369"
+    },
+    {
+      "rva": "0x1f473dc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballPropellerStrategy$$SingleRayReached",
+      "body_sha256": "e0a3de6d535d9ca55c4a293f32f6a2830603850f70479919725e554f66090703"
+    },
+    {
+      "rva": "0x1f46e48",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballSpecialStrategy$$Start",
+      "body_sha256": "2635a8ab3ce4b84faec283d64d20b44c7e72e05cf2406147a0e9e1281ff82184"
+    },
+    {
+      "rva": "0x1f47a4c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballSpecialStrategy$$RemoveAnItemFromCell",
+      "body_sha256": "fae312f611d60c2bebb23e247804d01097732d5670e30a2d5b3fe2541fdb979f"
+    },
+    {
+      "rva": "0x1f47aac",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballSpecialStrategy$$PutItemToCell",
+      "body_sha256": "529d5d38652b3baa4b23123ac7d8390894e79269b38ff13fa98182e9bc8fbd8a"
+    },
+    {
+      "rva": "0x1f485fc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballSpecialStrategy$$get_ItemExplodeDelay",
+      "body_sha256": "15d7a0cc09fa346009dabd049a6aaa906256ff24b8a11c49f031d1a79f26913f"
+    },
+    {
+      "rva": "0x1f48610",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballSpecialStrategy$$AllRaysComplete",
+      "body_sha256": "42b923de65a37c826dcd093087602709024fa886712f24d06711d51f17d8e8a0"
+    },
+    {
+      "rva": "0x1f4885c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballSpecialStrategy$$StoppedLookingForNewItems",
+      "body_sha256": "853e56fd9802c52ca83d44a680c33dd4f33b23a70bc8bfbe39a05d53efdfff45"
+    },
+    {
+      "rva": "0x1f48880",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballSpecialStrategy$$RemoveLightball",
+      "body_sha256": "f3e32d18ebe39495d309436a3116a6c93213e56178b4a71de5292a37722e259c"
+    },
+    {
+      "rva": "0x1f48c94",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballSpecialStrategy$$LightballReplacedItemExploded",
+      "body_sha256": "2f32fc16bebf669ba2b81d29547dd0c06ff657d0517200f88b929434b0e79ba9"
+    },
+    {
+      "rva": "0x1f48ec8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballSpecialStrategy.<ExplodeItems>d__23$$MoveNext",
+      "body_sha256": "3b7b0749bccd6f196ac12c41a7a9dac594a45d1ce5c36ab2dcbc16c9f00d881b"
+    },
+    {
+      "rva": "0x3197e04",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Sorter.TopLeftHorizontalSorter$$Compare",
+      "body_sha256": "d8dc31ea39be9aec17c6f58cba230fd90a232d8dd6335b137c578fbff7ba554e"
+    },
+    {
+      "rva": "0x212e1e4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.LightballItem.Strategy.LightballStrategy.<SendAllRays>d__48$$MoveNext",
+      "body_sha256": "d70d1085eeb97677366ffba549a5c3ba487b987856fb751617ef29259b859153"
+    },
+    {
+      "rva": "0x1f3bf00",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerDefaultStrategy$$ExplodeNeighbors",
+      "body_sha256": "40e77062eea12a9f5ff7394cadcfb4ad3ca79b2bdcb28df3ea72b0027ee80d45"
+    },
+    {
+      "rva": "0x1f3c188",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerDefaultStrategy$$NextExploder",
+      "body_sha256": "190992259d4ef1f22d4563387ba170aa113b4cb57020e998573c96fb41f3a236"
+    },
+    {
+      "rva": "0x1f3c304",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.Strategy.PropellerDefaultStrategy$$GetNewPilot",
+      "body_sha256": "f4b12adc4fc3c73200af8b3f31715932d09441587204f95cd50c0b73130303d2"
+    },
+    {
+      "rva": "0x27bfda4",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.PropellerItemModel$$.ctor",
+      "body_sha256": "680d93936bd08ccabd37903d3a4f66f51cc6f8eec5492e45f6a0be52ffb31b72"
+    },
+    {
+      "rva": "0x27bfdd8",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.PropellerItemModel$$CreateView",
+      "body_sha256": "13bf6aabc6cf712e2da9df61fa35201b4cdaa12373898fff4e998b99ec9c861d"
+    },
+    {
+      "rva": "0x27bff9c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.PropellerItem.PropellerItemModel$$TryExplode",
+      "body_sha256": "fe92624544fc1119fbd67593fbd9036df26d2a9eee83cf4be2b999bfea6a5d4a"
+    },
+    {
+      "rva": "0x27b479c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.SpecialItemModel$$Hide",
+      "body_sha256": "f2215da50b9195f36703d143a5dc46abd5b6e15b12f70470d1cb3a13f6ba338d"
+    },
+    {
+      "rva": "0x27b47d0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.SpecialItemModel$$Show",
+      "body_sha256": "fbdbbfd46077a4810564f99a9acc853aa7909632674bed3ddc5b5a0ab3bba6f2"
+    },
+    {
+      "rva": "0x2b4acdc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemView$$Hide",
+      "body_sha256": "427ef4e394f592538630b593a571ee3e33deb96488a39696f9b676bc6ae7b9c2"
+    },
+    {
+      "rva": "0x2b4ad2c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemView$$Show",
+      "body_sha256": "aeeae6ed87d0218606d39d47b42151197b4ec0bb8decffdfea60cfcccc1ad7e2"
+    }
+  ],
+  "constants": {
+    "native_float_addresses": {
+      "0x3fb2718": 0.07000000029802322
+    },
+    "settings": "Assets/Foundation/Settings/LightballViewAssets.asset"
+  },
+  "native_rules": [
+    "Prepare merges at the moving item cell, detaches/hides the propeller and clears its native active flag without changing activeSince. Shared removal shows/reactivates the partner before the final trigger sequence. TNT and rocket preparation use the same corrected visibility flag behavior.",
+    "The common most-color selection, target reservations, shuffle, conversion rays and original pooled background/shake lifetimes remain in use.",
+    "A ray removes/recycles the old match without match damage; creates a real tiled10 propeller with isCreatedByLightball=true; emits SpecialItemCreated before setting current/target mediation; and adds background/shake. Native propeller conversion has no PlayCreationAnimation call at this point.",
+    "After ray collection stops, the original partner occupies the lightball cell and owns its background/shake. Partner explosion releases the center fall freeze.",
+    "The native top-left sequence triggers each live/current model with trigger15 and waits0.07 gameplay seconds, including after the last item. The partner retains its normal target trigger8, while converted propellers use target trigger30.",
+    "Native propeller strategy skips takeoff neighbor damage for incoming trigger15 and otherwise reuses the ordinary single-target finder, target claims, flight pilot, target damage and refill owners.",
+    "Actual ray/background pools return to zero spawned. Remaining propeller views must belong to actual surviving board models; all converted flights complete and release reservations/operations/freezes."
+  ],
+  "background": {
+    "passed": true,
+    "test": "lightball-combo-regression",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "618f19f569a2e96fb0f5469e3bc855ffc7aae06af1ff40486c29bc124efa9cbe",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_lightball-combo-regression.log",
+    "elapsed_seconds": 374.79,
+    "batch": {
+      "passed": true,
+      "test": "lightball-combo-regression",
+      "failure": "",
+      "timestamp_utc": "2026-10-28T12:59:49.3710523Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+  },
+  "sequential_regression": {
+    "passed": true,
+    "propeller_combos": 4,
+    "tnt_combos": 4,
+    "default_lightballs": 2,
+    "rocket_combos": 8,
+    "left_moves": 12,
+    "timestamp_utc": "2026-10-28T12:59:49.3563638Z",
+    "scope": "One unchanged formal runtime/board sequentially runs 18 operations through the existing recorded input: 4 lightball/propeller combos, four lightball/TNT combos, normal lightball tap/swap and eight lightball/rocket combos. Individual reports retain detailed assertions; this transport verifies continuation, move consumption and shared pool reuse. Natural combination creation, physical input, full lifecycle and rendered-original parity remain unverified."
+  },
+  "propeller_cases": {
+    "passed": true,
+    "failure": "",
+    "completed_combos": 4,
+    "left_moves": 26,
+    "goals_left": 0,
+    "converted": [
+      10,
+      15,
+      19,
+      19
+    ],
+    "observed_flights": [
+      10,
+      15,
+      19,
+      19
+    ],
+    "peak_flights": [
+      11,
+      16,
+      16,
+      17
+    ],
+    "explicit_triggers": [
+      11,
+      16,
+      20,
+      20
+    ],
+    "native_box_cavities": [
+      8,
+      0,
+      0,
+      0
+    ],
+    "peak_propeller_views": [
+      11,
+      16,
+      20,
+      21
+    ],
+    "wait_elapsed": [
+      0.08299998939037323,
+      0.08289999514818192,
+      0.0705999955534935,
+      0.08229999244213104
+    ],
+    "scope": "Four formal production-factory lightball/propeller fixtures exercise both swap orders and both axes via recorded input. Checks actual color conversion, native hidden/active partner state, sorted0.07-second activation, true concurrent single-target flights, created trigger30/original trigger8, actual target damage/refill, one move, input release and complete view/ray/background ownership. Only original-box cavities proven unreachable by native straight/cross queries are permitted. Natural creation, physical input, super/static/event/charger/jelly, full lifecycle and rendered-original parity remain unverified."
+  },
+  "tnt_and_default_cases": {
+    "passed": true,
+    "failure": "",
+    "completed_combos": 4,
+    "normal_lightball_activations": 2,
+    "left_moves": 20,
+    "goals_left": 0,
+    "converted_counts": [
+      19,
+      21,
+      21,
+      20
+    ],
+    "fuse_delays": [
+      0.4980010986328125,
+      0.4938163757324219,
+      0.49802398681640625,
+      0.4984092712402344
+    ],
+    "wait_elapsed": [
+      0.5146000385284424,
+      0.5105000734329224,
+      0.5149000287055969,
+      0.5149999856948853
+    ],
+    "default_ray_counts": [
+      19,
+      21
+    ],
+    "scope": "Four explicit production-factory fixtures swap lightball/TNT in both orders horizontally and vertically, then two production-factory normal-lightball tap/swap fixtures through recorded player input. Checks color/rays/model conversion, TNT immunity, fuse phase, collective explosion, one move, real damage/refill, no frozen cells, all72 cells filled after box removal, subsequent input and complete ray/background pool return. No natural special creation, physical input, original rendered comparison, super lightball, static/event/charger or other combo parity claim."
+  },
+  "rocket_cases": {
+    "passed": true,
+    "failure": "",
+    "completed_combos": 8,
+    "left_moves": 12,
+    "goals_left": 0,
+    "horizontal": [
+      10,
+      10,
+      12,
+      10,
+      9,
+      12,
+      9,
+      10
+    ],
+    "vertical": [
+      9,
+      10,
+      12,
+      10,
+      9,
+      11,
+      10,
+      10
+    ],
+    "explicit_triggers": [
+      5,
+      6,
+      5,
+      5,
+      5,
+      7,
+      7,
+      4
+    ],
+    "native_box_cavities": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "peak_rocket_parts": [
+      44,
+      48,
+      52,
+      46,
+      40,
+      54,
+      42,
+      42
+    ],
+    "final_available_parts": [
+      44,
+      48,
+      52,
+      52,
+      52,
+      54,
+      54,
+      54
+    ],
+    "wait_elapsed": [
+      0.16589999198913574,
+      0.16379998624324799,
+      0.16619998216629028,
+      0.16599999368190765,
+      0.16599999368190765,
+      0.16599999368190765,
+      0.16609999537467957,
+      0.16599999368190765
+    ],
+    "scope": "Eight formal-scene production-factory lightball/rocket fixtures: both partner orientations, both swap orders and horizontal/vertical recorded gestures. Verifies pre-shuffle orientation assignment, actual conversion rays/models, top-left explicit triggers/.15 gameplay wait, real row/column damage/chains, original flight/pool tails, one move per gesture, input release and native refill paths. After36boxes finish, all72cells must refill. No natural combination creation, physical input, super/static/event/charger/jelly, game lifecycle or rendered-original parity claim."
+  },
+  "performance": {
+    "peak_concurrent_guided_operations": 17,
+    "peak_active_propeller_views": 21,
+    "recommendation": "Preserve native demand growth and reuse existing pools. Concurrent target selection/flight increases CPU, model/pilot allocations cause GC, and grown pools retain memory. Higher prewarming moves cost to startup and increases initial memory; it is not enabled. This implementation is acceptable for continued restoration based on current editor checks, while device CPU/GC/memory/loading measurements remain required before performance parity can be claimed."
+  },
+  "sources": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "5e98dcab7de6c186ac475187273e83fed117dd0adb9c430cf235b280699e4eec"
+    },
+    {
+      "path": "Assets/Foundation/Editor/LightballComboRegressionVerification.cs",
+      "sha256": "e89bfdd79dab49251495f7fbf3c7ca2bdaaaa2f9280398513331a54d7f30395d"
+    },
+    {
+      "path": "Assets/Foundation/Editor/LightballPropellerComboVerification.cs",
+      "sha256": "cbf2ec6df19636e88c4ba4b840166b5bd10186f7bfeb62235985b05e0d1c9be3"
+    },
+    {
+      "path": "Assets/Foundation/Editor/LightballPropellerComboVerification.cs.meta",
+      "sha256": "1394928cedfdadcb30796838c164169d0bab660dc98fc26a005ef043b32e5b63"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDefaultPropellerStrategy.cs",
+      "sha256": "75b4e7425d8d4211c56885c1ced8cfc77a5d247e856a6f8310f085ccbca261e8"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLightballPropellerStrategy.cs",
+      "sha256": "afaabd7557ef8c4bbe1b28c9db075aa6ed25096d8ddd8167529da0b080b15329"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLightballPropellerStrategy.cs.meta",
+      "sha256": "e7ca70fba6f29501b198fd65fdc0242abe6616beca81e8ed9b1ead9dec957ab1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLightballRocketStrategy.cs",
+      "sha256": "468e66fb8b0dda905a469535f2f876ac36256f840d870ce5b74aebdeb3d3162f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLightballSpecialStrategy.cs",
+      "sha256": "0acf5c9050d293eecc4ae6b3a2269bd56b90af84b879ffdf3174f150047c20d1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLightballTntStrategy.cs",
+      "sha256": "faff05ed957ddcdbe9b6e659310188c6fad2194ec0c239bb04e1d5ff63fe4d5e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLightballViewAssets.cs",
+      "sha256": "9e4d1bd1a3407a2042d297aca115ace4dc1ef58ba906169f7a9a47c5c748c7a2"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalNormalSwapAnimationBackend.cs",
+      "sha256": "c3bbdbf5f1f00cfaa998f019de313a131bfa253ac25b19704b903b33d7cd2b24"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "ccabd76baa2a858561fd99dd10c38b9699f2df456a5afdb0314987cbf15bdf09"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPropellerBoardItem.cs",
+      "sha256": "bbe03aa1f9ed39fd5e2672abb311e8ee9bce215afa0fd1ddc149f9303672dcb7"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalSpecialBoardItem.cs",
+      "sha256": "9f7bd0008f228909f1b159d1a6ef567369a9fe0866ad0f5603da6a51c60c96b4"
+    },
+    {
+      "path": "Assets/Foundation/Settings/LightballViewAssets.asset",
+      "sha256": "fdbff32af57577a43c47da29874833aa732f547197fd18cc129c4d4ae8efe185"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "ffe7474a3e0bd516e386f9ebe525f838b98a3a29d4d8b5cbff15501de9e86074"
+    },
+    {
+      "path": "background_lightball_combo_regression_verification.json",
+      "sha256": "c6fae938218b584ec78a30675cdb4e41993f2fd101948cd7661dd133877c8a61"
+    },
+    {
+      "path": "live_lightball_combo_regression_verification.json",
+      "sha256": "ad7e7e147b3f12c0b1b5dc22f8a9e948dd13031efc35c3a07504eb32c4fa377a"
+    },
+    {
+      "path": "live_lightball_propeller_combo_verification.json",
+      "sha256": "e2e4883ad22fb017a2ce1e452d935d58bfb03d72afb7bdfca99bacf6797aebc3"
+    },
+    {
+      "path": "live_lightball_tnt_combo_verification.json",
+      "sha256": "6a6a8c1c85708bf6b22f7f4e5c1f51fb7419fb6f10af7052ba1d030dc4dac25f"
+    },
+    {
+      "path": "live_lightball_rocket_combo_verification.json",
+      "sha256": "3960a076502b9a50ef105cdfd024a622bf8adce3d4ab6a42d84cbac167d8c4c5"
+    },
+    {
+      "path": "lightball_propeller_converted.png",
+      "sha256": "3060478b61ca27e216203258ecda92f5f84f1d98b71f8bd9b88653e9dd3e0382"
+    },
+    {
+      "path": "lightball_propeller_refilled.png",
+      "sha256": "07248b246ff8732ea673043ff262296fe58b1c203381e039a81e39045e4cdf3e"
+    },
+    {
+      "path": "lightball_tnt_converted.png",
+      "sha256": "5aafa0d69d8d0d89fb2fe763ff4f653fa2dc531a56e23c4d8c799140c5bf21bd"
+    },
+    {
+      "path": "lightball_tnt_refilled.png",
+      "sha256": "cfd7a7cc6625faf9869ac303a1a5dc53e93fca433d4ba5158649bc3a5215d0e0"
+    },
+    {
+      "path": "lightball_rocket_converted.png",
+      "sha256": "0cb0c94f0f66762d77ab5672317b3f45abf0ce396ddaa78f1cdc64c81fd8c0da"
+    },
+    {
+      "path": "lightball_rocket_refilled.png",
+      "sha256": "f333081f0ca2a9bd9ba8f6d2c9d8d11e3194f1ccc9366c853d60888fe6296f00"
+    }
+  ],
+  "gaps": [
+    "Lightball+lightball, TNT+propeller and propeller+rocket remain unsupported.",
+    "Tests use explicit production-factory fixtures and recorded input. Natural combination creation, physical input and rendered comparison with the original remain unverified.",
+    "Super lightball, chained/above-static, active event/charger/jelly and game-exit branches require their original owners.",
+    "Shared strategy hierarchy is adapted through the existing default ray owner; this checkpoint does not establish literal whole-project implementation parity.",
+    "Production WinFail/remaining moves/result/progression, complete lifecycle, world/camera/UI visuals and country/AB/GM remain incomplete. SDK handling is unchanged."
+  ]
+}

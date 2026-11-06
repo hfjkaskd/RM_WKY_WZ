@@ -1,0 +1,359 @@
+{
+  "full_objective_complete": false,
+  "production_application_win_fail_bound": false,
+  "production_final_result_dialog_rendered": false,
+  "production_ego_dialog_buttons_bound": false,
+  "original_rendered_parity_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "324e684c097c0f10c615a5e26483638aaae6526816eb18fa68dedcc70250b787",
+  "restored_scope": [
+    "Runtime UiDialog Show/Close/ForceClose/PressBackground/PressEscape and close iterator, including native guards, partial state on rejection/failure, optional nested close animation, manager notification, OnClose, action completion, config reread, destruction and final flag reset.",
+    "Runtime DialogManager registration, monotonic dialog IDs, sorting offsets, backdrop handoff, touch order, close removal and event ordering. Backdrop and scene-dependent touch are required external owners.",
+    "Existing original win-logo prefab now owns OriginalWinLogoDialog; its real Unity Update drives the native timer and the runtime lifecycle completes the actual FlowAction. Removed the fixture Show no-op and fixture-side direct action.Complete callback.",
+    "Win-logo device landscape capability controls inherited UI scale, native haptic/audio callback order is retained, orientation reason38 is dispatched, detached fireworks ownership passes to the application coroutine with the native gameplay-time1second/skip teardown rule."
+  ],
+  "native_methods": [
+    {
+      "rva": "0x18d1768",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.WinLogoAnimationDialog$$OnShow",
+      "body_sha256": "7714832bb8981229f5b6c7fc7e27c07b040ed18bbdfd9a06f896364a25d75098"
+    },
+    {
+      "rva": "0x18d1da4",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.WinLogoAnimationDialog$$OnClose",
+      "body_sha256": "0898b8f1ab33aa0608453a8573dd8ec1cf1f286dde25fea89c0ef1321d238783"
+    },
+    {
+      "rva": "0x18d2240",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.WinLogoAnimationDialog$$GetConfig",
+      "body_sha256": "45c7da4ca18c5cc8e45f580fd5683cb0344f278d3a29823cf10734a3454c4c37"
+    },
+    {
+      "rva": "0x18d23c8",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.WinLogoAnimation.WinLogoAnimationDialog.<DestroyFireworkParticles>d__32$$MoveNext",
+      "body_sha256": "bf8199b3124bdd6215dfca02a55c3571bb8ade1d4e189048ea893712319cf5ec"
+    },
+    {
+      "rva": "0x25c8be8",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogManager$$get_HasActiveDialog",
+      "body_sha256": "9a1e9b7af317dca73dd9ff086cba042415d4d80c7d4d4e2ec54b3820cdfd6867"
+    },
+    {
+      "rva": "0x25c8c44",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogManager$$get_HasMultipleDialogs",
+      "body_sha256": "90ea8366195e04dd3c1bc2829fae278841447c1e25e45a92eb9879c3d69c149f"
+    },
+    {
+      "rva": "0x25c97f0",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogManager$$ShowDialog",
+      "body_sha256": "f21c0a53c0cb4b55ce6a6459b11a84e280f2a35e20c9976302855357aee6a0f8"
+    },
+    {
+      "rva": "0x25c9eec",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogManager$$UpdateDialogTouchSortings",
+      "body_sha256": "2d6c7c83b05404955a8eb0f0ee415a5fec9560197b168559c0a907b5c182713b"
+    },
+    {
+      "rva": "0x25ca07c",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogManager$$CloseDialog",
+      "body_sha256": "bd713e030c86fea6e26815806874e646d34da056d409e7e3e76cbb34693f138e"
+    },
+    {
+      "rva": "0x25ca498",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogManager$$DialogClosed",
+      "body_sha256": "b4050d09d4ab5c01cec73234308da2fbad5480e9eeb0311b9683c6a188f9fb66"
+    },
+    {
+      "rva": "0x25ca99c",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$ForceClose",
+      "body_sha256": "f727b6baebce5c3899ae01b8f02eb56f3c306ea79157d22892d4b41cb404087d"
+    },
+    {
+      "rva": "0x25ca9a4",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$PressBackground",
+      "body_sha256": "5cd44621f216285ace80444ab2569136c3fd62d56c7beb9ca1e54e3af3c10e50"
+    },
+    {
+      "rva": "0x25cac00",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$PressEscape",
+      "body_sha256": "0e9abe67fc47db681903aab60d729371ffb7bac09b73f2f6112a27d21b19f8a7"
+    },
+    {
+      "rva": "0x25cb31c",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$Show",
+      "body_sha256": "e80b6b9179dbab789e67803d44a51d59dcaca0d9383e8f89448e3dd1e236e7e5"
+    },
+    {
+      "rva": "0x25cb9f8",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$Close",
+      "body_sha256": "aa6f75b6828639287f927f81d37c89160ebeffef62202142b3383e98f9a05bc1"
+    },
+    {
+      "rva": "0x25cbc8c",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$CloseByBackground",
+      "body_sha256": "50f730bdd09b3e318755af805a86fd86284fc7126b7c661a22eeefc29272d759"
+    },
+    {
+      "rva": "0x25cbc94",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$CloseByEscape",
+      "body_sha256": "83f3f0c06460f86624ea285461cfc79e94895143b0b69924e3c68b68d7ff8213"
+    },
+    {
+      "rva": "0x25cbe30",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$GetConfig",
+      "body_sha256": "3bedc05f7bdf0b830c4ab5d36d81c36b4e0442505292b3416d2ab861914ab755"
+    },
+    {
+      "rva": "0x25cbed8",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog.<CloseAnimation>d__23$$MoveNext",
+      "body_sha256": "93341ea6d9c196ee18453fff0e5bd1a66d9b3ca97034367eb6288e7041cb25ed"
+    },
+    {
+      "rva": "0x25cbf44",
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog.<CloseCoroutine>d__22$$MoveNext",
+      "body_sha256": "1abdfabb16180de0adf94430599878cc15a486ef1dc87901b04a97342801e842"
+    }
+  ],
+  "native_differential_reports": [
+    {
+      "path": "dialog_lifecycle_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 1292,
+        "scope": "Actual ARM64 UiDialog Show/Close/force/background/Escape and close iterator vs compiled runtime C#.\n\nDialogManager, camera/parent, MonoBehaviour coroutine transport, virtual dialog\nhooks/config and destruction are typed boundaries. Native guard ordering,\npartial mutation, nested close-animation yield, callback/flow order and config\nrereads execute from the original ELF. Manager backdrop/render/skip/mobile and\nfull production composition are not proved by this differential test.",
+        "original_rvas": [
+          "0x25cb31c",
+          "0x25cb9f8",
+          "0x25ca99c",
+          "0x25ca9a4",
+          "0x25cac00",
+          "0x25cbf44",
+          "0x25cbed8",
+          "0x25cbc8c",
+          "0x25cbc94"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/DialogLifecycleHarness.cs",
+            "sha256": "e6181d8b5b968dc01bad3a84e73ca2f6e4a78a9f1049ffef36fa5d459284e6ff"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalUiDialog.cs",
+            "sha256": "ced37ee976456d40feeda9c27a76dde1f3d9c3caeed264491d8e5dc93455a14c"
+          }
+        ]
+      }
+    },
+    {
+      "path": "dialog_manager_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 823,
+        "scope": "Actual ARM64 DialogManager registration, close handoff, close removal and touch sorting vs runtime C#.\n\nManaged dictionary/enumerator operations, Unity sorting/view calls, background,\nscene touch and events are typed boundaries; original manager control flow,\nID/sorting counters, dictionary mutation order and event timing execute in ELF.\nDiagnostic formatting and empty-sequence exception transport are omitted.\nDestroyed Unity-object equality, backdrop tween rendering, app/mobile binding\nand all other DialogManager entry points remain outside this check.",
+        "original_rvas": [
+          "0x25c97f0",
+          "0x25ca07c",
+          "0x25ca498",
+          "0x25c9eec",
+          "0x25c8be8",
+          "0x25c8c44"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/DialogManagerHarness.cs",
+            "sha256": "cb35baf488b8b7ab7e317f0ddc8d12340ff819d382f8ddafaf587d274233649d"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalUiDialog.cs",
+            "sha256": "ced37ee976456d40feeda9c27a76dde1f3d9c3caeed264491d8e5dc93455a14c"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalDialogManager.cs",
+            "sha256": "518d7f5ff3de4f64e846bc826d970ff7f77e9ece2203795a032dca5313d96abd"
+          }
+        ]
+      }
+    }
+  ],
+  "same_snapshot_runtime_tests": [
+    {
+      "path": "background_remaining_coins_normal_verification.json",
+      "source_sha256": "324e684c097c0f10c615a5e26483638aaae6526816eb18fa68dedcc70250b787",
+      "elapsed_seconds": 163.58,
+      "result": {
+        "passed": true,
+        "skipped": false,
+        "logo_runtime_dialog_lifecycle_verified": true,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "account_native_reload_verified": true,
+        "runtime_storage_factory_verified": true,
+        "directory_rules_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-90fd3652722849779b599e4462cba916.sqlite",
+        "initial_remaining_moves": 24,
+        "converted_moves": 24,
+        "unconverted_moves": 0,
+        "reward_coins": 78,
+        "collections": 28,
+        "peak_coin_views": 64,
+        "peak_pilots": 68,
+        "peak_operation5": 64,
+        "native_departure_count": 68,
+        "active_board_coin_value_at_end": 0,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 2078,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "account_initial_coin": 2000,
+        "account_area_load_calls": 2,
+        "elapsed": 13.380807876586914,
+        "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. Backdrop, scene, haptic/audio and remaining/result dialog owners are explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      }
+    },
+    {
+      "path": "background_remaining_coins_early_skip_verification.json",
+      "source_sha256": "324e684c097c0f10c615a5e26483638aaae6526816eb18fa68dedcc70250b787",
+      "elapsed_seconds": 119.11,
+      "result": {
+        "passed": true,
+        "skipped": true,
+        "logo_runtime_dialog_lifecycle_verified": true,
+        "remaining_dialog_started_ready": true,
+        "account_database_reopen_verified": true,
+        "account_native_reload_verified": true,
+        "runtime_storage_factory_verified": true,
+        "directory_rules_verified": true,
+        "failure": "",
+        "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-9b2e983630e14d16a33a19d6fbd9fccb.sqlite",
+        "initial_remaining_moves": 25,
+        "converted_moves": 2,
+        "unconverted_moves": 23,
+        "reward_coins": 77,
+        "collections": 0,
+        "peak_coin_views": 0,
+        "peak_pilots": 0,
+        "peak_operation5": 0,
+        "native_departure_count": 0,
+        "active_board_coin_value_at_end": 10,
+        "unconverted_move_coin_value": 57,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "logo_closed": 1,
+        "remaining_dialog_shown": 1,
+        "result_dialog_owner_shown": 1,
+        "level_end_calls": 1,
+        "reactivation_calls": 1,
+        "account_level": 2,
+        "account_star": 1,
+        "account_coin": 2077,
+        "account_coin_update_calls": 1,
+        "account_star_update_calls": 1,
+        "account_initial_coin": 2000,
+        "account_area_load_calls": 2,
+        "elapsed": 6.518321990966797,
+        "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. Backdrop, scene, haptic/audio and remaining/result dialog owners are explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and final UiDialog owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, final settlement UI, physical input and original rendered/cross-platform parity remain incomplete."
+      }
+    }
+  ],
+  "native_constants": {
+    "default_background_alpha": 0.800000011920929,
+    "default_background_animation_alpha": 0.0,
+    "win_logo_background_fade_in_duration": 0.4,
+    "win_logo_should_show_background_on_close": true,
+    "win_logo_inherit_scale": "!CameraManager.Current.IsDeviceSupportLandscape()",
+    "win_logo_orientation_release_reason": 38,
+    "firework_tail_gameplay_seconds": 1.0
+  },
+  "rendered_capture_inspected": "remaining_coins_normal_reward.png: stable filled board, Moves0 and Reward78 visible. No final settlement popup is rendered; this capture contradicts full UI completion and is not original screenshot parity.",
+  "limits": [
+    "FoundationController still composes board/input/HUD without production account/WinFail/application/dialog context composition. Runtime owners above are exercised through an explicit formal-scene Editor fixture.",
+    "UiDialog and manager native differentials have typed view, scene, camera, backdrop, event and coroutine transport boundaries. They do not establish native backdrop tween/render or destroyed Unity-object equality parity.",
+    "Win-logo device/camera/audio/haptic/background owners are explicit fixtures. Dynamic screenshot atlas, camera-dependent trumpets, retained mesh tails, TapToSkip owner/standard Button and full logo orientation behavior remain incomplete.",
+    "RemainingMovesDialog and final result view still use explicit fixture owners; original settlement layout/buttons, Ego warning/shop branches and loss settlement UI are not production-bound.",
+    "Formal input is recorded device samples and Unity Editor execution targeting Android, not physical Android/iOS runtime proof.",
+    "All-level startup/home/tutorial/unlocks/country AB/GM/US defaults and complete lifecycle/visual/implementation1:1 parity remain unproven. SDK behavior was not changed; pending original Android SQLite binary scope was not assumed approved."
+  ],
+  "performance": "Dialog dictionary, action binding and coroutine allocations occur on low-frequency dialog transitions. Existing8.8MB on-demand baked animation/atlas load remains; no new bulk UI construction or per-frame hierarchy/component search was introduced in runtime code.",
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalUiDialog.cs",
+      "sha256": "ced37ee976456d40feeda9c27a76dde1f3d9c3caeed264491d8e5dc93455a14c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalUiDialog.cs.meta",
+      "sha256": "662bfaff9eef276f57a6d8e57a9f6237ebfc7d016084a46becbc06c69d998903"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDialogManager.cs",
+      "sha256": "518d7f5ff3de4f64e846bc826d970ff7f77e9ece2203795a032dca5313d96abd"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalDialogManager.cs.meta",
+      "sha256": "4b4e4b6439afbbee2090fe03e9e2870f1ad96d0da20fe65313426c6af74f868b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWinLogoDialog.cs",
+      "sha256": "785419de5716f122cc2d110d728541c92ee1aa86592b0b9e35655202f41bf0be"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWinLogoDialog.cs.meta",
+      "sha256": "de6c3567f83036cbbf0f62ba191dde50a26464c9e257dd7cf953cf46fb78e961"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWinLogoVisual.cs",
+      "sha256": "4717396b657ed83fa26beacda51c9643bd2bcfd17c619baf9c6b34f91e356370"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalWinLogoVisual.prefab",
+      "sha256": "28e3e9e3a321c952920c3ae827b0af802a10d3fd4a8a1c2bcdf02dd214548305"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "42a1b6a0888a9760e07e58655069eaf85a4386019d96e66944b5ab5df1ef5676"
+    },
+    {
+      "path": "SourceCatalog/DialogLifecycleHarness.cs",
+      "sha256": "e6181d8b5b968dc01bad3a84e73ca2f6e4a78a9f1049ffef36fa5d459284e6ff"
+    },
+    {
+      "path": "SourceCatalog/DialogManagerHarness.cs",
+      "sha256": "cb35baf488b8b7ab7e317f0ddc8d12340ff819d382f8ddafaf587d274233649d"
+    },
+    {
+      "path": "SourceCatalog/verify_dialog_lifecycle.py",
+      "sha256": "e602e4edebc1b7161a88be8555ff63bb0228e74546f8da63625a3bcac9c60122"
+    },
+    {
+      "path": "SourceCatalog/verify_dialog_manager.py",
+      "sha256": "b192759a5f8b57cec79a35abffb9bf46ec8badb6a6c652b57f07f217d6141e80"
+    }
+  ],
+  "current_remaining_dialog_skip_evidence": "SourceCatalog/remaining_dialog_skip_evidence.json",
+  "current_remaining_dialog_skip_source_snapshot_sha256": "af195c40f8130efbbdd8f41ae3a75fc28b3465590985f80e175d1b6699326b65",
+  "historical_snapshot_note": "This document preserves the0ff3212 source snapshot; changed logo adapter/prefab and current scene verification are recorded in remaining_dialog_skip_evidence.json. Generic UiDialog/manager kernel file hashes remain unchanged.",
+  "current_level_win_dialog_evidence": "SourceCatalog/level_win_dialog_evidence.json",
+  "current_level_win_dialog_source_snapshot_sha256": "79557e533b0777f36a4699640241fc7dc1872ac45251314a68d191617ea5b35c",
+  "current_game_exit_evidence": "SourceCatalog/game_exit_evidence.json",
+  "current_game_exit_source_snapshot_sha256": "5ba86cfdbf811aa7929d6c11e1d5dbd53fb599db7e256ec5c3010c1181e31831",
+  "current_dialog_manager_note": "Generic registration/close regression revalidated on the manager containing native bulk CloseDialogs/ClearDialogs/HardReset; see current game-exit evidence and dialog_manager_native_verification.json. Historical source hashes remain historical.",
+  "current_game_context_exit_evidence": "SourceCatalog/game_context_exit_evidence.json",
+  "current_game_context_exit_source_snapshot_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332"
+}

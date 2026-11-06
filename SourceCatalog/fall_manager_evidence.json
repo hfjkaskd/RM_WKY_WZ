@@ -1,0 +1,104 @@
+{
+  "functions": [
+    {
+      "rva": "0x3210494",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$GridManagerOnOnCellGridInitialized",
+      "disassembly_sha256": "d694bd6b1bea0af53688063601a5bf40750039ec5185bf56ea0dbbf09a4001b3"
+    },
+    {
+      "rva": "0x32106f0",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$ManualUpdate",
+      "disassembly_sha256": "e13fe27c888fc9d025d9d859544936353aa0d4255101ad2f09b7287585fd1a18"
+    },
+    {
+      "rva": "0x32109f0",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$ClearTargetItems",
+      "disassembly_sha256": "622a20eea793dc21718a4c177f87a2df6a7bed4e9437116aa925949a580bd89d"
+    },
+    {
+      "rva": "0x3210a88",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$CalculateStraightFalls",
+      "disassembly_sha256": "01f1c8c1fa32837a7b755530b4525728fbc0445b733b51832e68a7ab06ee3383"
+    },
+    {
+      "rva": "0x3210b24",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$CalculateCrossFalls",
+      "disassembly_sha256": "15ec8efd4acf5611fcce4e83c3c59987a33b88a137af876268fc283274abf835"
+    },
+    {
+      "rva": "0x3210bb4",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$CallFallUpdates",
+      "disassembly_sha256": "959f808556a1ce645ade0cb2e6a4c63de6e49c7e5d826dd620ee2cd89c14471b"
+    },
+    {
+      "rva": "0x32102d4",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$Clear",
+      "disassembly_sha256": "c456b453f88bed3c4b09b59850746e96416e01c1e250c0902b16e5bbad1d93e4"
+    },
+    {
+      "rva": "0x3210e3c",
+      "name": "Royal.Scenes.Game.Levels.Units.FallManager$$Enable",
+      "disassembly_sha256": "b6d559c4378e06355154fa311650e1e9840daf53b77fad9f27e71cd80dc4beed"
+    },
+    {
+      "rva": "0x319c908",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$IsInBelowBoards",
+      "disassembly_sha256": "2e087ab38f3adf65aca895890a5456588a6d8820880307d9507646f3b63e3ac4"
+    },
+    {
+      "rva": "0x319c000",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.GridIterator$$.ctor",
+      "disassembly_sha256": "dacd71d8542e7f4cdf377b7e94bbff05e144edcb994f6f29e3195e3b38e819fb"
+    },
+    {
+      "rva": "0x318ec2c",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.GridIterator$$Reset",
+      "disassembly_sha256": "18dde40135f7c30f5e75caf2d9d52d624ed7c32f84ebf53f28a7155eb11b91c3"
+    },
+    {
+      "rva": "0x318ecc8",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.GridIterator$$MoveNext",
+      "disassembly_sha256": "feb5e5407140372d43e7aff3addbc6c435e6ea51541c3f03bcdedb3f5dfac12d"
+    },
+    {
+      "rva": "0x319bc54",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.BottomLeftVerticalIteratorStrategy$$FirstCell",
+      "disassembly_sha256": "80262def94c78be58ceca89da0e01325b77377d47ba7ecf6c27e9f1192593748"
+    },
+    {
+      "rva": "0x319bc8c",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.BottomLeftVerticalIteratorStrategy$$GetNext",
+      "disassembly_sha256": "cf75e325c3be6f1ebb570501b658169e752b8b1788b2632dcb17bd64095d8474"
+    },
+    {
+      "rva": "0x319c360",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.TotalBottomLeftVerticalIteratorStrategy$$FirstCell",
+      "disassembly_sha256": "89710faad6f1298614fd4765118b4b39de946c0031a01ca82a64714c65430fe5"
+    },
+    {
+      "rva": "0x319c3a8",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.TotalBottomLeftVerticalIteratorStrategy$$GetNext",
+      "disassembly_sha256": "409af8cf4c76a8ee3a2398f984e125a3528259d9547b306643f5dda6199a4e57"
+    },
+    {
+      "rva": "0x319c27c",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.TotalBottomLeftHorizontalIteratorStrategy$$FirstCell",
+      "disassembly_sha256": "d2fe9e7cb4b419bbe9ec25c5be7d354f4aec253b3cbc93d619498cc11cfe2124"
+    },
+    {
+      "rva": "0x319c2c4",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Grid.Iterator.TotalBottomLeftHorizontalIteratorStrategy$$GetNext",
+      "disassembly_sha256": "832d48bc04ae41576ce203a9975c27793af0ada5bf8585201d950bccddeeaa40"
+    }
+  ],
+  "notes": [
+    "Native target iteration selects strategy 0 for portal levels, otherwise 4. Update iteration selects 1 or 5. Iterator initialization keeps native assignment order.",
+    "Targets equal to NextItem survive clearing. Straight/cross phases skip cells below BoardStartY, using Y rather than board identity. Only normal cells with ShouldFindCross and no target enter cross search.",
+    "Fall updates reset operation zero, set aggregate true, update every eligible target item, always query its steady state, then start operation zero if any item remains unsteady. The aggregate left operand is sampled after ManualUpdate and before the steady query.",
+    "Enable(false) resets operation zero and retains the aggregate. Clear empties traversal stacks and column sets and retains enable/aggregate flags.",
+    "269 sequences / 3645 commands execute actual native frame phases and actual native strategy/iterator functions. Target/creation/motion predicates and CLR/storage/accounting infrastructure are supplied native boundaries. Compiled runtime uses real placement and GameOperations.",
+    "Unity integrates the concrete planner, manager, board/grid adapter, filling held-item placement and operation state, with supplied diagnostic item creation/availability/motion. It verifies consecutive frame reuse, column suppression/resume and aggregate counter release. No diagnostic services are installed into production.",
+    "Pending completion storage is reused to honor the user high-frequency GC rule. Native creates a temporary List when pending columns exist. Observable completion order and removal-after-enumeration are retained; allocation behavior deliberately differs.",
+    "Full native context Bind/event owner composition and concrete per-item physics remain pending. Existing OriginalFallComponentState is not represented as a functioning motion component."
+  ]
+}

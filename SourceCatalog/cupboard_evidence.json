@@ -1,0 +1,421 @@
+{
+  "baseline_commit": "dff121044042de12da195a44e343f85dd4702b17",
+  "current_scope": "Original ordinary levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "all100_levels_playable": false,
+  "canonical_background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-early-chapter",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "e24820b65f8191b7ad801d0a7728d0a95c38531a33f73bedc28ab6e1e0209a2a",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-early-chapter.log",
+    "elapsed_seconds": 497.3,
+    "batch": {
+      "passed": true,
+      "test": "core-early-chapter",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T04:14:25.3062215Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "actual_chapter_verification": {
+    "passed": true,
+    "closed_and_open_taps_verified": true,
+    "door_only_hit": true,
+    "rocket_shared_plate_hits": true,
+    "guided_cupboard_hit": true,
+    "cupboard_win": true,
+    "cupboards": 4,
+    "proxy_cells": 12,
+    "chapter_wins": 4,
+    "cupboard_tnt_taps": 3,
+    "failure": "",
+    "scope": "Formal core scene with isolated progress. Level 11 uses one natural swap and explicit rocket, propeller and TNT placement to exercise the original door, plates, footprint refill and win. Chapter mode reaches level 11 from level 7 through the visible Continue buttons, using controlled TNT placements for the earlier wins."
+  },
+  "preserved_original_configs": [
+    {
+      "number": 7,
+      "original_name": "00007v03_L",
+      "resource_path": "Levels/level_7",
+      "decoded_source": "configs/levels/7__10495.json",
+      "raw_source": "configs/textassets/7__10495.bytes",
+      "sha256": "730d27ddc6147b788c81f5247f4c783a0d557203cb92ceca617b59ee1f8b608f",
+      "moves": 25,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "1": 7,
+        "2": 5,
+        "3": 10,
+        "4": 10,
+        "13": 32,
+        "22": 17
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 32
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 8,
+      "original_name": "00008v03_L",
+      "resource_path": "Levels/level_8",
+      "decoded_source": "configs/levels/8__9131.json",
+      "raw_source": "configs/textassets/8__9131.bytes",
+      "sha256": "478961418f198c34c58a9fa45f19e01b72999a15a376b57967549603611958fd",
+      "moves": 27,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "0": 20,
+        "1": 5,
+        "2": 5,
+        "3": 6,
+        "4": 2,
+        "13": 9,
+        "21": 34
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 25,
+        "IsPredefined": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 9,
+      "original_name": "00009v02_L",
+      "resource_path": "Levels/level_9",
+      "decoded_source": "configs/levels/9__1630.json",
+      "raw_source": "configs/textassets/9__1630.bytes",
+      "sha256": "aa4af8df189140de32e8ad7a4b0ac25ffbca4eea1cec308221a777745574f361",
+      "moves": 30,
+      "width": 8,
+      "height": 8,
+      "goal_types": [
+        11
+      ],
+      "raw_item_ids": {
+        "1": 6,
+        "2": 6,
+        "3": 6,
+        "4": 6,
+        "21": 18,
+        "22": 22
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 10,
+      "original_name": "00010v03_L",
+      "resource_path": "Levels/level_10",
+      "decoded_source": "configs/levels/10__7231.json",
+      "raw_source": "configs/textassets/10__7231.bytes",
+      "sha256": "19cf972253e37999d5845eb8335f785671ffdf1fb46cd866e150fd359d1febf9",
+      "moves": 32,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "1": 13,
+        "2": 14,
+        "3": 13,
+        "4": 14,
+        "22": 27
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 27
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 11,
+      "original_name": "00011v03_L",
+      "resource_path": "Levels/level_11",
+      "decoded_source": "configs/levels/11__5900.json",
+      "raw_source": "configs/textassets/11__5900.bytes",
+      "sha256": "72dddf1a3ca64a8027d3791fde710c30fb5ac4512857a3879851e3cd3261022e",
+      "moves": 27,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        15
+      ],
+      "raw_item_ids": {
+        "1": 13,
+        "2": 14,
+        "3": 11,
+        "4": 17,
+        "5": 10,
+        "41": 4,
+        "42": 4,
+        "51": 4,
+        "52": 4
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "native_implementation": {
+    "footprint": "Tiled ID 51 creates the master with layer 11. IDs 41/42/52 delegate through native directions 5/6/7 (0x2bc9f6c).",
+    "door_and_plates": "0x2bcac1c, 0x2bca088, 0x2bcac7c, 0x2bca7f0. The door consumes its exploder identity and the plates update goal 15.",
+    "footprint_release": "The master completes once. Proxy cell mediators receive the native final clear/freeze behavior 0x2b221b8.",
+    "guided_hits": "Proxy reservations 0x2b22228/0x2b22318 and cupboard goal scoring 0x2bcb03c/0x1ca3aa0.",
+    "view": "The original transforms, Animator controllers, plate and door objects are bound from the preserved prefab. Three particle pools are restored with their native IDs and authored depths."
+  },
+  "verification_limits": [
+    "The level 11 opening swap is recorded on the actual original fixed board. The rest of the win sequence uses explicitly placed specials.",
+    "Levels 7–10 run the production gameplay and result with controlled TNT placement.",
+    "Full natural solves, original frame and audio comparisons, physical device input and levels 12–100 remain outside this run."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "6537807c880a4745d4106228057722d59fa3f828296c63f8d082036f821fe51a"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCupboardVerification.cs",
+      "sha256": "ba657b2ccdecbeaa8ea0cd3f9d0e6cafa887db4720d45cab9f7bcab710de38c2"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreCupboardVerification.cs.meta",
+      "sha256": "9ade6c112db0d76fbb510a66ad5cdf2c826fc5b1f4cf3f04f680b2291440ce79"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GrassGameplayVerification.cs",
+      "sha256": "d519728188c476afaf872703f70566621f4864da2ea408e39ba8ec19e4439d28"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "f26b8102b97419c5966b5a044a77f0712028e2d8c767da1a7a24007ab504cbf5"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/CoreLevelFailDialog.cs",
+      "sha256": "54293dc6a22adb298e5b4fdb0163761166e4558bbbbb42d0acd19782f33c8490"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardBoardItem.cs",
+      "sha256": "3bd7c1720c02c8aff96c7dcd5c6c163fc9b50b9b81a23cd4429f95c54d2a7476"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardBoardItem.cs.meta",
+      "sha256": "b6b207437161a63251e8969a31980be7197aade6c3c64c0a117559a0e5d5b2b9"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardBurstParticles.cs",
+      "sha256": "d7b2393b899823922cf225e4e74488422e1ed496cc5d05ce28eb03840dc4e7b6"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardBurstParticles.cs.meta",
+      "sha256": "c8925132a3b3b694d1d461010470f7fbaa09cfd3499036fed89a1b9762505f16"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardDoorParticles.cs",
+      "sha256": "2fc853ae85ef5707a2cbf0de9d7cb1584a166c5dcfeba0b4615e30b2d615dd14"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardDoorParticles.cs.meta",
+      "sha256": "631538ee6f219155e3f1d94f581bf96738449502dd745a0585234323b46331a3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardItemView.cs",
+      "sha256": "a3c743db0995692c73f9683a44b34630020faa686910b69532c7f146defa7a9b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardItemView.cs.meta",
+      "sha256": "7bd87fcfc0a53c26e1018aaee80c3a8fcc4be33a28ad4892bff990615ad7d3cf"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardPresentation.cs",
+      "sha256": "40edd1cf2866215140a359bc734a0130fdbd46df73ef4913cd27a99981c38f5e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCupboardPresentation.cs.meta",
+      "sha256": "57356c253a8635c9eb1a499fe90ade9c6a2bc759ed588728fa41ef9023d07ea3"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardAreaTargets.cs",
+      "sha256": "9c6ca983885020568bc6cfbfc7479a200a5b6af762b20820d0e9b8b70e61449b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardExplodeTargets.cs",
+      "sha256": "75d47bbf65c3bbd10166da8836238d4d5e510cf4f22a9ee4b27be193ea4817d5"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardLineTargets.cs",
+      "sha256": "b0981a92c04fb7a96e61514501baf4f6ecff2f6764958aec4f212a71dea1b1bc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGoalUi.cs",
+      "sha256": "91930f7b0c6c1bc7d9f54110ca544491c9143badb538a8baa6de0b9b0094fa47"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalIncomingExploders.cs",
+      "sha256": "88d24599aa5be146ddb969fbfe2172d8894c1371691f901d898ba94c90702c1c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "94080706123c6c54fa11b553445417fe6dd56dfb7e83fd6d6612363c2489fb27"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemExplosion.cs",
+      "sha256": "6bd145e392d38bd3d07382d0ae9c7e8154930be09e3986b38a275246ba8e92fa"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemModelConstruction.cs",
+      "sha256": "37c38f698b252b124bbf09b1f414e662b7d98dca370285992149332345ed04fb"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemParticles3d.cs",
+      "sha256": "f3be8968aba20553463c931fdd5c7dccc5855bd8b0852d5a6750ab38f4b15682"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemParticles3d.cs.meta",
+      "sha256": "25501c17efe136cbe1bf1f4ec98b8cde6aea4347ff50311f28ee6027d54ecb48"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "63f76bb36e895f3de078382426633592ad613c44794d84643f58cf92931ebc10"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalSortedParticleSystem3d.cs",
+      "sha256": "5edd032569a2bcd9daa1186cf4d1c6f5b61dfbe3e9b483e1ab61db5e4408a951"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalSortedParticleSystem3d.cs.meta",
+      "sha256": "da1909c0e2ce0131460a0a0f02e36e9b8a4719a7e96055016cfa13058ffe7386"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSfxAssets.asset",
+      "sha256": "33f448e95c513286724add978e57906f6be635b0f89ebcb4a0212cf687e31923"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GoalUiAssets.asset",
+      "sha256": "bef3a38bd87bdd63b0e105d064e1568d7af5a8c7a856e53f774026f3ef59cf5a"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalCupboardBreakParticles.prefab",
+      "sha256": "9dd54705105b5cda2428bbe58f67a255d2ff1fbca826e42ecf9a1db130c72a5c"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalCupboardBreakParticles.prefab.meta",
+      "sha256": "2bcd5a874a51d7147b0466e1f88d6fd0c23e878f402cf2d9d6fcf010b7488bc3"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalCupboardDoorParticles.prefab",
+      "sha256": "0610806cbc9762b869cec5a06c7951f30eb5de57b4b2cbfd4eb534a89347dbff"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalCupboardDoorParticles.prefab.meta",
+      "sha256": "35679e452f404a27177f7fa6faccf8a708f6e7412628b1f3eed515ce8c36bf85"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalCupboardItem.prefab",
+      "sha256": "a6e378b56f9d02989afd7be06cfc32aeb084b2d7ded6c8698862197fcf5c6c81"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalCupboardItem.prefab.meta",
+      "sha256": "be44bef7b0d340cff392a2869bd2d3a7c628f65b3506006b63cf131e65f07b05"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalCupboardPlateParticles.prefab",
+      "sha256": "f0002434cf840f3586daaffa1e46cdc9bef8874cff7b05b416486a446cdf8c59"
+    },
+    {
+      "path": "Assets/Resources/Foundation/Prefabs/OriginalCupboardPlateParticles.prefab.meta",
+      "sha256": "0805d329786c525e82ad1637e2f6d5f08ff538f4fdbfdf73d386fec58fca141d"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "6458811b4c35218787590527aaa146fd9c5698378c7bba65207ffd418098be06"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "760a1746314d6261aa5452002795f327961d4ba4b0388bba5d02fccd6bf40b6e"
+    },
+    {
+      "path": "SourceCatalog/cupboard_asset_authoring.json",
+      "sha256": "7c4e67977f1ece5e21b161eed7b4246a27d730ad0cd5412e50375c1fde91236c"
+    },
+    {
+      "path": "SourceCatalog/cupboard_preflight.json",
+      "sha256": "e50f6c8652186979cbb0413bc0c4c427e38cc65cb29d9466b89de28c73338c1a"
+    },
+    {
+      "path": "SourceCatalog/prepare_cupboard_assets.py",
+      "sha256": "4b315a2bc2e63fcb771c66cfcc8dd823d8f3f89490cca430c6b3c2c476746ba0"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "1f186f17b7da4a7dffe5f4e489411caa05f323a19b060370834f231cf36add5f"
+    },
+    {
+      "path": "background_core_early_chapter_verification.json",
+      "sha256": "5bcab64ab0431334a863408bff61d22d3af4b660f387ab0fb653ef3ad60f1040"
+    },
+    {
+      "path": "core_chapter_level10.png",
+      "sha256": "1303ded2024687dd1196c56ae95612dadc1694c219212a6734758c89f64cf04c"
+    },
+    {
+      "path": "core_chapter_level8.png",
+      "sha256": "a60128d1ee9fe79995452ce85fccca0df20f303739e8ee273a2b801316e28b28"
+    },
+    {
+      "path": "core_chapter_level9.png",
+      "sha256": "939c9e9c27dd08e36717d5c176579adccf285ecf3bdb6df485e4c2cae1a63f77"
+    },
+    {
+      "path": "core_cupboard_door.png",
+      "sha256": "bb343a82db97af8d0604101e9b9bec88f35a23f2e7ab94987f73dea1e425619a"
+    },
+    {
+      "path": "core_cupboard_initial.png",
+      "sha256": "18be815ec744089ccd76b63fb2fe18c5ed9c3d1dfe0a2c5df7f3f51315770f18"
+    },
+    {
+      "path": "core_cupboard_plates.png",
+      "sha256": "c560e1e91715216ce7a6e23d2419d11815edfe2e311bb26e6e02b6dae97c9c4b"
+    },
+    {
+      "path": "core_cupboard_win.png",
+      "sha256": "c194ff588bef0c6d6ecb485f0346b865223ea0c066b04123b21df76fbdc28619"
+    },
+    {
+      "path": "live_core_cupboard_verification.json",
+      "sha256": "a59497e987a0598c59ac05f16e976e311c440c1a7b11cb9ae8c8ad5da3b7a194"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "functions": [
+    {
+      "rva": "0x23ebf0c",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$CreateItemModelForStart",
+      "disassembly_sha256": "a365160728bd596b87812656d2391b424fdcef80fd89b7911f0ff82f1d972d28"
+    },
+    {
+      "rva": "0x23ec07c",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetRandomItemTypeFromSet",
+      "disassembly_sha256": "695da78a793d4489e99faa8b3c7a247a00dbf63313df195897b44c3b99402763"
+    },
+    {
+      "rva": "0x23ec140",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetSettingsForTileId",
+      "disassembly_sha256": "c903861fc557bc195e7db6e607bfc7372aad980a852a0a0198dd9baa98d74aa6"
+    },
+    {
+      "rva": "0x23f0210",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemSettings$$.ctor",
+      "disassembly_sha256": "2700f76cb02cd1c47843881f5877b6f4fd1fb6e1a926a4680fe6764a565ddb60"
+    },
+    {
+      "rva": "0x191133c",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.TiledToTypeConverter$$AsLayerCount",
+      "disassembly_sha256": "7b0d13f584f7c7ddc9ef72a809c1535f87431f2c10f0ddd90e2f063947f43824"
+    },
+    {
+      "rva": "0x191159c",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.TiledToTypeConverter$$IsASet",
+      "disassembly_sha256": "d0b93c0604c50350061e9220621e3b90e9c0f3056b3b9c33e0f359f47b1d96b0"
+    },
+    {
+      "rva": "0x1911738",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.TiledToTypeConverter$$GetSetIndex",
+      "disassembly_sha256": "a4412f57f767257080179c47a20f6200909645de67584e2bc44112de324e164f"
+    },
+    {
+      "rva": "0x23ec1e8",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemModelFactory$$CreateItem",
+      "disassembly_sha256": "0a49b22b3ecc8e27cef4a589b546d88639c95890146ae1ef12ef8d076bf78230"
+    },
+    {
+      "rva": "0x2b45f5c",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemModel$$.ctor",
+      "disassembly_sha256": "442badff9cd13a598e7b8a848b1219c5fbc6bea3600e2ba6e220c543865fa78f"
+    },
+    {
+      "rva": "0x21a4e50",
+      "name": "Royal.Scenes.Game.Mechanics.Items.MatchItem.MatchItemModel$$.ctor",
+      "disassembly_sha256": "f984ce7b6cbef92d2c2c6194d1f1661da0d33a5adc43b299c9ddd79fdedc825a"
+    },
+    {
+      "rva": "0x2bc58fc",
+      "name": "Royal.Scenes.Game.Mechanics.Items.BoxItem.BoxItemModel$$.ctor",
+      "disassembly_sha256": "3ed3b26f4610c55e88a99e156449c228c6767b1a6764e9f61736c7dfa620825b"
+    },
+    {
+      "rva": "0x2b46230",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemModel$$CreateFallComponent",
+      "disassembly_sha256": "612ecfeb540f86821a8705bc7f4e2cbbd0083a0e5153501eacfec0b0a635c708"
+    }
+  ],
+  "verification_reports": [
+    "initial_item_creation_native_verification.json",
+    "initial_item_creation_unity_verification.json"
+  ],
+  "scope": "Original settings/layer conversion, initial set/model orchestration, normal match/box constructor branches and common normal fall/goal setup. Formal first-level models use these constructor branches.",
+  "boundaries": [
+    "Other native model classes and full ItemModelFactory dispatch remain incomplete. Original SuperBooster query must be owned by the complete application factory.",
+    "Application/session StaticId reset, seed, target-column/flying/tuning services and automatic FallManager/refill remain pending.",
+    "Explicit-ID constructors remain for existing incomplete model adapters and verification fixtures; universal item identity ownership across all item classes is not yet claimed."
+  ],
+  "sdk_handling": "Unchanged."
+}

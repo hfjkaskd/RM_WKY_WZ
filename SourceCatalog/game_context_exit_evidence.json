@@ -1,0 +1,685 @@
+{
+  "full_objective_complete": false,
+  "production_application_account_win_fail_bound": false,
+  "formal_scene_game_context_exit_dispatch_bound": true,
+  "formal_scene_all_spawned_level_views_recycled": true,
+  "formal_scene_inactive_level_updates_and_clock_stopped": true,
+  "full_112_slot_level_factory_verified": false,
+  "actual_home_scene_load_or_navigation_verified": false,
+  "original_rendered_parity_verified": false,
+  "physical_pointer_input_verified": false,
+  "mobile_runtime_verified": false,
+  "source_snapshot_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332",
+  "restored_scope": [
+    "Native GameContext.ManualUpdate active gate and exit-flag consumption now execute from the real Unity update host through the runtime deactivation owner.",
+    "Deactivate clears actual late callbacks before publishing inactive state, removes orientation subscription through its required port, emits its event, resets borrowed live game-unit slots, cleans animations/coroutines/pool/audio/camera owners, releases touch owners, selects native side-progression Game/Home load branch, sends null system-message payload, then clears Controller publication.",
+    "ResetScene captures the unit array once and reads its live ascending slots. Callback mutation/throws and Deactivate partial state match actual ARM64 execution in2184 differential cases.",
+    "KillAllAnimations stops the independent MTweenPlayer coroutine owner, not the GameContextController. Metadata slot0x5375e78 resolves MTweenPlayer_TypeInfo; actual scene transport stops OriginalLocalMovePlayer coroutines and kills the existing manual game coroutine player.",
+    "Native ItemFactory.RecycleAllSpawned reaches the actual level pool. All spawned item/cell/particle views return to their pools; normal and both skip screenshots no longer retain the board after Continue. The level clock and game-unit update counts remain frozen while the enclosing Unity host continues.",
+    "CellModel.Reset and FillingCellModel.Reset preserve native cell-view/target/mediation/static order, orphan handling and captured queue count in2016 actual ARM64 differential cases. The bound first-board grid now resets columns before rows at LevelContextId2, before Particles18; actual cell views and current/next/target links are empty at formal exit.",
+    "The common ItemModel.RecycleView kernel clears HasView before its view lookup, accepts null/destroyed views, restores a hidden root, removes active fill masks, calls ResetAnimationToDefault and returns the view through its required factory.1728 actual ARM64 cases cover order/partial-state/failure behavior. All six current item views expose the typed base pool/recycle ports; the Box prefab regains its exact original RootTransform component and references.",
+    "Input transport supports an explicit external context update owner without adding Editor-specific runtime branches. Ordinary recorded player-input regression retains10 accepted swaps and no empty/frozen/unsettled slots."
+  ],
+  "native_verification": {
+    "passed": true,
+    "cases": 2184,
+    "scope": "Run original ARM64 GameContext update/deactivation/reset/animation cleanup.\n\nUnit Clear, orientation/coroutine/tween/pool/audio/camera/animator/touch owners,\nlevel/inventory getters, scene loader and system-message transport are typed\nports. Original borrowed-array traversal, event/publication order, branch\nlookups, required-null failures and partial state execute from ELF. Only native\ndiagnostic logging is skipped. This is not full startup, HomeScene, renderer,\nall-level unit factory or Android/iOS execution proof.",
+    "original_rvas": [
+      "0x1e39ba0",
+      "0x1e39488",
+      "0x1e398b8",
+      "0x1e39a14",
+      "0x1e39d68"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/GameContextExitHarness.cs",
+        "sha256": "5f050202f15cc4a4775450dedc2581de4b90083be770569e55608bd255bbc3e8"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGameContextDeactivation.cs",
+        "sha256": "bf02edd70183fe982f04dea4cca2ae03be3655fd361ce2150c2d14f5761ec9ce"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalGameLateUpdateDispatcher.cs",
+        "sha256": "351ead23cae5074bdd0a39ae9d72365d20a26dfbb41c00e06361bac4aa7667a4"
+      },
+      {
+        "path": "SourceCatalog/verify_game_context_exit.py",
+        "sha256": "37463f2fc70a0ff250f340e3b98a96be1072866619197e1b74036a9fd1405b58"
+      }
+    ]
+  },
+  "cell_reset_native_verification": {
+    "passed": true,
+    "cases": 2016,
+    "scope": "Compare actual ARM64 CellModel.Reset and FillingCellModel.Reset with runtime code.\n\nFactory/view recycle, mediation Reset, static-model Reset and queue Dequeue are\ntyped ports. Callback mutation/throws, target lookup order, orphan handling,\ncell-view publication and captured queue count execute from the original ELF.\nOnly the orphan diagnostic block is skipped. This does not prove all concrete\nitem/static models, grid-manager subscriptions or the full level factory.",
+    "original_rvas": [
+      "0x319d5a0",
+      "0x343d6fc"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/CellResetHarness.cs",
+        "sha256": "982319e0330235ced504c5c5f91611ee4ff23ecfea9f5262f5112171dc03eca7"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalCellReset.cs",
+        "sha256": "416f7703db47c2c2867dd4852ababb2f9edb0d2de1d74e3b19c6d84407e67b3f"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalFillingCell.cs",
+        "sha256": "12cf013f7e6df7a9c2447def9bca55a10a2e3ff9ede9589322faa7e11f5a3769"
+      },
+      {
+        "path": "SourceCatalog/verify_cell_reset.py",
+        "sha256": "f4950dbba31ec49e3615820a11acab95c0291e3be58b1fba2e43b06f7dae89cf"
+      }
+    ]
+  },
+  "item_view_recycle_native_verification": {
+    "passed": true,
+    "cases": 1728,
+    "scope": "Compare native ItemModel.RecycleView against the actual common runtime kernel.\n\nNative virtual model/view callbacks, Unity-object comparison and factory recycle\nare typed ports. HasView publication, destroyed/null view handling, hidden-root,\nfill-mask/reset ordering and failures execute from original ARM64. Concrete\nrenderers, object-pool internals and all unimplemented item classes are outside\nthis differential; formal Unity exit tests bind the current six view types.",
+    "original_rvas": [
+      "0x2b46db0"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/ItemViewRecycleHarness.cs",
+        "sha256": "1b50faf8b175ac20802c5f3a2b369e748d763bc94b04f0ee6a9f218b861661aa"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalItemViewRecycle.cs",
+        "sha256": "bf78adaacc53a8c60caa4eae08bd0a4a689c612b71663fcbf63ceeaf5b4c755d"
+      },
+      {
+        "path": "SourceCatalog/verify_item_view_recycle.py",
+        "sha256": "d5b02e24eee44c89231ff6dbfb26e1fe738fb4aba81bee4a19ccec1a2bfc3da3"
+      }
+    ]
+  },
+  "original_methods": [
+    {
+      "rva": "0x1e39ba0",
+      "name": "Royal.Scenes.Game.Context.GameContext$$ManualUpdate",
+      "body_sha256": "ecdea61b758f1c38ac78ec071db75fbaf7abfe06c8d87a33a5bccaf9153c17ab"
+    },
+    {
+      "rva": "0x1e39488",
+      "name": "Royal.Scenes.Game.Context.GameContext$$Deactivate",
+      "body_sha256": "7b409912d9625d088d5d2f04217b2ff33aeec523d9bf923a7f8c41bcd4093cb0"
+    },
+    {
+      "rva": "0x1e398b8",
+      "name": "Royal.Scenes.Game.Context.GameContext$$ResetScene",
+      "body_sha256": "53ff142b5842068afe3bbc909fe346852e44d5dc87683773489bcac001b6a2e0"
+    },
+    {
+      "rva": "0x1e39a14",
+      "name": "Royal.Scenes.Game.Context.GameContext$$KillAllAnimations",
+      "body_sha256": "6dfbd4354258a201a1ed7636751669d6fa8f0b404f6510b2c8cd136d5155ad44"
+    },
+    {
+      "rva": "0x1e39d68",
+      "name": "Royal.Scenes.Game.Context.GameContext$$ManualLateUpdate",
+      "body_sha256": "966e4ff815aaafbeff46b9b2866c378df3cc82a27912aa5c8da2453c2d0f1e58"
+    },
+    {
+      "rva": "0x319d5a0",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.CellModel$$Reset",
+      "body_sha256": "f2e0622118928b8da50747e8a976bc08ce97c3dde9e552c8dc3dd983d5029645"
+    },
+    {
+      "rva": "0x343d6fc",
+      "name": "Royal.Scenes.Game.Mechanics.Board.Cell.FillingCellModel$$Reset",
+      "body_sha256": "d56b3a77528de2b54f7a14fe14d2d060098920371e86b3557d570a5db875bdae"
+    },
+    {
+      "rva": "0x2b46db0",
+      "name": "Royal.Scenes.Game.Mechanics.Items.Config.ItemModel$$RecycleView",
+      "body_sha256": "aa16cd4a584fd4833d459933170b4b814e0ea8c3f57770b3906141b9c1b0b897"
+    },
+    {
+      "rva": "0x23f1e6c",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemFactory$$RecycleAllSpawned",
+      "body_sha256": "09ce96bbbdb9d3ef0aef2b7f1ad147f0ce73570f5f2d71ea2bcfa7f645373717"
+    },
+    {
+      "rva": "0x2185c98",
+      "name": "Royal.Scenes.Game.Levels.Units.Pool.LevelGameObjectPool$$RecycleAllSpawned",
+      "body_sha256": "8eb8f02495c97f6f02c909caaa4e8e835861b4e943456f6c8b285ac844968717"
+    },
+    {
+      "rva": "0x320d5bc",
+      "name": "Royal.Scenes.Game.Levels.Units.CellGridManager$$Clear",
+      "body_sha256": "9623a0aabf7c31415f35226b07053aea7b244e4ddbc8561684e9bc14364952fc"
+    },
+    {
+      "rva": "0x23f1ea4",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemFactory$$Clear",
+      "body_sha256": "eed5c42330b330521dec8a78bf491abb103cac1aef9df60d193ae2205503e8cb"
+    },
+    {
+      "rva": "0x1edab64",
+      "name": "Royal.Scenes.Game.Levels.Units.ParticlesManager$$Clear",
+      "body_sha256": "c2619f9bef48e08cbaba49eb0d6b5a6084d9ecb8fa1edcc94fc9c954adfba054"
+    },
+    {
+      "rva": "0x27b8944",
+      "name": "Royal.Scenes.Game.Mechanics.Items.SpecialItems.TntItem.View.TntItemView$$OnRecycle",
+      "body_sha256": "7bccb31862f4335bc4a1e280b7eaf0d279de5231a1172ea76cdc0358f33c9f60"
+    }
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameContextDeactivation.cs",
+      "sha256": "bf02edd70183fe982f04dea4cca2ae03be3655fd361ce2150c2d14f5761ec9ce"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameContextDeactivation.cs.meta",
+      "sha256": "8b6e0cca0d460d7364a42985f8af6598776dd1d3e4131bc7a9ac892b78a533c9"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalContextUpdateHost.cs",
+      "sha256": "e025e99cd9c514f137bc536cafe46f5abcc3b58f4a974cd6d56b5f7039b5135b"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameTouchInput.cs",
+      "sha256": "693b05d574da265f6bd10e6521efb9045989cd11afdfa3fc6c3902e44f1b0679"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGameObjectPool.cs",
+      "sha256": "a72c6ab594c7a794db3c8ea38de2dcce00eac5e8bce94df717cfa715980a2404"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "30e3f53e835a9f12739d91b7e82f15c7a5bf1cc65a5694db048684b4ddb5dd14"
+    },
+    {
+      "path": "SourceCatalog/GameContextExitHarness.cs",
+      "sha256": "5f050202f15cc4a4775450dedc2581de4b90083be770569e55608bd255bbc3e8"
+    },
+    {
+      "path": "SourceCatalog/verify_game_context_exit.py",
+      "sha256": "37463f2fc70a0ff250f340e3b98a96be1072866619197e1b74036a9fd1405b58"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCellReset.cs",
+      "sha256": "416f7703db47c2c2867dd4852ababb2f9edb0d2de1d74e3b19c6d84407e67b3f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalCellReset.cs.meta",
+      "sha256": "e8aa07a4711503f4c20671a27e126f834ef8cb79775e2f4ac41425d06b70b01a"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFillingCell.cs",
+      "sha256": "12cf013f7e6df7a9c2447def9bca55a10a2e3ff9ede9589322faa7e11f5a3769"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardReset.cs",
+      "sha256": "89da4a3b0577f17e538a999ca3cd8d8ffd2c2dac04361568e7524028c09ada8e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFirstBoardReset.cs.meta",
+      "sha256": "a4cf2f5eeb40411e155647d511d6a704c00d5fd53cb2e83fc99b6ad773edee7f"
+    },
+    {
+      "path": "SourceCatalog/CellResetHarness.cs",
+      "sha256": "982319e0330235ced504c5c5f91611ee4ff23ecfea9f5262f5112171dc03eca7"
+    },
+    {
+      "path": "SourceCatalog/verify_cell_reset.py",
+      "sha256": "f4950dbba31ec49e3615820a11acab95c0291e3be58b1fba2e43b06f7dae89cf"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemViewRecycle.cs",
+      "sha256": "bf78adaacc53a8c60caa4eae08bd0a4a689c612b71663fcbf63ceeaf5b4c755d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemViewRecycle.cs.meta",
+      "sha256": "feba5333c607eacac07c10c789799189319aa5f652a1381297441920634132be"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoardItemViewRecycle.cs",
+      "sha256": "2d08a48a5757fb707d1e3896e4d51449733978e254dd3b717684bfbaceb0c378"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoardItemViewRecycle.cs.meta",
+      "sha256": "060ab74c6424d0b4617162883223b8cfbf736ae4b7ed2e9935fdb5e78f2684f9"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemSwapView.cs",
+      "sha256": "1737f594aa3ac8247d88398daa20c09401adcb213a7b578c5f334198dfb1bb1d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalMatchItemSpriteView.cs",
+      "sha256": "e839b4fac4ed51f0ff8bbae5f59b0feb8d2b8e648f65db7ccbf974eed7892508"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalBoxItemSpriteView.cs",
+      "sha256": "0a61f48996fce7f56bd6f7b986f82cec218be1313ebd4e801cdd84b017bf1822"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRocketItemSpriteView.cs",
+      "sha256": "080766493af28e688a087b37470fafccb6f835c334fd57dce78a94c382bb8811"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalTntItemSpriteView.cs",
+      "sha256": "3bb2a9b12dd35c9a0166622981570b10ef1e44f3b0df20173441c5cb37f386c1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLightballItemSpriteView.cs",
+      "sha256": "ef2c172b14b913d146ce512fc6c75af21fffd11cd2adc831d53ed5c3fc9508db"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPropellerItemSpriteView.cs",
+      "sha256": "5ddebbe34cdb0d3e653409107dd2676f3c6d67ec23e4788642bcd1c7487b5aba"
+    },
+    {
+      "path": "SourceCatalog/ItemViewRecycleHarness.cs",
+      "sha256": "1b50faf8b175ac20802c5f3a2b369e748d763bc94b04f0ee6a9f218b861661aa"
+    },
+    {
+      "path": "SourceCatalog/verify_item_view_recycle.py",
+      "sha256": "d5b02e24eee44c89231ff6dbfb26e1fe738fb4aba81bee4a19ccec1a2bfc3da3"
+    },
+    {
+      "path": "SourceCatalog/verify_game_object_pool.py",
+      "sha256": "98b812563421b9392c1accb7601615ae6a7761a2d6f5025f0a49bf89cf41f727"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/BoxItemPrefab.prefab",
+      "sha256": "34c2569af00a88ebc54d7c0d4756e1c69dea435e2d724e4658c8b1c2327787d2"
+    },
+    {
+      "path": "SourceCatalog/verify_cell_exit_prefab.py",
+      "sha256": "b02e1fd83d102fe04fe388129283ade8cdb13155b8996f6cf222791c19e54b68"
+    }
+  ],
+  "box_prefab_verification": {
+    "passed": true,
+    "comparison_head": "a9fc60de88f74cfa2b8d5750d65264864c8eedae",
+    "prefab": "Assets/Resources/Recovered/GameObject/BoxItemPrefab.prefab",
+    "sha256": "34c2569af00a88ebc54d7c0d4756e1c69dea435e2d724e4658c8b1c2327787d2",
+    "unchanged_blocks": 12,
+    "added_original_root_component": 114061268324235159,
+    "changed_reference_owners": [
+      1730242686860875,
+      114099118695303065
+    ],
+    "scope": "Exact original RootTransform component/GO/transform references restored with the project runtime script GUID. All prior layout, renderer, sprite, sorting, transform and hierarchy blocks are preserved; only root component registration and Box view reference change. No rendered-original parity claim."
+  },
+  "pool_regression": {
+    "passed": true,
+    "native_sequences": 64,
+    "native_operations": 2880,
+    "native_outcomes": {
+      "success": 2857,
+      "null": 18,
+      "duplicate": 5
+    },
+    "original_rvas": [
+      "0x2605a00",
+      "0x2605dfc",
+      "0x2605c54",
+      "0x2d714b8",
+      "0x2d72318",
+      "0x2d71674",
+      "0x2d72514",
+      "0x2d71844",
+      "0x2d719ec",
+      "0x2d71a58",
+      "0x2d71f60",
+      "0x26912f0",
+      "0x1edaa5c",
+      "0x1edab0c",
+      "0x1edab64",
+      "0x2b48aac",
+      "0x2b48acc",
+      "0x2b48a58"
+    ],
+    "scope": "Actual native pool/stack creation, prewarm top-up, activation/no-activation spawn, empty growth, recycle/duplicates, reverse manager clear, inactive particle retention, global cache, per-id recycle-all, decrease and available-only clear control flow compared with production C#. Unity allocation/object/transform/destroy, interface dispatch metadata, managed Stack/HashSet/Dictionary/List and fixture callbacks are supplied boundaries. Logging type-name text is intentionally replaced to avoid reflection. Native constructor reflection, full level registration/scheduling, Unity destruction timing, render/simulation and all-pool traversal are outside this differential test."
+  },
+  "background_verifications": [
+    {
+      "passed": true,
+      "test": "remaining-coins-normal",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+      "elapsed_seconds": 104.78,
+      "batch": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "failure": "",
+        "timestamp_utc": "2026-10-29T00:00:10.9614260Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    },
+    {
+      "passed": true,
+      "test": "remaining-coins-early-skip",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+      "elapsed_seconds": 103.56,
+      "batch": {
+        "passed": true,
+        "test": "remaining-coins-early-skip",
+        "failure": "",
+        "timestamp_utc": "2026-10-28T23:58:09.7570422Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    },
+    {
+      "passed": true,
+      "test": "win-logo-skip",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_win-logo-skip.log",
+      "elapsed_seconds": 94.44,
+      "batch": {
+        "passed": true,
+        "test": "win-logo-skip",
+        "failure": "",
+        "timestamp_utc": "2026-10-29T00:01:45.3572333Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    },
+    {
+      "passed": true,
+      "test": "player-input",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "884b4158e27a4f827f3148866208e788cdfc180aa135e0a4cbc1d844bb247332",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_player-input.log",
+      "elapsed_seconds": 102.8,
+      "batch": {
+        "passed": true,
+        "test": "player-input",
+        "failure": "",
+        "timestamp_utc": "2026-10-29T00:03:28.4239768Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    }
+  ],
+  "normal_exit": {
+    "actual_game_context_deactivation_verified": true,
+    "actual_level_pool_recycled": true,
+    "inactive_level_updates_stopped": true,
+    "home_scene_load_requests": 1,
+    "actual_game_exit_manager_verified": true,
+    "result_dialog_cleared": true,
+    "result_view_destroyed": true,
+    "result_flow_completed": true,
+    "game_state_after_continue": 0,
+    "passed": true,
+    "skipped": false,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": false,
+    "first_level_skip_rejected": true,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-4267b0bbf40442a7a0f262539baa724c.sqlite",
+    "result_exit_requests": 1,
+    "skip_ui_level": 1,
+    "initial_remaining_moves": 24,
+    "converted_moves": 24,
+    "unconverted_moves": 0,
+    "reward_coins": 68,
+    "collections": 26,
+    "peak_coin_views": 58,
+    "peak_pilots": 58,
+    "peak_operation5": 58,
+    "native_departure_count": 58,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2068,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 11.635639190673828,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches the actual GameExit manager, NoGame state, no-loading UI preparation and real DialogManager.ClearDialogs/UiDialog force-close/flow completion once. Its native exit event precedes the shouldExitGame write; actual Unity destruction and input rejection are checked two frames later. Actual Unity GameContext exit dispatch now clears late callbacks and active publication, resets the fixture-bound functional units, stops real local-move/manual coroutines and recycles every spawned level-pool view. Inactive game-unit/clock dispatch and the Home-load request boundary are checked. The full112-slot level factory, global tween/Animator/camera/touch owners, backdrop, scene loading, Home flags/area/sliding text, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "partial_skip_exit": {
+    "actual_game_context_deactivation_verified": true,
+    "actual_level_pool_recycled": true,
+    "inactive_level_updates_stopped": true,
+    "home_scene_load_requests": 1,
+    "actual_game_exit_manager_verified": true,
+    "result_dialog_cleared": true,
+    "result_view_destroyed": true,
+    "result_flow_completed": true,
+    "game_state_after_continue": 0,
+    "passed": true,
+    "skipped": true,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": true,
+    "first_level_skip_rejected": false,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-7bc9e49aeaed4cc295834a765d2fe16b.sqlite",
+    "result_exit_requests": 1,
+    "skip_ui_level": 2,
+    "initial_remaining_moves": 25,
+    "converted_moves": 2,
+    "unconverted_moves": 23,
+    "reward_coins": 85,
+    "collections": 0,
+    "peak_coin_views": 0,
+    "peak_pilots": 0,
+    "peak_operation5": 0,
+    "native_departure_count": 0,
+    "active_board_coin_value_at_end": 18,
+    "unconverted_move_coin_value": 57,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2085,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 6.518745422363281,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches the actual GameExit manager, NoGame state, no-loading UI preparation and real DialogManager.ClearDialogs/UiDialog force-close/flow completion once. Its native exit event precedes the shouldExitGame write; actual Unity destruction and input rejection are checked two frames later. Actual Unity GameContext exit dispatch now clears late callbacks and active publication, resets the fixture-bound functional units, stops real local-move/manual coroutines and recycles every spawned level-pool view. Inactive game-unit/clock dispatch and the Home-load request boundary are checked. The full112-slot level factory, global tween/Animator/camera/touch owners, backdrop, scene loading, Home flags/area/sliding text, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "immediate_skip_exit": {
+    "actual_game_context_deactivation_verified": true,
+    "actual_level_pool_recycled": true,
+    "inactive_level_updates_stopped": true,
+    "home_scene_load_requests": 1,
+    "actual_game_exit_manager_verified": true,
+    "result_dialog_cleared": true,
+    "result_view_destroyed": true,
+    "result_flow_completed": true,
+    "game_state_after_continue": 0,
+    "passed": true,
+    "skipped": true,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": false,
+    "skip_button_entry_verified": true,
+    "first_level_skip_rejected": false,
+    "remaining_dialog_started_ready": false,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": false,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "",
+    "result_exit_requests": 1,
+    "skip_ui_level": 2,
+    "initial_remaining_moves": 25,
+    "converted_moves": 0,
+    "unconverted_moves": 25,
+    "reward_coins": 77,
+    "collections": 0,
+    "peak_coin_views": 0,
+    "peak_pilots": 0,
+    "peak_operation5": 0,
+    "native_departure_count": 0,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 0,
+    "session_win_state": 0,
+    "native_win_cloche_calls": 0,
+    "win_trigger_calls": 0,
+    "win_flow_calls": 0,
+    "low_match_total": 0,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 0,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 0,
+    "reactivation_calls": 0,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2077,
+    "account_coin_update_calls": 0,
+    "account_star_update_calls": 0,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 0,
+    "elapsed": 3.5170516967773438,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches the actual GameExit manager, NoGame state, no-loading UI preparation and real DialogManager.ClearDialogs/UiDialog force-close/flow completion once. Its native exit event precedes the shouldExitGame write; actual Unity destruction and input rejection are checked two frames later. Actual Unity GameContext exit dispatch now clears late callbacks and active publication, resets the fixture-bound functional units, stops real local-move/manual coroutines and recycles every spawned level-pool view. Inactive game-unit/clock dispatch and the Home-load request boundary are checked. The full112-slot level factory, global tween/Animator/camera/touch owners, backdrop, scene loading, Home flags/area/sliding text, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Feature/clock/home-area/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "player_input_regression": {
+    "passed": true,
+    "physical_drag_verified": false,
+    "tnt_activated": false,
+    "lightball_activated": false,
+    "rocket_activated": false,
+    "propeller_activated": false,
+    "propeller_flight": 0.0,
+    "propeller_trace": [],
+    "propeller_max_scale": 0.0,
+    "blocked_original_box_holes": 0,
+    "propeller_max_loop": 0,
+    "propeller_takeoff_instances": 0,
+    "propeller_hit_instances": 0,
+    "propeller_max_operations": 0,
+    "rocket_orientation": 0,
+    "rocket_max_operations": 0,
+    "rocket_first_flight": 0.0,
+    "rocket_second_flight": 0.0,
+    "sent_rays": 0,
+    "reached_rays": 0,
+    "completed_rays": 0,
+    "completed_lightball_activations": 0,
+    "rocket_created": true,
+    "tnt_created": false,
+    "lightball_created": false,
+    "propeller_created": true,
+    "failure": "",
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "left_moves": 20,
+    "goals_left": 23,
+    "created_refills": 76,
+    "created_specials": 2,
+    "scope": "Frame-separated recorded device samples through native GameTouchListener into formal production scene services. Checks invalid swap spends0, accepted swaps spend1, first triple/three box goals/six refills, 10accepted swaps and naturally observed special creation patterns (each requested type also has its own activation mode), automatic cascades, original creation coroutines and all72 model slots/no holes/no freeze/landing tolerance. Fails on runtime errors/exceptions. Shadow native match search only chooses gestures and never mutates live cells. Does not verify physical drag timing, special activation/combos, complete session startup, settlement or original rendered parity."
+  },
+  "player_board_observation": {
+    "timestamp_utc": "2026-10-29T00:03:28.4072826Z",
+    "input_bound": true,
+    "can_user_move": true,
+    "all_items_steady": true,
+    "has_operations": false,
+    "state": 1,
+    "left_moves": 20,
+    "made_moves": 10,
+    "goals_left": 23,
+    "accepted_swaps": 10,
+    "rejected_swaps": 1,
+    "created_refills": 76,
+    "created_specials": 2,
+    "empty_cells": 0,
+    "frozen_cells": 0,
+    "unsettled_slots": 0,
+    "rockets": 1,
+    "tnt": 0,
+    "lightballs": 0,
+    "propellers": 1,
+    "max_position_error": 0.0,
+    "scope": "Read-only snapshot of live formal scene composition after actual player input; no diagnostic services, seed preflight, cell mutation or automatic test commands installed. Does not establish full session, special activation/combo, settlement or original rendered parity."
+  },
+  "initial_failure_and_repair": {
+    "report": "SourceCatalog/verification_history/game_context_exit_initial/background_remaining_coins_normal_verification.json",
+    "failed_source_snapshot_sha256": "a884b90c04041e00aae5a62d271c151a8640605fcdda461c928c66098cdad42c",
+    "cause": "Existing combo/goal replay deliberately unbinds the physical input device and owns sample dispatch. New fixture frame dispatch incorrectly read that unbound device listener.",
+    "repair": "Leave replay sample dispatch with its explicit verifier, let the context frame owner update the real level units once, and clear the current functional game.TouchListener at reset. No permissive runtime input fallback was added."
+  },
+  "partial_skip_failure_and_repair": {
+    "report": "SourceCatalog/verification_history/game_context_exit_partial_skip/background_remaining_coins_early_skip_verification.json",
+    "failed_source_snapshot_sha256": "51876911a17e4d78aeb0a55b158885d4b6301ca8ab7ab6a865d89bc8b8684fbe",
+    "cause": "The first explicit reset adapter omitted CellGridManager unit2. Particles18.Clear returned a surviving TNT fuse before the final pool sweep reached its parent; parent OnRecycle then returned that fuse twice.",
+    "repair": "Restore actual runtime cell/filling reset before Particles18, including the common native ItemModel.RecycleView kernel before clearing bidirectional links. Keep native TNT OnRecycle and pool duplicate-error behavior unchanged; do not add active/contains/Remove-result suppression.",
+    "intermediate_partial_owner_failure_report": "SourceCatalog/verification_history/game_context_exit_partial_item_owner/background_remaining_coins_early_skip_verification.json",
+    "intermediate_cause_and_repair": "A three-type recycle adapter rejected other cell target models. Replace it with the common native HasView-gated kernel and typed base ItemView ports for every currently supported model. No missing model is replaced by a dummy or unconditional pool return."
+  },
+  "visual_inspection": [
+    "remaining_coins_normal_after_continue.png, remaining_coins_early_skip_after_continue.png and win_logo_skip_after_continue.png show the actual result/HUD/board views removed through close/pool lifecycle. The remaining flat camera background is expected evidence of missing Home composition; it is not a HomeScene recreation."
+  ],
+  "remaining_gaps": [
+    "FoundationController still lacks production application/account/WinFail/dialog composition. Runtime deactivation is bound by explicit formal-scene integration checks, not the complete player startup factory.",
+    "The fixture uses functional adapters for current touch/exit/level owners. The level adapter resets bound grid2 then Auto7/Fall8/Move11/State15/WinFail16/Particles18 in native ID order. The complete112-slot factory, ItemFactory1 creation-state cleanup, full grid/camera/subscription cleanup and remaining owners are not established.",
+    "Concrete static-model reset paths and future unsupported item models still require their native view owners. All six current item views use the common kernel, but this formal winning-exit scope does not prove arbitrary active-level quits, every per-item recycle override or all pending-animation combinations.",
+    "Full SceneChangeManager/LoadHomeScene implementation, Home resources/Area/UI/camera ownership, level reload/startup and return-to-next-level navigation remain unbound. Home/Game loader methods are explicit observed ports here.",
+    "Global DOTween-equivalent collection cleanup, full AnimatorManager, orientation listener/lock registry, UiTouchDisabler, application audio shutdown, device profile, early side-progression inventory and system-message backend remain required fixture ports. Only available coroutine/pool/late-clock owners are actual scene bindings.",
+    "Replay/sample input remains verifier-owned; actual physical pointer/mobile transport and complete native game-unit input scheduling are not proved by these fixtures.",
+    "Full visual/theme/footer/orientation/backdrop parity, failure/retry flows, all level/lifecycle event branches and country/AB/GM/US versions remain incomplete. SDK handling is unchanged.",
+    "No Android/iOS execution or database packaging is proved. The original Android SQLite binary approval remains unanswered and no libsqlite3.so was added."
+  ],
+  "performance": "Frame dispatch caches delegates and object references; no per-frame allocation/Find/GetComponent/LINQ was added. Pool recycling and column/row model reset are low-frequency native exit traversals that retain caches on the ordinary non-low-end path; the native low-end ClearPools branch remains explicit. Fill-mask cleanup queries renderer children only when an active mask must be removed and reuses list storage.",
+  "current_area_data_evidence": "SourceCatalog/area_data_evidence.json",
+  "current_area_data_source_snapshot_sha256": "8fbbab70a4b5bc904fc94ed612d60e629d2ebd3d99a096e0017968b1b40bd1f7"
+}

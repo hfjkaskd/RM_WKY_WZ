@@ -1,0 +1,1079 @@
+{
+  "baseline_commit": "79e6800eae20c6dd1ba5784eb7c4de550ed4b4e8",
+  "verified_utc": "2026-11-05T11:41:28.473329+00:00",
+  "difference": "Quit/failure/no-possible-moves scale coroutines and dark-backdrop fades used raw Unity delta rather than the native game-active TweenManager level-clock delta.",
+  "implementation": "A typed shared clock is bound to the existing CoreGameFlow owner; each read resolves its current board clock. Both scale entrance and background fades use it, including pooled backgrounds and restarted attempts. No new runtime library, static hierarchy, parameters, reflection or Editor-specific behavior is introduced.",
+  "source_files": {
+    "Assets/Foundation/Runtime/OriginalUiDialog.cs": {
+      "before_sha256": "e8af7d30ed1b83e1d48ef3197e302c95847dbc740e1d8bd6bebc9752c32d784b",
+      "after_sha256": "9f72726baf6273923da0d17216fbf5a0c542141707f5ac5e222b8bad33cd133d"
+    },
+    "Assets/Foundation/Runtime/CoreGameFlow.cs": {
+      "before_sha256": "d14ec2314b9092101934028ad83ae32cf9ddfc1f528c085a31ce33e4bef4b6e6",
+      "after_sha256": "c0ec07522dbd28a4ec8ebe0ed1f2ab512304c4436ce046d550a897a7aa72f472"
+    },
+    "Assets/Foundation/Runtime/CoreLevelFailDialog.cs": {
+      "before_sha256": "6e8147149504927eaeb345d49517353ebc39b968ae99f93d5656827d8955af12",
+      "after_sha256": "e70c2ca764c596addb3a8feee0d4670d3b341f5978c80d0ce731779e0a7f5c73"
+    },
+    "Assets/Foundation/Runtime/CoreLevelQuitDialog.cs": {
+      "before_sha256": "3cb7c088a7c61facf4b87618336b56bbb0907c8cdb84e107666f8e0d6b922248",
+      "after_sha256": "6dff19504fd012a3c6c09bd3d6eb901715d87c455b968a6950b7eb5f09f2d469"
+    },
+    "Assets/Foundation/Runtime/CoreNoPossibleMovesDialog.cs": {
+      "before_sha256": "3011045458a086d5838d2d91d00ec65ee6afd2091a8adfae9ddfebc339d344dc",
+      "after_sha256": "1371a498511519bbed2540a3f58c3865ae1c4693528c2defd47cffba05179ea0"
+    },
+    "Assets/Foundation/Runtime/CoreDialogBackground.cs": {
+      "before_sha256": "c672df72c22e616126a548383a179ac5f7298bcf74e3e569465526f954a71547",
+      "after_sha256": "d4c27bf349bfbaab761fe01a5e21fa70778e70b572a813fcfdc60acc36641929"
+    }
+  },
+  "native_manual_update_cases": 530,
+  "native_methods": {
+    "0x38ffc34": {
+      "name": "Royal.Scenes.Start.Context.Units.TweenManager$$GetDeltaTime",
+      "body_sha256": "db923ac8eabca79a3698a59b6d51be06135cb6fe7f60108c9d9c10b87b50bb33"
+    },
+    "0x38ffc88": {
+      "name": "Royal.Scenes.Start.Context.Units.TweenManager$$ManualUpdate",
+      "body_sha256": "949cdb520614ce23f41f5dd455da0a18811cbea4eacefa4d99f546e8c92d4b0e"
+    },
+    "0x32037e4": {
+      "name": "Royal.Scenes.Game.Levels.LevelContext$$get_DeltaTime",
+      "body_sha256": "8685f4d8b6266ddca51f418cf0f690b43222bfabe6eda4ae269971c6468aac9a"
+    },
+    "0x318d1c4": {
+      "name": "Royal.Scenes.Game.Mechanics.DeltaTime.DeltaTimeManager$$get_DeltaTime",
+      "body_sha256": "aca3847eb45c7344107992ec16dcf5d9c8db7de77ab984bf1ab9173a5259b678"
+    },
+    "0x25cb6cc": {
+      "name": "Royal.Infrastructure.UiComponents.Dialog.UiDialog$$OnShow",
+      "body_sha256": "9250d0f1f435deb3f036884aad8d85afe5637887638a23b9fc45706cf30941b2"
+    },
+    "0x25c7bf8": {
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogBackgroundDark$$Show",
+      "body_sha256": "8ec1b1a3a9e9bd2b3761dd9851ca659e0aae0ed1b7dae3bdbe3259262bec6746"
+    },
+    "0x25c8170": {
+      "name": "Royal.Infrastructure.UiComponents.Dialog.DialogBackgroundDark$$Hide",
+      "body_sha256": "6882d8b22d691cea0b360465cbed5c0ebb5a08da2460eaa79037fbb5684009c3"
+    }
+  },
+  "source_tween_settings": {
+    "path": "F:/Coin Merge Fortune/RM/Recovery/assets/RecoveredProject/ExportedProject/Assets/Resources/DOTweenSettings.asset",
+    "bytes": 1128,
+    "sha256": "bb4cf8e4951c037c149403080348e42f884f4bea3f8f6f4bab290517f057f700"
+  },
+  "formal_verification": {
+    "baseline_settings_verified": {
+      "background": {
+        "passed": true,
+        "test": "core-level-settings",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T11:35:40.3601245Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_level_settings_verification.json": {
+          "status": "finished",
+          "failure": "",
+          "passed": true,
+          "audio_toggles_verified": true,
+          "background_dismiss_verified": true,
+          "cancel_verified": true,
+          "quit_failure_verified": true,
+          "retry_verified": true,
+          "quit_label_verified": true,
+          "bonus_quit_verified": true,
+          "back_from_board_opens_quit": true,
+          "back_cancels_quit": true,
+          "back_from_settings_opens_quit": true
+        }
+      },
+      "clock_comparison": {
+        "samples": 129,
+        "delta_mismatches": 129,
+        "elapsed_mismatches": 129,
+        "max_elapsed_error_seconds": 0.0018000309999999797,
+        "kinds": [
+          "backdrop",
+          "entrance"
+        ]
+      }
+    },
+    "fixed_settings": {
+      "background": {
+        "passed": true,
+        "test": "core-level-settings",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T11:36:06.9559468Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_level_settings_verification.json": {
+          "status": "finished",
+          "failure": "",
+          "passed": true,
+          "audio_toggles_verified": true,
+          "background_dismiss_verified": true,
+          "cancel_verified": true,
+          "quit_failure_verified": true,
+          "retry_verified": true,
+          "quit_label_verified": true,
+          "bonus_quit_verified": true,
+          "back_from_board_opens_quit": true,
+          "back_cancels_quit": true,
+          "back_from_settings_opens_quit": true
+        }
+      },
+      "clock_comparison": {
+        "samples": 130,
+        "delta_mismatches": 0,
+        "elapsed_mismatches": 0,
+        "max_elapsed_error_seconds": 0.0,
+        "kinds": [
+          "backdrop",
+          "entrance"
+        ]
+      }
+    },
+    "fixed_backdrop": {
+      "background": {
+        "passed": true,
+        "test": "core-dialog-background",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T11:36:28.0067010Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_dialog_background_verification.json": {
+          "passed": true,
+          "stacked_layers_and_projection_verified": true,
+          "retained_and_interrupted_hides_verified": true
+        }
+      },
+      "clock_comparison": {
+        "samples": 28,
+        "delta_mismatches": 0,
+        "elapsed_mismatches": 0,
+        "max_elapsed_error_seconds": 0.0,
+        "kinds": [
+          "backdrop"
+        ]
+      }
+    },
+    "fixed_no_moves_verified": {
+      "background": {
+        "passed": true,
+        "test": "core-no-moves",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T11:38:28.5551343Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_no_moves_verification.json": {
+          "passed": true,
+          "restored_board": true,
+          "closed_on_restart": true,
+          "title_curve_verified": true,
+          "music_stopped": true,
+          "music_restarted": true,
+          "reused_scene_and_pool": true,
+          "pending_shift_deferred": true,
+          "shuffle_difficulty_draws": 1002,
+          "status": "finished",
+          "failure": "",
+          "scope": "Production GameScene with an explicitly arranged level 55 board. The actual runtime shuffle exhausts its ordinary search, restores the board and enters the no-moves state. The visible standard Restart Button closes the dialog and rebuilds the authored level in the current scene."
+        }
+      },
+      "clock_comparison": {
+        "samples": 15,
+        "delta_mismatches": 0,
+        "elapsed_mismatches": 0,
+        "max_elapsed_error_seconds": 0.0,
+        "kinds": [
+          "entrance"
+        ]
+      }
+    },
+    "fixed_flow_unobserved": {
+      "background": {
+        "passed": true,
+        "test": "core-flow",
+        "failure": "",
+        "timestamp_utc": "2026-11-05T11:39:29.3707864Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "runtime_reports": {
+        "live_core_catalog_verification.json": {
+          "passed": true,
+          "rejects_0_and_101": true,
+          "formal_first_level_uses_catalog": true,
+          "actual_resource_levels_loaded": 100,
+          "raw_cell_definitions_loaded": 8043,
+          "failure": "",
+          "scope": "The actual configured ScriptableObject catalog loads each of the original100 ordinary levels through the production Resources/JSON reader. Out-of-range requests0/101 are rejected before loading; the actual formal entry uses the same catalog. This verifies resource/configuration availability, not100 playable levels. Core entry opens no account/area storage and uses configured presentation snapshots. The separate core-flow scenario checks actual end/retry/next-level owners and absence of peripheral UI. Remaining obstacle/static composition, complete natural playthroughs, original visual/audio/mobile parity remain pending."
+        },
+        "live_core_flow_verification.json": {
+          "passed": true,
+          "production_win_remaining_result_bound": true,
+          "actual_next_level_loaded": true,
+          "production_zero_move_failure_bound": true,
+          "actual_retry_reloaded_same_level": true,
+          "cap100_and_restart_verified": true,
+          "core_booster_inventory_purchase_ui_absent": true,
+          "king_win_reaction": "k-1sevinme_6",
+          "king_win_connector": "idle_connect_2",
+          "king_win_loop": "idle_connect_1",
+          "king_fail_reaction": "k-1_uzulme",
+          "king_win_mixed": true,
+          "king_connector_mixed": true,
+          "king_fail_mixed": true,
+          "win_logo_backdrop_fade": true,
+          "remaining_moves_backdrop_reused": true,
+          "result_and_failure_backdrops_cleared_on_reload": true,
+          "back_respected_remaining_moves": false,
+          "back_closed_win": false,
+          "back_respected_failure_dialog": false,
+          "castle_garden_background_survives_continue_and_retry": true,
+          "retry_reused_scene_pool_and_hud": true,
+          "retry_recycled_tnt_and_fuse": true,
+          "cold_entry_verified": true,
+          "cold_entry_board_captured": true,
+          "continue_entry_verified": true,
+          "retry_entry_verified": true,
+          "application_random_survives_continue": true,
+          "music_stopped_at_win_logo": true,
+          "music_stopped_at_failure": true,
+          "opening_music": "Gameplay_1",
+          "continue_music": "Gameplay_2",
+          "retry_music": "Gameplay_3",
+          "paused_music_samples": 28223,
+          "out_of_moves_banner_center_verified": true,
+          "out_of_moves_standard_button_skip_verified": true,
+          "out_of_moves_auto_duration": 2.4531784057617188,
+          "out_of_moves_skip_duration": 0.4001884460449219,
+          "win_text_stagger": true,
+          "win_text_overshoot": true,
+          "win_curved_text_settled": true,
+          "win_pillow_started": true,
+          "win_title_curve_verified": true,
+          "fail_title_curve_verified": true,
+          "win_star_hit_time": 29.219642639160156,
+          "win_idle_loop_time": 29.66806411743164,
+          "win_pillow_delay": 0.0,
+          "win_first_glyph_delay": 0.14006423950195312,
+          "original_level3_two_layer_boxes_bound": true,
+          "formal_mock_ad_preview_disconnected": true,
+          "level1_attempt_seed": 111,
+          "level2_attempt_seed": 404,
+          "level2_retry_seed": 167,
+          "level2_second_retry_seed": 985,
+          "level3_attempt_seed": 697,
+          "win_left_moves": 22,
+          "win_remaining_reward": 72,
+          "failure": "",
+          "scope": "The formal scene uses controlled TNT and rocket placements plus recorded gestures to complete level 1. The production win and remaining-moves flow persist progress before the result exit loads level 2. Two explicit zero-budget MoveManager stimuli exercise automatic and Button-skipped banner exits, actual defeat and retry. The King plays the authored celebration and its two connectors on victory, then a single sad reaction on defeat. A separate private progress file exercises the level 100 boundary."
+        },
+        "live_core_no_moves_verification.json": {
+          "passed": true,
+          "restored_board": true,
+          "closed_on_restart": true,
+          "title_curve_verified": true,
+          "music_stopped": true,
+          "music_restarted": true,
+          "reused_scene_and_pool": true,
+          "pending_shift_deferred": true,
+          "shuffle_difficulty_draws": 1002,
+          "status": "finished",
+          "failure": "",
+          "scope": "Production GameScene with an explicitly arranged level 55 board. The actual runtime shuffle exhausts its ordinary search, restores the board and enters the no-moves state. The visible standard Restart Button closes the dialog and rebuilds the authored level in the current scene."
+        },
+        "live_game_scene_verification.json": {
+          "passed": true,
+          "normal_scene_and_72_models_verified": true,
+          "original_top_background_verified": true,
+          "original_king_rig_and_atlas_verified": true,
+          "castle_garden_background_verified": true,
+          "original_hud_title_curves_verified": true,
+          "original_empty_lighting_data_verified": true,
+          "original_single_touch_input_verified": true,
+          "king_vertices": 518,
+          "king_visible_pixels": 726,
+          "king_probe_width": 90,
+          "king_probe_height": 160,
+          "king_viewport_center": {
+            "x": 0.49988463521003723,
+            "y": 0.9044842720031738,
+            "z": 10.0
+          },
+          "original_bottom_locked_presentation_verified": true,
+          "core_bottom_frame_without_inventory_verified": true,
+          "failure": "",
+          "scope": "After the production entrance settles, the formal GameScene verifies the original camera, top HUD, visible King mesh pixels, playable first board, and four locked standard Button tool slots. Separate scenarios verify the actual player input, result flow and in-board power activation. Original-device rendered parity remains outside this check."
+        },
+        "live_goal_ui_verification.json": {
+          "passed": true,
+          "failure": "",
+          "tnt_taps": 3,
+          "left_moves": 22,
+          "goal_count": 0,
+          "pending_checks": 0,
+          "delay_seconds": 0.2145671844482422,
+          "check_seconds": 0.6415939331054688,
+          "scope": "Formal first-board scene and unchanged target counts: four production TNT/rocket fixture drags then actual TNT tap damage until all36box goals finish. Original GoalUi prefab, font/material, resource icons and particles, move events, manual level clock, delayed check sequence and GoalManager completion gate. Does not establish natural special generation, physical input, full camera/King/background/original rendered parity, WinFail flow/remaining moves/settlement/progression."
+        },
+        "live_tnt_rocket_combo_verification.json": {
+          "passed": true,
+          "failure": "",
+          "completed_combos": 4,
+          "immediate_move_completions": 4,
+          "left_moves": 25,
+          "accepted_swaps": 5,
+          "goals_left": 8,
+          "created_refills": 164,
+          "peak_operations": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "peak_particles": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "blocked_box_holes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "peak_shake": [
+            0.24681277573108673,
+            0.2519548237323761,
+            0.24241478741168976,
+            0.30703839659690857
+          ],
+          "part_distances": [
+            8.429258346557617,
+            11.817181587219238,
+            8.429258346557617,
+            11.817181587219238,
+            8.429258346557617,
+            11.817181587219238,
+            5.780953407287598,
+            5.780953407287598,
+            5.780953407287598,
+            5.780953407287598,
+            5.780953407287598,
+            5.780953407287598,
+            7.62192440032959,
+            12.86390209197998,
+            7.62192440032959,
+            12.86390209197998,
+            7.62192440032959,
+            12.86390209197998,
+            9.482492446899414,
+            1.4237631559371948,
+            9.482492446899414,
+            1.4237631559371948,
+            9.482492446899414,
+            1.4237631559371948,
+            7.413931846618652,
+            13.044371604919434,
+            7.413931846618652,
+            13.044371604919434,
+            7.413931846618652,
+            13.044371604919434,
+            1.4219077825546265,
+            9.627537727355957,
+            1.4219077825546265,
+            9.627537727355957,
+            1.4219077825546265,
+            9.627537727355957,
+            8.3436861038208,
+            11.994698524475098,
+            8.3436861038208,
+            11.994698524475098,
+            8.3436861038208,
+            11.994698524475098,
+            1.660644769668579,
+            9.626690864562988,
+            1.660644769668579,
+            9.626690864562988,
+            1.660644769668579,
+            9.626690864562988
+          ],
+          "merge_seconds": [
+            0.36386823654174805,
+            0.40169334411621094,
+            0.36067962646484375,
+            0.34760189056396484
+          ],
+          "destinations": [
+            {
+              "x": 4,
+              "y": 6
+            },
+            {
+              "x": 8,
+              "y": 7
+            },
+            {
+              "x": 0,
+              "y": 7
+            },
+            {
+              "x": 0,
+              "y": 6
+            }
+          ],
+          "alternate_pair": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "scope": "Explicit production-factory TNT+rocket fixtures in unchanged formal first-board scene, four directions, both moving roles and rocket orientations, edges including out-of-grid ghost rockets. Actual merge clock/particles, six rocket models/twelve flight parts, damage/goals/moves/fall/refill/pool/unlock. Does not establish natural combo creation, physical input, rendered-original/camera/grid-shake/audio/charger/session/othercombos/settlement parity."
+        }
+      }
+    }
+  },
+  "observer_only_failures": [
+    {
+      "run": "baseline_settings",
+      "reason": "The private observer reopened its writer on retry. Closed run retained; observer now keeps one writer across attempts."
+    },
+    {
+      "run": "fixed_no_moves",
+      "reason": "The private wait checked the MonoBehaviour instance ID instead of its Transform ID. The completed animation samples were exact; correcting the probe allowed the ordinary restart assertion to finish."
+    }
+  ],
+  "limits": [
+    "The native trace proves original clock selection and quantization. Unity captures prove elapsed values and real popup/retry/backdrop binding; this does not establish original-device pixel/audio or full tween scheduling parity.",
+    "The final core-flow regression runs with all six production candidate files and no runtime observation hooks; controlled win/fail stimuli in that existing verifier remain explicit.",
+    "This checkpoint is a source change. Its Android APK build and device validation are recorded separately when available.",
+    "Scope remains original ordinary levels 1-100 and core gameplay only; full natural completion and original-app visual/input fidelity remain incomplete."
+  ],
+  "artifacts": {
+    "baseline_settings/background_verification.json": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/background_verification.json",
+      "bytes": 3170,
+      "sha256": "be3ccfd910c862088d5cb64218479fddefbe84dcc11e87956e1254abc2f2d1cd"
+    },
+    "baseline_settings/clock_samples.tsv": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/clock_samples.tsv",
+      "bytes": 7503,
+      "sha256": "de6271a14ddf26ec16a60e0769fb9a5a9b8fd79f5ed9fc1985b53ed5dacb9cc3"
+    },
+    "baseline_settings/core_settings_closed.png": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/core_settings_closed.png",
+      "bytes": 1134037,
+      "sha256": "159416b8dff7c3412b3832eafb6cb35fd8e3999841c20b79419f53d264dfa1b1"
+    },
+    "baseline_settings/core_settings_open.png": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/core_settings_open.png",
+      "bytes": 730537,
+      "sha256": "e918ee4e848baa84b450a64f8f94e05d3bc432435ba11d0a8367690f21198699"
+    },
+    "baseline_settings/core_settings_quit.png": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/core_settings_quit.png",
+      "bytes": 475411,
+      "sha256": "22c58facb0f76e4df77b33d747bf84ab1dd94d9b4fdef4303576795e22ead80c"
+    },
+    "baseline_settings/core_settings_quit_failed.png": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/core_settings_quit_failed.png",
+      "bytes": 413734,
+      "sha256": "0e2805480e3537ee44c270826728a0ae9514e44fb8542e7056daf54c9c3e0c25"
+    },
+    "baseline_settings/CoreDialogBackground.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/CoreDialogBackground.cs",
+      "bytes": 7047,
+      "sha256": "779fe4d751eafe2a8e26356c0efdf3c019efd5e646b3f8183e22eb711fe0433b"
+    },
+    "baseline_settings/CoreGameFlow.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/CoreGameFlow.cs",
+      "bytes": 46307,
+      "sha256": "e51f0f46bfa8e5733eee821548b17e670a46be98f5d44f91a11e5a1aea4b99a8"
+    },
+    "baseline_settings/CoreLevelFailDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/CoreLevelFailDialog.cs",
+      "bytes": 6812,
+      "sha256": "6e8147149504927eaeb345d49517353ebc39b968ae99f93d5656827d8955af12"
+    },
+    "baseline_settings/CoreLevelQuitDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/CoreLevelQuitDialog.cs",
+      "bytes": 3400,
+      "sha256": "3cb7c088a7c61facf4b87618336b56bbb0907c8cdb84e107666f8e0d6b922248"
+    },
+    "baseline_settings/CoreNoPossibleMovesDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/CoreNoPossibleMovesDialog.cs",
+      "bytes": 2632,
+      "sha256": "3011045458a086d5838d2d91d00ec65ee6afd2091a8adfae9ddfebc339d344dc"
+    },
+    "baseline_settings/CoreNoPossibleMovesVerification.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/CoreNoPossibleMovesVerification.cs",
+      "bytes": 10216,
+      "sha256": "5aa652e1926df0f749a42e6aacf38dfd5180ad7ad5f4fd2fcaaab6005a1f3fae"
+    },
+    "baseline_settings/DialogClockObservation.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/DialogClockObservation.cs",
+      "bytes": 1630,
+      "sha256": "e62545283010c3ada875f7a62f2617dd3eb5a867c68fc6b57e4ec91c0ecebb8f"
+    },
+    "baseline_settings/live_core_level_settings_verification.json": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/live_core_level_settings_verification.json",
+      "bytes": 36,
+      "sha256": "e20114e3848abc453efc8c291586a8d8c11f1d5e0b2e91497afb35ef541a570c"
+    },
+    "baseline_settings/OriginalUiDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/OriginalUiDialog.cs",
+      "bytes": 6611,
+      "sha256": "2691aa46edd3e1b784f17875a1dfbe63f62ecc9b974823281049244f2a25e924"
+    },
+    "baseline_settings/process.json": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings/process.json",
+      "bytes": 573,
+      "sha256": "b9f3e9a6826e5be54cb40ede4b4ee8473a26e10b467cae091186c6d8af2cce82"
+    },
+    "baseline_settings_verified/background_verification.json": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/background_verification.json",
+      "bytes": 392,
+      "sha256": "c0d98cfd4898a06f9b09fbd57ed5eddc665a93cb29baa87af2b8f67f551561c8"
+    },
+    "baseline_settings_verified/clock_samples.tsv": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/clock_samples.tsv",
+      "bytes": 9591,
+      "sha256": "7b6e0abc4b0cc84f09b2045a95910a190cf791bf3f85025746d764a18bfc6030"
+    },
+    "baseline_settings_verified/core_settings_closed.png": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/core_settings_closed.png",
+      "bytes": 1134059,
+      "sha256": "b81719cf6fa1e0da99b8454a4519aefe39b47001ee189aabd5b4b91242c8903f"
+    },
+    "baseline_settings_verified/core_settings_open.png": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/core_settings_open.png",
+      "bytes": 731054,
+      "sha256": "026bb1cac375fdc092a24dea3d9dd9f54983358d141f4bcbf45a6288043aa4c2"
+    },
+    "baseline_settings_verified/core_settings_quit.png": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/core_settings_quit.png",
+      "bytes": 475451,
+      "sha256": "97291f37db323b6ee286788f2239ed271430ee3beda2b57c00b32a996ed7b81f"
+    },
+    "baseline_settings_verified/core_settings_quit_failed.png": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/core_settings_quit_failed.png",
+      "bytes": 413733,
+      "sha256": "e80196c7ecefe733852c2a9dbb9cf3012ef50c2068a2c725a4395eea05d72494"
+    },
+    "baseline_settings_verified/CoreDialogBackground.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/CoreDialogBackground.cs",
+      "bytes": 7047,
+      "sha256": "779fe4d751eafe2a8e26356c0efdf3c019efd5e646b3f8183e22eb711fe0433b"
+    },
+    "baseline_settings_verified/CoreGameFlow.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/CoreGameFlow.cs",
+      "bytes": 46307,
+      "sha256": "e51f0f46bfa8e5733eee821548b17e670a46be98f5d44f91a11e5a1aea4b99a8"
+    },
+    "baseline_settings_verified/CoreLevelFailDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/CoreLevelFailDialog.cs",
+      "bytes": 6812,
+      "sha256": "6e8147149504927eaeb345d49517353ebc39b968ae99f93d5656827d8955af12"
+    },
+    "baseline_settings_verified/CoreLevelQuitDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/CoreLevelQuitDialog.cs",
+      "bytes": 3400,
+      "sha256": "3cb7c088a7c61facf4b87618336b56bbb0907c8cdb84e107666f8e0d6b922248"
+    },
+    "baseline_settings_verified/CoreNoPossibleMovesDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/CoreNoPossibleMovesDialog.cs",
+      "bytes": 2632,
+      "sha256": "3011045458a086d5838d2d91d00ec65ee6afd2091a8adfae9ddfebc339d344dc"
+    },
+    "baseline_settings_verified/CoreNoPossibleMovesVerification.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/CoreNoPossibleMovesVerification.cs",
+      "bytes": 10216,
+      "sha256": "5aa652e1926df0f749a42e6aacf38dfd5180ad7ad5f4fd2fcaaab6005a1f3fae"
+    },
+    "baseline_settings_verified/DialogClockObservation.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/DialogClockObservation.cs",
+      "bytes": 1675,
+      "sha256": "a82a3e800ce81d38efe18ffecb571440fcc73d0832d198456d7e814a9ff7f3c2"
+    },
+    "baseline_settings_verified/live_core_level_settings_verification.json": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/live_core_level_settings_verification.json",
+      "bytes": 417,
+      "sha256": "2ff6f201ea7aabe54f8a07612817a698b21672e2df498b58db3ab360d04e251b"
+    },
+    "baseline_settings_verified/OriginalUiDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/OriginalUiDialog.cs",
+      "bytes": 6611,
+      "sha256": "2691aa46edd3e1b784f17875a1dfbe63f62ecc9b974823281049244f2a25e924"
+    },
+    "baseline_settings_verified/process.json": {
+      "path": "C:/RMDialogClock_20261105/baseline_settings_verified/process.json",
+      "bytes": 582,
+      "sha256": "8709449dad02d1c24822683e514ea17521a8753fc10744b98f9eaa017b05df4a"
+    },
+    "commit_body.txt": {
+      "path": "C:/RMDialogClock_20261105/commit_body.txt",
+      "bytes": 824,
+      "sha256": "f87e6592c2f0f8c03ee2ef4568f9072ca61afc8e140f8f0a8b2b0f2f7394d5b9"
+    },
+    "DialogClockObservation.cs": {
+      "path": "C:/RMDialogClock_20261105/DialogClockObservation.cs",
+      "bytes": 1649,
+      "sha256": "30bf07d340d9ff9e7d19cdd6a4cc184c5c7c4f63cc13cff97fe27aad5e92a197"
+    },
+    "fixed_backdrop/background_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/background_verification.json",
+      "bytes": 395,
+      "sha256": "2a4c80027b5ee3d5356f0abc4424b4c9734e7d1608cdcb9a3db8976242ce289e"
+    },
+    "fixed_backdrop/clock_samples.tsv": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/clock_samples.tsv",
+      "bytes": 1873,
+      "sha256": "5fe4c8bdb206d630a5fbfdf99855249b251fdb17fcfd8e4fad9ddbf71c29cf2c"
+    },
+    "fixed_backdrop/CoreDialogBackground.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/CoreDialogBackground.cs",
+      "bytes": 7368,
+      "sha256": "5f4281e17e6e23dff5c84a569bcdd8f61034c8e04974731d397f6689700e507b"
+    },
+    "fixed_backdrop/CoreGameFlow.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/CoreGameFlow.cs",
+      "bytes": 46400,
+      "sha256": "c46fc6268fefaea79a817a0270075e9c9f67a042f9a7114fc68a63be6ca90898"
+    },
+    "fixed_backdrop/CoreLevelFailDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/CoreLevelFailDialog.cs",
+      "bytes": 6819,
+      "sha256": "e70c2ca764c596addb3a8feee0d4670d3b341f5978c80d0ce731779e0a7f5c73"
+    },
+    "fixed_backdrop/CoreLevelQuitDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/CoreLevelQuitDialog.cs",
+      "bytes": 3412,
+      "sha256": "6dff19504fd012a3c6c09bd3d6eb901715d87c455b968a6950b7eb5f09f2d469"
+    },
+    "fixed_backdrop/CoreNoPossibleMovesDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/CoreNoPossibleMovesDialog.cs",
+      "bytes": 2644,
+      "sha256": "1371a498511519bbed2540a3f58c3865ae1c4693528c2defd47cffba05179ea0"
+    },
+    "fixed_backdrop/CoreNoPossibleMovesVerification.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/CoreNoPossibleMovesVerification.cs",
+      "bytes": 10216,
+      "sha256": "5aa652e1926df0f749a42e6aacf38dfd5180ad7ad5f4fd2fcaaab6005a1f3fae"
+    },
+    "fixed_backdrop/DialogClockObservation.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/DialogClockObservation.cs",
+      "bytes": 1663,
+      "sha256": "bd9d510367208c96f08440d0bf4ff01805c4bd3c9d59d40d4987d935d03be86a"
+    },
+    "fixed_backdrop/live_core_dialog_background_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/live_core_dialog_background_verification.json",
+      "bytes": 128,
+      "sha256": "c993a37008538639c3bb335b9b65a0e188182510013686a5ffb5aef685516263"
+    },
+    "fixed_backdrop/OriginalUiDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/OriginalUiDialog.cs",
+      "bytes": 6956,
+      "sha256": "be0c5442d5c672bb7075e2461a9cdb088b378ba1f140c389b6e55d11e82a2a6b"
+    },
+    "fixed_backdrop/process.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_backdrop/process.json",
+      "bytes": 573,
+      "sha256": "364164b102221c979af345d29c9b709ad9ce7631d380e97ad9cdd6d2aed66ea6"
+    },
+    "fixed_flow_unobserved/background_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/background_verification.json",
+      "bytes": 382,
+      "sha256": "7ccfe9e35d2feca0e5db576048972ab3915dc21fc354ce1a91c4a55a6a7078ac"
+    },
+    "fixed_flow_unobserved/core_flow_fail.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/core_flow_fail.png",
+      "bytes": 425130,
+      "sha256": "5dfe3789f3493f9a692d93fd233ad0186673fcfb7de9f93b39e9718ea9eb47ca"
+    },
+    "fixed_flow_unobserved/core_flow_level2.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/core_flow_level2.png",
+      "bytes": 1134261,
+      "sha256": "cca01006ddec8d6c0d19e62c61446e415027ef30cbf77a31113c1a7a39d57eef"
+    },
+    "fixed_flow_unobserved/core_flow_level3.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/core_flow_level3.png",
+      "bytes": 1137588,
+      "sha256": "1b9c6e15d3b258de76e8589b03c58f91e7e6bd006a2b6b03fc942edb0953c9bf"
+    },
+    "fixed_flow_unobserved/core_flow_level_entrance.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/core_flow_level_entrance.png",
+      "bytes": 1237510,
+      "sha256": "4e961b4dab21dc0c2bcad10944e33e3501668b3a6be9d770a7f28d3893d02989"
+    },
+    "fixed_flow_unobserved/core_flow_out_of_moves.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/core_flow_out_of_moves.png",
+      "bytes": 932814,
+      "sha256": "be7e0c19b4460ef9be56ff03a845b42ea92d1da687a7bdbb230d45f9c000f565"
+    },
+    "fixed_flow_unobserved/core_flow_retry.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/core_flow_retry.png",
+      "bytes": 1134130,
+      "sha256": "047f9565cf405796a827310109a360320cad3c7c97e76dfe3e39d3d3f3c9153d"
+    },
+    "fixed_flow_unobserved/core_flow_win.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/core_flow_win.png",
+      "bytes": 624875,
+      "sha256": "07c6caa77e189670b0e876bf8f8e00c3557df044a8c9960334eacd1a3026fe15"
+    },
+    "fixed_flow_unobserved/core_flow_win_text_enter.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/core_flow_win_text_enter.png",
+      "bytes": 544887,
+      "sha256": "aa8a06621ac3cbf20865330aef5099d9335a719244e3de6c6e84e7443aacdd3b"
+    },
+    "fixed_flow_unobserved/live_core_catalog_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/live_core_catalog_verification.json",
+      "bytes": 845,
+      "sha256": "44e0dbd1dc66b2dc105b98c55a6d643a7eefd8b71eb83654a5994b31626a572d"
+    },
+    "fixed_flow_unobserved/live_core_flow_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/live_core_flow_verification.json",
+      "bytes": 2828,
+      "sha256": "a07b76e885bf20a4fa63db66cd0ef74cde53a17ac0eb32f3f020c95cf497699c"
+    },
+    "fixed_flow_unobserved/live_core_no_moves_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/live_core_no_moves_verification.json",
+      "bytes": 622,
+      "sha256": "c6a30a733d9f5f20c106b1b948110d9c8c75344d9e0d9cf73a97be28a1ae5236"
+    },
+    "fixed_flow_unobserved/live_game_scene_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/live_game_scene_verification.json",
+      "bytes": 1098,
+      "sha256": "ac282eae16f43ed5a3a4460790491742026d5ad693f1f903a24957c357d83f8b"
+    },
+    "fixed_flow_unobserved/live_goal_ui_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/live_goal_ui_verification.json",
+      "bytes": 706,
+      "sha256": "1ef3a2c7a38b1d6e560c0e7369b807bb84fdf7af74f0d44a7ba315a901f81012"
+    },
+    "fixed_flow_unobserved/live_tnt_rocket_combo_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/live_tnt_rocket_combo_verification.json",
+      "bytes": 2879,
+      "sha256": "cc4074f1b255f8631fe4a966dbcb3a34890f68e0498bb73d8791be74f5d0d091"
+    },
+    "fixed_flow_unobserved/process.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_flow_unobserved/process.json",
+      "bytes": 566,
+      "sha256": "241c42fbc13c0e45128585279bb81fbc131b762a23a205258b8887836be37c0b"
+    },
+    "fixed_no_moves/background_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/background_verification.json",
+      "bytes": 1010,
+      "sha256": "bf4ef157f25ce258afc46cf0a2ef5f516840e3e71e392cf5e11c4ffe1e0b8df5"
+    },
+    "fixed_no_moves/clock_samples.tsv": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/clock_samples.tsv",
+      "bytes": 1032,
+      "sha256": "ee32758b68f89fe324c013b72c0f9eeebddc363fc906933bab52bbb60b241180"
+    },
+    "fixed_no_moves/CoreDialogBackground.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/CoreDialogBackground.cs",
+      "bytes": 7368,
+      "sha256": "5f4281e17e6e23dff5c84a569bcdd8f61034c8e04974731d397f6689700e507b"
+    },
+    "fixed_no_moves/CoreGameFlow.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/CoreGameFlow.cs",
+      "bytes": 46400,
+      "sha256": "c46fc6268fefaea79a817a0270075e9c9f67a042f9a7114fc68a63be6ca90898"
+    },
+    "fixed_no_moves/CoreLevelFailDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/CoreLevelFailDialog.cs",
+      "bytes": 6819,
+      "sha256": "e70c2ca764c596addb3a8feee0d4670d3b341f5978c80d0ce731779e0a7f5c73"
+    },
+    "fixed_no_moves/CoreLevelQuitDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/CoreLevelQuitDialog.cs",
+      "bytes": 3412,
+      "sha256": "6dff19504fd012a3c6c09bd3d6eb901715d87c455b968a6950b7eb5f09f2d469"
+    },
+    "fixed_no_moves/CoreNoPossibleMovesDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/CoreNoPossibleMovesDialog.cs",
+      "bytes": 2644,
+      "sha256": "1371a498511519bbed2540a3f58c3865ae1c4693528c2defd47cffba05179ea0"
+    },
+    "fixed_no_moves/CoreNoPossibleMovesVerification.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/CoreNoPossibleMovesVerification.cs",
+      "bytes": 10294,
+      "sha256": "e4ef73bc2ed2d994356a097437c0ef2506c09e0b09a904aa6c456b168f6c7fab"
+    },
+    "fixed_no_moves/DialogClockObservation.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/DialogClockObservation.cs",
+      "bytes": 1663,
+      "sha256": "c4763ba2aa874c93dc8ade1d42d883d1f7d300202cc5e9f11417c59db3e62ef7"
+    },
+    "fixed_no_moves/live_core_no_moves_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/live_core_no_moves_verification.json",
+      "bytes": 862,
+      "sha256": "0acdc273fe70c53ce293e8a4f06b90bbebbf8550b7eb53e23518988d529bfcc3"
+    },
+    "fixed_no_moves/OriginalUiDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/OriginalUiDialog.cs",
+      "bytes": 6956,
+      "sha256": "be0c5442d5c672bb7075e2461a9cdb088b378ba1f140c389b6e55d11e82a2a6b"
+    },
+    "fixed_no_moves/process.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves/process.json",
+      "bytes": 564,
+      "sha256": "7da936c8eeac48d8e86a6c29fd4515d24913aa6b25acbefc6a3648f6104367a3"
+    },
+    "fixed_no_moves_verified/background_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/background_verification.json",
+      "bytes": 386,
+      "sha256": "e4a1256bc52fe0a12f1591cfa779411e04e05e93812e3d382b8c58173386ff09"
+    },
+    "fixed_no_moves_verified/clock_samples.tsv": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/clock_samples.tsv",
+      "bytes": 1032,
+      "sha256": "807fd91deda5d391f873aaa7a6942e12caa2f8eb8066081f50cda618c0a494af"
+    },
+    "fixed_no_moves_verified/core_no_possible_moves.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/core_no_possible_moves.png",
+      "bytes": 550418,
+      "sha256": "623aba0a6886d0bc8286a92f7edcbe68b9e43aeb2d6077e0db84a60d3b62e773"
+    },
+    "fixed_no_moves_verified/CoreDialogBackground.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/CoreDialogBackground.cs",
+      "bytes": 7368,
+      "sha256": "5f4281e17e6e23dff5c84a569bcdd8f61034c8e04974731d397f6689700e507b"
+    },
+    "fixed_no_moves_verified/CoreGameFlow.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/CoreGameFlow.cs",
+      "bytes": 46400,
+      "sha256": "c46fc6268fefaea79a817a0270075e9c9f67a042f9a7114fc68a63be6ca90898"
+    },
+    "fixed_no_moves_verified/CoreLevelFailDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/CoreLevelFailDialog.cs",
+      "bytes": 6819,
+      "sha256": "e70c2ca764c596addb3a8feee0d4670d3b341f5978c80d0ce731779e0a7f5c73"
+    },
+    "fixed_no_moves_verified/CoreLevelQuitDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/CoreLevelQuitDialog.cs",
+      "bytes": 3412,
+      "sha256": "6dff19504fd012a3c6c09bd3d6eb901715d87c455b968a6950b7eb5f09f2d469"
+    },
+    "fixed_no_moves_verified/CoreNoPossibleMovesDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/CoreNoPossibleMovesDialog.cs",
+      "bytes": 2644,
+      "sha256": "1371a498511519bbed2540a3f58c3865ae1c4693528c2defd47cffba05179ea0"
+    },
+    "fixed_no_moves_verified/CoreNoPossibleMovesVerification.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/CoreNoPossibleMovesVerification.cs",
+      "bytes": 10294,
+      "sha256": "e4ef73bc2ed2d994356a097437c0ef2506c09e0b09a904aa6c456b168f6c7fab"
+    },
+    "fixed_no_moves_verified/DialogClockObservation.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/DialogClockObservation.cs",
+      "bytes": 1692,
+      "sha256": "a4a4f1c7ad4e071148220f1de7fe434fb0e7a95232308a503cbbb0565e5b2273"
+    },
+    "fixed_no_moves_verified/live_core_no_moves_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/live_core_no_moves_verification.json",
+      "bytes": 622,
+      "sha256": "c6a30a733d9f5f20c106b1b948110d9c8c75344d9e0d9cf73a97be28a1ae5236"
+    },
+    "fixed_no_moves_verified/OriginalUiDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/OriginalUiDialog.cs",
+      "bytes": 6956,
+      "sha256": "be0c5442d5c672bb7075e2461a9cdb088b378ba1f140c389b6e55d11e82a2a6b"
+    },
+    "fixed_no_moves_verified/process.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_no_moves_verified/process.json",
+      "bytes": 573,
+      "sha256": "9fe217901ae2d49178251ef945defb4746ce57c13e35921335bb64a69968b08b"
+    },
+    "fixed_settings/background_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/background_verification.json",
+      "bytes": 392,
+      "sha256": "39d9ffb1d4be5adbdfdf20da5957b27d40bd64321314bca5e6a3e1b92ed13b52"
+    },
+    "fixed_settings/clock_samples.tsv": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/clock_samples.tsv",
+      "bytes": 8752,
+      "sha256": "25b008c9ec7533d08d64c94865c1f26c994823a7be758163d53b907f11b41729"
+    },
+    "fixed_settings/core_settings_closed.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/core_settings_closed.png",
+      "bytes": 1134037,
+      "sha256": "159416b8dff7c3412b3832eafb6cb35fd8e3999841c20b79419f53d264dfa1b1"
+    },
+    "fixed_settings/core_settings_open.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/core_settings_open.png",
+      "bytes": 730537,
+      "sha256": "e918ee4e848baa84b450a64f8f94e05d3bc432435ba11d0a8367690f21198699"
+    },
+    "fixed_settings/core_settings_quit.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/core_settings_quit.png",
+      "bytes": 475281,
+      "sha256": "78ed1cf6788ce5d363400f186d891eb4ee5695eec9a61e8feae69cb33de9ed42"
+    },
+    "fixed_settings/core_settings_quit_failed.png": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/core_settings_quit_failed.png",
+      "bytes": 413882,
+      "sha256": "31a55a17c0d4779e29999ad59494fc7a3ae69dcff7326caf41d7c54e5226c170"
+    },
+    "fixed_settings/CoreDialogBackground.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/CoreDialogBackground.cs",
+      "bytes": 7368,
+      "sha256": "5f4281e17e6e23dff5c84a569bcdd8f61034c8e04974731d397f6689700e507b"
+    },
+    "fixed_settings/CoreGameFlow.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/CoreGameFlow.cs",
+      "bytes": 46400,
+      "sha256": "c46fc6268fefaea79a817a0270075e9c9f67a042f9a7114fc68a63be6ca90898"
+    },
+    "fixed_settings/CoreLevelFailDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/CoreLevelFailDialog.cs",
+      "bytes": 6819,
+      "sha256": "e70c2ca764c596addb3a8feee0d4670d3b341f5978c80d0ce731779e0a7f5c73"
+    },
+    "fixed_settings/CoreLevelQuitDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/CoreLevelQuitDialog.cs",
+      "bytes": 3412,
+      "sha256": "6dff19504fd012a3c6c09bd3d6eb901715d87c455b968a6950b7eb5f09f2d469"
+    },
+    "fixed_settings/CoreNoPossibleMovesDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/CoreNoPossibleMovesDialog.cs",
+      "bytes": 2644,
+      "sha256": "1371a498511519bbed2540a3f58c3865ae1c4693528c2defd47cffba05179ea0"
+    },
+    "fixed_settings/CoreNoPossibleMovesVerification.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/CoreNoPossibleMovesVerification.cs",
+      "bytes": 10216,
+      "sha256": "5aa652e1926df0f749a42e6aacf38dfd5180ad7ad5f4fd2fcaaab6005a1f3fae"
+    },
+    "fixed_settings/DialogClockObservation.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/DialogClockObservation.cs",
+      "bytes": 1663,
+      "sha256": "79526b334574a62bbaeec9e42b1d598545a85bd43fb07b7fb0a208761037d2b9"
+    },
+    "fixed_settings/live_core_level_settings_verification.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/live_core_level_settings_verification.json",
+      "bytes": 417,
+      "sha256": "2ff6f201ea7aabe54f8a07612817a698b21672e2df498b58db3ab360d04e251b"
+    },
+    "fixed_settings/OriginalUiDialog.cs": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/OriginalUiDialog.cs",
+      "bytes": 6956,
+      "sha256": "be0c5442d5c672bb7075e2461a9cdb088b378ba1f140c389b6e55d11e82a2a6b"
+    },
+    "fixed_settings/process.json": {
+      "path": "C:/RMDialogClock_20261105/fixed_settings/process.json",
+      "bytes": 570,
+      "sha256": "5ca45ac45c6173f2c68ada41f417b88a7aabba5cad9e355f9d5bfe65053164b4"
+    },
+    "mirror_restored.json": {
+      "path": "C:/RMDialogClock_20261105/mirror_restored.json",
+      "bytes": 692,
+      "sha256": "59aa1f0ef4e8529eb47a42d38dfada7d9832c4406ea2dc4d3f7fbd5d7261667d"
+    },
+    "native_25c7bf8.txt": {
+      "path": "C:/RMDialogClock_20261105/native_25c7bf8.txt",
+      "bytes": 8342,
+      "sha256": "c6e2107f05c5e6a349b98fb0ace4cb71113eeb86f5dfb8cdd3d2da487dd61387"
+    },
+    "native_25c8170.txt": {
+      "path": "C:/RMDialogClock_20261105/native_25c8170.txt",
+      "bytes": 6796,
+      "sha256": "0e35623558c9e9522aa5b73e4e67260381f170fee1891bef4524380ac536683c"
+    },
+    "native_25cb6cc.txt": {
+      "path": "C:/RMDialogClock_20261105/native_25cb6cc.txt",
+      "bytes": 11047,
+      "sha256": "64c9aa890d9a1364064b543bf5cfd1d0876decf21ee4fb8f4557a88d7f329bd3"
+    },
+    "native_318d1c4.txt": {
+      "path": "C:/RMDialogClock_20261105/native_318d1c4.txt",
+      "bytes": 1835,
+      "sha256": "fb5d6301c88401630b382ac9bd5af0dbb8d70bd31a9d1879a389d1d4244c0e76"
+    },
+    "native_32037e4.txt": {
+      "path": "C:/RMDialogClock_20261105/native_32037e4.txt",
+      "bytes": 2536,
+      "sha256": "72b61a37ff628b256585c77c66e79e0cfd97e558b52156907bfeab9b2f2b447f"
+    },
+    "native_38ffc34.txt": {
+      "path": "C:/RMDialogClock_20261105/native_38ffc34.txt",
+      "bytes": 1194,
+      "sha256": "d790a8001c737dbc08d631a3ce80966dd3bc7bc19e619340cbe44d467da7399a"
+    },
+    "native_38ffc88.txt": {
+      "path": "C:/RMDialogClock_20261105/native_38ffc88.txt",
+      "bytes": 1473,
+      "sha256": "b307b215f553f7871268b33b6a74cdfa68c65d45fbb7cdc25e0a53cbcb223b65"
+    },
+    "native_clock.py": {
+      "path": "C:/RMDialogClock_20261105/native_clock.py",
+      "bytes": 5116,
+      "sha256": "29b8650ae20d32b3beca0fd8b724485aa78c8bd3a015e4751b157dd859c37921"
+    },
+    "native_clock_comparison.json": {
+      "path": "C:/RMDialogClock_20261105/native_clock_comparison.json",
+      "bytes": 115318,
+      "sha256": "30867e477689d583457c6675e486a03af6f73cc349cb13f9146643e5a3c7efd7"
+    },
+    "plan.json": {
+      "path": "C:/RMDialogClock_20261105/plan.json",
+      "bytes": 1620,
+      "sha256": "322693405f058781de1c99169d5d2e6264ac758fe2b44443c8579c15e64719d2"
+    },
+    "prepare.py": {
+      "path": "C:/RMDialogClock_20261105/prepare.py",
+      "bytes": 5224,
+      "sha256": "d72a14bf8de0b457ae435095056c2ab06e1ef469353d968e0e1c70c5d77e77c4"
+    },
+    "promote.py": {
+      "path": "C:/RMDialogClock_20261105/promote.py",
+      "bytes": 6902,
+      "sha256": "9a4e6085bcc19e0076965aec0dc796aba6bc45fd2204f02047ea38ce8bfdc103"
+    },
+    "run_unity.py": {
+      "path": "C:/RMDialogClock_20261105/run_unity.py",
+      "bytes": 6574,
+      "sha256": "7ca01615ccc9ff04de7628d1bae541ac377809f7051d791589787fc9c4078741"
+    },
+    "settings_clock_comparison.json": {
+      "path": "C:/RMDialogClock_20261105/settings_clock_comparison.json",
+      "bytes": 445,
+      "sha256": "8ae763b9702309e779e184cfae1bf770811cfd8e686980ec8ea61ed9d9d98521"
+    }
+  },
+  "android_followup": {
+    "source_commit": "a1e8526539f04770d694d9db72fdd3859a58d961",
+    "report": "SourceCatalog/android_dialog_clock_20261105.json",
+    "apk_sha256": "245abff1bfc3079ae9fb4bf327c501e7a8e32df84e037a9cc36f606e3b56e737",
+    "apk_bytes": 43633835,
+    "quit_cancel_fail_retry_and_post_retry_swap_verified": true,
+    "cold_restart_visible_board_retained": true,
+    "exact_pixel_equality": false,
+    "scope": "Actual OS gestures on the ARM64-translating Android emulator verify the APK containing the clock fix. The visible board survives cold restart, with eight documented hint/idle patch differences. Original rendered parity and all-100 natural play remain unverified."
+  },
+  "out_of_moves_banner_followup": {
+    "baseline_commit": "68120bbe9aa8b202a3ebf2d3b1386770151f5353",
+    "report": "SourceCatalog/out_of_moves_banner_evidence.json",
+    "native_below_then_above_offsets_restored": true,
+    "native_final_settle_seconds": 0.1,
+    "native_nominal_auto_seconds": 1.95,
+    "typed_active_level_clock_bound": true,
+    "portable_scenarios": 25,
+    "portable_commands": 2034,
+    "fixed_mismatches": 0,
+    "formal_auto_seconds": 1.9724006652832031,
+    "formal_skip_seconds": 0.41651153564453125,
+    "alternating_formal_flow_passed": true,
+    "natural_level55_budget_failure_and_retry_passed": true,
+    "scope": "Correct the native banner directions, 0.1-second final return and shared active-level tween clock. Construction/easing/quantization and the compiled production coroutines are compared through explicit ports; the formal flow and a separate 22-move natural loss/retry pass. Historical 0.6-second / 2.45-second banner interpretation is superseded. Android and original rendered parity remain separate."
+  }
+}

@@ -1,0 +1,582 @@
+{
+  "full_objective_complete": false,
+  "production_application_account_win_fail_bound": false,
+  "runtime_area_parser_restored": true,
+  "formal_account_area_callback_bound": true,
+  "original_lightweight_configs_restored": 167,
+  "original_config_tasks_verified": 1654,
+  "full_user_area_model_restored": false,
+  "actual_home_scene_navigation_or_view_verified": false,
+  "actual_asset_download_or_published_area_count_owner_bound": false,
+  "mobile_runtime_verified": false,
+  "original_rendered_parity_verified": false,
+  "source_snapshot_sha256": "8fbbab70a4b5bc904fc94ed612d60e629d2ebd3d99a096e0017968b1b40bd1f7",
+  "restored_scope": [
+    "Original AreaDataParser initial/legacy/NextArea/server and unavailable-area orchestration now executes in runtime C#. Current-area capture, later re-read, required asset-helper lookup/caching, model writes, storage writes/deletion and synced flags follow native order, including failures and partial state.",
+    "UserAreaData task-bit packing,12-byte little-endian/base64 save and UpdateAreaData publication/persistence are restored. The fallback parser packing uses native ldexpf/saturating integer conversion/ADD, which differs from GetTaskValue OR/32-bit shift wrapping outside ordinary task lengths.",
+    "All167 original AreaConfig assets retain1654 task IDs/prices/dependencies/replay parameters/offsets and root background/CRC settings. Runtime ScriptableObjects load through a native-style numbered Resources/cache container. Only runtime script references and three large-texture fields change to resource-path strings; referenced artwork stays on-demand.",
+    "Every lightweight serialized field is checked against actual Unity-loaded JSON, with float32-bit comparison. Loading all167 configurations adds zero Texture objects in the explicit integration test; production config loading remains demand-driven.",
+    "The game-scene account fixture no longer counts an empty area callback. Native local account loading now restores actual Area1/six-task data on initial load and a newly created account model after SQLite reopen, without storing default values."
+  ],
+  "native_verification": {
+    "passed": true,
+    "cases": 3768,
+    "primitive_cases": 193,
+    "primitive_scope": "Actual ARM64 GetTaskValue OR/32-bit shift wrapping, ldexpf/FCVTZS/add task packing including overflow/Infinity, 12-byte/base64 encoding, null/short byte input and index mutation before failure. BCL byte-list/base64/Skip/Take/ToInt32 are supplied boundaries.",
+    "scope": "Execute original ARM64 area parser/control flow and compare actual runtime C#.\n\nStorage rows, config objects/lengths, asset availability, published area count,\nmanaged allocation and BCL string/base64/byte/SQL boundaries are supplied.\nOriginal captured/re-read user state, initial/legacy/NextArea/server-limit/\nmissing-bundle branches, task construction, model publication and call order\nexecute from ELF. Only diagnostic formatting/logging is skipped. This is not\ncomplete account startup, download/Home rendering, all area model methods or\nmobile execution proof. A separate Unity check uses real configs and SQLite.",
+    "original_rvas": [
+      "0x3d1f298",
+      "0x3d1eeb8",
+      "0x3d1c674",
+      "0x3d1f5b4",
+      "0x3d1f1d8",
+      "0x3d1f7d0",
+      "0x3d1f900",
+      "0x3d1effc",
+      "0x3d1f6a8",
+      "0x28e3a80",
+      "0x28e377c",
+      "0x3d1f850",
+      "0x28e38e8",
+      "0x28e3a10"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/AreaDataHarness.cs",
+        "sha256": "de12e870f4553befa5d8966e33238225c6f0ef78a0d6815f82d424f2e9842f03"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalAreaDataParser.cs",
+        "sha256": "df2b38e021d7969a3f20aeea31a93697b1018d59b23df2ca78a49feb25526826"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalUserAreaData.cs",
+        "sha256": "b1a636ccc78630ebadcee6741ad87f726bbe9a59a260365935860e061c71424d"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalAreaConfig.cs",
+        "sha256": "d2004b512166cbd603e2695aeccc5b59ecadaca0e2acba0466f61152084efc90"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalAreaConfigContainer.cs",
+        "sha256": "b5750541a310644bb17539f6d424e402cf83fc647b8e7ca8fcd7e613ce858413"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+        "sha256": "a75e6b7b3bb4978ea826257aff33a705064e6561547ea212473593b5d1310f48"
+      },
+      {
+        "path": "SourceCatalog/AreaDataPrimitiveHarness.cs",
+        "sha256": "88919762e5ebf70dac904a42cd89b5988dd923f17b68d9525c7049cad8c4dd78"
+      },
+      {
+        "path": "SourceCatalog/verify_area_data.py",
+        "sha256": "483541106219682010de2e5d4773dd9b577a352e16572fe0c790496207c5b0fa"
+      }
+    ]
+  },
+  "local_account_regression": {
+    "passed": true,
+    "cases": 900,
+    "scope": "Execute native SyncManager local loading and identity/packed-progress decoding.\n\nUserKeyValue reads/BCL parsing, wall clock, home-area parsing and unlimited-booster\nstring-to-BitArray are typed boundaries. Native field/default/write ordering,\ncaptured references, null/partial failure, Pinata/Madness defaults, RoyalPass and\nTeamOffer decoding execute from the ELF. Diagnostic formatting is skipped. SQL\nreload/booster parsing are checked separately. Production startup/mobile, home\narea contents and complete feature ownership are not proved by this kernel test.",
+    "original_rvas": [
+      "0x337e714",
+      "0x337ed84",
+      "0x337f0c8",
+      "0x337f124",
+      "0x30d2110",
+      "0x28dc430",
+      "0x30cc1e0",
+      "0x28e55b8"
+    ],
+    "files": [
+      {
+        "path": "SourceCatalog/LocalAccountLoadHarness.cs",
+        "sha256": "ee067c96c27be0c9ebc7e043a592572b8672264493a0d0a5c76bf51e4feebec0"
+      },
+      {
+        "path": "SourceCatalog/AccountKernelHarness.cs",
+        "sha256": "54eb9beca8cadcd8b4254e827a9e6610ac5a7430dfba813ea4a2e654e8304238"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+        "sha256": "676525d80ce0c6c48ecefffaf0957e699105eece9acc5330a0aef55e9155ce80"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+        "sha256": "a75e6b7b3bb4978ea826257aff33a705064e6561547ea212473593b5d1310f48"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalBasicLevelProgress.cs",
+        "sha256": "060bcc6fd74937b63449baa097985bc303fbb3a334e091b018034d7e2405f3ea"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalUserInventoryBalances.cs",
+        "sha256": "1b5f2aecd84eb65e57f8df2a328c2db2c85cd2d138b1ce20b52de78956d18fea"
+      },
+      {
+        "path": "Assets/Foundation/Runtime/OriginalActiveLevelData.cs",
+        "sha256": "99073681633b6c4aed4fc58ff70814a2b461b4829f6ee9e78aaafd27d0546863"
+      }
+    ]
+  },
+  "original_methods": [
+    {
+      "rva": "0x3d1f298",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$ParseAndSetFromLocalStorage",
+      "body_sha256": "7629385228b8ae7c62e61f8e5a9a0b219521c5c34481ea9eab9c4af09d12aeb3"
+    },
+    {
+      "rva": "0x3d1eeb8",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$ParseAndSetFromServer",
+      "body_sha256": "948a640eb6a2e25076bdd186809b2b3d7e78382b6a51053f05c55e0804b971e5"
+    },
+    {
+      "rva": "0x3d1c674",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$ParseAndSetAvailableAreaFromLocalStorage",
+      "body_sha256": "788c5a6d11432dcbd3381bc3b045247ef7932ff59371eecdb5a59a4e538f714e"
+    },
+    {
+      "rva": "0x3d1f5b4",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$SetInitialValues",
+      "body_sha256": "8b8b6cc8796323dcadcae6c7d923f842874b55dbac761a96c181bc601f42c73b"
+    },
+    {
+      "rva": "0x3d1f1d8",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$ConvertAreaTaskDataToArray",
+      "body_sha256": "33353366668e988d8c34b87ed59341587f40a2d96fc2826b1b910b6e0c267c2d"
+    },
+    {
+      "rva": "0x3d1f7d0",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$GetNextInt",
+      "body_sha256": "cc91c3d83ecf7c9490dab657d9464542bcf8bd5dd51387e41ccff51a05c68d72"
+    },
+    {
+      "rva": "0x3d1f900",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$GetBetween",
+      "body_sha256": "2734a50d476d86e7a382755d0b3adb859611d58af749615c464961ff5bec572d"
+    },
+    {
+      "rva": "0x3d1effc",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$SaveRealAreaData",
+      "body_sha256": "899672c20033dfdb59bb0724ad901d5603d5810a66c8a7ff8af8acca251712a7"
+    },
+    {
+      "rva": "0x3d1f6a8",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$RemoveSavedRealAreaData",
+      "body_sha256": "bb50e6035c3029d9ab08f9c7abf8007fbb9e9380c01f3a7ee5f0de9283b3aa7c"
+    },
+    {
+      "rva": "0x28e3a80",
+      "name": "Royal.Player.Context.Data.Persistent.UserAreaData$$UpdateAreaData",
+      "body_sha256": "d548ab2f80cbd8e24f0df8f9b32de54285c6b48bdebd9e8f437ab9460abae0fa"
+    },
+    {
+      "rva": "0x28e377c",
+      "name": "Royal.Player.Context.Data.Persistent.UserAreaData$$GetTaskValue",
+      "body_sha256": "6a86824ff714a407772259773eb121dc16647fe14d8c296bd1b4e7a76ad0b133"
+    },
+    {
+      "rva": "0x3d1f850",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Data.AreaDataParser$$ConvertAreaTaskArrayToTaskData",
+      "body_sha256": "71d2b161bd7f73533258dcc93e4273b74e20be567bd1dcd863a223d42d407224"
+    },
+    {
+      "rva": "0x28e38e8",
+      "name": "Royal.Player.Context.Data.Persistent.UserAreaData$$ToByteArray",
+      "body_sha256": "98939995c7016b3f5421d7442ae261b9ee8d3c4da69c28169e6272a0dd3ebdd7"
+    },
+    {
+      "rva": "0x28e3a10",
+      "name": "Royal.Player.Context.Data.Persistent.UserAreaData$$EncodeAsString",
+      "body_sha256": "ac36d214c7c573091dbaf428e6cb3ca558d642afae05f7d3e3cfa9ecdd10dece"
+    },
+    {
+      "rva": "0x3d1be0c",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Config.AreaConfigContainer$$LoadAreaConfig",
+      "body_sha256": "010192e0ec7ff3d19e84e6f2c1930fda329a784fdcfa4ec7684c5f138f3a8cb3"
+    },
+    {
+      "rva": "0x3d200ec",
+      "name": "Royal.Scenes.Home.Context.Units.Area.Config.AreaConfigContainer$$CreateAreaConfig",
+      "body_sha256": "6db20506bda381d9ace225f2ae76c7495015c6d3acac72dcec9d87cd012328ef"
+    },
+    {
+      "rva": "0x337e714",
+      "name": "Royal.Player.Context.Data.SyncManager$$UpdateDataFromLocalStorage",
+      "body_sha256": "a79a3b854a19eb17489a1c3387506edc8f64276126750364dc0452382c6c01fd"
+    }
+  ],
+  "config_recovery_report": "SourceCatalog/area_config_recovery_verification.json",
+  "actual_unity_config_report": "SourceCatalog/area_config_runtime_verification.json",
+  "background_verifications": [
+    {
+      "passed": true,
+      "test": "area-data",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "8fbbab70a4b5bc904fc94ed612d60e629d2ebd3d99a096e0017968b1b40bd1f7",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_area-data.log",
+      "elapsed_seconds": 73.87,
+      "batch": {
+        "passed": true,
+        "test": "area-data",
+        "failure": "",
+        "timestamp_utc": "2026-10-29T00:25:55.2477017Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    },
+    {
+      "passed": true,
+      "test": "remaining-coins-normal",
+      "unity_exit_code": 0,
+      "source_unchanged_during_run": true,
+      "source_sha256": "8fbbab70a4b5bc904fc94ed612d60e629d2ebd3d99a096e0017968b1b40bd1f7",
+      "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+      "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+      "elapsed_seconds": 103.68,
+      "batch": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "failure": "",
+        "timestamp_utc": "2026-10-29T00:28:39.9974664Z",
+        "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+      },
+      "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+    }
+  ],
+  "area_storage_integration": {
+    "passed": true,
+    "fresh_area_verified": true,
+    "legacy_restore_verified": true,
+    "next_area_restore_verified": true,
+    "server_limit_verified": true,
+    "unavailable_bundle_verified": true,
+    "database_reopen_verified": true,
+    "configs_loaded": 167,
+    "new_textures_from_config_load": 0,
+    "task_counts": [
+      0,
+      6,
+      7,
+      9,
+      8,
+      9,
+      8,
+      8,
+      8,
+      9,
+      8,
+      8,
+      9,
+      10,
+      10,
+      9,
+      10,
+      9,
+      8,
+      9,
+      10,
+      10,
+      10,
+      11,
+      9,
+      10,
+      10,
+      9,
+      10,
+      10,
+      10,
+      10,
+      12,
+      11,
+      9,
+      9,
+      11,
+      11,
+      11,
+      10,
+      10,
+      10,
+      9,
+      10,
+      11,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      11,
+      12,
+      10,
+      10,
+      10,
+      10,
+      11,
+      11,
+      10,
+      11,
+      11,
+      10,
+      10,
+      11,
+      10,
+      10,
+      10,
+      11,
+      11,
+      10,
+      12,
+      10,
+      10,
+      10,
+      10,
+      11,
+      10,
+      10,
+      10,
+      10,
+      10,
+      13,
+      10,
+      10,
+      11,
+      10,
+      10,
+      10,
+      10,
+      10,
+      11,
+      10,
+      11,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "failure": "",
+    "scope": "Actual167 recovered lightweight Resources configs and real private Windows SQLite storage execute runtime AreaDataParser/UserAreaData. Fresh/legacy/NextArea/server-limit/unavailable-bundle/available-again/reopen behavior is checked. Bundle availability/published limits are explicit inputs; this is not production account startup, actual download/Home navigation/rendered parity or mobile proof. Texture paths replace original heavy strong references; config restore loads zero additional Texture objects."
+  },
+  "normal_settlement_account_integration": {
+    "account_area_data_restored": true,
+    "actual_game_context_deactivation_verified": true,
+    "actual_level_pool_recycled": true,
+    "inactive_level_updates_stopped": true,
+    "home_scene_load_requests": 1,
+    "actual_game_exit_manager_verified": true,
+    "result_dialog_cleared": true,
+    "result_view_destroyed": true,
+    "result_flow_completed": true,
+    "game_state_after_continue": 0,
+    "passed": true,
+    "skipped": false,
+    "logo_runtime_dialog_lifecycle_verified": true,
+    "remaining_runtime_dialog_lifecycle_verified": true,
+    "skip_button_entry_verified": false,
+    "first_level_skip_rejected": true,
+    "remaining_dialog_started_ready": true,
+    "account_database_reopen_verified": true,
+    "account_native_reload_verified": true,
+    "runtime_storage_factory_verified": true,
+    "directory_rules_verified": true,
+    "result_prefab_registration_verified": true,
+    "result_continue_button_verified": true,
+    "failure": "",
+    "account_database_path": "C:\\Users\\pc\\AppData\\Local\\Temp\\royal-match-account-131ccd7e18744ccbbbf56fb2327bb515.sqlite",
+    "result_exit_requests": 1,
+    "skip_ui_level": 1,
+    "initial_remaining_moves": 24,
+    "converted_moves": 24,
+    "unconverted_moves": 0,
+    "reward_coins": 70,
+    "collections": 25,
+    "peak_coin_views": 60,
+    "peak_pilots": 60,
+    "peak_operation5": 60,
+    "native_departure_count": 60,
+    "active_board_coin_value_at_end": 0,
+    "unconverted_move_coin_value": 0,
+    "session_star_reward": 1,
+    "session_win_state": 3,
+    "native_win_cloche_calls": 1,
+    "win_trigger_calls": 1,
+    "win_flow_calls": 1,
+    "low_match_total": 100,
+    "logo_closed": 1,
+    "remaining_dialog_shown": 1,
+    "result_dialog_owner_shown": 1,
+    "level_end_calls": 1,
+    "reactivation_calls": 1,
+    "account_level": 2,
+    "account_star": 1,
+    "account_coin": 2070,
+    "account_coin_update_calls": 1,
+    "account_star_update_calls": 1,
+    "account_initial_coin": 2000,
+    "account_area_load_calls": 2,
+    "elapsed": 11.507028579711914,
+    "scope": "Formal36box goal scenario. Actual native local-account loader reads an empty private Windows SQLite database (level1/coins2000/stars0 without default writes), then actual win/remaining/user-end/storage kernels commit rewards. The original logo prefab owns the runtime UiDialog Show/Close coroutine and real DialogManager registration; its timer completes the flow through DialogClosed then OnClose. RemainingMovesDialog now owns OnShow, its typed0.3second callback and actual lifecycle close. Standard Button input reaches native TapToSkip, with first-level rejection checked. Skip variants supply a distinct explicit Number2 tap-only session while the actual board/account/session remain level1; this is not level2 startup/layout proof. The recovered LevelWinDialog prefab now renders through the actual runtime UiDialog/manager and native star/pillow cues; the visible standard Continue Button reaches the actual GameExit manager, NoGame state, no-loading UI preparation and real DialogManager.ClearDialogs/UiDialog force-close/flow completion once. Its native exit event precedes the shouldExitGame write; actual Unity destruction and input rejection are checked two frames later. Actual Unity GameContext exit dispatch now clears late callbacks and active publication, resets the fixture-bound functional units, stops real local-move/manual coroutines and recycles every spawned level-pool view. Inactive game-unit/clock dispatch and the Home-load request boundary are checked. The full112-slot level factory, global tween/Animator/camera/touch owners, backdrop, scene loading, Home flags/area/sliding text, event eligibility, localization and haptic/audio remain explicit fixtures. The same loader restores a newly created account model from a reopened connection. Area restoration now executes the native parser and original six-task Resources config on initial load and reopened-account load, without saving defaults. Feature/clock/Home view/save-file/backend/event aggregation/King/Life/Ego/audio/reactivation/download/tutorial and application composition owners remain explicit fixtures. Full application/mobile startup/database composition, migrations/corruption handling, full final settlement themes/curved text/footer/orientation layout, physical input and original rendered/cross-platform parity remain incomplete."
+  },
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/AreaDataVerification.cs",
+      "sha256": "8189f80a40655cea581af7cdf5d09f78d5229d913b29fd9987d693246bee5e1b"
+    },
+    {
+      "path": "Assets/Foundation/Editor/AreaDataVerification.cs.meta",
+      "sha256": "3bf2679cc54ca849927976a8e2fe0f251d5aae5244f76010db3f1136d062270e"
+    },
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "0e99c3026505767af05831e3b34d4e896c4877ef31903ada6af2335b90eb5c75"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "7bb52e0314727cd9556f1d00770d0e7ab6be3a2311660ed3d4d415a90c51c23a"
+    },
+    {
+      "path": "Assets/Foundation/Editor/UserEndFixtureContext.cs",
+      "sha256": "186bad60c325c670c3ce4f231bced20aef443c209f091b9be77bfc5d7e23f090"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAreaConfig.cs",
+      "sha256": "d2004b512166cbd603e2695aeccc5b59ecadaca0e2acba0466f61152084efc90"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAreaConfig.cs.meta",
+      "sha256": "12f999117b9887712d35c35b9aee0fe9a120edfded09439265173ab4fbedcaee"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAreaConfigContainer.cs",
+      "sha256": "b5750541a310644bb17539f6d424e402cf83fc647b8e7ca8fcd7e613ce858413"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAreaConfigContainer.cs.meta",
+      "sha256": "3d2d8ee04232b283b6c0638654cdd1fe28e168b9e98ab3883174f766e38ada75"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAreaDataParser.cs",
+      "sha256": "df2b38e021d7969a3f20aeea31a93697b1018d59b23df2ca78a49feb25526826"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalAreaDataParser.cs.meta",
+      "sha256": "8fc0a5c03234e3a996c08f6890edf61b1eeab8faaa9864a4c31131ec8d76e063"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalKeyValueStorage.cs",
+      "sha256": "a75e6b7b3bb4978ea826257aff33a705064e6561547ea212473593b5d1310f48"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLocalAccountLoad.cs",
+      "sha256": "676525d80ce0c6c48ecefffaf0957e699105eece9acc5330a0aef55e9155ce80"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalUserAreaData.cs",
+      "sha256": "b1a636ccc78630ebadcee6741ad87f726bbe9a59a260365935860e061c71424d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalUserAreaData.cs.meta",
+      "sha256": "be4abdcf9951043b1efe3fc768f5af3e6cb910d770b1d38fe726677c11a4d7e5"
+    },
+    {
+      "path": "SourceCatalog/AreaDataHarness.cs",
+      "sha256": "de12e870f4553befa5d8966e33238225c6f0ef78a0d6815f82d424f2e9842f03"
+    },
+    {
+      "path": "SourceCatalog/AreaDataPrimitiveHarness.cs",
+      "sha256": "88919762e5ebf70dac904a42cd89b5988dd923f17b68d9525c7049cad8c4dd78"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "7f2b23f317f03afb3805b5e8c91f4b2556cd84b6154d08d4ed25e041497845b0"
+    },
+    {
+      "path": "SourceCatalog/verify_area_config_assets.py",
+      "sha256": "654c35be0c02107773d934b2652e1efe0d9cc209e7b6daccd2be35a5199025b2"
+    },
+    {
+      "path": "SourceCatalog/verify_area_data.py",
+      "sha256": "483541106219682010de2e5d4773dd9b577a352e16572fe0c790496207c5b0fa"
+    }
+  ],
+  "remaining_gaps": [
+    "FoundationController still starts the local first-board composition without production Application/UserContext, account and WinFail wiring. This change restores a required account/Home dependency and its integration; it does not turn the existing fixture owners into production services.",
+    "Home AreaManager/config-registry composition, actual AssetBundleHelper download availability and native published-area count progression remain required owners. Tests supply these boundary inputs explicitly and do not prove download behavior.",
+    "UserAreaData task purchase/completion/prerequisite methods, area unlock/chest/replay flows, actual Home scene/views/navigation and textures are not restored by this parser/config work.",
+    "Full game lifetime/events/failure/retry/next levels, original visual/audio/animation parity and country/AB/GM/US-version selection remain incomplete. SDK behavior is unchanged.",
+    "Android/iOS startup/storage execution is unverified. The earlier Android SQLite binary approval remains unanswered and no libsqlite3.so was added."
+  ],
+  "performance": "Account/config parsing is low-frequency. The Resources container caches requested lightweight configs and preserves force-reload behavior; no bulk runtime preload was added. Recovered texture references are strings, avoiding artwork loads during account restore. The native byte slicing is implemented without LINQ and preserves index mutation/failure behavior."
+}

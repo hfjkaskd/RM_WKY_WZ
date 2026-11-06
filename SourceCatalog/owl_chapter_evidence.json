@@ -1,0 +1,997 @@
+{
+  "baseline_commit": "0e40172592f788a87e3859ee98f5c2de8352d4b1",
+  "current_scope": "Original numbered levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "canonical_background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-owl-chapter",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "aa9116adb9c18e9ee70d690ff090e7ffd4476d838c7278021b6b166206dfb87d",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-owl-chapter.log",
+    "elapsed_seconds": 615.67,
+    "batch": {
+      "passed": true,
+      "test": "core-owl-chapter",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T07:31:34.2734547Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "actual_chapter_verification": {
+    "passed": true,
+    "projection_during_shake_verified": false,
+    "egg_tap_verified": false,
+    "egg_reject_verified": false,
+    "egg_fall_verified": false,
+    "egg_burst_verified": false,
+    "egg_swap_verified": false,
+    "egg_natural_swap": false,
+    "potion_tap_animation": false,
+    "potion_color_hit": false,
+    "potion_repeated_color_rejected": false,
+    "potion_tnt_rocket_verified": false,
+    "dynamic_egg_refill": false,
+    "vase_tap": false,
+    "vase_reject": false,
+    "vase_first_layer": false,
+    "vase_final_layer": false,
+    "vase_natural_swap": false,
+    "vase_swap": false,
+    "vase_fall": false,
+    "owl_tap": true,
+    "owl_drag_blocked": true,
+    "owl_rocket_burst": true,
+    "owl_rocket_hit": true,
+    "owl_tnt_hit": true,
+    "owl_resists_adjacent_match": true,
+    "dynamic_vase_refill": true,
+    "dynamic_owl_chapter_egg_refill": true,
+    "cupboard_door_materials": true,
+    "owl_rocket_refills": 13,
+    "vase_fall_setup_hits": 0,
+    "eggs_from_opening_match": 0,
+    "failure": "",
+    "status": "finished",
+    "levels": [
+      {
+        "level": 61,
+        "width": 9,
+        "height": 10,
+        "target_count": 85,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 85,
+        "moves": 4,
+        "move_budget": 30,
+        "natural_actions": 2,
+        "fixture_actions": 2,
+        "fixture_combos": 2,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 62,
+        "width": 9,
+        "height": 9,
+        "target_count": 72,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 36,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 36,
+        "moves": 2,
+        "move_budget": 25,
+        "natural_actions": 1,
+        "fixture_actions": 1,
+        "fixture_combos": 1,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 63,
+        "width": 9,
+        "height": 9,
+        "target_count": 104,
+        "mailboxes": 9,
+        "cupboards": 0,
+        "boxes": 25,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 29,
+        "moves": 6,
+        "move_budget": 25,
+        "natural_actions": 0,
+        "fixture_actions": 6,
+        "fixture_combos": 6,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 64,
+        "width": 9,
+        "height": 9,
+        "target_count": 74,
+        "mailboxes": 0,
+        "cupboards": 3,
+        "boxes": 24,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 20,
+        "moves": 4,
+        "move_budget": 20,
+        "natural_actions": 0,
+        "fixture_actions": 4,
+        "fixture_combos": 4,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 65,
+        "width": 9,
+        "height": 10,
+        "target_count": 68,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 12,
+        "eggs": 20,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 6,
+        "vases": 0,
+        "owls": 12,
+        "moves": 3,
+        "move_budget": 23,
+        "natural_actions": 0,
+        "fixture_actions": 3,
+        "fixture_combos": 3,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 66,
+        "width": 9,
+        "height": 10,
+        "target_count": 110,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 30,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 30,
+        "owls": 0,
+        "moves": 5,
+        "move_budget": 31,
+        "natural_actions": 0,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 67,
+        "width": 9,
+        "height": 9,
+        "target_count": 120,
+        "mailboxes": 8,
+        "cupboards": 0,
+        "boxes": 40,
+        "grass": 40,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 0,
+        "moves": 6,
+        "move_budget": 25,
+        "natural_actions": 0,
+        "fixture_actions": 6,
+        "fixture_combos": 6,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 68,
+        "width": 8,
+        "height": 11,
+        "target_count": 74,
+        "mailboxes": 0,
+        "cupboards": 3,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 32,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 3,
+        "vases": 0,
+        "owls": 0,
+        "moves": 7,
+        "move_budget": 23,
+        "natural_actions": 0,
+        "fixture_actions": 7,
+        "fixture_combos": 7,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 69,
+        "width": 9,
+        "height": 10,
+        "target_count": 78,
+        "mailboxes": 6,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 0,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 21,
+        "owls": 27,
+        "moves": 5,
+        "move_budget": 25,
+        "natural_actions": 0,
+        "fixture_actions": 5,
+        "fixture_combos": 5,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      },
+      {
+        "level": 70,
+        "width": 9,
+        "height": 9,
+        "target_count": 549,
+        "mailboxes": 0,
+        "cupboards": 0,
+        "boxes": 0,
+        "grass": 0,
+        "eggs": 0,
+        "coins": 0,
+        "propellers": 32,
+        "collected_coins": 0,
+        "potion_racks": 0,
+        "vases": 0,
+        "owls": 49,
+        "moves": 9,
+        "move_budget": 20,
+        "natural_actions": 1,
+        "fixture_actions": 8,
+        "fixture_combos": 8,
+        "original_lightball_combo": false,
+        "won": true,
+        "center_y": -0.75
+      }
+    ],
+    "scope": "Actual GameScene from level 61 using real Continue buttons. Records owl tap, blocked drag, authored rocket and TNT, and an adjacent match. Verifies dynamic Vase and Egg refills, authored Propeller pair, and ordinary wins using controlled TNT placements."
+  },
+  "native_owl_and_cupboard_visual_reference": {
+    "passed": true,
+    "owl": {
+      "levels": [
+        {
+          "level": 61,
+          "owl_27": 85
+        },
+        {
+          "level": 62,
+          "owl_27": 36
+        },
+        {
+          "level": 63,
+          "owl_27": 29
+        },
+        {
+          "level": 64,
+          "owl_27": 20
+        },
+        {
+          "level": 65,
+          "owl_27": 12
+        },
+        {
+          "level": 69,
+          "owl_27": 27
+        },
+        {
+          "level": 70,
+          "owl_27": 49
+        },
+        {
+          "level": 77,
+          "owl_27": 21
+        },
+        {
+          "level": 84,
+          "owl_27": 16
+        },
+        {
+          "level": 88,
+          "owl_27": 8
+        }
+      ],
+      "item": 10,
+      "tiled": 27,
+      "goal": 17,
+      "pools": [
+        53,
+        54
+      ],
+      "swappable": false,
+      "fallable": false,
+      "near_match_damage": false,
+      "native": [
+        {
+          "address": "0x247343c",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.OwlStatueItemModel$$CanExplodeWithNearMatch"
+        },
+        {
+          "address": "0x2473444",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.OwlStatueItemModel$$IsFallable"
+        },
+        {
+          "address": "0x247344c",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.OwlStatueItemModel$$IsSwappable"
+        },
+        {
+          "address": "0x2473454",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.OwlStatueItemModel$$TryExplode"
+        },
+        {
+          "address": "0x24735f8",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.View.OwlStatueItemView$$PlayTapAnimation"
+        },
+        {
+          "address": "0x2473bbc",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.View.OwlStatueItemView.<TapCoroutine>d__15$$MoveNext"
+        },
+        {
+          "address": "0x2473a90",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.View.OwlStatueItemView$$ExplodeParticle"
+        }
+      ],
+      "additional_native": [
+        {
+          "address": "0x2473830",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.View.OwlStatueItemAssets$$GetSpriteForLayer"
+        },
+        {
+          "address": "0x2473540",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.View.OwlStatueItemView$$Damage"
+        },
+        {
+          "address": "0x2473a28",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.View.OwlStatueItemExplodeParticles$$Play"
+        },
+        {
+          "address": "0x24739f0",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.View.OwlStatueItemExplodeParticles$$Awake"
+        },
+        {
+          "address": "0x2473bbc",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.View.OwlStatueItemView.<TapCoroutine>d__15$$MoveNext"
+        },
+        {
+          "address": "0x2473664",
+          "method": "Royal.Scenes.Game.Mechanics.Items.OwlStatueItem.OwlStatueItemModel$$SetTntRocketComboExploders"
+        }
+      ],
+      "unchanged_renderer_material_references": [
+        1,
+        18
+      ],
+      "particles_per_layer": [
+        8,
+        5,
+        5
+      ],
+      "tap_angles": [
+        15,
+        0,
+        -15,
+        0,
+        10,
+        0,
+        -10,
+        0
+      ],
+      "sound_ids": [
+        260,
+        261,
+        262,
+        263,
+        264,
+        265
+      ],
+      "final_freeze_seconds": 0.15
+    },
+    "cupboard_visual_sources": [
+      {
+        "pack": "data.unity3d",
+        "path_id": 39,
+        "name": "Royal/Object3DShadowShader",
+        "native_pass_states": [
+          [
+            5.0,
+            10.0,
+            5.0,
+            10.0,
+            15.0,
+            0.0,
+            4.0,
+            2.0
+          ],
+          [
+            5.0,
+            10.0,
+            5.0,
+            10.0,
+            15.0,
+            0.0,
+            4.0,
+            2.0
+          ]
+        ],
+        "forward_gles_sha256": "a46d70eb471514894fd6ba78b3522c26b18dd7cd59933b8391cb4d71e901851d",
+        "installed_shader_sha256": "0927ef7a075e60071c5e059ad0813e1c1993f8a37fc0dd838078bbc1b661a1fc"
+      },
+      {
+        "pack": "datapack.unity3d",
+        "path_id": 1082,
+        "name": "Shader Graphs/Cupboard_Door_Particle",
+        "native_pass_states": [
+          [
+            5.0,
+            10.0,
+            1.0,
+            10.0,
+            14.0,
+            1.0,
+            4.0,
+            2.0
+          ],
+          [
+            5.0,
+            10.0,
+            1.0,
+            10.0,
+            0.0,
+            1.0,
+            4.0,
+            2.0
+          ]
+        ],
+        "forward_gles_sha256": "26c5a3516409f3d841a942e930335e3377efd49d5f57f48f03f96f52342aa49c",
+        "installed_shader_sha256": "9c56a121e99fe00058dae30e12a90f9fb730b87037e41d5209b49175f2003f9a"
+      }
+    ],
+    "scope": "Native source disassembly, prefab/material bindings and original mobile shader equations. Desktop Unity scene and mobile device visual validation are recorded separately."
+  },
+  "preserved_original_configs": [
+    {
+      "number": 61,
+      "original_name": "00061v01_L",
+      "resource_path": "Levels/level_61",
+      "decoded_source": "configs/levels/61__5734.json",
+      "raw_source": "configs/textassets/61__5734.bytes",
+      "sha256": "648f10557230957afa435b973d1b2bc5cb7716c61f981d6831bebc4b9146a77e",
+      "moves": 30,
+      "width": 9,
+      "height": 10,
+      "goal_types": [
+        17
+      ],
+      "raw_item_ids": {
+        "20": 4,
+        "27": 85,
+        "40": 1
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 62,
+      "original_name": "00062v03_L",
+      "resource_path": "Levels/level_62",
+      "decoded_source": "configs/levels/62__9845.json",
+      "raw_source": "configs/textassets/62__9845.bytes",
+      "sha256": "b68942d0635d73cc64b7d87d61ab78c1c3fba5e1095f875d1e1724e575076281",
+      "moves": 25,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        17,
+        16
+      ],
+      "raw_item_ids": {
+        "1": 6,
+        "4": 3,
+        "26": 36,
+        "27": 36
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 63,
+      "original_name": "00063v03_L",
+      "resource_path": "Levels/level_63",
+      "decoded_source": "configs/levels/63__2267.json",
+      "raw_source": "configs/textassets/63__2267.bytes",
+      "sha256": "f71e9facd19ede2b7e70c5b711dd3cd36ad4b396e7d712ee2f852692cf7fed11",
+      "moves": 25,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        17,
+        11,
+        18
+      ],
+      "raw_item_ids": {
+        "2": 1,
+        "3": 3,
+        "4": 1,
+        "14": 13,
+        "21": 25,
+        "27": 29,
+        "34": 9
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 64,
+      "original_name": "00064v03_L",
+      "resource_path": "Levels/level_64",
+      "decoded_source": "configs/levels/64__1481.json",
+      "raw_source": "configs/textassets/64__1481.bytes",
+      "sha256": "31e19537e571247ff39a94244e5dda2224a7a7efc2e07fd5af1a93111280d7dc",
+      "moves": 20,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        15,
+        11,
+        17
+      ],
+      "raw_item_ids": {
+        "0": 10,
+        "1": 1,
+        "2": 6,
+        "3": 6,
+        "11": 2,
+        "21": 24,
+        "27": 20,
+        "41": 3,
+        "42": 3,
+        "51": 3,
+        "52": 3
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 65,
+      "original_name": "00065v04_L",
+      "resource_path": "Levels/level_65",
+      "decoded_source": "configs/levels/65__12385.json",
+      "raw_source": "configs/textassets/65__12385.bytes",
+      "sha256": "c36174dadb63cddde0a9184965f67f9a7e5f4aebcddb75b5a2d2f966b48e6fab",
+      "moves": 23,
+      "width": 9,
+      "height": 10,
+      "goal_types": [
+        17,
+        19,
+        16,
+        13
+      ],
+      "raw_item_ids": {
+        "0": 18,
+        "11": 6,
+        "14": 10,
+        "26": 20,
+        "27": 12,
+        "43": 6,
+        "44": 6,
+        "53": 6,
+        "54": 6
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 12
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 66,
+      "original_name": "00066v03_L",
+      "resource_path": "Levels/level_66",
+      "decoded_source": "configs/levels/66__6362.json",
+      "raw_source": "configs/textassets/66__6362.bytes",
+      "sha256": "155c154ba63f083a5d1ce7c2e952112812fd07e4fc4f09830f1855acfe369f11",
+      "moves": 31,
+      "width": 9,
+      "height": 10,
+      "goal_types": [
+        16,
+        12
+      ],
+      "raw_item_ids": {
+        "1": 3,
+        "3": 1,
+        "14": 26,
+        "25": 30,
+        "26": 30
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 67,
+      "original_name": "00067v03_L",
+      "resource_path": "Levels/level_67",
+      "decoded_source": "configs/levels/67__14517.json",
+      "raw_source": "configs/textassets/67__14517.bytes",
+      "sha256": "7b68ec75b2accbb802214b9e756c3ebaa13de8c4592b2a17d956fae0b5c2ade7",
+      "moves": 25,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11,
+        13,
+        18
+      ],
+      "raw_item_ids": {
+        "0": 6,
+        "1": 3,
+        "3": 1,
+        "4": 3,
+        "5": 4,
+        "14": 16,
+        "21": 40,
+        "34": 8
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 40
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 68,
+      "original_name": "00068v03_L",
+      "resource_path": "Levels/level_68",
+      "decoded_source": "configs/levels/68__1910.json",
+      "raw_source": "configs/textassets/68__1910.bytes",
+      "sha256": "d34e5dd204c8787c0acdb8b2e2d7ca1f2bc5d26f82fc525fe3e0a1837f88a7d3",
+      "moves": 23,
+      "width": 8,
+      "height": 11,
+      "goal_types": [
+        16,
+        19,
+        15
+      ],
+      "raw_item_ids": {
+        "0": 24,
+        "2": 3,
+        "4": 3,
+        "14": 2,
+        "26": 32,
+        "41": 3,
+        "42": 3,
+        "43": 3,
+        "44": 3,
+        "51": 3,
+        "52": 3,
+        "53": 3,
+        "54": 3
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 69,
+      "original_name": "00069v04_L",
+      "resource_path": "Levels/level_69",
+      "decoded_source": "configs/levels/69__12884.json",
+      "raw_source": "configs/textassets/69__12884.bytes",
+      "sha256": "833b72ca320a07a2efe6700bba97c1ee02b48cf09897ba89e6c09d67275b1032",
+      "moves": 25,
+      "width": 9,
+      "height": 10,
+      "goal_types": [
+        17,
+        12,
+        18
+      ],
+      "raw_item_ids": {
+        "0": 13,
+        "1": 7,
+        "2": 1,
+        "3": 6,
+        "4": 7,
+        "11": 2,
+        "25": 21,
+        "27": 27,
+        "34": 6
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 70,
+      "original_name": "00070v01_L",
+      "resource_path": "Levels/level_70",
+      "decoded_source": "configs/levels/70__10402.json",
+      "raw_source": "configs/textassets/70__10402.bytes",
+      "sha256": "c3a2f02df83e008529142e618c5453128d06fbcae6a59de79e7a8d2d015a435b",
+      "moves": 20,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        17,
+        16
+      ],
+      "raw_item_ids": {
+        "10": 32,
+        "27": 49
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "verification_limits": [
+    "The production GameScene starts at level 61 and runs through level 70 using the standard Continue buttons.",
+    "The ordinary chapter uses recorded input and controlled special placements. The authored rocket, TNT, adjacent match and propeller pair use their original tiles.",
+    "The cupboard's recovered color map, reflection cube and transparent shadows were exercised in the desktop scene. Original tutorial overlays, physical mobile touch, full visual comparison and level 71 onward remain open."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "4af9d6970fc1cb7de40273be4761fee4af70fd8e87cd45a2945599c8868b4f18"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreMixedChapterVerification.cs",
+      "sha256": "e916b11516a22680580df5d25cafa33bcacaebfaa402a124b0c0943d84ac998d"
+    },
+    {
+      "path": "Assets/Foundation/Prefabs/Foundation.prefab",
+      "sha256": "562b6bfd67a297dbee0e96727c6dfdda1e334939f4a3a99be1aeb7a1d839a87c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "210ca5eea618447d7a9b53f421aa02c0e874b8725361838a5fc8d07b2ca82659"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalItemModelConstruction.cs",
+      "sha256": "92821ec3489fc757cc3885075b6f7f79b7edee7e0d55a9759ea94c9686a36f79"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelPresentation.cs",
+      "sha256": "6b68dc1535a4e8b6c22de56d7e354d418b94bf5702161db1406dcdbf233f0413"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOwlStatueBoardItem.cs",
+      "sha256": "a68bfe9fd90b6469dd5128a1b0e9e7439a774b2393352ab0e12ff799f558e6c1"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOwlStatueBoardItem.cs.meta",
+      "sha256": "d8a0478e6bfbfcba3ff37bce55fad4352be988dd20f6034734f949bf07135c31"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOwlStatueBurstParticles.cs",
+      "sha256": "f13f20f5533264ac38fbce63ff3bdbba364f5d86b56c54599328e70a0dc0eab8"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOwlStatueBurstParticles.cs.meta",
+      "sha256": "c48d03487ef3a1e6114dd09b41e37f396093c89b9188f2bb6547d71a0f5d0351"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOwlStatueItemView.cs",
+      "sha256": "342fe9a2ef4d8b54a54922a5f21e28c1eb8875b9d218c68e25264982a80fad4e"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOwlStatueItemView.cs.meta",
+      "sha256": "3052f4480ba0164b929dc560275b4d31eb11754735760f1c9351846f264f3388"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOwlStatueVisualAssets.cs",
+      "sha256": "e02b64f753032fc1b3970949aea5d6e36fc8b9089e9dd5bef56c923476cb9c2f"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalOwlStatueVisualAssets.cs.meta",
+      "sha256": "d28b879b0319f87e538dab3e67eba4b498f1d5bff3f604af1f51d1d97c9a462d"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "a7f281aa9b1d798b36026be333084fa420b4848889d8741fe8ee87906e916659"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GameSfxAssets.asset",
+      "sha256": "e9065b251419f315265931d54ca2bdd6d491f51542d2d609dd3830d0bad402ec"
+    },
+    {
+      "path": "Assets/Foundation/Settings/GoalUiAssets.asset",
+      "sha256": "cb1cf1df792e5b6f06aef6041a59bde6de5cd32fdf9aa01b063f25c0a8aa3967"
+    },
+    {
+      "path": "Assets/Foundation/Shaders/OriginalCupboardDoorParticle.shader",
+      "sha256": "9c56a121e99fe00058dae30e12a90f9fb730b87037e41d5209b49175f2003f9a"
+    },
+    {
+      "path": "Assets/Foundation/Shaders/OriginalCupboardDoorParticle.shader.meta",
+      "sha256": "5166e2525e844e2863955bdd823835022fdb91ffdded13978ba5fd8fb5815de4"
+    },
+    {
+      "path": "Assets/Foundation/Shaders/OriginalObject3DShadow.shader",
+      "sha256": "0927ef7a075e60071c5e059ad0813e1c1993f8a37fc0dd838078bbc1b661a1fc"
+    },
+    {
+      "path": "Assets/Foundation/Shaders/OriginalObject3DShadow.shader.meta",
+      "sha256": "caa6a5b09de3829d4b69f3a93c853c8504f6b9647d94a08e18c625f172f09612"
+    },
+    {
+      "path": "Assets/Resources/Foundation/OwlStatueVisualAssets.asset",
+      "sha256": "bafaca93752e2cb243187c3a5e2c4a65c3ac183d4080c6dfba3a8616aeb19d54"
+    },
+    {
+      "path": "Assets/Resources/Foundation/OwlStatueVisualAssets.asset.meta",
+      "sha256": "7127baab8ee466798acee56c2b67e9e7cda658c1db839ff2e2f854fe975985e1"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/OwlStatueItemExplodeParticles.prefab",
+      "sha256": "aad50ecdf47660926993770de7178376df348497babf0a2ea3a6290675dbbd82"
+    },
+    {
+      "path": "Assets/Resources/Recovered/GameObject/OwlStatueItemPrefab.prefab",
+      "sha256": "f4e1127739428b34a18186a550f3d81c5a33fa7a7529eb627482a53a57a1f5f7"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Material/Cupboard_Door_Particle.mat",
+      "sha256": "8ab1f44bbf71834478b95d37561f8d50678149fb937d89678ee7a4c54880f3c7"
+    },
+    {
+      "path": "Assets/Resources/Recovered/Material/Object3dShadowMat.mat",
+      "sha256": "ad52647fe17b85520ec6476b35e43e51029077c9c9285a5aaa694d648f9bc8ef"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "daff585e1542f26d29a157085a978c0728239edc5b557ed72280055dea2356a3"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "c70d9bec5c8bc6810e3c38e27e8408393319834e69685b63f9d953540ef0925d"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "33fec8cf35c71f736349201c076712519083a867907c1423645fbdad68ed33bb"
+    },
+    {
+      "path": "background_core_owl_chapter_verification.json",
+      "sha256": "908bf05be51aecc0aeecccf3a62094e34ec9d31c4cd1d0ac1a65cc7df8d2a95b"
+    },
+    {
+      "path": "core_owl_level61_rocket.png",
+      "sha256": "8defaf956f6a8e195cd8e1264e962a6de666da3f19634ffa9d36b924f9f80e0e"
+    },
+    {
+      "path": "core_owl_level61_start.png",
+      "sha256": "5bdc4e7880133cbb4cbf00650f8aa8ddf7038a2d0d88538f8fd8137638426c2c"
+    },
+    {
+      "path": "core_owl_level64_cupboard.png",
+      "sha256": "0faa4ef4d9ac1e2d10353a6b3c60984f1d59291f2942803905287c1dac101aed"
+    },
+    {
+      "path": "core_owl_level65_start.png",
+      "sha256": "76ff8555511bb2315dcd24e49d91999fa16e2781c95c2e06fe83ba518469d443"
+    },
+    {
+      "path": "core_owl_level66_refill.png",
+      "sha256": "623a12c8621a82d4fa30bb1b9866dd544f776190994df57c22c9914596911f0c"
+    },
+    {
+      "path": "core_owl_level68_start.png",
+      "sha256": "41a7868fa8019cbbd61839fb7e694bd1861404d70eed053252dbbe5fdb16578e"
+    },
+    {
+      "path": "core_owl_level70_refill.png",
+      "sha256": "d7360b4bd3ade47760e5ff818a3d75fc87c5c0f83ca9c9c36a08379ab52cb102"
+    },
+    {
+      "path": "core_owl_level70_start.png",
+      "sha256": "076afcaab2f087b1b812b8369865a93ea2368ddee157c5efcd0ce07c64ac9bf9"
+    },
+    {
+      "path": "core_owl_level70_win.png",
+      "sha256": "4fce82e0ccd48bb638651561c845ffbe871590533818cd1c99d8ef3ce2f1256f"
+    },
+    {
+      "path": "live_core_owl_chapter_verification.json",
+      "sha256": "c4eec8a5e35cde01ea41a12b301f735d7a2927af8e89954a4819712eadbbe02b"
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "baseline_commit": "54de2af71279c60541544c739540e18589275950",
+  "current_scope": "Original ordinary levels 1–100, core gameplay only.",
+  "full_current_scope_complete": false,
+  "all100_levels_playable": false,
+  "canonical_background_verification": {
+    "passed": true,
+    "canonical_source_proof": true,
+    "test": "core-grass-chain",
+    "unity_exit_code": 0,
+    "source_unchanged_during_run": true,
+    "source_sha256": "4439a3f5cb2cca8d25ceafbbd00e680a0bc3f1ce6b62f7e3143524c7675e4d34",
+    "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+    "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_core-grass-chain.log",
+    "elapsed_seconds": 610.42,
+    "batch": {
+      "passed": true,
+      "test": "core-grass-chain",
+      "failure": "",
+      "timestamp_utc": "2026-11-03T03:51:34.3919010Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "scope": "Independent source/cache copy; production scene/runtime code. Diagnostic mode skips source hashing and supplies no canonical source proof. Each verifier defines its actual stimulus and ownership scope; a passing core-flow verifies the production win/fail/dialog owners, not natural full-level solves, all100 gameplay, physical input or original rendered parity."
+  },
+  "actual_level4_to7_verification": {
+    "passed": true,
+    "level5_loaded": true,
+    "level5_interior_refill": true,
+    "level6_loaded": true,
+    "level6_first_layer": true,
+    "level6_final_layer": true,
+    "level7_loaded": true,
+    "level7_box_cavity_refilled": true,
+    "level5_tnt_taps": 5,
+    "level6_tnt_taps": 5,
+    "failure": "",
+    "scope": "The actual original core scene starts at level 4 via isolated SQLite. Real result buttons advance into levels 5–7. Recorded natural swaps exercise the fixed original boards, with explicit TNT and rocket placements for follow-up paths. Level 7 checks the originally blocked empty cells and their refill after the box barrier opens. Full natural solves, device input and original rendered parity remain outside this run."
+  },
+  "original_level_configs": [
+    {
+      "number": 4,
+      "original_name": "00004v02_L",
+      "resource_path": "Levels/level_4",
+      "decoded_source": "configs/levels/4__2330.json",
+      "raw_source": "configs/textassets/4__2330.bytes",
+      "sha256": "2c6739354629ce2360a82ce95bf0d29c103078671fb4849fd3efc6e9537114cb",
+      "moves": 30,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        13
+      ],
+      "raw_item_ids": {
+        "1": 19,
+        "2": 10,
+        "3": 17,
+        "4": 18,
+        "5": 17
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 49,
+        "IsPredefined": 9
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 5,
+      "original_name": "00005v02_L",
+      "resource_path": "Levels/level_5",
+      "decoded_source": "configs/levels/5__5658.json",
+      "raw_source": "configs/textassets/5__5658.bytes",
+      "sha256": "b2fe4efb7b403d55d43904b06b4d32daf64b3ec8a507a6f381e4645dad7c2fb2",
+      "moves": 30,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        13
+      ],
+      "raw_item_ids": {
+        "0": 7,
+        "1": 19,
+        "3": 17,
+        "4": 19,
+        "5": 18,
+        "11": 1
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 73
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 6,
+      "original_name": "00006v02_L",
+      "resource_path": "Levels/level_6",
+      "decoded_source": "configs/levels/6__3731.json",
+      "raw_source": "configs/textassets/6__3731.bytes",
+      "sha256": "de737617a09096597b0df2393385a40822880992c3aa4953b731731e15ab41d2",
+      "moves": 35,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        13
+      ],
+      "raw_item_ids": {
+        "0": 8,
+        "1": 17,
+        "3": 20,
+        "4": 20,
+        "5": 15,
+        "11": 1
+      },
+      "nonzero_cell_fields": {
+        "FillType": 8,
+        "Grass": 72
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    },
+    {
+      "number": 7,
+      "original_name": "00007v03_L",
+      "resource_path": "Levels/level_7",
+      "decoded_source": "configs/levels/7__10495.json",
+      "raw_source": "configs/textassets/7__10495.bytes",
+      "sha256": "730d27ddc6147b788c81f5247f4c783a0d557203cb92ceca617b59ee1f8b608f",
+      "moves": 25,
+      "width": 9,
+      "height": 9,
+      "goal_types": [
+        11,
+        13
+      ],
+      "raw_item_ids": {
+        "1": 7,
+        "2": 5,
+        "3": 10,
+        "4": 10,
+        "13": 32,
+        "22": 17
+      },
+      "nonzero_cell_fields": {
+        "FillType": 9,
+        "Grass": 32
+      },
+      "scroll": false,
+      "shifter_boards": 0,
+      "water_cells": 0
+    }
+  ],
+  "native_geometry_and_population": {
+    "cell_type": "TiledToTypeConverter.AsCellType 0x1910eb4. Raw 0 and 11 are non-normal cells; raw 13 is normal.",
+    "model_creation": "CellGridManager.CreateItems 0x320f5a0, branch 0x320f728–0x320f748. Fresh population skips non-normal cells and raw 0/13.",
+    "interior_refill": "Level 5 authored FillType 1 at (4,6), below the (4,7) gap. Actual FallComponent.FillingCell was observed.",
+    "double_layer": "Level 6 has 36 dark and 36 light grass cells. First hit shows the light view with no count change. Final hit removes the model and decrements the HUD.",
+    "empty_cavity": "Level 7 keeps 32 normal empty cells under the box barrier. Recorded match damage followed by a vertical rocket opens the original barrier. Production fall fills its column."
+  },
+  "verification_limits": [
+    "Recorded natural swaps operate on the original layouts. Explicit placements of a propeller, TNT and rockets stimulate later damage and completion.",
+    "Levels 4–6 complete through the production result. Level 7 was opened and played through the initial box barrier only.",
+    "Complete natural solves, physical device input and original visual/audio parity remain unverified."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/BackgroundVerification.cs",
+      "sha256": "7f791998c86b737045eac5c091c96cda711c17e20052e0df4230e7837d20ed08"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreFlowVerification.cs",
+      "sha256": "0fdf6a1b377e51a4eb277b563b42ef87ff852cbaf9dca495d2fcfaa8f8d5de15"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreGrassChainVerification.cs",
+      "sha256": "5329d7467e8860b8514dc847b81ad08c722ec1846bc76e71def8cb433b2e4114"
+    },
+    {
+      "path": "Assets/Foundation/Editor/CoreGrassChainVerification.cs.meta",
+      "sha256": "64eadad2d8155300b6dfa91bbd1d53e8164848511f823349b8dc0748e92f8cd6"
+    },
+    {
+      "path": "Assets/Foundation/Editor/GrassGameplayVerification.cs",
+      "sha256": "5b98abe4ec209ee9373e0a37e53d1cd255ed22283d0e41284167e5422a5544b7"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalGridItemPopulation.cs",
+      "sha256": "dda5463abbcdd91c03f5ff8c06df57696bf2f273d6691dd5be7c5efc04b24ba8"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalInitialBoardView.cs",
+      "sha256": "1ee97812bd8de0a8119f38f14d0e9ba6706d91943debe09f917254e9aa8689ae"
+    },
+    {
+      "path": "SourceCatalog/core_first100_evidence.json",
+      "sha256": "50bd322252f799b3d4c34bf1e0851f80cce6a2f455ad2774a32ad72db061d13c"
+    },
+    {
+      "path": "SourceCatalog/core_first100_manifest.json",
+      "sha256": "ab1f221bfd4448dcb8402a4a11f1f6e646abc88b0d656b1fc5e8d11a04b181df"
+    },
+    {
+      "path": "SourceCatalog/run_background_verification.py",
+      "sha256": "0faf80b56ff8fe53d6b245c07ace97caa61b639c790a76e30eb8ae45f51512ea"
+    },
+    {
+      "path": "background_core_grass_chain_verification.json",
+      "sha256": "ff7d188d96fd50920c63a79c965c83f1c9a815a81dc500889f849f11a7a703a7"
+    },
+    {
+      "path": "core_grass_level5.png",
+      "sha256": "91957c39522da2cd0cf464b8c1b7dbf76ec4aa2d5517fbdc6e40da8bb44213eb"
+    },
+    {
+      "path": "core_grass_level5_refill.png",
+      "sha256": "09645518a4401b8802d938a9892fcdc058d904dea90952b4ccffa64d5c023a36"
+    },
+    {
+      "path": "core_grass_level6.png",
+      "sha256": "ebb8a6f8f122923a45e36c2477c1922c166d497307272c242739ad807ee768ce"
+    },
+    {
+      "path": "core_grass_level6_light.png",
+      "sha256": "a9f551c514ef2e25bd3a471d4c80773d1bc50847563941a05b6714725c1ec7df"
+    },
+    {
+      "path": "core_grass_level7.png",
+      "sha256": "9a8ebf75bb698591ef624786b6c9d60e525e79d60abbb3271e96aa766c0a2d99"
+    },
+    {
+      "path": "core_grass_level7_refill.png",
+      "sha256": "383c4d30564b3911fd0a73d323597a8e8c5c3a900b9b37dd32139e6b82afed5f"
+    },
+    {
+      "path": "live_core_grass_chain_verification.json",
+      "sha256": "099bdb57593aa30e3c80e8cb46f2a18b534b9ec1afc69523c6b67a03610a1d31"
+    }
+  ]
+}

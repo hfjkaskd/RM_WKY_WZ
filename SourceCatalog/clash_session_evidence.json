@@ -1,0 +1,111 @@
+{
+  "native_source": "RoyalMatch_20260929/apk_unpacked/split_config.arm64_v8a/lib/arm64-v8a/libil2cpp.so",
+  "methods": [
+    {
+      "rva": "0x338ae24",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$.ctor",
+      "disassembly_sha256": "deb125da9b67d7c4fd08477d9da27f4e7706de3b36e849a2a32043a263d72b56"
+    },
+    {
+      "rva": "0x338c878",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$get_CanIncreaseScore",
+      "disassembly_sha256": "34a60006097849cb6eec80a11fbcc4edde322fbe9c1c7e5f1bc3e058ae26a154"
+    },
+    {
+      "rva": "0x338c8b4",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$CalculateFinalScore",
+      "disassembly_sha256": "d83eb0937fb46ee2b4ab6b94b28b9e66f557e772febd0159956afe179c7b6e8d"
+    },
+    {
+      "rva": "0x338c8d0",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$LoadSaveData",
+      "disassembly_sha256": "e357276a6c761f02d1d4ae20549307444ba8183c822443f7b9995879a037e9c6"
+    },
+    {
+      "rva": "0x338c958",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$Init",
+      "disassembly_sha256": "25b71d43ff22aa9a4b014e8f9a8406ffb738df108a563abc69535640459f17fd"
+    },
+    {
+      "rva": "0x338cba0",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$HandleGameplayBundleAndCollectViewPool",
+      "disassembly_sha256": "47bd32a844d0ddc3f43d7f7db7def881c0a0000d844d8f0439183769d38e0fef"
+    },
+    {
+      "rva": "0x338ce20",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$ResetDataOnRoundFinished",
+      "disassembly_sha256": "8c026cee4da1a5dfddf5816076f4688a9fd610581044162ea88ed2ada189fd71"
+    },
+    {
+      "rva": "0x338ce2c",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$IncrementScoreForItem",
+      "disassembly_sha256": "d423c458b0e3ff77e9f05cfb5203d61dc4b90dce4957ddedeff45c384328e054"
+    },
+    {
+      "rva": "0x338cea0",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$IncrementScore",
+      "disassembly_sha256": "9fae07cf9dbee87103ae4b88b2f0f75adb0ef213abe63c1b92db64568e339083"
+    },
+    {
+      "rva": "0x338cf00",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$IncrementScoreForCombo",
+      "disassembly_sha256": "9bfe928f73ec0e2a4a6368c1fcb64df5601c4f71541935f1683115abd87f5cd7"
+    },
+    {
+      "rva": "0x338d10c",
+      "name": "Royal.Player.Context.Data.Session.ClashOfChampionsLevelData$$IncrementScoreForRemainingMoves",
+      "disassembly_sha256": "ddce32604ddea5e16a3bae44e32cfd0aaf75221876a3c9cda0b00c9971310454"
+    }
+  ],
+  "keys": {
+    "0x5626430": "clash_of_champions_gameplay_v3",
+    "0x5626418": "clash_of_champions_dialog_v2",
+    "0x5606c10": "ClashOfChampionsGameplayCollectView"
+  },
+  "combo_table_rva": "0x4053e89",
+  "combo_table_bytes": [
+    0,
+    18,
+    18,
+    18,
+    7,
+    9,
+    11,
+    17,
+    13,
+    15
+  ],
+  "boundaries": [
+    "Actual user/application manager, helper/local score, config and MultiplierUtil service behavior",
+    "RoyalBundleManager.GetBundle, RoyalEventBundle type, bundle load/unload and LoadAsset<GameObject>",
+    "One-time prefab GetComponent<ClashOfChampionsGameplayCollectView> and ItemFactory TryCreate/TryClear pool implementations",
+    "CLR allocation, interface/type resolution; snapshot, branches, arithmetic, field writes and call order are executed natively"
+  ],
+  "notes": [
+    "Init(false restore) clears should/before/after and total; restore Init retains snapshot and seeds total from After before resolving/caching manager/helper.",
+    "Native records manager before null guard, caches helper before bundle handling, assigns multiplied difficulty before helper lock null guard, and fills fourteen configured scores in order.",
+    "Missing download or failed load retains old gameplay bundle but does not bypass later multiplier/lock/config initialization.",
+    "Active event loads gameplay v3, loads original asset and forwards even a null component to pool; ownership is assigned only after pool call returns.",
+    "Inactive owned gameplay clears pool, unloads current gameplay(true), clears ownership, resolves/casts dialog v2 then unloads dialog(true).",
+    "LoadSaveData uses inherited unsigned 1/20/20 packing, then independently reads current-level difficulty and multiplier state before Init(true).",
+    "CanIncreaseScore resolves cached manager progress each time; score lock is the captured level value.",
+    "Native ItemType Rocket2/Propeller3/Tnt4 use their respective configured score. All other types, including Lightball5, use match score.",
+    "Combo1 multiplies configured lightball-lightball multiplier by normal cell count. Combo5,6,7,8,9,10 select tnt-tnt,rocket-tnt,rocket-rocket,propeller-tnt,propeller-rocket,propeller-propeller. Other combos use zero and still forward local score update.",
+    "UpdateLocalScore(finalScore,comboType) occurs before AddExtra and total event score increment, including zero scores. All int arithmetic wraps.",
+    "Round reset clears snapshot, retaining total, lock, multiplier, configured scores and resource ownership.",
+    "Collect-view presentation, remaining-special-item scoring and full AnimationData/application owners remain pending."
+  ],
+  "animation_constructor_dependency_audit": {
+    "constructor_rva": "0x338a648",
+    "inherited_init_types": [
+      "WeeklyPassLevelData",
+      "MagicCauldronLevelData",
+      "DukesFortuneLevelData",
+      "OceanOdysseyLevelData",
+      "PuzzleBreakLevelData",
+      "MergeSmithLevelData",
+      "ShortExpeditionEventLevelData"
+    ],
+    "remaining": "These derived snapshots inherit BeforeAfterData.Init(int); do not invent event-manager Init dependencies. Their extra collect flag/save layouts and concrete ownership still require restoration, as do complete Mission/Invite data and four owned dictionaries. Actual context owners/pool/bundle implementations remain required."
+  }
+}

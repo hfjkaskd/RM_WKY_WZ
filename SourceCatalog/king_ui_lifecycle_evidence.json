@@ -1,0 +1,1750 @@
+{
+  "schema": 1,
+  "baseline_commit": "5a09b9672b67512836748d0b86b88a7243012452",
+  "verified_utc": "2026-11-05T14:35:52.763703+00:00",
+  "runtime_changes": [
+    "Replace the Time.time deadline with the original shouldKingBeHappy flag and a game-context-owned 10-second WaitForSeconds coroutine. Initial/extra budget events rearm it, ordinary spent-move events do not, and older delayed resumes are preserved.",
+    "Bind the actual MoveManager to the retained King. Start/append idle animation based on the native cached move count and stop flag instead of forcing a new idle clip during every HUD reset.",
+    "KingUi.BeSad also clears the cached move count. The first candidate omitted that native write and failed the real retry check; adding it restores the native forced idle restart after defeat while success continues through the queued idle path.",
+    "Idle routines honor the native stop flag at each delayed resume and clear their handle on exit. The ordinary improved branch stops the prior idle coroutine when starting another; the bonus branch retains its native behavior.",
+    "Count every accepted improved happy animation at the visual owner, including a normal goal win. Remove the former prediction-only increment and unsubscribe the reused view from retired level sources."
+  ],
+  "native_owners": {
+    "KingUi.Start": "0x18c8e24",
+    "KingUi.StartIdleAnimationCycle": "0x18c8f50",
+    "KingUi.MoveChanged": "0x18c96b8",
+    "KingUi.BeHappy": "0x18c9f68",
+    "KingUi.BeSad": "0x18ca2b0",
+    "KingUi.IdleCycle.MoveNext": "0x18ca31c",
+    "KingUi.EnableHappyAnimDelayed.MoveNext": "0x18ca830",
+    "GoalUi.check_start": "0x18ccca4"
+  },
+  "goal_check_routing": "In the captured ordinary first-100 mode AnimationImprovementEnabled is true. The legacy GoalUi check-start happy/charger branch is therefore skipped; ordinary celebration is owned by the win transition and predictive King manager. Bonus boards do not use that ordinary speed-up branch.",
+  "offline_comparison": {
+    "passed": true,
+    "state_commands": 1824,
+    "idle_commands": 1600,
+    "mismatches": [],
+    "native_reference": {
+      "commands": 1824,
+      "native_function_calls": {
+        "0x18c9f68": 411,
+        "0x18ca830": 131,
+        "0x18c96b8": 818,
+        "0x18ca2b0": 185
+      },
+      "native_wait_durations": [
+        10.0
+      ],
+      "native_wait_constructions": 115,
+      "ports": "Original MoveChanged, BeHappy, BeSad and EnableHappyAnimDelayed ARM64 bodies execute. Metadata/allocation, animation state and coroutine dispatch are supplied. Idle-start first-resume effects are supplied, not a native Unity scheduler."
+    },
+    "idle_reference": {
+      "passed": true,
+      "commands": 1600,
+      "mismatches": [],
+      "production_source_sha256": "3295752bec028c9cf5f2349b5fdd9edcc8b36dc91fe9e32e072d29478e0ffb62",
+      "native_move_next_calls": 1126,
+      "method": "Exact production IdleCycle body compiled with state/track/shuffle/wait ports; actual ARM64 IdleCycle.MoveNext and GetNextIdleLoop execute against equivalent ports. Shuffle permutations and engine scheduling are supplied."
+    },
+    "source_files": {
+      "C:/RMGoalCheck_20261105/portable/KingUiStateHarness.cs": "eee3c2d7ae119b1d281da80310a7454787d3e2063c5ea918201a639b47e894a5",
+      "C:/RMGoalCheck_20261105/payload/Assets/Foundation/Runtime/OriginalKingUiState.cs": "0dacfda648e23929f3dfaa88d74a1ebe9071c8dd53e5e60965196ad03211d8fe",
+      "F:/Coin Merge Fortune/RM/Recovery/UnityFoundation/Assets/Foundation/Runtime/OriginalMoveManager.cs": "0059633ce3877a2e2952037724d3f69a3b538834d007428f4d2a32c75b562fff"
+    },
+    "scope": "Typed state, cached move resets, accepted-happy accounting, separate delayed resumes, and idle queue command/wait/stop behavior. Engine coroutine scheduling, animation ports and shuffle permutations are supplied in offline comparison; real Unity owner execution is verified separately."
+  },
+  "live_baseline": {
+    "passed": true,
+    "native_semantics_passed": false,
+    "initial_gate": true,
+    "first_happy_closed_gate": true,
+    "initial_budget_event_rearmed": false,
+    "increased_budget_preserves_current_clip": true,
+    "first_wait_rearmed": true,
+    "older_second_wait_rearmed_after_third_happy": false,
+    "retry_same_king": true,
+    "retry_gate_rearmed": true,
+    "retry_starts_idle_after_sad_reset": true,
+    "retry_actual_new_attempt": true,
+    "initial_clip": "idle_loop_3",
+    "first_happy_clip": "k-1sevinme_6",
+    "failure_clip": "k-1_uzulme",
+    "retry_clip": "idle_loop_3",
+    "first_happy_added_manual_wait": 0,
+    "first_happy_counter_delta": 0,
+    "two_happy_counter_delta": 0,
+    "three_happy_counter_delta": 0,
+    "increased_budget_track_calls": [],
+    "retry_track_calls": [
+      {
+        "frame": 782,
+        "time": 13.106734275817871,
+        "operation": "set",
+        "clip": "idle_loop_3"
+      },
+      {
+        "frame": 782,
+        "time": 13.106734275817871,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 782,
+        "time": 13.106734275817871,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      }
+    ],
+    "track_calls": [
+      {
+        "frame": 38,
+        "time": 0.6132305264472961,
+        "operation": "set",
+        "clip": "k-1sevinme_6"
+      },
+      {
+        "frame": 38,
+        "time": 0.6132305264472961,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 38,
+        "time": 0.6132305264472961,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      },
+      {
+        "frame": 649,
+        "time": 10.829299926757812,
+        "operation": "set",
+        "clip": "k-1sevinme_6"
+      },
+      {
+        "frame": 649,
+        "time": 10.829299926757812,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 649,
+        "time": 10.829299926757812,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      },
+      {
+        "frame": 781,
+        "time": 13.028913497924805,
+        "operation": "set",
+        "clip": "k-1_uzulme"
+      },
+      {
+        "frame": 782,
+        "time": 13.106734275817871,
+        "operation": "set",
+        "clip": "idle_loop_3"
+      },
+      {
+        "frame": 782,
+        "time": 13.106734275817871,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 782,
+        "time": 13.106734275817871,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      }
+    ]
+  },
+  "live_fixed": {
+    "passed": true,
+    "native_semantics_passed": true,
+    "initial_gate": true,
+    "first_happy_closed_gate": true,
+    "initial_budget_event_rearmed": true,
+    "increased_budget_preserves_current_clip": true,
+    "first_wait_rearmed": true,
+    "older_second_wait_rearmed_after_third_happy": true,
+    "retry_same_king": true,
+    "retry_gate_rearmed": true,
+    "retry_starts_idle_after_sad_reset": true,
+    "retry_actual_new_attempt": true,
+    "initial_clip": "idle_loop_3",
+    "first_happy_clip": "k-1sevinme_6",
+    "failure_clip": "k-1_uzulme",
+    "retry_clip": "idle_loop_2",
+    "first_happy_added_manual_wait": 1,
+    "first_happy_counter_delta": 1,
+    "two_happy_counter_delta": 2,
+    "three_happy_counter_delta": 3,
+    "increased_budget_track_calls": [
+      {
+        "frame": 157,
+        "time": 2.6303491592407227,
+        "operation": "add",
+        "clip": "idle_loop_2"
+      },
+      {
+        "frame": 157,
+        "time": 2.6303491592407227,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 157,
+        "time": 2.6303491592407227,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      }
+    ],
+    "retry_track_calls": [
+      {
+        "frame": 782,
+        "time": 13.10323715209961,
+        "operation": "set",
+        "clip": "idle_loop_2"
+      },
+      {
+        "frame": 782,
+        "time": 13.10323715209961,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 782,
+        "time": 13.10323715209961,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      }
+    ],
+    "track_calls": [
+      {
+        "frame": 38,
+        "time": 0.6141800284385681,
+        "operation": "set",
+        "clip": "k-1sevinme_6"
+      },
+      {
+        "frame": 38,
+        "time": 0.6141800284385681,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      },
+      {
+        "frame": 38,
+        "time": 0.6141800284385681,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 157,
+        "time": 2.6303491592407227,
+        "operation": "set",
+        "clip": "k-1sevinme_6"
+      },
+      {
+        "frame": 157,
+        "time": 2.6303491592407227,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      },
+      {
+        "frame": 157,
+        "time": 2.6303491592407227,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 157,
+        "time": 2.6303491592407227,
+        "operation": "add",
+        "clip": "idle_loop_2"
+      },
+      {
+        "frame": 157,
+        "time": 2.6303491592407227,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 157,
+        "time": 2.6303491592407227,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      },
+      {
+        "frame": 457,
+        "time": 7.630364894866943,
+        "operation": "add",
+        "clip": "idle_loop_3"
+      },
+      {
+        "frame": 457,
+        "time": 7.630364894866943,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      },
+      {
+        "frame": 457,
+        "time": 7.630364894866943,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 649,
+        "time": 10.830674171447754,
+        "operation": "set",
+        "clip": "k-1sevinme_6"
+      },
+      {
+        "frame": 649,
+        "time": 10.830674171447754,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      },
+      {
+        "frame": 649,
+        "time": 10.830674171447754,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 781,
+        "time": 13.030204772949219,
+        "operation": "set",
+        "clip": "k-1_uzulme"
+      },
+      {
+        "frame": 782,
+        "time": 13.10323715209961,
+        "operation": "set",
+        "clip": "idle_loop_2"
+      },
+      {
+        "frame": 782,
+        "time": 13.10323715209961,
+        "operation": "add",
+        "clip": "idle_connect_1"
+      },
+      {
+        "frame": 782,
+        "time": 13.10323715209961,
+        "operation": "add",
+        "clip": "idle_connect_2"
+      }
+    ]
+  },
+  "formal_unobserved_runs": {
+    "fixed_flow_v2": {
+      "passed": true,
+      "test": "core-flow",
+      "failure": "",
+      "timestamp_utc": "2026-11-05T14:18:40.3906356Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "fixed_combo": {
+      "passed": true,
+      "test": "core-king-combo",
+      "failure": "",
+      "timestamp_utc": "2026-11-05T14:19:01.2211700Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "fixed_worry": {
+      "passed": true,
+      "test": "core-king-worry",
+      "failure": "",
+      "timestamp_utc": "2026-11-05T14:19:31.3072765Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    },
+    "fixed_natural": {
+      "passed": true,
+      "test": "core-natural-attempts",
+      "failure": "",
+      "timestamp_utc": "2026-11-05T14:20:59.0926674Z",
+      "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+    }
+  },
+  "natural_attempts": {
+    "fixed_natural": [
+      {
+        "level": 1,
+        "initial_budget": 30,
+        "outcome": "win",
+        "moves_left_on_win": 21,
+        "result_coins": 68,
+        "bonus_coins": 0,
+        "reloaded_level": 2,
+        "accepted_moves": 9
+      },
+      {
+        "level": 2,
+        "initial_budget": 27,
+        "outcome": "win",
+        "moves_left_on_win": 14,
+        "result_coins": 51,
+        "bonus_coins": 0,
+        "reloaded_level": 3,
+        "accepted_moves": 13
+      }
+    ],
+    "fixed_natural_snapshot": [
+      {
+        "level": 1,
+        "initial_budget": 30,
+        "outcome": "win",
+        "moves_left_on_win": 21,
+        "result_coins": 68,
+        "bonus_coins": 0,
+        "reloaded_level": 2,
+        "accepted_moves": 9
+      },
+      {
+        "level": 80,
+        "initial_budget": 20,
+        "outcome": "win",
+        "moves_left_on_win": 0,
+        "result_coins": 0,
+        "bonus_coins": 444,
+        "reloaded_level": 81,
+        "accepted_moves": 20
+      }
+    ]
+  },
+  "first_level_two_moves": {
+    "level": 1,
+    "width": 9,
+    "height": 8,
+    "moves_left": 28,
+    "goals_left": 28,
+    "tile_ids_top_to_bottom": [
+      2,
+      2,
+      1,
+      1,
+      3,
+      3,
+      4,
+      1,
+      3,
+      2,
+      1,
+      3,
+      3,
+      1,
+      2,
+      4,
+      3,
+      1,
+      3,
+      3,
+      4,
+      3,
+      3,
+      4,
+      2,
+      4,
+      2,
+      1,
+      4,
+      3,
+      1,
+      2,
+      2,
+      4,
+      3,
+      4,
+      21,
+      1,
+      2,
+      2,
+      4,
+      2,
+      21,
+      21,
+      21,
+      21,
+      21,
+      3,
+      40,
+      1,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21
+    ]
+  },
+  "first_level_observation": "The formal first level starts with 30 moves and 36 boxes. A real guided swap followed by the real hint swap gives 28/28 and a naturally generated TNT at (3,2). The supplied old Unity screenshot has the same box footprint/counters but additional top-board powers and different pieces; this capture does not establish that old picture as the original app or as an initial board.",
+  "legacy_bonus_shuffle_gate": {
+    "passed": false,
+    "same_baseline_failure_reproduced": true,
+    "both_runs_coin_shuffles": 0,
+    "both_runs_bonus_idle_and_celebration_observed": true,
+    "scope": "Both old and patched production sources complete the level-80 attempt and observe its King idle/celebration, but fail the existing requirement for a shuffle that did not occur. The canonical test was not weakened. A separate natural run completes level 80 in 20 moves and opens level 81."
+  },
+  "intermediate_candidate_regression": {
+    "report": "fixed_flow/background_verification.json",
+    "failure": "The initial candidate missed the native BeSad cached-move reset and failed fresh-idle-after-retry. The final candidate includes that write and passes the unchanged formal check."
+  },
+  "runtime_source_identity": {
+    "Assets/Foundation/Runtime/OriginalKingVisual.cs": {
+      "before": "66bbcbc7df3906a9cf889877649081d14091a79c6db7cf1565166204e663a34a",
+      "after": "3295752bec028c9cf5f2349b5fdd9edcc8b36dc91fe9e32e072d29478e0ffb62"
+    },
+    "Assets/Foundation/Runtime/OriginalGameplayHud.cs": {
+      "before": "892b703ee55df607cbea49d6234c324776c7cd1ee3b4a6a81342de06542a0fd4",
+      "after": "f1f39ea268e43fe131b16c1abb0cc7a50df69d0a8a464b18b989bac89504d863"
+    },
+    "Assets/Foundation/Runtime/OriginalPlayableBoard.cs": {
+      "before": "3cacc5ac3c3443944da3032a6543d08fbd90e3d232d044b6c6a708015e482f27",
+      "after": "3cd3f037388a9aa6727e6aa3d800f8cf90e3d2b37cf0a0ccc5318d365d89c2f4"
+    },
+    "Assets/Foundation/Runtime/OriginalKingBoardReaction.cs": {
+      "before": "e3602df24b23f6c19873af3b4853efb451fbbbe2242368ba1cdca7b8aa7e688d",
+      "after": "e53bdc4ba919fd099533b607ab235c11f580f951339b59bf2d0aeb725c3a3bab"
+    },
+    "Assets/Foundation/Runtime/OriginalKingUiState.cs": {
+      "before": null,
+      "after": "0dacfda648e23929f3dfaa88d74a1ebe9071c8dd53e5e60965196ad03211d8fe"
+    },
+    "Assets/Foundation/Runtime/OriginalKingUiState.cs.meta": {
+      "before": null,
+      "after": "a3699ae3d5ce218529c3733fc425938d60ba013ca3be0763b915ee5100f9e63a"
+    }
+  },
+  "composition": {
+    "prefabs_or_static_hierarchy_changed": false,
+    "new_large_resource_references": false,
+    "new_runtime_plugin": false,
+    "editor_only_runtime_fallback": false,
+    "reflection_invocation": false,
+    "new_per_frame_work": false,
+    "performance": "Only native low-frequency move events and animation/coroutine transitions are added; existing cached rig/mesh evaluation is unchanged. The 10-second wait and iterator allocations follow the original owner."
+  },
+  "limits": [
+    "Offline comparison executes the listed original ARM64 state/iterator bodies with explicit engine, metadata, allocation, track and shuffle ports. It is not execution of the complete original Unity/Spine engine or scheduler.",
+    "The private observed Unity probe deliberately triggers budget events and happy callbacks, then uses actual quit/retry owners. It is a scoped state/owner test, not normal touch or a natural level solve. Its 720x1600 render captures use a test target and are not layout-parity evidence.",
+    "The separate unobserved ordinary natural runs use recorded tutorial/hint/board gestures and no arranged powers. The snapshot run only adds an Editor-side capture after move two; its production runtime has no observation hooks.",
+    "The legacy level-80 required-shuffle scenario remains failing on both baseline and fixed source because this run never shuffles; that failure is retained explicitly.",
+    "This revision has not been rebuilt or executed on Android yet. Full original-app image/audio/input parity and natural all-100-level completion remain unverified."
+  ],
+  "artifacts": {
+    "baseline_bonus_legacy/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/baseline_bonus_legacy/background_verification.json",
+      "bytes": 1444,
+      "sha256": "fb5d06a4fdb7b4950715f3751cae86b6f0829f73f4b5cb4384af6e24a3585e51"
+    },
+    "baseline_bonus_legacy/core_bush_level80_start.png": {
+      "path": "C:/RMGoalCheck_20261105/baseline_bonus_legacy/core_bush_level80_start.png",
+      "bytes": 1259523,
+      "sha256": "b9b4cb4bafd97078ace63737bb485682da49e8184e6cc1a37b76b4d75f18f177"
+    },
+    "baseline_bonus_legacy/live_core_bush_chapter_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/baseline_bonus_legacy/live_core_bush_chapter_verification.json",
+      "bytes": 4475,
+      "sha256": "6a5d2a833c640f7f776ffcdf9adbb875f613b0bd914452f60c4176b3120e0bce"
+    },
+    "baseline_bonus_legacy/process.json": {
+      "path": "C:/RMGoalCheck_20261105/baseline_bonus_legacy/process.json",
+      "bytes": 578,
+      "sha256": "d05cfdb1858ebdd6d7e570a1c1458f9b394d5ee91706dfacd07808d4bdaf06f2"
+    },
+    "baseline_bonus_legacy/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/baseline_bonus_legacy/unity.log",
+      "bytes": 109354,
+      "sha256": "ed47b6e07c2c3b9a72058a6926e6786a66be09207f98cb76cb55d8ff2f843b6d"
+    },
+    "baseline_observed_v2/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/baseline_observed_v2/background_verification.json",
+      "bytes": 388,
+      "sha256": "ee171e6c46a4a42080e596f17b3fc79e041d4d25396fb34caa0f1221a124d10b"
+    },
+    "baseline_observed_v2/king_lifecycle_failure.png": {
+      "path": "C:/RMGoalCheck_20261105/baseline_observed_v2/king_lifecycle_failure.png",
+      "bytes": 423664,
+      "sha256": "3df6281e3c6306cdb475eb076cb93fd777ecc32096801c1cd3642af6bc7de2ef"
+    },
+    "baseline_observed_v2/king_lifecycle_retry.png": {
+      "path": "C:/RMGoalCheck_20261105/baseline_observed_v2/king_lifecycle_retry.png",
+      "bytes": 1343871,
+      "sha256": "eaa060f2396e9617cb332bac08d0091ac5c8d3d29cb1e03447d8afe78ce977e0"
+    },
+    "baseline_observed_v2/live_core_king_combo_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/baseline_observed_v2/live_core_king_combo_verification.json",
+      "bytes": 2855,
+      "sha256": "b6ae60dfd1e5783b42a27c67d762a96f3dd332a10878f04189128c8bf5d249a7"
+    },
+    "baseline_observed_v2/process.json": {
+      "path": "C:/RMGoalCheck_20261105/baseline_observed_v2/process.json",
+      "bytes": 570,
+      "sha256": "fa53fda1e141d49fc76a153d18aede44ab829cdffea7cd148284dcd11217b2ab"
+    },
+    "baseline_observed_v2/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/baseline_observed_v2/unity.log",
+      "bytes": 110987,
+      "sha256": "c0ec5b175ba18ebd8f8d30e6b4cc1258bc9b16e81050810dc23a89a76652a5ad"
+    },
+    "commands.txt": {
+      "path": "C:/RMGoalCheck_20261105/commands.txt",
+      "bytes": 9696,
+      "sha256": "a0681d0664f439583500fcc49e5294189cc2e96120444ea6cd019b981f5ac4eb"
+    },
+    "compare_state.py": {
+      "path": "C:/RMGoalCheck_20261105/compare_state.py",
+      "bytes": 1639,
+      "sha256": "799ffc8e8d82c5c74f586293dba6fe0ed36cdac5444d9e2e502e4ec0e17f18a4"
+    },
+    "fixed_bonus/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_bonus/background_verification.json",
+      "bytes": 1444,
+      "sha256": "abc70ea4eebff2737b1f0b402a4480bf6614131cafa99d95b1437662c4ac7c9f"
+    },
+    "fixed_bonus/core_bush_level80_start.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_bonus/core_bush_level80_start.png",
+      "bytes": 1259481,
+      "sha256": "3c6c8d227eee0469d79eda00d371d221b1453f3e53d91912a36f548330989790"
+    },
+    "fixed_bonus/live_core_bush_chapter_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_bonus/live_core_bush_chapter_verification.json",
+      "bytes": 4475,
+      "sha256": "fc4b541a61ac5f12c65792d2a89d8c2903ec47a0e4314411662125db9b27e563"
+    },
+    "fixed_bonus/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_bonus/live_core_natural_attempts_verification.json",
+      "bytes": 16372,
+      "sha256": "a9f3beaebd6636dd98d598d511020e296f51278b12060491082db6b333aad59a"
+    },
+    "fixed_bonus/process.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_bonus/process.json",
+      "bytes": 568,
+      "sha256": "081b5be4049e3e2e2cc725c526d5a28b132939a1703bce57eba26e413e5ad590"
+    },
+    "fixed_bonus/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/fixed_bonus/unity.log",
+      "bytes": 100688,
+      "sha256": "87286602045e003bc62a3f7adc4d22b510ed92310b850dfff8f84745d73f6ffb"
+    },
+    "fixed_combo/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_combo/background_verification.json",
+      "bytes": 388,
+      "sha256": "4569fb573939a56f1943b36a90b434a4ec9e27272c9096e5e49a79acdadbfe54"
+    },
+    "fixed_combo/core_flow_level3.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_combo/core_flow_level3.png",
+      "bytes": 1137588,
+      "sha256": "1b9c6e15d3b258de76e8589b03c58f91e7e6bd006a2b6b03fc942edb0953c9bf"
+    },
+    "fixed_combo/core_king_combo_win_prediction.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_combo/core_king_combo_win_prediction.png",
+      "bytes": 1302211,
+      "sha256": "490642e21cac01e7d8a06a87443976e7c1068894f1953bf4a6cea01af914639b"
+    },
+    "fixed_combo/live_core_flow_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_combo/live_core_flow_verification.json",
+      "bytes": 2843,
+      "sha256": "a3c8fbe1be8110896bd374fe68e02ef83a71465941879d462bf49e22544cfddb"
+    },
+    "fixed_combo/live_core_king_combo_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_combo/live_core_king_combo_verification.json",
+      "bytes": 160,
+      "sha256": "2cf86a6bc44b519214b94a43e4547a23e2bc76c0581dd3cd82cbceae3c1547d6"
+    },
+    "fixed_combo/process.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_combo/process.json",
+      "bytes": 561,
+      "sha256": "27d2655079d045bbc132819df73168379c0b248dc885d1afa9154ccb475d9618"
+    },
+    "fixed_combo/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/fixed_combo/unity.log",
+      "bytes": 100396,
+      "sha256": "bbec24bfda724b3318bf548c564c006bcf1c3307249d7ba1a2eb6b6ac5c27dd0"
+    },
+    "fixed_flow/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/background_verification.json",
+      "bytes": 1101,
+      "sha256": "becbfb83bd7887e859d85b0c42a8674b799be1a03d831b6b07c8317a2c654733"
+    },
+    "fixed_flow/core_flow_fail.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/core_flow_fail.png",
+      "bytes": 425125,
+      "sha256": "e3d0a32aa0dd20bf0861d4172680cdeab598f95b43973f2f07fbd2c290685533"
+    },
+    "fixed_flow/core_flow_level2.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/core_flow_level2.png",
+      "bytes": 1134101,
+      "sha256": "0351e17cc6dbbd0f6c79b8dcda4f56d47de34a0bed28a5f14d4941d863fc9f00"
+    },
+    "fixed_flow/core_flow_level_entrance.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/core_flow_level_entrance.png",
+      "bytes": 1236474,
+      "sha256": "6e62d10e5a87811789eb8585bdbb82b76b92e906705846bc9f48ff08792170e6"
+    },
+    "fixed_flow/core_flow_out_of_moves.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/core_flow_out_of_moves.png",
+      "bytes": 932689,
+      "sha256": "b22491fe9f8c9cda667508f53fd9eee40ff4d0609a48b382dbf44d3b8801e72b"
+    },
+    "fixed_flow/core_flow_win.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/core_flow_win.png",
+      "bytes": 623202,
+      "sha256": "3909c149ee0e6212b284c37df80162a8af5ee8f6b55739f7e6dc8ba3818da458"
+    },
+    "fixed_flow/core_flow_win_text_enter.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/core_flow_win_text_enter.png",
+      "bytes": 545697,
+      "sha256": "4e82461168fc4d942d7475ab21a4c842342bc633c20c8551f8cb15837ebed62a"
+    },
+    "fixed_flow/live_core_catalog_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/live_core_catalog_verification.json",
+      "bytes": 845,
+      "sha256": "44e0dbd1dc66b2dc105b98c55a6d643a7eefd8b71eb83654a5994b31626a572d"
+    },
+    "fixed_flow/live_core_flow_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/live_core_flow_verification.json",
+      "bytes": 3205,
+      "sha256": "c2fed4d8deaa417e6ae10a8cc74e7d1038056b980b1718fd27144b27e6e8b020"
+    },
+    "fixed_flow/live_game_scene_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/live_game_scene_verification.json",
+      "bytes": 1098,
+      "sha256": "ac282eae16f43ed5a3a4460790491742026d5ad693f1f903a24957c357d83f8b"
+    },
+    "fixed_flow/live_goal_ui_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/live_goal_ui_verification.json",
+      "bytes": 706,
+      "sha256": "f8e5cab29c9bda68ba57b9cd0f51c0f3312e07c29441d718452368235600a4b7"
+    },
+    "fixed_flow/live_tnt_rocket_combo_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/live_tnt_rocket_combo_verification.json",
+      "bytes": 2888,
+      "sha256": "9d248ffa83372c05783856b3d52b2dc02c5a3fe8b27010aa3d14c3bb0eaa73a5"
+    },
+    "fixed_flow/process.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/process.json",
+      "bytes": 554,
+      "sha256": "fde06f0339334df6fea7a2b509faa76fb9a43fc9030b69ac91ba23a8505a966a"
+    },
+    "fixed_flow/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow/unity.log",
+      "bytes": 114323,
+      "sha256": "f87f30b378689b1fcaf7ab883192056e1bddfbc62934bb4cddb600118573ce46"
+    },
+    "fixed_flow_v2/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/background_verification.json",
+      "bytes": 382,
+      "sha256": "18b79778901a93c9bae9b34092d9563be4b6477e02b94f6770437bef6d1f9d4f"
+    },
+    "fixed_flow_v2/core_flow_fail.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/core_flow_fail.png",
+      "bytes": 425126,
+      "sha256": "873074f823614028bd2e587abfba6a3977f3b30452fe2998cd36fe06d7f3182b"
+    },
+    "fixed_flow_v2/core_flow_level2.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/core_flow_level2.png",
+      "bytes": 1134124,
+      "sha256": "f55f4fbfdb422a44c5d77c860ecf910ee454136ec965fe6597b259561e0155e2"
+    },
+    "fixed_flow_v2/core_flow_level3.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/core_flow_level3.png",
+      "bytes": 1137588,
+      "sha256": "1b9c6e15d3b258de76e8589b03c58f91e7e6bd006a2b6b03fc942edb0953c9bf"
+    },
+    "fixed_flow_v2/core_flow_level_entrance.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/core_flow_level_entrance.png",
+      "bytes": 1236102,
+      "sha256": "660b5520404bae2fae28cb1a8e4d75afe17eaf49009d2e2f23e803f80caebb50"
+    },
+    "fixed_flow_v2/core_flow_out_of_moves.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/core_flow_out_of_moves.png",
+      "bytes": 932714,
+      "sha256": "ee78a0e639ab6db9ad8cbea2358a05e257aa0adb537ca5a22d9b0cfa4a80d553"
+    },
+    "fixed_flow_v2/core_flow_retry.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/core_flow_retry.png",
+      "bytes": 1134044,
+      "sha256": "5b9a2d7aceb1cb5bef3ebeaa1b0c1fbaa56982a8cf26b615d86baed3a881fc69"
+    },
+    "fixed_flow_v2/core_flow_win.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/core_flow_win.png",
+      "bytes": 626383,
+      "sha256": "b29bfeffe0779ceb2cb1102b7e2e56179971d504ceb6026ec4fd62161cc5a077"
+    },
+    "fixed_flow_v2/core_flow_win_text_enter.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/core_flow_win_text_enter.png",
+      "bytes": 542074,
+      "sha256": "aadce204d4579ab01ba9988d13a24f9ef14cc8ea9dddeb2a23b1b379a0b50858"
+    },
+    "fixed_flow_v2/live_core_catalog_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/live_core_catalog_verification.json",
+      "bytes": 845,
+      "sha256": "44e0dbd1dc66b2dc105b98c55a6d643a7eefd8b71eb83654a5994b31626a572d"
+    },
+    "fixed_flow_v2/live_core_flow_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/live_core_flow_verification.json",
+      "bytes": 2843,
+      "sha256": "a3c8fbe1be8110896bd374fe68e02ef83a71465941879d462bf49e22544cfddb"
+    },
+    "fixed_flow_v2/live_game_scene_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/live_game_scene_verification.json",
+      "bytes": 1098,
+      "sha256": "79e4e9e7c935a679013c6c5210ed6f33f3a2a44bd9c7c6501d2fa5957147a5f1"
+    },
+    "fixed_flow_v2/live_goal_ui_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/live_goal_ui_verification.json",
+      "bytes": 707,
+      "sha256": "ab3609afcef5bf77124078fbc94b38912ae4b42ca6b7d1716e5ffa1b7fef6942"
+    },
+    "fixed_flow_v2/live_tnt_rocket_combo_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/live_tnt_rocket_combo_verification.json",
+      "bytes": 2889,
+      "sha256": "ad70acb01887b0cede4a6343a2a76b0d4f09c713a1ae6773c53f39f8fe1a40ef"
+    },
+    "fixed_flow_v2/process.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/process.json",
+      "bytes": 557,
+      "sha256": "49d41cbae0a5dd76075609bc76dd611228ddf425778e0a8462141940f248aba6"
+    },
+    "fixed_flow_v2/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/fixed_flow_v2/unity.log",
+      "bytes": 116916,
+      "sha256": "640795de19fe026532a17aa1287cee69fd37fc8535697af856171fb48e554a42"
+    },
+    "fixed_natural/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural/background_verification.json",
+      "bytes": 394,
+      "sha256": "174321efb90fad8d6ecd3a9ccd5176b34c502b72bf5c625bb8af1ee85622ead2"
+    },
+    "fixed_natural/core_natural_1_win.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural/core_natural_1_win.png",
+      "bytes": 619159,
+      "sha256": "1bb1489e1215643fa148cdf048cf1004eba93157c8246cf4e70cb6d7894fc8ac"
+    },
+    "fixed_natural/core_natural_2_win.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural/core_natural_2_win.png",
+      "bytes": 605830,
+      "sha256": "9e59380a23ddca8b045afb5aabba24a34af0eafcf431f88c8828adb3df466689"
+    },
+    "fixed_natural/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural/live_core_natural_attempts_verification.json",
+      "bytes": 16372,
+      "sha256": "a9f3beaebd6636dd98d598d511020e296f51278b12060491082db6b333aad59a"
+    },
+    "fixed_natural/process.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural/process.json",
+      "bytes": 612,
+      "sha256": "c506c38b7477004b86fbfa57ac811a3989c27dbfc398f553bd11754ee0b3791f"
+    },
+    "fixed_natural/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural/unity.log",
+      "bytes": 104050,
+      "sha256": "37d99ba53123acdaff8de8a9acc23f86797af605729bc0f2be04ea04de136a1f"
+    },
+    "fixed_natural_snapshot/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural_snapshot/background_verification.json",
+      "bytes": 394,
+      "sha256": "6b85dfd0c5370a2c6d0ec3714de54124b2f6cc65eabcdb1625ace3db0a546dbd"
+    },
+    "fixed_natural_snapshot/core_level1_two_moves.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural_snapshot/core_level1_two_moves.png",
+      "bytes": 1133442,
+      "sha256": "f95244d817cd514e7eb36a4c36e28a4436246accbf038dcc53dc3a1d4c497235"
+    },
+    "fixed_natural_snapshot/core_natural_1_win.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural_snapshot/core_natural_1_win.png",
+      "bytes": 617371,
+      "sha256": "9272d2e83a9a73ce5b6f4c9caafc88fec1f3aa7a599508303a1469c9b356e947"
+    },
+    "fixed_natural_snapshot/core_natural_80_win.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural_snapshot/core_natural_80_win.png",
+      "bytes": 657310,
+      "sha256": "f7eb1991cebcca7acb895dac4665234673b45171aa08ed24d954eebc3f45c2b2"
+    },
+    "fixed_natural_snapshot/first_level_two_moves.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural_snapshot/first_level_two_moves.json",
+      "bytes": 955,
+      "sha256": "3ffc822215591c8244e1e69f183aa3d6b1d4b26d1be37d5e7d8b33ccb8c60943"
+    },
+    "fixed_natural_snapshot/live_core_bush_chapter_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural_snapshot/live_core_bush_chapter_verification.json",
+      "bytes": 4475,
+      "sha256": "6a5d2a833c640f7f776ffcdf9adbb875f613b0bd914452f60c4176b3120e0bce"
+    },
+    "fixed_natural_snapshot/live_core_natural_attempts_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural_snapshot/live_core_natural_attempts_verification.json",
+      "bytes": 20682,
+      "sha256": "00bcf10628f30a77f302ae22e1e4c31187f1be6d65483a42336e3358145c82e7"
+    },
+    "fixed_natural_snapshot/process.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural_snapshot/process.json",
+      "bytes": 621,
+      "sha256": "ab6ae8cdefcea086d7bc6587d59184278033a1df9d978d751be48c4429f1f76e"
+    },
+    "fixed_natural_snapshot/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/fixed_natural_snapshot/unity.log",
+      "bytes": 115632,
+      "sha256": "666d4aa3026595a2e05359d8f9d42344e06c0c9b6550bf1bfb4868b264305aeb"
+    },
+    "fixed_observed_v2/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_observed_v2/background_verification.json",
+      "bytes": 388,
+      "sha256": "6a664ef74d8980b69b395634d1b067840c5883c1f22991a90b845a4f17a8657a"
+    },
+    "fixed_observed_v2/king_lifecycle_failure.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_observed_v2/king_lifecycle_failure.png",
+      "bytes": 423662,
+      "sha256": "e700d34ea430a78aa385a5b65be664504875eb04844b7214f7fe41dd8263265f"
+    },
+    "fixed_observed_v2/king_lifecycle_retry.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_observed_v2/king_lifecycle_retry.png",
+      "bytes": 1343847,
+      "sha256": "942d2f3f7e95c228d66f3ed7a9d539dac81e583d0a735f97eb7396fb30023f53"
+    },
+    "fixed_observed_v2/live_core_king_combo_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_observed_v2/live_core_king_combo_verification.json",
+      "bytes": 4708,
+      "sha256": "aba743b4f7b8db96ee478e20a2d81ad0301aaf5fdb9009cc9b7ef593ca01eb04"
+    },
+    "fixed_observed_v2/process.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_observed_v2/process.json",
+      "bytes": 566,
+      "sha256": "f168e8507435903ce16b404317c169bb4ce2a6c40cae2e223b11e1fd89a4e216"
+    },
+    "fixed_observed_v2/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/fixed_observed_v2/unity.log",
+      "bytes": 110907,
+      "sha256": "232b50a74d001c8375400ecbc83c7c5fb99032af1dddfcc7c5091ee4457f1952"
+    },
+    "fixed_worry/background_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_worry/background_verification.json",
+      "bytes": 388,
+      "sha256": "d74b8484f0c5cce771df7991225caf95dc5cff635cf5bf5b7bec307672b45766"
+    },
+    "fixed_worry/core_king_relief.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_worry/core_king_relief.png",
+      "bytes": 1293590,
+      "sha256": "d6b63166156583cccf290aab0a412c77f22197b1b7d49741a13edaffe2b0ee18"
+    },
+    "fixed_worry/core_king_worry.png": {
+      "path": "C:/RMGoalCheck_20261105/fixed_worry/core_king_worry.png",
+      "bytes": 1145311,
+      "sha256": "4367f0bc701bd5a6a752d126b521b91055be8a3ebf2f90374583d5f98d5cdeef"
+    },
+    "fixed_worry/live_core_king_combo_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_worry/live_core_king_combo_verification.json",
+      "bytes": 160,
+      "sha256": "2cf86a6bc44b519214b94a43e4547a23e2bc76c0581dd3cd82cbceae3c1547d6"
+    },
+    "fixed_worry/live_core_king_worry_verification.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_worry/live_core_king_worry_verification.json",
+      "bytes": 227,
+      "sha256": "d7f4a50a2d02caaaa5cf987cec34026ba98651cf83a7749157cf3ee772a1022d"
+    },
+    "fixed_worry/process.json": {
+      "path": "C:/RMGoalCheck_20261105/fixed_worry/process.json",
+      "bytes": 561,
+      "sha256": "e38f48263a6aee78c670808df7df4254116da6244ee355680d898bed775c2668"
+    },
+    "fixed_worry/unity.log": {
+      "path": "C:/RMGoalCheck_20261105/fixed_worry/unity.log",
+      "bytes": 100354,
+      "sha256": "250b538c3af1f9b3b303fdd84b042a3ecd4a3e22df9a70406771c8b411e6404c"
+    },
+    "idle_commands.txt": {
+      "path": "C:/RMGoalCheck_20261105/idle_commands.txt",
+      "bytes": 5948,
+      "sha256": "ce77b7b8c21f1181c7a21a14f38affe4ce721bf99cebb320107512a99c04795f"
+    },
+    "idle_comparison.json": {
+      "path": "C:/RMGoalCheck_20261105/idle_comparison.json",
+      "bytes": 402,
+      "sha256": "eb18062e543ee57f102ee50e531363a561961ce9ab930840adbda98db78b962e"
+    },
+    "idle_managed_actual.txt": {
+      "path": "C:/RMGoalCheck_20261105/idle_managed_actual.txt",
+      "bytes": 26885,
+      "sha256": "e594d737096f3262c5eda890fb6a29041b8342842b6c38ff0e487f5734662839"
+    },
+    "idle_native_expected.txt": {
+      "path": "C:/RMGoalCheck_20261105/idle_native_expected.txt",
+      "bytes": 26885,
+      "sha256": "e594d737096f3262c5eda890fb6a29041b8342842b6c38ff0e487f5734662839"
+    },
+    "IdleHarness.cs": {
+      "path": "C:/RMGoalCheck_20261105/IdleHarness.cs",
+      "bytes": 2990,
+      "sha256": "4b39d6d548225e37ddaae452125e1574da33ad5d09bc53662c34a8071dbaf9de"
+    },
+    "inspect_king.py": {
+      "path": "C:/RMGoalCheck_20261105/inspect_king.py",
+      "bytes": 556,
+      "sha256": "ead169eb49584a98f6527002cb471b3b18ece060568621a3636e2cf8e702aefe"
+    },
+    "inspect_native.py": {
+      "path": "C:/RMGoalCheck_20261105/inspect_native.py",
+      "bytes": 673,
+      "sha256": "d3660c00715a4bbd4f94fbd152f5865d8d41d9672cd05699ff261598f42eaf38"
+    },
+    "king_callers.json": {
+      "path": "C:/RMGoalCheck_20261105/king_callers.json",
+      "bytes": 1401,
+      "sha256": "28458bd5adf4de380b17542cf33c8e4c69154ddd077563dc9678a9a1e9268816"
+    },
+    "KingLifecycleRecorder.cs": {
+      "path": "C:/RMGoalCheck_20261105/KingLifecycleRecorder.cs",
+      "bytes": 8117,
+      "sha256": "bfd07749b24ad539e38213cd57bcb4986c042cc590f625721f6bfc7a7ed9710b"
+    },
+    "KingUiStateHarness.cs": {
+      "path": "C:/RMGoalCheck_20261105/KingUiStateHarness.cs",
+      "bytes": 3712,
+      "sha256": "eee3c2d7ae119b1d281da80310a7454787d3e2063c5ea918201a639b47e894a5"
+    },
+    "managed_actual.txt": {
+      "path": "C:/RMGoalCheck_20261105/managed_actual.txt",
+      "bytes": 33621,
+      "sha256": "38c6f5c77860dbb069cf6307cfbbac11803000fd047a90a866f5961dfe048ae7"
+    },
+    "mirror_restored.json": {
+      "path": "C:/RMGoalCheck_20261105/mirror_restored.json",
+      "bytes": 706,
+      "sha256": "3696b305770f09c0596e18a08290168f6e406b70aff874657271ded84334f6fe"
+    },
+    "native_12e53a4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_12e53a4.txt",
+      "bytes": 1239,
+      "sha256": "7866039913d247d2373b290878c6e00a1aee1665b397ba140c2ef23b9fe35b9d"
+    },
+    "native_12e53fc.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_12e53fc.txt",
+      "bytes": 1239,
+      "sha256": "9f93783ad5bd42ec1d0de52f805f3577ed864622004df2b903ce6796c87fd605"
+    },
+    "native_162b084.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162b084.txt",
+      "bytes": 1213,
+      "sha256": "e8ece634918546d2d518bca2be8d55e3f81f742ac74d7400a6df6b550644f07d"
+    },
+    "native_162b0dc.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162b0dc.txt",
+      "bytes": 1521,
+      "sha256": "1708e3e48d3df722ab27be583b39c83a5ad22b84b5349aa80fb384d1985199d5"
+    },
+    "native_162b178.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162b178.txt",
+      "bytes": 8089,
+      "sha256": "6fc07cb567c37313e287deb497b053ba9ed0997257bc00830148b68a3f3ee6d5"
+    },
+    "native_162b3c8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162b3c8.txt",
+      "bytes": 4576,
+      "sha256": "5cc74f5bb999528863c8df7a74e04d8ff648ae56490bd8f556dc7d73e9b70544"
+    },
+    "native_162b508.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162b508.txt",
+      "bytes": 8695,
+      "sha256": "0c7d3657094b31089332b2ba66d3eb9cd72d0937f07504837c23cab204879eca"
+    },
+    "native_162b784.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162b784.txt",
+      "bytes": 11116,
+      "sha256": "8c2715b6e418af0d7969c9d53614258ec4e025849cd485acfdb0cde4c51d0e8f"
+    },
+    "native_162bab0.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162bab0.txt",
+      "bytes": 4053,
+      "sha256": "b785c3ff6d1fd9f219dd16eb128510f5f18fef271dd74b25965db2bb8f02ebb9"
+    },
+    "native_162bbcc.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162bbcc.txt",
+      "bytes": 1294,
+      "sha256": "16426638e9c44955db6bde2818348fc55c72ec56dd02fdf1997f7fdc830eeaae"
+    },
+    "native_162bc2c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162bc2c.txt",
+      "bytes": 3642,
+      "sha256": "540797970a2c75d7d4a24b0ac0f388f486305556b22dc47dea624205d60ce90a"
+    },
+    "native_162bd34.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162bd34.txt",
+      "bytes": 3885,
+      "sha256": "b410b4f0724b65e3799035b5b0848b7a700f1ba2a60590ffcec6bba04d7b4fc6"
+    },
+    "native_162be4c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162be4c.txt",
+      "bytes": 3799,
+      "sha256": "462173b49347a7da16626e2efeed015a547e4fae85a3e25d8e365c769d5a2988"
+    },
+    "native_162bf68.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162bf68.txt",
+      "bytes": 3332,
+      "sha256": "9726a9f20316bbd1c94a8ca1f1641ad9f26a2a7987d8842c815b464dcc77603d"
+    },
+    "native_162c050.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162c050.txt",
+      "bytes": 2182,
+      "sha256": "c3faaa0a58d323116e0c5f94fdbfb8f646737da7b2d85b0014309686ea8587ca"
+    },
+    "native_162c0e8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162c0e8.txt",
+      "bytes": 3214,
+      "sha256": "51d9e72b7d8b853f1768af5c6b471ceebb34a832f0370500b7c8313327be5e84"
+    },
+    "native_162c1cc.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162c1cc.txt",
+      "bytes": 1521,
+      "sha256": "ef7a14f607ef46ba3f953e62e4e94da6cdcd7a799ac212d62911298f006776a1"
+    },
+    "native_162c268.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162c268.txt",
+      "bytes": 1708,
+      "sha256": "2b6115649ae0868c6cc3c59bae11e121fc7bffda2dc6d99764d0c8c4b19d2d48"
+    },
+    "native_162c2e4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_162c2e4.txt",
+      "bytes": 130,
+      "sha256": "bd045469348af7104b50d5c63a39f981239e77dab8c6b44dcce5b3369d944933"
+    },
+    "native_1631718.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_1631718.txt",
+      "bytes": 783,
+      "sha256": "722e85f380187767c582ca3e2a662f4208b88cd30b29d495fd29ca010e787d3c"
+    },
+    "native_188ccc4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_188ccc4.txt",
+      "bytes": 7999,
+      "sha256": "736b2677d245d86f82fdb200c3f769667d88e9ef438bda0f41562c0800aacad5"
+    },
+    "native_18c8cbc.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c8cbc.txt",
+      "bytes": 4861,
+      "sha256": "95dae735d3c8eb831c7e1b64850e210cbe8cb31cb719ed9b641d136e91e850a5"
+    },
+    "native_18c8e24.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c8e24.txt",
+      "bytes": 4223,
+      "sha256": "73559000b6b3c3d380eb2f37092822e814a48b04505919e962d22fc4b6512389"
+    },
+    "native_18c8f50.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c8f50.txt",
+      "bytes": 2354,
+      "sha256": "f9597aad6462e1285fac7eef0afef24fb0cb4a90c59e6d71a2eacec865a8d75c"
+    },
+    "native_18c90ac.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c90ac.txt",
+      "bytes": 2829,
+      "sha256": "2d0caafa99a9d2cfba0d11850355e4688d249d937f3134d8719fcd3fdc811428"
+    },
+    "native_18c9180.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9180.txt",
+      "bytes": 11985,
+      "sha256": "cb7ff6451874e722ab6db3b5aa02278bc7e2f84a554d92d4fde88acda210d129"
+    },
+    "native_18c94e4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c94e4.txt",
+      "bytes": 2245,
+      "sha256": "d822f8cfd48f6f3ff4fcdf269079960d62dcd77137dd3452b76d21e59ebf2545"
+    },
+    "native_18c9590.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9590.txt",
+      "bytes": 2088,
+      "sha256": "7fc982041278291b804f05f49236ea25926c104df126dc6f10998fafeb003824"
+    },
+    "native_18c9630.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9630.txt",
+      "bytes": 1784,
+      "sha256": "5c9cb5f2b5bad2beb5b234503cb1aad15734d8d245c664a4ae09f2770493e6a0"
+    },
+    "native_18c96b8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c96b8.txt",
+      "bytes": 4971,
+      "sha256": "7852e6af724dc41bf0e7782ec73908a13899b83a8b253d7ce90ed8dd2a417a7e"
+    },
+    "native_18c981c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c981c.txt",
+      "bytes": 1934,
+      "sha256": "f43843457d6b62177979ea2a9b938da8ccabaf95c7d8b521ad0f8a998be27d06"
+    },
+    "native_18c98a8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c98a8.txt",
+      "bytes": 2104,
+      "sha256": "9f69fcfce480c07443e8760dfcb9ce85b1f4b231adaad7210374c80d415e540d"
+    },
+    "native_18c9944.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9944.txt",
+      "bytes": 201,
+      "sha256": "59f7270d75831a23a202f639cac1bfa9cf4c3d45d6027693c7d7eccbb80f9f4e"
+    },
+    "native_18c9950.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9950.txt",
+      "bytes": 201,
+      "sha256": "e184627f38fe1129d7e911a27a12a782c7f94b877662b020217a9d7cfa1c675f"
+    },
+    "native_18c995c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c995c.txt",
+      "bytes": 663,
+      "sha256": "9ef421fab390b50143e65cde9662944563d54b6ac71453baf33cac17d3cad505"
+    },
+    "native_18c998c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c998c.txt",
+      "bytes": 157,
+      "sha256": "00775ec2f302823141fc6e9b55850ce773c747b4c89f892f3528de0d7e83c8e4"
+    },
+    "native_18c9994.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9994.txt",
+      "bytes": 201,
+      "sha256": "2e590f2d5428319d1aa5612bebbcb2b09ded8f335d11545c6788ed6de6a01f1d"
+    },
+    "native_18c99a0.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c99a0.txt",
+      "bytes": 2177,
+      "sha256": "87e129ca5f36ae6497a41d6a27a6a881007a5742c6766a3fa174144ea9325f25"
+    },
+    "native_18c9a38.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9a38.txt",
+      "bytes": 2367,
+      "sha256": "1c95ce0b329fe755dec3522ececbce51ed73545e7572d72706234ee51a025068"
+    },
+    "native_18c9ae4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9ae4.txt",
+      "bytes": 2474,
+      "sha256": "3b1f9ccf2540d07fffd2b8fee559af93a4942d316d61c1701fddbacb74c10c6b"
+    },
+    "native_18c9b98.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9b98.txt",
+      "bytes": 537,
+      "sha256": "6106fa0566e845d68e7465d5a7b969e16a18de235e4a06bf2dcb091fbbe6e5d0"
+    },
+    "native_18c9bc0.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9bc0.txt",
+      "bytes": 4551,
+      "sha256": "09317263fcfa534ca9b353f36bdc5bb5e5cd108edfb79326528b01f4013da8b5"
+    },
+    "native_18c9d08.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9d08.txt",
+      "bytes": 8584,
+      "sha256": "c630e529a8dda8a99fb4dc2827e310429e9e9b3a646d248c5d3c8e3b480664d7"
+    },
+    "native_18c9f68.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18c9f68.txt",
+      "bytes": 6124,
+      "sha256": "8f335171ee1d61085973e34de3a603b8fdd6ef29bceab0b7ed745556605f2090"
+    },
+    "native_18ca11c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca11c.txt",
+      "bytes": 1521,
+      "sha256": "04a9361123f7f45e233ee8491d15f600f39e683eb7cfd2d1d4407cd1edb01edc"
+    },
+    "native_18ca190.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca190.txt",
+      "bytes": 537,
+      "sha256": "0a1c18047052d8e284f6a307793bbdd448ab1954d22eb093587ae1beeec65016"
+    },
+    "native_18ca1b8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca1b8.txt",
+      "bytes": 3487,
+      "sha256": "33f1805a0aaab622270d5bc7213e6d3abc53adcb174a5a83113d835ec55fe253"
+    },
+    "native_18ca2b0.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca2b0.txt",
+      "bytes": 1055,
+      "sha256": "7d270939fb387a7f5d1f88e26c756b61568e3815d044ed6a2fd85ea5284e9855"
+    },
+    "native_18ca2fc.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca2fc.txt",
+      "bytes": 93,
+      "sha256": "e0d2d750623c33086a7e0ec14ba20ccf21caafff2df1d4edb8946679d2c78b69"
+    },
+    "native_18ca304.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca304.txt",
+      "bytes": 142,
+      "sha256": "8640272f9a253466e4128785bc8a54409969e59c0a24bebafc6b566ebc9d0d48"
+    },
+    "native_18ca310.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca310.txt",
+      "bytes": 130,
+      "sha256": "3df0357cc39f7e9b16a3284472ff310831c95618af276ea46ea0a0b7f57db50f"
+    },
+    "native_18ca318.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca318.txt",
+      "bytes": 39,
+      "sha256": "2c2c39fe042929185f7a50f24e126b2139583e8a7bee911bdb52472c5d99d775"
+    },
+    "native_18ca31c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca31c.txt",
+      "bytes": 16694,
+      "sha256": "4c2395d093128bb45e3d9b59182213bd7cb501169116b237d6ece558cbbc701a"
+    },
+    "native_18ca7dc.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca7dc.txt",
+      "bytes": 93,
+      "sha256": "68cee50a3bbdca11da908b87e9d03ec3f240f216e170e5d97f564086469940e3"
+    },
+    "native_18ca7e4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca7e4.txt",
+      "bytes": 834,
+      "sha256": "6f4e708a66ff050cab590423776416e25bb9a514f9aa5e3283ff9465c620880c"
+    },
+    "native_18ca824.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca824.txt",
+      "bytes": 93,
+      "sha256": "bd3e6d71e33df2c46ef329bcf6f39955568db0255f0493dfde4ecb6f4ade3202"
+    },
+    "native_18ca82c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca82c.txt",
+      "bytes": 39,
+      "sha256": "9b931e32f0173fa6e654037ac5ba819ec1a51dad87ef0b57f940df226329cf3a"
+    },
+    "native_18ca830.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca830.txt",
+      "bytes": 2373,
+      "sha256": "f7613d58112cb999bb3225f4b2aecaa56a50f765570faf3b2d896e268439aa6a"
+    },
+    "native_18ca8e8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca8e8.txt",
+      "bytes": 93,
+      "sha256": "a7bbbc2e7eb1a08b5296f1afcef9040a6064dfd46b1bcff9bb35dc063bf953bb"
+    },
+    "native_18ca8f0.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca8f0.txt",
+      "bytes": 834,
+      "sha256": "0cbcb0f681bc839232a9a71b927290520e2a342c1cb800524141698297d26945"
+    },
+    "native_18ca930.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca930.txt",
+      "bytes": 93,
+      "sha256": "50049169aca0276bc26087a4973bc175b96c16e0450b6204c53e9ca9f3cebfee"
+    },
+    "native_18ca938.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ca938.txt",
+      "bytes": 33126,
+      "sha256": "72e297c1bcb16e449a7da70d2808875432f5ed6b74d9db055f024186fbf1e20c"
+    },
+    "native_18cb28c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cb28c.txt",
+      "bytes": 1953,
+      "sha256": "b8f304c5791c8c40393a9336c6bde052d1777f767e92c3266c121891c51bb1b4"
+    },
+    "native_18cb318.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cb318.txt",
+      "bytes": 3280,
+      "sha256": "bdf019012e5fc812371375705b1d1528770617a32db88c2106f490ae189b369b"
+    },
+    "native_18cb414.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cb414.txt",
+      "bytes": 4124,
+      "sha256": "0faa7e4391013c0a86cecb5a6b0eaea961806e6928563c360acb585d263d024e"
+    },
+    "native_18cb554.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cb554.txt",
+      "bytes": 8649,
+      "sha256": "c357a1e12f8c9b96f8af5793dbfbd33df377c709735b6a2394209362f03f93fc"
+    },
+    "native_18cb7b0.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cb7b0.txt",
+      "bytes": 3806,
+      "sha256": "1cf72b2bbd55c3b78da6a314eb8ec41a8336adfbe9f737c827f5e9fae625a8dc"
+    },
+    "native_18cb8d8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cb8d8.txt",
+      "bytes": 1065,
+      "sha256": "0b138bcdc2bf38adb472ef84dd82c9378f000ac9bb422436680c1b250d8e2c19"
+    },
+    "native_18cb924.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cb924.txt",
+      "bytes": 1220,
+      "sha256": "75d12db5e8ec137c8ff0df5422f62825c9f01c17c98fee2f1eb7612194953f57"
+    },
+    "native_18cb97c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cb97c.txt",
+      "bytes": 4578,
+      "sha256": "c2f39684868bfd7c2ee5f94803f997692d760d2a432b8c7672c011e55c4d56b8"
+    },
+    "native_18cbad4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cbad4.txt",
+      "bytes": 19910,
+      "sha256": "a70ba6ee34aa892cce28448560a7709ea6564cf1bdd4bb59ba6520e64aa02a05"
+    },
+    "native_18cc064.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc064.txt",
+      "bytes": 3530,
+      "sha256": "0c233b0980dfd257cf3c96baae18818a07e200d83910ec75028441c13010040f"
+    },
+    "native_18cc160.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc160.txt",
+      "bytes": 196,
+      "sha256": "1db404a63890225c666d2aeac14629b0cd2cf5de3135b1632d728959f320bc21"
+    },
+    "native_18cc170.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc170.txt",
+      "bytes": 183,
+      "sha256": "34a37606496d5357f9a7f6c539bc383f5ec5d108d494f0962cf1a8bf43d0311e"
+    },
+    "native_18cc180.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc180.txt",
+      "bytes": 94,
+      "sha256": "c345be7c0a8fcb0fbcb6b57df61f04f9da65d4a456d2892bb92ec79bca46c70e"
+    },
+    "native_18cc188.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc188.txt",
+      "bytes": 183,
+      "sha256": "c990efb268c8f6e3cf48009514a60013938d41daeb9c879c74021fb34e15d3d3"
+    },
+    "native_18cc198.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc198.txt",
+      "bytes": 130,
+      "sha256": "7f72e99adaf798ac5c9d17dfb944bf78880bcf7f6b14f369816714ab3dee39c5"
+    },
+    "native_18cc1a0.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc1a0.txt",
+      "bytes": 6046,
+      "sha256": "89f7927cc7c0bbd35ab5ea640c0a68138aa8a4950d13ad278d79e656111e581f"
+    },
+    "native_18cc370.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc370.txt",
+      "bytes": 2460,
+      "sha256": "9f8d5f55225dc99c33a4f7a03584d2943afc90e926aefe46ca2fb33663993095"
+    },
+    "native_18cc424.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc424.txt",
+      "bytes": 1024,
+      "sha256": "6b58312879bd887ded965657c2e6200be939b31de0b50747ef2d4e4f68e008f0"
+    },
+    "native_18cc470.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc470.txt",
+      "bytes": 1796,
+      "sha256": "f7c750e69dae6a6d03502a6e29529aebcf056f47f36d81c7bf1fe86d6259edb2"
+    },
+    "native_18cc4f4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc4f4.txt",
+      "bytes": 3053,
+      "sha256": "5dd5176c8ecd5bbaeabd9a03f4bf90a277e1d6a118596be58aece975d4d49696"
+    },
+    "native_18cc5cc.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc5cc.txt",
+      "bytes": 11632,
+      "sha256": "aafdf23490bfcf5ae697f05f89a02f736f3dcb64e49a93e8b7aa5c4ab456036e"
+    },
+    "native_18cc914.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18cc914.txt",
+      "bytes": 11710,
+      "sha256": "b007d803ba88a8a7fc6d2cd6479cfa577fa9119f296a30e3263d24723f59a62f"
+    },
+    "native_18ccc54.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ccc54.txt",
+      "bytes": 118,
+      "sha256": "c67e64e030d63fb8f00e775fd42545dbb1d5f663ad6c5971cc65d1efaab95cd9"
+    },
+    "native_18ccc5c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ccc5c.txt",
+      "bytes": 238,
+      "sha256": "ab5e18ee12e562a7f62dafc173072a3db86a20d7d8f4773fa072253f1c2b270b"
+    },
+    "native_18ccc6c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ccc6c.txt",
+      "bytes": 816,
+      "sha256": "42fc2a4de80543526c9354d79836c12263b11302f91b878beeaf5a64f4558c0c"
+    },
+    "native_18ccca4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ccca4.txt",
+      "bytes": 9788,
+      "sha256": "f4cd0f5f299d1be0eb0a10687b7184fb28937fed84f341f1109bdf4a96657509"
+    },
+    "native_18ccf64.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18ccf64.txt",
+      "bytes": 2138,
+      "sha256": "9668df2aa4e5da14ec3d5e770eec672d920a4e4980eaea291b228c1a5f5b28da"
+    },
+    "native_18e65b8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_18e65b8.txt",
+      "bytes": 525,
+      "sha256": "2ecb6754d640eab0455d28f388be8bb61515498ef550319e2557b0a215253c91"
+    },
+    "native_1e398b8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_1e398b8.txt",
+      "bytes": 4519,
+      "sha256": "2e1b84d7c863237ba846fd8c40ae2f66e00666779d0b6b95204d95a94dd66656"
+    },
+    "native_1e39a14.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_1e39a14.txt",
+      "bytes": 5695,
+      "sha256": "c9bc15cc4fa0921c9e53fdaadaa4205c0a18718bf65005fc153dfc18c25afb7a"
+    },
+    "native_1e3acd0.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_1e3acd0.txt",
+      "bytes": 14053,
+      "sha256": "66b1bb3703200e05178e1fc7552c9096adae2349949e324558955930889ad6cb"
+    },
+    "native_1e3b598.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_1e3b598.txt",
+      "bytes": 957,
+      "sha256": "86ce0232f5ecbadb4e3f26bc39869fb6d13dc48cc5c5ea9e0518867eecd3af00"
+    },
+    "native_1e3b5d8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_1e3b5d8.txt",
+      "bytes": 632,
+      "sha256": "cb135d93be052fb656eb88b5b95b575c263d6ef5af11a10696e4e12a8177c64a"
+    },
+    "native_1e3b6f8.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_1e3b6f8.txt",
+      "bytes": 17191,
+      "sha256": "9387a8a41703a5a34618b50d67bfb191829c74a7f6f5940ac9b7b95fab9d13c6"
+    },
+    "native_1edd734.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_1edd734.txt",
+      "bytes": 7189,
+      "sha256": "84f67a60607c22c924b6e0f4f5e216ab648811c04799ff01985f8d623eb87a73"
+    },
+    "native_2192358.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_2192358.txt",
+      "bytes": 2586,
+      "sha256": "9bb10ebeb0683793860696632b740bcde31ce50a51391ccc8d440e92bed2b2c0"
+    },
+    "native_23e6990.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_23e6990.txt",
+      "bytes": 15865,
+      "sha256": "7d88eb0b6e48c28febb84da280067efe827e27f88e4417b7e2279a0c1c776bb6"
+    },
+    "native_23e743c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_23e743c.txt",
+      "bytes": 3452,
+      "sha256": "6b751690a2a27f4068c6f23ffcd0624969b371ca67b1874d1b92e85cd93fda1b"
+    },
+    "native_23e8190.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_23e8190.txt",
+      "bytes": 1685,
+      "sha256": "254d28e8e6ed8d45ef0387c3e7e25fd2d585ea8fb4d41d9e07365d5f97d4a292"
+    },
+    "native_23e902c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_23e902c.txt",
+      "bytes": 6932,
+      "sha256": "cedae00618ad7b878a953a47af1e1f1e0b40d1912aa63c4771ec636a56bdc527"
+    },
+    "native_2b46c80.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_2b46c80.txt",
+      "bytes": 1318,
+      "sha256": "4a62a36bd6551baab09b08e335dd9e5432a4b5796ad0d53257a107fb007c00d1"
+    },
+    "native_2ee8088.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_2ee8088.txt",
+      "bytes": 299,
+      "sha256": "5e6144460670a0a484832a04bd674e66a382c4f1cfbcce258b4c504ebf6e1199"
+    },
+    "native_2ee80b4.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_2ee80b4.txt",
+      "bytes": 241,
+      "sha256": "1cc28c5789f4bec2009b593f094220b2244bed06840f884d2c08bcb40cc3b9d8"
+    },
+    "native_2f0b164.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_2f0b164.txt",
+      "bytes": 522,
+      "sha256": "6536c02e563aa5b7da0f0707e0e514235f5d834460171cb3658810cb97f65cd5"
+    },
+    "native_3201484.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_3201484.txt",
+      "bytes": 7007,
+      "sha256": "e5fbcfbbf2b425dc2c5f044a6a8c2adaf6332e1ae88f06c21a3f2b13966850c5"
+    },
+    "native_321357c.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_321357c.txt",
+      "bytes": 4711,
+      "sha256": "010c9ca8d6898f55f7d406d4684a68d335079b6bb7747a35b33be8526eb0a740"
+    },
+    "native_3213954.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_3213954.txt",
+      "bytes": 9894,
+      "sha256": "d6b0a26896db6c0e51b117ed99672d17b00fe45fb935ff2a0a93ee55cf1da59b"
+    },
+    "native_3213c08.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_3213c08.txt",
+      "bytes": 4784,
+      "sha256": "0c9e32310417018eb0c8fdf8ddbb7c8f3255d03640a1fcd89e78197481cf717e"
+    },
+    "native_3214158.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_3214158.txt",
+      "bytes": 4703,
+      "sha256": "b362d86879a5281d3bc8b5ff1185a45fcfa665ff02a41da6b7760d47049b52b0"
+    },
+    "native_3214794.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_3214794.txt",
+      "bytes": 2393,
+      "sha256": "7c613b3b5d09d66be79714632cfbf5f8127121c58620ca5a69d9d10b4f0cb511"
+    },
+    "native_3214dc0.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_3214dc0.txt",
+      "bytes": 589,
+      "sha256": "fbc03f6a1e2f3977f714f1f12558f51d5c9ac32460b9fbbab87153bd1ccc4b5c"
+    },
+    "native_expected.txt": {
+      "path": "C:/RMGoalCheck_20261105/native_expected.txt",
+      "bytes": 33621,
+      "sha256": "38c6f5c77860dbb069cf6307cfbbac11803000fd047a90a866f5961dfe048ae7"
+    },
+    "native_king.py": {
+      "path": "C:/RMGoalCheck_20261105/native_king.py",
+      "bytes": 6826,
+      "sha256": "cce3d68c61e21cc3a1a8741449706e29ec576d840223d35de05fa880ba73e621"
+    },
+    "native_methods.json": {
+      "path": "C:/RMGoalCheck_20261105/native_methods.json",
+      "bytes": 4681,
+      "sha256": "3c38ddcd558ad2cb1aa331f99c76a6629b113ae644b5e94d329dd5d675ee3728"
+    },
+    "native_reference.json": {
+      "path": "C:/RMGoalCheck_20261105/native_reference.json",
+      "bytes": 480,
+      "sha256": "6fa6012c7a524ba9f610b40d79a07914c33fc483f190f5e6bdfadcdba0e913f2"
+    },
+    "OriginalKingUiState.cs": {
+      "path": "C:/RMGoalCheck_20261105/OriginalKingUiState.cs",
+      "bytes": 3218,
+      "sha256": "0dacfda648e23929f3dfaa88d74a1ebe9071c8dd53e5e60965196ad03211d8fe"
+    },
+    "plan.json": {
+      "path": "C:/RMGoalCheck_20261105/plan.json",
+      "bytes": 1388,
+      "sha256": "5301017264d7cac3066bf3461fb34230963a50fd48ed23336615341a105805ff"
+    },
+    "portable_verification/commands.txt": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/commands.txt",
+      "bytes": 9696,
+      "sha256": "a0681d0664f439583500fcc49e5294189cc2e96120444ea6cd019b981f5ac4eb"
+    },
+    "portable_verification/idle_commands.txt": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/idle_commands.txt",
+      "bytes": 5948,
+      "sha256": "ce77b7b8c21f1181c7a21a14f38affe4ce721bf99cebb320107512a99c04795f"
+    },
+    "portable_verification/idle_comparison.json": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/idle_comparison.json",
+      "bytes": 437,
+      "sha256": "faec16123627525bcdf43b37eac7cb9b947ee4e805c0857804e04878773fc6c7"
+    },
+    "portable_verification/idle_managed_actual.txt": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/idle_managed_actual.txt",
+      "bytes": 26885,
+      "sha256": "e594d737096f3262c5eda890fb6a29041b8342842b6c38ff0e487f5734662839"
+    },
+    "portable_verification/idle_native_expected.txt": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/idle_native_expected.txt",
+      "bytes": 26885,
+      "sha256": "e594d737096f3262c5eda890fb6a29041b8342842b6c38ff0e487f5734662839"
+    },
+    "portable_verification/IdleHarness.cs": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/IdleHarness.cs",
+      "bytes": 2990,
+      "sha256": "4b39d6d548225e37ddaae452125e1574da33ad5d09bc53662c34a8071dbaf9de"
+    },
+    "portable_verification/king_ui_lifecycle_comparison.json": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/king_ui_lifecycle_comparison.json",
+      "bytes": 1896,
+      "sha256": "1b584b74d76109f0f0cac8ca1e0a4c4c8ed38aecc5a726618d84d279317b4730"
+    },
+    "portable_verification/managed_actual.txt": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/managed_actual.txt",
+      "bytes": 33621,
+      "sha256": "38c6f5c77860dbb069cf6307cfbbac11803000fd047a90a866f5961dfe048ae7"
+    },
+    "portable_verification/native_expected.txt": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/native_expected.txt",
+      "bytes": 33621,
+      "sha256": "38c6f5c77860dbb069cf6307cfbbac11803000fd047a90a866f5961dfe048ae7"
+    },
+    "portable_verification/native_reference.json": {
+      "path": "C:/RMGoalCheck_20261105/portable_verification/native_reference.json",
+      "bytes": 487,
+      "sha256": "1666c0273a4eca4598036a40b62ee7463df84bdf83481aa2bf5d38b83a69159d"
+    },
+    "prepare.py": {
+      "path": "C:/RMGoalCheck_20261105/prepare.py",
+      "bytes": 6938,
+      "sha256": "bc1a7c73111666d0e2e1c84562fb7ad498516a2b03b1bcb9aa85985775669a6f"
+    },
+    "prepare_portable.py": {
+      "path": "C:/RMGoalCheck_20261105/prepare_portable.py",
+      "bytes": 1683,
+      "sha256": "d2b38006cd149232a06764157fb62ced7ba3d9f4f8637ef9cc59e682f2e6db1c"
+    },
+    "promote.py": {
+      "path": "C:/RMGoalCheck_20261105/promote.py",
+      "bytes": 11845,
+      "sha256": "00b27062ae8e5c71ea9859fc6a0f0a9eed20ae9ba7872cd76e34218df353f6dd"
+    },
+    "run_unity.py": {
+      "path": "C:/RMGoalCheck_20261105/run_unity.py",
+      "bytes": 8099,
+      "sha256": "415d76b12df9464f996577adbe913982ae4d5979bdeed0a1fa2d2edcdaaa5424"
+    },
+    "state_comparison.json": {
+      "path": "C:/RMGoalCheck_20261105/state_comparison.json",
+      "bytes": 66,
+      "sha256": "0af755f0a34f849a8cecd1bc22269af4405a975c061a117cf02e607c73e914b9"
+    },
+    "verify_idle.py": {
+      "path": "C:/RMGoalCheck_20261105/verify_idle.py",
+      "bytes": 5876,
+      "sha256": "1d4ce263ffab57967cf5b5ac9d18549c2dd34a1586f81c7bc648dbabeaa5e67e"
+    },
+    "verify_king_ui_lifecycle.py": {
+      "path": "C:/RMGoalCheck_20261105/verify_king_ui_lifecycle.py",
+      "bytes": 2667,
+      "sha256": "b9804d8b9decb9d9c01b08e6b062098a936bebdc2b40f9632ae3e21416bd347d"
+    }
+  },
+  "canonical_reproduction": {
+    "passed": true,
+    "report": "C:/RMGoalCheck_20261105/canonical_verification/king_ui_lifecycle_comparison.json",
+    "sha256": "cba681d4a8dfb89728a04b2f224412025de2af8962bba282cbddc22d1a6c96bb",
+    "state_commands": 1824,
+    "idle_commands": 1600,
+    "source_files": {
+      "F:/Coin Merge Fortune/RM/Recovery/UnityFoundation/SourceCatalog/KingUiStateHarness.cs": "eee3c2d7ae119b1d281da80310a7454787d3e2063c5ea918201a639b47e894a5",
+      "F:/Coin Merge Fortune/RM/Recovery/UnityFoundation/Assets/Foundation/Runtime/OriginalKingUiState.cs": "0dacfda648e23929f3dfaa88d74a1ebe9071c8dd53e5e60965196ad03211d8fe",
+      "F:/Coin Merge Fortune/RM/Recovery/UnityFoundation/Assets/Foundation/Runtime/OriginalMoveManager.cs": "0059633ce3877a2e2952037724d3f69a3b538834d007428f4d2a32c75b562fff"
+    }
+  },
+  "android_followup": {
+    "source_commit": "6c92324e983a2f2361a0e912b9327acb263cad68",
+    "report": "SourceCatalog/android_king_lifecycle_20261105.json",
+    "apk_sha256": "7cbcda268221382400abecff2f45353610227643a3c2894aac85b2073669c1b4",
+    "apk_bytes": 43638512,
+    "quit_failure_sad_then_retry_idle": true,
+    "cold_restart_board_and_counter_observation": true,
+    "natural_level4_win_remaining_result_and_continue_level5": true,
+    "accepted_swaps": 18,
+    "win_left_moves": 12,
+    "final_reward": 45,
+    "scope": "The production APK contains the King lifecycle fix and all 100 original level data assets. Real OS input verifies Quit / failure / retry, a cold restart, natural fourth-level powers and combinations, unskipped remaining-move conversion, result and Continue to level 5. Android internal state is not instrumented. Original rendering/audio/input parity, all-100 natural play and the legacy bonus required-shuffle gate remain open."
+  },
+  "bonus_shuffle_gate_followup": {
+    "baseline_commit": "6dad67de61c39d15fbaa128a73884d17989aa118",
+    "report": "SourceCatalog/bonus_shuffle_evidence.json",
+    "runtime_changed": false,
+    "legacy_unconditional_shuffle_assumption_corrected": true,
+    "stable_native_move_decisions_compared": 25,
+    "native_mismatches": 0,
+    "controlled_bonus_dead_board_shuffle_passed": true,
+    "coins_retained": 42,
+    "normal_twenty_move_bonus_result_and_continue81_passed": true,
+    "scope": "Separate mandatory dead-board coverage from an ordinary bonus route that may retain legal moves throughout. Actual runtime shuffle, fixed coin identities/positions, player input and the normal level-80 settlement/Continue path pass. Runtime code is unchanged; historical failures remain recorded. This does not establish original rendering/audio/input parity or all-100 natural completion."
+  }
+}

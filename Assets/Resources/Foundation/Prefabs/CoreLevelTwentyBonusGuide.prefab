@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100001
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5569699703780894003, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: m_Name
+      value: CoreLevelTwentyBonusGuide
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084874079005156344, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: m_text
+      value: This is a bonus level! Collect as many COINS as possible in given moves!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259721093966632569, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: shortDialogCell.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259721093966632569, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: tallDialogCell.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259721093966632569, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: landscapeAnchor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259721093966632569, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: portraitDialogOffset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259721093966632569, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: landscapeDialogOffset.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259721093966632569, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: landscapeDialogSize.x
+      value: 8.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259721093966632569, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: landscapeDialogSize.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259721093966632569, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: leftDialogBackground
+      value: 
+      objectReference: {fileID: 100100002}
+    - target: {fileID: 2259721093966632569, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+      propertyPath: rightDialogBackground
+      value: 
+      objectReference: {fileID: 100100003}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+--- !u!212 &100100002 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4748947771660205740, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+  m_PrefabInstance: {fileID: 100100001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &100100003 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7477931845682770180, guid: ae9255fdaed0ff44ab7a9f21a22cfaa3, type: 3}
+  m_PrefabInstance: {fileID: 100100001}
+  m_PrefabAsset: {fileID: 0}

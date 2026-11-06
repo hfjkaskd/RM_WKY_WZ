@@ -1,0 +1,543 @@
+{
+  "full_objective_complete": false,
+  "production_startup_win_flow_bound": false,
+  "source_snapshot_sha256": "0081cd78d6ae1f22867b294e3844849a40b8e2f754c5a3d6d54dbcce9c3c2c04",
+  "restored_scope": "Runtime low-match refill configuration/selection, original remaining-stage set transformation, native OnWin side-effect orchestration and WinFail bind/release. Formal-scene checks now subscribe actual WinFail before injected moves and update native unit16 after Auto7/Fall8; model goal events and actual .2s/check/stability gates invoke actual Session.Win and remaining readiness without manual win-state writes.",
+  "native_methods": [
+    {
+      "rva": "0x1edd1b0",
+      "name": "Royal.Scenes.Game.Levels.Units.WinFail.WinFailManager$$get_Id",
+      "body_sha256": "7c45827c95a18d97498f338fc41ce36c0d281364b5349f4daee87c387391d3bb"
+    },
+    {
+      "rva": "0x1edd734",
+      "name": "Royal.Scenes.Game.Levels.Units.WinFail.WinFailManager$$Win",
+      "body_sha256": "73aee6fd0b599aacc600fee2ef578b45fd3baba95be3c8d82728d9e0c79e6ee1"
+    },
+    {
+      "rva": "0x1c22b68",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelParser$$ParseLowMatchRatios",
+      "body_sha256": "2f293b86e23a25de040815659882cba3c5943c365a16ee8de8c862b781ada87e"
+    },
+    {
+      "rva": "0x23f0540",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetTunedItem",
+      "body_sha256": "d8f41daac05f052cde6318656cbff39909b64dd648d0b3789a17f17df579d279"
+    },
+    {
+      "rva": "0x23f07dc",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetLowMatchNeighborCount",
+      "body_sha256": "f6a951792e48bc29b8bb9b188b07b448fa5abbba3ac6aa0660a67d3e84186c0a"
+    },
+    {
+      "rva": "0x23f084c",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetForbiddenTypeForOneNeighbor",
+      "body_sha256": "85bb6b014e37d882c2a8b8defc7980a6bca101bc3b5029eefc47ad218c9ea6a2"
+    },
+    {
+      "rva": "0x23f08e0",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$GetForbiddenTypeForTwoNeighbors",
+      "body_sha256": "bade4388651fed6d5e4804534cee7e65214848e5ca4e1ebf91c3a0ada9bbf449"
+    },
+    {
+      "rva": "0x23f0a34",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$UpdateLowMatchRatios",
+      "body_sha256": "78e16ca812a1ed5fdb9b64b9766fe2b7d0f873b997d44f961414ddbb47f44eda"
+    },
+    {
+      "rva": "0x23f0d00",
+      "name": "Royal.Scenes.Game.Levels.Units.ItemCreation.ItemCreator$$RemainingMovesStarted",
+      "body_sha256": "c2e7854771f4d2d169f2a44f7ca30fa70a08b2787c85ca75cc5015d9167b0706"
+    },
+    {
+      "rva": "0x1910830",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelSet$$FillFourColors",
+      "body_sha256": "726330f484481b536061ad48e700440069dfda839d749e01836bf23039291a19"
+    },
+    {
+      "rva": "0x1910c68",
+      "name": "Royal.Scenes.Game.Utils.LevelParser.LevelSet$$ContainsSpecialItem",
+      "body_sha256": "bbc1d8ee06860d5bc109fcaff4b73de0d4be08e5e8a998ababc92a041151cdbb"
+    },
+    {
+      "rva": "0x111a470",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemReplacer$$ReplaceWithSpecialItem",
+      "body_sha256": "259a0ab1f83653ef8839109e7544c7cb23ed79dbc4448bef77fadd3e6c671d40"
+    },
+    {
+      "rva": "0x111a508",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemReplacer$$CreateSpecialItemAtCell",
+      "body_sha256": "1f54fb3e8554b33be26cee507fb92b2a806dbf39d88f101ae9fedf62f6735b2b"
+    },
+    {
+      "rva": "0x111a8e8",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemReplacer$$SelectItem",
+      "body_sha256": "c9f760ec18d0fe214f6f82c4b83ebfbe392c3150626865628a763efc79bff8ce"
+    },
+    {
+      "rva": "0x111aef8",
+      "name": "Royal.Scenes.Game.Ui.Dialogs.RemainingMoves.RemainingMovesItemReplacer.<SendMove>d__28$$MoveNext",
+      "body_sha256": "3daaed8ae4aaa1424cf9ee0d53ee434c7fde344c3af21714a2ffce47c6988dd6"
+    }
+  ],
+  "native_tests": [
+    {
+      "path": "low_match_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 1400,
+        "scope": "Execute actual ARM64 low-match configuration, tuning and neighbor rules.\n\nRandom draws, grid/target-mediation getters and LevelSet selection are typed\nboundaries. Native branching, sums, array ownership, target search, forbidden\ncolor order and short circuits run from the original ELF. Diagnostic formatting\nin UpdateLowMatchRatios is skipped. Scene checks independently exercise actual\nboard mediation, random source and weighted set selection after real WinFail.",
+        "original_rvas": [
+          "0x23f0a34",
+          "0x23f07dc",
+          "0x23f0540",
+          "0x23f084c",
+          "0x23f08e0"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/LowMatchHarness.cs",
+            "sha256": "a259ad8d36a6ab5ef87c1590f8fd0d53284948457c7b116e70e5588c3858db9f"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalLowMatchTuning.cs",
+            "sha256": "e8fe14608e62427d60c58fd117c5adfe914df78860f0237cea8a99cabbc8ea49"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalLevelRules.cs",
+            "sha256": "ebfd47a4d45ff176ae92d2d62eaf23a42e830b73de38ae9335ab061a16c08342"
+          }
+        ]
+      }
+    },
+    {
+      "path": "remaining_item_creation_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 600,
+        "scope": "Execute native FillFourColors/ContainsSpecialItem/RemainingMovesStarted.\n\nActual native array/list element mutations, weight retention, availability reset,\nmatch/special membership and complete per-set end-phase loop run. Managed\nallocation, list/dictionary storage and empty quota ownership are supplied at\ntyped boundaries. The independent Unity cases exercise these methods on the\nactual formal board with actual weighted refill and low-match state.",
+        "original_rvas": [
+          "0x1910830",
+          "0x1910c68",
+          "0x23f0d00"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/RemainingItemCreationHarness.cs",
+            "sha256": "fa0872b84739fdbef299c186a423f30b533d18f85c107d88a042ac316a0d3127"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalRemainingItemCreation.cs",
+            "sha256": "b99b997c0523f2c64e483499dacf2e6af7950d739a9245dcf71c44019e3b0ef5"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalLevelSetSelection.cs",
+            "sha256": "8b31a42c2574853c9a82a29e26ea1c1f3e19d238a4c9bdc0f401e5d65c7bc738"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalConfigData.cs",
+            "sha256": "28b3a61418a91a6aa27fb7dd957446aba3d4537bbee24b808ac91811a9efebf5"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalParsedLevelSet.cs",
+            "sha256": "d0a7664851b85116951af6aaff39f37a15ac4971195c6cbc2876b0b568f68297"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalLevelRules.cs",
+            "sha256": "ebfd47a4d45ff176ae92d2d62eaf23a42e830b73de38ae9335ab061a16c08342"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalTiledItemTypes.cs",
+            "sha256": "7ac7d5089283823a7016d6238f7b3da375f64f0f3ba85fb5d6e8861993ca112c"
+          }
+        ]
+      }
+    },
+    {
+      "path": "win_transition_native_verification.json",
+      "report": {
+        "passed": true,
+        "cases": 32,
+        "scope": "Execute native WinFail.Win side effects after the actual state transition.\n\nKing animation feature/owner, item-creator lookup, fixed metadata ratio-array\nallocation, LifeHelper and Ego owners are explicit typed boundaries. Actual ARM64\norder, branching, story gate and null-owner partial failures execute. No King\nrendering, life persistence or production application-provider binding is proved.",
+        "original_rvas": [
+          "0x1edd734",
+          "0x32b6638"
+        ],
+        "files": [
+          {
+            "path": "SourceCatalog/WinTransitionHarness.cs",
+            "sha256": "e2cce2747ae192cc711a39e49078238ee692358db8c19991ee3cc84144ad965e"
+          },
+          {
+            "path": "Assets/Foundation/Runtime/OriginalWinTransition.cs",
+            "sha256": "1d26596babc77dc9c6e7df76d093e84cb82dfa075e87153ba81f69a480ad89de"
+          }
+        ]
+      }
+    }
+  ],
+  "unchanged_win_fail_decision_evidence": {
+    "passed": true,
+    "cases": 173,
+    "source_sha256": "5eb744e9563beadf2962048bfbc83aa39ec9d61e37a12de3e93ca063e259d68d",
+    "original_rvas": [
+      "0x1edd990",
+      "0x1edd6a0",
+      "0x1edd92c",
+      "0x1eddeac",
+      "0x1edec84"
+    ],
+    "scope": "Decision gates/state flags/call order versus actual original ARM64, with identical recorded presentation/account/flow call boundaries. Includes last-move goal priority, .2s operation/check gates, pending automatic matches, out-of-moves/extra token, normal/bonus, timeout recovery, clear. Does not verify omitted Win/Flow/Session/UI implementations or establish production binding."
+  },
+  "regressions": [
+    {
+      "path": "fill_set_generation_native_verification.json",
+      "report": {
+        "passed": true,
+        "native_cases": 345,
+        "scope": "Actual ARM64 ItemCreator AddAvailableSets/SetupAvailableFillItems, CalculateRandomFactors, availability filter, prioritized and target-column/fill/color selection, OnNewItemCreated limit/goal disabling, plus full IsFillingObstacle classification. Exact output/state, callback and random-bound order, reset and injected failures. LevelSet per-set selection/availability, goal/tuning/column services and CLR storage/random are supplied boundaries. Production random/session/model creation and automatic refill composition remain pending."
+      }
+    },
+    {
+      "path": "set_selection_verification.json",
+      "report": {
+        "passed": true,
+        "native_selection_cases": 228,
+        "original_rvas": [
+          "0x190f9cc",
+          "0x190fa8c",
+          "0x1910528",
+          "0x19105fc"
+        ],
+        "scope": "Weight sum, availability flag, normal/excluded selection and sample counts. Original instructions execute with managed list storage and first/last random picks at boundaries. Board scanning, max-item availability and actual seeded random generation are outside this verifier."
+      }
+    },
+    {
+      "path": "set_initialization_verification.json",
+      "report": {
+        "passed": true,
+        "native_initialization_cases": 48,
+        "original_rvas": [
+          "0x190f314",
+          "0x190f514"
+        ],
+        "scope": "Actual ARM64 initialization and item conversion, including ordered limit pruning and repeated initialization. Managed collection storage supplied at boundaries. Board scan and per-frame quota checks remain unverified."
+      }
+    }
+  ],
+  "runtime_cases": [
+    {
+      "background": {
+        "passed": true,
+        "test": "remaining-coins-normal",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "0081cd78d6ae1f22867b294e3844849a40b8e2f754c5a3d6d54dbcce9c3c2c04",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-normal.log",
+        "elapsed_seconds": 255.02,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-normal",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T17:40:09.4012538Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "runtime": {
+        "passed": true,
+        "skipped": false,
+        "failure": "",
+        "initial_remaining_moves": 25,
+        "converted_moves": 25,
+        "unconverted_moves": 0,
+        "reward_coins": 83,
+        "collections": 30,
+        "peak_coin_views": 72,
+        "peak_pilots": 73,
+        "peak_operation5": 72,
+        "native_departure_count": 73,
+        "active_board_coin_value_at_end": 0,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "elapsed": 10.588537216186523,
+        "scope": "Formal36box goal scenario. Actual WinFail subscribed before gameplay and registered as native unit16 follows Auto7/Fall8. Actual goal completion sets Win and dispatches OriginalWinTransition; native check/stability gates invoke Actual Session.Win and remaining readiness without manual GameState/Session writes. Actual configured low-match tuning, RemainingMovesStarted set transformation, remaining manager, replacement/coin flights and Session.RemainingMovesEnd execute. King/Life/Ego/account/event/feature/cloche/LevelEnd/Flow/dialog/skip-view owners remain explicit fixtures; production startup composition, settlement/persistence, physical input and original rendered/cross-platform parity remain incomplete."
+      }
+    },
+    {
+      "background": {
+        "passed": true,
+        "test": "remaining-coins-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "0081cd78d6ae1f22867b294e3844849a40b8e2f754c5a3d6d54dbcce9c3c2c04",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-skip.log",
+        "elapsed_seconds": 106.24,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T17:41:54.6841988Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "runtime": {
+        "passed": true,
+        "skipped": true,
+        "failure": "",
+        "initial_remaining_moves": 24,
+        "converted_moves": 24,
+        "unconverted_moves": 0,
+        "reward_coins": 75,
+        "collections": 1,
+        "peak_coin_views": 2,
+        "peak_pilots": 2,
+        "peak_operation5": 2,
+        "native_departure_count": 2,
+        "active_board_coin_value_at_end": 63,
+        "unconverted_move_coin_value": 0,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "elapsed": 5.492584228515625,
+        "scope": "Formal36box goal scenario. Actual WinFail subscribed before gameplay and registered as native unit16 follows Auto7/Fall8. Actual goal completion sets Win and dispatches OriginalWinTransition; native check/stability gates invoke Actual Session.Win and remaining readiness without manual GameState/Session writes. Actual configured low-match tuning, RemainingMovesStarted set transformation, remaining manager, replacement/coin flights and Session.RemainingMovesEnd execute. King/Life/Ego/account/event/feature/cloche/LevelEnd/Flow/dialog/skip-view owners remain explicit fixtures; production startup composition, settlement/persistence, physical input and original rendered/cross-platform parity remain incomplete."
+      }
+    },
+    {
+      "background": {
+        "passed": true,
+        "test": "remaining-coins-early-skip",
+        "unity_exit_code": 0,
+        "source_unchanged_during_run": true,
+        "source_sha256": "0081cd78d6ae1f22867b294e3844849a40b8e2f754c5a3d6d54dbcce9c3c2c04",
+        "isolated_project": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification",
+        "log_path": "F:\\Coin Merge Fortune\\RM\\Recovery\\BackgroundUnityVerification\\batch_remaining-coins-early-skip.log",
+        "elapsed_seconds": 97.66,
+        "batch": {
+          "passed": true,
+          "test": "remaining-coins-early-skip",
+          "failure": "",
+          "timestamp_utc": "2026-10-28T17:43:34.3620085Z",
+          "scope": "Isolated Unity batch editor opens the unchanged formal scene and runs existing explicit verifiers after real runtime startup. No editor runtime fallback or gameplay substitutes. Does not verify physical pointer input or rendered-original parity."
+        },
+        "scope": "Independent source/cache copy; unchanged production scene and runtime. Existing explicit test transport only. No physical-input or original rendered-parity claim."
+      },
+      "runtime": {
+        "passed": true,
+        "skipped": true,
+        "failure": "",
+        "initial_remaining_moves": 25,
+        "converted_moves": 2,
+        "unconverted_moves": 23,
+        "reward_coins": 75,
+        "collections": 0,
+        "peak_coin_views": 0,
+        "peak_pilots": 0,
+        "peak_operation5": 0,
+        "native_departure_count": 0,
+        "active_board_coin_value_at_end": 8,
+        "unconverted_move_coin_value": 57,
+        "session_star_reward": 1,
+        "session_win_state": 3,
+        "native_win_cloche_calls": 1,
+        "win_trigger_calls": 1,
+        "win_flow_calls": 1,
+        "low_match_total": 100,
+        "elapsed": 3.179737091064453,
+        "scope": "Formal36box goal scenario. Actual WinFail subscribed before gameplay and registered as native unit16 follows Auto7/Fall8. Actual goal completion sets Win and dispatches OriginalWinTransition; native check/stability gates invoke Actual Session.Win and remaining readiness without manual GameState/Session writes. Actual configured low-match tuning, RemainingMovesStarted set transformation, remaining manager, replacement/coin flights and Session.RemainingMovesEnd execute. King/Life/Ego/account/event/feature/cloche/LevelEnd/Flow/dialog/skip-view owners remain explicit fixtures; production startup composition, settlement/persistence, physical input and original rendered/cross-platform parity remain incomplete."
+      }
+    }
+  ],
+  "native_rules": [
+    "WinFail id is16 (0x10), not9; native permanent registration orders Auto7, Fall8, WinFail16. The new runtime binding uses this exact slot/order and releases subscriptions on teardown.",
+    "After GameState.SetStateToWin, OnWin queries animation-improvement, calls the appropriate King callback, creates the original ratio array, updates the actual ItemCreator low-match owner, increments lives1 and resets Ego only outside story. King/Life/Ego owners remain explicit required fixture boundaries in these scenes.",
+    "LowMatch configuration comes from FTiledLevel.LowMatch through the same runtime path in player/editor. Fewer than3 entries disables and clears state; valid arrays are borrowed, and total uses all entries with int32 overflow. Neighbor count consumes the original difficulty random draw before ratio reads and uses the first2 cumulative cutoffs.",
+    "Tuned refill finds the last empty target cell below the filling cell, queries TARGET item mediation, checks down/left/right in that order, preserves duplicate exclusions and calls existing native weighted selection/exclusion fallback. One/two-neighbor rules are distinguished; no current-view or conventional match substitution is used.",
+    "RemainingMovesStarted appends missing colors1..4 to match sets using the last existing element weight (default1 only for empty sets), retains existing elements, reinitializes availability/weights and disables every set containing any of special tiled ids10/20/30/40/50. The native owner does not recalculate global set selection totals here.",
+    "The win ratio array10,45,45 lives in FoundationSettings as light Inspector data and is cloned per win, matching native fresh allocation. The bytes are verified against actual metadata initializer0xa41138.",
+    "Remaining conversion selects its new special type after current-item mediation clearing and virtual ReplaceItem(true). This resolves the callback/random-order gap explicitly recorded in the previous checkpoint.",
+    "Goal UI verification waits when the model is complete while the final UI flight/check is pending. Actual WinFail now blocks player input immediately on model victory; it does not permit test-driven extra moves during that interval."
+  ],
+  "performance": {
+    "recommended": "Reuse one3-entry exclusion list per level; retain typed board/owner references and existing weighted random/pools.",
+    "costs": "Each tuned refill scans at most its column height and checks at most6 target neighbors. No new per-frame collections or reflection. Missing-color list/array growth and the12-byte win-ratio array occur only at level-end transitions, mirroring low-frequency native work; no new art load or UI construction."
+  },
+  "remaining_scope": [
+    "Production startup still does not compose the complete application account/event/King/Life/Ego/LevelEnd/Flow/dialog owners. Tests install the actual runtime WinFail with explicitly bounded first-board owners; they do not establish a complete player settlement lifecycle.",
+    "StartWinFlow uses actual Session.Win through the fixture service; ReactivationLevelsManager.UpdateProgressAfterWin, LevelManager.LevelEnd/account persistence and native FlowManager/actions/win-logo/remaining/result dialog handoff remain unbound.",
+    "Native kernel tests bind grid/random/set-selection or application side-effect owners as declared. They do not prove all active event/helper/reentrant provider cases, King rendering, life persistence or arbitrary all-level/multi-board behavior.",
+    "Original rendered/camera/HUD/scene parity, physical pointer/skip Button transport, all country/AB/GM branches and unlock presentation remain incomplete. SDK handling is unchanged."
+  ],
+  "files": [
+    {
+      "path": "Assets/Foundation/Editor/GoalUiVerification.cs",
+      "sha256": "8ef96317620721d1116ef01349db7a1b833709424acdb38e259c8deaf053964d"
+    },
+    {
+      "path": "Assets/Foundation/Editor/RemainingCoinsVerification.cs",
+      "sha256": "127fc2c60d18184137ce66643b598c0f19c22e54ff1d5e196a6ecdee9d62b3fc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/FoundationSettings.cs",
+      "sha256": "945be4f16f37e3b395e462e3a892258c59858725018003a0fe446cc3faa05da8"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalFillSetGeneration.cs",
+      "sha256": "15a09707859a4ff2c38b315d7e8b1ec1651508de2af65566254b5e24e91954a9"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLevelSetSelection.cs",
+      "sha256": "8b31a42c2574853c9a82a29e26ea1c1f3e19d238a4c9bdc0f401e5d65c7bc738"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalPlayableBoard.cs",
+      "sha256": "52cc16a2342644af4fada6bcdb6df6a9963552284d4c46e6105239670dcf1b45"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingMovesItemReplacer.cs",
+      "sha256": "b2c820aecccdc7698af297ce3a35030113aed3d9872be7c2c41fd0ebeb906550"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingMovesReplacementServices.cs",
+      "sha256": "80e4682c35c347878eb0812dc6ee48217f8b107bbca829e57842dbadf3496438"
+    },
+    {
+      "path": "Assets/Foundation/Settings/FoundationSettings.asset",
+      "sha256": "14b8e22cce6a3581bd2614d5a24033722d3fe73068046fb00693bee6d92188bc"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLowMatchTuning.cs",
+      "sha256": "e8fe14608e62427d60c58fd117c5adfe914df78860f0237cea8a99cabbc8ea49"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalLowMatchTuning.cs.meta",
+      "sha256": "0fa463a4427950e1ee4c6f2f4114084b37fa1fb8f7b8cdb291d1ac90061c6f54"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingItemCreation.cs",
+      "sha256": "b99b997c0523f2c64e483499dacf2e6af7950d739a9245dcf71c44019e3b0ef5"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalRemainingItemCreation.cs.meta",
+      "sha256": "abd7dfbb811cde5e852e08b0be7fff817363d1dcad56043b4a5e9fc235c09d2c"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWinTransition.cs",
+      "sha256": "1d26596babc77dc9c6e7df76d093e84cb82dfa075e87153ba81f69a480ad89de"
+    },
+    {
+      "path": "Assets/Foundation/Runtime/OriginalWinTransition.cs.meta",
+      "sha256": "dae28c496b2844d5d7cf58f10354d25345f714a43d24a0c9be94def9e8f55027"
+    },
+    {
+      "path": "SourceCatalog/LowMatchHarness.cs",
+      "sha256": "a259ad8d36a6ab5ef87c1590f8fd0d53284948457c7b116e70e5588c3858db9f"
+    },
+    {
+      "path": "SourceCatalog/verify_low_match.py",
+      "sha256": "8b449c04758768d5968f0a5f1f43a385f9806a104d09c61dca5d6d9e203c5227"
+    },
+    {
+      "path": "SourceCatalog/RemainingItemCreationHarness.cs",
+      "sha256": "fa0872b84739fdbef299c186a423f30b533d18f85c107d88a042ac316a0d3127"
+    },
+    {
+      "path": "SourceCatalog/verify_remaining_item_creation.py",
+      "sha256": "7d313ca8313ebee93a7e1a58cbd6fc331bb401d7d614356fb17757709f02f126"
+    },
+    {
+      "path": "SourceCatalog/WinTransitionHarness.cs",
+      "sha256": "e2cce2747ae192cc711a39e49078238ee692358db8c19991ee3cc84144ad965e"
+    },
+    {
+      "path": "SourceCatalog/verify_win_transition.py",
+      "sha256": "0d4a8d28d4ed9b9ff3730481fceb9d757c4ae41e0778437e9c89da9bb635b437"
+    },
+    {
+      "path": "low_match_native_verification.json",
+      "sha256": "615eca41b87fc6d6a27e3aceb856b6bc2e2b8f483ba09c6805ce6931c8639655"
+    },
+    {
+      "path": "remaining_item_creation_native_verification.json",
+      "sha256": "23b3288f08bde52e84c04beca1f64685284cfb1f41247b32219236487239521d"
+    },
+    {
+      "path": "win_transition_native_verification.json",
+      "sha256": "c8f2586bd2703b0105947a3825fe39e99cc2fb33c66ace60bd16a52bb9127faa"
+    },
+    {
+      "path": "fill_set_generation_native_verification.json",
+      "sha256": "f30f4099853fac17f1eccc1a27cdb843bff6d6d075b8b401a78292bbef7276d9"
+    },
+    {
+      "path": "set_selection_verification.json",
+      "sha256": "4d7ceba92b9f5429923559c1fd1226bf05eccaba4da05406b3e55dbe93c54bdd"
+    },
+    {
+      "path": "set_initialization_verification.json",
+      "sha256": "f116d5bda99e91c47f4fd0d322c81bba096fb4dfe9b1c82f68408600ddfc341c"
+    },
+    {
+      "path": "background_remaining_coins_normal_verification.json",
+      "sha256": "e0ecdc1ea2e85fbde240042ea49a28c820e561f61bba5268c8d7b74454a488af"
+    },
+    {
+      "path": "live_remaining_coins_normal_verification.json",
+      "sha256": "d95721fe3e2ee4c28117f63c18ed324277230049cf18d4a4dce1dff17597c3e7"
+    },
+    {
+      "path": "remaining_coins_normal_flying.png",
+      "sha256": "d24233a2eb967cf362a50e7288060f992190584f8958fe63bae35a516a94d53d"
+    },
+    {
+      "path": "remaining_coins_normal_reward.png",
+      "sha256": "fd23c12b610535e8d9c054d5c2669fd1cc7cc56519216261c33e21140cc6380d"
+    },
+    {
+      "path": "background_remaining_coins_skip_verification.json",
+      "sha256": "d2e9260f1d56c678a44151d1ce278b9e776cc5ded0d9c9981e1a4265fdd16128"
+    },
+    {
+      "path": "live_remaining_coins_skip_verification.json",
+      "sha256": "cc29cde41fa22b2b249bb3c5b5828455a47eb871d1286ea3c5985dd0ac480176"
+    },
+    {
+      "path": "remaining_coins_skip_flying.png",
+      "sha256": "c0540b84539528eece219db1b5a7a5e0e4f77e6708df0b17a5919461f5ee997b"
+    },
+    {
+      "path": "remaining_coins_skip_reward.png",
+      "sha256": "4b2b5e92175b85711083ecd7ee5439d9f3bfe432b6d96c0ef02b0b480b9a9486"
+    },
+    {
+      "path": "background_remaining_coins_early_skip_verification.json",
+      "sha256": "c34854c8355155f4ca4b09b9a0a08ae0175110435af2da21cc34853e5ba8e63b"
+    },
+    {
+      "path": "live_remaining_coins_early_skip_verification.json",
+      "sha256": "d195c9f45e2cc1ba981e21047b8ba63aeedcb0401c3997e09558f0212e628de6"
+    },
+    {
+      "path": "remaining_coins_early_skip_flying.png",
+      "sha256": "c5745e4e76f75ea7301aaee1da84a247ce5d38a19e3111463445026b81a9b7d8"
+    },
+    {
+      "path": "remaining_coins_early_skip_reward.png",
+      "sha256": "6df71995852b410e05827eb5125088ae1a6bb88f6e3ccbabd4eb0ab4649a2cb5"
+    }
+  ],
+  "historical_checkpoint": "b59669f06f9abf1a181aea24f98765079ee3cce1",
+  "current_win_flow_evidence": "SourceCatalog/win_flow_evidence.json",
+  "superseded_flow_gap": "Runtime StartWinFlow/UpdateLevelWinData/LevelEnd dispatch, main queue and dialog action wrappers are now ported. Current scene owner fixtures exercise that queue; application account/UiDialog/production startup and final-result rendering/persistence remain incomplete. Historical hashes and scope below are retained."
+}
