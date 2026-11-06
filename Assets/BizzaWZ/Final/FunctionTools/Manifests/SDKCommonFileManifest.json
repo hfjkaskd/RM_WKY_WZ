@@ -1,0 +1,39 @@
+{
+  "module": "SDKCommon",
+  "version": "1.1.0",
+  "sourceRoot": "",
+  "items": [
+    {
+      "name": "Framework Event",
+      "source": "Assets/BizzaWZ/Common/Framework/Runtime/Module/Event",
+      "destination": "Common/Framework/Event",
+      "isDirectory": true,
+      "required": true,
+      "category": "SDK 公共事件基础代码"
+    },
+    {
+      "name": "EncryptionUtil.cs",
+      "source": "Assets/BizzaWZ/Final/Connect_SDK/SDK_WKY/API/Utils/EncryptionUtil.cs",
+      "destination": "Common/SDK_WKY/Utils/EncryptionUtil.cs",
+      "isDirectory": false,
+      "required": true,
+      "category": "SDK 公共脚本"
+    },
+    {
+      "name": "HttpUtil.cs",
+      "source": "Assets/BizzaWZ/Final/Connect_SDK/SDK_WKY/API/Utils/HttpUtil.cs",
+      "destination": "Common/SDK_WKY/Utils/HttpUtil.cs",
+      "isDirectory": false,
+      "required": true,
+      "category": "SDK 公共脚本"
+    },
+    {
+      "name": "GameEvent.cs",
+      "source": "Assets/BizzaWZ/Final/Connect_SDK/SDK_WKY/API/Event/GameEvent.cs",
+      "destination": "Common/SDK_WKY/Event/GameEvent.cs",
+      "isDirectory": false,
+      "required": true,
+      "category": "SDK 公共脚本"
+    }
+  ]
+}

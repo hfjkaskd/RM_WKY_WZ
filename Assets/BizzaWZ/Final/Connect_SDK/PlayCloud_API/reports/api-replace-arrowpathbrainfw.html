@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>API Replace Report - Arrow Path: Brain Flow</title>
+<style>
+body{font-family:Segoe UI,Microsoft YaHei,sans-serif;line-height:1.55;color:#202124;margin:32px;max-width:1180px}
+h1{margin-bottom:4px} h2{margin-top:28px;border-bottom:1px solid #ddd;padding-bottom:6px}
+table{border-collapse:collapse;width:100%;margin:12px 0 20px}th,td{border:1px solid #d9d9d9;padding:7px 9px;vertical-align:top;text-align:left}th{background:#f3f5f7}
+.pass{color:#137333;font-weight:600}.warn{color:#b06000;font-weight:600}.mono{font-family:Consolas,monospace;word-break:break-all}
+code{font-family:Consolas,monospace} small{color:#666}
+</style>
+</head>
+<body>
+<h1>API Replace 核对报告</h1>
+<p><strong>状态：</strong><span class="pass">完成（静态核对通过）</span><br>
+目标工程：<span class="mono">E:\Puzzle_Project\FakeProjects\ArrowSnap</span><br>
+执行时间：2026-08-19（Asia/Shanghai）<br>
+Swagger：本地 <span class="mono">LocalAPIData/swagger-doc.json</span>，标签 <code>PharaohMerge</code></p>
+
+<h2>发行参数对照</h2>
+<table>
+<tr><th>项目</th><th>用户输入</th><th>工程实际值</th><th>结果</th></tr>
+<tr><td>应用名</td><td>Arrow Path: Brain Flow</td><td>ProjectSettings.productName</td><td class="pass">通过</td></tr>
+<tr><td>AppId</td><td>arrowpathbrainfw</td><td>ChannelConfig.AppId = arrowpathbrainfw</td><td class="pass">通过</td></tr>
+<tr><td>包名</td><td>com.algalaldevo.brainflowarrow</td><td>Android applicationIdentifier</td><td class="pass">通过</td></tr>
+<tr><td>域名 / AES 密钥</td><td>https://pharaohs.top / Flow@8BrainPt</td><td>ChannelConfig.httpConfig</td><td class="pass">通过</td></tr>
+<tr><td>Adjust</td><td>hy3oa541smww</td><td>ChannelConfig.adjustKey</td><td class="pass">通过</td></tr>
+<tr><td>国家</td><td>默认 US；国家 NONE</td><td>defaultCountry=US；country=None</td><td class="pass">通过</td></tr>
+<tr><td>MAX</td><td>激励 dabdac596455ee9；插屏 7dc578ff8de5f54f</td><td>同值；横幅/开屏为空并保持原值</td><td class="pass">通过</td></tr>
+<tr><td>AppLovin / AdMob</td><td>SDK Key、Android App ID</td><td>AppLovinSettings.asset 已写入</td><td class="pass">通过</td></tr>
+<tr><td>隐私政策</td><td>Google Docs URL</td><td>AppLovinInternalSettings.json 的 consentFlowPrivacyPolicyUrl</td><td class="pass">通过</td></tr>
+</table>
+
+<h2>API 路径与字段核对</h2>
+<p>AccountModuleCfg.cs 中只有 4 个非空接口常量，均命中本地 Swagger 的 <code>PharaohMerge</code> 标签；未把空常量对应的接口误加进工程。</p>
+<table>
+<tr><th>常量</th><th>路径</th><th>请求字段</th><th>响应字段</th><th>结果</th></tr>
+<tr><td>from</td><td><code>/Pharaoh/Merge/Come</code></td><td>19</td><td>无</td><td class="pass">完全匹配</td></tr>
+<tr><td>login</td><td><code>/Pharaoh/Merge/Login</code></td><td>25</td><td>4 个顶层 + PM_Arel 下 2 个字段</td><td class="pass">完全匹配</td></tr>
+<tr><td>user_info</td><td><code>/Pharaoh/Merge/UserInfo</code></td><td>2</td><td>PM_ApCn 5 个字段 + PM_UsFo 16 个字段</td><td class="pass">完全匹配</td></tr>
+<tr><td>ad_info</td><td><code>/Pharaoh/MergeLog/AdData</code></td><td>2 个顶层对象；内部 3 + 13 个字段</td><td>无</td><td class="pass">完全匹配</td></tr>
+</table>
+<p>同时更新了 Adjust 归因 Dictionary 的硬编码 JSON key。旧 PharaohMerge 不存在的 <code>SbmRw</code>、<code>SbmRol</code> 仅保留为注释，不参与序列化。</p>
+
+<h2>主要字段修改前后</h2>
+<table>
+<tr><th>模型</th><th>修改前（旧 OceanShine key）</th><th>修改后（PharaohMerge key）</th></tr>
+<tr><td>UserInfo</td><td><code>SbmBac/SbmBaci/SbmCon/SbmCrc...</code></td><td><code>PM_Al/PM_AlI/PM_Ci/SbCcy...</code></td></tr>
+<tr><td>LoginResponse</td><td><code>SbmAru/SbmRdt/SbmRti/SbmUsid</code></td><td><code>PM_Arel/PM_Dta/PM_Tim/PM_Uid</code></td></tr>
+<tr><td>UserInfoResponse</td><td><code>SbmAcg/SbmUso</code> 及旧新手奖励字段</td><td><code>PM_ApCn/PM_UsFo</code> 及 <code>PM_CmG/PM_Nal/PM_Nci/PM_NcR/PM_ToS</code></td></tr>
+<tr><td>AdLogReport</td><td><code>SbmCnf/SbmEpm</code> 及旧内部字段</td><td><code>PM_ComFo/PM_EtdPm</code> 及 Swagger 对应嵌套字段</td></tr>
+<tr><td>归因 Dictionary</td><td><code>Sbm*</code> 硬编码 key</td><td>与 <code>OceanShineUserAttrsRequest</code> 相同的 PharaohMerge key</td></tr>
+</table>
+
+<h2>发布与加固配置</h2>
+<table>
+<tr><th>文件</th><th>核对结果</th></tr>
+<tr><td><code>Assets/StreamingAssets/ChannelConfig.bytes</code></td><td class="pass">使用 ChannelConfigBinarySerializer 对文件解密并完整读取；Magic/version、AppId、HTTP、Adjust、国家和 MAX 字段均正确。</td></tr>
+<tr><td><code>Assets/MaxSdk/Resources/AppLovinSettings.asset</code></td><td class="pass">SDK Key 与 AdMob Android App ID 已写入。</td></tr>
+<tr><td><code>ProjectSettings/AppLovinInternalSettings.json</code></td><td class="pass">隐私政策 URL 已写入。</td></tr>
+<tr><td><code>ProjectSettings/ProjectSettings.asset</code></td><td class="pass">应用名、包名、版本 1.0.3、Android version code 103 正常。</td></tr>
+<tr><td><code>ProjectSettings/Obfuz.asset</code>、Obfuz 生成文件</td><td class="pass">静态/动态密钥、VM codeGenerationSecretKey 已更新；VM 头部 SecretKey=brainflowarrow；随机前缀为 qmv。</td></tr>
+</table>
+
+<h2>验证结果</h2>
+<table>
+<tr><th>检查项</th><th>结果</th><th>说明</th></tr>
+<tr><td>反向字段检查</td><td class="pass">通过</td><td>实际 4 个 active DTO 与 Swagger 的字段名、嵌套关系一致。</td></tr>
+<tr><td>Unity 编译</td><td class="pass">通过</td><td>移除临时脚本后使用 Unity 2022.3.62f3 batchmode 编译，退出码 0。</td></tr>
+<tr><td>接口静态通信检查</td><td class="pass">通过（自定义实际路径检查）</td><td>请求协议、X-Bundle、加密流程与 4 个实际接口字段已核对；SDK 自带脚本因工程目录不是默认 Real/AccountCfg 布局而无法自动发现文件，未将该目录识别问题误判为 API 失败。</td></tr>
+<tr><td>真实在线请求</td><td class="warn">未执行</td><td>未使用 <code>--live</code>，避免未经明确要求向线上接口发送请求。</td></tr>
+</table>
+
+<p><small>临时 Unity 菜单脚本已执行成功并删除；未清理工程中与本任务无关的既有改动。</small></p>
+</body>
+</html>

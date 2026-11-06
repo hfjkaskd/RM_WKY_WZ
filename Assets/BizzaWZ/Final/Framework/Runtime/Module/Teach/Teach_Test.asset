@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8439e14978d0604087e46ea479d1f28, type: 3}
+  m_Name: Teach_Test
+  m_EditorClassIdentifier: 
+  graph:
+    rid: 6886201953617444885
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6886201953617444885
+      type: {class: ActionGraph_Teach, ns: , asm: Assembly-CSharp}
+      data:
+        note: 
+        configData:
+          rid: 6886201953617444886
+        blackBoard:
+          _variables: []
+        root:
+          rid: 6886201953617444887
+        variableList:
+        - rid: 6886201953617444888
+        unconnectedNodes:
+        - rid: 6886201953617444889
+        defaultVariableList: []
+    - rid: 6886201953617444886
+      type: {class: TeachConfigData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 6886201953617444887
+      type: {class: RootNode, ns: , asm: Assembly-CSharp}
+      data:
+        editorPos: {x: 318.4, y: 220}
+        children:
+        - rid: 6886201953617444890
+        titleNote: 
+        note: 
+    - rid: 6886201953617444888
+      type: {class: Variable_Float_Direct, ns: , asm: Assembly-CSharp}
+      data:
+        editorPos: {x: 512.8, y: 444.80002}
+        directValue: 39
+    - rid: 6886201953617444889
+      type: {class: EventAction_Teach_TeachStart, ns: , asm: Assembly-CSharp}
+      data:
+        editorPos: {x: 796.8, y: 562.4}
+        children: []
+        titleNote: 
+        note: 
+        conditionOverride:
+          internalValue:
+            rid: -2
+          idxInList: -1
+          nodeIdx: -1
+          nodeVarIdx: -1
+    - rid: 6886201953617444890
+      type: {class: Action_Teach_SetReportData, ns: , asm: Assembly-CSharp}
+      data:
+        editorPos: {x: 717.6, y: 262.40002}
+        children: []
+        titleNote: 
+        note: 
+        teachIndex:
+          internalValue:
+            rid: 6886201953617444891
+          idxInList: 0
+          nodeIdx: -1
+          nodeVarIdx: -1
+    - rid: 6886201953617444891
+      type: {class: Variable_Float_Direct, ns: , asm: Assembly-CSharp}
+      data:
+        editorPos: {x: 0, y: 0}
+        directValue: 39

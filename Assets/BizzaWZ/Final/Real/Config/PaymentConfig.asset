@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27dea32be072378419e86687e6d62bcb, type: 3}
+  m_Name: PaymentConfig
+  m_EditorClassIdentifier: 
+  PaymentDatas:
+  - paymentKey: paypal
+    payIconKey: paypal.jpg
+    payeeAccountType: 0
+    paymentIcon: {fileID: 21300000, guid: 38ac34b1b483f234fb3e76aebb65f83e, type: 3}
+    smallPaymentIcon: {fileID: 21300000, guid: 8c74b7e0ecfcedc4abb1bc068d9c80a8, type: 3}
+  - paymentKey: pagbank
+    payIconKey: pagbank.jpg
+    payeeAccountType: 1
+    paymentIcon: {fileID: 21300000, guid: 101a21955af810345a7daa8b95ab6035, type: 3}
+    smallPaymentIcon: {fileID: 0}
+  - paymentKey: pix
+    payIconKey: pix.jpg
+    payeeAccountType: 2
+    paymentIcon: {fileID: 21300000, guid: 1ff5feb4cea5dcc4aa2a76b9f3182300, type: 3}
+    smallPaymentIcon: {fileID: 21300000, guid: 58f81c14089332d4490867bc949fcc04, type: 3}
+  - paymentKey: ovo
+    payIconKey: ovo.jpg
+    payeeAccountType: 3
+    paymentIcon: {fileID: 21300000, guid: c8d025337dc965f43ab85e1824ae1ec4, type: 3}
+    smallPaymentIcon: {fileID: 0}
+  - paymentKey: dana
+    payIconKey: dana.jpg
+    payeeAccountType: 4
+    paymentIcon: {fileID: 21300000, guid: dfb07969794c8c94b8c89a18578b4798, type: 3}
+    smallPaymentIcon: {fileID: 21300000, guid: b4dcbcc172b652d438d90fd4d73ab080, type: 3}

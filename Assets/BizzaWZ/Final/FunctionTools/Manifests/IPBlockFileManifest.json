@@ -1,0 +1,74 @@
+{
+  "module": "UserInformationVerification",
+  "version": "1.4.0",
+  "sourceRoot": "",
+  "includes": [
+    "CommonPublicFileManifest"
+  ],
+  "items": [
+    {
+      "name": "UserInformationVerification（含 SCB）",
+      "source": "Assets/BizzaWZ/Final/FunctionTools/UserInformationVerification",
+      "destination": "",
+      "isDirectory": true,
+      "required": true,
+      "category": "IP 功能代码 + SCB 必需内容"
+    },
+    {
+      "name": "Boots_Flow 用户授权阶段",
+      "source": "Assets/BizzaWZ/Final/FunctionTools/UserInformationVerification/Runtime/Core/AuthFlow.cs",
+      "destination": "Runtime/Core/AuthFlow.cs",
+      "isDirectory": false,
+      "required": true,
+      "category": "Boots_Flow 的用户授权阶段（由功能目录包含）"
+    },
+    {
+      "name": "AuthConfig.bytes",
+      "source": "Assets/StreamingAssets/AuthConfig.bytes",
+      "destination": "@SHARED/StreamingAssets/AuthConfig.bytes",
+      "isDirectory": false,
+      "required": true,
+      "category": "IP 授权配置模板",
+      "shared": true
+    },
+    {
+      "name": "IP Android 构建模板（非 Java 内容）",
+      "source": "_Bizza_BuildTemplate",
+      "destination": "@SHARED/_Bizza_BuildTemplate",
+      "isDirectory": true,
+      "required": true,
+      "category": "IP Android 构建模板",
+      "excludes": [
+        "Android/unityLibrary/src/main/java"
+      ],
+      "shared": true
+    },
+    {
+      "name": "IP Java - BangsawanLog.java",
+      "source": "_Bizza_BuildTemplate/Android/unityLibrary/src/main/java/com/bangsawan/BangsawanLog.java",
+      "destination": "@SHARED/_Bizza_BuildTemplate/Android/unityLibrary/src/main/java/com/bangsawan/BangsawanLog.java",
+      "isDirectory": false,
+      "required": true,
+      "category": "IP Android 必需 Java",
+      "shared": true
+    },
+    {
+      "name": "IP Java - DeviceUtils.java",
+      "source": "_Bizza_BuildTemplate/Android/unityLibrary/src/main/java/com/bangsawan/oceanshine/DeviceUtils.java",
+      "destination": "@SHARED/_Bizza_BuildTemplate/Android/unityLibrary/src/main/java/com/bangsawan/oceanshine/DeviceUtils.java",
+      "isDirectory": false,
+      "required": true,
+      "category": "IP Android 必需 Java",
+      "shared": true
+    },
+    {
+      "name": "IP Java - UnityHelper.java",
+      "source": "_Bizza_BuildTemplate/Android/unityLibrary/src/main/java/com/bangsawan/unity/UnityHelper.java",
+      "destination": "@SHARED/_Bizza_BuildTemplate/Android/unityLibrary/src/main/java/com/bangsawan/unity/UnityHelper.java",
+      "isDirectory": false,
+      "required": true,
+      "category": "IP Android 必需 Java",
+      "shared": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/BizzaGame/BizzaFramework/ActionGraph/Editor/ActionGraphEditorWindow.uss?fileID=7433441132597879392&amp;guid=77d7fce04efe33d45b472d9681e618ba&amp;type=3#ActionGraphEditorWindow" />
+    <ui:VisualElement style="flex-grow: 1; align-self: auto; flex-direction: row;">
+        <FlowChartView style="width: 1600px; max-width: none; justify-content: flex-start;" />
+        <ui:VisualElement style="flex-grow: 0; justify-content: flex-start; align-items: stretch; height: 694px; flex-shrink: 1; min-width: 405px; max-width: 405px;">
+            <ui:VisualElement name="MenuView" style="flex-grow: 1; height: 150px; width: auto; max-width: none;">
+                <ui:Button text="切换图表类型" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GraphTypeBtn" style="height: 30px; width: auto; font-size: 18px; -unity-font-style: bold;" />
+                <ui:VisualElement style="flex-grow: 1; align-self: stretch; align-items: auto; justify-content: flex-start; flex-direction: row;">
+                    <ui:TextField picking-mode="Ignore" label="文件名:" value="new_action" name="FileNameInput" multiline="false" max-length="-1" readonly="false" is-delayed="false" auto-correction="false" style="height: 26px; width: 310px; transform-origin: center; -unity-font-style: normal; opacity: 1; display: flex; visibility: visible; overflow: hidden; position: relative; left: auto; flex-shrink: 1; -unity-text-outline-width: 0; font-size: 13px; justify-content: flex-start; max-width: none; align-self: auto;" />
+                    <ui:Button text="保存" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SaveBtn" style="width: 80px; height: 30px; -unity-font-style: bold;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; height: auto; flex-direction: row;">
+                    <ui:Button text="开始调试" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartDebug" style="width: 80px; height: 30px; -unity-font-style: bold;" />
+                    <ui:Button text="结束调试" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndDebug" style="width: 80px; height: 30px; -unity-font-style: bold;" />
+                    <ui:Button text="最近使用" parse-escape-sequences="true" display-tooltip-when-elided="true" name="History" style="width: 80px; height: 30px; -unity-font-style: bold;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; background-color: rgb(132, 132, 132);" />
+            </ui:VisualElement>
+            <InspectorView style="width: 398px; height: 750px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee1c183091d43fb9dcc4557cf914b93, type: 3}
+  m_Name: RewardItemFlyConfig
+  m_EditorClassIdentifier: 
+  channel: Android
+  useNativeAdRewardFx: 1
+  forceLowNativeQuality: 0
+  autoLowNativeQuality: 1
+  nativeSettings:
+    rainCount: 15
+    flyCount: 8
+    duration: 1.7
+    rainSize: 75
+    flySize: 70
+    scatterRadius: 108
+    fallSpeed: 48
+    trails: 1
+    trailSegments: 6
+    trailTime: 0.13
+    trailWidth: 16
+    trailColor: {r: 0.9339623, g: 0.885502, b: 0.9171065, a: 0.42}
+  nativeLowSettings:
+    rainCount: 6
+    flyCount: 4
+    duration: 1.7
+    rainSize: 75
+    flySize: 70
+    scatterRadius: 108
+    fallSpeed: 48
+    trails: 1
+    trailSegments: 4
+    trailTime: 0.12
+    trailWidth: 13
+    trailColor: {r: 0.990566, g: 0.9391687, b: 0.9726887, a: 0.36}
+  useCountryTrails: 1
+  trailsUS:
+    cashStyle: 3
+    customCashColor: {r: 1, g: 1, b: 1, a: 1}
+    coinStyle: 4
+    customCoinColor: {r: 1, g: 1, b: 1, a: 1}
+  trailsID:
+    cashStyle: 2
+    customCashColor: {r: 1, g: 1, b: 1, a: 1}
+    coinStyle: 4
+    customCoinColor: {r: 1, g: 1, b: 1, a: 1}
+  trailsBR:
+    cashStyle: 1
+    customCashColor: {r: 1, g: 1, b: 1, a: 1}
+    coinStyle: 4
+    customCoinColor: {r: 1, g: 1, b: 1, a: 1}
+  maxConcurrentFx: 4
+  maxStartsPerSecond: 4
+  startWindowSeconds: 1
+  maxConcurrentFreeFx: 16
+  iconCount: 15
+  heroCount: 4
+  trailCount: 1
+  iconSize: 132
+  startScale: 0.16
+  popScale: 1
+  endScale: 0.35
+  endAlpha: 0
+  fadeStart: 0.76
+  scatterRadiusMin: 120
+  scatterRadiusMax: 230
+  scatterDuration: 0.35
+  scatterKick: 80
+  scatterScalePunch: 0.24
+  launchClusterRadius: 42
+  launchClusterRatio: 0.389
+  scatterStartOffset: {x: 0, y: 0}
+  scatterFanSideScale: 1.568
+  scatterFanForwardScale: -0.201
+  scatterClusterJitter: 0.059
+  hoverDuration: 0.5
+  hoverExtraDelayMax: 0.12
+  hoverAmplitude: 1
+  hoverSideAmplitude: 1
+  hoverShakeCycles: 1
+  hoverAttract: 0.219
+  startDelayMax: 0.012
+  flyDuration: 0.45
+  flyArcHeight: 80
+  flyArcSide: 200
+  flyMidScaleAdd: 0.45
+  rotationMaxSpeed: 260
+  trailInterval: 0.026
+  trailAlpha: 0.037
+  trailShowStart: 0.08
+  burstDuration: 0.16
+  burstStartScale: 0.18
+  burstEndScale: 0.65
+  burstAlpha: 0.437
+  debugItemType: 2
+  debugAddCount: 100
+  debugPlayAnim: 1
+  debugShowCurrencyBar: 0
+  debugUseRewardTipsFlow: 1
+  debugStartTransform: {fileID: 0}
+  debugTargetTransform: {fileID: 0}
+  debugAnimation: 0
