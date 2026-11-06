@@ -103,6 +103,21 @@ namespace Whitebox.Foundation
             strike.Play(game, board, target, bottom.HammerLaunchFramePosition);
         }
 
+        internal GameObject CreatePaidSelection(Transform slotTransform)
+        {
+            var selection = Create(selectParticlesPrefabPath, slotTransform);
+            selection.transform.position = slotTransform.position;
+            return selection;
+        }
+
+        internal OriginalHammerBoosterView GetPaidStrikePrefab()
+        {
+            var prefab = Resources.Load<GameObject>(hammerPrefabPath);
+            var strike = prefab != null ? prefab.GetComponent<OriginalHammerBoosterView>() : null;
+            if (strike == null) throw new InvalidOperationException("Missing authored hammer effect: " + hammerPrefabPath);
+            return strike;
+        }
+
         private GameObject Create(string path, Transform parent)
         {
             var prefab = Resources.Load<GameObject>(path);

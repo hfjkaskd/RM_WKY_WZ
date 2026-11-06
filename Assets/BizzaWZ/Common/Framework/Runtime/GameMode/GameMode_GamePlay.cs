@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -16,37 +17,27 @@ public class GameMode_GamePlay : GameModeBase<GameMode_GamePlay>
         FlowModule.SetAutomaticPopupFlowBlocked(true);
         FlowModule.NewPlayerEnter();
 
-        AssetUtils.LoadSceneWithBlockAsync("GamePlay", async () =>
+        LoadGameplayScene().Forget();
+    }
+
+    private async UniTask LoadGameplayScene()
+    {
+        var cancellation = this.GetCancellationTokenOnDestroy();
+        try
         {
-            try
-            {
-                if (!CanContinueAsyncInit())
-                {
-                    return;
-                }
-                await UIModule.Instance.OpenPage(UIPageIds.RealGamePanel);
-                if (!CanContinueAsyncInit())
-                {
-                    return;
-                }
-
-                await UniTask.Yield();
-                if (!CanContinueAsyncInit())
-                {
-                    return;
-                }
-
-                FlowModule.SetAutomaticPopupFlowBlocked(false);
-                BridgingUtil.CanShowGuide();
-            }
-            catch (System.Exception)
-            {
-                if (CanContinueAsyncInit())
-                {
-                    throw;
-                }
-            }
-        }).Forget();
+            await AssetUtils.LoadSceneWithBlockAsync(WkyGameplayBridge.SceneName, () =>
+                CanContinueAsyncInit()
+                    ? WkyGameplayBridge.Instance.CompleteSceneHandoff(cancellation)
+                    : UniTask.CompletedTask);
+        }
+        catch (OperationCanceledException) when (!CanContinueAsyncInit() || cancellation.IsCancellationRequested)
+        {
+        }
+        catch (Exception error)
+        {
+            if (CanContinueAsyncInit())
+                await WkyGameplayBridge.ShowLoadFailure(error);
+        }
     }
 
     protected override void LateInit()

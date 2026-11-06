@@ -356,6 +356,8 @@ namespace Whitebox.Foundation
         { if (valid) AcceptedSwaps++; else RejectedSwaps++; }
         public void Dispose()
         {
+            boosterSession?.Dispose();
+            boosterSession = null;
             GuidedTargets.SingleTargetSelected -= king.OnSinglePropellerTarget;
             AreaTargets.WinningComboSelected -= king.OnWinningPropellerCombo;
             LineTargets.WinningComboSelected -= king.OnWinningPropellerCombo;
@@ -378,10 +380,28 @@ namespace Whitebox.Foundation
         public bool IsUiTouching => uiTouching();
         private OriginalHammerTutorial hammerTutorial;
         private OriginalOptionalBoosterTutorial optionalBoosterTutorial;
+        private RoyalMatchBoosterSession boosterSession;
+
+        internal void BindBoosterInventory(IRoyalMatchBoosterInventory inventory, OriginalBottomUi bottom,
+            OriginalGameplayHud hud, Camera camera, OriginalGameSceneProjection projection,
+            CoreFlowSettings configuration, Func<bool> inputBlocked)
+        {
+            boosterSession = new RoyalMatchBoosterSession(inventory, this, board, bottom, hud, camera,
+                projection, configuration, inputBlocked);
+        }
+
+        internal bool IsPaidBoosterInteractionActive => boosterSession != null && boosterSession.IsActive;
+        internal void CancelPaidBoosterSelection() => boosterSession?.CancelSelection();
+
+        internal bool HasActiveBoosterGuide =>
+            (hammerTutorial != null && hammerTutorial.IsGuiding) ||
+            (optionalBoosterTutorial != null && (optionalBoosterTutorial.IsGuiding || optionalBoosterTutorial.IsSelected));
+
         internal void BindHammerTutorial(OriginalHammerTutorial tutorial) => hammerTutorial = tutorial;
         internal void BindOptionalBoosterTutorial(OriginalOptionalBoosterTutorial tutorial) => optionalBoosterTutorial = tutorial;
         public bool IsBoosterSelected => (hammerTutorial != null && hammerTutorial.IsSelected) ||
-            (optionalBoosterTutorial != null && optionalBoosterTutorial.IsSelected);
+            (optionalBoosterTutorial != null && optionalBoosterTutorial.IsSelected) ||
+            (boosterSession != null && boosterSession.IsSelected);
         public bool CanUserMakeMove() => Moves.CanUserMakeMove();
         public OriginalGridCell GetCellFromWorldPosition(Vector2 position)
         {
@@ -391,8 +411,14 @@ namespace Whitebox.Foundation
             return board.Grid.GetCell(point.X, point.Y);
         }
         public bool ShouldDeselectBoosterOnTouch(OriginalGridCell cell) =>
-            optionalBoosterTutorial != null && optionalBoosterTutorial.ShouldDeselect(cell);
-        public void DeselectBooster() { if (optionalBoosterTutorial != null) optionalBoosterTutorial.Deselect(); }
+            (optionalBoosterTutorial != null && optionalBoosterTutorial.ShouldDeselect(cell)) ||
+            (boosterSession != null && boosterSession.ShouldDeselect(cell));
+
+        public void DeselectBooster()
+        {
+            if (optionalBoosterTutorial != null) optionalBoosterTutorial.Deselect();
+            boosterSession?.CancelSelection();
+        }
         public void CancelTouchedItemAnimation() => presses.CancelTouchedItemAnimation();
         public void TouchCell(OriginalGridCell cell) => presses.TouchCell(cell);
         public bool TapCell(OriginalGridCell cell) => taps.TapCell(cell);
@@ -495,6 +521,9 @@ namespace Whitebox.Foundation
             special.SwapWith(first != null ? moving : other, data);
             IncrementItemUse(special.ItemType, true);
         }
+        internal void BindSynthesisObserver(Func<bool> canRecord, Action<Vector3> record) =>
+            explosion.BindSynthesisObserver(canRecord, record);
+
         public bool ExplodeMatchGroup(OriginalMatchGroupSnapshot group, OriginalExplodeData data, bool automatic) => explosion.ExplodeMatchGroup(group, data, automatic);
         public void ReportPatternChanged(int previous, int current) => Debug.LogWarning("Match pattern changed during swap.");
         public void ReportMatchExplosionFailed() => Debug.LogWarning("Swap group was not ready to explode.");
@@ -551,8 +580,9 @@ namespace Whitebox.Foundation
         public void SetAbValues() { }
         public void UseBooster(OriginalGridCell cell)
         {
-            if (hammerTutorial != null) hammerTutorial.Use(cell);
-            if (optionalBoosterTutorial != null) optionalBoosterTutorial.Use(cell);
+            if (hammerTutorial != null && hammerTutorial.IsSelected) hammerTutorial.Use(cell);
+            else if (optionalBoosterTutorial != null && optionalBoosterTutorial.IsSelected) optionalBoosterTutorial.Use(cell);
+            else boosterSession?.Use(cell);
         }
         public void IncrementTappedLightball() { Session.SpecialItemCounts.TappedLightballCount++; }
         // New-user UX persistence belongs to the pending account owner. These

@@ -22,6 +22,7 @@ namespace Whitebox.Foundation
         [SerializeField] private CoreGameFlow coreFlow;
         [SerializeField] private CoreFlowSettings coreFlowSettings;
         private CoreLevelProgress progress;
+        private IRoyalMatchSessionBridge sessionBridge;
         private CoreLevelAttemptStore attemptStore;
         private OriginalAttemptSeeds attemptSeeds;
         private int currentLevelNumber;
@@ -55,13 +56,23 @@ namespace Whitebox.Foundation
         private void OnEnable()
         {
             if (coreFlow == null || coreFlowSettings == null) throw new InvalidOperationException("Core flow prefab settings are missing.");
-            progress = new CoreLevelProgress(coreFlowSettings.progressFileName, settings.PlayableLevelNumber);
-            if (adScenario == null) attemptStore = new CoreLevelAttemptStore(progress.DatabasePath);
+            if (adScenario == null) sessionBridge = RoyalMatchSessionBridge.Current;
+            if (sessionBridge != null) return;
+            LoadInitialLevel(settings.PlayableLevelNumber);
+            if (!progress.IsComplete && adScenario != null) BindRecoveryPreview();
+        }
+
+        private void LoadInitialLevel(int levelNumber)
+        {
+            progress = new CoreLevelProgress(coreFlowSettings.progressFileName, levelNumber, sessionBridge != null);
+            if (adScenario == null)
+            {
+                int reviveMoves = sessionBridge is IRoyalMatchReviveBridge ? coreFlowSettings.firstReviveMoves : 0;
+                attemptStore = new CoreLevelAttemptStore(progress.DatabasePath, reviveMoves);
+            }
             currentLevelNumber = progress.LevelToPlay;
             if (progress.IsComplete) return;
             level = settings.CoreLevels.Load(currentLevelNumber);
-
-            if (adScenario != null) BindRecoveryPreview();
         }
 
         private void BindRecoveryPreview()
@@ -83,6 +94,25 @@ namespace Whitebox.Foundation
 
         private void Start()
         {
+            if (sessionBridge == null)
+                InitializeGame();
+            else
+                StartCoroutine(StartWhenServerLevelIsAvailable());
+        }
+
+        private IEnumerator StartWhenServerLevelIsAvailable()
+        {
+            int levelNumber;
+            // Additive reload activates the new scene before the previous controller flushes its save.
+            while (RoyalMatchSessionBridge.ActiveController != null ||
+                   !sessionBridge.TryGetCurrentLevel(out levelNumber)) yield return null;
+            RoyalMatchSessionBridge.ActiveController = this;
+            LoadInitialLevel(levelNumber);
+            InitializeGame();
+        }
+
+        private void InitializeGame()
+        {
             if (initialBoard == null) throw new InvalidOperationException("Initial board is not configured.");
             if (gameAudio == null) throw new InvalidOperationException("Game audio is not configured.");
             gameAudio.Initialize();
@@ -98,13 +128,16 @@ namespace Whitebox.Foundation
             var hudPrefab = Resources.Load<GameObject>(gameplayHudPrefabPath);
             if (hudPrefab == null) throw new InvalidOperationException("Original gameplay HUD prefab is missing.");
             gameplayHud = Instantiate(hudPrefab, transform).GetComponent<OriginalGameplayHud>();
-            if (!string.IsNullOrEmpty(bottomUiPrefabPath))
-            {
-                var bottomPrefab = Resources.Load<GameObject>(bottomUiPrefabPath);
-                if (bottomPrefab == null) throw new InvalidOperationException("Original bottom UI prefab is missing.");
-                bottomUi = Instantiate(bottomPrefab, transform).GetComponent<OriginalBottomUi>();
-            }
+            CreateBottomUi();
             StartAttempt(false);
+        }
+
+        private void CreateBottomUi()
+        {
+            if (string.IsNullOrEmpty(bottomUiPrefabPath)) return;
+            var bottomPrefab = Resources.Load<GameObject>(bottomUiPrefabPath);
+            if (bottomPrefab == null) throw new InvalidOperationException("Original bottom UI prefab is missing.");
+            bottomUi = Instantiate(bottomPrefab, transform).GetComponent<OriginalBottomUi>();
         }
 
         private void ShowSavedCompletion()
@@ -132,6 +165,7 @@ namespace Whitebox.Foundation
             initialBoard.Initialize(level, PrepareDifficultySeed(restoredState), restored?.BoardSaveData);
             gameplay = new OriginalPlayableBoard(initialBoard, gameAudio, contextUpdates, level, settings, IsUiTouching, camera,
                 gameSceneProjection, settings.CreateCoreInventory(), currentLevelNumber, restored);
+            if (restoredState != null) gameplay.Session.EgoPurchaseCount = restoredState.GetEgoPurchaseCount();
             coreFlow.PrepareOpeningTutorial(currentLevelNumber, bottomUi != null, restoredState);
             attemptStore?.Begin(gameplay, restoredState);
             gameplay.InitializeViews();
@@ -145,7 +179,7 @@ namespace Whitebox.Foundation
             gameplayHud.Initialize(gameplay, initialBoard.Goals, gameAudio, camera, projection);
             if (bottomUi != null)
             {
-                if (restarted)
+                if (bottomUi.IsInitialized)
                 {
                     bottomUi.SetOrientationEnabled(true);
                     bottomUi.RefreshLayout();
@@ -155,7 +189,10 @@ namespace Whitebox.Foundation
             if (useGameProjection) gameSceneProjection.OnProjectionChanged += RefreshHudLayout;
             gameTouchInput.Bind(gameplay);
             coreFlow.Initialize(gameplay, initialBoard, gameplayHud, gameAudio, camera, progress, bottomUi,
-                QueueRestart, useGameProjection, restarted, restoredState, attemptStore, projection);
+                QueueRestart, useGameProjection, restarted, restoredState, attemptStore, projection, sessionBridge);
+            if (bottomUi != null && sessionBridge is IRoyalMatchBoosterInventory boosterInventory)
+                gameplay.BindBoosterInventory(boosterInventory, bottomUi, gameplayHud, camera, projection,
+                    coreFlow.Configuration, () => coreFlow.BlocksBoardInput);
             if (uiRoot != null)
             {
                 gameplay.Moves.OnMoveChanged += UpdateMoves;
@@ -179,11 +216,25 @@ namespace Whitebox.Foundation
 
         private void QueueRestart() => StartCoroutine(RestartAttempt());
 
+        public void ApplyServerLevel()
+        {
+            if (sessionBridge == null || gameplay == null || coreFlow.IsTransitioning ||
+                (!gameplay.State.IsPlaying() && !coreFlow.IsEnteringLevel)) return;
+            if (sessionBridge.TryGetCurrentLevel(out int serverLevel) && serverLevel != currentLevelNumber)
+                coreFlow.RetryLevel();
+        }
+
         // GameManager.RestartGame 0x1e3b6f8 resets the game context inside the
         // current scene before activating the new level and sliding in the grid.
         private IEnumerator RestartAttempt()
         {
             yield return null;
+            int nextLevel = currentLevelNumber;
+            if (sessionBridge != null)
+            {
+                while (!sessionBridge.TryGetCurrentLevel(out nextLevel)) yield return null;
+                if (nextLevel != currentLevelNumber) settings.CoreLevels.GetEntry(nextLevel);
+            }
             attemptStore?.Clear();
             coreFlow.Release();
             gameSceneProjection.OnProjectionChanged -= RefreshHudLayout;
@@ -194,12 +245,30 @@ namespace Whitebox.Foundation
             DisposeAttempt();
             initialBoard.ResetForRestart();
             gameAudio.ResetAttemptSounds();
+            if (nextLevel != currentLevelNumber)
+            {
+                level = settings.CoreLevels.Load(nextLevel);
+                progress.SetAuthoritativeLevel(nextLevel);
+                currentLevelNumber = nextLevel;
+                if (bottomUi != null)
+                {
+                    bottomUi.gameObject.SetActive(false);
+                    Destroy(bottomUi.gameObject);
+                }
+                CreateBottomUi();
+            }
             StartAttempt(true);
         }
 
         private bool IsUiTouching()
         {
-            if (coreFlow != null && coreFlow.BlocksBoardInput) return true;
+            if (coreFlow != null && coreFlow.BlocksBoardInput)
+            {
+                var listener = gameTouchInput.Listener;
+                if (coreFlow.IsBridgeInputBlocked && listener != null && listener.IsTouching)
+                    listener.StopTouch();
+                return true;
+            }
             if (gameSceneProjection.IsOverSquareSideBand(Input.mousePosition)) return true;
             var optionalGuide = coreFlow != null ? coreFlow.OptionalBoosterTutorial : null;
             if (optionalGuide != null && (optionalGuide.IsGuiding || optionalGuide.IsSelected) && EventSystem.current != null)
@@ -244,6 +313,8 @@ namespace Whitebox.Foundation
         private void OnDisable()
         {
             StopAllCoroutines();
+            if (RoyalMatchSessionBridge.ActiveController == this)
+                RoyalMatchSessionBridge.ActiveController = null;
             attemptStore?.Flush();
             attemptStore = null;
             if (coreFlow != null) coreFlow.Release();
@@ -255,6 +326,7 @@ namespace Whitebox.Foundation
             if (ads != null) ads.Finished -= OnFinished;
             adButton = null;
             ads = null;
+            sessionBridge = null;
             uiRoot = null;
             if (progress != null) { progress.Dispose(); progress = null; }
         }

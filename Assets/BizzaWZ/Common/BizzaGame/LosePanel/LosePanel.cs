@@ -42,9 +42,17 @@ public class LosePanel : UIPageBase<LoseReason, LevelInfo>
 
     private LoseReason loseReason;
     private LevelInfo levelInfo;
+    private int pageGeneration;
+    private bool offersRevive;
+    private bool adPending;
 
     protected override void OnClose()
     {
+        pageGeneration++;
+        adPending = false;
+        if (offersRevive)
+            WkyGameplayBridge.Instance?.ResolveReviveOffer(false, this);
+        offersRevive = false;
         if (reviveButton != null)
         {
             reviveButton.onClick.RemoveListener(OnClickReviveButton);
@@ -79,24 +87,66 @@ public class LosePanel : UIPageBase<LoseReason, LevelInfo>
         {
             bizzaLoseButton2.onClick.AddListener(RestartLevel);
         }
-        bool isHaveRevive = SaveDataUtils.GameData.currentReviveCount < BridgingUtil.MAX_REVIVE_COUNT;
-        SetObjsActive(reviveObjs, isHaveRevive);
-        SetObjsActive(loseObjs, !isHaveRevive);
+        pageGeneration++;
+        adPending = false;
+        offersRevive = WkyGameplayBridge.Instance?.CanOfferRevive == true;
+        if (reviveButton != null)
+            reviveButton.interactable = offersRevive;
+        SetObjsActive(reviveObjs, offersRevive);
+        SetObjsActive(loseObjs, !offersRevive);
     }
 
     private void OnClickReviveButton()
     {
-        #if BIZZA_REAL_WITHDRAW
-        float reward = WithdrawalUtil.GetCustomizedFloatByCountryType(
-            WithdrawalUtil.GetDollarCountBtFree());
-        BizzaSdk.Ad.ShowRewardAd(E_AdPos.Revive.ToString(), reward, (a) => FlowModule.OnReviveResult(a.success, loseReason, levelInfo));
-        #else
-        FlowModule.OnReviveResult(true, loseReason, levelInfo);
-        #endif
+        var bridge = WkyGameplayBridge.Instance;
+        if (!offersRevive || adPending || bridge?.CanOfferRevive != true)
+            return;
+
+        adPending = true;
+        reviveButton.interactable = false;
+        int expectedGeneration = pageGeneration;
+#if BIZZA_REAL_WITHDRAW
+        if (!BizzaSdk.Ad.Inited)
+        {
+            FinishReviveAd(expectedGeneration, false);
+            return;
+        }
+
+        try
+        {
+            float reward = WithdrawalUtil.GetCustomizedFloatByCountryType(
+                WithdrawalUtil.GetDollarCountBtFree());
+            BizzaSdk.Ad.ShowRewardAd("Revive", reward,
+                result => FinishReviveAd(expectedGeneration, result.success));
+        }
+        catch (Exception exception)
+        {
+            Debug.LogException(exception);
+            FinishReviveAd(expectedGeneration, false);
+        }
+#else
+        FinishReviveAd(expectedGeneration, false);
+#endif
+    }
+
+    private void FinishReviveAd(int expectedGeneration, bool succeeded)
+    {
+        if (this == null || expectedGeneration != pageGeneration || !adPending || IsClosing ||
+            WkyGameplayBridge.Instance?.CanOfferRevive != true)
+            return;
+
+        adPending = false;
+        FlowModule.OnReviveResult(succeeded, loseReason, levelInfo);
     }
 
     private void RestartLevel()
     {
+        if (offersRevive)
+        {
+            WkyGameplayBridge.Instance?.ResolveReviveOffer(false, this);
+            return;
+        }
+
         FlowModule.LoadGameLevel();
     }
 

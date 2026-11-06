@@ -27,6 +27,15 @@ namespace Whitebox.Foundation
         private Camera cameraSource;
         private OriginalGameSceneProjection sceneProjection;
         private CoreLevelProgress progress;
+        private IRoyalMatchSessionBridge sessionBridge;
+        private bool attemptReadyReported, attemptEndedReported, openingTutorialReported;
+        private int lastBridgeInputBlockFrame = int.MinValue;
+        private bool revivePending, restoredExhaustedAttempt;
+        private int reviveRequestId;
+        private IRoyalMatchSynthesisBridge synthesisBridge;
+        private Queue<(int remainingTargets, Vector3 worldPosition)> pendingSynthesis;
+        private int synthesisSteadyFrames, synthesisBaselineMoves;
+        private bool suppressTutorialSynthesis;
         private CoreExcludedPeripheralSystems peripherals;
         private OriginalFlowManager flow;
         private OriginalWinFlowCoordinator win;
@@ -70,8 +79,22 @@ namespace Whitebox.Foundation
         public bool IsInitialized => initialized && !IsEnteringLevel;
         public bool BlocksBoardInput => initialized &&
             (transitioning || IsEnteringLevel || uiDisabled || dialogInputLocks > 0 || dialogs.HasActiveDialog || tutorialPending ||
-             (modalTutorial != null && modalTutorial.BlocksBoardInput));
+             IsBridgeInputBlocked || (modalTutorial != null && modalTutorial.BlocksBoardInput));
+        internal bool IsBridgeInputBlocked
+        {
+            get
+            {
+                if (sessionBridge == null) return false;
+                if (!attemptReadyReported || attemptEndedReported || revivePending || sessionBridge.BlocksGameplayInput)
+                {
+                    lastBridgeInputBlockFrame = Time.frameCount;
+                    return true;
+                }
+                return Time.frameCount <= lastBridgeInputBlockFrame + 1;
+            }
+        }
         private bool BlocksSettingsInput => BlocksBoardInput ||
+            (game != null && game.IsPaidBoosterInteractionActive) ||
             (directedTutorial != null && directedTutorial.IsGuiding) ||
             (hammerTutorial != null && hammerTutorial.IsGuiding) ||
             (optionalBoosterTutorial != null && (optionalBoosterTutorial.IsGuiding || optionalBoosterTutorial.IsSelected));
@@ -100,6 +123,7 @@ namespace Whitebox.Foundation
             openingBoosterPath = null;
             openingDirected = null;
             openingModal = null;
+            if (restored != null && restored.GetLeftMoves() == 0) return;
             if (hasBottomUi && !usedTutorialBooster)
             {
                 openingHammer = level == OriginalBoosterUnlock.GetUnlockLevel(OriginalBoosterType.Hammer);
@@ -125,11 +149,21 @@ namespace Whitebox.Foundation
         internal void Initialize(OriginalPlayableBoard game, OriginalInitialBoardView board, OriginalGameplayHud hud,
             OriginalGameAudioHost audio, Camera camera, CoreLevelProgress progress, OriginalBottomUi bottomUi,
             Action restartLevel, bool animateEntrance, bool restarted, OriginalGameStateSaveData restoredState,
-            CoreLevelAttemptStore attemptStore, OriginalGameSceneProjection projection)
+            CoreLevelAttemptStore attemptStore, OriginalGameSceneProjection projection, IRoyalMatchSessionBridge sessionBridge = null)
         {
             InitializeDialogFlow(audio, camera, progress);
+            this.sessionBridge = sessionBridge;
+            restoredExhaustedAttempt = sessionBridge is IRoyalMatchReviveBridge &&
+                restoredState != null && restoredState.GetLeftMoves() == 0;
             sceneProjection = projection;
             this.game = game; this.board = board; this.hud = hud;
+            synthesisBridge = sessionBridge as IRoyalMatchSynthesisBridge;
+            if (synthesisBridge != null)
+            {
+                pendingSynthesis ??= new Queue<(int remainingTargets, Vector3 worldPosition)>(8);
+                synthesisBaselineMoves = game.Moves.MadeMoves;
+                game.BindSynthesisObserver(CanRecordSynthesis, RecordSynthesis);
+            }
             this.bottomUi = bottomUi;
             this.attemptStore = attemptStore;
             this.restartLevel = restartLevel ?? throw new ArgumentNullException(nameof(restartLevel));
@@ -349,6 +383,26 @@ namespace Whitebox.Foundation
         private void Update()
         {
             if (!IsInitialized || transitioning) return;
+            if (sessionBridge != null && !attemptReadyReported && !tutorialPending)
+            {
+                attemptReadyReported = true;
+                sessionBridge.OnAttemptReady(game.Session.Number);
+                if (transitioning) return;
+            }
+            if (attemptReadyReported && !openingTutorialReported && sessionBridge is IRoyalMatchTutorialBridge tutorialBridge &&
+                !tutorialPending && !waitingDirectedTutorial &&
+                (openingDirected == null || directedTutorial == null || !directedTutorial.IsGuiding) &&
+                (modalTutorial == null || !modalTutorial.BlocksBoardInput) && !BoosterGuideActive)
+            {
+                openingTutorialReported = true;
+                tutorialBridge.OnOpeningTutorialCompleted();
+                if (transitioning) return;
+            }
+            if (restoredExhaustedAttempt && !IsBridgeInputBlocked)
+            {
+                restoredExhaustedAttempt = false;
+                StartFailFlow();
+            }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 PressBack();
@@ -359,6 +413,54 @@ namespace Whitebox.Foundation
 
         private bool BoosterGuideActive => (hammerTutorial != null && hammerTutorial.IsGuiding) ||
             (optionalBoosterTutorial != null && (optionalBoosterTutorial.IsGuiding || optionalBoosterTutorial.IsSelected));
+
+        private bool IsSynthesisTutorialActive => tutorialPending || BoosterGuideActive ||
+            (directedTutorial != null && directedTutorial.IsGuiding) ||
+            (modalTutorial != null && modalTutorial.BlocksBoardInput);
+
+        private bool CanRecordSynthesis() => attemptReadyReported && game.State.IsPlaying() &&
+            !suppressTutorialSynthesis && !IsSynthesisTutorialActive && game.Moves.MadeMoves > synthesisBaselineMoves;
+
+        private void RecordSynthesis(Vector3 worldPosition)
+        {
+            CountTargets(out _, out int remainingTargets);
+            pendingSynthesis.Enqueue((remainingTargets, worldPosition));
+            synthesisSteadyFrames = 0;
+        }
+
+        private void LateUpdate()
+        {
+            if (synthesisBridge == null || !IsInitialized || transitioning) return;
+            if (!game.State.IsPlaying())
+            {
+                pendingSynthesis.Clear();
+                synthesisSteadyFrames = 0;
+                return;
+            }
+            if (IsSynthesisTutorialActive)
+            {
+                suppressTutorialSynthesis = true;
+                synthesisSteadyFrames = 0;
+                return;
+            }
+            if (!suppressTutorialSynthesis && pendingSynthesis.Count == 0) return;
+            if (!game.Fall.IsAllItemsSteady || game.State.HasAnyOperation() || game.Auto.IsThereAWaitingMatch)
+            {
+                synthesisSteadyFrames = 0;
+                return;
+            }
+            if (synthesisSteadyFrames < 2 && ++synthesisSteadyFrames < 2) return;
+
+            if (suppressTutorialSynthesis)
+            {
+                // The action that completes the guide can keep resolving after the guide disappears.
+                synthesisBaselineMoves = game.Moves.MadeMoves;
+                suppressTutorialSynthesis = false;
+            }
+            if (pendingSynthesis.Count == 0 || BlocksBoardInput) return;
+            var (remainingTargets, worldPosition) = pendingSynthesis.Dequeue();
+            synthesisBridge.OnSynthesisResolved(remainingTargets, worldPosition, cameraSource);
+        }
 
         internal void UpdateMatchHints()
         {
@@ -442,6 +544,14 @@ namespace Whitebox.Foundation
             entrance = null;
             matchHints?.Dispose();
             dynamicPowerTutorials?.Dispose();
+            if (synthesisBridge != null)
+            {
+                game?.BindSynthesisObserver(null, null);
+                synthesisBridge = null;
+                pendingSynthesis.Clear();
+                synthesisSteadyFrames = 0;
+                suppressTutorialSynthesis = false;
+            }
             game?.ReleaseLevelFlow();
             game?.ReleaseWinFail(); game?.BindRemainingMovesManager(null);
             // Scene disposal can run after the camera has destroyed its children.
@@ -467,6 +577,10 @@ namespace Whitebox.Foundation
             LevelQuitDialog = null;
             modalTutorial = null; directedTutorial = null; hammerTutorial = null; optionalBoosterTutorial = null;
             attemptStore = null;
+            sessionBridge = null;
+            attemptReadyReported = attemptEndedReported = openingTutorialReported = false;
+            lastBridgeInputBlockFrame = int.MinValue;
+            revivePending = restoredExhaustedAttempt = false;
             transitioning = failureStarted = outOfMovesStarted = uiDisabled = tutorialPending = lightballGuideShown = false;
             dialogInputLocks = 0;
             onlyLightballSince = -1f;
@@ -513,7 +627,9 @@ namespace Whitebox.Foundation
         public OriginalFlowManager GetFlowManager() => flow;
         public OriginalFlowAction CreateWinLogoAction() => new OriginalShowWinLogoDialogAction(this);
         public OriginalFlowAction CreateRemainingMovesAction() => new OriginalRemainingMovesDialogAction(this);
-        public OriginalFlowAction CreateLevelWinAction() => new OriginalShowLevelWinDialogAction(this);
+        public OriginalFlowAction CreateLevelWinAction() => sessionBridge == null
+            ? new OriginalShowLevelWinDialogAction(this)
+            : new ReportOutcomeAction(this, RoyalMatchLevelOutcome.Won);
         public bool ShouldDelayAutoActions() => false;
         public bool IsInDelayedActions(OriginalFlowAction action) => false;
         public void DelayAutoAction(OriginalFlowAction action) => throw new InvalidOperationException("Core flow has no peripheral auto actions.");
@@ -596,8 +712,54 @@ namespace Whitebox.Foundation
             OutOfMovesBanner = null;
             EnableOrientation(35);
             flow.Clear(false);
-            StartFailFlow();
+            if (!TryOfferRevive()) StartFailFlow();
         }
+
+        private bool TryOfferRevive()
+        {
+            if (config.firstReviveMoves <= 0 || !game.State.IsEgo() || game.Moves.LeftMoves != 0 ||
+                game.Session.EgoPurchaseCount != 0 || !(sessionBridge is IRoyalMatchReviveBridge reviveBridge))
+                return false;
+
+            revivePending = true;
+            int requestId = ++reviveRequestId;
+            SaveReviveSnapshot();
+            if (reviveBridge.TryOfferRevive(CreateResult(RoyalMatchLevelOutcome.OutOfMoves),
+                    success => ResolveRevive(requestId, success)))
+                return true;
+
+            revivePending = false;
+            return false;
+        }
+
+        private void ResolveRevive(int requestId, bool success)
+        {
+            if (!revivePending || requestId != reviveRequestId || !initialized || transitioning) return;
+            revivePending = false;
+            if (!success)
+            {
+                StartFailFlow();
+                return;
+            }
+
+            // First original Ego package replenishes moves without placing specials.
+            game.Session.EgoPurchaseCount++;
+            game.State.SetStateToPlay();
+            game.Moves.SetMaxMoves(config.firstReviveMoves);
+            game.Session.LeftMoves = game.Moves.LeftMoves;
+            WinFail.Clear(false);
+            outOfMovesStarted = false;
+            audio.ResumeGameMusic();
+            lastBridgeInputBlockFrame = Time.frameCount;
+            SaveReviveSnapshot();
+        }
+
+        private void SaveReviveSnapshot()
+        {
+            attemptStore?.SaveImmediate(game, HasShownDynamicTutorial, UsedTutorialBooster);
+            attemptStore?.Flush();
+        }
+
         public void StartNoPossibleMoveFlow() // 0x1ede668 and native session state 5 at 0x32b9eec.
         {
             if (failureStarted) return;
@@ -609,7 +771,9 @@ namespace Whitebox.Foundation
             audio.StopGameMusic();
             StopAllSounds();
             PlaySound(212, .04f);
-            flow.Push(new NoPossibleMovesAction(this));
+            flow.Push(sessionBridge == null
+                ? new NoPossibleMovesAction(this)
+                : new ReportOutcomeAction(this, RoyalMatchLevelOutcome.NoPossibleMoves));
         }
         public void StartFailFlow()
         {
@@ -624,12 +788,14 @@ namespace Whitebox.Foundation
                 hud.KingVisual?.BeSad();
             }
             PlaySound(212, .04f);
-            flow.Push(new FailureAction(this));
+            if (sessionBridge is IRoyalMatchReviveBridge && game.Moves.LeftMoves == 0)
+                attemptStore?.Clear();
+            QueueFailureResult(RoyalMatchLevelOutcome.OutOfMoves);
         }
         // BackButtonListener.PressBack 0x2083d50: dialog, selected booster, then level quit.
         public void PressBack()
         {
-            if (!IsInitialized || transitioning || dialogs.PressBack() || game == null) return;
+            if (!IsInitialized || transitioning || IsBridgeInputBlocked || dialogs.PressBack() || game == null) return;
             if (optionalBoosterTutorial != null && optionalBoosterTutorial.IsSelected)
             {
                 optionalBoosterTutorial.Deselect();
@@ -673,7 +839,7 @@ namespace Whitebox.Foundation
             game.Session.LeftMoves = game.Moves.LeftMoves;
             game.Session.MadeMoves = game.Moves.MadeMoves;
             game.Session.State = 6;
-            if (game.Session.IsBonus)
+            if (game.Session.IsBonus && sessionBridge == null)
             {
                 // Core entry returns to the same unfinished bonus level.
                 RetryLevel();
@@ -681,8 +847,39 @@ namespace Whitebox.Foundation
             }
             hud.KingVisual?.BeSad();
             PlaySound(212, .04f);
-            flow.Push(new FailureAction(this));
+            QueueFailureResult(RoyalMatchLevelOutcome.Quit);
         }
+
+        private void QueueFailureResult(RoyalMatchLevelOutcome outcome)
+        {
+            flow.Push(sessionBridge == null ? new FailureAction(this) : new ReportOutcomeAction(this, outcome));
+        }
+
+        private void ReportOutcome(RoyalMatchLevelOutcome outcome)
+        {
+            if (attemptEndedReported) return;
+            attemptEndedReported = true;
+            sessionBridge.OnAttemptEnded(CreateResult(outcome));
+        }
+
+        private RoyalMatchLevelResult CreateResult(RoyalMatchLevelOutcome outcome)
+        {
+            CountTargets(out int totalTargets, out int remainingTargets);
+            return new RoyalMatchLevelResult(game.Session.Number, outcome, totalTargets,
+                remainingTargets, game.Moves.LeftMoves);
+        }
+
+        private void CountTargets(out int totalTargets, out int remainingTargets)
+        {
+            totalTargets = remainingTargets = 0;
+            foreach (var boardGoals in board.Goals.GetAllGoals())
+                foreach (var goal in boardGoals)
+                {
+                    totalTargets += goal.TargetCount;
+                    remainingTargets += Mathf.Clamp(goal.LeftCount, 0, goal.TargetCount);
+                }
+        }
+
         internal void ClearQuitDialog() => LevelQuitDialog = null;
         public void SpendMovesOnLevelQuit() => throw new InvalidOperationException("Move tokens are excluded.");
         public void ReportOperationTimeout(int count,int state) => Debug.LogError("Core WinFail operation timeout: " + count + ", state " + state);
@@ -787,6 +984,27 @@ namespace Whitebox.Foundation
             yield return null;
             SceneManager.LoadSceneAsync(gameObject.scene.path, LoadSceneMode.Single);
         }
+        private sealed class ReportOutcomeAction : OriginalFlowAction
+        {
+            private readonly CoreGameFlow owner;
+            private readonly RoyalMatchLevelOutcome outcome;
+
+            internal ReportOutcomeAction(CoreGameFlow owner, RoyalMatchLevelOutcome outcome)
+            {
+                this.owner = owner;
+                this.outcome = outcome;
+            }
+
+            public override void Execute()
+            {
+                if (outcome == RoyalMatchLevelOutcome.Won) owner.ResetTopUiSorting();
+                owner.ReportOutcome(outcome);
+                Complete();
+            }
+
+            public override void Cancel(OriginalFlowAction action) { }
+        }
+
         private sealed class SavedCompletionAction : OriginalFlowAction
         {
             private readonly CoreGameFlow owner;

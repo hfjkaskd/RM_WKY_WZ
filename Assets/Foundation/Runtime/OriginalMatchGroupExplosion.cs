@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Whitebox.Foundation
 {
@@ -26,6 +27,8 @@ namespace Whitebox.Foundation
         private readonly OriginalMatchExplosionReadiness readiness;
         private readonly OriginalMatchDataPreparation preparation;
         private readonly IOriginalMatchGroupExplosionServices services;
+        private Func<bool> canRecordSynthesis;
+        private Action<Vector3> recordSynthesis;
 
         public OriginalMatchGroupExplosion(OriginalMatchExplosionReadiness readiness, IOriginalMatchGroupExplosionServices services)
         {
@@ -33,9 +36,17 @@ namespace Whitebox.Foundation
             this.services = services ?? throw new ArgumentNullException(nameof(services));
             preparation = new OriginalMatchDataPreparation(services);
         }
+        internal void BindSynthesisObserver(Func<bool> canRecord, Action<Vector3> record)
+        {
+            canRecordSynthesis = canRecord;
+            recordSynthesis = record;
+        }
+
         public bool ExplodeMatchGroup(OriginalMatchGroupSnapshot group, OriginalExplodeData data, bool isFromAutoMatch = false)
         {
             if (services.IsAutoMatchDisabledForWaterLevel || !readiness.CanAutoExplode(ref group)) return false;
+            bool observeSynthesis = canRecordSynthesis?.Invoke() == true;
+            OriginalGridCell removedCell = null;
             data.CanSpreadJelly = services.InitJellySpreadData(ref group, data);
             var collect = preparation.CreateCollectData(group);
             var special = preparation.CreateSpecialItemData(group);
@@ -57,6 +68,8 @@ namespace Whitebox.Foundation
                 item.SpecialItemCreationData = special;
                 item.CollectData = collect;
                 services.ExplodeMatchItem(item, data);
+                if (observeSynthesis && removedCell == null && !ReferenceEquals(cell.Mediation.CurrentItem, item))
+                    removedCell = cell;
                 minX = Math.Min(minX, cell.X); maxX = Math.Max(maxX, cell.X);
                 minY = Math.Min(minY, cell.Y); maxY = Math.Max(maxY, cell.Y);
                 destroyed.Add(cell);
@@ -85,6 +98,7 @@ namespace Whitebox.Foundation
                 DestroyTouchingItems(destroyed, group.MatchType);
             }
             services.PlayHaptic(25, 1, 1f, 0f, false);
+            if (removedCell != null) recordSynthesis?.Invoke((creationCell ?? removedCell).GetViewPosition());
             return true;
         }
         public void DestroyTouchingItems(IReadOnlyList<OriginalGridCell> destroyed, int matchType) // 0x12e416c.

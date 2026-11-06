@@ -28,6 +28,7 @@ namespace Whitebox.Foundation
         public OriginalMatchHintTiming matchHintTiming;
         public string winLogoPrefabPath, remainingMovesPrefabPath, winDialogPrefabPath, failDialogPrefabPath, noPossibleMovesPrefabPath, backdropPrefabPath;
         public string outOfMovesBannerPrefabPath;
+        [Min(0)] public int firstReviveMoves;
         public string levelQuitPrefabPath;
         public string levelTitleFormat, completedTitle, continueText, completedContinueText, retryText, failText, skipText;
         public float soundFadeDuration;

@@ -42,6 +42,8 @@ namespace Whitebox.Foundation
         private Phase phase = Phase.Spent;
         private bool buttonBound;
         private bool requiresConfirmation;
+        private Func<bool> canUsePaid;
+        private Func<bool> consumePaid;
         private float shownAt, targetAlpha, infoOffsetX;
         private float aimShownAt;
         private int slotOrder, dimLayer, dimOrder;
@@ -54,9 +56,27 @@ namespace Whitebox.Foundation
         internal bool IsSpent => phase == Phase.Spent;
         public Button DismissButton => dismissButton;
         public Button ConfirmationButton { get; private set; }
+        internal OriginalBoosterType BoosterType => boosterType;
 
-        internal void Bind(OriginalPlayableBoard game, OriginalInitialBoardView board, OriginalGameplayHud hud,
-            OriginalBottomUi bottom, Camera camera, OriginalGameSceneProjection projection, bool restoredReady = false)
+        internal void BindPaid(OriginalPlayableBoard game, OriginalInitialBoardView board,
+            OriginalGameplayHud hud, OriginalBottomUi bottom, Camera camera,
+            OriginalGameSceneProjection projection, Func<bool> canUse, Func<bool> consume)
+        {
+            BindContext(game, board, hud, bottom, camera, projection);
+            canUsePaid = canUse;
+            consumePaid = consume;
+            targetAlpha = dim.color.a;
+            dim.gameObject.SetActive(false);
+            prompt.gameObject.SetActive(false);
+            dismissButton.interactable = false;
+            dim.raycastTarget = false;
+            phase = Phase.Ready;
+        }
+
+        internal void SelectPaid() => Select(boosterType, false);
+
+        private void BindContext(OriginalPlayableBoard game, OriginalInitialBoardView board,
+            OriginalGameplayHud hud, OriginalBottomUi bottom, Camera camera, OriginalGameSceneProjection projection)
         {
             this.game = game;
             this.board = board;
@@ -66,21 +86,28 @@ namespace Whitebox.Foundation
             sceneProjection = projection;
             foreach (var candidate in bottom.Boosters)
                 if (candidate.BoosterType == boosterType) { slot = candidate; break; }
+            if (slot == null) throw new InvalidOperationException("The booster button is missing.");
             requiresConfirmation = !string.IsNullOrEmpty(confirmationPrefabPath);
-            if (slot == null || (!requiresConfirmation && (targetMin.x < 0 || targetMin.y < 0 ||
-                targetMax.x < targetMin.x || targetMax.y < targetMin.y ||
-                targetMax.x >= board.Grid.Width || targetMax.y >= board.Grid.Height)))
-                throw new InvalidOperationException("The optional booster tutorial button or target region is missing.");
-
-            if (!requiresConfirmation)
-                raised = new SortingSnapshot[(targetMax.x - targetMin.x + 1) * (targetMax.y - targetMin.y + 1)];
-            pointer = Create(pointerPath, transform).transform;
-            badge = Create(badgePath, slot.transform);
             slot.ButtonCanvas.worldCamera = source;
             slotOrder = slot.ButtonCanvas.sortingOrder;
             dimCanvas.worldCamera = source;
             dimLayer = dimCanvas.sortingLayerID;
             dimOrder = dimCanvas.sortingOrder;
+        }
+
+        internal void Bind(OriginalPlayableBoard game, OriginalInitialBoardView board, OriginalGameplayHud hud,
+            OriginalBottomUi bottom, Camera camera, OriginalGameSceneProjection projection, bool restoredReady = false)
+        {
+            BindContext(game, board, hud, bottom, camera, projection);
+            if (!requiresConfirmation && (targetMin.x < 0 || targetMin.y < 0 ||
+                targetMax.x < targetMin.x || targetMax.y < targetMin.y ||
+                targetMax.x >= board.Grid.Width || targetMax.y >= board.Grid.Height))
+                throw new InvalidOperationException("The optional booster tutorial target region is missing.");
+
+            if (!requiresConfirmation)
+                raised = new SortingSnapshot[(targetMax.x - targetMin.x + 1) * (targetMax.y - targetMin.y + 1)];
+            pointer = Create(pointerPath, transform).transform;
+            badge = Create(badgePath, slot.transform);
             targetAlpha = dim.color.a;
             dim.color = new Color(dim.color.r, dim.color.g, dim.color.b, 0f);
             shownAt = board.Clock.Time;
@@ -103,7 +130,9 @@ namespace Whitebox.Foundation
 
         private void Select(OriginalBoosterType type, bool locked)
         {
-            if (locked || !game.CanUserMakeMove() || phase == Phase.Spent) return;
+            if (locked || !game.CanUserMakeMove() || phase == Phase.Spent ||
+                (canUsePaid != null && !canUsePaid())) return;
+            if (consumePaid == null) game.CancelPaidBoosterSelection();
             if (IsSelected) { Deselect(); return; }
             bool guided = phase == Phase.Prompt;
             if (guided) HidePrompt();
@@ -157,7 +186,7 @@ namespace Whitebox.Foundation
                 aimTouch = game.TouchListener;
                 aimTouch?.DisableTouch();
                 confirmation.SetActive(true);
-                pointer.gameObject.SetActive(guided);
+                if (pointer != null) pointer.gameObject.SetActive(guided);
                 aimShownAt = board.Clock.Time;
             }
             RefreshLayout();
@@ -180,7 +209,7 @@ namespace Whitebox.Foundation
                 aimTouch?.EnableTouch();
                 aimTouch = null;
                 confirmation.SetActive(false);
-                pointer.gameObject.SetActive(false);
+                if (pointer != null) pointer.gameObject.SetActive(false);
             }
             phase = Phase.Ready;
             RaiseSlot(false);
@@ -205,11 +234,19 @@ namespace Whitebox.Foundation
 
         private void Spend(OriginalGridCell cell)
         {
-            effect = Create(effectPath, board.BoardRoot).GetComponent<OriginalOptionalBoosterEffect>();
-            if (effect == null) throw new InvalidOperationException("The optional booster effect component is missing.");
+            if (canUsePaid != null && !canUsePaid()) return;
+            var prefab = Resources.Load<GameObject>(effectPath);
+            var component = prefab != null ? prefab.GetComponent<OriginalOptionalBoosterEffect>() : null;
+            if (component == null) throw new InvalidOperationException("The optional booster effect component is missing.");
+            if (consumePaid != null && !consumePaid()) return;
+
+            effect = Instantiate(component, board.BoardRoot);
             Deselect();
-            ReleaseButton();
-            phase = Phase.Spent;
+            if (consumePaid == null)
+            {
+                ReleaseButton();
+                phase = Phase.Spent;
+            }
             effect.Play(game, board, source, bottom, cell);
         }
 

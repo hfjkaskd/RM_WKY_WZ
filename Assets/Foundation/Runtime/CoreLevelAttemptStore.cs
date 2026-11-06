@@ -14,9 +14,11 @@ namespace Whitebox.Foundation
     {
         internal const int SaveVersionWithoutOpeningRefillCounts = 1;
         private const int CoreSaveVersion = 2;
+        private const int ReviveSaveVersion = 3;
         private const int MaxSaveBytes = 1024 * 1024;
         private const int MaxDifficultyDraws = 10_000_000;
         private readonly string path;
+        private readonly int reviveMoves;
         private readonly object gate = new object();
         private readonly OriginalGameStateSaveData state = new OriginalGameStateSaveData();
         private FLevelSaveData pendingWrite;
@@ -26,7 +28,11 @@ namespace Whitebox.Foundation
         private int readyFrames, lastMoves;
         private bool needsSave, watching;
 
-        internal CoreLevelAttemptStore(string progressPath) { path = progressPath + ".level"; }
+        internal CoreLevelAttemptStore(string progressPath, int reviveMoves = 0)
+        {
+            path = progressPath + ".level";
+            this.reviveMoves = reviveMoves;
+        }
 
         internal FLevelSaveData Load(FTiledLevel level)
         {
@@ -83,8 +89,14 @@ namespace Whitebox.Foundation
         internal void SaveImmediate(OriginalPlayableBoard game, bool shownDynamicTutorial, bool usedTutorialBooster)
         {
             if (!watching) return;
+            bool needsReviveSchema = reviveMoves > 0 &&
+                (game.Session.EgoPurchaseCount > 0 || game.Moves.LeftMoves == 0);
             var data = new FLevelSaveData {
-                ValidationSaveData = new FValidationSaveData { LevelName = game.Session.Name, AppVersion = CoreSaveVersion },
+                ValidationSaveData = new FValidationSaveData
+                {
+                    LevelName = game.Session.Name,
+                    AppVersion = needsReviveSchema ? ReviveSaveVersion : CoreSaveVersion,
+                },
                 BoardSaveData = game.CaptureBoard(),
                 GameStateSaveData = state.PrepareCoreState(game.Moves, game.Session, game.GetLevelRandom(),
                     shownDynamicTutorial, usedTutorialBooster),
@@ -175,7 +187,8 @@ namespace Whitebox.Foundation
             var grid = board?.GridData;
             var creator = board?.ItemModelCreatorSaveData;
             var queues = creator?.PredefinedItemsSaveData?.Queues;
-            if (identity?.LevelName != level.Name || identity.AppVersion is not (SaveVersionWithoutOpeningRefillCounts or CoreSaveVersion) ||
+            if (identity?.LevelName != level.Name ||
+                identity.AppVersion is not (SaveVersionWithoutOpeningRefillCounts or CoreSaveVersion or ReviveSaveVersion) ||
                 grid?.Grid == null || grid.Width != level.Grid.Width || grid.Height != level.Grid.Height ||
                 grid.Grid.Length != level.Grid.Cells.Length || (grid.ShifterData?.Length ?? 0) != 0 ||
                 queues?.Length != 9 || saved.GameStateSaveData?.Length != 2 ||
@@ -186,7 +199,13 @@ namespace Whitebox.Foundation
 
             state.SetData(saved.GameStateSaveData);
             int max = state.GetMaxMoves(), left = state.GetLeftMoves(), made = state.GetMadeMoves();
-            if (max != level.Move || left <= 0 || made + left != max ||
+            int revives = state.GetEgoPurchaseCount();
+            bool hasReviveSave = identity.AppVersion == ReviveSaveVersion;
+            bool validMoveBudget = hasReviveSave
+                ? reviveMoves > 0 && revives is 0 or 1 && left >= 0 && (revives == 1 || left == 0) &&
+                  made + left == max + revives * reviveMoves
+                : revives == 0 && left > 0 && made + left == max;
+            if (max != level.Move || !validMoveBudget ||
                 state.GetEgoPackageItemThrowInProgress() != 0 || state.GetDifficultySeedGenerationCount() > MaxDifficultyDraws)
                 throw new InvalidDataException("Saved level budget or difficulty cursor is invalid.");
             ValidateGoals(board.Goals, level);

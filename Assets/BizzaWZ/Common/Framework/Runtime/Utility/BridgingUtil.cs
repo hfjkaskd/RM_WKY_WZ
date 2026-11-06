@@ -35,28 +35,28 @@ public static class BridgingUtil
 
     public static bool PropUse_1()
     {
-        return true;
+        return WkyGameplayBridge.Instance == null;
     }
 
     public static bool PropUse_2()
     {
-        return true;
+        return WkyGameplayBridge.Instance == null;
     }
 
     public static bool PropUse_3()
     {
 
-        return true;
+        return WkyGameplayBridge.Instance == null;
     }
 
     public static bool PropUse_4()
     {
-        return true;
+        return WkyGameplayBridge.Instance == null;
     }
 
     public static bool PropUse_5()
     {
-        return true;
+        return WkyGameplayBridge.Instance == null;
     }
 
     public static void PropUseOver(E_ItemType itemType, bool breakFlow)
@@ -112,7 +112,7 @@ public static class BridgingUtil
 
     public static void LoadGameLevel()
     {
-        TransitionBlock.ToGamePlay(true);
+        WkyGameplayBridge.Instance.ReloadAttempt().Forget();
     }
 
     public static void OnOpenGameWinPanel()
@@ -132,6 +132,6 @@ public static class BridgingUtil
 
     public static void OnReviveResult(bool isRevive)
     {
-        
+        WkyGameplayBridge.Instance.ResolveReviveOffer(isRevive);
     }
 }

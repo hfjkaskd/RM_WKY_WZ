@@ -28,11 +28,15 @@ namespace Whitebox.Foundation
         internal UnityEngine.Rendering.SortingGroup TutorialSorting => tutorialSorting;
         public event Action<OriginalBoosterType,bool> OnClicked;
         private bool initialized;
+        private bool listensForClick;
+        private int paidLevel;
+        private IOriginalBoosterInventoryPresentation paidInventory;
+        private Action<OriginalBoosterType, bool> tutorialClick;
         private OriginalBoosterButtonPresentation beforeTutorial;
         public void Initialize(int level,bool newUserFlowAb,IOriginalBoosterInventoryPresentation inventory)
         {
             InitializeAppearance();
-            button.onClick.AddListener(Click);
+            BindClick();
             Refresh(level,newUserFlowAb,false,inventory);
         }
         public void InitializeCoreDisplay(int level)
@@ -45,14 +49,53 @@ namespace Whitebox.Foundation
         {
             beforeTutorial = Presentation;
             Refresh(level,false,true,null);
-            OnClicked += handler;
-            button.onClick.AddListener(Click);
+            tutorialClick = handler;
+            BindClick();
         }
         internal void ReleaseTutorialButton(int level,Action<OriginalBoosterType,bool> handler)
         {
-            ApplyPresentation(beforeTutorial,level,false);
-            button.onClick.RemoveListener(Click);
+            if (tutorialClick != handler) return;
+            tutorialClick = null;
+            if (paidInventory != null) RefreshPaidInventory();
+            else ApplyPresentation(beforeTutorial,level,false);
+            UnbindClickIfUnused();
+        }
+
+        internal void BindPaidInventory(int level, IOriginalBoosterInventoryPresentation inventory,
+            Action<OriginalBoosterType, bool> handler)
+        {
+            paidLevel = level;
+            paidInventory = inventory;
+            OnClicked += handler;
+            BindClick();
+            RefreshPaidInventory();
+        }
+
+        internal void RefreshPaidInventory()
+        {
+            if (paidInventory != null && tutorialClick == null)
+                Refresh(paidLevel, false, false, paidInventory);
+        }
+
+        internal void ReleasePaidInventory(Action<OriginalBoosterType, bool> handler)
+        {
+            paidInventory = null;
             OnClicked -= handler;
+            UnbindClickIfUnused();
+        }
+
+        private void BindClick()
+        {
+            if (listensForClick) return;
+            button.onClick.AddListener(Click);
+            listensForClick = true;
+        }
+
+        private void UnbindClickIfUnused()
+        {
+            if (!listensForClick || tutorialClick != null || OnClicked != null) return;
+            button.onClick.RemoveListener(Click);
+            listensForClick = false;
         }
         private void InitializeAppearance()
         {
@@ -70,7 +113,13 @@ namespace Whitebox.Foundation
             count.SetActive(p.ShowCount);countText.enabled=p.ShowCountText;addBooster.SetActive(p.ShowAdd);
             freeRibbon.SetActive(p.ShowFreeRibbon);freeText.enabled=p.ShowFreeText;levelText.enabled=p.ShowLevel;button.interactable=p.Interactable;
             if(p.ShowCountText)countText.text=p.Count.ToString();
-            if(!p.Unlocked)
+            if (p.Unlocked)
+            {
+                icon.sprite = unlockedIcon;
+                icon.transform.localScale = unlockedIconScale;
+                icon.transform.localPosition = unlockedIconPosition;
+            }
+            else
             {
                 icon.sprite=lockedIcon;float scale=newUserFlowAb?newLockedScale:oldLockedScale;
                 icon.transform.localScale=Vector3.one*scale;
@@ -80,9 +129,15 @@ namespace Whitebox.Foundation
         }
         private void Click()
         {
-            var handler=OnClicked;if(handler==null)throw new InvalidOperationException("Original booster selection/locked-tooltip owner is not bound.");
+            var handler = tutorialClick ?? OnClicked;
+            if (handler == null)
+                throw new InvalidOperationException("Original booster selection/locked-tooltip owner is not bound.");
             handler(boosterType,!Presentation.Unlocked);
         }
-        private void OnDestroy(){if(initialized)button.onClick.RemoveListener(Click);}
+
+        private void OnDestroy()
+        {
+            if (listensForClick) button.onClick.RemoveListener(Click);
+        }
     }
 }

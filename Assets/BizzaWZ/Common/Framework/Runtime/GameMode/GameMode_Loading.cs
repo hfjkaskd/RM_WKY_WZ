@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using Bizza;
-using Bizza.GameAnalytics;
 using Bizza.Loading;
 using Cysharp.Threading.Tasks;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 /// <summary>
@@ -17,12 +14,10 @@ public class GameMode_Loading : GameModeBase
 
         #region Loading UI
 
-        private float progress;
-        [LabelText("加载速度")]
-        [Range(0f, 1f)]
-        public float progressSpeed = 0.2f;
-
+        private bool handingOffToGameplay;
+        private int lastProgressPercent = -1;
         private LoadingProcedure _loadingProcedure;
+
         protected override void OnInit()
         {
                 base.OnInit();
@@ -40,27 +35,20 @@ public class GameMode_Loading : GameModeBase
                 _loadingProcedure.AddTask(new PreLoadAssetsTask()); // 预加载资源
                 _loadingProcedure.AddTask(new LoadGameDataTask()); // 加载游戏数据
                 RunLoadingSafe().Forget();
-                UIModule.Instance.OpenPage(UIPageIds.LoadingPanel).Forget();
         }
 
         protected override void OnRelease()
         {
                 base.OnRelease();
-                UIModule.Instance.ClosePage(UIPageIds.LoadingPanel);
+                if (!handingOffToGameplay)
+                {
+                        UIModule.Instance.ClosePage(UIPageIds.LoadingPanel);
+                }
         }
-
 
         private void OnLoadingFinish()
         {
                 LogLogger.LogInfo("OnLoadingFinish");
-#if BIZZA_REAL_WITHDRAW
-                var account = AccountModule.Instance;
-                if (account?.Os_Current_Uso != null)
-                {
-                SaveDataUtils.GameData.playerSelectedLv =
-                        account.Os_Current_Uso.Os_Rts;
-                }
-#endif
                 StartGame();
         }
 
@@ -68,7 +56,12 @@ public class GameMode_Loading : GameModeBase
         {
                 try
                 {
-                        await UniTask.DelayFrame(1);
+                        if (await UIModule.Instance.OpenPage(UIPageIds.LoadingPanel) == null)
+                        {
+                                throw new InvalidOperationException("The framework loading page failed to open.");
+                        }
+
+                        await UniTask.NextFrame();
                         await _loadingProcedure.Run(OnLoadingFinish);
                 }
 #if USER_VERIFICATION_SDK
@@ -93,30 +86,37 @@ public class GameMode_Loading : GameModeBase
 
         public void StartGame()
         {
-                bool teachEnable = GameExtensionRegistry.ShouldEnableTeach();
+                if (handingOffToGameplay)
+                {
+                        return;
+                }
 
-                BizzaGameAnalytics.TrackGameLoadComplete();
+                WkyGameplayBridge.Instance.PrepareInitialAttempt();
+                bool teachEnable = GameExtensionRegistry.ShouldEnableTeach();
                 LogLogger.LogInfo($"ReadyChangeScene {teachEnable}");
-		TransitionBlock.ToGamePlay();
-                BizzaEventSystem.Emit(EventDefine.Frame.LoadingStageComplete);
 
                 if (SoundManager.Instance != null && SaveDataUtils.SettingData != null)
                 {
                         SoundManager.Instance.MuteBGM(!SaveDataUtils.SettingData.enableMusic);
                 }
-                GameUtils.DelayDo(() =>
-                {
-                        SoundManager.Instance?.PlayBGM("SFX_BGM");
-                }, 1f).Forget();
+
+                WkyGameplayBridge.ReportProgress(WkyGameplayBridge.BootProgressWeight);
+                handingOffToGameplay = true;
+                TransitionBlock.ToGamePlay();
         }
 
         private void Update()
         {
-                progress += Time.deltaTime * progressSpeed;
-                float min = 0;
-                float max = _loadingProcedure != null ? _loadingProcedure.progress : 0;
-                progress = Mathf.Clamp(progress, min, max);
-                BizzaEventSystem.Emit(EventDefine.Frame.LoadingProgress, progress);
+                if (!handingOffToGameplay && _loadingProcedure != null)
+                {
+                        float progress = _loadingProcedure.progress * WkyGameplayBridge.BootProgressWeight;
+                        int percent = Mathf.FloorToInt(progress * 100f);
+                        if (percent != lastProgressPercent)
+                        {
+                                lastProgressPercent = percent;
+                                WkyGameplayBridge.ReportProgress(progress);
+                        }
+                }
         }
 
         #endregion

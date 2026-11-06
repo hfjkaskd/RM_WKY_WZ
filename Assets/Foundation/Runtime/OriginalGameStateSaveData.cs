@@ -78,6 +78,7 @@ namespace Whitebox.Foundation
             values[0] = moves.LeftMoves;
             values[1] = active.MoveCount;
             values[2] = moves.MadeMoves;
+            values[3] = active.EgoPurchaseCount;
             values[5] = difficulty.DifficultySeed;
             values[6] = difficulty.DifficultySeedGenerationCount;
             // The early tap and combo guides use NewUserNewUxHelper 0x1f71ab0.

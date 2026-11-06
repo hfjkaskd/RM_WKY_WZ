@@ -90,6 +90,15 @@ namespace Whitebox.Foundation
             if (pause) musicSource.Pause();
             else musicSource.Stop();
         }
+        internal void ResumeGameMusic()
+        {
+            musicRequested = !string.IsNullOrEmpty(currentMusicPath);
+            if (musicRequested && !MusicMuted)
+            {
+                if (musicSource.clip == null) PlaySelectedMusic();
+                else musicSource.UnPause();
+            }
+        }
         internal void ToggleMusic()
         {
             bool muted = !MusicMuted;
