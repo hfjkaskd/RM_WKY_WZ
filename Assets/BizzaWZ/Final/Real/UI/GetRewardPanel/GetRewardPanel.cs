@@ -286,13 +286,26 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
 #endif
 
 #if BIZZA_REAL_WITHDRAW
-            AccountModule.Instance.Request_UserReachLevelReportRequest(null);
+            var bridge = WkyGameplayBridge.Instance;
+            Action<FailHttpResponse<AccountModule.OceanShineUserReachReportResponse>> onReport = null;
+            if (bridge == null || bridge.TryCaptureWinReport(out onReport))
+            {
+                try
+                {
+                    AccountModule.Instance.Request_UserReachLevelReportRequest(onReport);
+                    LogLogger.LogVerbose(BaseConst.LOG_Game, "上报 关卡");
+                }
+                catch (Exception error) when (onReport != null)
+                {
+                    Debug.LogException(error);
+                    onReport(default);
+                }
+            }
             LevelObj.SetActive(true);
             int winLevel = FlowModule.WinLevelNumber > 0
                 ? FlowModule.WinLevelNumber
                 : SaveDataUtils.GameData.playerSelectedLv;
             levelTxt.text = LanguageUtils.GetFormatText("Menu_LevelBtn", winLevel);
-            LogLogger.LogVerbose(BaseConst.LOG_Game, "上报 关卡");
             if (!Bizza.Sdk.ChannelConfig.Instance.real_CustomConfig.singleCurrencyMode)
             {
                 string _clash = LanguageUtils.GetText("CurrencyToken") + WithdrawalUtil.GetCustomizedFloatByCountryType(dollarCount);

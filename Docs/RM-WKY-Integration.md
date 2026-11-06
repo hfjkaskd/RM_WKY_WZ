@@ -8,7 +8,7 @@
 | 玩法 Git 基线 | 1a0a3686d87f29cad0dc38cf104346614be0114c |
 | 框架来源 | C:/Users/pc/Desktop/WKY_FRAME/BizzaWZ |
 | 框架 Git 基线 | 65a5160494926d5218b732a5088e734aa90653f6 |
-| 指定目标目录 | F:/Coin Merge Fortune/RM |
+| 最终交付目录 | C:/Users/pc/RM_WKY_WZ |
 | 目标远端基线 | 6dab85aed94b86c5a53cf84e65b641010de62ea9 |
 | 工作分支 | codex/rm-wky-pure-real |
 
@@ -18,13 +18,13 @@
 
 - 接入方向为框架植入玩法。玩法来源是独立 Git 工程，指定目标目录中的其余恢复资料属于原有内容。
 - 两个既有 Android 玩法 APK 的 aapt 结果均为 Royal Match Core，包名为 com.royalmatch.core.recovery。玩法 Player Settings 无平台显式包名；目标使用既有 Android 交付身份验证 WKY 登录。框架源 Android 包名为 com.bangsawan.oceanshine。
-- 用户已选择纯真提现。源配置 singleCurrencyMode 为 false。纯真模式涉及单字段配置、三个页面 Prefab 与各自 .meta，以及相关非 SDK 资源注册、预加载和入口。待确认具体例外后实施。
+- 用户确认目标保持单货币模式。使用原 SDK 序列化器将目标 singleCurrencyMode 从 false 改为 true，并回读验证。保留三个提现页面及其 .meta、资源注册和现有预加载。
 - 玩法使用内置渲染管线，框架 Graphics 和 Quality 设置含 URP 引用，来源包清单未声明 URP。合并时保留玩法渲染，框架 UI 保持原 Overlay Canvas、相机条件和缩放配置，并实际验证材质、遮罩和键盘避让。
 - 正式玩法当前支持第 1–100 关。正式入口已无体力门槛。普通库存接入保留锤子、箭矢、加农炮、小丑帽及其现有解锁条件、效果和局内限制。
 
 ## 当前验证
 
-已做静态入口、包名与 Git 基线核对。使用原玩法 Android 资源筛选规则的独立验证工程通过 Unity 2022.3.62f3 Android 目标批处理导入及编译。完整工作树尚需运行验证，Android APK 和真机流程待验证。初次设备检查未发现在线 ADB 设备。最终目录所在 F 盘空闲约 60 MiB，暂在 E 盘准备。
+已做静态入口、包名与 Git 基线核对。使用原玩法 Android 资源筛选规则的独立验证工程通过 Unity 2022.3.62f3 Android 目标批处理导入及编译。完整工作树尚需运行验证，Android APK 和真机流程待验证。初次设备检查未发现在线 ADB 设备，后续检测到 Android 模拟器。起初 F 盘空闲约 60 MiB，用户随后选择 C 盘交付。
 
 框架导入前已校验 GUID 和相对路径。两个工程无重复 GUID，唯一同路径文件是 Assets/Resources.meta，目标保留玩法版本。已对迁入的 6715 个框架来源文件执行 SHA-256 比对。框架本机构建报告工具设置未迁入。
 
@@ -42,9 +42,10 @@ Android 验证复用了玩法原构建的依赖筛选逻辑，选中 1726 个玩
 ## Unity 编辑器资源检查
 
 Android 目标下的 Unity 2022.3.62f3 批处理检查通过。三个已启用场景按 InitWZ、GameScene、Empty 排序。InitWZ、GameScene 和加载 Prefab 均无 Missing Script。加载页的原背景、Logo、进度条素材和淡入淡出动画引用均已解析。InitWZ 常驻 EventSystem 启用，GameScene 内的重复实例禁用。验证使用编辑器静态场景加载，交互和真机仍待验收。
-## 继续条件
+## 单货币及正式通关回执
 
-- 用户已选纯真提现。源 ChannelConfig.bytes 当前 singleCurrencyMode=false。待确认限定例外后，将该字段改为 true，并清理 FakeWithdrawPanel、WithdrawDanPanel、SlotFQAPanel 的 Prefab、.meta、资源注册、提前加载和可达入口。三个脚本类型及页面 ID 保留。
-- Android 来源设置启用了 DEBUG_MODE，会令 SDK 的正式模式判断返回 false。目标暂沿用源宏。正式运行前需确认仅移除此宏。
-- 现有胜利页先递增本地关卡，再发原有通关请求。下一关回调无法确认对应上报已成功。桥接已准备接收原请求的回执；在限定修改确认前，保留 FlowModule 和 GetRewardPanel 源文件，缺少回执时桥接暂停下一关，避免加载未确认的服务器进度。
-- 指定交付盘 F 仅约 60 MiB 可用。暂存工程在 E，来源工程保留，待指定目录有足够容量或确认新路径后交付。没有在线 ADB 设备，正式登录、真实广告、APK、UI 坐标与真机结果未验收。
+- 目标配置已回读为 singleCurrencyMode=true。解密后 207 字节中只有零基偏移 79 的布尔值由 0 改为 1。原 SDK 序列化器对来源配置往返校验逐字节一致。三个提现 Prefab、对应 .meta、注册、加载以及页面脚本保留来源版本。框架原有单货币显示规则继续生效。
+- 仅从 Android 宏列表移除 DEBUG_MODE，保留 WKY_SDK、BIZZA_REAL_WITHDRAW 及其他平台和 SDK 宏。
+- 实际胜利继续由原胜利页调用通关接口。当前结算只允许认领一次请求，等待 SDK 应用并保存该次回执后，使用该回执中的服务器关卡号。服务器同号或回退均接受。失败和超时保持输入受限，不递增本地关卡或发起重复上报。跨进程中断后的服务端幂等性仍需实际联调。
+- 对 6715 个框架来源文件重新计算 SHA-256。6705 个逐字节一致，另十个为已记录的七个界面/场景适配、两处结算接线和单货币配置。三个提现页面与对应 .meta 均在逐字节一致范围。
+- 源码已在 C:/Users/pc/RM_WKY_WZ 检出，工作分支仍为 codex/rm-wky-pure-real。E 盘保留独立暂存及原玩法备份。正式 Android 复测沿用原框架的打包入口和玩法原资源筛选，构建及运行结果单独记录。

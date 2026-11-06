@@ -122,7 +122,10 @@ public static class FlowModule
         SaveDataUtils.GameData.levelAttemptCount = 0;
         SaveDataUtils.GameData.levelReviveCount = 0;
 #endif
-        SaveDataUtils.GameData.playerSelectedLv++;
+        if (WkyGameplayBridge.Instance == null)
+        {
+            SaveDataUtils.GameData.playerSelectedLv++;
+        }
 #if BIZZA_REAL_WITHDRAW
         // 只在实际胜利结算中计数，GM 打开奖励界面不会增加进度。
         SlotProgressUtil.AddPassedLevel();

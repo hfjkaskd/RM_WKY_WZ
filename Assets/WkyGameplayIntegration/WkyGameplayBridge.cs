@@ -106,7 +106,15 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
 
     private void ObserveAccountLevel()
     {
-        var serverUser = AccountModule.Instance?.Os_Current_Uso;
+        var account = AccountModule.Instance;
+        var serverUser = account?.Os_Current_Uso;
+        var settlement = winSettlement;
+        if (settlement != null && serverUser != null && ReferenceEquals(settlement.Account, account) &&
+            ReferenceEquals(settlement.Receipt, serverUser))
+        {
+            settlement.Report.TrySetResult(true);
+        }
+
         if (loading || attemptEnded || correctionPending || serverUser == null || serverUser.Os_Rts == currentLevel)
             return;
 
@@ -221,7 +229,7 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
 
         if (result.Outcome == RoyalMatchLevelOutcome.Won)
         {
-            winSettlement = new WinSettlement();
+            winSettlement = new WinSettlement(AccountModule.Instance);
             FlowModule.OpenGameWinPanel(BizzaLevelResultType.Win, levelInfo);
             return;
         }
@@ -243,21 +251,30 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
         };
     }
 
-    // Optional settlement wiring. The existing framework win panel remains the sole request owner.
-    internal Action<FailHttpResponse<AccountModule.OceanShineUserReachReportResponse>> CaptureWinReport()
+    // The win panel owns the request. Each actual gameplay settlement can claim it once.
+    internal bool TryCaptureWinReport(out Action<FailHttpResponse<AccountModule.OceanShineUserReachReportResponse>> onReport)
     {
+        onReport = null;
         var settlement = winSettlement;
-        if (settlement == null)
-            return null;
+        if (settlement == null || settlement.ReportStarted || settlement.Account == null ||
+            !ReferenceEquals(settlement.Account, AccountModule.Instance))
+            return false;
 
-        return response =>
+        settlement.ReportStarted = true;
+        onReport = response =>
         {
-            if (!ReferenceEquals(winSettlement, settlement))
+            if (!ReferenceEquals(Instance, this) || !ReferenceEquals(winSettlement, settlement) ||
+                !ReferenceEquals(AccountModule.Instance, settlement.Account) || settlement.ReplyReceived)
                 return;
 
-            var userInfo = response.success ? response.data?.Os_Uso : null;
-            settlement.Report.TrySetResult(userInfo);
+            settlement.ReplyReceived = true;
+            settlement.Receipt = response.success ? response.data?.Os_Uso : null;
+            if (settlement.Receipt == null)
+                settlement.Report.TrySetResult(false);
+
+            // AccountModule applies the receipt after this callback. ObserveAccountLevel confirms it.
         };
+        return true;
     }
 
     internal async UniTask ReloadAttempt()
@@ -276,14 +293,21 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
             if (await ui.OpenPage(UIPageIds.LoadingPanel) == null)
                 throw new InvalidOperationException("The framework loading page failed to open.");
 
-            if (winSettlement != null)
+            var settlement = winSettlement;
+            if (settlement != null)
             {
                 using var wait = CancellationTokenSource.CreateLinkedTokenSource(Application.exitCancellationToken);
                 using var timer = wait.CancelAfterSlim(WaitTimeout, DelayType.Realtime);
-                var userInfo = await winSettlement.Report.Task.AttachExternalCancellation(wait.Token);
-                // The SDK invokes its own account update after the supplied callback.
-                await UniTask.Yield(PlayerLoopTiming.Update, wait.Token);
-                ApplyServerLevel(userInfo);
+                if (!await settlement.Report.Task.AttachExternalCancellation(wait.Token))
+                    throw new InvalidOperationException("The server did not confirm level settlement.");
+
+                // The account update event runs before the SDK finishes persisting the receipt.
+                await UniTask.NextFrame(wait.Token);
+                if (!ReferenceEquals(Instance, this) || !ReferenceEquals(winSettlement, settlement) ||
+                    !ReferenceEquals(AccountModule.Instance, settlement.Account))
+                    throw new InvalidOperationException("The account changed during level settlement.");
+
+                ApplyServerLevel(settlement.Receipt);
                 winSettlement = null;
             }
             else
@@ -334,6 +358,15 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
 
     private sealed class WinSettlement
     {
-        internal readonly UniTaskCompletionSource<AccountModule.UserInfo> Report = new();
+        internal readonly AccountModule Account;
+        internal readonly UniTaskCompletionSource<bool> Report = new();
+        internal bool ReportStarted;
+        internal bool ReplyReceived;
+        internal AccountModule.UserInfo Receipt;
+
+        internal WinSettlement(AccountModule account)
+        {
+            Account = account;
+        }
     }
 }
