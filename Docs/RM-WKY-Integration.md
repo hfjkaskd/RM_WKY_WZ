@@ -24,7 +24,7 @@
 
 ## 当前验证
 
-已做静态入口、包名与 Git 基线核对。使用原玩法 Android 资源筛选规则的独立验证工程通过 Unity 2022.3.62f3 Android 目标批处理导入及编译。完整工作树尚需运行验证，Android APK 和真机流程待验证。初次设备检查未发现在线 ADB 设备，后续检测到 Android 模拟器。起初 F 盘空闲约 60 MiB，用户随后选择 C 盘交付。
+已做静态入口、包名与 Git 基线核对。使用原玩法 Android 资源筛选规则的独立验证工程通过 Unity 2022.3.62f3 Android 目标批处理导入及编译。完整工作树尚需运行验证，最终 Android 构建与模拟器结果见文末。初次设备检查未发现在线 ADB 设备，后续检测到 Android 模拟器。起初 F 盘空闲约 60 MiB，用户随后选择 C 盘交付。
 
 框架导入前已校验 GUID 和相对路径。两个工程无重复 GUID，唯一同路径文件是 Assets/Resources.meta，目标保留玩法版本。已对迁入的 6715 个框架来源文件执行 SHA-256 比对。框架本机构建报告工具设置未迁入。
 
@@ -49,3 +49,9 @@ Android 目标下的 Unity 2022.3.62f3 批处理检查通过。三个已启用�
 - 实际胜利继续由原胜利页调用通关接口。当前结算只允许认领一次请求，等待 SDK 应用并保存该次回执后，使用该回执中的服务器关卡号。服务器同号或回退均接受。失败和超时保持输入受限，不递增本地关卡或发起重复上报。跨进程中断后的服务端幂等性仍需实际联调。
 - 对 6715 个框架来源文件重新计算 SHA-256。6705 个逐字节一致，另十个为已记录的七个界面/场景适配、两处结算接线和单货币配置。三个提现页面与对应 .meta 均在逐字节一致范围。
 - 源码已在 C:/Users/pc/RM_WKY_WZ 检出，工作分支仍为 codex/rm-wky-pure-real。E 盘保留独立暂存及原玩法备份。正式 Android 复测沿用原框架的打包入口和玩法原资源筛选，构建及运行结果单独记录。
+## 最终 Android 构建与启动复测
+
+- Unity 2022.3.62f3 使用原有 AutoBuild_Android.BuildAndroidApkBatch 完成资源处理、Obfuz、IL2CPP 和 Gradle 打包。验证构建使用原玩法的 100 关资源筛选，另补加载页原进度条素材及其依赖。APK 为 ARM64，应用名 Royal Match Core，包名 com.royalmatch.core.recovery，版本 1.0（1），最低 SDK 24、目标 SDK 36。启动 Activity 为框架原有 com.bangsawan.oceanshine.MainActivity。APK 使用 Android Debug 证书做本地验证，v2 签名核验通过。
+- 最终 APK 在 Builds/Android/RoyalMatchCore-WKY-1.0.apk，SHA-256 为 DC67167552698CE57305FB99B6C1784EAD0ACDBB38A7FC7DB671A104274A3A01。APK、启动截图及核验记录留在本地 Builds 目录。Git 提交保留源码和接入记录。
+- 用原 SDK 序列化器核验 APK 内配置。singleCurrencyMode=true。框架原有 BuildVersionRecorder 在打包时生成 versionLog。将该字段还原后，APK 内配置与交付工程配置逐字节一致。交付工作树使用授权输入配置，打包副本的版本戳不回写。
+- Android 模拟器安装并冷启动最终 APK 成功，显示原玩法加载画面。正式 WKY 账号数据初始化返回 AccountLoginFailed 400，应用停在框架的网络错误提示。未取得更具体的服务端原因，需核对 com.royalmatch.core.recovery 的服务端注册与登录资格。该结果阻塞进入关卡后的服务器进度、广告、结算、提现页面及键盘避让验收，真机结果仍待验证。
