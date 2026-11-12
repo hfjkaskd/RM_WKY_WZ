@@ -76,7 +76,6 @@ public class PausePanel : UIPageBase
     private void Awake()
     {
         CloseButton.onClick.AddListener((() => {
-            World.Current.Pause(this);
             this.CloseSelf();
         }));
         ContinueButton.onClick.AddListener(() =>
@@ -99,6 +98,8 @@ public class PausePanel : UIPageBase
 
     protected override void OnClose()
     {
+        // Closing any route out of the settings page must release its pause reason.
+        World.Current?.Resume(this);
         BizzaEventSystem.Emit(EventDefine.Frame.PausePanelClose);
     }
 

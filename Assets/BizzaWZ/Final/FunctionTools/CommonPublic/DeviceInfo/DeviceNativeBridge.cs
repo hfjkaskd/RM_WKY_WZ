@@ -529,11 +529,18 @@ public static class DeviceNativeBridge
 #endif
     }
 
+    public static bool IsVpnDetectionEnabled { get; } = false;
+
     /// <summary>
     /// 当前设备是否连接 VPN。
     /// </summary>
     public static bool IsVpnConnected()
     {
+        if (!IsVpnDetectionEnabled)
+        {
+            return false;
+        }
+
 #if UNITY_ANDROID && !UNITY_EDITOR
         LogDeviceEnvironmentOnce(nameof(IsVpnConnected), "安卓真机");
         return JavaBridgeUtils.CallStaticMethodCacheClass<bool>(ClassName, IsVpnConnectedMethod);

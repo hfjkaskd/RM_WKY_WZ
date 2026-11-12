@@ -60,6 +60,11 @@ namespace Bizza.TokenClientSystem
             }
 #endif
 
+            if (!DeviceNativeBridge.IsVpnDetectionEnabled)
+            {
+                info.IsVpnConnected = false;
+            }
+
             LogLogger.LogIP(
                 $"[设备信息采集] 设备信息采集完成：Google ID存在={!string.IsNullOrWhiteSpace(info.googleId)}，Android ID存在={!string.IsNullOrWhiteSpace(info.androidId)}，设备唯一标识存在={!string.IsNullOrWhiteSpace(info.deviceUniqueIdentifier)}，VPN连接={info.IsVpnConnected}");
             return UniTask.FromResult(info);

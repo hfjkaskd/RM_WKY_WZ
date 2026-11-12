@@ -9,6 +9,8 @@ using Whitebox.Foundation;
 
 internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoyalMatchTutorialBridge
 {
+    partial void OnWonAttemptCoinsEarned(int amount);
+
     internal const string SceneName = "GameScene";
     internal const float BootProgressWeight = 0.75f;
     private static readonly TimeSpan WaitTimeout = TimeSpan.FromSeconds(30);
@@ -229,6 +231,7 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
 
         if (result.Outcome == RoyalMatchLevelOutcome.Won)
         {
+            OnWonAttemptCoinsEarned(result.CoinsEarned);
             winSettlement = new WinSettlement(AccountModule.Instance);
             FlowModule.OpenGameWinPanel(BizzaLevelResultType.Win, levelInfo);
             return;

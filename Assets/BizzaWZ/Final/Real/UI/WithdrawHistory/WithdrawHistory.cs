@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Bizza;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public partial class UIPageIds
@@ -22,7 +21,11 @@ public class WithdrawHistory : UIPageBase
     public RectTransform rectTransform;
 
     [SerializeField] private BizzaButton closeButton;
-    [SerializeField] private Sprite retryButtonSprite;
+    [SerializeField] private RectTransform statusRoot;
+    [SerializeField] private TMP_Text statusText;
+    [SerializeField] private BizzaButton retryButton;
+    [SerializeField] private Vector2 loadingStatusPosition;
+    [SerializeField, Min(24f)] private float loadingStatusFontSize = 36f;
     [SerializeField, Min(1f)] private float contentTimeoutSeconds = 20f;
     [SerializeField] private UIContentStateView contentView = new();
 
@@ -30,9 +33,7 @@ public class WithdrawHistory : UIPageBase
     private readonly UIContentLoadSession content = new();
     private ScrollRect scrollView;
     private CanvasGroup listGroup;
-    private RectTransform statusRoot;
-    private TMP_Text statusText;
-    private BizzaButton retryButton;
+    private Vector2 failedStatusPosition;
 
     protected override void OnAwake()
     {
@@ -41,7 +42,8 @@ public class WithdrawHistory : UIPageBase
         scrollView = root.GetComponentInParent<ScrollRect>();
         listGroup = scrollView.GetComponent<CanvasGroup>();
         if (listGroup == null) listGroup = scrollView.gameObject.AddComponent<CanvasGroup>();
-        CreateStatusView();
+        retryButton.onClick.AddListener(Retry);
+        failedStatusPosition = statusText.rectTransform.anchoredPosition;
         contentView.Bind(statusText, retryButton);
         content.StateChanged += OnContentStateChanged;
         OnContentStateChanged(UIContentState.Closed);
@@ -114,8 +116,13 @@ public class WithdrawHistory : UIPageBase
         listGroup.interactable = listGroup.blocksRaycasts = ready;
         emptyHint.SetActive(state == UIContentState.Empty);
         statusRoot.gameObject.SetActive(state == UIContentState.Loading || failed);
-        statusText.rectTransform.anchoredPosition = new Vector2(0, failed ? 28f : 0f);
+        statusText.rectTransform.anchoredPosition = failed ? failedStatusPosition : loadingStatusPosition;
         contentView.Show(state);
+        if (state == UIContentState.Loading)
+        {
+            statusText.fontSizeMax = loadingStatusFontSize;
+            statusText.fontSize = loadingStatusFontSize;
+        }
         // History has no primary action. An empty result is valid and does not need retry.
         retryButton.interactable = failed;
         retryButton.gameObject.SetActive(failed);
@@ -136,57 +143,6 @@ public class WithdrawHistory : UIPageBase
     {
         content.Close();
         BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshStatusText, false);
-    }
-
-    private void CreateStatusView()
-    {
-        var template = emptyHint.GetComponent<TMP_Text>();
-        var anchor = template.rectTransform;
-        statusRoot = CreateRect("HistoryRequestStatus", anchor.parent, anchor.sizeDelta, anchor.anchoredPosition);
-        statusRoot.anchorMin = anchor.anchorMin;
-        statusRoot.anchorMax = anchor.anchorMax;
-        statusRoot.pivot = anchor.pivot;
-        statusText = CreateText("StatusText", statusRoot, new Vector2(anchor.rect.width - 60f, 120f), template);
-
-        var buttonRect = CreateRect("RetryButton", statusRoot, new Vector2(520f, 116f), new Vector2(0f, -92f));
-        var background = buttonRect.gameObject.AddComponent<Image>();
-        background.sprite = retryButtonSprite;
-        background.type = Image.Type.Sliced;
-        retryButton = buttonRect.gameObject.AddComponent<BizzaButton>();
-        retryButton.canDrag = false;
-        retryButton.onClick = new UnityEvent();
-        retryButton.onLongClick = new UnityEvent();
-        retryButton.onClick.AddListener(Retry);
-        var label = CreateText("RetryText", buttonRect, new Vector2(460f, 92f), template);
-        label.color = Color.white;
-        label.fontSize = label.fontSizeMax = 40f;
-        label.text = LanguageUtils.GetText("UIContent_Retry");
-    }
-
-    private static RectTransform CreateRect(string objectName, Transform parent, Vector2 size, Vector2 position)
-    {
-        var rect = (RectTransform)new GameObject(objectName, typeof(RectTransform)).transform;
-        rect.gameObject.layer = parent.gameObject.layer;
-        rect.SetParent(parent, false);
-        rect.anchorMin = rect.anchorMax = new Vector2(.5f, .5f);
-        rect.sizeDelta = size;
-        rect.anchoredPosition = position;
-        return rect;
-    }
-
-    private static TMP_Text CreateText(string objectName, Transform parent, Vector2 size, TMP_Text template)
-    {
-        var rect = CreateRect(objectName, parent, size, Vector2.zero);
-        var text = rect.gameObject.AddComponent<TextMeshProUGUI>();
-        text.font = template.font;
-        text.fontSharedMaterial = template.fontSharedMaterial;
-        text.fontSize = text.fontSizeMax = 36f;
-        text.fontSizeMin = 24f;
-        text.enableAutoSizing = true;
-        text.alignment = TextAlignmentOptions.Center;
-        text.color = template.color;
-        text.raycastTarget = false;
-        return text;
     }
 }
 #endif

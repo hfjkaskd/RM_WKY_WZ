@@ -15,6 +15,10 @@ public class CurrencyBar : MonoBehaviour
 
     public TMP_Text curLevelTxt;
 
+    [SerializeField] private string levelFormatKey = string.Empty;
+    [SerializeField] private bool showBalanceCurrencySymbol;
+    [SerializeField] private string withdrawCaptionKey = string.Empty;
+
     public TMP_Text coinTxt;
     public TMP_Text dollarTxt;
     public TMP_Text clashTxt;
@@ -59,8 +63,6 @@ public class CurrencyBar : MonoBehaviour
         addCoinTxt.DOFade(0, 0);
         addDollarTxt.DOFade(0, 0);
 
-        curLevelTxt.text = SaveDataUtils.GameData.playerSelectedLv.ToString();
-
         BizzaEventSystem.Set(EventDefine.Item.ItemChanged, OnItemChanged, true);
         BizzaEventSystem.Set(EventDefine.Item.ItemChangedWithData, OnItemChangedWithData, true);
         BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, OnLanguageChange, true);
@@ -84,19 +86,33 @@ public class CurrencyBar : MonoBehaviour
 
     private void OnItemChanged()
     {
+        RefreshLevelText();
         if (AccountModule.Instance != null && AccountModule.Instance.Os_Current_Uso != null)
         {
-            coinTxt.text = WithdrawalUtil.GetCustomizedValueByCountryType((float)AccountModule.Instance.Os_Current_Uso.GetBalance()); 
+            string balance = WithdrawalUtil.GetCustomizedValueByCountryType((float)AccountModule.Instance.Os_Current_Uso.GetBalance());
+            coinTxt.text = showBalanceCurrencySymbol
+                ? string.Concat(LanguageUtils.GetText("CurrencyToken"), balance)
+                : balance;
             dollarTxt.text = ItemUtils.GetItemText(E_ItemType.Dollar);
             string ewl = WithdrawalUtil.GetCustomizedValueByCountryType((float)AccountModule.Instance.Os_Current_Uso.Os_Ewl);
-            clashTxt.text = $"{LanguageUtils.GetText("CurrencyToken")}{ewl}";
+            clashTxt.text = string.IsNullOrEmpty(withdrawCaptionKey)
+                ? $"{LanguageUtils.GetText("CurrencyToken")}{ewl}"
+                : LanguageUtils.GetText(withdrawCaptionKey);
         }
 
     }
 
+    private void RefreshLevelText()
+    {
+        int level = SaveDataUtils.GameData.playerSelectedLv;
+        curLevelTxt.text = string.IsNullOrEmpty(levelFormatKey)
+            ? level.ToString()
+            : LanguageUtils.GetFormatText(levelFormatKey, level);
+    }
+
     private void OnLoadGame()
     {
-        curLevelTxt.text = SaveDataUtils.GameData.playerSelectedLv.ToString();
+        RefreshLevelText();
         ResetAddTextState();
     }
 

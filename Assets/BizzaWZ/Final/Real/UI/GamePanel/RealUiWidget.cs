@@ -8,6 +8,7 @@ public class RealUiWidget : MonoBehaviour
 {
     public BizzaButton taskBtn;
     public TMP_Text levelTxt;
+    [SerializeField] private bool levelTextProvidedByCurrencyBar;
 
 
     public ItemForCountry itemForCountry;
@@ -29,6 +30,7 @@ public class RealUiWidget : MonoBehaviour
 
     public void RefreshLevelText()
     {
+        if (levelTextProvidedByCurrencyBar) return;
         levelTxt.text = $"{SaveDataUtils.GameData.playerSelectedLv}"; //LanguageUtils.GetFormatText("Menu_LevelBtn", SaveDataUtils.GameData.playerUnlockedLv);
     }
 

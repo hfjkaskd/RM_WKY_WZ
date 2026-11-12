@@ -48,6 +48,10 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
 
     private bool isLookAd = false;
     private bool isNoCD;
+    private bool closePending;
+    private bool closeStarted;
+    private bool pageClosed;
+    private int pageOpenVersion;
 
     // 每次打开独立保存领取状态，旧广告回调不能关闭复用后的新界面。
     private sealed class WinClaim
@@ -77,21 +81,38 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
             if (claim != null)
             {
                 if (!TryBeginWinClaim(claim)) return;
+                bool claimInterstitialRequested = false;
                 try
                 {
-                    NumbericalStatistics.CheckCloseGetReward(E_AdPos.GetReward, dollarCount, null,
+                    claimInterstitialRequested = NumbericalStatistics.CheckCloseGetReward(
+                        E_AdPos.GetReward, dollarCount, _ => FinishWinClaim(claim, true),
                         levelOverride: claim.LevelNumber);
                 }
                 finally
                 {
-                    FinishWinClaim(claim, true);
+                    if ((!claimInterstitialRequested || !BizzaSdk.Ad.Inited) && !claim.Finished)
+                        FinishWinClaim(claim, true);
                 }
                 return;
             }
 
             LogLogger.LogInfo("胜利关闭广告 " + isLookAd);
-            NumbericalStatistics.CheckCloseGetReward(E_AdPos.GetReward, dollarCount, null);
-            CloseSelf();
+            if (closePending || pageClosed) return;
+
+            closePending = true;
+            closeBtn.interactable = false;
+            int openVersion = pageOpenVersion;
+            bool interstitialRequested = false;
+            try
+            {
+                interstitialRequested = NumbericalStatistics.CheckCloseGetReward(
+                    E_AdPos.GetReward, dollarCount, _ => CloseAfterInterstitial(openVersion));
+            }
+            finally
+            {
+                if (!interstitialRequested || !BizzaSdk.Ad.Inited)
+                    CloseAfterInterstitial(openVersion);
+            }
         });
 
         void LookAd()
@@ -139,6 +160,8 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
 
     protected override void OnClose()
     {
+        pageClosed = true;
+        NumbericalStatistics.OnGetRewardPanelClosed();
         callback = null;
         if (winClaim != null)
         {
@@ -214,6 +237,10 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
         callback = _callback;
         _useScene = useScene;
         winClaim = null;
+        pageOpenVersion++;
+        closePending = false;
+        closeStarted = false;
+        pageClosed = false;
         isLookAd = false;
         {
             curTime = 0;
@@ -261,6 +288,17 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
     }
 
     private float dollarCount = 0;
+
+    private void CloseAfterInterstitial(int openVersion)
+    {
+        if (this == null || !this || gameObject == null ||
+            openVersion != pageOpenVersion || pageClosed || closeStarted)
+            return;
+
+        closeStarted = true;
+        CloseSelf();
+    }
+
     /// <summary>
     /// 打开时的界面
     /// </summary>

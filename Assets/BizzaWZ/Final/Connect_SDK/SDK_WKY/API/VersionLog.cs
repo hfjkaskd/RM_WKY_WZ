@@ -17,14 +17,16 @@ public class VersionLog : MonoBehaviour
             tMP_Text = GetComponent<TMP_Text>();
         }
         if (tMP_Text== null )return;
-        #if !BIZZA_REAL_WITHDRAW
-        return;
-        #endif
+        #if BIZZA_REAL_WITHDRAW
+        var config = ChannelConfig.Instance;
+        if (config == null || string.IsNullOrWhiteSpace(config.real_CustomConfig.versionLog)) return;
 
+        string version = config.real_CustomConfig.versionLog;
         #if BIZZA_REMOTEGROUPDATA
-        tMP_Text.text = $"{ChannelConfig.Instance.real_CustomConfig.versionLog}_{(ChannelConfig.IsRelese_Mode ? 0 : 1)}_{RemoteGroupDataSystem.current.GetUserGroupName()}";
+        tMP_Text.text = $"{version}_{(ChannelConfig.IsRelese_Mode ? 0 : 1)}_{RemoteGroupDataSystem.current.GetUserGroupName()}";
         #else
-        tMP_Text.text = $"{ChannelConfig.Instance.real_CustomConfig.versionLog}_{(ChannelConfig.IsRelese_Mode ? 0 : 1)}";
+        tMP_Text.text = $"{version}_{(ChannelConfig.IsRelese_Mode ? 0 : 1)}";
+        #endif
         #endif
 
         

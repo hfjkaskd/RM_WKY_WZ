@@ -1,146 +1,146 @@
 #if BIZZA_REAL_WITHDRAW
 using Bizza.Channel;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Whitebox.Foundation;
 using Random = UnityEngine.Random;
 
-public class UIBizzaAAA : UIPageBase
+public class UIBizzaAAA : UIPageBase, IRoyalMatchBoardPointerBlocker
 {
     [SerializeField] private Button btnFlowTreature;
-    [SerializeField] private TMP_Text txtRewardNum;
-    [SerializeField] private float flowSpeed;
-    [SerializeField] private Bounds flowArea;
-    [SerializeField] private float flowDelay;
+    [SerializeField, Min(0f)] private float flowSpeed;
+    [SerializeField, Min(0f)] private float boardEdgePadding;
+    [SerializeField] private Vector2 flowHeadingDegrees;
     [SerializeField] private float firstFlowDelay = 30f;
-    [SerializeField] private float flowShowTime = 60.0f;
+    [SerializeField] private float flowShowTime = 60f;
     [SerializeField] private Vector2 flowCD;
 
-    //private UIScaleAnimation levelTextScaleAnimation;
-    private Coroutine flowCoroutine;
-    private Vector3 flowDir = new Vector3(1, 1, 0);
-
-    private float flowCDTimer = -1;
-
-    private bool adsEnable = false;
-    
-    public void Awake()
-    {
-        btnFlowTreature.onClick.AddListener(OnBtnFlowTreatureClick);
-    }
-
-    
-
-    public void OnEnable()
-    {
-        adsEnable = true;
-        flowDir.Normalize();
-        flowCDTimer = Time.time + firstFlowDelay;
-        btnFlowTreature.gameObject.SetActive(false);
-    }
+    private const float BoundsRefreshInterval = 0.25f;
+    private RectTransform flowRect;
+    private RectTransform flowParent;
+    private Canvas flowCanvas;
+    private Rect movementBounds;
+    private Vector2 flowDirection;
+    private float flowCDTimer;
+    private float nextBoundsRefresh;
+    private int screenWidth;
+    private int screenHeight;
 
     public ItemEntry thisTimeMoney;
     public float thisTimeRatio;
-    
+
+    private Camera EventCamera => flowCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : flowCanvas.worldCamera;
+
+    public void Awake()
+    {
+        flowRect = (RectTransform)btnFlowTreature.transform;
+        flowParent = (RectTransform)flowRect.parent;
+        flowCanvas = flowRect.GetComponentInParent<Canvas>()?.rootCanvas;
+        btnFlowTreature.onClick.AddListener(OnBtnFlowTreatureClick);
+    }
+
+    public void OnEnable()
+    {
+        flowCDTimer = Time.time + firstFlowDelay;
+        nextBoundsRefresh = 0f;
+        btnFlowTreature.gameObject.SetActive(false);
+        RoyalMatchSessionBridge.BoardPointerBlocker = this;
+    }
 
     public void OnDisable()
     {
         thisTimeMoney = ItemEntry.None;
         thisTimeRatio = 0;
-        if (flowCoroutine != null)
-            StopCoroutine(flowCoroutine);
-
+        if (ReferenceEquals(RoyalMatchSessionBridge.BoardPointerBlocker, this))
+            RoyalMatchSessionBridge.BoardPointerBlocker = null;
     }
 
-    private void Update()
+    public bool BlocksBoardPointer(Vector2 screenPosition)
     {
-        WaitFlowTreature();
-        MoveFlowTreature();
+        return flowCanvas != null && btnFlowTreature.isActiveAndEnabled && btnFlowTreature.IsInteractable() &&
+            RectTransformUtility.RectangleContainsScreenPoint(flowRect, screenPosition, EventCamera);
     }
 
-    private void WaitFlowTreature()
+    private void LateUpdate()
     {
-        if (btnFlowTreature.gameObject.activeInHierarchy)
+        float now = Time.time;
+        if (!btnFlowTreature.gameObject.activeSelf)
         {
+            TryShowTreasure(now);
             return;
         }
 
-        if (flowCDTimer < Time.time && !TeachUtil.IsTeach && SaveDataUtils.TeachData.IsCompleted("Teach_01"))
+        if (now >= flowCDTimer)
         {
-            flowCDTimer = Time.time + flowShowTime;
-            btnFlowTreature.gameObject.SetActive(true);
-
-            // {
-            //     // float curRatio = RewardManager.Instance.GetRatio();
-            //     // thisTimeMoney = InfoHelper.cDollar(BingoConfig.Instance.flowDollarReward, curRatio);
-            //     // thisTimeRatio = curRatio;
-            //     var item = new ItemEntry() { Type = E_ItemType.Dollar, Count = TableUtils.Global.FlowDollarNum };
-            //     thisTimeMoney = item;
-            //     txtRewardNum.text = ItemUtils.GetItemText(thisTimeMoney);
-            // }
-        }
-    }
-
-    private void MoveFlowTreature()
-    {
-        if (!btnFlowTreature.gameObject.activeInHierarchy)
-        {
-            return;
-        }
-
-        if (!CheckIsInBounds(btnFlowTreature.transform.localPosition, out Vector2 normal, out var offset))
-        {
-            flowDir = Vector2.Reflect(flowDir, normal);
-            flowDir.Normalize();
-            btnFlowTreature.transform.localPosition += (Vector3)offset;
-        }
-
-        btnFlowTreature.transform.localPosition += flowDir * (flowSpeed * Time.deltaTime);
-
-        if (flowCDTimer < Time.time)
-        {
-            flowCDTimer = Time.time + Random.Range(flowCD.x, flowCD.y);
+            flowCDTimer = now + Random.Range(flowCD.x, flowCD.y);
             btnFlowTreature.gameObject.SetActive(false);
+            return;
         }
+
+        if ((now >= nextBoundsRefresh || screenWidth != Screen.width || screenHeight != Screen.height) &&
+            !TryRefreshBounds(now))
+        {
+            btnFlowTreature.gameObject.SetActive(false);
+            return;
+        }
+
+        MoveTreasure(Time.deltaTime);
     }
 
-    private bool CheckIsInBounds(Vector2 pos, out Vector2 normal, out Vector2 offset)
+    private void TryShowTreasure(float now)
     {
-        normal = Vector2.zero;
-        offset = Vector2.zero;
-        Vector3 max = flowArea.max; // + transform.position;
-        Vector3 min = flowArea.min; // + transform.position;
-        if (pos.x > max.x)
-        {
-            normal.x = -1;
-            offset.x -= 10;
-        }
+        if (now < flowCDTimer || now < nextBoundsRefresh || TeachUtil.IsTeach ||
+            !SaveDataUtils.TeachData.IsCompleted("Teach_01") || !TryRefreshBounds(now))
+            return;
 
-        if (pos.x < min.x)
-        {
-            normal.x = 1;
-            offset.x += 10;
-        }
+        Vector3 position = flowRect.localPosition;
+        position.x = Random.Range(movementBounds.xMin, movementBounds.xMax);
+        position.y = Random.Range(movementBounds.yMin, movementBounds.yMax);
+        flowRect.localPosition = position;
+        float angle = Random.Range(flowHeadingDegrees.x, flowHeadingDegrees.y) * Mathf.Deg2Rad;
+        flowDirection = new Vector2(Mathf.Cos(angle) * (Random.value < 0.5f ? -1f : 1f),
+            Mathf.Sin(angle) * (Random.value < 0.5f ? -1f : 1f));
+        flowCDTimer = now + flowShowTime;
+        btnFlowTreature.gameObject.SetActive(true);
+    }
 
-        if (pos.y > max.y)
-        {
-            normal.y = -1;
-            offset.y -= 10;
-        }
+    private bool TryRefreshBounds(float now)
+    {
+        nextBoundsRefresh = now + BoundsRefreshInterval;
+        screenWidth = Screen.width;
+        screenHeight = Screen.height;
+        if (flowCanvas == null || !RoyalMatchSessionBridge.TryGetActiveBoardScreenRect(out Rect board))
+            return false;
 
-        if (pos.y < min.y)
-        {
-            normal.y = 1;
-            offset.y += 10;
-        }
+        Camera eventCamera = EventCamera;
+        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(flowParent, board.min, eventCamera, out Vector2 min) ||
+            !RectTransformUtility.ScreenPointToLocalPointInRectangle(flowParent, board.max, eventCamera, out Vector2 max))
+            return false;
 
-        normal.Normalize();
+        Rect button = flowRect.rect;
+        Vector3 scale = flowRect.localScale;
+        movementBounds = Rect.MinMaxRect(
+            Mathf.Min(min.x, max.x) - button.xMin * scale.x + boardEdgePadding,
+            Mathf.Min(min.y, max.y) - button.yMin * scale.y + boardEdgePadding,
+            Mathf.Max(min.x, max.x) - button.xMax * scale.x - boardEdgePadding,
+            Mathf.Max(min.y, max.y) - button.yMax * scale.y - boardEdgePadding);
+        return movementBounds.width > 0f && movementBounds.height > 0f;
+    }
 
-        return normal.sqrMagnitude < 0.001f;
+    private void MoveTreasure(float deltaTime)
+    {
+        Vector3 position = flowRect.localPosition;
+        position.x += flowDirection.x * flowSpeed * deltaTime;
+        position.y += flowDirection.y * flowSpeed * deltaTime;
+        if (position.x <= movementBounds.xMin) flowDirection.x = Mathf.Abs(flowDirection.x);
+        else if (position.x >= movementBounds.xMax) flowDirection.x = -Mathf.Abs(flowDirection.x);
+        if (position.y <= movementBounds.yMin) flowDirection.y = Mathf.Abs(flowDirection.y);
+        else if (position.y >= movementBounds.yMax) flowDirection.y = -Mathf.Abs(flowDirection.y);
+        position.x = Mathf.Clamp(position.x, movementBounds.xMin, movementBounds.xMax);
+        position.y = Mathf.Clamp(position.y, movementBounds.yMin, movementBounds.yMax);
+        flowRect.localPosition = position;
     }
 
     private void OnBtnFlowTreatureClick()

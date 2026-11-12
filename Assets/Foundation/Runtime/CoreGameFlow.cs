@@ -865,8 +865,11 @@ namespace Whitebox.Foundation
         private RoyalMatchLevelResult CreateResult(RoyalMatchLevelOutcome outcome)
         {
             CountTargets(out int totalTargets, out int remainingTargets);
+            int coinsEarned = outcome == RoyalMatchLevelOutcome.Won
+                ? game.Session.AnimationValues.Coin.GetCollectedAmount()
+                : 0;
             return new RoyalMatchLevelResult(game.Session.Number, outcome, totalTargets,
-                remainingTargets, game.Moves.LeftMoves);
+                remainingTargets, game.Moves.LeftMoves, coinsEarned);
         }
 
         private void CountTargets(out int totalTargets, out int remainingTargets)

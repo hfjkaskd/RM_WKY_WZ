@@ -9,6 +9,7 @@ namespace Whitebox.Foundation
     public sealed class CoreLevelProgress : IDisposable
     {
         private const string LevelKey = "Level", CompletedKey = "CoreLevelsCompleted";
+        private const string BoosterCoinsKey = "CoreBoosterCoins";
         private const string AttemptLevelKey = "CoreAttemptLevel";
         private const string PowerHintTapCountKey = "CorePowerHintTapCount";
         private const string SpecialTapCountKey = "CoreSpecialTapCount", ComboUseCountKey = "CoreComboUseCount";
@@ -24,6 +25,7 @@ namespace Whitebox.Foundation
         public string DatabasePath { get; }
         public int LevelToPlay { get; private set; }
         public bool IsComplete { get; private set; }
+        public int BoosterCoins => Math.Max(0, values.GetInt(BoosterCoinsKey));
         public int PowerHintTapCount { get; private set; }
         public int LevelTryCount => values.GetInt(OriginalAccountStorage.LevelTryCountKey);
         internal int SpecialTapCount { get; private set; }
@@ -106,6 +108,27 @@ namespace Whitebox.Foundation
             values.SetInt(OriginalAccountStorage.LevelTryCountKey, 0);
             values.SetInt(OriginalAccountStorage.HardLevelBackgroundIndexKey, 0);
             database.Save();
+        }
+
+        public int AddBoosterCoins(int amount)
+        {
+            if (amount <= 0) return 0;
+            int current = BoosterCoins;
+            int added = Math.Min(amount, int.MaxValue - current);
+            if (added <= 0) return 0;
+            values.SetInt(BoosterCoinsKey, current + added);
+            database.Save();
+            return added;
+        }
+
+        public bool TrySpendBoosterCoins(int amount)
+        {
+            if (amount <= 0) return false;
+            int current = BoosterCoins;
+            if (current < amount) return false;
+            values.SetInt(BoosterCoinsKey, current - amount);
+            database.Save();
+            return true;
         }
         private void UpdateTutorialProgressAfterWin(int number)
         {

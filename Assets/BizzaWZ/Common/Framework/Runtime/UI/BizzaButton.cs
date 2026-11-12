@@ -44,6 +44,13 @@ public class ButtonState
 
 public class BizzaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    [SerializeField] private Button standardButton;
+    [SerializeField] private Button[] additionalStandardButtons;
+    [SerializeField] private Graphic standardStateGraphic;
+    [SerializeField] private Color standardNormalGraphicColor = Color.white;
+    [SerializeField] private Color standardDisabledGraphicColor = Color.white;
+    private bool lastStandardInteractable;
+
     public Transform scaleTarget;
     public bool canDrag = true;
 
@@ -83,15 +90,76 @@ public class BizzaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         m_NormalScale = scaleTarget.localScale;
         ChangeButtonState(0);
+        if (standardButton != null)
+        {
+            ApplyStandardState();
+            standardButton.onClick.AddListener(OnStandardButtonClick);
+            if (additionalStandardButtons != null)
+                for (int i = 0; i < additionalStandardButtons.Length; i++)
+                    if (additionalStandardButtons[i] != null)
+                        additionalStandardButtons[i].onClick.AddListener(OnStandardButtonClick);
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (standardButton != null)
+        {
+            ApplyStandardState();
+        }
+    }
+
+    private void ApplyStandardState()
+    {
+        lastStandardInteractable = interactable;
+        standardButton.enabled = isActiveAndEnabled;
+        standardButton.interactable = interactable;
+        if (additionalStandardButtons != null)
+            for (int i = 0; i < additionalStandardButtons.Length; i++)
+                if (additionalStandardButtons[i] != null)
+                {
+                    additionalStandardButtons[i].enabled = isActiveAndEnabled;
+                    additionalStandardButtons[i].interactable = interactable;
+                }
+        if (standardStateGraphic != null)
+            standardStateGraphic.color = interactable ? standardNormalGraphicColor : standardDisabledGraphicColor;
+    }
+
+    private void OnDestroy()
+    {
+        if (standardButton != null)
+            standardButton.onClick.RemoveListener(OnStandardButtonClick);
+        if (additionalStandardButtons != null)
+            for (int i = 0; i < additionalStandardButtons.Length; i++)
+                if (additionalStandardButtons[i] != null)
+                    additionalStandardButtons[i].onClick.RemoveListener(OnStandardButtonClick);
+    }
+
+    private void OnStandardButtonClick()
+    {
+        if (!interactable || !isActiveAndEnabled)
+            return;
+        SoundManager.Instance.PlaySFX("SFX_Click");
+        onClick.Invoke();
     }
 
     private void OnDisable()
     {
+        if (standardButton != null)
+            standardButton.enabled = false;
+        if (additionalStandardButtons != null)
+            for (int i = 0; i < additionalStandardButtons.Length; i++)
+                if (additionalStandardButtons[i] != null)
+                    additionalStandardButtons[i].enabled = false;
         RestoreNormalScale();
     }
 
     private void Update()
     {
+        if (standardButton != null && lastStandardInteractable != interactable)
+        {
+            ApplyStandardState();
+        }
         if (!interactable)
         {
             RestoreNormalScale();
@@ -111,6 +179,8 @@ public class BizzaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // 按下事件
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (standardButton != null)
+            return;
         if (!interactable || !isActiveAndEnabled) return;
         if (scaleTarget != null)
         {
@@ -132,6 +202,8 @@ public class BizzaButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // 抬起事件
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (standardButton != null)
+            return;
         bool pressed = m_IsPointerDown;
         RestoreNormalScale();
         // isLongClick = false;

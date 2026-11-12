@@ -2,9 +2,15 @@ using System;
 using Bizza.Sdk;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public sealed class WKY_Flow
 {
+    private const string CountryWorkerUrl =
+        "https://iptokenclient.applebooks24.com/api/v1/rm-wky-wz/region";
+    private const string CountryWorkerPolicy = "rm-wky-wz-v1";
+    private const int CountryCheckAttempts = 2;
+
     public async UniTask Start_Init_Flow(Action<float> onProgress)
     {
         onProgress?.Invoke(0f);
@@ -17,6 +23,7 @@ public sealed class WKY_Flow
         Bizza.Unity.Android.AndroidJavaMessageDispatcher.SetHttpMessageHandler(
             HttpUtil.LoginHTTPDict);
         onProgress?.Invoke(0.05f);
+        await VerifyCountryAccessAsync();
 
         ChannelConfig config = await ChannelConfigLoader.LoadAsync();
         if (config == null)
@@ -89,6 +96,51 @@ public sealed class WKY_Flow
 
         var platform = new OverseaPlatform(config);
 
+    }
+
+    private static async UniTask VerifyCountryAccessAsync()
+    {
+        for (int attempt = 1; attempt <= CountryCheckAttempts; attempt++)
+        {
+            using var request = UnityWebRequest.Get(CountryWorkerUrl);
+            request.timeout = 8;
+            request.redirectLimit = 0;
+
+            try
+            {
+                await request.SendWebRequest().ToUniTask();
+            }
+            catch (UnityWebRequestException)
+            {
+                // Unity reports a country denial as a protocol error.
+            }
+
+            long status = request.responseCode;
+            bool policyConfirmed = string.Equals(
+                request.GetResponseHeader("X-Game-Region-Policy"),
+                CountryWorkerPolicy,
+                StringComparison.Ordinal);
+            Debug.Log($"[CountryAccess] attempt={attempt}/{CountryCheckAttempts} status={status} " +
+                      $"result={request.result} policyConfirmed={policyConfirmed}");
+
+            if (!policyConfirmed) continue;
+            if (status == 204 && request.result == UnityWebRequest.Result.Success) return;
+            if (status != 403) continue;
+
+            await SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args
+            {
+                isLanguage = true,
+                des = "TokenClient_REGION",
+                onFinish = Application.Quit
+            });
+            throw new WKYInitializationException(
+                "CountryRestricted",
+                "Country is not enabled for this app.");
+        }
+
+        throw new WKYInitializationException(
+            "CountryCheckUnavailable",
+            "Country policy service did not return a valid decision.");
     }
 }
 

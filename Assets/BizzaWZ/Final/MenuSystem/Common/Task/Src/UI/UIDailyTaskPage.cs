@@ -29,6 +29,8 @@ public class UIDailyTaskPage : UIPageBase
     public TMP_Text txtActiveCount;
     public TMP_Text RefreshTimeText;
     public string[] titleTextArray;
+
+    [SerializeField] private GameObject emptyStateArtwork;
     private int maxActivity;
 
     private List<UIDailyActivityElement> activityEles = new();
@@ -66,6 +68,7 @@ public class UIDailyTaskPage : UIPageBase
         int currentDay = (int)TimeUtil.GetCurrentTime(ETimeUnit.DAYS);
         timePass = currentDay - taskStartDay;
         OnTabClick(0);
+        RefreshEmptyState();
         // UiManager.Instance.OpenMask();
 
         BizzaEventSystem.Set(EventDefine.Task.TaskRefresh, OnTaskRefresh, true);
@@ -207,6 +210,17 @@ public class UIDailyTaskPage : UIPageBase
             {
                 dailyEles[i].gameObject.SetActive(false);
             }
+        }
+
+        RefreshEmptyState();
+    }
+
+    private void RefreshEmptyState()
+    {
+        if (emptyStateArtwork != null)
+        {
+            bool isEmpty = dailyTaskInfos.Count == 0 && (IsPlayTimeTask || activityEles.Count == 0);
+            emptyStateArtwork.SetActive(isEmpty);
         }
     }
 

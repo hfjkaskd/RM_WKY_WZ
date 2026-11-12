@@ -10,6 +10,9 @@ namespace Whitebox.Foundation
         [SerializeField] private string squareFlagPath;
         [SerializeField] private float squareFlagEdgeInset;
         [SerializeField] private float squareFlagDepth;
+        [SerializeField] private bool fitPortraitBoardToViewport;
+        [SerializeField] private Rect portraitBoardViewport;
+        [SerializeField] private float portraitBoardEdgePadding;
         private Camera sceneCamera;
         private OriginalActiveLevelData session;
         private OriginalInitialBoardView board;
@@ -97,10 +100,45 @@ namespace Whitebox.Foundation
             sceneCamera.rect = fullViewport;
             sceneCamera.ResetAspect();
             Projection.UpdateSizeParameters(this, 2, session?.IsTableGame ?? false);
+            var region = board != null && board.Grid != null && board.Layout != null
+                ? board.Layout.CurrentBoard
+                : null;
+            float viewportBottom = Mathf.Clamp01(portraitBoardViewport.yMin);
+            float viewportTop = Mathf.Clamp01(portraitBoardViewport.yMax);
+            float edgePadding = Mathf.Max(0f, portraitBoardEdgePadding);
+            bool fitBoard = fitPortraitBoardToViewport && region != null &&
+                            !OriginalCameraProjection.IsLandscape && viewportTop > viewportBottom;
+            if (fitBoard)
+            {
+                // Height counts cells, so its half extent already includes the
+                // half cell beyond each outer center. Padding covers the frame.
+                float requiredHeight = (region.Height + edgePadding * 2f) / (viewportTop - viewportBottom);
+                Projection.EnsureMinimumHeight(this, requiredHeight);
+            }
             RefreshSafeArea(Screen.safeArea);
             float portraitAspect = OriginalCameraProjection.GetPortraitAspect(this);
             if (board != null)
-                board.SetBoardPortraitOffset(OriginalCameraProjection.GetPortraitBoardOffset(portraitAspect));
+            {
+                float offset = OriginalCameraProjection.GetPortraitBoardOffset(portraitAspect);
+                if (fitBoard)
+                {
+                    Vector3 bottom = sceneCamera.ViewportToWorldPoint(new Vector3(.5f, viewportBottom, 0f));
+                    Vector3 top = sceneCamera.ViewportToWorldPoint(new Vector3(.5f, viewportTop, 0f));
+                    var parent = board.BoardRoot.parent;
+                    if (parent != null)
+                    {
+                        bottom = parent.InverseTransformPoint(bottom);
+                        top = parent.InverseTransformPoint(top);
+                    }
+                    float halfExtent = region.Height * .5f + edgePadding;
+                    float minimumCenter = bottom.y + halfExtent;
+                    float maximumCenter = top.y - halfExtent;
+                    offset = minimumCenter <= maximumCenter
+                        ? Mathf.Clamp(offset, minimumCenter, maximumCenter)
+                        : (minimumCenter + maximumCenter) * .5f;
+                }
+                board.SetBoardPortraitOffset(offset);
+            }
             background.FitViewport(Projection.Width, Projection.Height, portraitAspect);
             RefreshSquareFlags();
             OnProjectionChanged?.Invoke();

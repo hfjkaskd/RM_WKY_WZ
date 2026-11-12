@@ -135,6 +135,11 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
         defaultAccountNamePlaceholder = accountNameInput.PlaceholderTextRenderer.Text;
         EnsureProfiles();
         accountNameInput.OnValueChanged.AddListener(FilterInput);
+        CPFNumberInput.OnValueChanged.AddListener(OnInputValueChanged);
+        accountNameInput.OnValueChanged.AddListener(OnInputValueChanged);
+        accountIdentificationInput.OnValueChanged.AddListener(OnInputValueChanged);
+        paypalMailInput.OnValueChanged.AddListener(OnInputValueChanged);
+        accPhoneMailInput.OnValueChanged.AddListener(OnInputValueChanged);
         InitBaXiChannel();
 
         var inputs = GetComponentsInChildren<AdvancedInputField>(false);
@@ -249,6 +254,7 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
             {
                 PayType = E_PayeeAccountType.Paypal,
                 UiList = PaypalList,
+                OnRefreshExtra = ui => ui.RefreshPayPalPlaceholder(),
                 ValidateAndInitConfirm = ui =>
                 {
                     bool mailValid = ui.ValidateEmailInput(out var mail);
@@ -317,6 +323,7 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
         this.plats = plats;
         this.callback = callback;
         this.withdrawType = withdrawType;
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshPayPalPlaceholder, true);
 
         PlatformRoot.gameObject.SetActive(isSelectPlatform);
         PlatformIconRoot.gameObject.SetActive(!isSelectPlatform);
@@ -380,6 +387,7 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
 
         OnRefreshPos();
         LoadReadData(true);
+        RefreshSubmitInteractable();
     }
 
     private void RefreshBrazilianInputCopy(E_PayeeAccountType payType)
@@ -470,27 +478,18 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
 
     public bool IsValidCpfOrCnpj(string input)
     {
-        CPFNumberErrorTra.gameObject.SetActive(true);
         CPFNumberError.text = LanguageUtils.GetText("UIWithdrawalConfirm_CPFInputFaild");
-        if (string.IsNullOrWhiteSpace(input))
-        {
-            return false;
-        }
+        bool valid = IsCpfOrCnpjValueValid(input);
+        CPFNumberErrorTra.gameObject.SetActive(!valid);
+        return valid;
+    }
 
+    private static bool IsCpfOrCnpjValueValid(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return false;
         string digits = OnlyDigits(input);
-        if (digits.Length == 11 && InputVerifyUtil.IsValidCPF(digits))
-        {
-            CPFNumberErrorTra.gameObject.SetActive(false);
-            return true;
-        }
-
-        if (digits.Length == 14 && InputVerifyUtil.IsValidCNPJ(digits))
-        {
-            CPFNumberErrorTra.gameObject.SetActive(false);
-            return true;
-        }
-
-        return false;
+        return (digits.Length == 11 && InputVerifyUtil.IsValidCPF(digits))
+               || (digits.Length == 14 && InputVerifyUtil.IsValidCNPJ(digits));
     }
 
     private static string OnlyDigits(string s) => new string(s.Where(char.IsDigit).ToArray());
@@ -511,32 +510,19 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
 
     public bool IsValidName(string name)
     {
-        accountNameErrorTra.gameObject.SetActive(true);
         accountNameError.text = LanguageUtils.GetText("UIWithdrawalConfirm_NameInputFaild");
+        bool valid = IsNameValueValid(name);
+        accountNameErrorTra.gameObject.SetActive(!valid);
+        return valid;
+    }
+
+    private bool IsNameValueValid(string name)
+    {
         if (string.IsNullOrWhiteSpace(name)) return false;
         bool paymentTypeForID = data != null && (data.Os_Cn == ovoInfo || data.Os_Cn == danaInfo);
-        if (paymentTypeForID && name.Length >= 45)
-        {
-            return false;
-        }
-
-        if (name.Length >= 100)
-        {
-            return false;
-        }
-
-        if (name.Trim().Length == 0)
-        {
-            return false;
-        }
-
-        if (!NameRegex.IsMatch(name))
-        {
-            return false;
-        }
-
-        accountNameErrorTra.gameObject.SetActive(false);
-        return true;
+        if (paymentTypeForID && name.Length >= 45) return false;
+        if (name.Length >= 100 || name.Trim().Length == 0) return false;
+        return NameRegex.IsMatch(name);
     }
 
     // =============================
@@ -778,30 +764,58 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
 
     private bool VialIsAccountPhone(string phone)
     {
-        accPhoneMailErrorTra.gameObject.SetActive(true);
         accPhoneMailError.text = LanguageUtils.GetText("UIWithdrawalConfirm_PhoneAccount");
-        if (string.IsNullOrWhiteSpace(phone))
-        {
-            return false;
-        }
+        bool valid = IsPhoneAccountValueValid(phone);
+        accPhoneMailErrorTra.gameObject.SetActive(!valid);
+        return valid;
+    }
 
-        if (!phone.StartsWith("08"))
-        {
-            return false;
-        }
+    private static bool IsPhoneAccountValueValid(string phone)
+    {
+        if (string.IsNullOrWhiteSpace(phone) || !phone.StartsWith("08")) return false;
+        if (!phone.All(char.IsDigit)) return false;
+        return phone.Length >= 9 && phone.Length <= 14;
+    }
 
-        if (!phone.All(char.IsDigit))
-        {
-            return false;
-        }
+    private void OnInputValueChanged(string value)
+    {
+        RefreshSubmitInteractable();
+    }
 
-        if (phone.Length > 14 || phone.Length < 9)
-        {
-            return false;
-        }
+    private void RefreshSubmitInteractable()
+    {
+        withdrawButton.interactable = AreCurrentInputsValid();
+    }
 
-        accPhoneMailErrorTra.gameObject.SetActive(false);
-        return true;
+    private bool AreCurrentInputsValid()
+    {
+        if (!TryGetProfile(out var profile)) return false;
+
+        switch (profile.PayType)
+        {
+            case E_PayeeAccountType.Paypal:
+                return IsEmail((paypalMailInput.Text ?? "").Trim());
+            case E_PayeeAccountType.Pagbank:
+                return IsNameValueValid(accountNameInput.Text)
+                       && IsCpfOrCnpjValueValid(CPFNumberInput.Text)
+                       && IsEmail((paypalMailInput.Text ?? "").Trim());
+            case E_PayeeAccountType.PIX:
+                return IsNameValueValid(accountNameInput.Text)
+                       && IsCpfOrCnpjValueValid(CPFNumberInput.Text)
+                       && Validate(CurrentPixType, (accountIdentificationInput.Text ?? "").Trim(), out _);
+            case E_PayeeAccountType.OVO:
+            case E_PayeeAccountType.Dana:
+                return IsPhoneAccountValueValid((accPhoneMailInput.Text ?? "").Trim())
+                       && IsNameValueValid(accountNameInput.Text);
+            default:
+                return false;
+        }
+    }
+
+    private void RefreshPayPalPlaceholder()
+    {
+        if (TryGetProfile(out var profile) && profile.PayType == E_PayeeAccountType.Paypal)
+            paypalMailInput.PlaceHolderText = LanguageUtils.GetText("RM_WithdrawalPayPal_Placeholder");
     }
 
     // =============================
@@ -810,6 +824,7 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
 
     protected override void OnClose()
     {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshPayPalPlaceholder, false);
     }
 
     public void OnSelectWithdrawWay(WithdrawWay way)
@@ -970,6 +985,7 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
         // 5. 清空当前错误显示（可选）
         if (accountIdentificationErrorTra != null)
             accountIdentificationErrorTra.gameObject.SetActive(false);
+        RefreshSubmitInteractable();
     }
 }
 [Obfuz.ObfuzIgnore]

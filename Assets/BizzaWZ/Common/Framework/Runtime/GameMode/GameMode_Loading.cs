@@ -64,6 +64,11 @@ public class GameMode_Loading : GameModeBase
                         await UniTask.NextFrame();
                         await _loadingProcedure.Run(OnLoadingFinish);
                 }
+                catch (WKYInitializationException e) when (e.ErrorCode == "CountryRestricted")
+                {
+                        // WKY_Flow already showed the localized region restriction prompt.
+                        LogLogger.LogInfo($"国家白名单阻止进入游戏: {e.Message}");
+                }
 #if USER_VERIFICATION_SDK
                 catch (Bizza.TokenClientSystem.TokenClientBlockedException e)
                 {

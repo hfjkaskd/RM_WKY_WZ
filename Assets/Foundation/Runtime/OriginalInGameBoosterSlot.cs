@@ -10,6 +10,7 @@ namespace Whitebox.Foundation
     public sealed class OriginalInGameBoosterSlot : MonoBehaviour
     {
         [SerializeField] private OriginalBoosterType boosterType;
+        [SerializeField, Min(1)] private int coinPrice = 100;
         [SerializeField] private Button button;
         [SerializeField] private Canvas buttonCanvas;
         [SerializeField] private UnityEngine.Rendering.SortingGroup tutorialSorting;
@@ -21,6 +22,7 @@ namespace Whitebox.Foundation
         [SerializeField] private float oldLockedScale,newLockedScale;
         [SerializeField] private string levelLabel;
         public OriginalBoosterType BoosterType => boosterType;
+        public int CoinPrice => coinPrice;
         public OriginalBoosterButtonPresentation Presentation { get; private set; }
         public Button Button => button;
         public SpriteRenderer Icon => icon;

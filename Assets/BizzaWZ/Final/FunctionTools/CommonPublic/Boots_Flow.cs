@@ -125,6 +125,20 @@ public static class Boots_Flow
         {
             Bizza.Unity.Android.AndroidJavaMessageDispatcher.EnsureCreated();
 
+#if USER_VERIFICATION_SDK
+            if (DeviceNativeBridge.IsVpnConnected())
+            {
+                const string reason = "VPN";
+                await SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args
+                {
+                    isLanguage = true,
+                    des = CommonConfirmTipsPanel.GetTokenClientMessageKey(reason),
+                    onFinish = Application.Quit
+                });
+                throw new Bizza.TokenClientSystem.TokenClientBlockedException(reason);
+            }
+#endif
+
 #if WKY_SDK
             GameObject dispatcherObject = GameObject.Find(
                 nameof(Bizza.Unity.Android.AndroidJavaMessageDispatcher));

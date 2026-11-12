@@ -8,22 +8,18 @@ using UnityEngine;
 
 public partial class NumbericalStatistics
 {
+    private const int GetRewardSynthesisCount = 4;
+    private const int GetRewardInterstitialCloseCount = 4;
+    private const float GetRewardCooldownSeconds = 15f;
+    private static float getRewardCooldownUntil;
+
     public static int currentLevel => SaveDataUtils.GameData.playerSelectedLv; // 当前关卡
-    public static int CloseGetRewardCount // 关闭多少次恭喜获得界面出现广告
-    {
-        get
-        {
-            return AdStatisticsConfigMiddleware.Get(currentLevel).CloseGetRewardCount;
-        }
-    }
+    public static int CloseGetRewardCount => GetRewardInterstitialCloseCount; // 关闭多少次恭喜获得界面出现广告
     public static int CloseGetRewardNum = 0; // 当前关闭恭喜获得界面次数进度
 
     public static int ShowGetRewardCount  // 多少次出现恭喜获得界面
     {
-        get
-        {
-            return AdStatisticsConfigMiddleware.Get(currentLevel).ShowGetRewardCount;
-        }
+        get => GetRewardSynthesisCount;
     }
     public static int ShowGetRewardNum = 0; // 当前出现恭喜获得界面的进度
 
@@ -42,8 +38,10 @@ public partial class NumbericalStatistics
     public static bool CheckShowGetReward()
     {
         ShowGetRewardNum++;
-        bool show = ShowGetRewardNum >= ShowGetRewardCount;
-        LogLogger.LogVerbose(LogTag.ADNumericalStatistics, $"打开恭喜获得界面 - 进度:{ShowGetRewardNum},最大次数:{ShowGetRewardCount},是否显示:{show}");
+        bool coolingDown = Time.realtimeSinceStartup < getRewardCooldownUntil;
+        bool show = ShowGetRewardNum >= GetRewardSynthesisCount && !coolingDown;
+        LogLogger.LogVerbose(LogTag.ADNumericalStatistics,
+            $"打开恭喜获得界面 - 进度:{ShowGetRewardNum},最大次数:{GetRewardSynthesisCount},冷却中:{coolingDown},是否显示:{show}");
         if (!show)
         {
             return false;
@@ -51,6 +49,16 @@ public partial class NumbericalStatistics
         ShowGetRewardNum = 0;
         Real_GetRewardPanelUtil.OpenGetRewardPanel(DoubleGetRewardPanel.E_UseScene.MatchReward);
         return true;
+    }
+
+    /// <summary>
+    /// GetRewardPanel 完成关闭后开始下一次合成奖励的冷却。
+    /// </summary>
+    public static void OnGetRewardPanelClosed()
+    {
+        getRewardCooldownUntil = Time.realtimeSinceStartup + GetRewardCooldownSeconds;
+        LogLogger.LogVerbose(LogTag.ADNumericalStatistics,
+            $"恭喜获得界面已关闭，合成奖励冷却开始:{GetRewardCooldownSeconds}秒");
     }
 
     /// <summary>
@@ -65,7 +73,7 @@ public partial class NumbericalStatistics
         int? levelOverride = null)
     {
         int level = levelOverride ?? currentLevel;
-        int closeCount = AdStatisticsConfigMiddleware.Get(level).CloseGetRewardCount;
+        int closeCount = GetRewardInterstitialCloseCount;
         CloseGetRewardNum++;
         bool show = CloseGetRewardNum >= closeCount;
         LogLogger.LogVerbose(LogTag.ADNumericalStatistics, $"关闭界面弹插屏 - 关卡:{level},进度:{CloseGetRewardNum},最大次数:{closeCount},是否显示:{show}");

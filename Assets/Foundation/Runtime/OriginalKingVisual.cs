@@ -39,14 +39,14 @@ namespace Whitebox.Foundation
         public int AnimationCount => data==null?0:data.Clips.Length;
         public MeshRenderer[] Renderers => renderers;
         public int VertexCount => geometry==null?0:geometry.Parts[0].VertexCount+geometry.Parts[1].VertexCount;
-        public float AnimationTime => track.Time;
-        public string CurrentAnimation => data.Clips[track.CurrentClip].Name;
-        public bool IsAnimationLooping => track.Loops;
-        public bool IsAnimationMixing => track.IsMixing;
-        internal bool CanBeHappy => state.ShouldBeHappy;
+        public float AnimationTime => track != null ? track.Time : 0f;
+        public string CurrentAnimation => track != null ? data.Clips[track.CurrentClip].Name : string.Empty;
+        public bool IsAnimationLooping => track != null && track.Loops;
+        public bool IsAnimationMixing => track != null && track.IsMixing;
+        internal bool CanBeHappy => state != null && state.ShouldBeHappy;
         public void BeHappy(bool useCooldown) // 0x18c9f68.
         {
-            if (!state.TryBeHappy(useCooldown)) return;
+            if (state == null || !state.TryBeHappy(useCooldown)) return;
             if (useCooldown) HappyAnimationStarted?.Invoke();
             StopIdle();
             SetClip(happyClip);
@@ -55,17 +55,20 @@ namespace Whitebox.Foundation
         }
         public void BeSad() // 0x18ca2b0.
         {
+            if (state == null) return;
             state.BeginSad();
             SetClip(sadClip);
         }
         internal void BeWorried() // 0x18c981c.
         {
+            if (state == null) return;
             StopIdle();
             SetClip(worryStartClip);
             AddClip(worryLoopClip, true);
         }
         internal bool StopWorry() // 0x18c9d08, improved ordinary animation.
         {
+            if (track == null) return false;
             int clip = track.CurrentClip;
             if (clip != worryStartClip && clip != worryLoopClip) return false;
             SetClip(reliefClip);
@@ -75,6 +78,7 @@ namespace Whitebox.Foundation
         }
         internal void BeExcited() // 0x18ca1b8.
         {
+            if (state == null) return;
             StopIdle();
             SetClip(excitedClip);
             AddClip(connectClips[1], false);
@@ -165,7 +169,7 @@ namespace Whitebox.Foundation
             }
         }
         private void StopIdle() => state.StopAnimationsCycle = true;
-        internal void ReleaseLevel() => state.Release();
+        internal void ReleaseLevel() => state?.Release();
         private void SetClip(int next) => track.Set(next);
         private void AddClip(int next, bool looping) => track.Add(next, looping);
         private static byte Channel(float value) => (byte)Math.Max(0,Math.Min(255,(int)(value*255)));

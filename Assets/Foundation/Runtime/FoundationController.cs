@@ -260,6 +260,47 @@ namespace Whitebox.Foundation
             StartAttempt(true);
         }
 
+        internal bool TryGetBoardScreenRect(out Rect screenRect)
+        {
+            screenRect = default;
+            var activeGameplay = Gameplay;
+            if (activeGameplay == null || !activeGameplay.State.IsPlaying() ||
+                (coreFlow != null && coreFlow.IsTransitioning) || initialBoard == null || gameTouchInput == null)
+                return false;
+
+            var region = initialBoard.Layout?.CurrentBoard;
+            var root = initialBoard.BoardRoot;
+            var camera = gameTouchInput.PointerCamera;
+            if (region == null || region.Width <= 0 || region.Height <= 0 || root == null ||
+                camera == null || !camera.isActiveAndEnabled)
+                return false;
+
+            // TouchOrigin is the board's rest position, shared with the gameplay hit test.
+            Vector2 origin = initialBoard.TouchOrigin;
+            var boardOrigin = new Vector3(origin.x, origin.y, root.position.z);
+            var minimum = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+            var maximum = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+            for (int corner = 0; corner < 4; corner++)
+            {
+                float x = (corner & 1) == 0 ? region.Left - 0.5f : region.Right + 0.5f;
+                float y = (corner & 2) == 0 ? region.Bottom - 0.5f : region.Top + 0.5f;
+                Vector3 point = camera.WorldToScreenPoint(boardOrigin + root.TransformVector(new Vector3(x, y, 0f)));
+                if (point.z <= 0f) return false;
+
+                minimum = Vector2.Min(minimum, point);
+                maximum = Vector2.Max(maximum, point);
+            }
+
+            Rect viewport = camera.pixelRect;
+            minimum = Vector2.Max(minimum, viewport.min);
+            maximum = Vector2.Min(maximum, viewport.max);
+            if (minimum.x >= maximum.x || minimum.y >= maximum.y)
+                return false;
+
+            screenRect = Rect.MinMaxRect(minimum.x, minimum.y, maximum.x, maximum.y);
+            return true;
+        }
+
         private bool IsUiTouching()
         {
             if (coreFlow != null && coreFlow.BlocksBoardInput)
@@ -268,6 +309,17 @@ namespace Whitebox.Foundation
                 if (coreFlow.IsBridgeInputBlocked && listener != null && listener.IsTouching)
                     listener.StopTouch();
                 return true;
+            }
+            var pointerBlocker = RoyalMatchSessionBridge.BoardPointerBlocker;
+            if (pointerBlocker != null && Input.GetMouseButtonDown(0))
+            {
+                Vector2 screenPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
+                if (pointerBlocker.BlocksBoardPointer(screenPosition))
+                {
+                    var listener = gameTouchInput.Listener;
+                    if (listener != null && listener.IsTouching) listener.StopTouch();
+                    return true;
+                }
             }
             if (gameSceneProjection.IsOverSquareSideBand(Input.mousePosition)) return true;
             var optionalGuide = coreFlow != null ? coreFlow.OptionalBoosterTutorial : null;

@@ -16,8 +16,16 @@ namespace Whitebox.Foundation
         [SerializeField] private SpriteRenderer portraitBackground;
         [SerializeField] private OriginalKingVisual kingVisual;
         [SerializeField] private SortingGroup topSorting;
+        [SerializeField] private bool showKingVisual = true;
+        [SerializeField] private Transform unifiedCardRoot;
+        [SerializeField] private float referenceViewportWidth;
+        [SerializeField] private float referenceViewportHeight;
+        [SerializeField] private Vector3 unifiedCardPortraitPosition;
+        [SerializeField] private Transform tutorialTopLimit;
         public OriginalKingVisual KingVisual => kingVisual;
-        public Vector3 TutorialTopLimit => portraitBackground.transform.position;
+        public Vector3 TutorialTopLimit => tutorialTopLimit != null
+            ? tutorialTopLimit.position
+            : portraitBackground.transform.position;
         [SerializeField] private string rewardTitle;
         [SerializeField] private Vector3 rewardTitleOffset;
         [SerializeField] private Vector3 bonusTitleOffset;
@@ -79,7 +87,7 @@ namespace Whitebox.Foundation
         {
             cameraSource = camera ?? throw new ArgumentNullException(nameof(camera));
             sceneProjection = projection;
-            if (kingVisual != null)
+            if (showKingVisual && kingVisual != null)
             {
                 kingVisual.Initialize(audio.Random, game.Moves, game.GameCoroutines, !game.Session.IsBonus);
                 game.BindKingVisual(kingVisual);
@@ -135,11 +143,22 @@ namespace Whitebox.Foundation
             moves.localPosition = landscape ? movesLandscapePosition : movesPortraitPosition;
             float scale = landscape ? landscapeScale : portraitScale;
             target.localScale = moves.localScale = new Vector3(scale, scale, 0f);
+            if (unifiedCardRoot != null && !landscape)
+            {
+                float cardScale = referenceViewportWidth > 0f
+                    ? cameraSource.orthographicSize * 2f * cameraSource.aspect / referenceViewportWidth
+                    : 1f;
+                if (referenceViewportHeight > 0f)
+                    cardScale = Mathf.Min(cardScale, cameraSource.orthographicSize * 2f / referenceViewportHeight);
+                unifiedCardRoot.localPosition = unifiedCardPortraitPosition * cardScale;
+                unifiedCardRoot.localScale = new Vector3(cardScale, cardScale, 1f);
+            }
             if (portraitBackground != null)
             {
                 portraitBackground.gameObject.SetActive(!landscape);
                 // TopUi.SetBackground 0x162f0e8: live camera width and height5.5.
-                if (!landscape) portraitBackground.size = new Vector2(cameraSource.orthographicSize * 2f * cameraSource.aspect, 5.5f);
+                if (!landscape && unifiedCardRoot == null)
+                    portraitBackground.size = new Vector2(cameraSource.orthographicSize * 2f * cameraSource.aspect, 5.5f);
             }
         }
         private void Update()

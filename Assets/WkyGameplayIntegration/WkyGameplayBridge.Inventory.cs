@@ -42,6 +42,15 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchBoosterInventory
             : Mathf.Max(0, ItemUtils.GetItemCountInt(item));
     }
 
+    internal int AwardBoosterCoins(int amount)
+    {
+        int added = RoyalMatchSessionBridge.AddBoosterCoins(amount);
+        if (added > 0) Changed?.Invoke();
+        return added;
+    }
+
+    partial void OnWonAttemptCoinsEarned(int amount) => AwardBoosterCoins(amount);
+
     public bool TryConsumeBooster(OriginalBoosterType type)
     {
         var item = ItemForBooster(type);
@@ -52,6 +61,26 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchBoosterInventory
         NumbericalStatistics._propUseTimes[item] = ++uses;
         StatisticModule.Instance?.UseItem(item, currentLevel, uses);
         return true;
+    }
+
+    public bool TryPurchaseBooster(OriginalBoosterType type, int coinPrice)
+    {
+        var item = ItemForBooster(type);
+        if (item == E_ItemType.None || coinPrice <= 0 || !IsBoosterAttemptActive() ||
+            boosterAdPending || HasBlockingPresentation())
+            return false;
+
+        int previousCount = GetBooster(type);
+        if (!RoyalMatchSessionBridge.TrySpendBoosterCoins(coinPrice))
+            return false;
+
+        ItemUtils.AddItem(item, 1, false, false, default, false);
+        if (GetBooster(type) > previousCount)
+            return true;
+
+        // Refund the game-only wallet if persisting the purchased booster failed.
+        AwardBoosterCoins(coinPrice);
+        return false;
     }
 
     public void RequestBooster(OriginalBoosterType type, Action<bool> complete)

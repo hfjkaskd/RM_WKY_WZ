@@ -41,7 +41,7 @@ public static class WithdrawHistoryLoadingChecks
             if (!Application.isPlaying)
                 for (int i = page.root.childCount - 1; i >= 0; i--)
                     UnityEngine.Object.DestroyImmediate(page.root.GetChild(i).gameObject);
-            if (Field<RectTransform>(page, "statusRoot") == null) Call(page, "OnAwake");
+            if (Field<CanvasGroup>(page, "listGroup") == null) Call(page, "OnAwake");
             var load = Field<UIContentLoadSession>(page, "content");
             var group = Field<CanvasGroup>(page, "listGroup");
             var retry = Field<BizzaButton>(page, "retryButton");

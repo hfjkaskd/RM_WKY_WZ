@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
+using TMPro;
 
 public static class SDKAssetHandler
 {
@@ -345,11 +346,11 @@ public class CommonConfirmTipsPanel : MonoBehaviour
         public Action onFinish;
     }
 
-    public Text desTxt;
+    public TMP_Text desTxt;
     public Button confirmBtn;
-    public Text btnTxt;
+    public TMP_Text btnTxt;
 
-    public Text titleTxt;
+    public TMP_Text titleTxt;
 
     private Args _args;
 

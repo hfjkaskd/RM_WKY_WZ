@@ -64,5 +64,13 @@ namespace Whitebox.Foundation
             Height = Width / Aspect;
             camera.SetOrthographicSize(Height * .5f);
         }
+
+        internal void EnsureMinimumHeight(IOriginalProjectionCamera camera, float minimumHeight)
+        {
+            if (minimumHeight <= Height) return;
+            Height = minimumHeight;
+            Width = Height * Aspect;
+            camera.SetOrthographicSize(Height * .5f);
+        }
     }
 }

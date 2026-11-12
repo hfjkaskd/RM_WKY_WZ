@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public partial class UIPageIds
 {
@@ -32,10 +33,10 @@ public class LosePanel : UIPageBase<LoseReason, LevelInfo>
 {
     public override bool PreserveRectTransformOnOpen => true;
 
-    public BizzaButton reviveButton;
+    public Button reviveButton;
 
-    public BizzaButton bizzaLoseButton1;
-    public BizzaButton bizzaLoseButton2;
+    public Button bizzaLoseButton1;
+    public Button bizzaLoseButton2;
 
     public GameObject[] reviveObjs;
     public GameObject[] loseObjs;
@@ -102,6 +103,7 @@ public class LosePanel : UIPageBase<LoseReason, LevelInfo>
         if (!offersRevive || adPending || bridge?.CanOfferRevive != true)
             return;
 
+        SoundManager.Instance?.PlaySFX("SFX_Click");
         adPending = true;
         reviveButton.interactable = false;
         int expectedGeneration = pageGeneration;
@@ -141,6 +143,7 @@ public class LosePanel : UIPageBase<LoseReason, LevelInfo>
 
     private void RestartLevel()
     {
+        SoundManager.Instance?.PlaySFX("SFX_Click");
         if (offersRevive)
         {
             WkyGameplayBridge.Instance?.ResolveReviveOffer(false, this);

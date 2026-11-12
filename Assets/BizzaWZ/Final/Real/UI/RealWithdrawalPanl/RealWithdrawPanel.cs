@@ -446,6 +446,7 @@ public class RealWithdrawPanel : UIPageBase
     [Space(5)]
     [Header("提现进度")]
     public Image progressBar;
+    [SerializeField] private RectMask2D progressFillMask;
     public TMP_Text progressTxt;
     public GameObject progressObj;
     public TMP_Text progressHintTxt;
@@ -460,6 +461,16 @@ public class RealWithdrawPanel : UIPageBase
         _ => "0"
     };
 
+
+    internal void SetProgressFill(float progress)
+    {
+        float amount = Mathf.Clamp01(progress);
+        progressBar.fillAmount = amount;
+        if (progressFillMask == null) return;
+
+        progressFillMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, progressBar.rectTransform.rect.width * amount);
+        progressBar.enabled = amount > 0f;
+    }
 
     // 当用户主动点击时候
     // 初始化界面的时候
@@ -484,7 +495,7 @@ public class RealWithdrawPanel : UIPageBase
         }
         else
         {
-            progressBar.fillAmount = (float)currentLevel / fillEndLevel;
+            SetProgressFill((float)currentLevel / fillEndLevel);
             progressTxt.text = $"{currentLevel}/{fillEndLevel}";
             progressHintTxt.text = LanguageUtils.GetFormatText("WithdrawHintPanel_Hint2",
                 fillEndLevel,

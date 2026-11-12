@@ -8,6 +8,7 @@ namespace Whitebox.Foundation
     {
         [SerializeField] private string goalPrefabPath;
         [SerializeField] private OriginalGoalUiAssets assets;
+        [SerializeField] private bool alignCheckWithCount;
         private OriginalGoalManager goals;
         private OriginalSfxPlayback audio;
         private Action animateRewardTitle;
@@ -55,6 +56,12 @@ namespace Whitebox.Foundation
                 }
                 view.Initialize(entries[i], assets.Find(entries[i].GoalType), goals, this, assets, audio);
                 view.SetCountPosition(layout.countPosition);
+                if (alignCheckWithCount)
+                {
+                    var countPosition = new Vector3(layout.countPosition.x, layout.countPosition.y, 0f);
+                    view.checkImage.transform.localPosition = countPosition;
+                    view.goalCheckParticles.transform.localPosition = countPosition;
+                }
                 view.transform.localPosition = layout.positions[i];
                 view.transform.localScale = reward ? Vector3.zero : layout.scale;
             }

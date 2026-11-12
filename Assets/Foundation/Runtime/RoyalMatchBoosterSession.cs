@@ -7,6 +7,7 @@ namespace Whitebox.Foundation
     {
         event Action Changed;
         bool TryConsumeBooster(OriginalBoosterType type);
+        bool TryPurchaseBooster(OriginalBoosterType type, int coinPrice);
         void RequestBooster(OriginalBoosterType type, Action<bool> complete);
     }
 
@@ -75,6 +76,12 @@ namespace Whitebox.Foundation
 
             if (!inventory.HasFreeUsage(type) && inventory.GetBooster(type) == 0)
             {
+                int coinPrice = GetCoinPrice(type);
+                if (coinPrice > 0 && inventory.TryPurchaseBooster(type, coinPrice))
+                {
+                    return;
+                }
+
                 requesting = true;
                 lockedTouch = game.TouchListener;
                 lockedTouch?.StopTouch();
@@ -108,6 +115,18 @@ namespace Whitebox.Foundation
             }
 
             if (selectedOptional != null) selectedOptional.SelectPaid();
+        }
+
+        private int GetCoinPrice(OriginalBoosterType type)
+        {
+            for (int i = 0; i < bottom.Boosters.Length; i++)
+            {
+                OriginalInGameBoosterSlot slot = bottom.Boosters[i];
+                if (slot != null && slot.BoosterType == type)
+                    return slot.CoinPrice;
+            }
+
+            return 0;
         }
 
         private OriginalHammerTutorial GetHammerTemplate()
