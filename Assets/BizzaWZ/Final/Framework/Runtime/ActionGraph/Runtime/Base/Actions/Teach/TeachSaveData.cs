@@ -45,6 +45,8 @@ public static class TeachUtil
 
 public class TeachSaveData : ISaveData
 {
+    public NewbieGiftRequestState newbieGiftRequest;
+    public bool newbieGiftShown;
     public SortedList<string, int> states = new();
     public bool CheckState(string key)
     {
@@ -68,12 +70,6 @@ public class TeachSaveData : ISaveData
             return true;
         }
 #if BIZZA_REAL_WITHDRAW
-#if UNITY_EDITOR
-        if (AccountModule.Instance != null && Bizza.Sdk.ChannelConfig.Instance.real_CustomConfig.enterNewbieGuide)
-        {
-            return false;
-        }
-#endif
         if (AccountModule.Instance != null && AccountModule.Instance.Os_Current_Uso != null && !AccountModule.Instance.Os_Current_Uso.Os_Ncm)
         {
             return true;
@@ -101,3 +97,5 @@ public class TeachSaveData : ISaveData
 
     }
 }
+
+public enum NewbieGiftRequestState { NotTriggered = 0, NextLogin = 1, Background = 2, Succeeded = 3 }

@@ -10,9 +10,9 @@ public sealed class Teach01UnityServices : ITeach01Services
 {
     readonly UIModule ui;
     readonly object blockReason = new();
-    readonly bool singleCurrency, isUS;
+    readonly bool singleCurrency;
     readonly Action<Action<FailHttpResponse<AccountModule.OceanShineUserReachReportResponse>>> request;
-    bool preparationBlocked, rewardRequested;
+    bool preparationBlocked;
     CanvasGroup frameworkGroup;
     bool savedInteractable, savedRaycasts;
 
@@ -20,18 +20,27 @@ public sealed class Teach01UnityServices : ITeach01Services
         Action<Action<FailHttpResponse<AccountModule.OceanShineUserReachReportResponse>>> requestReward = null)
     {
         ui = UIModule.Instance;
-        if (ui == null || AccountModule.Instance?.Os_Current_Uso == null || ChannelConfig.Instance == null)
+        if (ui == null || AccountModule.Instance == null || ChannelConfig.Instance == null)
             throw new InvalidOperationException("Teach01 requires initialized UI, account and channel configuration.");
         singleCurrency = ChannelConfig.Instance.real_CustomConfig.singleCurrencyMode;
-        isUS = AccountModule.CountryType == AccountModule.E_CountryType.US;
         request = requestReward ?? AccountModule.Instance.Request_UserReachReportRequest;
     }
 
     public bool GameReady => World.Current?.GetGameMode<GameMode_GamePlay>() != null &&
                              SaveDataUtils.GameData.customTutorialCanPlay;
-    public bool GameTutorialCompleted => SaveDataUtils.GameData.customTutorialEnd;
+    public bool BasicTutorialCompleted => SaveDataUtils.GameData.customTutorialEnd;
+    public bool GameTutorialCompleted => BasicTutorialCompleted;
+    public NewbieGiftRequestState RewardState => SaveDataUtils.TeachData.newbieGiftRequest;
+    public bool GiftShown => SaveDataUtils.TeachData.newbieGiftShown;
+    public static bool AccountReady => AccountModule.Instance?.AccountReady == true;
+    public bool CanRequestReward => AccountReady;
+    public bool IsSuspended => AccountModule.Instance?.IsSuspended == true;
+    public bool CanShowGift => GameTutorialCompleted && Whitebox.Foundation.RoyalMatchSessionBridge.CanShowAutomaticPopup &&
+                               !FlowModule.AutomaticPopupFlowBlocked &&
+                               ui != null && !ui.Opening &&
+                               !(ui.GetPage<GetRewardPanel>() is { IsWinReward: true });
     public bool SingleCurrency => singleCurrency;
-    public bool IsUS => isUS;
+    public bool IsUS => AccountModule.CountryType == AccountModule.E_CountryType.US;
 
     public void SetPreparationBlock(bool blocked)
     {
@@ -76,11 +85,11 @@ public sealed class Teach01UnityServices : ITeach01Services
     public UniTask Delay(float seconds, CancellationToken token) =>
         UniTask.Delay(TimeSpan.FromSeconds(seconds), cancellationToken: token);
 
-    public async UniTask RequestReward(CancellationToken token)
+    public async UniTask<bool> RequestReward(CancellationToken token)
     {
         token.ThrowIfCancellationRequested();
-        if (rewardRequested) throw new InvalidOperationException("Teach01 reward already requested in this run.");
-        rewardRequested = true;
+        if (!CanRequestReward || IsSuspended) return false;
+        if (RewardState == NewbieGiftRequestState.Succeeded) return true;
         bool? succeeded = null;
         bool accepting = true;
         try
@@ -91,18 +100,35 @@ public sealed class Teach01UnityServices : ITeach01Services
                 succeeded = response.success && response.data != null && response.data.Os_Uso != null;
             });
             await WaitUntil(() => succeeded.HasValue, token, 30f);
-            if (succeeded != true) throw new InvalidOperationException("Teach01 newbie reward request failed.");
-            // AccountModule updates account data after our callback. Do not read gift data inline.
+            // Resume presentation on the player loop after the account callback has completed.
             await UniTask.Yield(PlayerLoopTiming.Update, token);
             token.ThrowIfCancellationRequested();
+            if (succeeded != true || IsSuspended) return false;
+            SaveDataUtils.TeachData.newbieGiftRequest = NewbieGiftRequestState.Succeeded;
+            SaveDataUtils.Save();
+            return true;
         }
+        catch (TimeoutException) { return false; }
         finally { accepting = false; }
     }
 
-    public void ClosePopups() => ui.CloseLayerAllPage((int)E_UILayer.PopupLayer);
+    public void ClosePopups() => ui.CloseLayerAllPage((int)E_UILayer.PopupLayer,
+        page => !(page is GetRewardPanel reward && reward.IsWinReward));
 
-    public async UniTask<object> OpenGift(CancellationToken token) =>
-        OwnOpenedPage(await ui.OpenPage(UIPageIds.NewbieGiftPage), token);
+    public async UniTask<object> OpenGift(CancellationToken token)
+    {
+        using var attempt = new UIModule.PageOpenAttempt();
+        using var cancellation = token.Register(attempt.Cancel);
+        if (!await ui.PrepareAutomaticPopupAsync(UIPageIds.NewbieGiftPage, attempt))
+            throw new InvalidOperationException("Teach01 gift prefab failed to load.");
+        // Asset loading can overlap a win. Recheck after it finishes; opening the cached page is synchronous.
+        await WaitUntil(() => CanShowGift || IsSuspended, token);
+        if (IsSuspended) throw new OperationCanceledException("WKY account suspended.");
+        var owner = OwnOpenedPage(await ui.OpenAutomaticPopup(UIPageIds.NewbieGiftPage, attempt), token);
+        SaveDataUtils.TeachData.newbieGiftShown = true;
+        SaveDataUtils.Save();
+        return owner;
+    }
 
     public async UniTask<object> OpenMask(bool currency, CancellationToken token)
     {
@@ -145,10 +171,11 @@ public sealed class Teach01UnityServices : ITeach01Services
 
     object OwnOpenedPage(UIPageBase page, CancellationToken token)
     {
-        if (token.IsCancellationRequested)
+        if (token.IsCancellationRequested || IsSuspended)
         {
             if (page != null && ui != null && ReferenceEquals(ui.GetPage(page.PageId), page)) ui.ClosePage(page);
             token.ThrowIfCancellationRequested();
+            throw new OperationCanceledException("WKY account suspended.");
         }
         if (page == null || page.OpenOwner == null) throw new InvalidOperationException("Teach01 page failed to open.");
         return page.OpenOwner;

@@ -56,6 +56,7 @@ public class SlotEnter : MonoBehaviour
     public void OnClick()
     {
 #if BIZZA_REAL_WITHDRAW
+        if (!UIUtils.CheckWKYAccountReady()) return;
         UIModule.Instance.OpenPage(UIPageIds.SlotPanel);
 #endif
     }

@@ -91,7 +91,7 @@ public class SlotPanel : UIPageBase
     public void PlaySlotBtn()
     {
 #if BIZZA_REAL_WITHDRAW
-        if (isSloting) return;
+        if (isSloting || !UIUtils.CheckWKYAccountReady()) return;
         isSloting = true;
         if (SlotProgressUtil.CanFreeSpin)
         {

@@ -29,6 +29,8 @@ namespace Whitebox.Foundation
         private readonly IOriginalMatchGroupExplosionServices services;
         private Func<bool> canRecordSynthesis;
         private Action<Vector3> recordSynthesis;
+        private Func<bool> canRecordEffectiveAction;
+        private Action recordEffectiveAction;
 
         public OriginalMatchGroupExplosion(OriginalMatchExplosionReadiness readiness, IOriginalMatchGroupExplosionServices services)
         {
@@ -42,10 +44,17 @@ namespace Whitebox.Foundation
             recordSynthesis = record;
         }
 
+        internal void BindEffectiveActionObserver(Func<bool> canRecord, Action record)
+        {
+            canRecordEffectiveAction = canRecord;
+            recordEffectiveAction = record;
+        }
+
         public bool ExplodeMatchGroup(OriginalMatchGroupSnapshot group, OriginalExplodeData data, bool isFromAutoMatch = false)
         {
             if (services.IsAutoMatchDisabledForWaterLevel || !readiness.CanAutoExplode(ref group)) return false;
             bool observeSynthesis = canRecordSynthesis?.Invoke() == true;
+            bool observeEffectiveAction = canRecordEffectiveAction?.Invoke() == true;
             OriginalGridCell removedCell = null;
             data.CanSpreadJelly = services.InitJellySpreadData(ref group, data);
             var collect = preparation.CreateCollectData(group);
@@ -68,6 +77,13 @@ namespace Whitebox.Foundation
                 item.SpecialItemCreationData = special;
                 item.CollectData = collect;
                 services.ExplodeMatchItem(item, data);
+                // Persist an actual matched removal before settlement can change the game state.
+                // This notification is independent of delayed reward/UI and tutorial filtering.
+                if (observeEffectiveAction && !ReferenceEquals(cell.Mediation.CurrentItem, item))
+                {
+                    observeEffectiveAction = false;
+                    recordEffectiveAction?.Invoke();
+                }
                 if (observeSynthesis && removedCell == null && !ReferenceEquals(cell.Mediation.CurrentItem, item))
                     removedCell = cell;
                 minX = Math.Min(minX, cell.X); maxX = Math.Max(maxX, cell.X);

@@ -1,6 +1,7 @@
 #if BIZZA_REAL_WITHDRAW
 using System;
 using Bizza.Sdk;
+using UnityEngine;
 
 namespace BizzaSdk
 {
@@ -17,6 +18,58 @@ namespace BizzaSdk
 
         private static AggregationAdSdk AdSdk => OverseaPlatform.AdSdk;
 
+        private static bool CanShowOnlineAd => AccountModule.Instance?.AccountReady == true &&
+            AdSdk != null && Application.internetReachability != NetworkReachability.NotReachable;
+
+        private static void ShowOnlineAd(ShowAdArgs args, bool reward)
+        {
+            var account = AccountModule.Instance;
+            var sdk = AdSdk;
+            if (!CanShowOnlineAd)
+            {
+                Finish(args, default);
+                return;
+            }
+
+            bool completed = false;
+            var sdkArgs = args;
+            sdkArgs.onFinish = Complete;
+            sdkArgs.onFailed = () => Complete(default);
+            try
+            {
+                if (reward) sdk.ShowRewardAd(sdkArgs);
+                else sdk.ShowInterAd(sdkArgs);
+            }
+            catch (Exception error)
+            {
+                Debug.LogWarning("WKY ad request failed: " + error.GetType().Name);
+                Complete(default);
+            }
+
+            void Complete(ShowAdResult result)
+            {
+                if (completed) return;
+                completed = true;
+                if (!ReferenceEquals(AccountModule.Instance, account) || !account.AccountReady)
+                    result = default;
+                Finish(args, result);
+            }
+        }
+
+        private static void Finish(ShowAdArgs args, ShowAdResult result)
+        {
+            if (result.success)
+            {
+                args.onFinish?.Invoke(result);
+                return;
+            }
+
+            try { UIUtils.ShowNetworkErrorTip(); }
+            catch (Exception error) { Debug.LogWarning("WKY network tip unavailable: " + error.GetType().Name); }
+            try { args.onFailed?.Invoke(); }
+            finally { args.onFinish?.Invoke(result); }
+        }
+
         public static void SetUserId(string userId) => AdSdk?.SetUserId(userId);
 
         #region 开屏
@@ -28,10 +81,10 @@ namespace BizzaSdk
 
         #region 激励视频
         public static bool IsRewardInvalid => AdSdk != null && AdSdk.IsRewardInvalid;
-        public static bool IsRewardReady => AdSdk != null && AdSdk.IsRewardReady;
+        public static bool IsRewardReady => CanShowOnlineAd && AdSdk.IsRewardReady;
         public static bool IsRewardShowing => AdSdk != null && AdSdk.IsRewardShowing;
-        public static bool CheckRewardAdReady(CheckAdReadyArgs args = default) => AdSdk != null && AdSdk.CheckRewardAdReady(args);
-        public static void ShowRewardAd(ShowAdArgs args) => AdSdk?.ShowRewardAd(args);
+        public static bool CheckRewardAdReady(CheckAdReadyArgs args = default) => CanShowOnlineAd && AdSdk.CheckRewardAdReady(args);
+        public static void ShowRewardAd(ShowAdArgs args) => ShowOnlineAd(args, reward: true);
         public static void ShowRewardAd(string adPos, float dollarNum, Action<Bizza.Sdk.ShowAdResult> onFinish, float ecpmLimit = 0)
         {
             #if !COMMONGAME
@@ -56,10 +109,10 @@ namespace BizzaSdk
 
         #region 插屏/插页
         public static bool IsInterInvalid => AdSdk != null && AdSdk.IsInterInvalid;
-        public static bool IsInterReady => AdSdk != null && AdSdk.IsInterReady;
+        public static bool IsInterReady => CanShowOnlineAd && AdSdk.IsInterReady;
         public static bool IsInterShowing => AdSdk != null && AdSdk.IsInterShowing;
-        public static bool CheckInterAdReady(CheckAdReadyArgs args = default) => AdSdk != null && AdSdk.CheckInterAdReady(args);
-        public static void ShowInterAd(ShowAdArgs args = default) => AdSdk?.ShowInterAd(args);
+        public static bool CheckInterAdReady(CheckAdReadyArgs args = default) => CanShowOnlineAd && AdSdk.CheckInterAdReady(args);
+        public static void ShowInterAd(ShowAdArgs args = default) => ShowOnlineAd(args, reward: false);
         public static void ShowInterAd(string adPos, float dollarNum, Action<Bizza.Sdk.ShowAdResult> onFinish, bool forceCount)
         {
             #if !COMMONGAME

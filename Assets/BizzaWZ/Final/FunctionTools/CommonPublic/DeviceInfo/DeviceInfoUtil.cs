@@ -110,6 +110,8 @@ public static class DeviceInfoUtil
         try
         {
             DeviceNativeInfoData deviceInfo = GetNativeDeviceInfo();
+            // VPN policy and network state can change while the device ID cache is still fresh.
+            deviceInfo.IsVpnConnected = DeviceNativeBridge.IsVpnConnected();
             deviceInfo.Os_Gaid = await GetGoogleIdAsync();
             cachedDeviceInfo = deviceInfo;
             initializationCompleted = true;
@@ -120,6 +122,11 @@ public static class DeviceInfoUtil
             DeviceInfoLog.LogVerbose(DeviceInfoLogTag.Device, "统一设备信息采集失败：" + exception.Message);
             deviceInfoCompletionSource?.TrySetException(exception);
         }
+    }
+
+    public static void UpdateVpnStatus(bool isConnected)
+    {
+        if (cachedDeviceInfo != null) cachedDeviceInfo.IsVpnConnected = isConnected;
     }
 
     /// <summary>

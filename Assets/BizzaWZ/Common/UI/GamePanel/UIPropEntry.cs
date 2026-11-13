@@ -83,7 +83,7 @@ public class UIPropEntry : MonoBehaviour
         isUnLock = true;
         if (propConfigInfo.unlockFunction)
         {
-            isUnLock = propConfigInfo.unlockCondition.IsUnlock(SaveDataUtils.GameData.playerSelectedLv);
+            isUnLock = propConfigInfo.unlockCondition.IsUnlock(FlowModule.CurrentLevel);
         }
 
         if (isUnLock)
@@ -323,7 +323,7 @@ public class UIPropEntry : MonoBehaviour
             }
 
             _propUseTimes[itemType]++;
-            StatisticModule.Instance.UseItem(itemType, SaveDataUtils.GameData.playerSelectedLv, _propUseTimes[itemType]);
+            StatisticModule.Instance.UseItem(itemType, FlowModule.CurrentLevel, _propUseTimes[itemType]);
         }
         SetNormalState();
     }

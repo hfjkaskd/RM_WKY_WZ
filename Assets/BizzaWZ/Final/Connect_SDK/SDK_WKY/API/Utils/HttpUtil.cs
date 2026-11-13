@@ -16,17 +16,25 @@ public static class HttpUtil
     public static long serverTime = 0;
     public static string accountToken;
 
-    private static readonly List<float> HTTP_TIMEOUT_SECONDS = new List<float> { 3f, 5f, 8f };
-    private const int MAX_RETRY_COUNT = 2;
+    // Match the offline-entry contract on every transport: one bounded attempt.
+    private const int MAX_RETRY_COUNT = 1;
     private const int RETRY_DELAY_MS = 300;
-
-    // Android 原生桥兜底超时，防止 Java 层没回调导致 C# 请求永久悬空
-    private const float ANDROID_BRIDGE_TIMEOUT_SECONDS = 
-    #if BIZZA_HTTP_AD
-    600f;
-    #else
-    8f;
-    #endif
+    // Keep startup requests short while preserving the WKY business request deadlines.
+    // Route by endpoint so ad_load, ad_show and ad_click all use the same deadline.
+    private static float RequestTimeout(string path, float requestedTimeout = 5f)
+    {
+        if (path == AccountModuleCfg.ad_info || path == AccountModuleCfg.get_ecpm_id ||
+            path == AccountModuleCfg.add_ecpm || path == AccountModuleCfg.add_order ||
+            path == AccountModuleCfg.add_order_task || path == AccountModuleCfg.task_list)
+            return Math.Max(requestedTimeout, 600f);
+        if (path == AccountModuleCfg.login) return Math.Max(requestedTimeout, 6f);
+        return requestedTimeout;
+    }
+    private static void TryShowNetworkErrorTip()
+    {
+        try { UIUtils.ShowNetworkErrorTip(); }
+        catch (Exception error) { Debug.LogWarning("WKY network tip unavailable: " + error.GetType().Name); }
+    }
 
     // 图片下载兜底超时
     private const float IMAGE_DOWNLOAD_TIMEOUT_SECONDS = 15f;
@@ -135,10 +143,16 @@ public static class HttpUtil
         string method)
     {
         string url = BuildUrl(path);
+        int nativeRequestId = -1;
+        float timeoutSeconds = RequestTimeout(path);
         LogLogger.LogVerbose(LogTag.LOG_HTTP, $"URL ::: {url}");
 
+        bool replied = false;
         void Reply(bool success, T data, string msg, string code)
         {
+            if (replied) return;
+            replied = true;
+            if (!success) TryShowNetworkErrorTip();
             response?.Invoke(new FailHttpResponse<T>
             {
                 success = success,
@@ -161,6 +175,7 @@ public static class HttpUtil
 #if UNITY_ANDROID && !UNITY_EDITOR
             LogDeviceEnvironmentOnce("RequestToServerCoroutine<T>", "安卓真机");
             int id = HttpId++;
+            nativeRequestId = id;
 
             // null 表示等待 Java 回调中
             HTTPReply[id] = null;
@@ -173,10 +188,11 @@ public static class HttpUtil
                 url,
                 ToSByteArray(bodyRaw),
                 id,
-                delay
+                delay,
+                (int)timeoutSeconds
             );
 
-            string responseJson = await WaitAndroidBridgeReplyOrTimeout(id, ANDROID_BRIDGE_TIMEOUT_SECONDS);
+            string responseJson = await WaitAndroidBridgeReplyOrTimeout(id, timeoutSeconds + Mathf.Max(0f, delay));
 
             if (responseJson == null)
             {
@@ -195,7 +211,7 @@ public static class HttpUtil
             string respOuterJson = responseJson;
 #endif
 
-#if UNITY_EDITOR
+#if !UNITY_ANDROID || UNITY_EDITOR
             LogDeviceEnvironmentOnce("RequestToServerCoroutine<T>", "编辑器");
             if (delay > 0f)
             {
@@ -203,7 +219,7 @@ public static class HttpUtil
                     TimeSpan.FromSeconds(delay),
                     ignoreTimeScale: true);
             }
-            var request = await SendWithRetry(() => CreateRequest(url, method, bodyRaw), url, MAX_RETRY_COUNT);
+            var request = await SendWithRetry(() => CreateRequest(url, method, bodyRaw), url, MAX_RETRY_COUNT, timeoutSeconds);
 
             if (request == null)
             {
@@ -269,12 +285,18 @@ public static class HttpUtil
                     ReplyDefault("Deserialize Error", "DESERIALIZE_ERROR");
                 }
 
-#if UNITY_EDITOR
+#if !UNITY_ANDROID || UNITY_EDITOR
             }
 #endif
         }
+        catch (Exception error)
+        {
+            LogLogger.LogVerbose(LogTag.LOG_HTTP, "HTTP exception: " + error);
+            ReplyDefault("Network Error", "NETWORK_ERROR");
+        }
         finally
         {
+            if (nativeRequestId >= 0) HTTPReply.Remove(nativeRequestId);
 #if !COMMONGAME
             if (block) LoadingBlock.RemoveBlock(nameof(HttpUtil));
 #endif
@@ -294,6 +316,16 @@ public static class HttpUtil
         string method)
     {
         string url = BuildUrl(path);
+        int nativeRequestId = -1;
+        float timeoutSeconds = RequestTimeout(path);
+        bool replied = false;
+        void Reply(bool success, string json)
+        {
+            if (replied) return;
+            replied = true;
+            if (!success) TryShowNetworkErrorTip();
+            response?.Invoke(success, json);
+        }
         LogLogger.LogVerbose(LogTag.LOG_HTTP, $"URL ::: {url}");
 
 #if !COMMONGAME
@@ -305,6 +337,7 @@ public static class HttpUtil
 #if UNITY_ANDROID && !UNITY_EDITOR
             LogDeviceEnvironmentOnce("RequestToServerCoroutine(raw)", "安卓真机");
             int id = HttpId++;
+            nativeRequestId = id;
 
             // null 表示等待 Java 回调中
             HTTPReply[id] = null;
@@ -317,29 +350,30 @@ public static class HttpUtil
                 url,
                 ToSByteArray(bodyRaw),
                 id,
-                delay
+                delay,
+                (int)timeoutSeconds
             );
 
-            string responseJson = await WaitAndroidBridgeReplyOrTimeout(id, ANDROID_BRIDGE_TIMEOUT_SECONDS);
+            string responseJson = await WaitAndroidBridgeReplyOrTimeout(id, timeoutSeconds + Mathf.Max(0f, delay));
 
             if (responseJson == null)
             {
                 LogLogger.LogVerbose(LogTag.LOG_HTTP, $"Android HTTP timeout: url={url}, id={id}");
-                response?.Invoke(false, null);
+                Reply(false, null);
                 return;
             }
 
             if (string.IsNullOrEmpty(responseJson))
             {
                 LogLogger.LogVerbose(LogTag.LOG_HTTP, $"Android HTTP empty response: url={url}, id={id}");
-                response?.Invoke(false, null);
+                Reply(false, null);
                 return;
             }
 
             string respOuterJson = responseJson;
 #endif
 
-#if UNITY_EDITOR
+#if !UNITY_ANDROID || UNITY_EDITOR
             LogDeviceEnvironmentOnce("RequestToServerCoroutine(raw)", "编辑器");
             if (delay > 0f)
             {
@@ -347,11 +381,11 @@ public static class HttpUtil
                     TimeSpan.FromSeconds(delay),
                     ignoreTimeScale: true);
             }
-            var request = await SendWithRetry(() => CreateRequest(url, method, bodyRaw), url, MAX_RETRY_COUNT);
+            var request = await SendWithRetry(() => CreateRequest(url, method, bodyRaw), url, MAX_RETRY_COUNT, timeoutSeconds);
 
             if (request == null)
             {
-                response?.Invoke(false, null);
+                Reply(false, null);
                 return;
             }
 
@@ -360,7 +394,7 @@ public static class HttpUtil
                 if (!IsNetworkSuccess(request))
                 {
                     LogLogger.LogVerbose(LogTag.LOG_HTTP, $"HTTP Network Error: {request.error}");
-                    response?.Invoke(false, null);
+                    Reply(false, null);
                     return;
                 }
 
@@ -371,7 +405,7 @@ public static class HttpUtil
 
                 if (!TryParseOuter(respOuterJson, out HttpResponse<string> outer))
                 {
-                    response?.Invoke(false, null);
+                    Reply(false, null);
                     return;
                 }
 
@@ -380,24 +414,30 @@ public static class HttpUtil
                 // 保持原语义：业务失败 => false,null
                 if (outer.code != "200")
                 {
-                    response?.Invoke(false, null);
+                    Reply(false, null);
                     return;
                 }
 
                 if (!TryDecryptOuterData(outer.data, out string plainJson))
                 {
-                    response?.Invoke(false, null);
+                    Reply(false, null);
                     return;
                 }
 
-                response?.Invoke(true, plainJson);
+                Reply(true, plainJson);
 
-#if UNITY_EDITOR
+#if !UNITY_ANDROID || UNITY_EDITOR
             }
 #endif
         }
+        catch (Exception error)
+        {
+            LogLogger.LogVerbose(LogTag.LOG_HTTP, "HTTP exception: " + error);
+            Reply(false, null);
+        }
         finally
         {
+            if (nativeRequestId >= 0) HTTPReply.Remove(nativeRequestId);
 #if !COMMONGAME
             if (block) LoadingBlock.RemoveBlock(nameof(HttpUtil));
 #endif
@@ -416,7 +456,8 @@ public static class HttpUtil
     /// </summary>
     private static async UniTask<string> WaitAndroidBridgeReplyOrTimeout(int id, float timeoutSeconds)
     {
-        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutSeconds));
+        using var cts = CancellationTokenSource.CreateLinkedTokenSource(Application.exitCancellationToken);
+        cts.CancelAfter(TimeSpan.FromSeconds(timeoutSeconds));
 
         bool cancelled = await UniTask.WaitUntil(
             () => HTTPReply.TryGetValue(id, out var value) && value != null,
@@ -449,14 +490,13 @@ public static class HttpUtil
     private static async UniTask<UnityWebRequest> SendWithRetry(
         Func<UnityWebRequest> requestFactory,
         string url,
-        int maxRetry)
+        int maxRetry, float timeoutSeconds)
     {
         for (int attempt = 1; attempt <= maxRetry; attempt++)
         {
             var request = requestFactory();
 
-            int timeoutIndex = Mathf.Clamp(attempt - 1, 0, HTTP_TIMEOUT_SECONDS.Count - 1);
-            float time = HTTP_TIMEOUT_SECONDS[timeoutIndex];
+            float time = timeoutSeconds;
 
             bool sentOk = await SendOnceWithTimeout(request, url, time);
 
@@ -480,9 +520,6 @@ public static class HttpUtil
             }
             else
             {
-#if !COMMONGAME
-                UIUtils.ShowTips(LanguageUtils.GetText("Tips_NetworkError"));
-#endif
                 LogLogger.LogVerbose(LogTag.LOG_HTTP, $"重试超出次数 - 失败 failed: url={url}");
             }
         }
@@ -495,7 +532,8 @@ public static class HttpUtil
     /// </summary>
     private static async UniTask<bool> SendOnceWithTimeout(UnityWebRequest request, string url, float time)
     {
-        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(time));
+        using var cts = CancellationTokenSource.CreateLinkedTokenSource(Application.exitCancellationToken);
+        cts.CancelAfter(TimeSpan.FromSeconds(time));
 
         try
         {
@@ -683,7 +721,7 @@ public static class HttpUtil
 
     public static void LoginHTTPDict(int id, string json)
     {
-        if (HTTPReply.ContainsKey(id))
+        if (HTTPReply.TryGetValue(id, out string pending) && pending == null)
         {
             // json 为 null 时转成 string.Empty，表示 Java 已回调但内容为空
             HTTPReply[id] = json ?? string.Empty;

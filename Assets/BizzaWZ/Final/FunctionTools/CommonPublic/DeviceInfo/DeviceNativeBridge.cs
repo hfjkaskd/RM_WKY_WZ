@@ -529,7 +529,21 @@ public static class DeviceNativeBridge
 #endif
     }
 
-    public static bool IsVpnDetectionEnabled { get; } = true;
+    public static bool IsVpnDetectionEnabled { get; private set; } = true;
+
+    public static void ApplyVpnDetectionPolicy(string setting)
+    {
+        string value = setting?.Trim();
+        // Missing or invalid policy keeps the existing detection enabled.
+        IsVpnDetectionEnabled = !string.Equals(value, "false", StringComparison.OrdinalIgnoreCase) &&
+                                !string.Equals(value, "0", StringComparison.Ordinal);
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetVpnDetectionPolicy()
+    {
+        IsVpnDetectionEnabled = true;
+    }
 
     /// <summary>
     /// 当前设备是否连接 VPN。

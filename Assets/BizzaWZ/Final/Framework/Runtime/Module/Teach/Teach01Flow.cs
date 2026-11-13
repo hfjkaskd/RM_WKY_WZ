@@ -11,7 +11,7 @@ public sealed class Teach01Flow : IDisposable
     {
         Ready, WaitingForGame, GameTutorial, RequestingReward, Gift,
         Currency, StarterWithdrawal, WaitingForWithdrawal, Finishing,
-        Completed, Failed, Cancelled
+        Completed, Failed, Cancelled, WaitingForGiftWindow, WaitingForFirstMatch, RetryingReward
     }
 
     public Stage CurrentStage { get; private set; }
@@ -36,28 +36,30 @@ public sealed class Teach01Flow : IDisposable
             token.ThrowIfCancellationRequested();
             CurrentStage = Stage.WaitingForGame;
             services.SetPreparationBlock(true);
-            await services.WaitUntil(() => services.GameReady, token);
+            await WaitUntil(() => services.GameReady, token);
             await services.Delay(.01f, token);
-            if (!services.GameTutorialCompleted)
+            // Restored offline claims resume without reopening a gift or blocking gameplay teaching.
+            if (services.RewardState == NewbieGiftRequestState.Background && services.GiftShown)
             {
-                CurrentStage = Stage.GameTutorial;
-                services.SetFrameworkInputBlocked(true);
                 services.SetPreparationBlock(false);
-                // EnterCustomTutorial only reset this already-false flag; gameplay owns completion.
-                await services.WaitUntil(() => services.GameTutorialCompleted, token);
+                return await CompleteBackgroundReward(token);
             }
-            services.SetFrameworkInputBlocked(false);
-            services.SetPreparationBlock(false);
 
-            // Keep this project's timing: request AFTER gameplay teaching, then open the gift.
-            CurrentStage = Stage.RequestingReward;
-            await services.RequestReward(token);
-            token.ThrowIfCancellationRequested();
-            services.ClosePopups();
-            CurrentStage = Stage.Gift;
-            gift = await services.OpenGift(token);
-            await WaitForClose(Teach01Page.Gift, gift, token);
-            gift = null;
+            var reward = PrepareReward(token);
+            await UniTask.WhenAll(reward, WaitForGameplayTutorials(token));
+            ThrowIfSuspended(token);
+            bool offlineGift = services.RewardState == NewbieGiftRequestState.Background;
+            bool giftAlreadyShown = services.GiftShown;
+            if (!giftAlreadyShown) await ShowGift(token);
+            if (offlineGift) return await CompleteBackgroundReward(token);
+
+            // A previously shown gift must never grant local currency or restart withdrawal teaching.
+            if (giftAlreadyShown)
+            {
+                services.SaveCompleted();
+                CurrentStage = Stage.Completed;
+                return true;
+            }
 
             // NewbieGiftPage still owns granting, flying money and closing the gift.
             if (services.SingleCurrency)
@@ -99,7 +101,83 @@ public sealed class Teach01Flow : IDisposable
         }
         catch (OperationCanceledException) { CurrentStage = Stage.Cancelled; return false; }
         catch (Exception error) { LastError = error; CurrentStage = Stage.Failed; return false; }
-        finally { Cleanup(); IsRunning = false; }
+        finally
+        {
+            // A failed request must also cancel the concurrent tutorial/input wait.
+            linked.Cancel();
+            Cleanup();
+            IsRunning = false;
+        }
+    }
+
+    async UniTask PrepareReward(CancellationToken token)
+    {
+        CurrentStage = Stage.WaitingForFirstMatch;
+        await WaitUntil(() => services.RewardState != NewbieGiftRequestState.NotTriggered, token);
+        if (services.RewardState == NewbieGiftRequestState.Background) return;
+        CurrentStage = Stage.RequestingReward;
+        await WaitUntil(() => services.CanRequestReward, token);
+        if (services.RewardState != NewbieGiftRequestState.Succeeded && !await services.RequestReward(token))
+        {
+            ThrowIfSuspended(token);
+            throw new InvalidOperationException("Teach01 reward failed; its pending state will retry next login.");
+        }
+        ThrowIfSuspended(token);
+    }
+
+    async UniTask ShowGift(CancellationToken token)
+    {
+        CurrentStage = Stage.WaitingForGiftWindow;
+        await WaitUntil(() => services.CanShowGift, token);
+        services.ClosePopups();
+        // Closing another popup may synchronously start settlement or a level transition.
+        await WaitUntil(() => services.CanShowGift, token);
+        CurrentStage = Stage.Gift;
+        gift = await services.OpenGift(token);
+        await WaitForClose(Teach01Page.Gift, gift, token);
+        gift = null;
+    }
+
+    async UniTask<bool> CompleteBackgroundReward(CancellationToken token)
+    {
+        services.SaveCompleted();
+        CurrentStage = Stage.RetryingReward;
+        while (true)
+        {
+            await WaitUntil(() => services.CanRequestReward, token);
+            bool succeeded = await services.RequestReward(token);
+            ThrowIfSuspended(token);
+            if (succeeded)
+            {
+                CurrentStage = Stage.Completed;
+                return true;
+            }
+            // Bound immediate errors too; preserve the background state until a valid server reply.
+            await services.Delay(1f, token);
+        }
+    }
+
+    void ThrowIfSuspended(CancellationToken token)
+    {
+        token.ThrowIfCancellationRequested();
+        if (services.IsSuspended) throw new OperationCanceledException("WKY account suspended.");
+    }
+
+    async UniTask WaitUntil(Func<bool> condition, CancellationToken token, float timeoutSeconds = 0)
+    {
+        await services.WaitUntil(() => services.IsSuspended || condition(), token, timeoutSeconds);
+        ThrowIfSuspended(token);
+    }
+
+    async UniTask WaitForGameplayTutorials(CancellationToken token)
+    {
+        CurrentStage = Stage.GameTutorial;
+        if (!services.BasicTutorialCompleted) services.SetFrameworkInputBlocked(true);
+        services.SetPreparationBlock(false);
+        await WaitUntil(() => services.BasicTutorialCompleted, token);
+        // Release the framework UI after the base gameplay tutorial.
+        services.SetFrameworkInputBlocked(false);
+        await WaitUntil(() => services.GameTutorialCompleted, token);
     }
 
     async UniTask GuideCurrency(string text, int position, float height, CancellationToken token)
@@ -115,12 +193,12 @@ public sealed class Teach01Flow : IDisposable
     async UniTask<object> WaitForPage(Teach01Page page, CancellationToken token)
     {
         object owner = null;
-        await services.WaitUntil(() => (owner = services.GetPageOwner(page)) != null, token, 15f);
+        await WaitUntil(() => (owner = services.GetPageOwner(page)) != null, token, 15f);
         return owner;
     }
 
     UniTask WaitForClose(Teach01Page page, object owner, CancellationToken token) =>
-        services.WaitUntil(() => !ReferenceEquals(services.GetPageOwner(page), owner), token);
+        WaitUntil(() => !ReferenceEquals(services.GetPageOwner(page), owner), token);
 
     void CloseTip() => CloseOwned(Teach01Page.Tip, ref tip);
     void CloseOwned(Teach01Page page, ref object owner)
@@ -156,14 +234,20 @@ public enum Teach01Page { Gift, Mask, Tip, StarterWithdrawal, Withdrawal, RealWi
 public interface ITeach01Services
 {
     bool GameReady { get; }
+    NewbieGiftRequestState RewardState { get; }
+    bool GiftShown { get; }
+    bool CanRequestReward { get; }
+    bool IsSuspended { get; }
+    bool BasicTutorialCompleted { get; }
     bool GameTutorialCompleted { get; }
+    bool CanShowGift { get; }
     bool SingleCurrency { get; }
     bool IsUS { get; }
     void SetPreparationBlock(bool blocked);
     void SetFrameworkInputBlocked(bool blocked);
     UniTask WaitUntil(Func<bool> condition, CancellationToken token, float timeoutSeconds = 0);
     UniTask Delay(float seconds, CancellationToken token);
-    UniTask RequestReward(CancellationToken token);
+    UniTask<bool> RequestReward(CancellationToken token);
     void ClosePopups();
     UniTask<object> OpenGift(CancellationToken token);
     UniTask<object> OpenMask(bool currency, CancellationToken token);

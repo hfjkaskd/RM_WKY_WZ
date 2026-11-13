@@ -119,7 +119,7 @@ public class DoubleGetRewardPanel : UIPageBase<ItemEntry, DoubleGetRewardPanel.E
         _useScene = useScene;
         itemTxt.text = ItemUtils.GetItemText(a);
         doubleItemTxt.text = ItemUtils.GetItemText(a * 2);
-        levelTxt.text = LanguageUtils.GetFormatText("Menu_LevelBtn", SaveDataUtils.GameData.playerSelectedLv);
+        levelTxt.text = LanguageUtils.GetFormatText("Menu_LevelBtn", FlowModule.CurrentLevel);
         levelTips.SetObjActive(useScene == E_UseScene.WinPanel);
 
         gameProgress.SetObjActive(World.Current.GetGameMode<GameMode_GamePlay>() != null);

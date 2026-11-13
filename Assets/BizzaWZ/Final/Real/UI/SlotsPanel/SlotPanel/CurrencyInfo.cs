@@ -14,102 +14,80 @@ public class CurrencyInfo : MonoBehaviour
     [SerializeField] private string numberFormat = "F2"; // 保留两位小数，可改成 F0 / F1 / F3
 
     private Tween valueTween;
-    private float currentDisplayValue = 0f;
+    private float currentDisplayValue;
+    private bool hasDisplayedValue;
 
     private void OnEnable()
     {
-        #if BIZZA_REAL_WITHDRAW
-        switch (e_ItemType)
-        {
-            case E_ItemType.Gold:
-                float _value = (float)AccountModule.Instance.Os_Current_Uso.GetBalance();
-                if (AccountModule.CountryType == AccountModule.E_CountryType.BR)
-                {
-                    string _currentDisplayValue = WithdrawalUtil.GetCustomizedIntByCountryType2(_value);
-                    valueText.text = $"{_currentDisplayValue}";
-                }
-                else
-                {
-                    valueText.text = $"{_value}";
-                }
-
-                break;
-
-            case E_ItemType.Dollar:
-                var value = ItemUtils.Get(E_ItemType.Dollar).Count;
-                currentDisplayValue = WithdrawalUtil.GetCustomizedFloatByCountryType(value);
-                valueText.text = $"{LanguageUtils.GetText("CurrencyToken")}{WithdrawalUtil.GetCustomizedValueByCountryType(currentDisplayValue)}";
-                break;
-        }
-        #endif
-        //LogUtil.Error("currentDisplayValue: " + currentDisplayValue );
-        //BizzaEventSystem.Set(EventDefine.Item.ItemChanged, Refresh, true);
+        BizzaEventSystem.On(EventDefine.Login.InitContentByCountry, RefreshImmediately);
+        RefreshImmediately();
     }
 
     private void OnDisable()
     {
+        BizzaEventSystem.Off(EventDefine.Login.InitContentByCountry, RefreshImmediately);
         valueTween?.Kill();
-        //BizzaEventSystem.Set(EventDefine.Item.ItemChanged, Refresh, false);
+    }
+
+    private void RefreshImmediately()
+    {
+        valueTween?.Kill();
+        if (TryReadValue(out float value)) DisplayValue(value);
     }
 
     public void Refresh()
     {
+        valueTween?.Kill();
+        if (!TryReadValue(out float value)) return;
+        if (!hasDisplayedValue)
+        {
+            DisplayValue(value);
+            return;
+        }
+
+        valueTween = DOVirtual.Float(currentDisplayValue, value, duration, DisplayValue).SetEase(ease);
+    }
+
+    private bool TryReadValue(out float value)
+    {
+        value = 0f;
+        var account = AccountModule.Instance;
+        if (account?.AccountReady != true || account.Os_Current_Uso == null ||
+            AccountModule.CountryType == AccountModule.E_CountryType.None)
+        {
+            if (!hasDisplayedValue) valueText.text = "—";
+            return false;
+        }
+
         switch (e_ItemType)
         {
             case E_ItemType.Gold:
-                RefreshGold();
-                break;
-
+                value = (float)account.Os_Current_Uso.GetBalance();
+                return true;
             case E_ItemType.Dollar:
-                RefreshMoney();
-                break;
+                value = ItemUtils.Get(E_ItemType.Dollar).Count;
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private void DisplayValue(float value)
+    {
+        if (e_ItemType == E_ItemType.Gold)
+        {
+            currentDisplayValue = value;
+            valueText.text = AccountModule.CountryType == AccountModule.E_CountryType.BR
+                ? WithdrawalUtil.GetCustomizedIntByCountryType2(value)
+                : value.ToString();
+        }
+        else
+        {
+            currentDisplayValue = WithdrawalUtil.GetCustomizedFloatByCountryType(value);
+            valueText.text = $"{LanguageUtils.GetText("CurrencyToken")}{WithdrawalUtil.GetCustomizedValueByCountryType(currentDisplayValue)}";
         }
 
-        // BizzaEventSystem.Emit(EventDefine.Item.ItemChanged);
-    }
-
-    private void RefreshGold()
-    {
-        #if BIZZA_REAL_WITHDRAW
-        float targetValue = (float)AccountModule.Instance.Os_Current_Uso.GetBalance();
-
-
-        valueTween?.Kill();
-
-        //LogUtil.Error("targetValue: " + targetValue + " currentDisplayValue: " + currentDisplayValue);
-        valueTween = DOVirtual.Float(currentDisplayValue, targetValue, duration, value =>
-        {
-            currentDisplayValue = value;
-            if (AccountModule.CountryType == AccountModule.E_CountryType.BR)
-            {
-                string _currentDisplayValue = WithdrawalUtil.GetCustomizedIntByCountryType2(value);
-                valueText.text = $"{_currentDisplayValue}";
-            }
-            else
-            {
-                valueText.text = $"{value}";
-            }
-            // valueText.text = value.ToString(numberFormat);
-        })
-        .SetEase(ease);
-        #endif
-    }
-
-    private void RefreshMoney()
-    {
-        var value = ItemUtils.Get(E_ItemType.Dollar).Count;
-        float targetValue = WithdrawalUtil.GetCustomizedFloatByCountryType(value);
-        string valueNum = valueText.text;
-        valueTween?.Kill();
-
-        //LogUtil.Error("targetValue: " + targetValue + " currentDisplayValue: " + currentDisplayValue);
-        valueTween = DOVirtual.Float(currentDisplayValue, targetValue, duration, value =>
-        {
-            value = WithdrawalUtil.GetCustomizedFloatByCountryType(value);
-            currentDisplayValue = value;
-            valueText.text = $"{LanguageUtils.GetText("CurrencyToken")}{WithdrawalUtil.GetCustomizedValueByCountryType(currentDisplayValue)}";
-        })
-        .SetEase(ease);
+        hasDisplayedValue = true;
     }
 }
 #endif

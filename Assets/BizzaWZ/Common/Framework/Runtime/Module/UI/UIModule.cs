@@ -906,7 +906,7 @@ public class UIModule : BaseGameModule<UIModule>
         }
     }
 
-    public void CloseLayerAllPage(int layer)
+    public void CloseLayerAllPage(int layer, Func<UIPageBase, bool> canClose = null)
     {
         for (int i = _pagesOpened.Count - 1; i > -1; i--)
         {
@@ -918,7 +918,7 @@ public class UIModule : BaseGameModule<UIModule>
             }
 
             var config = GetPageRuntimeConfig(page);
-            if ((int)config.Layer == layer)
+            if ((int)config.Layer == layer && (canClose == null || canClose(page)))
             {
                 ClosePage(page);
                 i = Mathf.Min(i, _pagesOpened.Count);

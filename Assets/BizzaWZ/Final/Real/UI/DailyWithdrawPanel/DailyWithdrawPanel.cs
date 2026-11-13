@@ -114,6 +114,7 @@ public class DailyWithdrawPanel : UIPageBase, IAutoPopupContent
 
     public void OnClickWithdrawBtn()
     {
+        if (!UIUtils.CheckWKYAccountReady()) return;
         bool isSelectPlatform = false;
         AccountModule.OceanShineWithdrawalPageResponse.WithdrawalPlatform plat = null;
         foreach (var _plat in plats)

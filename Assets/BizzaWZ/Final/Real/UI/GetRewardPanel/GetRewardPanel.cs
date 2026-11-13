@@ -45,6 +45,7 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
     public GameObject MaxDollarTip;
 
     private DoubleGetRewardPanel.E_UseScene _useScene;
+    public bool IsWinReward => _useScene == DoubleGetRewardPanel.E_UseScene.WinPanel;
 
     private bool isLookAd = false;
     private bool isNoCD;
@@ -362,11 +363,17 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
         }
 
 #if BIZZA_REAL_WITHDRAW
-        float value = AccountModule.Instance.GetMaxDrawithRatio(true);
-        bonusRate.gameObject.SetActive(value > 0);
-        bonusRate.Init($"{value}%", false, true);
+        RefreshBonusRate();
 #else
 #endif
+    }
+
+    private void RefreshBonusRate()
+    {
+        var account = AccountModule.Instance;
+        float value = account?.AccountReady == true ? account.GetMaxDrawithRatio(true) : 0f;
+        bonusRate.gameObject.SetActive(value > 0f);
+        if (value > 0f) bonusRate.Init($"{value}%", false, true);
     }
 
     ///

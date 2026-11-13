@@ -43,11 +43,13 @@ public class CurrencyBar : MonoBehaviour
 
         dollarBtn.onClick.AddListener(() =>
         {
+            if (!UIUtils.CheckWKYAccountReady()) return;
             UIModule.Instance.OpenPage(UIPageIds.FakeWithdrawPanel);
         });
 
         coinBtn.onClick.AddListener(() =>
         {
+            if (!UIUtils.CheckWKYAccountReady()) return;
             UIModule.Instance.OpenPage(UIPageIds.RealWithdrawPanel);
         });
 
@@ -66,6 +68,7 @@ public class CurrencyBar : MonoBehaviour
         BizzaEventSystem.Set(EventDefine.Item.ItemChanged, OnItemChanged, true);
         BizzaEventSystem.Set(EventDefine.Item.ItemChangedWithData, OnItemChangedWithData, true);
         BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, OnLanguageChange, true);
+        BizzaEventSystem.Set(EventDefine.Login.InitContentByCountry, OnItemChanged, true);
         BizzaEventSystem.Set(EventDefine.Frame.ShowCurrencyBar, OnCurrencyShowHide, true);
 
         VFXUtils.itemFlyTarget[E_ItemType.Dollar] = dollarImg.transform;
@@ -77,6 +80,7 @@ public class CurrencyBar : MonoBehaviour
         BizzaEventSystem.Set(EventDefine.Item.ItemChanged, OnItemChanged, false);
         BizzaEventSystem.Set(EventDefine.Item.ItemChangedWithData, OnItemChangedWithData, false);
         BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, OnLanguageChange, false);
+        BizzaEventSystem.Set(EventDefine.Login.InitContentByCountry, OnItemChanged, false);
         BizzaEventSystem.Set(EventDefine.Frame.ShowCurrencyBar, OnCurrencyShowHide, false);
         if (VFXUtils.itemFlyTarget.TryGetValue(E_ItemType.Dollar, out Transform dollar) && dollar == dollarImg.transform)
             VFXUtils.itemFlyTarget.Remove(E_ItemType.Dollar);
@@ -87,7 +91,7 @@ public class CurrencyBar : MonoBehaviour
     private void OnItemChanged()
     {
         RefreshLevelText();
-        if (AccountModule.Instance != null && AccountModule.Instance.Os_Current_Uso != null)
+        if (AccountModule.Instance?.AccountReady == true && AccountModule.Instance.Os_Current_Uso != null)
         {
             string balance = WithdrawalUtil.GetCustomizedValueByCountryType((float)AccountModule.Instance.Os_Current_Uso.GetBalance());
             coinTxt.text = showBalanceCurrencySymbol
@@ -99,12 +103,18 @@ public class CurrencyBar : MonoBehaviour
                 ? $"{LanguageUtils.GetText("CurrencyToken")}{ewl}"
                 : LanguageUtils.GetText(withdrawCaptionKey);
         }
-
+        else
+        {
+            coinTxt.text = dollarTxt.text = "—";
+            clashTxt.text = string.IsNullOrEmpty(withdrawCaptionKey)
+                ? "—"
+                : LanguageUtils.GetText(withdrawCaptionKey);
+        }
     }
 
     private void RefreshLevelText()
     {
-        int level = SaveDataUtils.GameData.playerSelectedLv;
+        int level = FlowModule.CurrentLevel;
         curLevelTxt.text = string.IsNullOrEmpty(levelFormatKey)
             ? level.ToString()
             : LanguageUtils.GetFormatText(levelFormatKey, level);
