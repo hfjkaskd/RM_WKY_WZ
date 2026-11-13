@@ -36,7 +36,7 @@ public class TransitionBlock : BaseSingleton<TransitionBlock>
         SaveDataUtils.GameData.gameBoardData = "";
         // SaveDataUtils.gameStrategy.SaveData();
 
-        StatisticModule.Instance.OnLevelFinish(SaveDataUtils.GameData.playerSelectedLv, progress, reason);
+        StatisticModule.Instance.OnLevelFinish(FlowModule.CurrentLevel, progress, reason);
 
         TransitionBlock.Instance.ShowTransition(() =>
         {

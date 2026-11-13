@@ -34,10 +34,17 @@ public class ItemForCountry : MonoBehaviour
     private void Awake()
     {
         BizzaEventSystem.On(EventDefine.Game.RefreshDanItem, OnRefresh);
+        BizzaEventSystem.On(EventDefine.Login.InitContentByCountry, OnRefresh);
         DailyMissonBtn.onClick.AddListener(() => { OnClickItem(); });
         DanBtn.onClick.AddListener(() => { OnClickItem(); });
     }
 
+
+    private void OnDestroy()
+    {
+        BizzaEventSystem.Off(EventDefine.Game.RefreshDanItem, OnRefresh);
+        BizzaEventSystem.Off(EventDefine.Login.InitContentByCountry, OnRefresh);
+    }
 
     public void OnRefresh()
     {
@@ -47,6 +54,7 @@ public class ItemForCountry : MonoBehaviour
         if (!this) return;
         LogLogger.LogVerbose(BaseConst.LOG_Asset, "胸章Itemn 出现 " + AccountModule.CountryType);
         AccountModule.E_CountryType type = AccountModule.CountryType;
+        if (type == E_CountryType.None) return;
 
         foreach (var condition in pageOpenPangels)
         {
@@ -93,6 +101,7 @@ public class ItemForCountry : MonoBehaviour
 #if !BIZZA_REAL_WITHDRAW
         return;
 #endif
+        if (!UIUtils.CheckWKYAccountReady()) return;
         LogLogger.LogVerbose(BaseConst.LOG_Asset, "OnClickItem 正式模式");
         AccountModule.E_CountryType type = AccountModule.CountryType;
         foreach (var condition in pageOpenPangels)

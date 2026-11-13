@@ -26,6 +26,11 @@ namespace Whitebox.Foundation
         void OnSynthesisResolved(int remainingTargets, Vector3 worldPosition, Camera worldCamera);
     }
 
+    public interface IRoyalMatchEffectiveActionBridge
+    {
+        void OnEffectiveMatch();
+    }
+
     public interface IRoyalMatchTutorialBridge
     {
         void OnOpeningTutorialCompleted();
@@ -70,6 +75,7 @@ namespace Whitebox.Foundation
         public static IRoyalMatchBoardPointerBlocker BoardPointerBlocker { get; set; }
         public static bool IsLevelQuitDialogOpen =>
             ActiveController?.CoreFlow?.LevelQuitDialog?.Lifecycle?.IsShowing == true;
+        public static bool CanShowAutomaticPopup => ActiveController?.CoreFlow?.CanShowAutomaticPopup == true;
         internal static FoundationController ActiveController { get; set; }
 
         public static int BoosterCoinBalance => ActiveController != null

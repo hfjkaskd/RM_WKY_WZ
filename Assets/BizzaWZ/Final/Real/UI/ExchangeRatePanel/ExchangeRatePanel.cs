@@ -51,6 +51,7 @@ public class ExchangeRatePanel : UIPageBase<ExchangeRateInfo>
 
     public void OnClickBtn()
     {
+        if (!UIUtils.CheckWKYAccountReady()) return;
         CloseSelf();
         UIModule.Instance.OpenPage(UIPageIds.RealWithdrawPanel).Forget();
     }

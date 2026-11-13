@@ -46,9 +46,10 @@ public final class HttpUtil {
 
     private static final OkHttpClient HTTP_CLIENT =
             new OkHttpClient.Builder()
-                    .connectTimeout(30, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
-                    .writeTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(0, TimeUnit.SECONDS)
+                    .readTimeout(0, TimeUnit.SECONDS)
+                    .writeTimeout(0, TimeUnit.SECONDS)
+                    .retryOnConnectionFailure(false)
                     .build();
 
     /* ================= 延迟发送调度器 ================= */
@@ -150,7 +151,8 @@ public final class HttpUtil {
             final String url,
             final byte[] bodyRaw,
             final int id,
-            final long triggerTime
+            final long triggerTime,
+            final int timeoutSeconds
     ) {
 
         long sendTime = System.currentTimeMillis();
@@ -163,56 +165,51 @@ public final class HttpUtil {
                         " | thread=" + thread()
         , ENABLED);
 
-        HTTP_CLIENT
-                .newCall(buildPostRequest(url, bodyRaw))
-                .enqueue(new Callback() {
+        Call request = HTTP_CLIENT.newCall(buildPostRequest(url, bodyRaw));
+        request.timeout().timeout(timeoutSeconds, TimeUnit.SECONDS);
+        request.enqueue(new Callback() {
 
-                    @Override
-                    public void onFailure(Call call, IOException e) {
+            @Override
+            public void onFailure(Call call, IOException e) {
 
-                        long failTime = System.currentTimeMillis();
+                long failTime = System.currentTimeMillis();
 
-                        BangsawanLog.e(TAG,
-                                "[失败] id=" + id +
-                                        " | networkCost=" + (failTime - sendTime) + "ms" +
-                                        " | totalCost=" + (failTime - triggerTime) + "ms" +
-                                        " | error=" + e.getMessage(),
-                                e
-                        , ENABLED);
+                BangsawanLog.e(TAG,
+                        "[失败] id=" + id +
+                                " | networkCost=" + (failTime - sendTime) + "ms" +
+                                " | totalCost=" + (failTime - triggerTime) + "ms" +
+                                " | error=" + e.getMessage(),
+                        e
+                , ENABLED);
 
-                        sendError(id, 0, e.getMessage());
+                sendError(id, 0, e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                try (Response received = response) {
+                    long responseTime = System.currentTimeMillis();
+                    int httpCode = received.code();
+
+                    BangsawanLog.d(TAG,
+                            "[回复] id=" + id +
+                                    " | httpCode=" + httpCode +
+                                    " | networkCost=" + (responseTime - sendTime) + "ms" +
+                                    " | totalCost=" + (responseTime - triggerTime) + "ms"
+                    , ENABLED);
+
+                    if (!received.isSuccessful()) {
+                        sendError(id, httpCode, received.message());
+                        return;
                     }
 
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-
-                        long responseTime = System.currentTimeMillis();
-                        int httpCode = response.code();
-
-                        BangsawanLog.d(TAG,
-                                "[回复] id=" + id +
-                                        " | httpCode=" + httpCode +
-                                        " | networkCost=" + (responseTime - sendTime) + "ms" +
-                                        " | totalCost=" + (responseTime - triggerTime) + "ms"
-                        , ENABLED);
-
-                        if (!response.isSuccessful()) {
-
-                            sendError(
-                                    id,
-                                    httpCode,
-                                    response.message() != null ? response.message() : ""
-                            );
-                            return;
-                        }
-
-                        String body = response.body() != null
-                                ? response.body().string()
-                                : "";
-
-                        sendSuccess(id, httpCode, body);
-                    }
-                });
+                    String body = received.body() != null ? received.body().string() : "";
+                    sendSuccess(id, httpCode, body);
+                } catch (IOException error) {
+                    sendError(id, 0, error.getMessage());
+                }
+            }
+        });
     }
 
     /* ================= 对外接口 ================= */
@@ -221,7 +218,8 @@ public final class HttpUtil {
             final String url,
             final byte[] bodyRaw,
             final int id,
-            final float delay
+            final float delay,
+            final int timeoutSeconds
     ) {
 
         long triggerTime = System.currentTimeMillis();
@@ -244,7 +242,7 @@ public final class HttpUtil {
                             " | thread=" + Thread.currentThread().getName()
             , ENABLED);
 
-            doSendHTTP(url, bodyRaw, id, triggerTime);
+            doSendHTTP(url, bodyRaw, id, triggerTime, timeoutSeconds);
 
         } else {
 
@@ -262,7 +260,7 @@ public final class HttpUtil {
                                         " | thread=" + Thread.currentThread().getName()
                         , ENABLED);
 
-                        doSendHTTP(url, bodyRaw, id, triggerTime);
+                        doSendHTTP(url, bodyRaw, id, triggerTime, timeoutSeconds);
 
                     },
                     delayMs,

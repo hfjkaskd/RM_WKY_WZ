@@ -25,16 +25,16 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
     private bool loading = true;
     private bool attemptEnded;
     private bool reloadRequested;
-    private bool correctionPending;
     private bool initialLoad = true;
     private bool openingTutorialCompleted;
     private WinSettlement winSettlement;
+    private UniTaskCompletionSource handoffCompletion;
 
     public bool BlocksGameplayInput
     {
         get
         {
-            if (loading || attemptEnded || correctionPending || HasBlockingPresentation())
+            if (loading || attemptEnded || HasBlockingPresentation())
             {
                 lastBlockedFrame = Time.frameCount;
                 return true;
@@ -117,33 +117,8 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
             settlement.Report.TrySetResult(true);
         }
 
-        if (loading || attemptEnded || correctionPending || serverUser == null || serverUser.Os_Rts == currentLevel)
-            return;
-
-        correctionPending = true;
-        ReloadAfterAccountCorrection(attemptVersion).Forget();
-    }
-
-    private async UniTask ReloadAfterAccountCorrection(int expectedAttempt)
-    {
-        var token = Application.exitCancellationToken;
-        try
-        {
-            // Allow AccountModule to finish persisting the received account before changing scenes.
-            await UniTask.NextFrame(token);
-            await UniTask.WaitUntil(() => expectedAttempt != attemptVersion || attemptEnded || !HasBlockingPresentation(),
-                cancellationToken: token);
-            var serverUser = AccountModule.Instance?.Os_Current_Uso;
-            if (expectedAttempt == attemptVersion && !attemptEnded && serverUser != null && serverUser.Os_Rts != currentLevel)
-                await ReloadAttempt();
-        }
-        catch (OperationCanceledException) when (token.IsCancellationRequested)
-        {
-        }
-        finally
-        {
-            correctionPending = false;
-        }
+        // AccountModule updates the saved next-entry progress. Never replace a
+        // board that is loading or in play when a recovered account arrives.
     }
 
     public bool TryGetCurrentLevel(out int level)
@@ -154,7 +129,10 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
 
     internal void PrepareInitialAttempt()
     {
-        ApplyServerLevel(AccountModule.Instance?.Os_Current_Uso);
+        var account = AccountModule.Instance;
+        if (account?.AccountReady == true)
+            FlowModule.ApplyServerProgress(account.Os_Current_Uso.Os_Rts);
+        PrepareNextAttempt();
     }
 
     public void OnAttemptReady(int level)
@@ -164,6 +142,27 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
     }
 
     internal async UniTask CompleteSceneHandoff(CancellationToken token)
+    {
+        if (handoffCompletion != null)
+        {
+            await handoffCompletion.Task;
+            return;
+        }
+        var completion = handoffCompletion = new UniTaskCompletionSource();
+        int expectedAttempt = attemptVersion;
+        try
+        {
+            await CompleteSceneHandoffOnce(token, expectedAttempt);
+            completion.TrySetResult();
+        }
+        catch (Exception error)
+        {
+            completion.TrySetException(error);
+            throw;
+        }
+    }
+
+    private async UniTask CompleteSceneHandoffOnce(CancellationToken token, int expectedAttempt)
     {
         using var wait = CancellationTokenSource.CreateLinkedTokenSource(token);
         using var timer = wait.CancelAfterSlim(WaitTimeout, DelayType.Realtime);
@@ -175,17 +174,21 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
 
         ReportProgress(initialLoad ? BootProgressWeight : 0.4f);
         var gamePage = await ui.OpenPage(UIPageIds.RealGamePanel);
+        EnsureCurrentAttempt(expectedAttempt);
         if (gamePage == null)
             throw new InvalidOperationException("The framework gameplay page failed to open.");
 
         ReportProgress(initialLoad ? 0.9f : 0.7f);
         await UniTask.WaitUntil(() => readyLevel == currentLevel, cancellationToken: wait.Token);
+        EnsureCurrentAttempt(expectedAttempt);
         ReportProgress(1f);
         // Render the final completed state before closing the same page.
         await UniTask.NextFrame(wait.Token);
+        EnsureCurrentAttempt(expectedAttempt);
         ui.ClosePage(loadingPage);
         await UniTask.WaitUntil(() => loadingPage == null || !loadingPage.gameObject.activeInHierarchy,
             cancellationToken: wait.Token);
+        EnsureCurrentAttempt(expectedAttempt);
 
         FlowModule.CanShowGuide();
         if (initialLoad)
@@ -201,6 +204,12 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
         lastBlockedFrame = Time.frameCount;
         loading = false;
         ReportTutorialCompletion();
+    }
+
+    private void EnsureCurrentAttempt(int expectedAttempt)
+    {
+        if (!ReferenceEquals(Instance, this) || expectedAttempt != attemptVersion)
+            throw new OperationCanceledException("The gameplay handoff belongs to a previous attempt.");
     }
 
     public void OnOpeningTutorialCompleted()
@@ -270,6 +279,13 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
             return false;
 
         settlement.ReportStarted = true;
+        if (!settlement.Account.AccountReady ||
+            Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            settlement.ReplyReceived = true;
+            settlement.Report.TrySetResult(false);
+            return false;
+        }
         onReport = response =>
         {
             if (!ReferenceEquals(Instance, this) || !ReferenceEquals(winSettlement, settlement) ||
@@ -307,23 +323,33 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
             {
                 using var wait = CancellationTokenSource.CreateLinkedTokenSource(Application.exitCancellationToken);
                 using var timer = wait.CancelAfterSlim(WaitTimeout, DelayType.Realtime);
-                if (!await settlement.Report.Task.AttachExternalCancellation(wait.Token))
-                    throw new InvalidOperationException("The server did not confirm level settlement.");
+                // Offline progress is local only; the reward page still owns the
+                // sole server report, and only a real response can update money.
+                if (!settlement.ReportStarted) settlement.Report.TrySetResult(false);
+                bool confirmed = false;
+                try
+                {
+                    confirmed = await settlement.Report.Task.AttachExternalCancellation(wait.Token);
+                }
+                catch (OperationCanceledException) when (!Application.exitCancellationToken.IsCancellationRequested)
+                {
+                }
+                if (AccountModule.Instance?.IsSuspended == true)
+                    return;
+                if (!confirmed) UIUtils.ShowNetworkErrorTip();
 
                 // The account update event runs before the SDK finishes persisting the receipt.
-                await UniTask.NextFrame(wait.Token);
+                await UniTask.NextFrame(Application.exitCancellationToken);
                 if (!ReferenceEquals(Instance, this) || !ReferenceEquals(winSettlement, settlement) ||
                     !ReferenceEquals(AccountModule.Instance, settlement.Account))
                     throw new InvalidOperationException("The account changed during level settlement.");
 
-                ApplyServerLevel(settlement.Receipt);
+                // The receipt was already applied by AccountModule. Reapplying
+                // an older receipt here would erase a newer server revision.
                 winSettlement = null;
             }
-            else
-            {
-                ApplyServerLevel(AccountModule.Instance?.Os_Current_Uso);
-            }
 
+            PrepareNextAttempt();
             ReportProgress(0.2f);
             TransitionBlock.ToGamePlay();
         }
@@ -352,17 +378,15 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
         BizzaEventSystem.Emit(EventDefine.Frame.LoadingProgress, progress);
     }
 
-    private void ApplyServerLevel(AccountModule.UserInfo userInfo)
+    private void PrepareNextAttempt()
     {
-        if (userInfo == null)
-            throw new InvalidOperationException("The framework did not return an authoritative level.");
-        int level = userInfo.Os_Rts;
+        int level = FlowModule.BeginLevelLoading();
         if (level < 1 || level > CoreLevelCatalog.SupportedLevelCount)
-            throw new InvalidOperationException($"Server level {level} is outside the recovered gameplay catalog.");
+            throw new InvalidOperationException($"Level {level} is outside the recovered gameplay catalog.");
 
         currentLevel = level;
         attemptVersion++;
-        SaveDataUtils.GameData.playerSelectedLv = level;
+        handoffCompletion = null;
     }
 
     private sealed class WinSettlement

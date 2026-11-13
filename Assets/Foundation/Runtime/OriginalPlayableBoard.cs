@@ -524,6 +524,9 @@ namespace Whitebox.Foundation
         internal void BindSynthesisObserver(Func<bool> canRecord, Action<Vector3> record) =>
             explosion.BindSynthesisObserver(canRecord, record);
 
+        internal void BindEffectiveActionObserver(Func<bool> canRecord, Action record) =>
+            explosion.BindEffectiveActionObserver(canRecord, record);
+
         public bool ExplodeMatchGroup(OriginalMatchGroupSnapshot group, OriginalExplodeData data, bool automatic) => explosion.ExplodeMatchGroup(group, data, automatic);
         public void ReportPatternChanged(int previous, int current) => Debug.LogWarning("Match pattern changed during swap.");
         public void ReportMatchExplosionFailed() => Debug.LogWarning("Swap group was not ready to explode.");

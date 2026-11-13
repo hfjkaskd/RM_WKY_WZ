@@ -1,0 +1,432 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Bizza.Sdk;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Networking;
+
+public class AccountModule
+{
+    public static AccountModule Instance;
+    public const string m_userIdKey = "userId";
+    public static double m_Temp_ACM, m_Temp_AIU;
+    public AccountModule() { Instance = this; }
+    private UserInfo Os_Uso;
+    public UserInfo Os_Current_Uso { get => Os_Uso; set => Os_Uso = value; }
+    public class UserInfo { public string Os_Cty; }
+    public class OceanShineAdRevenueResponse { }
+    public class OceanShineLoginResponse
+    {
+        public string Os_Usid;
+        public Rule Os_Aru;
+        public class Rule { public double Os_Acm, Os_Aiu; }
+    }
+    public class OceanShineUserInfoResponse { public UserInfo Os_Uso; }
+    public class OceanShineUserInfoRequest { public string Os_Apid, Os_Usid; }
+    public class OceanShineUserReachReportRequest { public string Os_Apid, Os_Usid; }
+    public class OceanShineUserReachReportResponse { public UserInfo Os_Uso; }
+    private OceanShineUserInfoResponse userInfoResponse;
+    public Action<FailHttpResponse<OceanShineLoginResponse>> PendingLogin;
+    public Action<FailHttpResponse<OceanShineUserInfoResponse>> PendingInfo;
+    public int LoginCalls, InfoCalls, ExtraCalls, CountryUpdates;
+    public Task Start() => OnLoginData();
+    public Task AttemptAgain() => TryLoginGame();
+    private void login(string googleId) { LoginCalls++; PendingLogin = Response_LoginResponse; }
+    private void RequestAccountExtras() { ExtraCalls++; }
+    private void Request_WithdrawalPageRequest(object callback, bool block) { }
+    private void SetCountryTypeByServer(string country) { CountryUpdates++; }
+    // ACCOUNT_FIELDS
+    // ACCOUNT_METHODS
+}
+
+public struct FailHttpResponse<T> { public bool success; public T data; public string errorCode, message; }
+public static class JsonConvert { public static string SerializeObject(object value) => "{}"; }
+public static class AccountModuleCfg { public const string user_info = "user_info", new_user = "new_user"; }
+public static class HttpUtil
+{
+    public static Action<FailHttpResponse<AccountModule.OceanShineUserReachReportResponse>> PendingGift;
+    public static void RequestToServer<T>(string path, string body, Action<FailHttpResponse<T>> callback, bool block)
+    {
+        if (path == AccountModuleCfg.user_info)
+        {
+            AccountModule.Instance.InfoCalls++;
+            AccountModule.Instance.PendingInfo = (Action<FailHttpResponse<AccountModule.OceanShineUserInfoResponse>>)(object)callback;
+        }
+        else if (path == AccountModuleCfg.new_user)
+            PendingGift = (Action<FailHttpResponse<AccountModule.OceanShineUserReachReportResponse>>)(object)callback;
+        else throw new Exception("Unexpected transport in isolated test: " + path);
+    }
+    private class Outer { public string code, Message = "fixture"; }
+    public static void FailGeneric<T>(string code, Action<FailHttpResponse<T>> callback)
+    {
+        var outer = new Outer { code = code };
+        void Reply(bool success, T data, string message, string errorCode) =>
+            callback(new FailHttpResponse<T> { success = success, data = data, message = message, errorCode = errorCode });
+        // HTTP_GENERIC_ERROR
+    }
+    public static void FailRaw(string code, Action<bool, string> callback)
+    {
+        var outer = new Outer { code = code };
+        void Reply(bool success, string data) => callback(success, data);
+        // HTTP_RAW_ERROR
+    }
+}
+namespace Cysharp.Threading.Tasks
+{
+    public static class UniTask
+    {
+        private sealed class Pending
+        {
+            public Func<bool> Condition;
+            public TaskCompletionSource<bool> Completion = new TaskCompletionSource<bool>();
+        }
+        static List<Pending> waits = new List<Pending>();
+        public static int Waiting => waits.Count;
+        public static Task Delay(int delay, bool ignoreTimeScale, CancellationToken cancellationToken)
+        { return WaitUntil(() => true, cancellationToken, defer: true); }
+        public static Task WaitUntil(Func<bool> condition, CancellationToken cancellationToken, bool defer = false)
+        {
+            if (!defer && condition()) return Task.CompletedTask;
+            var next = new Pending { Condition = condition }; waits.Add(next); return next.Completion.Task;
+        }
+        public static void Advance()
+        {
+            var previous = waits; waits = new List<Pending>();
+            foreach (var item in previous)
+                if (item.Condition()) item.Completion.SetResult(true); else waits.Add(item);
+        }
+        public static void Reset() { waits.Clear(); }
+    }
+    public static class TaskExtensions
+    {
+        public static void Forget(this Task task)
+        {
+            if (task.IsFaulted) throw task.Exception;
+        }
+    }
+}
+namespace UnityEngine
+{
+    public enum NetworkReachability { NotReachable, ReachableViaLocalAreaNetwork }
+    public static class Application
+    {
+        public static NetworkReachability internetReachability;
+        public static CancellationToken exitCancellationToken => CancellationToken.None;
+        public const string identifier = "fixture", version = "fixture";
+        public static int QuitCalls;
+        public static void Quit() { QuitCalls++; }
+    }
+    public static class PlayerPrefs
+    {
+        static Dictionary<string, string> values = new Dictionary<string, string>();
+        public static string GetString(string key, string fallback = "") => values.TryGetValue(key, out var value) ? value : fallback;
+        public static void SetString(string key, string value) { values[key] = value; }
+        public static int GetInt(string key, int fallback) => int.TryParse(GetString(key), out int value) ? value : fallback;
+        public static void SetInt(string key, int value) { SetString(key, value.ToString()); }
+        public static bool HasKey(string key) => values.ContainsKey(key);
+    public static void DeleteKey(string key) { values.Remove(key); }
+        public static void Save() { }
+        public static void Reset() { values.Clear(); }
+    }
+    public static class Debug { public static void LogWarning(string text) { } public static void Log(string text) { } public static void LogException(Exception error) { throw error; } }
+    public static class Time { public static int frameCount; }
+}
+namespace Bizza.Sdk { }
+public static class JavaBridgeUtils { public static void CallStaticMethodCacheClass(params object[] args) { } }
+public static class DeviceInfoUtil
+{
+    public struct Info { public int Os_Vc; public string Os_Apid; }
+    public static Info GetDeviceInfoDataForCloud() => new Info();
+    public static Task<string> GetGoogleIdAsync(CancellationToken cancellationToken) => Task.FromResult("fixture-gaid");
+    public static void UpdateVpnStatus(bool value) { LastVpn = value; }
+    public static bool LastVpn;
+}
+public static class SDKAssetHandler
+{
+    public static int Dialogs;
+    public static CommonConfirmTipsPanel.Args LastDialog;
+    public static Task OpenCommonConfirmTipsPanel(CommonConfirmTipsPanel.Args args)
+    { if (!args.persistAcrossScenes) throw new Exception("suspension dialog must survive scene change"); LastDialog = args; Dialogs++; return Task.CompletedTask; }
+}
+public class CommonConfirmTipsPanel { public struct Args { public bool isLanguage, persistAcrossScenes; public string des; public Action onFinish; } }
+public static class LogLogger
+{
+    public static void LOGUserInstall(string text) { }
+    public static void LOGHTTPInfo(string text) { }
+    public static void LogVerbose(object tag, string text) { }
+}
+public static class LogTag { public static object LOG_Account; }
+public static class BizzaEventSystem { public static void Emit(object evt) { } }
+public static class EventDefine { public static class Login { public static object InitContentByCountry; } }
+public static class AdjustAttributionAdapter { public static void AttributeStart(string source) { } }
+public static class UIUtils { public static int Tips; public static void ShowNetworkErrorTip() { Tips++; } }
+public static class WKY_Flow
+{
+    // COUNTRY_FIELDS
+    // COUNTRY_METHODS
+    public static void ResetCountryDecision() { countryAccess = CountryAccess.Unavailable; }
+    public static async Task<bool> ProbeCountryPolicy() =>
+        await VerifyCountryAccessAsync(CancellationToken.None) == CountryAccess.Allowed;
+}
+
+public static class DeviceNativeBridge
+{
+    public static bool IsVpnDetectionEnabled { get; private set; } = true;
+    public static bool NativeVpn;
+    public static readonly List<string> Trace = new List<string>();
+    // VPN_POLICY_METHOD
+    public static bool IsVpnConnected()
+    {
+        Trace.Add("VPN");
+        return IsVpnDetectionEnabled && NativeVpn;
+    }
+}
+
+namespace UnityEngine.Networking
+{
+    public sealed class UnityWebRequest : IDisposable
+    {
+        public enum Result { Success, ProtocolError, ConnectionError }
+        public static string VpnHeader;
+        public static bool ConfirmedPolicy = true;
+        public static long Status = 204;
+        public int timeout, redirectLimit;
+        public long responseCode => Status;
+        public Result result => Status == 204 ? Result.Success : Status == 0 ? Result.ConnectionError : Result.ProtocolError;
+        public static UnityWebRequest Get(string url) { DeviceNativeBridge.Trace.Add("Worker"); return new UnityWebRequest(); }
+        public string GetResponseHeader(string name) => name == "X-Game-Region-Policy"
+            ? (ConfirmedPolicy ? "rm-wky-wz-v1" : null) : (name == "X-Game-Vpn-Detection" ? VpnHeader : null);
+        public UnityWebRequest SendWebRequest() => this;
+        public Task ToUniTask(CancellationToken cancellationToken)
+        {
+            if (result != Result.Success) throw new UnityWebRequestException();
+            return Task.CompletedTask;
+        }
+        public void Dispose() { }
+    }
+    public sealed class UnityWebRequestException : Exception { }
+}
+public static class LanguageUtils { public static string GetText(string key) => key; }
+public static class SaveDataUtils
+{
+    public class Data { public int totalbeLookAdCount, playerSelectedLv; }
+    public static Data GameData = new Data();
+    public static void Save() { }
+}
+public static class OverseaPlatform { public static AggregationAdSdk AdSdk; }
+namespace Obfuz { public class ObfuzIgnoreAttribute : Attribute { } }
+public class AggregationAdSdk
+{
+    public bool Inited = true;
+    public int RewardCalls, InterCalls;
+    public ShowAdArgs LastArgs;
+    public bool IsSplashInvalid, IsSplashReady, IsSplashShowing, IsRewardInvalid, IsRewardReady, IsRewardShowing,
+        IsInterInvalid, IsInterReady, IsInterShowing, IsBannerInvalid, IsBannerReady, IsBannerShowing,
+        IsNativeValid, IsNativeReady, IsNativeShowing;
+    public void SetUserId(string id) { }
+    public void ShowSplashAd() { }
+    public bool CheckRewardAdReady(CheckAdReadyArgs args) => true;
+    public bool CheckInterAdReady(CheckAdReadyArgs args) => true;
+    public void ShowRewardAd(ShowAdArgs args) { RewardCalls++; LastArgs = args; }
+    public void ShowInterAd(ShowAdArgs args) { InterCalls++; LastArgs = args; }
+    public void ShowBanner() { } public void HideBanner() { }
+    public void ShowNative() { } public void HideNative() { }
+    public string GetAdSdkDebugInfo() => "fixture";
+}
+
+public static class Program
+{
+    static int checks;
+    static void Check(bool ok, string label)
+    { if (!ok) throw new Exception(label); checks++; Console.WriteLine("PASS " + label); }
+    static AccountModule Fresh(bool online, bool knownUser = false, bool suspended = false)
+    {
+        UniTask.Reset(); PlayerPrefs.Reset(); SDKAssetHandler.Dialogs = 0; Application.QuitCalls = 0; UIUtils.Tips = 0;
+        Application.internetReachability = online ? NetworkReachability.ReachableViaLocalAreaNetwork : NetworkReachability.NotReachable;
+        if (knownUser) PlayerPrefs.SetString(AccountModule.m_userIdKey, "known");
+        if (suspended) PlayerPrefs.SetInt("WKY_AccountSuspended", 1);
+        WKY_Flow.ResetCountryDecision();
+        DeviceNativeBridge.NativeVpn = false;
+        DeviceNativeBridge.Trace.Clear();
+        UnityWebRequest.Status = 204;
+        UnityWebRequest.VpnHeader = null;
+        UnityWebRequest.ConfirmedPolicy = true;
+        var account = new AccountModule(); account.Start().GetAwaiter().GetResult(); return account;
+    }
+    static void InfoOk(AccountModule account)
+    {
+        account.PendingInfo(new FailHttpResponse<AccountModule.OceanShineUserInfoResponse>
+        { success = true, data = new AccountModule.OceanShineUserInfoResponse { Os_Uso = new AccountModule.UserInfo { Os_Cty = "BR" } } });
+    }
+    public static void Main()
+    {
+        var a = Fresh(false);
+        Check(a.StartupResultAvailable && !a.AccountReady && a.LoginCalls == 0, "first offline start resolves without inventing account data");
+        UniTask.Advance(); UniTask.Advance();
+        Check(a.LoginCalls == 0 && UniTask.Waiting == 1, "offline retry waits for connectivity without flooding requests");
+        Application.internetReachability = NetworkReachability.ReachableViaLocalAreaNetwork; UniTask.Advance();
+        Check(a.LoginCalls == 1 && a.StartupResultAvailable, "reconnection sends one login and preserves the startup result");
+        a.AttemptAgain().GetAwaiter().GetResult();
+        Check(a.LoginCalls == 1, "in-flight attempt cannot start a second login");
+        a.PendingLogin(new FailHttpResponse<AccountModule.OceanShineLoginResponse> { success = true, data = new AccountModule.OceanShineLoginResponse() });
+        Check(!a.AccountReady && a.LoadingUserDataFailed, "success with missing login fields stays retryable");
+        UniTask.Advance();
+        a.PendingLogin(new FailHttpResponse<AccountModule.OceanShineLoginResponse>
+        { success = true, data = new AccountModule.OceanShineLoginResponse { Os_Usid = "valid", Os_Aru = new AccountModule.OceanShineLoginResponse.Rule { Os_Aiu = 1 } } });
+        Check(a.InfoCalls == 1 && !a.AccountReady, "valid login still waits for real user data");
+        a.PendingInfo(new FailHttpResponse<AccountModule.OceanShineUserInfoResponse> { success = true, data = new AccountModule.OceanShineUserInfoResponse() });
+        Check(!a.AccountReady && a.LoadingUserDataFailed, "missing nested user data cannot complete login");
+        UniTask.Advance();
+        int successEvents = 0; a.LoginSucceeded += () => successEvents++;
+        InfoOk(a);
+        Check(a.AccountReady && !a.LoadingUserDataFailed && a.LoadingUserDataErrorCode == null && successEvents == 1,
+            "recovered profile clears failure and publishes one success event");
+        int calls = a.InfoCalls; UniTask.Advance(); a.AttemptAgain().GetAwaiter().GetResult();
+        Check(a.InfoCalls == calls, "success stops background retries");
+
+        a = Fresh(false, true);
+        Check(a.StartupResultAvailable && a.LoginCalls == 0, "returning user can enter offline");
+        a = Fresh(false, true, true);
+        Check(!a.StartupResultAvailable && !a.IsSuspended && a.HasLocalSuspension && UIUtils.Tips == 1,
+            "local suspension requires an online decision and reports the connection problem");
+        Application.internetReachability = NetworkReachability.ReachableViaLocalAreaNetwork; UniTask.Advance();
+        a.PendingInfo(new FailHttpResponse<AccountModule.OceanShineUserInfoResponse> { success = false, errorCode = "NETWORK_TIMEOUT" });
+        Check(!a.StartupResultAvailable && UIUtils.Tips == 1, "timeout neither clears a saved suspension nor repeats its first-failure notice");
+        UniTask.Advance(); InfoOk(a);
+        Check(a.AccountReady && a.StartupResultAvailable && !a.HasLocalSuspension, "valid server profile clears saved suspension");
+        a = Fresh(true);
+        a.PendingLogin(new FailHttpResponse<AccountModule.OceanShineLoginResponse> { success = true, errorCode = "1001" });
+        Check(a.IsSuspended && a.HasLocalSuspension && SDKAssetHandler.Dialogs == 1, "server suspension persists and shows one dialog");
+        a.PendingLogin(new FailHttpResponse<AccountModule.OceanShineLoginResponse> { success = true, errorCode = "1001" });
+        UniTask.Advance(); a.AttemptAgain().GetAwaiter().GetResult();
+        Check(SDKAssetHandler.Dialogs == 1 && a.LoginCalls == 1, "suspension stops retries and duplicate dialogs");
+        Check(Application.QuitCalls == 0 && SDKAssetHandler.LastDialog.des == "HTTPNetworkProblem",
+            "source suspension dialog does not quit before it is dismissed");
+        SDKAssetHandler.LastDialog.onFinish();
+        Check(Application.QuitCalls == 1, "dismissing the source suspension dialog quits the application");
+
+        a = Fresh(true, true); InfoOk(a);
+        int ordinaryCallbacks = 0;
+        HttpUtil.FailGeneric<object>("1001", response =>
+        {
+            ordinaryCallbacks++;
+            Check(response.success && response.data == null && response.errorCode == "1001",
+                "ordinary typed business error keeps its existing callback contract");
+        });
+        Check(ordinaryCallbacks == 1 && a.AccountReady && !a.IsSuspended && !a.HasLocalSuspension && SDKAssetHandler.Dialogs == 0,
+            "ordinary typed requests cannot suspend or force an in-game exit");
+        HttpUtil.FailRaw("1001", (success, data) =>
+        {
+            ordinaryCallbacks++;
+            Check(!success && data == null, "ordinary raw business error keeps its existing callback contract");
+        });
+        Check(ordinaryCallbacks == 2 && a.AccountReady && !a.IsSuspended && !a.HasLocalSuspension && SDKAssetHandler.Dialogs == 0,
+            "ordinary raw requests cannot suspend or force an in-game exit");
+
+        bool profileCallbackSawSuspension = false;
+        a.Request_UserInfoRequest(true, false, response => profileCallbackSawSuspension = a.IsSuspended);
+        HttpUtil.FailGeneric("1001", a.PendingInfo);
+        Check(profileCallbackSawSuspension && a.IsSuspended && a.HasLocalSuspension && SDKAssetHandler.Dialogs == 1,
+            "in-game profile refresh detects suspension before its caller callback, matching source");
+
+        a = Fresh(true, true);
+        HttpUtil.FailGeneric("1001", a.PendingInfo);
+        Check(a.IsSuspended && !a.AccountReady && SDKAssetHandler.Dialogs == 1,
+            "startup profile request preserves the source suspension gate");
+
+        a = Fresh(true, true); InfoOk(a);
+        bool giftCallbackSawSuspension = false;
+        a.Request_UserReachReportRequest(response => giftCallbackSawSuspension = a.IsSuspended);
+        HttpUtil.FailGeneric("1001", HttpUtil.PendingGift);
+        Check(giftCallbackSawSuspension && a.IsSuspended && a.HasLocalSuspension && SDKAssetHandler.Dialogs == 1,
+            "newbie reward detects suspension before its caller callback");
+
+        a = Fresh(true, true); InfoOk(a);
+        a.Request_UserInfoRequest(true, false);
+        HttpUtil.FailGeneric("500", a.PendingInfo);
+        Check(!a.IsSuspended && SDKAssetHandler.Dialogs == 0 && a.AccountReady,
+            "other profile business errors never become a suspension");
+
+        a = Fresh(false); OverseaPlatform.AdSdk = null;
+        int failed = 0, finished = 0;
+        var ad = new ShowAdArgs { onFailed = () => failed++, onFinish = result => { Check(!result.success, "offline ad reports failure"); finished++; } };
+        BizzaSdk.Ad.ShowRewardAd(ad); BizzaSdk.Ad.ShowInterAd(ad);
+        Check(failed == 2 && finished == 2, "both ad entry points complete before SDK exists");
+        a = Fresh(true, true); InfoOk(a); OverseaPlatform.AdSdk = new AggregationAdSdk();
+        BizzaSdk.Ad.ShowRewardAd(new ShowAdArgs()); BizzaSdk.Ad.ShowInterAd();
+        Check(OverseaPlatform.AdSdk.RewardCalls == 1 && OverseaPlatform.AdSdk.InterCalls == 1, "ready account preserves real ad calls");
+        a.PendingInfo(new FailHttpResponse<AccountModule.OceanShineUserInfoResponse> { success = true, errorCode = "1001" });
+        BizzaSdk.Ad.ShowRewardAd(ad);
+        Check(OverseaPlatform.AdSdk.RewardCalls == 1 && finished == 3, "suspension after entry blocks ads too");
+
+        a = Fresh(false);
+        UnityWebRequest.Status = 0;
+        Application.internetReachability = NetworkReachability.ReachableViaLocalAreaNetwork;
+        UniTask.Advance();
+        Check(a.StartupResultAvailable && !a.AccountReady && a.LoginCalls == 0,
+            "unconfirmed region permits only basic gameplay without login traffic");
+        UnityWebRequest.Status = 204; UniTask.Advance();
+        Check(a.LoginCalls == 1, "confirmed region permits one resumed login");
+
+        a = Fresh(true, true); InfoOk(a); OverseaPlatform.AdSdk = new AggregationAdSdk();
+        int adFinishes = 0, adFailures = 0;
+        BizzaSdk.Ad.ShowRewardAd(new ShowAdArgs { onFailed = () => adFailures++, onFinish = result =>
+        {
+            Check(!result.success, "failed adapter cannot award a reward");
+            adFinishes++;
+        } });
+        OverseaPlatform.AdSdk.LastArgs.onFailed();
+        OverseaPlatform.AdSdk.LastArgs.onFinish(new ShowAdResult { success = true });
+        Check(adFinishes == 1 && adFailures == 1, "duplicate adapter callbacks complete the caller once");
+        Check(UIUtils.Tips == 1, "ready account with unavailable ad receives one network notice");
+
+        foreach (string setting in new[] { "false", "0", "true", null, "invalid" })
+        {
+            a = Fresh(false);
+            DeviceNativeBridge.NativeVpn = true;
+            UnityWebRequest.VpnHeader = setting;
+            Application.internetReachability = NetworkReachability.ReachableViaLocalAreaNetwork;
+            UniTask.Advance();
+            bool allowed = setting == "false" || setting == "0";
+            Check(DeviceNativeBridge.Trace.Count == 2 && DeviceNativeBridge.Trace[0] == "Worker" &&
+                DeviceNativeBridge.Trace[1] == "VPN", "Worker decision precedes native VPN: " + (setting ?? "missing"));
+            Check((a.LoginCalls == 1) == allowed && (SDKAssetHandler.Dialogs == 0) == allowed &&
+                DeviceInfoUtil.LastVpn != allowed && DeviceNativeBridge.IsVpnDetectionEnabled != allowed,
+                "VPN decision uses confirmed switch: " + (setting ?? "missing"));
+            if (!allowed)
+            {
+                UniTask.Advance();
+                Check(SDKAssetHandler.Dialogs == 1 && SDKAssetHandler.LastDialog.des == "TokenClient_VPN" &&
+                    !WKY_Flow.IsCountryAccessAllowed && UniTask.Waiting == 0,
+                    "VPN denial stops account retries");
+            }
+        }
+
+        a = Fresh(false);
+        UnityWebRequest.Status = 403;
+        Application.internetReachability = NetworkReachability.ReachableViaLocalAreaNetwork;
+        UniTask.Advance();
+        Check(a.LoginCalls == 0 && WKY_Flow.IsAccessDenied && PlayerPrefs.GetInt("WKY_CountryDenied", 0) == 1 &&
+            SDKAssetHandler.LastDialog.des == "TokenClient_REGION" && !DeviceNativeBridge.Trace.Contains("VPN"),
+            "confirmed country denial takes precedence and is persisted");
+        UnityWebRequest.Status = 0;
+        Check(!WKY_Flow.ProbeCountryPolicy().GetAwaiter().GetResult() && PlayerPrefs.GetInt("WKY_CountryDenied", 0) == 1,
+            "Worker unavailability never clears confirmed denial");
+        UnityWebRequest.Status = 204;
+        Check(WKY_Flow.ProbeCountryPolicy().GetAwaiter().GetResult() && !PlayerPrefs.HasKey("WKY_CountryDenied"),
+            "confirmed Worker allow clears the previous country denial");
+
+        a = Fresh(false);
+        DeviceNativeBridge.NativeVpn = true;
+        UnityWebRequest.Status = 0;
+        UnityWebRequest.VpnHeader = "false";
+        Application.internetReachability = NetworkReachability.ReachableViaLocalAreaNetwork;
+        UniTask.Advance();
+        Check(a.LoginCalls == 0 && WKY_Flow.IsAccessDenied && DeviceNativeBridge.IsVpnDetectionEnabled &&
+            SDKAssetHandler.LastDialog.des == "TokenClient_VPN", "unavailable Worker cannot apply an unconfirmed VPN toggle");
+
+        Console.WriteLine("OFFLINE_ENTRY_PASS cases=" + checks);
+    }
+}

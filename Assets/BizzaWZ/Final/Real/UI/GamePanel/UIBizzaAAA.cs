@@ -163,7 +163,7 @@ public class UIBizzaAAA : UIPageBase, IRoyalMatchBoardPointerBlocker
 
     private void OnBtnFlowTreatureClick()
     {
-        if (RoyalMatchSessionBridge.IsLevelQuitDialogOpen) return;
+        if (RoyalMatchSessionBridge.IsLevelQuitDialogOpen || !UIUtils.CheckWKYAccountReady()) return;
 
         //UIController.ShowPage<UITreatureAds>();
         

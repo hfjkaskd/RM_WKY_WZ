@@ -1,4 +1,5 @@
 #if BIZZA_REAL_WITHDRAW
+using System.Globalization;
 using Bizza.Sdk;
 using TMPro;
 using UnityEngine;
@@ -24,8 +25,9 @@ public class NewbieGiftPage : UIPageBase
         BizzaEventSystem.On(EventDefine.RealWithdraw.Response_UserReachReportResponse, GetNewUserReward);
         continueBtn.onClick.AddListener(() =>
         {
+            if (buttonHandled) return;
             OnButtonClick();
-            if (!ChannelConfig.Instance.real_CustomConfig.singleCurrencyMode)
+            if (buttonHandled && !closeOnly && !ChannelConfig.Instance.real_CustomConfig.singleCurrencyMode)
             {
                  UIModule.Instance.OpenPage(UIPageIds.FakeWithdrawPanel);
             }
@@ -43,18 +45,27 @@ public class NewbieGiftPage : UIPageBase
     }
 
     private float _nuwbieGift;
+    private bool closeOnly;
+    private bool buttonHandled;
 
     protected override void OnOpen()
     {
+        buttonHandled = false;
+        closeOnly = SaveDataUtils.TeachData.newbieGiftRequest == NewbieGiftRequestState.Background;
         _nuwbieGift = WithdrawalUtil.GetNewbieGift();
-        Os_ComText.text = $"{LanguageUtils.GetText("CurrencyToken")}{WithdrawalUtil.GetCustomizedValueByCountryType(_nuwbieGift)}";
+        Os_ComText.text = closeOnly
+            ? $"R${WithdrawalUtil.GetNewbieGift(AccountModule.E_CountryType.BR).ToString("F2", CultureInfo.GetCultureInfo("pt-BR"))}"
+            : $"{LanguageUtils.GetText("CurrencyToken")}{WithdrawalUtil.GetCustomizedValueByCountryType(_nuwbieGift)}";
         // AccountModule.Instance.Request_UserReachReportRequest(OnRefresh);
     }
 
     public void OnButtonClick()
     {
+        if (buttonHandled) return;
+        if (closeOnly) { buttonHandled = true; CloseSelf(); return; }
         if (_nuwbieGift > 0)
         {
+            buttonHandled = true;
             ItemEntry itemEntry = new()
             {
                 Count = _nuwbieGift,

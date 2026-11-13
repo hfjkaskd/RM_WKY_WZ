@@ -6,7 +6,7 @@ public static class BridgingUtil
 {
     public static int GameLevel
     {
-        get => SaveDataUtils.GameData != null ? SaveDataUtils.GameData.playerSelectedLv : 1;
+        get => FlowModule.CurrentLevel;
         set
         {
             if (SaveDataUtils.GameData != null)

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Bizza.Sdk;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -10,6 +11,12 @@ public sealed class WKY_Flow
         "https://iptokenclient.applebooks24.com/api/v1/rm-wky-wz/region";
     private const string CountryWorkerPolicy = "rm-wky-wz-v1";
     private const int CountryCheckAttempts = 2;
+    private const string CountryDeniedPrefsKey = "WKY_CountryDenied";
+    private enum CountryAccess { Unavailable, Allowed, Denied }
+    private static CountryAccess countryAccess;
+
+    internal static bool IsCountryAccessAllowed => countryAccess == CountryAccess.Allowed;
+    internal static bool IsAccessDenied => countryAccess == CountryAccess.Denied;
 
     public async UniTask Start_Init_Flow(Action<float> onProgress)
     {
@@ -23,7 +30,18 @@ public sealed class WKY_Flow
         Bizza.Unity.Android.AndroidJavaMessageDispatcher.SetHttpMessageHandler(
             HttpUtil.LoginHTTPDict);
         onProgress?.Invoke(0.05f);
-        await VerifyCountryAccessAsync();
+        var cancellation = Application.exitCancellationToken;
+        var initialAccess = await VerifyCountryAccessAsync(cancellation);
+        if (initialAccess == CountryAccess.Denied ||
+            (initialAccess == CountryAccess.Unavailable && PlayerPrefs.GetInt(CountryDeniedPrefsKey, 0) == 1))
+        {
+            countryAccess = CountryAccess.Denied;
+            await ShowCountryRestrictionAsync();
+            throw new WKYInitializationException("CountryRestricted", "Country is not enabled for this app.");
+        }
+        if (!await VerifyVpnAccessAsync())
+            throw new Bizza.TokenClientSystem.TokenClientBlockedException("VPN");
+        countryAccess = initialAccess;
 
         ChannelConfig config = await ChannelConfigLoader.LoadAsync();
         if (config == null)
@@ -48,7 +66,7 @@ public sealed class WKY_Flow
             defaultCountry = config.real_CustomConfig.DefaultCountryName,
             fakeAndroidId = config.real_CustomConfig.GenerateFakeAndroidId
         };
-        await DeviceInfoUtil.InitializeAsync(customDeviceInfo);
+        await DeviceInfoUtil.InitializeAsync(customDeviceInfo, cancellation);
         onProgress?.Invoke(0.45f);
 
         var deciceInfo = DeviceInfoUtil.Data;
@@ -65,26 +83,19 @@ public sealed class WKY_Flow
         AccountModule account = new AccountModule();
         account.Login();
         onProgress?.Invoke(0.5f);
-#if BIZZA_HTTP_AD
-        await UniTask.WaitUntil(() =>
-            account.LoadingFinish ||
-            account.LoadingUserDataFailed);
+        await UniTask.WaitUntil(() => account.StartupResultAvailable, cancellationToken: cancellation);
+        if (account.IsSuspended)
+            throw new WKYInitializationException(AccountModule.SuspendedCode, "WKY account suspended.");
 
-        if (account.LoadingUserDataFailed || account.Os_Current_Uso == null)
+        Bizza.UserInformationVerification.ScreenCaptureProtection.TryProtect();
+        if (!account.AccountReady)
         {
-            string message = "账号数据加载失败，无法继续初始化 SDK。" +
-                             account.LoadingUserDataErrorCode;
-            Debug.LogError(message);
-            throw new WKYInitializationException(
-                "AccountLoginFailed",
-                message);
+            Debug.LogWarning("WKY user data unavailable, starting basic gameplay while retrying.");
+            account.LoginSucceeded += OnLoginSucceeded;
+            return;
         }
-#else
-        await UniTask.WaitUntil(() =>
-                            account.LoadingFinish);
-#endif
-        onProgress?.Invoke(0.9f);
 
+        onProgress?.Invoke(0.9f);
         LogLogger.LogInfo("State_deviceInfo2: ", $"<color=red>----------------------------</color>");
 #if DEBUG_MODE
         {
@@ -93,13 +104,73 @@ public sealed class WKY_Flow
         }
 #endif
         LogLogger.LogInfo("State_AccountInfo: ", $"{account.Os_Current_Uso?.GetInfo()}");
+        InitializePlatform();
 
-        var platform = new OverseaPlatform(config);
+        void OnLoginSucceeded()
+        {
+            account.LoginSucceeded -= OnLoginSucceeded;
+            InitializePlatform();
+        }
 
+        void InitializePlatform()
+        {
+            if (!account.AccountReady || !ReferenceEquals(AccountModule.Instance, account)) return;
+            if (!OverseaPlatform.IsInit) new OverseaPlatform(config);
+            BizzaSdk.Ad.SetUserId(PlayerPrefs.GetString(AccountModule.m_userIdKey));
+        }
     }
 
-    private static async UniTask VerifyCountryAccessAsync()
+    internal static async UniTask<bool> CanStartAccountRequestsAsync(CancellationToken cancellationToken)
     {
+        if (countryAccess == CountryAccess.Denied) return false;
+        if (countryAccess == CountryAccess.Allowed) return true;
+
+        var access = await VerifyCountryAccessAsync(cancellationToken);
+        if (access == CountryAccess.Denied)
+        {
+            countryAccess = CountryAccess.Denied;
+            await ShowCountryRestrictionAsync();
+            return false;
+        }
+
+        if (!await VerifyVpnAccessAsync()) return false;
+        countryAccess = access;
+        return IsCountryAccessAllowed;
+    }
+
+    private static async UniTask<bool> VerifyVpnAccessAsync()
+    {
+        bool connected = DeviceNativeBridge.IsVpnConnected();
+        DeviceInfoUtil.UpdateVpnStatus(connected);
+        if (!connected) return true;
+
+        countryAccess = CountryAccess.Denied;
+        await SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args
+        {
+            isLanguage = true,
+            persistAcrossScenes = true,
+            des = "TokenClient_VPN",
+            onFinish = Application.Quit
+        });
+        return false;
+    }
+
+    private static async UniTask ShowCountryRestrictionAsync()
+    {
+        await SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args
+        {
+            isLanguage = true,
+            persistAcrossScenes = true,
+            des = "TokenClient_REGION",
+            onFinish = Application.Quit
+        });
+    }
+
+    private static async UniTask<CountryAccess> VerifyCountryAccessAsync(CancellationToken cancellationToken)
+    {
+        DeviceNativeBridge.ApplyVpnDetectionPolicy(null);
+        if (Application.internetReachability == NetworkReachability.NotReachable) return CountryAccess.Unavailable;
+
         for (int attempt = 1; attempt <= CountryCheckAttempts; attempt++)
         {
             using var request = UnityWebRequest.Get(CountryWorkerUrl);
@@ -108,7 +179,7 @@ public sealed class WKY_Flow
 
             try
             {
-                await request.SendWebRequest().ToUniTask();
+                await request.SendWebRequest().ToUniTask(cancellationToken: cancellationToken);
             }
             catch (UnityWebRequestException)
             {
@@ -124,24 +195,27 @@ public sealed class WKY_Flow
                       $"result={request.result} policyConfirmed={policyConfirmed}");
 
             if (!policyConfirmed) continue;
-            if (status == 204 && request.result == UnityWebRequest.Result.Success) return;
+            if (status == 204 && request.result == UnityWebRequest.Result.Success)
+            {
+                DeviceNativeBridge.ApplyVpnDetectionPolicy(request.GetResponseHeader("X-Game-Vpn-Detection"));
+                Debug.Log($"[VpnAccess] detectionEnabled={DeviceNativeBridge.IsVpnDetectionEnabled}");
+                if (PlayerPrefs.HasKey(CountryDeniedPrefsKey))
+                {
+                    PlayerPrefs.DeleteKey(CountryDeniedPrefsKey);
+                    PlayerPrefs.Save();
+                }
+                return CountryAccess.Allowed;
+            }
             if (status != 403) continue;
 
-            await SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args
-            {
-                isLanguage = true,
-                des = "TokenClient_REGION",
-                onFinish = Application.Quit
-            });
-            throw new WKYInitializationException(
-                "CountryRestricted",
-                "Country is not enabled for this app.");
+            PlayerPrefs.SetInt(CountryDeniedPrefsKey, 1);
+            PlayerPrefs.Save();
+            return CountryAccess.Denied;
         }
 
-        throw new WKYInitializationException(
-            "CountryCheckUnavailable",
-            "Country policy service did not return a valid decision.");
+        return CountryAccess.Unavailable;
     }
+
 }
 
 public sealed class WKYInitializationException : Exception

@@ -125,7 +125,7 @@ public static class Boots_Flow
         {
             Bizza.Unity.Android.AndroidJavaMessageDispatcher.EnsureCreated();
 
-#if USER_VERIFICATION_SDK
+#if USER_VERIFICATION_SDK && !WKY_SDK
             if (DeviceNativeBridge.IsVpnConnected())
             {
                 const string reason = "VPN";
@@ -255,7 +255,7 @@ public static class Boots_Flow
             return "BootsCancelled";
         }
 
-#if USER_VERIFICATION_SDK
+#if USER_VERIFICATION_SDK || WKY_SDK
         if (exception is Bizza.TokenClientSystem.TokenClientBlockedException)
         {
             return "UserVerificationBlocked";
@@ -269,7 +269,13 @@ public static class Boots_Flow
         }
 #endif
 
-        return stage + "." + exception.GetType().Name;
+        string stageName = stage switch
+        {
+            BootsFlowStage.WKYSDK => "WKYSDK",
+            BootsFlowStage.UserVerification => "UserVerification",
+            _ => "Unknown"
+        };
+        return stageName + "." + exception.GetType().Name;
     }
 
     private static void Notify(

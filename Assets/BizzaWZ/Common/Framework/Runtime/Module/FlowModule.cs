@@ -15,6 +15,42 @@ public static class FlowModule
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetAutomaticPopupFlow() => AutomaticPopupFlowBlocked = false;
 
+    private static int activeLevel;
+    private static bool levelLoading;
+    private static bool serverProgressChanged;
+    public static int CurrentLevel => activeLevel > 0 ? activeLevel :
+        Mathf.Max(1, SaveDataUtils.GameData?.playerSelectedLv ?? 1);
+
+    // Capture the level before asynchronous scene loading or account recovery.
+    public static int BeginLevelLoading()
+    {
+        activeLevel = Mathf.Max(1, SaveDataUtils.GameData?.playerSelectedLv ?? 1);
+        serverProgressChanged = false;
+        levelLoading = true;
+        return activeLevel;
+    }
+
+    public static void ApplyServerProgress(int level)
+    {
+        if (level < 1 || SaveDataUtils.GameData == null) return;
+        SaveDataUtils.GameData.playerSelectedLv = level;
+        if (activeLevel > 0) serverProgressChanged = true;
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetLevelState()
+    {
+        activeLevel = 0;
+        levelLoading = serverProgressChanged = false;
+    }
+
+    public static void ReportFirstEffectiveAction()
+    {
+#if BIZZA_REAL_WITHDRAW
+        Teach01Module.Instance?.OnFirstMatch();
+#endif
+    }
+
     private static string analyticsLevelId;
     private static string analyticsLevelAttemptId;
 
@@ -72,6 +108,8 @@ public static class FlowModule
     // 每一关游戏开始时调用
     public static void GameStart()
     {
+        if (!levelLoading) BeginLevelLoading();
+        levelLoading = false;
         SetAutomaticPopupFlowBlocked(false);
 #if BIZZA_REAL_WITHDRAW
         winResultHandled = false;
@@ -102,7 +140,7 @@ public static class FlowModule
         winResultHandled = true;
         SetAutomaticPopupFlowBlocked(true);
         // 异步加载结算界面前记录本关，避免读取到递增后的下一关进度。
-        WinLevelNumber = SaveDataUtils.GameData.playerSelectedLv;
+        WinLevelNumber = CurrentLevel;
         FakeWithdrawalAnalytics.TrackLevelEnd(WinLevelNumber, success: true);
 #endif
         CompleteAnalyticsLevel(success: true);
@@ -122,14 +160,19 @@ public static class FlowModule
         SaveDataUtils.GameData.levelAttemptCount = 0;
         SaveDataUtils.GameData.levelReviveCount = 0;
 #endif
-        if (WkyGameplayBridge.Instance == null)
-        {
-            SaveDataUtils.GameData.playerSelectedLv++;
-        }
+        AdvanceCompletedLevel();
 #if BIZZA_REAL_WITHDRAW
         // 只在实际胜利结算中计数，GM 打开奖励界面不会增加进度。
         SlotProgressUtil.AddPassedLevel();
 #endif
+    }
+
+    private static void AdvanceCompletedLevel()
+    {
+        // This is local gameplay progress only. An accepted server revision wins,
+        // including a rollback received while this board was being played.
+        if (!serverProgressChanged) SaveDataUtils.GameData.playerSelectedLv = CurrentLevel + 1;
+        SaveDataUtils.Save();
     }
 
     // 打开失败界面
@@ -137,9 +180,14 @@ public static class FlowModule
     {
         SetAutomaticPopupFlowBlocked(true);
 #if BIZZA_REAL_WITHDRAW
-        FakeWithdrawalAnalytics.TrackLevelEnd(SaveDataUtils.GameData.playerSelectedLv, success: false);
+        FakeWithdrawalAnalytics.TrackLevelEnd(CurrentLevel, success: false);
 #endif
-        CompleteAnalyticsLevel(success: false, loseReason.ToString());
+        CompleteAnalyticsLevel(success: false, loseReason switch
+        {
+            LoseReason.Health => "Health",
+            LoseReason.Timeout => "Timeout",
+            _ => "Unknown"
+        });
         SaveDataUtils.GameData.levelFailCount++;
         BizzaEventSystem.Emit(EventDefine.Item.GameLose);
         BridgingUtil.OnOpenGameLosePanel();
@@ -184,12 +232,7 @@ public static class FlowModule
     // 游戏每次合成都会触发这个方法 传入剩余的合成次数和发生这次合成的位置
     public static void SynthesisLogic(int numRemaining, Vector3 synthesisPos)
     {
-#if UNITY_EDITOR
-        if (ChannelConfig.Instance.RecordMode)
-        {
-            return;
-        }
-#endif
+        ReportFirstEffectiveAction();
 #if BIZZA_REAL_WITHDRAW
 
         NumbericalStatistics.CheckGetDollar(synthesisPos);
@@ -272,7 +315,15 @@ public static class FlowModule
         if (!breakFlow)
         {
             BizzaGameAnalytics.TrackItemUse(
-                itemType.ToString(),
+                itemType switch
+                {
+                    E_ItemType.GameProp_1 => "GameProp_1",
+                    E_ItemType.GameProp_2 => "GameProp_2",
+                    E_ItemType.GameProp_3 => "GameProp_3",
+                    E_ItemType.GameProp_4 => "GameProp_4",
+                    E_ItemType.GameProp_5 => "GameProp_5",
+                    _ => "Unknown"
+                },
                 "prop",
                 quantity: 1,
                 source: "gameplay");
@@ -287,7 +338,7 @@ public static class FlowModule
             return;
         }
 
-        analyticsLevelId = SaveDataUtils.GameData.playerSelectedLv.ToString();
+        analyticsLevelId = CurrentLevel.ToString();
         int attempt = Mathf.Max(1, SaveDataUtils.GameData.levelFailCount + 1);
         analyticsLevelAttemptId = BizzaGameAnalytics.TrackLevelStart(analyticsLevelId, attempt);
     }

@@ -225,7 +225,7 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchBoosterInventory
     }
 
     private bool IsBoosterAttemptActive() => ReferenceEquals(this, Instance) &&
-        !loading && !attemptEnded && !reloadRequested && !correctionPending &&
+        !loading && !attemptEnded && !reloadRequested &&
         currentLevel > 0 && readyLevel == currentLevel && SaveDataUtils.ItemData != null;
 
     private static E_ItemType ItemForBooster(OriginalBoosterType type) => type switch

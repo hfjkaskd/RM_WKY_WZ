@@ -1,0 +1,131 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+// STATE
+class AccountModule {
+    public enum E_CountryType { None, US, BR, ID }
+    public static E_CountryType CountryType;
+    public static AccountModule Instance;
+    public bool AccountReady, IsSuspended;
+    public User Os_Current_Uso;
+    public class User { public bool Os_Ncm; }
+}
+class Config { public bool singleCurrencyMode; }
+class ChannelConfig { public static ChannelConfig Instance = new(); public Config real_CustomConfig = new(); }
+class UIModule { public static UIModule Instance = new(); }
+class GameData { public bool customTutorialEnd; }
+class TeachData {
+    public NewbieGiftRequestState newbieGiftRequest;
+    public bool newbieGiftShown, completed;
+    public bool IsCompleted(string key) => completed;
+}
+static class SaveDataUtils {
+    public static GameData GameData = new(); public static TeachData TeachData = new();
+    public static int Saves;
+    public static void Save() => Saves++;
+}
+class Teach01Flow { public const string SaveKey = "Teach_01"; public bool IsRunning = true; }
+static class Teach01UnityServices { public static bool AccountReady => AccountModule.Instance?.AccountReady == true; }
+class Pending { public void Forget() {} }
+class Teach01Module {
+    public bool TeachEnabled = true, attempted, released;
+    public Teach01Flow Flow;
+    public int Runs;
+    Pending Run() { Runs++; Flow = new(); return new(); }
+    public void Start() => TryStart();
+    // MODULE
+}
+class BasePage { public bool Closed; protected virtual void OnOpen() {} protected void CloseSelf() => Closed = true; }
+class Label { public string text; }
+class RectTransform { public object position; }
+class Button { public T GetComponent<T>() where T : new() => new(); }
+enum E_ItemType { Dollar, Gold }
+enum RewardCollectAnimation { BurstCollect }
+class ItemEntry { public float Count; public E_ItemType Type; }
+class AddItemParam { public bool playAnim, bUiPos, showCurrencyBar; public object startPos; public RewardCollectAnimation animation; }
+static class ItemUtils { public static int Grants; public static void AddItem(ItemEntry item, AddItemParam args) => Grants++; }
+static class LogLogger { public static void LogError(string value) {} }
+class GiftPage : BasePage {
+    float _nuwbieGift; bool closeOnly, buttonHandled;
+    public Label Os_ComText = new(); public Button continueBtn = new();
+    public void Open() => OnOpen();
+    // PAGE
+}
+static class WithdrawalUtil {
+    public static string GetCustomizedValueByCountryType(float value) => value.ToString(CultureInfo.InvariantCulture);
+    // AMOUNT
+}
+class Words { public Dictionary<string,string> Dict = new(); }
+class LanguageTable {
+    public Dictionary<string,Words> DataMap = new();
+    public Words GetOrDefault(string key) => DataMap.GetValueOrDefault(key);
+}
+class Tables { public LanguageTable TblLanguage = new(); }
+static class TableUtils { public static Tables Tables = new(); }
+static class LanguageUtils {
+    public static string SelectedLanguage = "pt-BR"; const string DefaultLanguage = "en-US";
+    // LANGUAGE
+}
+class CommonConfirmTipsPanel { public struct Args { public bool isLanguage; public string des; } }
+static class SDKAssetHandler {
+    public static int Opens; public static CommonConfirmTipsPanel.Args Last;
+    public static Pending OpenCommonConfirmTipsPanel(CommonConfirmTipsPanel.Args args) { Opens++; Last=args; return new(); }
+}
+static class UIUtils { // READY
+}
+class Runner {
+    static int checks;
+    static void Check(bool ok, string message) { if(!ok) throw new Exception(message); checks++; Console.WriteLine("PASS " + message); }
+    static void Reset() {
+        AccountModule.Instance=new(); AccountModule.CountryType=AccountModule.E_CountryType.None;
+        SaveDataUtils.GameData=new(); SaveDataUtils.TeachData=new(); SaveDataUtils.Saves=0;
+    }
+    static void Main() {
+        Reset(); var module=new Teach01Module(); module.Start();
+        Check(module.Runs==1,"offline first-time player starts the gift flow without a server profile");
+        module.OnFirstMatch(); module.OnFirstMatch();
+        Check(SaveDataUtils.TeachData.newbieGiftRequest==NewbieGiftRequestState.Background && SaveDataUtils.Saves==1,
+            "first offline match persists one background claim; later matches cannot repeat it");
+        Reset(); AccountModule.Instance.AccountReady=true; AccountModule.Instance.Os_Current_Uso=new(){Os_Ncm=true};
+        module=new(); module.Start(); module.OnFirstMatch();
+        Check(SaveDataUtils.TeachData.newbieGiftRequest==NewbieGiftRequestState.NextLogin,"first online match persists the next-login retry state before HTTP");
+        foreach(var state in new[]{NewbieGiftRequestState.Background,NewbieGiftRequestState.NextLogin}) {
+            Reset(); SaveDataUtils.TeachData.newbieGiftRequest=state; SaveDataUtils.TeachData.completed=true;
+            SaveDataUtils.GameData.customTutorialEnd=true; AccountModule.Instance.Os_Current_Uso=new(){Os_Ncm=false};
+            module=new(); module.Start(); module.Start();
+            Check(module.Runs==1,"restored pending claim bypasses completed teaching and old-user flag: "+state);
+        }
+        Reset(); SaveDataUtils.TeachData.completed=true; module=new(); module.Start();
+        Check(module.Runs==0,"legacy completed user is not granted a new gift");
+        Reset(); SaveDataUtils.TeachData.newbieGiftRequest=NewbieGiftRequestState.Succeeded; SaveDataUtils.TeachData.newbieGiftShown=true;
+        module=new(); module.Start(); Check(module.Runs==0,"confirmed and shown gift never starts again");
+        Reset(); AccountModule.Instance.IsSuspended=true; module=new(); module.Start();
+        Check(module.Runs==0,"suspended account cannot start gift requests");
+        foreach(bool single in new[]{false,true}) {
+            Reset(); ChannelConfig.Instance.real_CustomConfig.singleCurrencyMode=single;
+            SaveDataUtils.TeachData.newbieGiftRequest=NewbieGiftRequestState.Background;
+            ItemUtils.Grants=0; var page=new GiftPage(); page.Open(); page.OnButtonClick();
+            Check(page.Os_ComText.text==(single?"R$0,40":"R$51,00"),"offline Brazilian gift amount: "+single);
+            Check(page.Closed && ItemUtils.Grants==0,"offline close never grants local currency: "+single);
+            page.OnButtonClick();
+            Check(ItemUtils.Grants==0 && AccountModule.CountryType==AccountModule.E_CountryType.None,
+                "repeated offline close neither grants currency nor changes global country: "+single);
+        }
+        Reset(); AccountModule.CountryType=AccountModule.E_CountryType.BR; ItemUtils.Grants=0;
+        var online=new GiftPage(); online.Open(); online.OnButtonClick();
+        Check(online.Closed && ItemUtils.Grants==1,"normal online gift preserves its existing award action");
+        online.OnButtonClick();
+        Check(ItemUtils.Grants==1,"repeated click during close cannot grant the normal gift twice");
+        var words=new Words(); words.Dict["en-US"]="English fallback"; TableUtils.Tables.TblLanguage.DataMap["sample"]=words;
+        Check(LanguageUtils.GetText("sample")=="English fallback","missing translation falls back to English");
+        words.Dict["pt-BR"]=""; Check(LanguageUtils.GetText("sample")=="English fallback","empty translation also falls back to English");
+        words.Dict["pt-BR"]="Portuguese"; Check(LanguageUtils.GetText("sample")=="Portuguese","available translation remains selected");
+        Check(LanguageUtils.GetText("missing")=="missing","missing language key is handled safely");
+        Reset(); SDKAssetHandler.Opens=0;
+        Check(!UIUtils.CheckWKYAccountReady() && SDKAssetHandler.Opens==1 && SDKAssetHandler.Last.des=="WKY_Reconnecting" && SDKAssetHandler.Last.isLanguage,
+            "unready business action opens the localized reconnect dialog");
+        AccountModule.Instance.AccountReady=true; Check(UIUtils.CheckWKYAccountReady() && SDKAssetHandler.Opens==1,"ready business action opens no reconnect dialog");
+        AccountModule.Instance.IsSuspended=true; Check(!UIUtils.CheckWKYAccountReady() && SDKAssetHandler.Opens==1,"suspension does not add a second reconnect dialog");
+        Console.WriteLine("OFFLINE_GIFT_PASS cases="+checks);
+    }
+}

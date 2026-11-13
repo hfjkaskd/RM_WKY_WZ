@@ -66,13 +66,14 @@ public static class WithdrawalUtil
     }
 
 
-    public static float GetNewbieGift()
+    public static float GetNewbieGift(AccountModule.E_CountryType? country = null)
     {
         float count = 0;
 #if BIZZA_REAL_WITHDRAW
+        var giftCountry = country ?? AccountModule.CountryType;
         if (ChannelConfig.Instance.real_CustomConfig.singleCurrencyMode)
         {
-            count = AccountModule.CountryType switch
+            count = giftCountry switch
             {
                 AccountModule.E_CountryType.US => 40f,
                 AccountModule.E_CountryType.BR => 0.4f,
@@ -82,7 +83,7 @@ public static class WithdrawalUtil
         }
         else
         {
-            count = AccountModule.CountryType switch
+            count = giftCountry switch
             {
                 AccountModule.E_CountryType.US => 77f,
                 AccountModule.E_CountryType.BR => 51f,

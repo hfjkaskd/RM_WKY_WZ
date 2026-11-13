@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.U2D;
@@ -7,6 +8,48 @@ using UnityEngine.UI;
 
 public static class UIUtils
 {
+#if BIZZA_REAL_WITHDRAW
+    private static readonly Dictionary<Image, int> WzSpriteRequests = new();
+    private static int wzSpriteRequestId;
+    private const int MaxNetworkErrorTips = 5;
+    private static int networkErrorTipCount;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetNetworkErrorTips()
+    {
+        networkErrorTipCount = 0;
+    }
+#endif
+
+    public static bool CheckWKYAccountReady()
+    {
+#if BIZZA_REAL_WITHDRAW
+        var account = AccountModule.Instance;
+        if (account?.IsSuspended == true) return false;
+        if (account?.AccountReady == true) return true;
+
+        SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args
+        {
+            isLanguage = true,
+            des = "WKY_Reconnecting",
+        }).Forget();
+        return false;
+#else
+        return true;
+#endif
+    }
+
+    public static void ShowNetworkErrorTip()
+    {
+#if BIZZA_REAL_WITHDRAW && !COMMONGAME
+        if (networkErrorTipCount >= MaxNetworkErrorTips || UIModule.Instance == null ||
+            BroadcastBarController.Instance == null) return;
+
+        networkErrorTipCount++;
+        ShowTips(LanguageUtils.GetText("HTTPNetworkProblem"));
+#endif
+    }
+
     public static void ShowTips(string text)
     {
 #if BIZZA_REAL_WITHDRAW
@@ -335,18 +378,56 @@ public static class UIUtils
     public static void SetWzSprite(this Image image, string resPath, bool nativeSize = false)
     {
 #if BIZZA_REAL_WITHDRAW
-        resPath += "_" + AccountModule.CountryType;
-        // var info = cfg.Tables.Instance.TblWzCountryTexture.DataMap[resPath];
-        // resPath = AccountModule.CountryType switch
-        // {
-            // AccountModule.E_CountryType.BR => info.BRPath,
-            // AccountModule.E_CountryType.ID => info.IDPath,
-            // AccountModule.E_CountryType.US => info.USPath,
-            // _ => info.BRPath
-        // };
+        if (image == null) return;
+        WzSpriteRequests.Remove(image);
+        image.enabled = image.sprite != null;
+        var country = AccountModule.CountryType;
+        string suffix = country switch
+        {
+            AccountModule.E_CountryType.US => "US",
+            AccountModule.E_CountryType.BR => "BR",
+            AccountModule.E_CountryType.ID => "ID",
+#if !BIZZA_HTTP_AD
+            AccountModule.E_CountryType.JP => "JP",
+            AccountModule.E_CountryType.KR => "KR",
+            AccountModule.E_CountryType.SA => "SA",
+            AccountModule.E_CountryType.DE => "DE",
 #endif
+            _ => null
+        };
+        if (suffix == null || string.IsNullOrEmpty(resPath)) return;
+
+        int requestId = ++wzSpriteRequestId;
+        WzSpriteRequests.Add(image, requestId);
+        LoadWzSpriteAsync(image, resPath + "_" + suffix, country, requestId, nativeSize).Forget();
+#else
         SetSprite(image, resPath, nativeSize);
+#endif
     }
+
+#if BIZZA_REAL_WITHDRAW
+    private static async UniTask LoadWzSpriteAsync(Image image, string path,
+        AccountModule.E_CountryType country, int requestId, bool nativeSize)
+    {
+        var sprite = await AssetUtils.LoadAssetAsync<Sprite>(path);
+        if (!WzSpriteRequests.TryGetValue(image, out int currentRequestId) || requestId != currentRequestId) return;
+        WzSpriteRequests.Remove(image);
+
+        if (image != null && country == AccountModule.CountryType)
+            ApplyWzSprite(image, sprite, nativeSize);
+    }
+
+    internal static void ApplyWzSprite(Image image, Sprite sprite, bool nativeSize)
+    {
+        if (image == null) return;
+        if (sprite != null)
+        {
+            image.sprite = sprite;
+            if (nativeSize) image.SetNativeSize();
+        }
+        image.enabled = image.sprite != null;
+    }
+#endif
 
     public static Rect GetAABBWorldRect(this RectTransform self)
     {

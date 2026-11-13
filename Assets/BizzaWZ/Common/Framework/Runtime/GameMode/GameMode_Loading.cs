@@ -15,12 +15,15 @@ public class GameMode_Loading : GameModeBase
         #region Loading UI
 
         private bool handingOffToGameplay;
+        private bool loadingCompleted, released;
         private int lastProgressPercent = -1;
         private LoadingProcedure _loadingProcedure;
 
         protected override void OnInit()
         {
                 base.OnInit();
+                handingOffToGameplay = loadingCompleted = released = false;
+                lastProgressPercent = -1;
                 _loadingProcedure = new LoadingProcedure();
 
                 GameExtensionRegistry.RunLoadingProcedureHooks(_loadingProcedure);
@@ -39,6 +42,7 @@ public class GameMode_Loading : GameModeBase
 
         protected override void OnRelease()
         {
+                released = true;
                 base.OnRelease();
                 if (!handingOffToGameplay)
                 {
@@ -48,12 +52,15 @@ public class GameMode_Loading : GameModeBase
 
         private void OnLoadingFinish()
         {
+                if (released || loadingCompleted) return;
+                loadingCompleted = true;
                 LogLogger.LogInfo("OnLoadingFinish");
                 StartGame();
         }
 
         private async UniTaskVoid RunLoadingSafe()
         {
+                Exception failure = null;
                 try
                 {
                         if (await UIModule.Instance.OpenPage(UIPageIds.LoadingPanel) == null)
@@ -64,34 +71,40 @@ public class GameMode_Loading : GameModeBase
                         await UniTask.NextFrame();
                         await _loadingProcedure.Run(OnLoadingFinish);
                 }
-                catch (WKYInitializationException e) when (e.ErrorCode == "CountryRestricted")
+                catch (Exception error)
                 {
-                        // WKY_Flow already showed the localized region restriction prompt.
-                        LogLogger.LogInfo($"国家白名单阻止进入游戏: {e.Message}");
+                        failure = error;
                 }
-#if USER_VERIFICATION_SDK
-                catch (Bizza.TokenClientSystem.TokenClientBlockedException e)
+
+                // Classify after leaving the catch region; only the ordinary
+                // failure path awaits a prompt, matching the existing owners.
+                if (failure == null) return;
+                if (failure is WKYInitializationException blocked &&
+                    (blocked.ErrorCode == "CountryRestricted" || blocked.ErrorCode == AccountModule.SuspendedCode))
                 {
-                        // AuthFlow 已经完成对应的失败提示，这里只阻止进入游戏，避免重复弹出网络错误。
-                        LogLogger.LogError($"用户授权阻止继续加载: {e.Message}");
+                        LogLogger.LogInfo($"账号或地区限制阻止进入游戏: {blocked.Message}");
+                        return;
                 }
-#endif
-                catch (Exception e)
+                if (failure is Bizza.TokenClientSystem.TokenClientBlockedException tokenBlocked)
                 {
-                        LogLogger.LogError($"加载流程失败: {e}");
-                        var args = new CommonConfirmTipsPanel.Args
-                        {
-                                isLanguage = true,
-                                des = "HTTPNetworkProblem",
-                                onFinish = Application.Quit,
-                        };
-                        await SDKAssetHandler.OpenCommonConfirmTipsPanel(args);
+                        LogLogger.LogError($"用户授权阻止继续加载: {tokenBlocked.Message}");
+                        return;
                 }
+                if (released || AccountModule.Instance?.IsSuspended == true) return;
+                LogLogger.LogError($"加载流程失败: {failure}");
+                var args = new CommonConfirmTipsPanel.Args
+                {
+                        isLanguage = true,
+                        des = "HTTPNetworkProblem",
+                        onFinish = Application.Quit,
+                };
+                await SDKAssetHandler.OpenCommonConfirmTipsPanel(args);
         }
 
         public void StartGame()
         {
-                if (handingOffToGameplay)
+                if (released || handingOffToGameplay || !loadingCompleted ||
+                    AccountModule.Instance?.IsSuspended == true)
                 {
                         return;
                 }

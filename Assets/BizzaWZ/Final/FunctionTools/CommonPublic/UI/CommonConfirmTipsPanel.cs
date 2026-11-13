@@ -24,6 +24,7 @@ public static class SDKAssetHandler
         }
 
         panel.OnOpen(args);
+        if (args.persistAcrossScenes) UnityEngine.Object.DontDestroyOnLoad(go);
     }
 }
 
@@ -51,6 +52,16 @@ public class CommonConfirmTipsPanel : MonoBehaviour
                     { "tr-TR", "Ağ hatası, lütfen daha sonra tekrar deneyin." },
                     { "en-PH", "Network error, please try again later." },
                     { "vi-VN", "Lỗi mạng, vui lòng thử lại sau." },
+                }
+            },
+            {
+                "WKY_Reconnecting",
+                new Dictionary<string, string>(StringComparer.Ordinal)
+                {
+                    { "zh-CN", "网络连接异常，正在尝试重新连接，请稍后再试。" },
+                    { "en-US", "Network connection error. Reconnecting, please try again shortly." },
+                    { "pt-BR", "Erro de conexão. Estamos tentando reconectar. Tente novamente em instantes." },
+                    { "id-ID", "Koneksi jaringan bermasalah. Sedang mencoba menyambungkan kembali. Silakan coba lagi sebentar." },
                 }
             },
             {
@@ -344,6 +355,7 @@ public class CommonConfirmTipsPanel : MonoBehaviour
         public bool isLanguage;
         public string des;
         public Action onFinish;
+        public bool persistAcrossScenes;
     }
 
     public TMP_Text desTxt;

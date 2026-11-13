@@ -15,10 +15,22 @@ public class WathAdProgress : MonoBehaviour
     public TMP_Text progressText;
 
     public Image progressBar;
-    [SerializeField] private Image progressTrack;
     [SerializeField] private RectTransform progressFillClip;
 
     public int WatchAdCount => SaveDataUtils.GameData.todayAdTimes;
+
+    private AccountModule configRequestAccount;
+
+    private void Awake()
+    {
+        // The strip hides itself offline but still needs the account recovery event.
+        BizzaEventSystem.On(EventDefine.Login.InitContentByCountry, UpdateProgress);
+    }
+
+    private void OnDestroy()
+    {
+        BizzaEventSystem.Off(EventDefine.Login.InitContentByCountry, UpdateProgress);
+    }
 
     private void OnEnable()
     {
@@ -27,19 +39,37 @@ public class WathAdProgress : MonoBehaviour
 
     public void UpdateProgress()
     {
+        if (!enabled || (transform.parent != null && !transform.parent.gameObject.activeInHierarchy)) return;
 
-        string info = AccountModule.Instance.OceanShineAppOtherConfigResponse;
+        var account = AccountModule.Instance;
+        if (account?.AccountReady != true)
+        {
+            configRequestAccount = null;
+            gameObject.SetActive(false);
+            return;
+        }
+
+        string info = account.OceanShineAppOtherConfigResponse;
         if (string.IsNullOrEmpty(info))
         {
             gameObject.SetActive(false);
-            AccountModule.Instance.Request_AppOtherConfigRequest((success, response) =>
+            if (ReferenceEquals(configRequestAccount, account)) return;
+            configRequestAccount = account;
+            account.Request_AppOtherConfigRequest((success, response) =>
             {
-                if (!success || this == null || string.IsNullOrEmpty(response)) return;
-                gameObject.SetActive(true);
-            }, false, true);
+                if (this == null || !ReferenceEquals(configRequestAccount, account)) return;
+                configRequestAccount = null;
+                if (success && !string.IsNullOrEmpty(response) && ReferenceEquals(AccountModule.Instance, account))
+                    UpdateProgress();
+            }, false);
             return;
         }
-        gameObject.SetActive(true);
+
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+            return; // OnEnable renders the recovered state.
+        }
 
         var dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(info);
 #if DEBUG_MODE
@@ -87,11 +117,9 @@ public class WathAdProgress : MonoBehaviour
     internal void SetProgressFill(float fill)
     {
         float amount = Mathf.Clamp01(fill);
-        progressBar.fillAmount = amount;
         // Reveal the sliced sprite at its authored size so the end caps retain their shape.
         progressFillClip.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, progressBar.rectTransform.rect.width * amount);
         progressBar.enabled = amount > 0f;
-        progressTrack.enabled = amount < 1f;
     }
 }
 #endif

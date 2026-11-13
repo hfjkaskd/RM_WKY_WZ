@@ -1,0 +1,223 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+// Only async scheduling is substituted. Production gameplay/account decisions
+// below are extracted unchanged, not recreated inside these boundaries.
+[AsyncMethodBuilder(typeof(AsyncUniTaskMethodBuilder))]
+struct UniTask {
+    public Task Value;
+    public UniTask(Task value) { Value=value; }
+    public TaskAwaiter GetAwaiter() => (Value ?? Task.CompletedTask).GetAwaiter();
+    public static UniTask WaitUntil(Func<bool> predicate, CancellationToken cancellationToken=default) => Scheduler.Wait(predicate,cancellationToken);
+    public static UniTask NextFrame(CancellationToken token=default) => Scheduler.Frame(token);
+}
+[AsyncMethodBuilder(typeof(AsyncUniTaskMethodBuilder<>))]
+struct UniTask<T> {
+    public Task<T> Value;
+    public UniTask(Task<T> value) { Value=value; }
+    public TaskAwaiter<T> GetAwaiter() => Value.GetAwaiter();
+    public UniTask<T> AttachExternalCancellation(CancellationToken token) { token.ThrowIfCancellationRequested(); return this; }
+}
+struct AsyncUniTaskMethodBuilder {
+    AsyncTaskMethodBuilder inner;
+    public static AsyncUniTaskMethodBuilder Create() => new(){inner=AsyncTaskMethodBuilder.Create()};
+    public UniTask Task => new(inner.Task);
+    public void SetResult() => inner.SetResult();
+    public void SetException(Exception e) => inner.SetException(e);
+    public void SetStateMachine(IAsyncStateMachine s) => inner.SetStateMachine(s);
+    public void Start<T>(ref T s) where T:IAsyncStateMachine => inner.Start(ref s);
+    public void AwaitOnCompleted<T,U>(ref T a,ref U s) where T:INotifyCompletion where U:IAsyncStateMachine => inner.AwaitOnCompleted(ref a,ref s);
+    public void AwaitUnsafeOnCompleted<T,U>(ref T a,ref U s) where T:ICriticalNotifyCompletion where U:IAsyncStateMachine => inner.AwaitUnsafeOnCompleted(ref a,ref s);
+}
+struct AsyncUniTaskMethodBuilder<T> {
+    AsyncTaskMethodBuilder<T> inner;
+    public static AsyncUniTaskMethodBuilder<T> Create() => new(){inner=AsyncTaskMethodBuilder<T>.Create()};
+    public UniTask<T> Task => new(inner.Task);
+    public void SetResult(T v) => inner.SetResult(v);
+    public void SetException(Exception e) => inner.SetException(e);
+    public void SetStateMachine(IAsyncStateMachine s) => inner.SetStateMachine(s);
+    public void Start<U>(ref U s) where U:IAsyncStateMachine => inner.Start(ref s);
+    public void AwaitOnCompleted<U,V>(ref U a,ref V s) where U:INotifyCompletion where V:IAsyncStateMachine => inner.AwaitOnCompleted(ref a,ref s);
+    public void AwaitUnsafeOnCompleted<U,V>(ref U a,ref V s) where U:ICriticalNotifyCompletion where V:IAsyncStateMachine => inner.AwaitUnsafeOnCompleted(ref a,ref s);
+}
+class UniTaskCompletionSource {
+    readonly TaskCompletionSource<bool> source=new();
+    public UniTask Task => new(source.Task);
+    public bool TrySetResult() => source.TrySetResult(true);
+    public bool TrySetException(Exception e) => source.TrySetException(e);
+}
+class UniTaskCompletionSource<T> {
+    readonly TaskCompletionSource<T> source=new();
+    public UniTask<T> Task => new(source.Task);
+    public bool TrySetResult(T value) => source.TrySetResult(value);
+}
+enum DelayType { Realtime }
+static class TimerBoundary {
+    public static IDisposable CancelAfterSlim(this CancellationTokenSource source,TimeSpan delay,DelayType type) => new Timer();
+    sealed class Timer:IDisposable { public void Dispose(){} }
+}
+static class Scheduler {
+    static readonly List<(Func<bool> predicate,CancellationToken token,TaskCompletionSource<bool> completion)> waits=new();
+    static readonly List<(CancellationToken token,TaskCompletionSource<bool> completion)> frames=new();
+    public static UniTask Wait(Func<bool> predicate,CancellationToken token) {
+        token.ThrowIfCancellationRequested(); if(predicate()) return new(Task.CompletedTask);
+        var completion=new TaskCompletionSource<bool>(); waits.Add((predicate,token,completion)); return new(completion.Task);
+    }
+    public static UniTask Frame(CancellationToken token) {
+        token.ThrowIfCancellationRequested(); var completion=new TaskCompletionSource<bool>();frames.Add((token,completion));return new(completion.Task);
+    }
+    public static void Pump() {
+        var ready=frames.ToArray();frames.Clear();
+        foreach(var item in ready) { if(item.token.IsCancellationRequested)item.completion.TrySetCanceled();else item.completion.TrySetResult(true); }
+        foreach(var item in waits.ToArray()) {
+            if(!item.token.IsCancellationRequested && !item.predicate())continue;
+            waits.Remove(item);if(item.token.IsCancellationRequested)item.completion.TrySetCanceled();else item.completion.TrySetResult(true);
+        }
+        Time.frameCount++;
+    }
+    public static void Finish(UniTask task) {
+        for(int i=0;!task.Value.IsCompleted && i<200;i++){Pump();Thread.Sleep(1);}
+        if(!task.Value.IsCompleted)throw new Exception("Unresolved async boundary");task.GetAwaiter().GetResult();
+    }
+}
+enum NetworkReachability { NotReachable, ReachableViaLocalAreaNetwork }
+static class Application {public static NetworkReachability internetReachability;public static CancellationToken exitCancellationToken;public static void Quit(){} }
+static class Time {public static int frameCount;}
+static class Mathf {public static int Max(int a,int b)=>Math.Max(a,b);}
+static class Debug {public static void LogException(Exception error){SDKAssetHandler.LastError=error;} }
+class GameObject {public bool activeInHierarchy=true;}
+class UIPageBase {public GameObject gameObject=new();}
+static class UIPageIds {public const string LoadingPanel="load",RealGamePanel="game",LosePanel="lose";}
+class UIModule {
+    public static UIModule Instance;
+    public UIPageBase LoadingPage=new(),GamePage=new();public int Opens,Closes;public bool DelayGameOpen;
+    public readonly TaskCompletionSource<UIPageBase> DelayedGame=new();
+    public UIPageBase FindOpenedPage(string id)=>id==UIPageIds.LoadingPanel?LoadingPage:GamePage;
+    public UniTask<UIPageBase> OpenPage(string id){Opens++;if(id==UIPageIds.LoadingPanel)LoadingPage.gameObject.activeInHierarchy=true;return new(id==UIPageIds.RealGamePanel&&DelayGameOpen?DelayedGame.Task:Task.FromResult(id==UIPageIds.LoadingPanel?LoadingPage:GamePage));}
+    public void ClosePage(UIPageBase page){Closes++;page.gameObject.activeInHierarchy=false;}
+    public void ClosePage(string id){if(id==UIPageIds.LoadingPanel)ClosePage(LoadingPage);}
+}
+class AccountModule {
+    public static AccountModule Instance; public bool AccountReady,IsSuspended;public UserInfo Os_Current_Uso;
+    public class UserInfo {public int Os_Rts;}
+    public class OceanShineUserReachReportResponse {public UserInfo Os_Uso;}
+    public void CheckPendingAutoPopups(){}
+}
+class FailHttpResponse<T>{public bool success;public T data;}
+class GameData {public int playerSelectedLv=1,currentReviveCount,levelAttemptCount,levelReviveCount,levelFailCount;public bool customTutorialEnd,customTutorialCanPlay;}
+static class SaveDataUtils {public static GameData GameData;public static int Saves;public static Strategy gameStrategy=new();public static void Save()=>Saves++;public class Strategy{public void SaveData()=>Save();} }
+class Teach01Module {public static Teach01Module Instance=new();public int Effective;public void OnFirstMatch()=>Effective++;}
+static class BridgingUtil {public static int Starts,LoadCalls;public static void GameStart()=>Starts++;public static void CanShowGuide(){}public static void OnOpenGameWinPanel(){} }
+static class FakeWithdrawalAnalytics {public static int LastLevel;public static void BeginLevelAttempt(){}public static void TrackLevelEnd(int level,bool success)=>LastLevel=level;}
+static class NumbericalStatistics {public static void InitProp(){} }
+static class SlotProgressUtil {public static void AddPassedLevel(){} }
+static class BizzaGameAnalytics {public static int Loads;public static void TrackGameLoadComplete()=>Loads++;}
+static class BizzaEventSystem {public static int LoadingFinished,GameStarts;public static void Emit(string id,params object[] args){if(id==EventDefine.Frame.LoadingStageComplete)LoadingFinished++;if(id==EventDefine.Item.GameStart)GameStarts++;} }
+static class EventDefine {public static class Frame {public const string LoadingStageComplete="loaded",LoadingProgress="progress";}public static class Item{public const string GameStart="start",GameWin="win";} }
+enum BizzaLevelResultType{Win,Fail}enum LoseReason{Health}
+class LevelInfo {public int levelTotalTarget,levelRemainingTarget,levelAchieveTarget;public double levelProgress;}
+static class DoubleGetRewardPanel {public enum E_UseScene{WinPanel}}
+static class Real_GetRewardPanelUtil {public static int Opens;public static void OpenGetRewardPanel(DoubleGetRewardPanel.E_UseScene scene)=>Opens++;}
+enum RoyalMatchLevelOutcome{Won,Lost,Quit}
+struct RoyalMatchLevelResult {public int Level,TotalTargets,RemainingTargets,CoinsEarned;public RoyalMatchLevelOutcome Outcome;}
+static class CoreLevelCatalog{public const int SupportedLevelCount=100;}
+static class TransitionBlock{public static int Calls;public static void ToGamePlay()=>Calls++;}
+static class UIUtils{public static int Tips;public static void ShowNetworkErrorTip()=>Tips++;}
+static class SDKAssetHandler {public static Exception LastError;public static UniTask OpenCommonConfirmTipsPanel(CommonConfirmTipsPanel.Args args)=>new(Task.CompletedTask);}
+static class CommonConfirmTipsPanel {public struct Args{public bool isLanguage;public string des;public Action onFinish;}}
+static class FlowModule {
+    static int activeLevel;static bool levelLoading,serverProgressChanged,winResultHandled;
+    public static int WinLevelNumber{get;private set;}
+    public static bool AutomaticPopupFlowBlocked;
+    static void SetAutomaticPopupFlowBlocked(bool value)=>AutomaticPopupFlowBlocked=value;
+    static void BeginAnalyticsLevel(){}static void CompleteAnalyticsLevel(bool success){}
+    public static void LoadGameLevel()=>BridgingUtil.LoadCalls++;
+    public static void OpenGameLosePanel(BizzaLevelResultType type,LoseReason reason,LevelInfo info){}
+    public static void NewPlayerGuideEnd()=>SaveDataUtils.GameData.customTutorialEnd=true;
+    public static void Reset(){ResetLevelState();winResultHandled=false;WinLevelNumber=0;AutomaticPopupFlowBlocked=false;}
+    // FLOW_CURRENT_LEVEL
+    // FLOW_METHODS
+}
+sealed class WkyGameplayBridge {
+    // BRIDGE_FIELDS
+    private void OnWonAttemptCoinsEarned(int amount){}
+    public static WkyGameplayBridge InstallForTest(){Instance=new WkyGameplayBridge();return Instance;}
+    public void NotifyAccount()=>ObserveAccountLevel();
+    public bool Loading=>loading;
+    public bool ReportStarted=>winSettlement?.ReportStarted==true;
+    // BRIDGE_METHODS
+}
+static class Runner {
+    static int checks;
+    static void Check(bool value,string message){if(!value)throw new Exception(message);checks++;Console.WriteLine("PASS "+message);}
+    static WkyGameplayBridge Reset(int local,bool accountReady=false,int server=1){
+        SaveDataUtils.GameData=new(){playerSelectedLv=local};SaveDataUtils.Saves=0;
+        AccountModule.Instance=accountReady?new(){AccountReady=true,Os_Current_Uso=new(){Os_Rts=server}}:new();
+        UIModule.Instance=new();Application.internetReachability=NetworkReachability.ReachableViaLocalAreaNetwork;
+        FlowModule.Reset();BridgingUtil.Starts=BridgingUtil.LoadCalls=BizzaEventSystem.GameStarts=BizzaEventSystem.LoadingFinished=BizzaGameAnalytics.Loads=TransitionBlock.Calls=UIUtils.Tips=Real_GetRewardPanelUtil.Opens=0;SDKAssetHandler.LastError=null;
+        var bridge=WkyGameplayBridge.InstallForTest();bridge.PrepareInitialAttempt();return bridge;
+    }
+    static void Ready(WkyGameplayBridge bridge){bridge.TryGetCurrentLevel(out int level);bridge.OnAttemptReady(level);Scheduler.Finish(bridge.CompleteSceneHandoff(default));}
+    static void Win(WkyGameplayBridge bridge){bridge.TryGetCurrentLevel(out int level);bridge.OnAttemptEnded(new(){Level=level,Outcome=RoyalMatchLevelOutcome.Won,TotalTargets=10});}
+    static void Receive(WkyGameplayBridge bridge,int level){AccountModule.Instance??=new();AccountModule.Instance.Os_Current_Uso=new(){Os_Rts=level};FlowModule.ApplyServerProgress(level);bridge.NotifyAccount();}
+    static void Main(){
+        var bridge=Reset(7);Check(bridge.TryGetCurrentLevel(out int level)&&level==7,"first launch without an account prepares the saved local level");
+        Ready(bridge);Check(BridgingUtil.Starts==1&&BizzaEventSystem.GameStarts==1,"offline initial handoff starts the actual local attempt once");
+        FlowModule.ReportFirstEffectiveAction();Check(Teach01Module.Instance.Effective==1,"effective gameplay action reaches the tutorial gift boundary");
+        bridge=Reset(6);AccountModule.Instance=null;bridge.PrepareInitialAttempt();
+        Check(bridge.TryGetCurrentLevel(out level)&&level==6,"initial preparation also tolerates the account module not yet being available");
+        foreach(int server in new[]{20,3}){
+            bridge=Reset(7);Receive(bridge,server);
+            Check(bridge.TryGetCurrentLevel(out level)&&level==7&&TransitionBlock.Calls==0,"recovery while loading preserves the captured level: "+server);
+            Ready(bridge);Check(FlowModule.CurrentLevel==7&&SaveDataUtils.GameData.playerSelectedLv==server,"GameStart retains a server revision received during loading: "+server);
+        }
+        foreach(int server in new[]{20,3}){
+            bridge=Reset(7);Ready(bridge);int opens=UIModule.Instance.Opens;
+            Receive(bridge,server);
+            Check(bridge.TryGetCurrentLevel(out level)&&level==7&&FlowModule.CurrentLevel==7,"server revision preserves the current board snapshot: "+server);
+            Check(SaveDataUtils.GameData.playerSelectedLv==server&&TransitionBlock.Calls==0&&UIModule.Instance.Opens==opens&&BridgingUtil.LoadCalls==0,"server revision only changes next-entry progress, without reloading: "+server);
+            Win(bridge);
+            Check(SaveDataUtils.GameData.playerSelectedLv==server&&FlowModule.WinLevelNumber==7,"winning cannot overwrite accepted server progress: "+server);
+            Scheduler.Finish(bridge.ReloadAttempt());
+            Check(bridge.TryGetCurrentLevel(out level)&&level==server&&TransitionBlock.Calls==1&&SDKAssetHandler.LastError==null,"next attempt uses pending server progress: "+server);
+        }
+        bridge=Reset(7,true,12);Check(bridge.TryGetCurrentLevel(out level)&&level==12,"ready account startup accepts its real server progress");
+        bridge=Reset(7);Ready(bridge);Receive(bridge,4);
+        bridge.OnAttemptEnded(new(){Level=7,Outcome=RoyalMatchLevelOutcome.Lost});Scheduler.Finish(bridge.ReloadAttempt());
+        Check(bridge.TryGetCurrentLevel(out level)&&level==4&&TransitionBlock.Calls==1,"failure retry adopts the saved pending server progress");
+        bridge=Reset(7);Ready(bridge);Win(bridge);
+        Check(SaveDataUtils.GameData.playerSelectedLv==8,"local win advances by one when no server revision arrived");
+        Check(!bridge.TryCaptureWinReport(out var report)&&report==null,"win without an account exposes no report callback or request");
+        Scheduler.Finish(bridge.ReloadAttempt());Check(bridge.TryGetCurrentLevel(out level)&&level==8&&SDKAssetHandler.LastError==null,"offline winner can continue without waiting for a nonexistent report");
+        bridge=Reset(7,true,7);Ready(bridge);Application.internetReachability=NetworkReachability.NotReachable;Win(bridge);
+        int requestCalls=0;if(bridge.TryCaptureWinReport(out report))requestCalls++;
+        Check(requestCalls==0&&report==null&&bridge.ReportStarted,"network-off win declines the request and resolves the settlement locally");
+        Check(!bridge.TryCaptureWinReport(out report),"repeated capture cannot send a second report");
+        Scheduler.Finish(bridge.ReloadAttempt());Check(bridge.TryGetCurrentLevel(out level)&&level==8&&SDKAssetHandler.LastError==null,"network-off continue reaches next local attempt");
+        bridge=Reset(7,true,7);Ready(bridge);Win(bridge);
+        Check(bridge.TryCaptureWinReport(out report)&&report!=null,"online settlement exposes its single owned report callback");
+        var receipt=new AccountModule.UserInfo{Os_Rts=10};
+        report(new(){success=true,data=new(){Os_Uso=receipt}});
+        AccountModule.Instance.Os_Current_Uso=receipt;FlowModule.ApplyServerProgress(10);bridge.NotifyAccount();
+        Receive(bridge,3);Scheduler.Finish(bridge.ReloadAttempt());
+        Check(bridge.TryGetCurrentLevel(out level)&&level==3&&SaveDataUtils.GameData.playerSelectedLv==3&&SDKAssetHandler.LastError==null,
+            "continuing after a confirmed report cannot reapply its older receipt over a newer rollback");
+        bridge=Reset(7);bridge.OnAttemptReady(7);
+        var first=bridge.CompleteSceneHandoff(default);var duplicate=bridge.CompleteSceneHandoff(default);
+        Scheduler.Finish(first);Scheduler.Finish(duplicate);Scheduler.Finish(bridge.CompleteSceneHandoff(default));
+        Check(BridgingUtil.Starts==1&&BizzaEventSystem.GameStarts==1&&BizzaEventSystem.LoadingFinished==1&&BizzaGameAnalytics.Loads==1&&UIModule.Instance.Opens==1,"concurrent and late duplicate handoffs share one GameStart and loading-complete notification");
+        bridge=Reset(7);var oldUi=UIModule.Instance;oldUi.DelayGameOpen=true;
+        var stale=bridge.CompleteSceneHandoff(default);var replacement=WkyGameplayBridge.InstallForTest();replacement.PrepareInitialAttempt();
+        oldUi.DelayedGame.TrySetResult(oldUi.GamePage);
+        bool cancelled=false;try{Scheduler.Finish(stale);}catch(OperationCanceledException){cancelled=true;}
+        Check(cancelled&&BridgingUtil.Starts==0&&BizzaEventSystem.LoadingFinished==0&&oldUi.Closes==0,"late game-page completion from an old bridge cannot start gameplay or close the current loading page");
+        bridge=Reset(7);bridge.OnAttemptReady(7);oldUi=UIModule.Instance;
+        stale=bridge.CompleteSceneHandoff(default);replacement=WkyGameplayBridge.InstallForTest();replacement.PrepareInitialAttempt();
+        cancelled=false;try{Scheduler.Finish(stale);}catch(OperationCanceledException){cancelled=true;}
+        Check(cancelled&&BridgingUtil.Starts==0&&oldUi.Closes==0,"old handoff resuming after the frame boundary cannot close the current loading page");
+        Console.WriteLine("GAMEPLAY_RECOVERY_PASS cases="+checks);
+    }
+}

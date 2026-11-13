@@ -35,6 +35,7 @@ public class RealUiWidget : MonoBehaviour
 
         taskBtn.onClick.AddListener(() =>
         {
+            if (!UIUtils.CheckWKYAccountReady()) return;
             _ = UIModule.Instance.OpenPage(UIPageIds.UI_DailyTaskPage);
         });
     }
@@ -48,7 +49,7 @@ public class RealUiWidget : MonoBehaviour
     public void RefreshLevelText()
     {
         if (levelTextProvidedByCurrencyBar) return;
-        levelTxt.text = $"{SaveDataUtils.GameData.playerSelectedLv}"; //LanguageUtils.GetFormatText("Menu_LevelBtn", SaveDataUtils.GameData.playerUnlockedLv);
+        levelTxt.text = FlowModule.CurrentLevel.ToString(); //LanguageUtils.GetFormatText("Menu_LevelBtn", SaveDataUtils.GameData.playerUnlockedLv);
     }
 
     private void OnCanvasHierarchyChanged()

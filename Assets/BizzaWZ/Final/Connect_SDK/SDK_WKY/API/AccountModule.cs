@@ -37,6 +37,8 @@ public class AccountModule
 
     public void Login()
     {
+        if (loginStarted) return;
+        loginStarted = true;
         var cfg = ChannelConfig.Instance;
         LogLogger.LOGGameStart($"静态配置 :: " +
                                $"是否为发布阶段 {ChannelConfig.IsRelese_Mode} " +
@@ -47,7 +49,10 @@ public class AccountModule
                                $"本地国家类型 {cfg.real_CustomConfig.DefaultCountryName} "
                                );
 
-        OnLoginData().Forget();
+        OnLoginData().Forget(error =>
+        {
+            if (!(error is OperationCanceledException)) MarkLoadingUserDataFailed(error.GetType().Name);
+        });
     }
 
     #region 登录时加载玩家数据
@@ -237,10 +242,6 @@ public class AccountModule
     #endregion
 
 
-    private const int MaxLoadingUserDataRetryTimes = 0;
-    private int retryUserIdTimes = MaxLoadingUserDataRetryTimes;
-    private int retryUserInfoTimes = MaxLoadingUserDataRetryTimes;
-
     public bool LoadingFinish
     {
         get
@@ -255,17 +256,82 @@ public class AccountModule
     public bool LoginUserIdFinish => loginUserIdFinish;
     private bool loginUserInfoFinish = false;
     public bool LoginUserInfoFinish => loginUserInfoFinish;
-    private bool loginAttributeFinish = false;
 
     private bool loadingUserDataFailed = false;
     public bool LoadingUserDataFailed => loadingUserDataFailed;
 
     public string LoadingUserDataErrorCode { get; private set; }
 
-    private void MarkLoadingUserDataFailed(string errorCode)
+    public const string SuspendedCode = "1001";
+    private const string SuspendedPrefsKey = "WKY_AccountSuspended";
+    public bool HasLocalSuspension => PlayerPrefs.GetInt(SuspendedPrefsKey, 0) == 1;
+    public bool IsSuspended { get; private set; }
+    public bool InitialLoginAttemptCompleted { get; private set; }
+    public bool AccountReady => !IsSuspended && LoadingFinish && Os_Uso != null;
+    public bool StartupResultAvailable => IsSuspended || AccountReady ||
+        (!HasLocalSuspension && InitialLoginAttemptCompleted);
+    public event Action LoginSucceeded;
+
+    private bool loginStarted, loginAttemptInFlight, retryScheduled, accountExtrasRequested;
+    private bool nativeHttpInitialized;
+
+    // Only login, user-info and the newcomer reward can establish suspension.
+    private void CheckSuspension(string errorCode)
     {
+        if (errorCode != SuspendedCode || IsSuspended || !ReferenceEquals(Instance, this)) return;
+        IsSuspended = true;
+        InitialLoginAttemptCompleted = true;
         loadingUserDataFailed = true;
         LoadingUserDataErrorCode = errorCode;
+        loginAttemptInFlight = false;
+        PlayerPrefs.SetInt(SuspendedPrefsKey, 1);
+        PlayerPrefs.Save();
+        SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args
+        {
+            isLanguage = true,
+            persistAcrossScenes = true,
+            des = "HTTPNetworkProblem",
+            onFinish = Application.Quit,
+        }).Forget();
+    }
+
+    private void MarkLoadingUserDataFailed(string errorCode)
+    {
+        if (!ReferenceEquals(Instance, this) || IsSuspended || AccountReady) return;
+        bool notifySuspensionRecheck = HasLocalSuspension && !InitialLoginAttemptCompleted;
+        loadingUserDataFailed = true;
+        LoadingUserDataErrorCode = errorCode;
+        InitialLoginAttemptCompleted = true;
+        loginAttemptInFlight = false;
+        if (notifySuspensionRecheck)
+        {
+            try { UIUtils.ShowNetworkErrorTip(); }
+            catch (Exception error) { Debug.LogWarning("WKY network tip unavailable: " + error.GetType().Name); }
+        }
+        if (retryScheduled || WKY_Flow.IsAccessDenied || Application.exitCancellationToken.IsCancellationRequested) return;
+
+        retryScheduled = true;
+        RetryLoginAsync().Forget();
+    }
+
+    private async UniTask RetryLoginAsync()
+    {
+        var cancellation = Application.exitCancellationToken;
+        try
+        {
+            await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: cancellation);
+            await UniTask.WaitUntil(() => !ReferenceEquals(Instance, this) || IsSuspended ||
+                Application.internetReachability != NetworkReachability.NotReachable, cancellationToken: cancellation);
+        }
+        catch (OperationCanceledException)
+        {
+            return;
+        }
+        finally
+        {
+            retryScheduled = false;
+        }
+        await TryLoginGame();
     }
 
     private void MarkLoadingUserDataFailed<T>(FailHttpResponse<T> response)
@@ -273,42 +339,60 @@ public class AccountModule
         MarkLoadingUserDataFailed(response.errorCode);
     }
 
-    private async UniTask OnLoginData()
+    private UniTask OnLoginData()
     {
-        loginUserIdFinish = false;
-        loginUserInfoFinish = false;
-        loginAttributeFinish = false;
+        return TryLoginGame();
+    }
 
+    private async UniTask TryLoginGame()
+    {
+        var cancellation = Application.exitCancellationToken;
+        if (!ReferenceEquals(Instance, this) || IsSuspended || AccountReady || loginAttemptInFlight ||
+            cancellation.IsCancellationRequested) return;
+
+        loginAttemptInFlight = true;
         loadingUserDataFailed = false;
         LoadingUserDataErrorCode = null;
-        retryUserIdTimes = MaxLoadingUserDataRetryTimes;
-        retryUserInfoTimes = MaxLoadingUserDataRetryTimes;
-
-        const string ClassName = "com.bangsawan.oceanshine.HttpUtil";
-        const string SendHttpMethodName = "initialize";
-
-        JavaBridgeUtils.CallStaticMethodCacheClass(ClassName, SendHttpMethodName, Application.identifier, Application.version, DeviceInfoUtil.GetDeviceInfoDataForCloud().Os_Vc.ToString());
-
-        // 先查看是否有 用户id
-#if UNITY_EDITOR
-        if (ChannelConfig.Instance.real_CustomConfig.useEditorUserId)
+        try
         {
-            PlayerPrefs.SetString(m_userIdKey, ChannelConfig.Instance.real_CustomConfig.editorUserId);
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                MarkLoadingUserDataFailed("NETWORK_ERROR");
+                return;
+            }
+            if (!await WKY_Flow.CanStartAccountRequestsAsync(cancellation))
+            {
+                MarkLoadingUserDataFailed("COUNTRY_CHECK_UNAVAILABLE");
+                return;
+            }
+            if (!ReferenceEquals(Instance, this)) return;
+            if (!nativeHttpInitialized)
+            {
+                const string ClassName = "com.bangsawan.oceanshine.HttpUtil";
+                const string SendHttpMethodName = "initialize";
+                JavaBridgeUtils.CallStaticMethodCacheClass(ClassName, SendHttpMethodName, Application.identifier,
+                    Application.version, DeviceInfoUtil.GetDeviceInfoDataForCloud().Os_Vc.ToString());
+                nativeHttpInitialized = true;
+            }
+            var id = PlayerPrefs.GetString(m_userIdKey);
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                string googleId = await DeviceInfoUtil.GetGoogleIdAsync(cancellation);
+                if (ReferenceEquals(Instance, this)) login(googleId);
+            }
+            else
+            {
+                InitUserInfo();
+            }
         }
-#endif
-        var id = PlayerPrefs.GetString(m_userIdKey);
-        // 如果 没有用户id
-        if (string.IsNullOrEmpty(id))
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
         {
-            // 首次登录需要 GAID；由 DeviceInfoUtil 统一请求，避免 Account/IP 各自监听回调。
-            string googleId = await DeviceInfoUtil.GetGoogleIdAsync();
-            LogLogger.LOGUserInstall($" 没有用户id  进入到请求流程");
-            login(googleId);
+            loginAttemptInFlight = false;
         }
-        else
+        catch (Exception error)
         {
-            LogLogger.LOGUserInstall($" 有用户id了 {id}");
-            InitUserInfo();
+            Debug.LogWarning("WKY login attempt failed: " + error.GetType().Name);
+            MarkLoadingUserDataFailed(error.GetType().Name);
         }
     }
 
@@ -330,11 +414,16 @@ public class AccountModule
 
     private void InitUserInfo()
     {
-        loginUserIdFinish = true; // 走到用户信息这一步 肯定就是有用户id了
-        BizzaSdk.Ad.SetUserId(PlayerPrefs.GetString(m_userIdKey));
-
+        loginUserIdFinish = true;
         Request_UserInfoRequest(true, false, Response_UserInfoResponse);
+    }
+
+    private void RequestAccountExtras()
+    {
+        if (accountExtrasRequested) return;
+        accountExtrasRequested = true;
 #if BIZZA_HTTP_AD
+        Request_WithdrawalPageRequest(null, false);
         Request_AppOtherConfigRequest(null, false);
         Request_RoutineTaskLookAdMoneyRequest(true, null, false);
         Request_FeedbackListV2Request(CreateOceanShineFeedbackListV2Request(), (FailHttpResponse<OceanShineFeedbackListV2Response> response) =>
@@ -373,7 +462,7 @@ public class AccountModule
         get => Os_Uso;
         set
         {
-            if (value == null) return;
+            if (value == null || IsSuspended || !ReferenceEquals(Instance, this)) return;
             LogLogger.LOGUserInfoAlter($"用户信息更新 + {value.GetInfo()} + {isLoadingAlter}");
             if (Os_Uso != null)
             {
@@ -403,6 +492,7 @@ public class AccountModule
             SaveDataUtils.GameData.fakeWithdrawPanelFirstWithdraw = value.Os_Mny == 0;
             isLoadingAlter = true;
             Os_Uso = value;
+            FlowModule.ApplyServerProgress(value.Os_Rts);
             BizzaEventSystem.Emit(EventDefine.Item.ItemChanged);
             SaveDataUtils.Save();
             CheckPendingAutoPopups();
@@ -1277,47 +1367,25 @@ public class AccountModule
 
     public void Response_LoginResponse(FailHttpResponse<OceanShineLoginResponse> response)
     {
-        LogLogger.LogVerbose(LogTag.LOG_Account, $"=== OceanShineLoginResponse ===");
-        if (!response.success || response.data == null)
+        if (!ReferenceEquals(Instance, this)) return;
+        CheckSuspension(response.errorCode);
+        if (IsSuspended) return;
+        LogLogger.LogVerbose(LogTag.LOG_Account, "=== OceanShineLoginResponse ===");
+        if (!response.success || response.data?.Os_Aru == null || string.IsNullOrWhiteSpace(response.data.Os_Usid))
         {
-            if (retryUserIdTimes > 0)
-            {
-                retryUserIdTimes--;
-                login("");
-                return;
-            }
-            else
-            {
-#if !BIZZA_HTTP_AD
-                loginUserIdFinish = true;
-                loginUserInfoFinish = true;
-#endif
-            }
-
             MarkLoadingUserDataFailed(response);
             return;
         }
 
-        if (response.success)
-        {
-            if (!string.IsNullOrEmpty(response.data.Os_Usid))
-            {
-                PlayerPrefs.SetString(m_userIdKey, response.data.Os_Usid);
-            }
+        PlayerPrefs.SetString(m_userIdKey, response.data.Os_Usid);
+        m_Temp_ACM = response.data.Os_Aru.Os_Acm;
+        m_Temp_AIU = response.data.Os_Aru.Os_Aiu;
+        InitUserInfo();
 
-            m_Temp_ACM = response.data.Os_Aru.Os_Acm;
-            m_Temp_AIU = response.data.Os_Aru.Os_Aiu;
+        if (response.data.Os_Aru.Os_Aiu == 0)
+            AdjustAttributionAdapter.AttributeStart("checkIPU");
 
-            InitUserInfo();
-
-            if (response.data.Os_Aru.Os_Aiu == 0)
-            {
-                // 在这里进行 归因初始化
-                AdjustAttributionAdapter.AttributeStart("checkIPU");
-            }
-
-        }
-        LogLogger.LogVerbose(LogTag.LOG_Account, $"+++ OceanShineLoginResponse +++");
+        LogLogger.LogVerbose(LogTag.LOG_Account, "+++ OceanShineLoginResponse +++");
     }
 
 
@@ -1525,22 +1593,26 @@ public class AccountModule
     public void Request_UserReachReportRequest(
         Action<FailHttpResponse<OceanShineUserReachReportResponse>> callback = null)
     {
-        callback += OnRequest;
-        var request = new AccountModule.OceanShineUserReachReportRequest()
+        if (!AccountReady)
+        {
+            callback?.Invoke(new FailHttpResponse<OceanShineUserReachReportResponse>
+                { success = false, errorCode = "ACCOUNT_NOT_READY" });
+            return;
+        }
+
+        var request = new OceanShineUserReachReportRequest
         {
             Os_Apid = DeviceInfoUtil.GetDeviceInfoDataForCloud().Os_Apid,
-            Os_Usid = PlayerPrefs.GetString(AccountModule.m_userIdKey),
+            Os_Usid = PlayerPrefs.GetString(m_userIdKey),
         };
         string requestParams = JsonConvert.SerializeObject(request);
-        HttpUtil.RequestToServer<OceanShineUserReachReportResponse>(AccountModuleCfg.new_user, requestParams, callback,
-            false);
-
-        void OnRequest(FailHttpResponse<OceanShineUserReachReportResponse> response)
+        HttpUtil.RequestToServer<OceanShineUserReachReportResponse>(AccountModuleCfg.new_user, requestParams, response =>
         {
-            if (!response.success || response.data == null)
-                return;
-            Os_Current_Uso = response.data.Os_Uso;
-        }
+            CheckSuspension(response.errorCode);
+            if (!IsSuspended && response.success && response.data?.Os_Uso != null)
+                Os_Current_Uso = response.data.Os_Uso;
+            callback?.Invoke(response);
+        }, false);
     }
 
     #endregion
@@ -1553,6 +1625,13 @@ public class AccountModule
     public void Request_UserReachLevelReportRequest(
         Action<FailHttpResponse<OceanShineUserReachReportResponse>> callback = null)
     {
+        if (!AccountReady || Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            callback?.Invoke(new FailHttpResponse<OceanShineUserReachReportResponse>
+                { success = false, errorCode = "ACCOUNT_NOT_READY" });
+            return;
+        }
+
         callback += OnRequest;
         var request = new AccountModule.OceanShineUserReachReportRequest()
         {
@@ -1933,71 +2012,79 @@ public class AccountModule
     public void Request_UserInfoRequest(bool isUpdate, bool block = true,
         Action<FailHttpResponse<OceanShineUserInfoResponse>> callback = null)
     {
-        if (!isUpdate && userInfoResponse != null && !string.IsNullOrEmpty(Os_Current_Uso.Os_Cty))
+        string userId = PlayerPrefs.GetString(m_userIdKey);
+        if (IsSuspended || string.IsNullOrWhiteSpace(userId) || !WKY_Flow.IsCountryAccessAllowed)
         {
-            var response = new FailHttpResponse<OceanShineUserInfoResponse>()
+            callback?.Invoke(new FailHttpResponse<OceanShineUserInfoResponse>
+                { success = false, errorCode = IsSuspended ? SuspendedCode : "ACCOUNT_NOT_READY" });
+            return;
+        }
+
+        if (!isUpdate && userInfoResponse != null && !string.IsNullOrEmpty(Os_Current_Uso?.Os_Cty))
+        {
+            callback?.Invoke(new FailHttpResponse<OceanShineUserInfoResponse>
             {
                 success = true,
                 data = userInfoResponse,
-            };
-            callback?.Invoke(response);
+            });
             return;
         }
 
-        callback += OnRequest;
-        OceanShineUserInfoRequest request = new OceanShineUserInfoRequest()
+        var request = new OceanShineUserInfoRequest
         {
             Os_Apid = DeviceInfoUtil.GetDeviceInfoDataForCloud().Os_Apid,
-            Os_Usid = PlayerPrefs.GetString(m_userIdKey),
+            Os_Usid = userId,
         };
 
         string requestParams = JsonConvert.SerializeObject(request);
-        HttpUtil.RequestToServer<OceanShineUserInfoResponse>(AccountModuleCfg.user_info, requestParams, callback, block);
-
-        void OnRequest(FailHttpResponse<OceanShineUserInfoResponse> response)
+        HttpUtil.RequestToServer<OceanShineUserInfoResponse>(AccountModuleCfg.user_info, requestParams, response =>
         {
-            if (response.success && response.data != null && isUpdate)
+            CheckSuspension(response.errorCode);
+            if (ReferenceEquals(Instance, this) && !IsSuspended && response.success && response.data?.Os_Uso != null && isUpdate)
             {
                 userInfoResponse = response.data;
-                Os_Current_Uso = response.data.Os_Uso;
+                if (AccountReady) Os_Current_Uso = response.data.Os_Uso;
             }
-        }
+            callback?.Invoke(response);
+        }, block);
     }
 
-    /// <summary>
-    /// 用户信息 响应
-    /// </summary>
     public void Response_UserInfoResponse(FailHttpResponse<OceanShineUserInfoResponse> response)
     {
-        LogLogger.LogVerbose(LogTag.LOG_Account, $"=== OceanShineUserInfoResponse === {response.success}");
-
-        if (response.success && response.data != null)
+        if (!ReferenceEquals(Instance, this)) return;
+        CheckSuspension(response.errorCode);
+        if (IsSuspended || AccountReady) return;
+        if (!response.success || response.data?.Os_Uso == null)
         {
-            this.Os_Current_Uso = response.data.Os_Uso;
-            SetCountryTypeByServer(Os_Uso.Os_Cty);
-            SetLanguageByCountryType();
-            BizzaEventSystem.Emit(EventDefine.Login.InitContentByCountry);
+            MarkLoadingUserDataFailed(response);
+            return;
+        }
+
+        try
+        {
+            SetCountryTypeByServer(response.data.Os_Uso.Os_Cty);
+            Os_Current_Uso = response.data.Os_Uso;
             loginUserInfoFinish = true;
-
-            LogLogger.LogVerbose(LogTag.LOG_Account, $"+++ OceanShineUserInfoResponse +++");
-#if BIZZA_HTTP_AD
-            Request_WithdrawalPageRequest(null, false);
-#endif
-            return;
+            loginAttemptInFlight = false;
+            loadingUserDataFailed = false;
+            LoadingUserDataErrorCode = null;
+            InitialLoginAttemptCompleted = true;
+            if (HasLocalSuspension)
+            {
+                PlayerPrefs.DeleteKey(SuspendedPrefsKey);
+                PlayerPrefs.Save();
+            }
         }
-
-        if (retryUserInfoTimes > 0)
+        catch (Exception error)
         {
-            retryUserInfoTimes--;
-            Request_UserInfoRequest(true, false, Response_UserInfoResponse);
+            MarkLoadingUserDataFailed(error.GetType().Name);
+            Debug.LogException(error);
             return;
         }
 
-#if !BIZZA_HTTP_AD
-        loginUserInfoFinish = true;
-#endif
-
-        MarkLoadingUserDataFailed(response);
+        LoginSucceeded?.Invoke();
+        BizzaEventSystem.Emit(EventDefine.Login.InitContentByCountry);
+        RequestAccountExtras();
     }
 
     #endregion

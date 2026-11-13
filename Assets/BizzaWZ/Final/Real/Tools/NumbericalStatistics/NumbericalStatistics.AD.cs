@@ -13,7 +13,7 @@ public partial class NumbericalStatistics
     private const float GetRewardCooldownSeconds = 15f;
     private static float getRewardCooldownUntil;
 
-    public static int currentLevel => SaveDataUtils.GameData.playerSelectedLv; // 当前关卡
+    public static int currentLevel => FlowModule.CurrentLevel; // 当前关卡
     public static int CloseGetRewardCount => GetRewardInterstitialCloseCount; // 关闭多少次恭喜获得界面出现广告
     public static int CloseGetRewardNum = 0; // 当前关闭恭喜获得界面次数进度
 

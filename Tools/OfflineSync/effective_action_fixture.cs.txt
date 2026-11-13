@@ -1,0 +1,173 @@
+// ASYNC_BOUNDARY
+
+public struct Vector3 { }
+static class Time { public static int frameCount; }
+enum NewbieGiftRequestState { NotTriggered, NextLogin, Background, Succeeded }
+class TeachData { public NewbieGiftRequestState newbieGiftRequest; public bool newbieGiftShown; }
+static class SaveDataUtils { public static TeachData TeachData = new(); public static int Saves; public static void Save() => Saves++; }
+class AccountModule { public static AccountModule Instance = new(); public bool AccountReady, IsSuspended; }
+class Teach01Flow { public bool IsRunning = true; }
+class Teach01Module {
+    public static Teach01Module Instance = new(); public Teach01Flow Flow = new();
+    // TEACH_METHOD
+}
+static class FlowModule {
+    public static bool AutomaticPopupFlowBlocked;
+    // FLOW_METHOD
+}
+class WkyGameplayBridge : Whitebox.Foundation.IRoyalMatchEffectiveActionBridge {
+    public bool loading, attemptEnded;
+    // BRIDGE_METHOD
+}
+
+class UIPageBase { public object OpenOwner = new(); }
+class GetRewardPanel : UIPageBase { public bool IsWinReward; }
+static class UIPageIds { public const string NewbieGiftPage = "gift"; }
+class UIModule {
+    public bool Opening; public GetRewardPanel Reward; public int Opens;
+    public TaskCompletionSource<bool> Prefetch = new();
+    public T GetPage<T>() where T:UIPageBase => Reward as T;
+    public UniTask<bool> PrepareAutomaticPopupAsync(string id, PageOpenAttempt attempt) => new(Prefetch.Task);
+    public UniTask<UIPageBase> OpenAutomaticPopup(string id, PageOpenAttempt attempt) { Opens++; return new(Task.FromResult(new UIPageBase())); }
+    public class PageOpenAttempt : IDisposable { public void Cancel(){} public void Dispose(){} }
+}
+class Teach01UnityServices {
+    public UIModule ui = new(); public bool GameTutorialCompleted = true;
+    public static bool AccountReady => AccountModule.Instance.AccountReady;
+    public bool IsSuspended => AccountModule.Instance.IsSuspended;
+    public UniTask WaitUntil(Func<bool> condition, CancellationToken token) => Scheduler.Wait(condition, token);
+    object OwnOpenedPage(UIPageBase page, CancellationToken token) { token.ThrowIfCancellationRequested(); return page.OpenOwner; }
+    // SERVICE_METHODS
+}
+
+namespace Whitebox.Foundation {
+    interface IRoyalMatchEffectiveActionBridge { void OnEffectiveMatch(); }
+    class Controller { public CoreGameFlow CoreFlow; }
+    static class RoyalMatchSessionBridge {
+        public static Controller ActiveController;
+        // PUBLIC_GATE
+    }
+    class State { public bool Playing = true, Busy; public bool IsPlaying() => Playing; public bool HasAnyOperation() => Busy; }
+    class Moves { public int MadeMoves; }
+    class Fall { public bool IsAllItemsSteady = true; }
+    class Auto { public bool IsThereAWaitingMatch; }
+    class Dialogs { public bool HasActiveDialog; }
+    class WinFailBoundary { public bool IsOutOfMoves; }
+    class Board { public State State = new(); public Moves Moves = new(); public Fall Fall = new(); public Auto Auto = new(); public bool IsPaidBoosterInteractionActive; }
+    class CoreGameFlow {
+        public Board game = new(); public Dialogs dialogs = new(); public WinFailBoundary WinFail = new();
+        public bool IsInitialized = true, attemptReadyReported = true, attemptEndedReported,
+            transitioning, failureStarted, outOfMovesStarted, revivePending, uiDisabled,
+            IsSynthesisTutorialActive, waitingDirectedTutorial, suppressTutorialSynthesis;
+        public int dialogInputLocks, effectiveActionBaselineMoves, synthesisBaselineMoves;
+        bool effectiveActionReported;
+        public IRoyalMatchEffectiveActionBridge effectiveActionBridge = new WkyGameplayBridge();
+        public void Bind(OriginalMatchGroupExplosion explosion) => explosion.BindEffectiveActionObserver(CanRecordEffectiveAction, RecordEffectiveAction);
+        public bool SynthesisAllowed => CanRecordSynthesis();
+        // CORE_DECISIONS
+    }
+    public interface IOriginalMatchDataServices { bool HasStaticItem(OriginalGridCell cell, int type); }
+    public class OriginalMatchExplosionReadiness { public bool Ready = true; public bool CanAutoExplode(ref OriginalMatchGroupSnapshot group) => Ready; }
+    class OriginalMatchDataPreparation {
+        public OriginalMatchDataPreparation(IOriginalMatchDataServices services) { }
+        public object CreateCollectData(OriginalMatchGroupSnapshot group) => new object();
+        public Special CreateSpecialItemData(OriginalMatchGroupSnapshot group) => new();
+    }
+    public class Special { public OriginalGridCell GetCreationCell() => null; }
+    public class OriginalMatchBoardItem { public Special SpecialItemCreationData; public object CollectData; }
+    public class Mediation { public object CurrentItem = new OriginalMatchBoardItem(); }
+    public class Neighbors { public OriginalGridCell Get(int n) => null; }
+    public class OriginalGridCell { public int X, Y; public Mediation Mediation = new(); public Neighbors Neighbors = new(); public Vector3 GetViewPosition() => new(); }
+    public struct OriginalCellPoint { public int X,Y; public OriginalCellPoint(int x,int y){X=x;Y=y;} }
+    public class CellList : List<OriginalGridCell> { public OriginalGridCell Get(int index) => this[index]; }
+    public class OriginalMatchGroupSnapshot { public CellList Cells = new(); public int MatchType; }
+    public class OriginalExplodeData { public bool CanSpreadJelly; public int Trigger; public OriginalCellPoint Point; }
+    static class OriginalExploder { public static OriginalExplodeData NextWithMatchType(int trigger,int type) => new(); }
+    class ExplosionServices : IOriginalMatchGroupExplosionServices {
+        public CoreGameFlow Core; public bool Remove = true, WinOnRemove; public OriginalGridCell Cell;
+        public bool IsAutoMatchDisabledForWaterLevel => false;
+        public bool InitJellySpreadData(ref OriginalMatchGroupSnapshot group, OriginalExplodeData data) => false;
+        public bool HasStaticItem(OriginalGridCell cell, int type) => false;
+        public void ExplodeTopMostAboveItem(OriginalGridCell cell, OriginalExplodeData data) { }
+        public void ExplodeMatchItem(OriginalMatchBoardItem item, OriginalExplodeData data) {
+            if (!Remove) return;
+            Cell.Mediation.CurrentItem = null;
+            if (WinOnRemove) Core.game.State.Playing = false;
+        }
+        public OriginalGridCell GetCell(OriginalCellPoint point) => Cell;
+        public void TryCollectMadness(OriginalGridCell origin,int type,int count,int trigger) { }
+        public void CreateSpecialItemForMatchGroup(OriginalMatchGroupSnapshot group,OriginalGridCell cell,bool auto) { }
+        public void ExplodeCurrentItemByNearMatch(OriginalGridCell cell,OriginalExplodeData data) { }
+        public void PlayMatchExplode(bool swap) { }
+        public void PlayHaptic(int id,int type,float strength,float duration,bool replay) { }
+    }
+}
+// EXPLOSION
+
+static class Checks {
+    static int passed;
+    static void Check(bool value, string name) { if(!value) throw new Exception(name); Console.WriteLine("PASS " + name); passed++; }
+    static (Whitebox.Foundation.CoreGameFlow core, Whitebox.Foundation.OriginalMatchGroupExplosion explosion, Whitebox.Foundation.ExplosionServices services) Setup() {
+        AccountModule.Instance = new(); SaveDataUtils.TeachData = new(); SaveDataUtils.Saves = 0; Teach01Module.Instance = new();
+        FlowModule.AutomaticPopupFlowBlocked = false;
+        var core = new Whitebox.Foundation.CoreGameFlow();
+        Whitebox.Foundation.RoyalMatchSessionBridge.ActiveController = new(){ CoreFlow = core };
+        var services = new Whitebox.Foundation.ExplosionServices { Core = core };
+        var explosion = new Whitebox.Foundation.OriginalMatchGroupExplosion(new(), services);
+        core.Bind(explosion); return(core, explosion, services);
+    }
+    static void Match(Whitebox.Foundation.OriginalMatchGroupExplosion explosion, Whitebox.Foundation.ExplosionServices services) {
+        services.Cell = new(); var group = new Whitebox.Foundation.OriginalMatchGroupSnapshot(); group.Cells.Add(services.Cell);
+        explosion.ExplodeMatchGroup(group, new());
+    }
+    static void Main() {
+        var x = Setup();
+        Match(x.explosion,x.services);
+        Check(SaveDataUtils.Saves == 0, "Initial automatic matches with no accepted move do not mark first action");
+        Check(SaveDataUtils.TeachData.newbieGiftRequest == NewbieGiftRequestState.NotTriggered, "Invalid input without a consumed move leaves gift state untouched");
+        x.core.game.Moves.MadeMoves = 1; x.services.Remove = false; Match(x.explosion,x.services);
+        Check(SaveDataUtils.Saves == 0, "A protected/non-removed match item does not report success");
+        x.services.Remove = true; x.core.IsSynthesisTutorialActive = x.core.suppressTutorialSynthesis = true;
+        Check(!x.core.SynthesisAllowed, "Existing tutorial synthesis reward filtering remains active");
+        Match(x.explosion,x.services);
+        Check(SaveDataUtils.TeachData.newbieGiftRequest == NewbieGiftRequestState.Background && SaveDataUtils.Saves == 1, "Tutorial match persists offline first action immediately");
+        Check(!x.core.CanShowAutomaticPopup, "Tutorial still blocks gift presentation");
+        Match(x.explosion,x.services); FlowModule.ReportFirstEffectiveAction();
+        Check(SaveDataUtils.Saves == 1, "Further matches and legacy report calls cannot create another claim");
+
+        x = Setup(); x.core.game.Moves.MadeMoves = 1; x.services.WinOnRemove = true; Match(x.explosion,x.services);
+        Check(!x.core.game.State.IsPlaying() && SaveDataUtils.TeachData.newbieGiftRequest == NewbieGiftRequestState.Background, "First move winning during item removal still persists the claim");
+        Check(!x.core.CanShowAutomaticPopup, "Winning board cannot open a gift over win presentation");
+
+        x = Setup(); AccountModule.Instance.AccountReady = true; x.core.game.Moves.MadeMoves = 1; Match(x.explosion,x.services);
+        Check(SaveDataUtils.TeachData.newbieGiftRequest == NewbieGiftRequestState.NextLogin, "Online effective action retains online claim semantics");
+        x = Setup(); x.core.effectiveActionBaselineMoves = x.core.game.Moves.MadeMoves = 5; Match(x.explosion,x.services);
+        Check(SaveDataUtils.Saves == 0, "Restored board auto matches cannot pretend to be a new player action");
+        x.core.game.Moves.MadeMoves++; Match(x.explosion,x.services);
+        Check(SaveDataUtils.Saves == 1, "First new move after board restore reports successfully");
+        x = Setup(); x.core.game.Moves.MadeMoves = 1; x.explosion.BindEffectiveActionObserver(null,null); Match(x.explosion,x.services);
+        Check(SaveDataUtils.Saves == 0, "Released observer does not retain or notify old bridge");
+
+        x = Setup(); var teach = new Teach01UnityServices();
+        Check(teach.CanShowGift, "Ready stable active board permits a pending gift");
+        x.core.game.Fall.IsAllItemsSteady = false; Check(!teach.CanShowGift, "Falling board postpones gift"); x.core.game.Fall.IsAllItemsSteady = true;
+        x.core.game.State.Busy = true; Check(!teach.CanShowGift, "Active board operations postpone gift"); x.core.game.State.Busy = false;
+        x.core.game.Auto.IsThereAWaitingMatch = true; Check(!teach.CanShowGift, "Queued cascade postpones gift"); x.core.game.Auto.IsThereAWaitingMatch = false;
+        x.core.WinFail.IsOutOfMoves = true; Check(!teach.CanShowGift, "Exhausted moves postpone gift before fail dialog exists"); x.core.WinFail.IsOutOfMoves = false;
+        x.core.transitioning = true; Check(!teach.CanShowGift, "Scene transition postpones gift"); x.core.transitioning = false;
+        x.core.failureStarted = true; Check(!teach.CanShowGift, "Failure flow postpones gift"); x.core.failureStarted = false;
+        x.core.dialogs.HasActiveDialog = true; Check(!teach.CanShowGift, "Core dialog postpones gift"); x.core.dialogs.HasActiveDialog = false;
+
+        var opening = teach.OpenGift(CancellationToken.None);
+        Check(!opening.Value.IsCompleted && teach.ui.Opens == 0, "Gift waits for actual prefab prefetch");
+        x.core.game.State.Playing = false; teach.ui.Prefetch.TrySetResult(true); Scheduler.Pump();
+        Check(!opening.Value.IsCompleted && teach.ui.Opens == 0 && !SaveDataUtils.TeachData.newbieGiftShown,
+            "Production post-prefetch gate prevents gift when board wins during load");
+        Whitebox.Foundation.RoyalMatchSessionBridge.ActiveController = null; Scheduler.Pump();
+        Check(!opening.Value.IsCompleted, "No core scene during handoff cannot open gift");
+        Whitebox.Foundation.RoyalMatchSessionBridge.ActiveController = new(){ CoreFlow = new() };
+        Scheduler.Pump(); opening.GetAwaiter().GetResult();
+        Check(teach.ui.Opens == 1 && SaveDataUtils.TeachData.newbieGiftShown, "Pending gift opens once on the next stable gameplay board");
+        Console.WriteLine("PASS " + passed + " effective action and presentation checks");
+    }
+}

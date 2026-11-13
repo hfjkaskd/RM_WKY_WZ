@@ -1,0 +1,103 @@
+Gemwink Castle：离线进入与联网恢复迁移记录
+
+1. 来源、目标与回退依据
+
+目标工程：C:\Users\pc\RM_WKY_WZ
+隔离实施及构建目录：F:\WKY_Worktrees\GemwinkOfflineSync_20261113
+目标 origin：https://github.com/hfjkaskd/RM_WKY_WZ.git（未更换）
+原分支：codex/rm-wky-pure-real
+隔离分支：codex/offline-recovery-20261113
+
+先按用户要求保存并推送原有 46 个文件的修改：
+7bcfe188f0a72d142c698cdc3fc74a0237a74234
+这也是本次离线功能迁移的目标基线。原有 API 契约、UI 换皮、胜利图标/层级、每日任务进度条等均在该检查点中。
+已以远端 refs/heads/codex/rm-wky-pure-real 的完整哈希核对推送结果。
+
+来源仓库：https://github.com/bizza-game/WKY_FRAME.git
+本地只读参考仓库：C:\Users\pc\Desktop\WKY_FRAME（remote 与提交对象均已核对）。
+用户指定的提示词提交：e127d01afc7fcd88f38b53276318505723ae8ed3
+提示词固定的功能提交：63638a018d70c9e43781797be5d55848c2183ea2
+功能父提交：8c3f6fe6a3d0b253b5c9efa25a2ce596a34152ac
+读取固定提交的完整文件差异、BizzaWZ/Docs/Integration/OfflineFrameworkSync-20261109.txt 及回归工具，未按后续 main 覆盖目标。
+源工程保持不动；本次没有复制源工程资源、覆盖资产 GUID 或执行 cherry-pick。
+
+实施期间 C 目录另有 UI 布局和 VPN 后台开关的并发修改。以文件快照及三方差异保留，不能用基线文件覆盖这些修改。迁移和构建在 F 隔离目录进行，最终目标仍为 C。
+2026-11-13 已将 63 个功能与验证文件合回 C 目标并逐文件核对。并发 UI、Cloudflare 配置及其他会话文档保留，未混入本功能提交。并发进度条的三处删除已与账号恢复代码合并，避免新版 Prefab 失去 progressTrack 引用后空引用。
+合入前完整文件备份与哈希计划：F:\WKY_Worktrees\GemwinkOfflineSync_20261113\Logs\TargetPreservation-20261113。
+
+2. 源行为到目标接入点
+
+启动、账号恢复：WKY_Flow.Init、AccountModule.TryLoginGame/StartupResultAvailable/Response_UserInfoResponse。
+首次普通失败结果独立锁存，允许基础玩法；后台串行重试，失败间隔至少 1 秒，完全断网等待网络恢复。成功、退出、实例更换后停止。
+真实账号恢复后才补平台/广告用户 ID 和附属配置请求。没有创建假账号或假登录结果。
+
+风控：AccountModule.CheckSuspension 保存 1001，仅在 login/user_info/new_user 三类响应检查。
+封号标志下普通网络失败不解除，必须拿到有效用户资料才清除；明确封号提示跨场景保留并退出。
+仅移除 Android 的 USER_VERIFICATION_SDK；保留 BIZZA_IPINTERCEPT 和现有本地 VPN/Cloudflare 国家规则。
+目标保留差异：Worker 明确拒绝或已有拒绝记录时不放行；Worker 普通不可达且没有已知拒绝记录时只允许基础玩法。真实账号请求必须先通过 Worker；联网恢复会复核，不能通过离线启动绕过国家门禁。
+并发新增的 VPN 远端开关先读取可信 Worker 响应，再执行本地 VPN 判断，避免关闭开关仍被旧的提前检测拦住。
+
+HTTP：HttpUtil.RequestTimeout 按目标 AccountModuleCfg 路由映射，login 6 秒、普通 5 秒；ad_info/get_ecpm_id/add_ecpm/add_order/add_order_task/task_list 600 秒。
+同时适配目标实际使用的 Android Java HttpUtil.SendHTTPInfo，原固定 30 秒改为调用传入的总期限。保留类名、协议、加解密和 SDK 参数。
+C# 泛型/原始响应均只完成一次，原生缓存取第一份回执，超时/完成后移除请求，迟到响应不复活请求。
+广告统一入口 BizzaSdk.Ad 账号/网络不可用时失败，不发奖励，失败和完成回调各至多一次，所有网络轻提示共享每次运行最多 5 次的限制。
+
+未知国家图标：UIUtils.LoadCurrencyIconAsync + WzIconAmend + ItemForCountry。
+所有图标类型在 None 时不请求 *_None；保留已有 Sprite，无图时只隐藏 Image。成功恢复显示，连续换国家/对象销毁时旧回调不能覆盖。
+语言：LanguageUtils 保留目标原有 14 种语言，使用本地保存及系统语言，缺词回退英语；账号恢复不覆盖已选择语言。
+
+礼包：Teach01Flow/Module/UnityServices + TeachSaveData + NewbieGiftPage。
+首次真实有效消除从 Foundation 玩法通知 WkyGameplayBridge，再到 FlowModule.ReportFirstEffectiveAction；与原奖励次数统计分离，不把点击算作操作。
+状态和已展示标志持久化，首次离线显示现有单货币 BR 配置 R$0,40，仅显示、不改国家、不加余额、不飞钱、不进入提现教学。
+关闭后恢复账号再补领，失败保持间隔重试；成功后不再显示/重复领取。教学、胜利演出、结算、切关及预加载竞态均有展示门禁。
+
+关卡快照：FlowModule.BeginLevelLoading/CurrentLevel/ApplyServerProgress/AdvanceCompletedLevel + WkyGameplayBridge.PrepareNextAttempt。
+目标异步场景进入前由玩法桥建立快照，替代源通用 GameMode 中的占位入口，避免重复 Begin 重置保护。
+服务器只更新待进入进度，移除目标原有收到进度即重新加载当前关的纠正流程；向前和回退均在下一次进入/重试采用。
+当前关胜利不覆盖期间收到的服务器进度。离线只保存基础玩法关卡，真实在线胜利保持原唯一上报与回执衔接；无网不伪造回执或现金收益。
+HUD、道具解锁、广告/胜败/加载埋点使用当前快照。提现成长等明确需要服务器进度的显示仍读待进入/账号进度。
+
+一次性加载：GameMode_Loading 防早到、重复完成；WkyGameplayBridge 同一次尝试共享 handoff，跨帧/异步后复核尝试版本。
+Obfuz：失败原因与道具埋点采用固定字符串映射；不新增反射，不改变混淆配置。
+
+目标附加适配：离线奖励弹窗不读取未就绪账号的倍率/进度；转盘入口及转动在扣次数前检查账号，余额无资料显示占位并在恢复后刷新。
+
+3. 明确保留
+
+应用 Gemwink Castle、包名 com.bangsawan.gemwinkcastle、OceanShine API 字段及对象格式、应用和广告/归因参数、密钥来源、SDK 版本、现有签名、资源 GUID、Prefab/场景绑定不变。
+单货币提现模式不变；局内金币 100 枚购买一次道具及不足看广告规则不变。
+全关卡每 4 次有效合成出现奖励、实际关闭页面及广告结束后 15 秒冷却、累计 4 次关闭/不用了插屏规则不变。
+不通过 Editor 假用户 ID 或 Editor 专用教学分支绕过初始化。
+
+4. 验证入口与结果
+
+工具目录：Tools/OfflineSync。用本机 Unity 2022.3.62f3 导入生成的程序集及编译工具验证，不带入源 Library/Temp。
+各 Python 工具接受 --unity-editor "C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor"。
+隔离边界验证直接提取当前生产方法或编译生产文件，替代网络/UI/时钟/存档边界，不访问真实账号、广告或提现接口。
+当前工程验证结果（共 350 项行为断言）：
+- check_offline_entry.py：53 项，含账号串行恢复、封号、真实 SDK 失败、重复回调、VPN 后台开关及 Worker 顺序。
+- check_wky_timeouts.py：21 项路由期限；另校验两种 C# 响应和 Java 总期限、回执清理。
+- check_offline_gift.py：23 项，离线/在线首操作、跨启动状态、展示金额、重复点击、语言与入口。
+- check_ui_recovery.py：52 项，国家图标异步竞态、14 种语言、共用提示预算、奖励与转盘恢复。
+- check_gameplay_recovery.py：29 项，真实目标玩法桥、当前关/待进入关、前进/回退、回执时序、迟到 handoff。
+- check_effective_action.py：25 项，实际消除通知、教学、首步胜利与礼包预加载竞态。
+- check_scene_loading.py：23 项，两个真实场景加载入口的取消/释放、错误归属、早到/重复回调与失败提示异常。
+- Teach01FlowChecks.Run 在实际 Unity 批处理执行：124 项，日志 Logs/offline-teach-unity.log，退出码 0。
+- check_compilation.py：Editor 的 DeviceInfo/UI/Foundation/游戏/两 Editor 程序集，以及 Android 的 DeviceInfo/UI/Foundation/游戏程序集均通过。日志 Temp/OfflineSyncChecks/compilation。
+- 原生 HttpUtil 使用当前 Unity 自带 JDK 11、项目 OkHttp 4.12.0 编译通过；未访问网络。
+合回 C 后再次执行全部 7 个 Python 行为检查及 Editor/Android 编译；当前 C 工程的 Unity 实际消费 Teach01FlowChecks 请求并输出 PASS + 124 条明细。最终目标验证报告备份在 Logs/OfflineSyncChecks（不提交 Git）。
+
+完整 Android 构建：按用户后续明确要求停止，由用户自行重新打包；本次不交付或声称通过最终 APK。
+首次实际构建暴露 Obfuz 对 GameMode_GamePlay.LoadGameplayScene 的 async + catch when + catch 内 await 控制流失败。已将 GameMode_GamePlay.LoadGameplayScene 和 GameMode_Loading.RunLoadingSafe 等价展开为 catch 保存异常、catch 外分类/等待，未关闭混淆、未加忽略标记。23 项顺序/异常回归通过；用户要求停止时第二次完整混淆构建尚未完成，最终 Obfuz/IL2CPP 仍需自行打包确认。
+工具链：Unity 2022.3.62f3，IL2CPP，Obfuz buildPipelineSettings.enable=1 未改动；匹配本版本的内置 JDK/Gradle/SDK/NDK。
+构建前处理自动生成 ChannelConfig 的 versionLog；去掉该字段后，与 7bcfe 基线解密后的全部字节相同（包括广告、归因与密钥参数）。
+MAX 包基线已固定 8.6.6，其实际依赖为原生 13.6.4，旧 APK 也为 13.6.4；EDM4U 将旧生成缓存中的 13.6.2 修正为 13.6.4 不是本迁移升级 SDK。生成式缓存变化不混入功能提交。
+
+当前没有 adb 连接的设备，真机离线及重连验收不能以隔离测试或构建结果替代。
+
+5. 文件清单与回退方式
+
+新增文件仅为本迁移记录和 Tools/OfflineSync 下的源码测试、夹具。
+最终修改/新增清单见同目录 OfflineFrameworkSync-20261113-files.txt。
+产物仅放 Logs、Temp、Library、Builds，不提交 Git。原有项目外路径及重建依赖不复制入提交。
+需要回退时以 7bcfe188f 为迁移前检查点，逐文件三方核对。不能直接 reset/clean，因为 C 目录还有并发修改；还原本任务新增文件和隔离构建目录应分别核对范围。仅还原 Git 已跟踪差异不等同完整还原。

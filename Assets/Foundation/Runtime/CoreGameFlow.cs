@@ -33,6 +33,9 @@ namespace Whitebox.Foundation
         private bool revivePending, restoredExhaustedAttempt;
         private int reviveRequestId;
         private IRoyalMatchSynthesisBridge synthesisBridge;
+        private IRoyalMatchEffectiveActionBridge effectiveActionBridge;
+        private int effectiveActionBaselineMoves;
+        private bool effectiveActionReported;
         private Queue<(int remainingTargets, Vector3 worldPosition)> pendingSynthesis;
         private int synthesisSteadyFrames, synthesisBaselineMoves;
         private bool suppressTutorialSynthesis;
@@ -78,6 +81,12 @@ namespace Whitebox.Foundation
         public bool IsTransitioning => transitioning;
         public bool IsEnteringLevel => entrance != null;
         public bool IsInitialized => initialized && !IsEnteringLevel;
+        public bool CanShowAutomaticPopup => IsInitialized && attemptReadyReported && !attemptEndedReported &&
+            !transitioning && !failureStarted && !outOfMovesStarted && !revivePending && !uiDisabled &&
+            dialogInputLocks == 0 && !dialogs.HasActiveDialog && !IsSynthesisTutorialActive &&
+            !waitingDirectedTutorial && !game.IsPaidBoosterInteractionActive && game.State.IsPlaying() &&
+            WinFail?.IsOutOfMoves != true && game.Fall.IsAllItemsSteady &&
+            !game.State.HasAnyOperation() && !game.Auto.IsThereAWaitingMatch;
         public bool BlocksBoardInput => initialized &&
             (transitioning || IsEnteringLevel || uiDisabled || dialogInputLocks > 0 || dialogs.HasActiveDialog || tutorialPending ||
              IsBridgeInputBlocked || (modalTutorial != null && modalTutorial.BlocksBoardInput));
@@ -158,6 +167,13 @@ namespace Whitebox.Foundation
                 restoredState != null && restoredState.GetLeftMoves() == 0;
             sceneProjection = projection;
             this.game = game; this.board = board; this.hud = hud;
+            effectiveActionBridge = sessionBridge as IRoyalMatchEffectiveActionBridge;
+            if (effectiveActionBridge != null)
+            {
+                effectiveActionBaselineMoves = game.Moves.MadeMoves;
+                effectiveActionReported = false;
+                game.BindEffectiveActionObserver(CanRecordEffectiveAction, RecordEffectiveAction);
+            }
             synthesisBridge = sessionBridge as IRoyalMatchSynthesisBridge;
             if (synthesisBridge != null)
             {
@@ -422,6 +438,16 @@ namespace Whitebox.Foundation
         private bool CanRecordSynthesis() => attemptReadyReported && game.State.IsPlaying() &&
             !suppressTutorialSynthesis && !IsSynthesisTutorialActive && game.Moves.MadeMoves > synthesisBaselineMoves;
 
+        private bool CanRecordEffectiveAction() => !effectiveActionReported && attemptReadyReported &&
+            game.State.IsPlaying() && game.Moves.MadeMoves > effectiveActionBaselineMoves;
+
+        private void RecordEffectiveAction()
+        {
+            if (effectiveActionReported) return;
+            effectiveActionReported = true;
+            effectiveActionBridge.OnEffectiveMatch();
+        }
+
         private void RecordSynthesis(Vector3 worldPosition)
         {
             CountTargets(out _, out int remainingTargets);
@@ -546,6 +572,12 @@ namespace Whitebox.Foundation
             entrance = null;
             matchHints?.Dispose();
             dynamicPowerTutorials?.Dispose();
+            if (effectiveActionBridge != null)
+            {
+                game?.BindEffectiveActionObserver(null, null);
+                effectiveActionBridge = null;
+                effectiveActionReported = false;
+            }
             if (synthesisBridge != null)
             {
                 game?.BindSynthesisObserver(null, null);
