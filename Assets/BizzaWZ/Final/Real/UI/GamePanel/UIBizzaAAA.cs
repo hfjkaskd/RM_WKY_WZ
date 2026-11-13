@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class UIBizzaAAA : UIPageBase, IRoyalMatchBoardPointerBlocker
 {
     [SerializeField] private Button btnFlowTreature;
+    [SerializeField] private CanvasGroup treasureGroup;
     [SerializeField, Min(0f)] private float flowSpeed;
     [SerializeField, Min(0f)] private float boardEdgePadding;
     [SerializeField] private Vector2 flowHeadingDegrees;
@@ -37,8 +38,16 @@ public class UIBizzaAAA : UIPageBase, IRoyalMatchBoardPointerBlocker
     {
         flowRect = (RectTransform)btnFlowTreature.transform;
         flowParent = (RectTransform)flowRect.parent;
-        flowCanvas = flowRect.GetComponentInParent<Canvas>()?.rootCanvas;
+        OnCanvasHierarchyChanged();
         btnFlowTreature.onClick.AddListener(OnBtnFlowTreatureClick);
+    }
+
+    private void OnCanvasHierarchyChanged()
+    {
+        if (flowRect == null) return;
+        // The victory presentation moves the HUD from the overlay to the game camera.
+        flowCanvas = flowRect.GetComponentInParent<Canvas>()?.rootCanvas;
+        nextBoundsRefresh = 0f;
     }
 
     public void OnEnable()
@@ -59,12 +68,21 @@ public class UIBizzaAAA : UIPageBase, IRoyalMatchBoardPointerBlocker
 
     public bool BlocksBoardPointer(Vector2 screenPosition)
     {
-        return flowCanvas != null && btnFlowTreature.isActiveAndEnabled && btnFlowTreature.IsInteractable() &&
+        return !RoyalMatchSessionBridge.IsLevelQuitDialogOpen && flowCanvas != null &&
+            btnFlowTreature.isActiveAndEnabled && btnFlowTreature.IsInteractable() &&
             RectTransformUtility.RectangleContainsScreenPoint(flowRect, screenPosition, EventCamera);
     }
 
     private void LateUpdate()
     {
+        bool visible = !RoyalMatchSessionBridge.IsLevelQuitDialogOpen;
+        if (treasureGroup.blocksRaycasts != visible)
+        {
+            treasureGroup.alpha = visible ? 1f : 0f;
+            treasureGroup.interactable = visible;
+            treasureGroup.blocksRaycasts = visible;
+        }
+
         float now = Time.time;
         if (!btnFlowTreature.gameObject.activeSelf)
         {
@@ -145,6 +163,8 @@ public class UIBizzaAAA : UIPageBase, IRoyalMatchBoardPointerBlocker
 
     private void OnBtnFlowTreatureClick()
     {
+        if (RoyalMatchSessionBridge.IsLevelQuitDialogOpen) return;
+
         //UIController.ShowPage<UITreatureAds>();
         
         // AdModule.OpenRewardAds(E_AdPos.Flow, closeCallback: OnAdClaimSuccess);

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace Whitebox.Foundation
@@ -8,8 +7,7 @@ namespace Whitebox.Foundation
     public sealed class CoreLevelQuitDialog : MonoBehaviour, IOriginalUiDialogHost
     {
         [SerializeField] private Button closeButton, quitButton;
-        [SerializeField] private Canvas[] buttonCanvases;
-        [SerializeField] private SortingGroup sortingGroup;
+        [SerializeField] private Canvas dialogCanvas;
         [SerializeField] private OriginalDialogConfig config;
         [SerializeField] private OriginalDialogEntrance entrance;
         private CoreGameFlow owner;
@@ -23,7 +21,7 @@ namespace Whitebox.Foundation
         internal void Open(OriginalFlowAction action, IOriginalUiDialogManager manager, CoreGameFlow flow)
         {
             owner = flow;
-            foreach (var canvas in buttonCanvases) canvas.worldCamera = owner.UiCamera;
+            dialogCanvas.worldCamera = owner.UiCamera;
             closeButton.onClick.AddListener(Cancel);
             quitButton.onClick.AddListener(Confirm);
             lifecycle = new QuitDialog(this, new OriginalUiDialogAction(action, manager));
@@ -63,7 +61,7 @@ namespace Whitebox.Foundation
                 config.ShouldShowBackgroundOnClose = view.retainBackdrop; // 0x1341924.
                 return config;
             }
-            public override void SetSortingOffset(int offset) => view.sortingGroup.sortingOrder = offset;
+            public override void SetSortingOffset(int offset) => view.dialogCanvas.sortingOrder = offset;
             public override void SetTouchSorting(int order) { }
             protected override void OnShow(Vector3 position) =>
                 view.StartCoroutine(view.entrance.Play(view.transform, position, view.owner.UiScale, view.owner));

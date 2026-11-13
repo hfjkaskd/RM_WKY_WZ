@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 1041074903250054671}
   - component: {fileID: 1753156148553862958}
   - component: {fileID: 2659754308166343400}
+  - component: {fileID: 9406100001}
   m_Layer: 5
   m_Name: DailyMissionItem
   m_TagString: Untagged
@@ -553,6 +554,8 @@ MonoBehaviour:
   levelTxt: {fileID: 6286026856261720792}
   itemForCountry: {fileID: 1753156148553862958}
   levelTextProvidedByCurrencyBar: 1
+  missionChestGroup: {fileID: 9406100001}
+  topBar: {fileID: 5973569337143247761}
 --- !u!1 &3248029166944288721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,8 +1124,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093203839114191277, guid: b1f781d8c27eec54db58a4849081f7e5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1010
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093203839114191277, guid: b1f781d8c27eec54db58a4849081f7e5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -35
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1440285596579270237, guid: b1f781d8c27eec54db58a4849081f7e5, type: 3}
@@ -2201,3 +2208,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &9406100001
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730751030393810038}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

@@ -139,11 +139,12 @@ namespace Whitebox.Foundation.Editor
                 if (phase == 3)
                 {
                     report.back_from_settings_opens_quit = true;
-                    var label = quit.QuitButton.GetComponentInChildren<TextMeshPro>();
+                    var label = quit.QuitButton.GetComponentInChildren<TextMeshProUGUI>();
                     label.ForceMeshUpdate();
                     Require(label.text == "Quit" && label.textInfo.characterCount == 4 &&
-                        label.fontSharedMaterial.shader.name == "TextMeshPro/Mobile/Distance Field",
-                        "The visible quit control uses the restored four-glyph label and original red SDF styling.");
+                        quit.QuitButton.targetGraphic is Image image && image.sprite != null &&
+                        image.sprite.name == "SettingsAmber",
+                        "The visible quit control uses the four-glyph label and gold button art.");
                     report.quit_label_verified = true;
                     GrassGameplayVerification.Capture(flow.UiCamera, "core_settings_quit.png");
                     Click(quit.CloseButton);

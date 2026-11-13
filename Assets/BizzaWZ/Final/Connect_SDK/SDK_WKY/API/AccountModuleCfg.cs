@@ -5,23 +5,23 @@ using UnityEngine;
 [Obfuz.ObfuzIgnore]
 public partial class AccountModuleCfg
 {
-    public const string add_ecpm = "/Sport/Balls/Balance"; // 添加收益  可以点击查看 ---------------------------------
-    public const string add_order = "/Sport/Balls/Apply"; // 去提现 - 全部提现 可以点击查看   ---------------------------------
-    public const string add_order_task = "/Sport/Balls/ApplyMoney"; // 去提现 - 现金或奖卷 可以点击查看  ---------------------------------
-    public const string base_list = "/Sport/Balls/AppBase"; // 其它配置信息 - 可以点击查看  ---------------------------------
-    public const string from = "/Sport/Balls/Coming"; // 用户归因 - 后台查看   --------------------------------- 这个 AI写的不太对 VN
-    public const string get_ecpm_id = "/Sport/Balls/GetBalance"; // 获取收益ID - 可以点击查看 --------------------------------- 
-    public const string login = "/Sport/Balls/Login"; // 用户登陆 - 可以点击查看 --------------------------------- 
-    public const string msg = "/Sport/Balls/Back"; // 添加反馈 - 需要服务器查看 ---------------------------------
-    public const string msg_list = "/Sport/Balls/BackList"; // 反馈列表 - 需要服务器查看  ---------------------------------
-    public const string new_user = "/Sport/Balls/NewBalance"; // 新用户奖励-领取 - 可以点击查看 ---------------------------------
-    public const string number = "/Sport/Balls/ReachTime"; // 关卡，完成次数上报 - 可以点击查看 ---------------------------------
-    public const string order_list = "/Sport/Balls/Order"; // 订单列表 - 可以点击查看 ---------------------------------
-    public const string plat_from = "/Sport/Balls/Withdrawal"; // 提现平台 - 可以点击查看 ---------------------------------
-    public const string task_list = "/Sport/Balls/TaskList"; // 每日任务-现金 - 可以点击查看
-    public const string user_info = "/Sport/Balls/Data"; // 用户信息 - 可以点击查看 ---------------------------------
-    public const string ad_info = "/Sport/BallsLog/AdInfo"; // 广告上报 - 可以点击查看
-    public const string app_info = "/Sport/BallsLog/AppInfo"; // 日志上报 - 可以点击查看
+    public const string add_ecpm = "/ocean/api_v1/add_ecpm"; // 添加收益  可以点击查看 ---------------------------------
+    public const string add_order = "/ocean/api_v1/add_order"; // 去提现 - 全部提现 可以点击查看   ---------------------------------
+    public const string add_order_task = "/ocean/api_v1/add_order_task"; // 去提现 - 现金或奖卷 可以点击查看  ---------------------------------
+    public const string base_list = "/ocean/api_v1/base_list"; // 其它配置信息 - 可以点击查看  ---------------------------------
+    public const string from = "/ocean/api_v1/from"; // 用户归因 - 后台查看   --------------------------------- 这个 AI写的不太对 VN
+    public const string get_ecpm_id = "/ocean/api_v1/get_ecpm_id"; // 获取收益ID - 可以点击查看 ---------------------------------
+    public const string login = "/ocean/api_v1/login"; // 用户登陆 - 可以点击查看 ---------------------------------
+    public const string msg = "/ocean/api_v1/msg"; // 添加反馈 - 需要服务器查看 ---------------------------------
+    public const string msg_list = "/ocean/api_v1/msg_list"; // 反馈列表 - 需要服务器查看  ---------------------------------
+    public const string new_user = "/ocean/api_v1/new_user"; // 新用户奖励-领取 - 可以点击查看 ---------------------------------
+    public const string number = "/ocean/api_v1/number"; // 关卡，完成次数上报 - 可以点击查看 ---------------------------------
+    public const string order_list = "/ocean/api_v1/order_list"; // 订单列表 - 可以点击查看 ---------------------------------
+    public const string plat_from = "/ocean/api_v1/plat_from"; // 提现平台 - 可以点击查看 ---------------------------------
+    public const string task_list = "/ocean/api_v1/task_list"; // 每日任务-现金 - 可以点击查看
+    public const string user_info = "/ocean/api_v1/user_info"; // 用户信息 - 可以点击查看 ---------------------------------
+    public const string ad_info = "/ocean/api_v1Log/ad_info"; // 广告上报 - 可以点击查看
+    public const string app_info = "/ocean/api_v1Log/app_info"; // 日志上报 - 可以点击查看
 
 
     #region 每日任务

@@ -19,6 +19,8 @@ public class DailyMissionPanel : UIPageBase, IAutoPopupContent
 {
     public TMP_Text hintsTxt;
     public TMP_Text refreshTimeTxt;
+    [SerializeField] private GameObject missionProgress;
+    [SerializeField] private Image missionProgressFill;
     // public TMP_Text adsCountTxt;
 
     public TMP_Text claimedHint;
@@ -128,6 +130,7 @@ public class DailyMissionPanel : UIPageBase, IAutoPopupContent
         ClaimedObj.SetActive(ready && pendingMission.Os_Ss == 3);
         claimedHint.gameObject.SetActive(ready && pendingMission.Os_Ss == 3);
         refreshTimeTxt.gameObject.SetActive(ready);
+        missionProgress.SetActive(ready && pendingMission.Os_An > 0);
         withdrawBtn.interactable = claimedBtn.interactable = ready && !adPending;
         contentView.Show(state);
         if (adPending) goBtn.interactable = false;
@@ -179,6 +182,7 @@ public class DailyMissionPanel : UIPageBase, IAutoPopupContent
         // Read this response, not AccountModule's cache: the SDK updates that cache after our callback.
         int max = pendingMission.Os_An;
         int cur = Math.Clamp(pendingMission.Os_Ln, 0, max);
+        missionProgressFill.fillAmount = max > 0 ? (float)cur / max : 0f;
         hintsTxt.text = LanguageUtils.GetFormatText("DailyWithdrawMissionPanel_Hint", max,
             LanguageUtils.GetText("CurrencyToken") + WithdrawalUtil.GetCustomizedValueByCountryType((float)pendingMission.Os_My))
             + $" (<color=#9039D8>{cur}/{max}</color>)";

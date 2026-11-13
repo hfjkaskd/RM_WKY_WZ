@@ -529,7 +529,7 @@ public static class DeviceNativeBridge
 #endif
     }
 
-    public static bool IsVpnDetectionEnabled { get; } = false;
+    public static bool IsVpnDetectionEnabled { get; } = true;
 
     /// <summary>
     /// 当前设备是否连接 VPN。

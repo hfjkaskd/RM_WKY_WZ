@@ -42,6 +42,7 @@ namespace Whitebox.Foundation
         private OriginalDialogManager dialogs;
         private CoreDialogBackgroundPool backdrops;
         private OriginalWinLogoDialog logo;
+        private bool winLogoHudSortingActive;
         private OriginalRemainingMovesDialog remaining;
         private OriginalLevelWinDialog result;
         private CoreLevelFailDialog failure;
@@ -538,6 +539,7 @@ namespace Whitebox.Foundation
         {
             if (!initialized) return;
             initialized = false;
+            if (winLogoHudSortingActive) ResetTopUiSorting();
             StopFadeOutSoundSourceCoroutine();
             if (audio != null) audio.StopGameMusic();
             StopAllCoroutines();
@@ -643,6 +645,8 @@ namespace Whitebox.Foundation
             audio.StopGameMusic(); // WinLogoAnimationDialog.Awake 0x18d108c.
             logo = Create<OriginalWinLogoDialog>(config.winLogoPrefabPath);
             logo.Bind(action, dialogs, this);
+            winLogoHudSortingActive = true;
+            (sessionBridge as IRoyalMatchWinPresentation)?.SetWinLogoHudCamera(cameraSource);
             return logo;
         }
         public OriginalRemainingMovesManager GetRemainingMovesManager() => RemainingMoves;
@@ -663,7 +667,15 @@ namespace Whitebox.Foundation
         public bool IsHardOrExtremeLevelBundleAvailable => false;
         public bool IsLeagueBundleDownloaded => false;
         public AssetBundle TryLoadLeaguePopupBundle() => throw new InvalidOperationException("League is out of scope.");
-        public void ResetTopUiSorting() => hud.ResetSorting();
+        public void ResetTopUiSorting()
+        {
+            if (winLogoHudSortingActive)
+            {
+                winLogoHudSortingActive = false;
+                (sessionBridge as IRoyalMatchWinPresentation)?.SetWinLogoHudCamera(null);
+            }
+            if (hud != null) hud.ResetSorting();
+        }
         public OriginalActiveLevelData GetCurrentSession() => game.Session;
         public OriginalGoalManager Goals => board.Goals;
         public OriginalAutoExplodeManager Auto => game.Auto;

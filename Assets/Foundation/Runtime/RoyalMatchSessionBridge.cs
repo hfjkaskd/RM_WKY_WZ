@@ -11,6 +11,11 @@ namespace Whitebox.Foundation
         void OnAttemptEnded(RoyalMatchLevelResult result);
     }
 
+    public interface IRoyalMatchWinPresentation
+    {
+        void SetWinLogoHudCamera(Camera camera);
+    }
+
     public interface IRoyalMatchReviveBridge
     {
         bool TryOfferRevive(RoyalMatchLevelResult result, Action<bool> complete);
@@ -63,6 +68,8 @@ namespace Whitebox.Foundation
     {
         public static IRoyalMatchSessionBridge Current { get; set; }
         public static IRoyalMatchBoardPointerBlocker BoardPointerBlocker { get; set; }
+        public static bool IsLevelQuitDialogOpen =>
+            ActiveController?.CoreFlow?.LevelQuitDialog?.Lifecycle?.IsShowing == true;
         internal static FoundationController ActiveController { get; set; }
 
         public static int BoosterCoinBalance => ActiveController != null

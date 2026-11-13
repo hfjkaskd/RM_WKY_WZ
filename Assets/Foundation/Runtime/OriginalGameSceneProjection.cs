@@ -22,7 +22,7 @@ namespace Whitebox.Foundation
         private SpriteRenderer[] squareFlagRenderers;
         private int width, height;
         private ScreenOrientation screenOrientation;
-        private Rect safeArea;
+        private Rect safeArea, screenSafeArea;
         private float safeAreaOffset, safeAreaTopOffset;
         public OriginalCameraProjection Projection { get; } = new OriginalCameraProjection();
         public event Action OnProjectionChanged;
@@ -96,6 +96,7 @@ namespace Whitebox.Foundation
         {
             if (sceneCamera == null) throw new InvalidOperationException("Projection has no active camera.");
             width = Screen.width; height = Screen.height;
+            screenSafeArea = Screen.safeArea;
             // Measure the display before applying the native square-device crop.
             sceneCamera.rect = fullViewport;
             sceneCamera.ResetAspect();
@@ -104,7 +105,9 @@ namespace Whitebox.Foundation
                 ? board.Layout.CurrentBoard
                 : null;
             float viewportBottom = Mathf.Clamp01(portraitBoardViewport.yMin);
-            float viewportTop = Mathf.Clamp01(portraitBoardViewport.yMax);
+            // Reserve the same cutout space above the board as the portrait HUD.
+            float safeTopInset = 1f - Mathf.Clamp01(screenSafeArea.yMax / height);
+            float viewportTop = Mathf.Clamp01(portraitBoardViewport.yMax - safeTopInset);
             float edgePadding = Mathf.Max(0f, portraitBoardEdgePadding);
             bool fitBoard = fitPortraitBoardToViewport && region != null &&
                             !OriginalCameraProjection.IsLandscape && viewportTop > viewportBottom;
@@ -115,7 +118,7 @@ namespace Whitebox.Foundation
                 float requiredHeight = (region.Height + edgePadding * 2f) / (viewportTop - viewportBottom);
                 Projection.EnsureMinimumHeight(this, requiredHeight);
             }
-            RefreshSafeArea(Screen.safeArea);
+            RefreshSafeArea(screenSafeArea);
             float portraitAspect = OriginalCameraProjection.GetPortraitAspect(this);
             if (board != null)
             {
@@ -223,7 +226,8 @@ namespace Whitebox.Foundation
         {
             if (sceneCamera == null) return;
             var orientation = Screen.orientation;
-            if (width != Screen.width || height != Screen.height || IsNewPortraitOrientation(orientation))
+            if (width != Screen.width || height != Screen.height || screenSafeArea != Screen.safeArea ||
+                IsNewPortraitOrientation(orientation))
                 RefreshProjection(orientation);
         }
 

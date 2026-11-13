@@ -24,6 +24,9 @@ public class RealGamePanel : UIPageBase
 
     public Transform content;
     public GameObject whiteUiPrefab;
+    [SerializeField] private Canvas winLogoHudCanvas;
+
+    private int contentSiblingIndex;
 
     private GameObject recoveredTopHudInstance;
     private Coroutine recoveredTopHudLifeHintRoutine;
@@ -112,8 +115,42 @@ public class RealGamePanel : UIPageBase
 
     protected override void OnClose()
     {
+        RestoreHudCanvas();
         StopRecoveredTopHudLifeHint();
     }
+
+    internal void SetWinLogoHudCamera(Camera camera)
+    {
+        if (winLogoHudCanvas == null || content == null) return;
+        if (camera == null)
+        {
+            RestoreHudCanvas();
+            return;
+        }
+        if (winLogoHudCanvas.transform.parent == null) return;
+
+        contentSiblingIndex = content.GetSiblingIndex();
+        winLogoHudCanvas.transform.SetParent(null, false);
+        winLogoHudCanvas.worldCamera = camera;
+        winLogoHudCanvas.gameObject.SetActive(true);
+        content.SetParent(winLogoHudCanvas.transform, false);
+    }
+
+    private void RestoreHudCanvas()
+    {
+        if (winLogoHudCanvas == null || winLogoHudCanvas.transform.parent != null) return;
+
+        if (content != null)
+        {
+            content.SetParent(transform, false);
+            content.SetSiblingIndex(contentSiblingIndex);
+        }
+        winLogoHudCanvas.gameObject.SetActive(false);
+        winLogoHudCanvas.worldCamera = null;
+        winLogoHudCanvas.transform.SetParent(transform, false);
+    }
+
+    private void OnDisable() => RestoreHudCanvas();
 
     public bool PlayRecoveredTopHudLifeHint(int heartCount = 3)
     {

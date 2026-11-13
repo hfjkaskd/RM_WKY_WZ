@@ -23,6 +23,8 @@ public class WithdrawHistoryItem : MonoBehaviour
     public TMP_Text amountTxt;
     
     [SerializeField] private PaymentConfig paymentConfig;
+    [SerializeField] private VerticalLayoutGroup detailsLayout;
+    [SerializeField] private LayoutElement rowLayout;
      
     public void Init(AccountModule.OceanShineWithdrawalRecord data)
     {
@@ -71,8 +73,11 @@ public class WithdrawHistoryItem : MonoBehaviour
         dueText.gameObject.SetActive(isFail);
         dueText.text = data.Os_Tsm;
 
-        float length = transform.GetComponent<RectTransform>().sizeDelta.x;
-        transform.GetComponent<RectTransform>().sizeDelta = isFail ? new Vector2(length, 300) : new Vector2(length, 230);
+        detailsLayout.CalculateLayoutInputHorizontal();
+        detailsLayout.CalculateLayoutInputVertical();
+        float detailsHeight = detailsLayout.preferredHeight;
+        ((RectTransform)detailsLayout.transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, detailsHeight);
+        rowLayout.preferredHeight = Mathf.Max(rowLayout.minHeight, detailsHeight);
 
     }
 }

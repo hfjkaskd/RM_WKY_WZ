@@ -13,6 +13,12 @@ namespace Whitebox.Foundation
         [SerializeField] private string[] closingAlphaSlots, closingAttachmentSlots;
         [SerializeField] private Material materialTemplate;
         [SerializeField] private MeshFilter[] parts;
+        [SerializeField] private SpriteRenderer replacementLogo;
+        [SerializeField] private string replacementLogoBone;
+        [SerializeField] private string[] replacedLogoSlots;
+        private int logoBone;
+        private int[] logoSlots;
+        private Vector3 logoScale;
         private OriginalKingPose pose;
         private OriginalKingAnimationTrack track;
         private OriginalKingMesh geometry;
@@ -52,6 +58,12 @@ namespace Whitebox.Foundation
                     throw new InvalidDataException("Logo trumpet root position is animated.");
             alphaSlots = Slots(closingAlphaSlots);
             attachmentSlots = Slots(closingAttachmentSlots);
+            if (replacementLogo != null)
+            {
+                logoBone = Bone(replacementLogoBone);
+                logoSlots = Slots(replacedLogoSlots);
+                logoScale = replacementLogo.transform.localScale;
+            }
             geometry = new OriginalKingMesh(pose, separatorSlot);
             if (geometry.Parts.Length != parts.Length) throw new InvalidDataException("Win logo renderer partitions.");
             meshes = new Mesh[parts.Length];
@@ -120,6 +132,19 @@ namespace Whitebox.Foundation
 
         public void RefreshMesh()
         {
+            if (replacementLogo != null)
+            {
+                foreach (int slot in logoSlots)
+                    pose.SetAttachment(slot, -1);
+
+                var matrix = pose.World[logoBone];
+                var x = new Vector2(matrix[0], matrix[2]);
+                var y = new Vector2(matrix[1], matrix[3]);
+                var logo = replacementLogo.transform;
+                logo.localPosition = new Vector3(matrix[4], matrix[5], 0f);
+                logo.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(x.y, x.x) * Mathf.Rad2Deg);
+                logo.localScale = new Vector3(logoScale.x * x.magnitude, logoScale.y * y.magnitude, logoScale.z);
+            }
             geometry.Build();
             for (int p = 0; p < parts.Length; p++)
             {

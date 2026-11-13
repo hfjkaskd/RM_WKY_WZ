@@ -197,33 +197,6 @@ namespace Whitebox.Foundation.Editor
             surface.SetActive(false);
             ReplacePrefab(shade, "CoreDialogBackground");
 
-            var quit = Load("Assets/Resources/Recovered/GameObject/LevelQuitDialog.prefab");
-            foreach (var collider in quit.GetComponentsInChildren<Collider2D>(true)) UnityEngine.Object.DestroyImmediate(collider);
-            foreach (var node in quit.GetComponentsInChildren<Transform>(true)) GameObjectUtility.RemoveMonoBehavioursWithMissingScript(node.gameObject);
-            var warning = Required(quit, "Root/Center/LifeWarn");
-            var message = Required(quit, "Root/Center/LifeWarn/Text").GetComponent<TextMeshPro>();
-            message.transform.SetParent(warning.parent, false);
-            message.transform.localPosition = Required(quit, "Root/Center/Background").localPosition;
-            message.text = "Current attempt progress will be lost.";
-            Remove(quit, "Root/Center/LifeWarn");
-            Remove(quit, "Root/Center/ExtraWarn");
-            Remove(quit, "Root/Background/ExtremeLevelContainerFrame");
-            Remove(quit, "Root/Top/ExtremeLevelTopFrame");
-            Remove(quit, "Root/Top/ExtremeLevelBottomFrame");
-            FlattenSorting(quit);
-            var buttonsCanvas = new List<Canvas>();
-            var close = ButtonRoot(Required(quit, "Root/Top/Close").gameObject).AddComponent<Button>();
-            var confirm = ButtonRoot(Required(quit, "Root/Bottom/QuitButton").gameObject).AddComponent<Button>();
-            FixButton(close, buttonsCanvas);
-            FixButton(confirm, buttonsCanvas);
-            AuthorTitleCurve(Required(quit, "Root/Top/Title").GetComponent<TextMeshPro>(), 1.9f, false);
-            var quitDialog = quit.AddComponent<CoreLevelQuitDialog>();
-            Reference(quitDialog, "closeButton", close);
-            Reference(quitDialog, "quitButton", confirm);
-            Reference(quitDialog, "sortingGroup", quit.GetComponent<SortingGroup>());
-            References(quitDialog, "buttonCanvases", buttonsCanvas);
-            SetMenuDialogConfig(quitDialog, false);
-            Save(quit, "CoreLevelQuitDialog");
             EditorApplication.Exit(0);
         }
 

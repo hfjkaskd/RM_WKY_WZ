@@ -37,6 +37,7 @@ namespace Whitebox.Foundation
         private Camera cameraSource;
         private OriginalGameSceneProjection sceneProjection;
         private int lastWidth, lastHeight;
+        private Rect lastSafeArea;
         private bool orientationEnabled = true;
         private Renderer[] sortingRenderers;
         private int[] sortingLayers, sortingOrders;
@@ -109,7 +110,10 @@ namespace Whitebox.Foundation
             sortingRenderers = GetComponentsInChildren<Renderer>(true);
             sortingLayers = new int[sortingRenderers.Length]; sortingOrders = new int[sortingRenderers.Length];
             for (int i = 0; i < sortingRenderers.Length; i++)
-            { sortingLayers[i] = sortingRenderers[i].sortingLayerID; sortingOrders[i] = sortingRenderers[i].sortingOrder; }
+            {
+                sortingLayers[i] = sortingRenderers[i].sortingLayerID;
+                sortingOrders[i] = sortingRenderers[i].sortingOrder;
+            }
         }
         private void AnimateTargetTextAsReward() // TopUi 0x1630680, US/English branch of 0x16304a8.
         {
@@ -124,17 +128,22 @@ namespace Whitebox.Foundation
         private void Arrange()
         {
             lastWidth = Screen.width; lastHeight = Screen.height;
+            lastSafeArea = Screen.safeArea;
             bool landscape = OriginalCameraProjection.IsLandscape;
             Vector3 position;
             if (landscape) position = cameraSource.ViewportToWorldPoint(new Vector3(0f, .5f, 0f));
             else
             {
-                if (sceneProjection != null) position = sceneProjection.SafeTopCenter;
+                if (unifiedCardRoot != null)
+                {
+                    // The castle card and the canvas top bar share the physical safe-area edge.
+                    position = cameraSource.ScreenToWorldPoint(new Vector3(lastWidth * .5f, lastSafeArea.yMax, 0f));
+                }
+                else if (sceneProjection != null) position = sceneProjection.SafeTopCenter;
                 else
                 {
-                    var safe = Screen.safeArea;
-                    position = OriginalGameSceneProjection.GetSafeCenter(cameraSource, safe);
-                    position.y += safe.height * cameraSource.orthographicSize / lastHeight;
+                    position = OriginalGameSceneProjection.GetSafeCenter(cameraSource, lastSafeArea);
+                    position.y += lastSafeArea.height * cameraSource.orthographicSize / lastHeight;
                 }
                 position.y += safeTopOffset;
             }
@@ -163,7 +172,10 @@ namespace Whitebox.Foundation
         }
         private void Update()
         {
-            if (orientationEnabled && cameraSource != null && (lastWidth != Screen.width || lastHeight != Screen.height)) Arrange();
+            if (orientationEnabled && cameraSource != null &&
+                (lastWidth != Screen.width || lastHeight != Screen.height ||
+                 (unifiedCardRoot != null && lastSafeArea != Screen.safeArea)))
+                Arrange();
         }
         private void UpdateRewardTitle(float delta)
         {

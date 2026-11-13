@@ -7,7 +7,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Whitebox.Foundation;
 
-internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoyalMatchTutorialBridge
+internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoyalMatchTutorialBridge, IRoyalMatchWinPresentation
 {
     partial void OnWonAttemptCoinsEarned(int amount);
 
@@ -213,6 +213,12 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
     {
         if (!loading && openingTutorialCompleted && !SaveDataUtils.GameData.customTutorialEnd)
             FlowModule.NewPlayerGuideEnd();
+    }
+
+    public void SetWinLogoHudCamera(Camera camera)
+    {
+        var page = UIModule.Instance?.FindOpenedPage(UIPageIds.RealGamePanel) as RealGamePanel;
+        if (page != null) page.SetWinLogoHudCamera(camera);
     }
 
     public void OnAttemptEnded(RoyalMatchLevelResult result)
