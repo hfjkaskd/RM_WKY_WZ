@@ -23,6 +23,7 @@ public class GameMode_GamePlay : GameModeBase<GameMode_GamePlay>
     private async UniTask LoadGameplayScene()
     {
         var cancellation = this.GetCancellationTokenOnDestroy();
+        Exception failure = null;
         try
         {
             await AssetUtils.LoadSceneWithBlockAsync(WkyGameplayBridge.SceneName, () =>
@@ -30,14 +31,16 @@ public class GameMode_GamePlay : GameModeBase<GameMode_GamePlay>
                     ? WkyGameplayBridge.Instance.CompleteSceneHandoff(cancellation)
                     : UniTask.CompletedTask);
         }
-        catch (OperationCanceledException) when (!CanContinueAsyncInit() || cancellation.IsCancellationRequested)
-        {
-        }
         catch (Exception error)
         {
-            if (CanContinueAsyncInit())
-                await WkyGameplayBridge.ShowLoadFailure(error);
+            failure = error;
         }
+
+        // Keep asynchronous error presentation outside exception handlers so the
+        // generated state machine has ordinary catch regions for obfuscation.
+        if (failure == null || !CanContinueAsyncInit()) return;
+        if (failure is OperationCanceledException && cancellation.IsCancellationRequested) return;
+        await WkyGameplayBridge.ShowLoadFailure(failure);
     }
 
     protected override void LateInit()

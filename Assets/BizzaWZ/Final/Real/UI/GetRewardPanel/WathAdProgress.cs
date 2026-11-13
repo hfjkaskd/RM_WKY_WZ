@@ -15,7 +15,6 @@ public class WathAdProgress : MonoBehaviour
     public TMP_Text progressText;
 
     public Image progressBar;
-    [SerializeField] private Image progressTrack;
     [SerializeField] private RectTransform progressFillClip;
 
     public int WatchAdCount => SaveDataUtils.GameData.todayAdTimes;
@@ -118,11 +117,9 @@ public class WathAdProgress : MonoBehaviour
     internal void SetProgressFill(float fill)
     {
         float amount = Mathf.Clamp01(fill);
-        progressBar.fillAmount = amount;
         // Reveal the sliced sprite at its authored size so the end caps retain their shape.
         progressFillClip.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, progressBar.rectTransform.rect.width * amount);
         progressBar.enabled = amount > 0f;
-        progressTrack.enabled = amount < 1f;
     }
 }
 #endif

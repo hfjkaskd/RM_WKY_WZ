@@ -1,0 +1,144 @@
+// ASYNC_BOUNDARY
+
+static class Time { public static int frameCount; }
+static class AsyncBoundary {
+    public static void Forget(this UniTask task) { }
+    public static CancellationToken GetCancellationTokenOnDestroy(this GameMode_GamePlay game) => game.Destroy.Token;
+}
+class ModeBase { protected virtual void OnPreRelease(){} protected virtual void OnRelease(){} }
+class GameMode_GamePlay : ModeBase {
+    public static GameMode_GamePlay Instance;
+    bool releaseRequested;
+    public CancellationTokenSource Destroy = new();
+    public UniTask Run() => LoadGameplayScene();
+    public void Release() => OnPreRelease();
+    static UniTask UnloadUnusedAssetsAfterUiCleanup() => UniTask.CompletedTask;
+    // GAME_METHODS
+}
+class GameMode_Loading : ModeBase {
+    bool handingOffToGameplay, loadingCompleted, released;
+    public LoadingProcedure _loadingProcedure = new();
+    public UniTask Run() => RunLoadingSafe();
+    public void Finish() => OnLoadingFinish();
+    public void Release() => OnRelease();
+    // LOAD_METHODS
+}
+static class AssetUtils {
+    public static TaskCompletionSource<bool> Scene = new();
+    public static async UniTask LoadSceneWithBlockAsync(string name, Func<UniTask> callback) { await Scene.Task; await callback(); }
+}
+class LoadingProcedure {
+    public TaskCompletionSource<bool> Completion = new(); public int Runs;
+    public async UniTask Run(Action callback) { Runs++; await Completion.Task; callback(); }
+}
+class WkyGameplayBridge {
+    public const string SceneName = "game"; public const float BootProgressWeight = .75f;
+    public static WkyGameplayBridge Instance = new();
+    public int Handoffs, Prepares; public TaskCompletionSource<bool> Handoff = new();
+    public UniTask CompleteSceneHandoff(CancellationToken token) { Handoffs++; return new(Handoff.Task); }
+    public void PrepareInitialAttempt() => Prepares++;
+    public static int Failures, ProgressCalls; public static Exception LastFailure;
+    public static TaskCompletionSource<bool> FailurePrompt = new();
+    public static UniTask ShowLoadFailure(Exception error) { Failures++; LastFailure = error; return new(FailurePrompt.Task); }
+    public static void ReportProgress(float progress) => ProgressCalls++;
+}
+static class FlowModule { public static bool Blocked; public static void SetAutomaticPopupFlowBlocked(bool value) => Blocked=value; }
+enum E_UILayer { BaseLayer }
+class UIPageBase { }
+static class UIPageIds { public const string LoadingPanel = "load"; }
+class UIModule {
+    public static UIModule Instance = new(); public int CloseLayers, CloseLoading;
+    public TaskCompletionSource<UIPageBase> Loading = new();
+    public UniTask<UIPageBase> OpenPage(string id) => new(Loading.Task);
+    public int GetLayerByName(string name) => 0;
+    public void CloseAndDestroyLayerAllPage(int layer) => CloseLayers++;
+    public void ClosePage(string id) => CloseLoading++;
+}
+class WKYInitializationException : Exception { public string ErrorCode; public WKYInitializationException(string code) { ErrorCode=code; } }
+namespace Bizza.TokenClientSystem { class TokenClientBlockedException : Exception { } }
+class AccountModule { public static AccountModule Instance=new(); public const string SuspendedCode="1001"; public bool IsSuspended; }
+static class LogLogger { public static int Info, Errors; public static void LogInfo(string message)=>Info++; public static void LogError(string message)=>Errors++; }
+static class SDKAssetHandler {
+    public static int Prompts; public static CommonConfirmTipsPanel.Args LastArgs;
+    public static TaskCompletionSource<bool> Prompt = new();
+    public static UniTask OpenCommonConfirmTipsPanel(CommonConfirmTipsPanel.Args args) { Prompts++; LastArgs=args; return new(Prompt.Task); }
+}
+class CommonConfirmTipsPanel { public class Args { public bool isLanguage; public string des; public Action onFinish; } }
+static class Application { public static int Quits; public static void Quit()=>Quits++; }
+static class GameExtensionRegistry { public static bool ShouldEnableTeach()=>true; }
+class SoundManager { public static SoundManager Instance=new(); public void MuteBGM(bool value){} }
+static class SaveDataUtils { public static Settings SettingData=new(); public class Settings { public bool enableMusic=true; } }
+static class TransitionBlock { public static int Starts; public static void ToGamePlay()=>Starts++; }
+
+static class Checks {
+    static int passed;
+    static void Check(bool value,string name) { if(!value)throw new Exception(name); Console.WriteLine("PASS "+name); passed++; }
+    static void Reset() {
+        AssetUtils.Scene=new(); WkyGameplayBridge.Instance=new(); WkyGameplayBridge.Failures=WkyGameplayBridge.ProgressCalls=0;
+        WkyGameplayBridge.LastFailure=null; WkyGameplayBridge.FailurePrompt=new(); UIModule.Instance=new();
+        SDKAssetHandler.Prompts=0; SDKAssetHandler.LastArgs=null; SDKAssetHandler.Prompt=new();
+        AccountModule.Instance=new(); FlowModule.Blocked=false; TransitionBlock.Starts=0; LogLogger.Info=LogLogger.Errors=0;
+    }
+    static GameMode_GamePlay Gameplay() { Reset(); return GameMode_GamePlay.Instance=new(); }
+    static GameMode_Loading Loading() { Reset(); return new(); }
+    static void Done(UniTask task) => Scheduler.Finish(task);
+    static void Main() {
+        var game=Gameplay(); var task=game.Run();
+        Check(WkyGameplayBridge.Instance.Handoffs==0 && !task.Value.IsCompleted,"Gameplay does not hand off before scene callback");
+        AssetUtils.Scene.TrySetResult(true);
+        Check(WkyGameplayBridge.Instance.Handoffs==1 && !task.Value.IsCompleted,"Gameplay awaits the one scene handoff");
+        WkyGameplayBridge.Instance.Handoff.TrySetResult(true); Done(task);
+        Check(WkyGameplayBridge.Failures==0,"Successful handoff shows no error");
+
+        game=Gameplay(); task=game.Run(); game.Release(); AssetUtils.Scene.TrySetResult(true); Done(task);
+        Check(WkyGameplayBridge.Instance.Handoffs==0 && UIModule.Instance.CloseLayers==1 && FlowModule.Blocked,
+            "Release closes base UI and late callback cannot hand off");
+        game=Gameplay(); task=game.Run(); GameMode_GamePlay.Instance=new(); AssetUtils.Scene.TrySetResult(true); Done(task);
+        Check(WkyGameplayBridge.Instance.Handoffs==0,"Replaced gameplay instance ignores stale callback");
+        game=Gameplay(); task=game.Run(); game.Destroy.Cancel(); AssetUtils.Scene.TrySetException(new OperationCanceledException()); Done(task);
+        Check(WkyGameplayBridge.Failures==0,"Destroyed-token cancellation remains silent");
+        game=Gameplay(); task=game.Run(); game.Release(); AssetUtils.Scene.TrySetException(new InvalidOperationException()); Done(task);
+        Check(WkyGameplayBridge.Failures==0,"Ordinary failure after release remains silent");
+        game=Gameplay(); task=game.Run(); var error=new OperationCanceledException(); AssetUtils.Scene.TrySetException(error);
+        Check(WkyGameplayBridge.Failures==1 && ReferenceEquals(error,WkyGameplayBridge.LastFailure) && !task.Value.IsCompleted,
+            "Unexpected cancellation in live gameplay still awaits the original error prompt");
+        WkyGameplayBridge.FailurePrompt.TrySetResult(true); Done(task);
+        game=Gameplay(); task=game.Run(); AssetUtils.Scene.TrySetResult(true); error=new OperationCanceledException();
+        game.Release(); WkyGameplayBridge.Instance.Handoff.TrySetException(error); Done(task);
+        Check(WkyGameplayBridge.Failures==0,"Released in-flight handoff cancellation cannot display stale error");
+        game=Gameplay(); task=game.Run(); AssetUtils.Scene.TrySetException(new InvalidOperationException());
+        WkyGameplayBridge.FailurePrompt.TrySetException(new ArgumentException("prompt"));
+        bool propagated=false; try{Done(task);}catch(ArgumentException){propagated=true;}
+        Check(propagated && WkyGameplayBridge.Failures==1,"Prompt failures propagate without recursively reopening error UI");
+
+        var loading=Loading(); loading.StartGame();
+        Check(TransitionBlock.Starts==0 && WkyGameplayBridge.Instance.Prepares==0,"Early StartGame cannot bypass loading completion");
+        task=loading.Run(); UIModule.Instance.Loading.TrySetResult(new()); Scheduler.Pump();
+        Check(loading._loadingProcedure.Runs==1 && TransitionBlock.Starts==0,"Loading task runs after page and frame, before handoff");
+        loading._loadingProcedure.Completion.TrySetResult(true); Done(task); loading.Finish(); loading.StartGame();
+        Check(TransitionBlock.Starts==1 && WkyGameplayBridge.Instance.Prepares==1,"Repeated completion and StartGame hand off exactly once");
+        loading.Release(); Check(UIModule.Instance.CloseLoading==0,"Normal handoff keeps its loading page for gameplay completion");
+        loading=Loading(); task=loading.Run(); loading.Release(); UIModule.Instance.Loading.TrySetResult(new()); Scheduler.Pump();
+        loading._loadingProcedure.Completion.TrySetResult(true); Done(task); loading.Finish(); loading.StartGame();
+        Check(TransitionBlock.Starts==0 && UIModule.Instance.CloseLoading==1,"Released loader cannot reenter from late completion");
+        loading=Loading(); AccountModule.Instance.IsSuspended=true; loading.Finish();
+        Check(TransitionBlock.Starts==0,"Suspended account remains blocked after loading completion");
+
+        foreach(var code in new[]{"CountryRestricted","1001"}) {
+            loading=Loading(); task=loading.Run(); UIModule.Instance.Loading.TrySetException(new WKYInitializationException(code)); Done(task);
+            Check(SDKAssetHandler.Prompts==0 && TransitionBlock.Starts==0 && LogLogger.Info==1,"Dedicated account/country gate owns prompt: "+code);
+        }
+        loading=Loading(); task=loading.Run(); UIModule.Instance.Loading.TrySetException(new Bizza.TokenClientSystem.TokenClientBlockedException()); Done(task);
+        Check(SDKAssetHandler.Prompts==0 && LogLogger.Errors==1,"VPN/auth blocked exception keeps its original prompt owner");
+        loading=Loading(); task=loading.Run(); UIModule.Instance.Loading.TrySetException(new WKYInitializationException("OTHER"));
+        Check(SDKAssetHandler.Prompts==1 && !task.Value.IsCompleted && SDKAssetHandler.LastArgs.des=="HTTPNetworkProblem",
+            "Other initialization errors retain the awaited network prompt");
+        SDKAssetHandler.LastArgs.onFinish(); SDKAssetHandler.Prompt.TrySetResult(true); Done(task);
+        Check(Application.Quits==1,"Ordinary loading error confirmation retains exit callback");
+        loading=Loading(); task=loading.Run(); loading.Release(); UIModule.Instance.Loading.TrySetException(new Exception()); Done(task);
+        Check(SDKAssetHandler.Prompts==0,"Released loader suppresses ordinary delayed errors");
+        loading=Loading(); task=loading.Run(); AccountModule.Instance.IsSuspended=true; UIModule.Instance.Loading.TrySetException(new Exception()); Done(task);
+        Check(SDKAssetHandler.Prompts==0,"Already suspended account suppresses a second ordinary error prompt");
+        Console.WriteLine("PASS "+passed+" scene startup and exception checks");
+    }
+}

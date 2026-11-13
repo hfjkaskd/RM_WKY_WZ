@@ -60,6 +60,7 @@ public class GameMode_Loading : GameModeBase
 
         private async UniTaskVoid RunLoadingSafe()
         {
+                Exception failure = null;
                 try
                 {
                         if (await UIModule.Instance.OpenPage(UIPageIds.LoadingPanel) == null)
@@ -70,29 +71,34 @@ public class GameMode_Loading : GameModeBase
                         await UniTask.NextFrame();
                         await _loadingProcedure.Run(OnLoadingFinish);
                 }
-                catch (WKYInitializationException e) when (e.ErrorCode == "CountryRestricted" ||
-                                                           e.ErrorCode == AccountModule.SuspendedCode)
+                catch (Exception error)
                 {
-                        // The account/country gate owns its existing blocking prompt.
-                        LogLogger.LogInfo($"账号或地区限制阻止进入游戏: {e.Message}");
+                        failure = error;
                 }
-                catch (Bizza.TokenClientSystem.TokenClientBlockedException e)
+
+                // Classify after leaving the catch region; only the ordinary
+                // failure path awaits a prompt, matching the existing owners.
+                if (failure == null) return;
+                if (failure is WKYInitializationException blocked &&
+                    (blocked.ErrorCode == "CountryRestricted" || blocked.ErrorCode == AccountModule.SuspendedCode))
                 {
-                        // AuthFlow 已经完成对应的失败提示，这里只阻止进入游戏，避免重复弹出网络错误。
-                        LogLogger.LogError($"用户授权阻止继续加载: {e.Message}");
+                        LogLogger.LogInfo($"账号或地区限制阻止进入游戏: {blocked.Message}");
+                        return;
                 }
-                catch (Exception e)
+                if (failure is Bizza.TokenClientSystem.TokenClientBlockedException tokenBlocked)
                 {
-                        if (released || AccountModule.Instance?.IsSuspended == true) return;
-                        LogLogger.LogError($"加载流程失败: {e}");
-                        var args = new CommonConfirmTipsPanel.Args
-                        {
-                                isLanguage = true,
-                                des = "HTTPNetworkProblem",
-                                onFinish = Application.Quit,
-                        };
-                        await SDKAssetHandler.OpenCommonConfirmTipsPanel(args);
+                        LogLogger.LogError($"用户授权阻止继续加载: {tokenBlocked.Message}");
+                        return;
                 }
+                if (released || AccountModule.Instance?.IsSuspended == true) return;
+                LogLogger.LogError($"加载流程失败: {failure}");
+                var args = new CommonConfirmTipsPanel.Args
+                {
+                        isLanguage = true,
+                        des = "HTTPNetworkProblem",
+                        onFinish = Application.Quit,
+                };
+                await SDKAssetHandler.OpenCommonConfirmTipsPanel(args);
         }
 
         public void StartGame()
