@@ -1,5 +1,7 @@
 #if BIZZA_REAL_WITHDRAW
 using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Whitebox.Foundation;
 
@@ -63,7 +65,84 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchBoosterInventory
         return true;
     }
 
-    public bool TryPurchaseBooster(OriginalBoosterType type, int coinPrice)
+    public void RequestBooster(OriginalBoosterType type, int coinPrice, Sprite icon, Action<bool> complete,
+        CancellationToken cancellationToken) =>
+        RequestBoosterAsync(type, coinPrice, icon, complete, cancellationToken).Forget();
+
+    private async UniTask RequestBoosterAsync(OriginalBoosterType type, int coinPrice, Sprite icon,
+        Action<bool> complete, CancellationToken cancellationToken)
+    {
+        var ui = UIModule.Instance;
+        UIPageBase page = null;
+        bool success = false;
+        try
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (ui == null || ItemForBooster(type) == E_ItemType.None || !IsBoosterAttemptActive() ||
+                boosterAdPending || HasBlockingPresentation())
+                return;
+
+            int attempt = attemptVersion;
+            var choice = BoosterPurchasePanel.Choice.Cancel;
+            var offer = new BoosterPurchasePanel.Offer(type, icon, coinPrice, RoyalMatchSessionBridge.BoosterCoinBalance,
+                BizzaSdk.Ad.Inited, selection =>
+                {
+                    if (!cancellationToken.IsCancellationRequested && IsBoosterOfferAttemptActive(attempt))
+                        choice = selection;
+                });
+            // Use the framework's cancellable open path so it can roll back an unfinished popup.
+            using (var openAttempt = new UIModule.PageOpenAttempt())
+            using (cancellationToken.Register(openAttempt.Cancel))
+                page = await ui.OpenAutomaticPopup(UIPageIds.BoosterPurchasePanel, offer, openAttempt);
+            if (page == null) return;
+
+            // OnClose reports the choice before the framework deactivates the popup.
+            await UniTask.WaitUntil(() => !IsBoosterOfferAttemptActive(attempt) ||
+                page == null || !page.gameObject.activeInHierarchy, cancellationToken: cancellationToken);
+            if (!IsBoosterOfferAttemptActive(attempt) || choice == BoosterPurchasePanel.Choice.Cancel)
+                return;
+
+            await UniTask.WaitUntil(() => !IsBoosterOfferAttemptActive(attempt) || !HasBlockingPresentation(),
+                cancellationToken: cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            if (!IsBoosterOfferAttemptActive(attempt)) return;
+
+            if (choice == BoosterPurchasePanel.Choice.Coins)
+                success = TryPurchaseBooster(type, coinPrice);
+            else if (choice == BoosterPurchasePanel.Choice.Ad)
+            {
+                bool? adResult = null;
+                RequestBoosterAd(type, result => adResult = result, cancellationToken);
+                await UniTask.WaitUntil(() => adResult.HasValue || !IsBoosterOfferAttemptActive(attempt),
+                    cancellationToken: cancellationToken);
+                success = adResult == true;
+            }
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+        }
+        catch (Exception error)
+        {
+            Debug.LogException(error);
+        }
+        finally
+        {
+            try
+            {
+                if (page != null && ui != null && page.gameObject.activeInHierarchy && !page.IsClosing)
+                    ui.ClosePage(page);
+            }
+            finally
+            {
+                complete(success);
+            }
+        }
+    }
+
+    private bool IsBoosterOfferAttemptActive(int attempt) =>
+        attempt == attemptVersion && IsBoosterAttemptActive();
+
+    private bool TryPurchaseBooster(OriginalBoosterType type, int coinPrice)
     {
         var item = ItemForBooster(type);
         if (item == E_ItemType.None || coinPrice <= 0 || !IsBoosterAttemptActive() ||
@@ -74,7 +153,15 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchBoosterInventory
         if (!RoyalMatchSessionBridge.TrySpendBoosterCoins(coinPrice))
             return false;
 
-        ItemUtils.AddItem(item, 1, false, false, default, false);
+        try
+        {
+            ItemUtils.AddItem(item, 1, false, false, default, false);
+        }
+        catch (Exception error)
+        {
+            Debug.LogException(error);
+        }
+
         if (GetBooster(type) > previousCount)
             return true;
 
@@ -83,11 +170,11 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchBoosterInventory
         return false;
     }
 
-    public void RequestBooster(OriginalBoosterType type, Action<bool> complete)
+    private void RequestBoosterAd(OriginalBoosterType type, Action<bool> complete, CancellationToken cancellationToken)
     {
         var item = ItemForBooster(type);
-        if (item == E_ItemType.None || !IsBoosterAttemptActive() || boosterAdPending ||
-            !BizzaSdk.Ad.Inited || HasBlockingPresentation())
+        if (cancellationToken.IsCancellationRequested || item == E_ItemType.None ||
+            !IsBoosterAttemptActive() || boosterAdPending || !BizzaSdk.Ad.Inited || HasBlockingPresentation())
         {
             complete(false);
             return;
@@ -108,14 +195,22 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchBoosterInventory
                 boosterAdPending = false;
                 if (attempt == attemptVersion) lastBlockedFrame = Time.frameCount;
 
-                if (!result.success || attempt != attemptVersion || !IsBoosterAttemptActive())
+                if (!result.success || cancellationToken.IsCancellationRequested || !IsBoosterOfferAttemptActive(attempt))
                 {
                     complete(false);
                     return;
                 }
 
                 int before = GetBooster(type);
-                ItemUtils.AddItem(item, 1, false, true, default, false);
+                try
+                {
+                    ItemUtils.AddItem(item, 1, false, true, default, false);
+                }
+                catch (Exception error)
+                {
+                    Debug.LogException(error);
+                }
+
                 complete(GetBooster(type) > before);
             });
             UIModule.Instance.m_curadvertistics--;

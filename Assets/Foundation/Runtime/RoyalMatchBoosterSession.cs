@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UnityEngine;
 
 namespace Whitebox.Foundation
@@ -7,8 +8,8 @@ namespace Whitebox.Foundation
     {
         event Action Changed;
         bool TryConsumeBooster(OriginalBoosterType type);
-        bool TryPurchaseBooster(OriginalBoosterType type, int coinPrice);
-        void RequestBooster(OriginalBoosterType type, Action<bool> complete);
+        void RequestBooster(OriginalBoosterType type, int coinPrice, Sprite icon, Action<bool> complete,
+            CancellationToken cancellationToken);
     }
 
     internal sealed class RoyalMatchBoosterSession : IDisposable
@@ -32,12 +33,12 @@ namespace Whitebox.Foundation
         private OriginalHammerBoosterView hammer;
         private GameObject hammerSelection;
         private bool hammerSelected;
-        private bool requesting;
+        private CancellationTokenSource requestOwner;
         private bool disposed;
         private OriginalGameTouchListener lockedTouch;
 
         public bool IsSelected => hammerSelected || (selectedOptional != null && selectedOptional.IsSelected);
-        public bool IsActive => IsSelected || requesting;
+        public bool IsActive => IsSelected || requestOwner != null;
 
         public RoyalMatchBoosterSession(IRoyalMatchBoosterInventory inventory, OriginalPlayableBoard game,
             OriginalInitialBoardView board, OriginalBottomUi bottom, OriginalGameplayHud hud, Camera camera,
@@ -60,7 +61,7 @@ namespace Whitebox.Foundation
         }
 
         private bool CanUse() =>
-            !disposed && !requesting && !inputBlocked() && !game.HasActiveBoosterGuide &&
+            !disposed && requestOwner == null && !inputBlocked() && !game.HasActiveBoosterGuide &&
             game.IsPlaying() && game.CanUserMakeMove() && game.Fall.IsAllItemsSteady &&
             !game.State.HasAnyOperation();
 
@@ -76,23 +77,23 @@ namespace Whitebox.Foundation
 
             if (!inventory.HasFreeUsage(type) && inventory.GetBooster(type) == 0)
             {
-                int coinPrice = GetCoinPrice(type);
-                if (coinPrice > 0 && inventory.TryPurchaseBooster(type, coinPrice))
-                {
-                    return;
-                }
+                OriginalInGameBoosterSlot slot = GetSlot(type);
+                if (slot == null) return;
 
-                requesting = true;
-                lockedTouch = game.TouchListener;
-                lockedTouch?.StopTouch();
-                lockedTouch?.DisableTouch();
+                var owner = CancellationTokenSource.CreateLinkedTokenSource(Application.exitCancellationToken);
+                requestOwner = owner;
                 try
                 {
-                    inventory.RequestBooster(type, OnRequestCompleted);
+                    var touch = game.TouchListener;
+                    touch?.StopTouch();
+                    touch?.DisableTouch();
+                    lockedTouch = touch;
+                    inventory.RequestBooster(type, slot.CoinPrice, slot.Icon != null ? slot.Icon.sprite : null,
+                        _ => OnRequestCompleted(owner), owner.Token);
                 }
                 catch
                 {
-                    ReleaseRequest();
+                    if (requestOwner == owner) ReleaseRequest();
                     throw;
                 }
                 return;
@@ -117,16 +118,15 @@ namespace Whitebox.Foundation
             if (selectedOptional != null) selectedOptional.SelectPaid();
         }
 
-        private int GetCoinPrice(OriginalBoosterType type)
+        private OriginalInGameBoosterSlot GetSlot(OriginalBoosterType type)
         {
-            for (int i = 0; i < bottom.Boosters.Length; i++)
+            foreach (var slot in bottom.Boosters)
             {
-                OriginalInGameBoosterSlot slot = bottom.Boosters[i];
                 if (slot != null && slot.BoosterType == type)
-                    return slot.CoinPrice;
+                    return slot;
             }
 
-            return 0;
+            return null;
         }
 
         private OriginalHammerTutorial GetHammerTemplate()
@@ -225,19 +225,21 @@ namespace Whitebox.Foundation
             selectedOptional = null;
         }
 
-        private void OnRequestCompleted(bool success)
+        private void OnRequestCompleted(CancellationTokenSource owner)
         {
-            if (disposed || !requesting) return;
+            if (disposed || requestOwner != owner) return;
             ReleaseRequest();
             Refresh();
         }
 
         private void ReleaseRequest()
         {
-            requesting = false;
+            using var owner = requestOwner;
+            requestOwner = null;
             if (lockedTouch != null && lockedTouch.TouchDisableCount > 0)
                 lockedTouch.EnableTouch();
             lockedTouch = null;
+            owner?.Cancel();
         }
 
         private void Refresh()

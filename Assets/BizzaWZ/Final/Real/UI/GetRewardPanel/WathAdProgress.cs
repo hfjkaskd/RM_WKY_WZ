@@ -15,6 +15,7 @@ public class WathAdProgress : MonoBehaviour
     public TMP_Text progressText;
 
     public Image progressBar;
+    [SerializeField] private Image progressTrack;
 
     public int WatchAdCount => SaveDataUtils.GameData.todayAdTimes;
 
@@ -73,13 +74,19 @@ public class WathAdProgress : MonoBehaviour
     {
         startText.text = $"+{startRatio}%";
         endText.text = $"+{endRatio}%";
-        progressBar.fillAmount = (float)watchAdCount / totalWatchAdCount;
+        SetProgressFill((float)watchAdCount / totalWatchAdCount);
         progressText.text = $"{watchAdCount}/{totalWatchAdCount}";
 
         if (isNotFull)
         {
             hintText.text = LanguageUtils.GetFormatText("GetReward_WatchAd_Hint_NotFull", totalWatchAdCount);
         }
+    }
+
+    internal void SetProgressFill(float fill)
+    {
+        progressBar.fillAmount = fill;
+        progressTrack.enabled = progressBar.fillAmount < 1f;
     }
 }
 #endif
