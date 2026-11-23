@@ -529,7 +529,11 @@ public class UIModule : BaseGameModule<UIModule>
             attempt.Commit();
             return page;
         }
-        catch (OperationCanceledException) when (attempt.IsCancelled) { return null; }
+        catch (OperationCanceledException)
+        {
+            if (attempt.IsCancelled) return null;
+            throw;
+        }
         finally
         {
             // Includes mismatched arguments, InitPage/event failures, and OnOpen/ShowPage exceptions.

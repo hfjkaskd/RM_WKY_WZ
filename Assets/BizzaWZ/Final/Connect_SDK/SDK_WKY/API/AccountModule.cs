@@ -385,14 +385,17 @@ public class AccountModule
                 InitUserInfo();
             }
         }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
-        {
-            loginAttemptInFlight = false;
-        }
         catch (Exception error)
         {
-            Debug.LogWarning("WKY login attempt failed: " + error.GetType().Name);
-            MarkLoadingUserDataFailed(error.GetType().Name);
+            if (error is OperationCanceledException && cancellation.IsCancellationRequested)
+            {
+                loginAttemptInFlight = false;
+            }
+            else
+            {
+                Debug.LogWarning("WKY login attempt failed: " + error.GetType().Name);
+                MarkLoadingUserDataFailed(error.GetType().Name);
+            }
         }
     }
 

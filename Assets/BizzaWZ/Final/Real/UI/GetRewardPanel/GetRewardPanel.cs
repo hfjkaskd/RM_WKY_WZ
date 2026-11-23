@@ -329,14 +329,20 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
             Action<FailHttpResponse<AccountModule.OceanShineUserReachReportResponse>> onReport = null;
             if (bridge == null || bridge.TryCaptureWinReport(out onReport))
             {
+                Exception reportError = null;
                 try
                 {
                     AccountModule.Instance.Request_UserReachLevelReportRequest(onReport);
                     LogLogger.LogVerbose(BaseConst.LOG_Game, "上报 关卡");
                 }
-                catch (Exception error) when (onReport != null)
+                catch (Exception error)
                 {
-                    Debug.LogException(error);
+                    if (onReport == null) throw;
+                    reportError = error;
+                }
+                if (reportError != null)
+                {
+                    Debug.LogException(reportError);
                     onReport(default);
                 }
             }

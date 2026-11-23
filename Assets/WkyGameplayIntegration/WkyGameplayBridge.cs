@@ -311,6 +311,7 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
         loading = true;
         readyLevel = 0;
         openingTutorialCompleted = false;
+        Exception loadFailure = null;
         try
         {
             var ui = UIModule.Instance;
@@ -331,8 +332,10 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
                 {
                     confirmed = await settlement.Report.Task.AttachExternalCancellation(wait.Token);
                 }
-                catch (OperationCanceledException) when (!Application.exitCancellationToken.IsCancellationRequested)
+                catch (OperationCanceledException)
                 {
+                    if (Application.exitCancellationToken.IsCancellationRequested)
+                        throw;
                 }
                 if (AccountModule.Instance?.IsSuspended == true)
                     return;
@@ -353,13 +356,13 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchSessionBridge, IRoy
             ReportProgress(0.2f);
             TransitionBlock.ToGamePlay();
         }
-        catch (OperationCanceledException) when (Application.exitCancellationToken.IsCancellationRequested)
-        {
-        }
         catch (Exception error)
         {
-            await ShowLoadFailure(error);
+            if (!(error is OperationCanceledException && Application.exitCancellationToken.IsCancellationRequested))
+                loadFailure = error;
         }
+        if (loadFailure != null)
+            await ShowLoadFailure(loadFailure);
     }
 
     internal static UniTask ShowLoadFailure(Exception error)

@@ -215,13 +215,13 @@ public sealed class AutoPopupQueue
             BeginPhase(Phase.Content, contentTimeout);
             waitingForContent = page is IAutoPopupContent content && !content.ContentReady;
         }
-        catch (OperationCanceledException) when (attempt.IsCancelled)
-        {
-            if (IsCurrent(request, attempt, version)) FinishCurrent(true);
-        }
         catch (Exception exception)
         {
-            if (IsCurrent(request, attempt, version))
+            if (exception is OperationCanceledException && attempt.IsCancelled)
+            {
+                if (IsCurrent(request, attempt, version)) FinishCurrent(true);
+            }
+            else if (IsCurrent(request, attempt, version))
             {
                 FinishCurrent(true);
                 Debug.LogException(exception);

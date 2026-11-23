@@ -48,9 +48,11 @@ namespace Whitebox.Foundation
             }
             catch (FileNotFoundException) { return null; }
             catch (DirectoryNotFoundException) { return null; }
-            catch (Exception error) when (error is InvalidDataException || error is IOException ||
-                error is UnauthorizedAccessException || error is DecoderFallbackException)
+            catch (Exception error)
             {
+                if (!(error is InvalidDataException || error is IOException ||
+                    error is UnauthorizedAccessException || error is DecoderFallbackException))
+                    throw;
                 Debug.LogWarning("Ignoring the local level save. " + error.Message);
                 Clear();
                 return null;
@@ -166,8 +168,10 @@ namespace Whitebox.Foundation
                         else File.Move(temporary, path);
                     }
                 }
-                catch (Exception error) when (error is IOException || error is UnauthorizedAccessException)
+                catch (Exception error)
                 {
+                    if (!(error is IOException || error is UnauthorizedAccessException))
+                        throw;
                     lock (gate) writerError = error;
                 }
             }

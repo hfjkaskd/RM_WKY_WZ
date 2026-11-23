@@ -44,12 +44,9 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchReviveBridge
                 () => pendingRevive != owner || UIModule.Instance?.FindOpenedPage(UIPageIds.LosePanel) != null,
                 cancellationToken: wait.Token);
         }
-        catch (OperationCanceledException) when (exit.IsCancellationRequested)
-        {
-        }
         catch (OperationCanceledException)
         {
-            if (pendingRevive == owner)
+            if (!exit.IsCancellationRequested && pendingRevive == owner)
                 ResolveReviveOffer(false);
         }
     }
@@ -81,12 +78,10 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchReviveBridge
             await UniTask.WaitUntil(() => page == null || !page.gameObject.activeInHierarchy,
                 cancellationToken: wait.Token);
         }
-        catch (OperationCanceledException) when (exit.IsCancellationRequested)
-        {
-            return;
-        }
         catch (OperationCanceledException)
         {
+            if (exit.IsCancellationRequested)
+                return;
             succeeded = false;
         }
         finally

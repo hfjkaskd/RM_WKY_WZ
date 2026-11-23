@@ -5,6 +5,8 @@ account_id = "b469e0ed634a4db123e8452bb82e33c6"
 workers_dev = false
 preview_urls = false
 keep_vars = true
+# Manage VPN_DETECTION_ENABLED in the Worker dashboard (true/false, default true).
+# Keep it out of [vars] so deploys preserve the manually selected value.
 
 [[routes]]
 pattern = "iptokenclient.applebooks24.com/api/v1/rm-wky-wz/region"
