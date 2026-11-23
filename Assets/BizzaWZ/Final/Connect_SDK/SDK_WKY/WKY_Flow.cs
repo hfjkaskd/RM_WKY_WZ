@@ -24,6 +24,10 @@ public sealed class WKY_Flow
             HttpUtil.LoginHTTPDict);
         onProgress?.Invoke(0.05f);
         await VerifyCountryAccessAsync();
+#if USER_VERIFICATION_SDK
+        // Fetch the remote switch before the local VPN check and account login.
+        await Boots_Flow.VerifyVpnAccessAsync();
+#endif
 
         ChannelConfig config = await ChannelConfigLoader.LoadAsync();
         if (config == null)
@@ -100,6 +104,7 @@ public sealed class WKY_Flow
 
     private static async UniTask VerifyCountryAccessAsync()
     {
+        DeviceNativeBridge.ApplyVpnDetectionPolicy(null);
         for (int attempt = 1; attempt <= CountryCheckAttempts; attempt++)
         {
             using var request = UnityWebRequest.Get(CountryWorkerUrl);
@@ -124,7 +129,13 @@ public sealed class WKY_Flow
                       $"result={request.result} policyConfirmed={policyConfirmed}");
 
             if (!policyConfirmed) continue;
-            if (status == 204 && request.result == UnityWebRequest.Result.Success) return;
+            if (status == 204 && request.result == UnityWebRequest.Result.Success)
+            {
+                DeviceNativeBridge.ApplyVpnDetectionPolicy(
+                    request.GetResponseHeader("X-Game-Vpn-Detection"));
+                Debug.Log($"[VpnAccess] detectionEnabled={DeviceNativeBridge.IsVpnDetectionEnabled}");
+                return;
+            }
             if (status != 403) continue;
 
             await SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args

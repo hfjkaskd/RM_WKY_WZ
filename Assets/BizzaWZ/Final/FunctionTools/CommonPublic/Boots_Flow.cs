@@ -125,18 +125,8 @@ public static class Boots_Flow
         {
             Bizza.Unity.Android.AndroidJavaMessageDispatcher.EnsureCreated();
 
-#if USER_VERIFICATION_SDK
-            if (DeviceNativeBridge.IsVpnConnected())
-            {
-                const string reason = "VPN";
-                await SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args
-                {
-                    isLanguage = true,
-                    des = CommonConfirmTipsPanel.GetTokenClientMessageKey(reason),
-                    onFinish = Application.Quit
-                });
-                throw new Bizza.TokenClientSystem.TokenClientBlockedException(reason);
-            }
+#if USER_VERIFICATION_SDK && !WKY_SDK
+            await VerifyVpnAccessAsync();
 #endif
 
 #if WKY_SDK
@@ -185,6 +175,22 @@ public static class Boots_Flow
             Observers.Clear();
         }
     }
+
+#if USER_VERIFICATION_SDK
+    internal static async UniTask VerifyVpnAccessAsync()
+    {
+        if (!DeviceNativeBridge.IsVpnConnected()) return;
+
+        const string reason = "VPN";
+        await SDKAssetHandler.OpenCommonConfirmTipsPanel(new CommonConfirmTipsPanel.Args
+        {
+            isLanguage = true,
+            des = CommonConfirmTipsPanel.GetTokenClientMessageKey(reason),
+            onFinish = Application.Quit
+        });
+        throw new Bizza.TokenClientSystem.TokenClientBlockedException(reason);
+    }
+#endif
 
     private static async UniTask ExecuteStage(
         BootsFlowStage stage,

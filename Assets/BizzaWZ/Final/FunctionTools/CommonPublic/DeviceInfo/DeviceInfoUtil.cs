@@ -110,6 +110,8 @@ public static class DeviceInfoUtil
         try
         {
             DeviceNativeInfoData deviceInfo = GetNativeDeviceInfo();
+            // VPN policy and network state can change while the device ID cache is still fresh.
+            deviceInfo.IsVpnConnected = DeviceNativeBridge.IsVpnConnected();
             deviceInfo.Os_Gaid = await GetGoogleIdAsync();
             cachedDeviceInfo = deviceInfo;
             initializationCompleted = true;
