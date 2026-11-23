@@ -1,0 +1,189 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using Whitebox.Foundation;
+
+// PRODUCTION_VECTOR
+// PRODUCTION_LANGUAGE_ROW
+namespace cfg {
+    // PRODUCTION_LANGUAGE_TABLE
+}
+
+static class TableUtils {
+    internal sealed class TableSet { internal cfg.TblLanguage TblLanguage; }
+    internal static readonly TableSet Tables = new TableSet();
+}
+
+static class LanguageUtils {
+    private const string DefaultLanguage = "pt-BR";
+    public static string SelectedLanguage;
+    // PRODUCTION_GET_TEXT
+}
+
+static class Runner {
+    sealed class Expected {
+        internal readonly string Key;
+        internal readonly string[] Values;
+        internal Expected(string key, string english, string portuguese, string indonesian) {
+            Key = key; Values = new[] { english, portuguese, indonesian };
+        }
+    }
+
+    static readonly string[] Locales = { "en-US", "pt-BR", "id-ID" };
+    static readonly Expected[] Overrides = {
+        // REVIEWED_OVERRIDES
+    };
+    static int cases;
+
+    static void Check(bool condition, string message) {
+        if (!condition) throw new InvalidOperationException(message);
+        cases++;
+    }
+
+    static void Throws<T>(Action action, string message) where T : Exception {
+        bool rejected = false;
+        try { action(); } catch (T) { rejected = true; }
+        Check(rejected, message);
+    }
+
+    static string[] Placeholders(string text) {
+        var found = new SortedSet<string>(StringComparer.Ordinal);
+        foreach (Match match in Regex.Matches(text, @"(?<!\{)\{([^{}]+)\}(?!\})")) found.Add(match.Groups[1].Value);
+        var result = new string[found.Count]; found.CopyTo(result); return result;
+    }
+
+    static void CheckFormatting(string key, string language, string text) {
+        string numericOnly = Regex.Replace(text, @"(?<!\{)\{([^{}]+)\}(?!\})", match =>
+            Regex.IsMatch(match.Groups[1].Value, @"^\d+(?:[, :].*)?$") ? match.Value : "COLOR");
+        int maximum = -1;
+        foreach (Match match in Regex.Matches(numericOnly, @"(?<!\{)\{(\d+)(?:[^{}]*)\}(?!\})"))
+            maximum = Math.Max(maximum, int.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture));
+        if (maximum < 0) return;
+        var values = new object[maximum + 1];
+        for (int index = 0; index < values.Length; index++) values[index] = 123.45;
+        string formatted = string.Format(CultureInfo.GetCultureInfo(language), numericOnly, values);
+        Check(!string.IsNullOrEmpty(formatted), "Format failed: " + key + "/" + language);
+    }
+
+    static byte[] Encode(cfg.TblLanguage table) {
+        using (var stream = new MemoryStream()) {
+            using (var writer = new BinaryWriter(stream, Encoding.UTF8, true)) {
+                SimpleConfigBinary.WriteHeader(writer, "tbllanguage");
+                SimpleConfigBinary.WriteCount(writer, table.DataList.Count);
+                foreach (var row in table.DataList) {
+                    SimpleConfigBinary.WriteString(writer, row.Id);
+                    SimpleConfigBinary.WriteCount(writer, row.Dict.Count);
+                    foreach (var entry in row.Dict) {
+                        SimpleConfigBinary.WriteString(writer, entry.Key);
+                        SimpleConfigBinary.WriteString(writer, entry.Value);
+                    }
+                }
+            }
+            return stream.ToArray();
+        }
+    }
+
+    static void CheckCodec(byte[] bytes, cfg.TblLanguage table) {
+        Check(table.Inited && table.DataList.Count > 0, "Real binary table was not initialized");
+        Check(table.DataMap.Count == table.DataList.Count, "Duplicate language keys");
+        var restored = new cfg.TblLanguage(); restored.Init(Encode(table));
+        Check(restored.Inited && restored.DataList.Count == table.DataList.Count, "Codec row count changed");
+        foreach (var row in table.DataList) {
+            var copy = restored.Get(row.Id);
+            Check(copy.Dict.Count == row.Dict.Count, "Codec changed locale count: " + row.Id);
+            foreach (var value in row.Dict)
+                Check(copy.Dict.TryGetValue(value.Key, out string after) && after == value.Value,
+                    "Codec changed text/UTF8: " + row.Id + "/" + value.Key);
+        }
+        byte[] badHeader = (byte[])bytes.Clone(); badHeader[0] ^= 0x40;
+        Throws<InvalidDataException>(() => new cfg.TblLanguage().Init(badHeader), "Invalid magic was accepted");
+        byte[] badVersion = (byte[])bytes.Clone(); badVersion[4] = 2;
+        Throws<InvalidDataException>(() => new cfg.TblLanguage().Init(badVersion), "Invalid binary version was accepted");
+        Throws<InvalidDataException>(() => new SimpleConfigBinaryReader(bytes, "another-table"), "Wrong table type was accepted");
+        using (var stream = new MemoryStream()) using (var writer = new BinaryWriter(stream))
+            Throws<ArgumentOutOfRangeException>(() => SimpleConfigBinary.WriteCount(writer, -1), "Writer accepted negative count");
+        restored.Clear();
+        Check(!restored.Inited && restored.DataMap == null && restored.DataList == null, "Table clear kept old state");
+        restored.Init(bytes);
+        Check(restored.Inited && restored.DataList.Count == table.DataList.Count, "Table cannot reopen after clear");
+        Console.WriteLine("PASS production binary reader/writer round trip, all original locales and UTF-8, header rejection and reload");
+    }
+
+    static void CheckTable(cfg.TblLanguage table) {
+        foreach (var row in table.DataList) {
+            string[] expected = null;
+            foreach (var locale in Locales) {
+                Check(row.Dict.TryGetValue(locale, out string text) && !string.IsNullOrWhiteSpace(text),
+                    "Missing locale: " + row.Id + "/" + locale);
+                var current = Placeholders(text);
+                Check(expected == null || string.Join("|", current) == string.Join("|", expected),
+                    "Placeholder mismatch: " + row.Id + "/" + locale);
+                expected = current;
+                CheckFormatting(row.Id, locale, text);
+            }
+        }
+        foreach (var expected in Overrides) {
+            var row = table.GetOrDefault(expected.Key);
+            Check(row != null, "Reviewed key absent from production binary: " + expected.Key);
+            for (int locale = 0; locale < Locales.Length; locale++)
+                Check(row.Dict[Locales[locale]] == expected.Values[locale],
+                    "Production binary differs from reviewed source: " + expected.Key + "/" + Locales[locale]);
+        }
+        Console.WriteLine("PASS " + table.DataList.Count + " rows x 3 languages, placeholders/format strings, " + Overrides.Length + " reviewed overrides");
+    }
+
+    static void CheckCore(cfg.TblLanguage table) {
+        Check(CoreLocalization.Get("missing", "Original") == "Original", "Before table install should preserve authored fallback");
+        Check(CoreLocalization.Get(null, "Original") == "Original", "Null key fallback failed");
+        Check(CoreLocalization.Get(string.Empty, null) == string.Empty, "Empty key fallback failed");
+        int notifications = 0; Action observed = () => notifications++;
+        CoreLocalization.Changed += observed;
+        TableUtils.Tables.TblLanguage = table; LanguageUtils.SelectedLanguage = "en-US";
+        CoreLocalization.Configure(key => LanguageUtils.GetText(key));
+        Check(notifications == 1, "Installing resolver must refresh existing labels");
+        CoreLocalization.NotifyLanguageChanged();
+        Check(notifications == 2, "Explicit language change did not notify");
+        Throws<ArgumentNullException>(() => CoreLocalization.Configure(null), "Null resolver was accepted");
+        Check(notifications == 2, "Rejected resolver must not emit a change");
+        foreach (var locale in Locales) {
+            LanguageUtils.SelectedLanguage = locale;
+            CoreLocalization.NotifyLanguageChanged();
+            foreach (var expected in Overrides)
+                Check(CoreLocalization.Get(expected.Key, "fallback") == table.Get(expected.Key).Dict[locale],
+                    "Core used wrong language: " + expected.Key + "/" + locale);
+        }
+        Check(notifications == 5, "Each of three language changes must notify once");
+        Check(CoreLocalization.Get("MISSING_PRODUCTION_KEY", "Visible fallback") == "Visible fallback", "Missing table key should not leak key text");
+        Check(CoreLocalization.Get("MISSING_PRODUCTION_KEY", null) == string.Empty, "Null fallback should stay empty");
+
+        // Simulate the missing/empty locale boundary without editing source data.
+        var row = new LanguageConfig { Id = "__fixture_fallback", Dict = new Dictionary<string, string> {
+            { "en-US", "" }, { "pt-BR", "Texto de reserva" }, { "id-ID", "Teks Indonesia" } } };
+        table.DataMap.Add(row.Id, row);
+        LanguageUtils.SelectedLanguage = "en-US";
+        Check(CoreLocalization.Get(row.Id, "Authored") == "Texto de reserva", "Production GetText default-locale fallback changed");
+        LanguageUtils.SelectedLanguage = "id-ID";
+        Check(CoreLocalization.Get(row.Id, "Authored") == "Teks Indonesia", "Available locale must beat fallback");
+        table.DataMap.Remove(row.Id);
+        TableUtils.Tables.TblLanguage = null;
+        Check(CoreLocalization.Get("RM_Play_Target", "Target") == "Target", "Startup before table availability must keep authored fallback");
+        TableUtils.Tables.TblLanguage = table;
+        CoreLocalization.Changed -= observed;
+        CoreLocalization.NotifyLanguageChanged();
+        Check(notifications == 5, "Removed subscriber still receives language notifications");
+        Console.WriteLine("PASS production CoreLocalization + production LanguageUtils.GetText, three-language switches, change events and fallbacks");
+    }
+
+    public static int Main(string[] args) {
+        try {
+            var bytes = File.ReadAllBytes(args[0]);
+            var table = new cfg.TblLanguage(); table.Init(bytes);
+            CheckCodec(bytes, table); CheckTable(table); CheckCore(table);
+            Console.WriteLine("LOCALIZATION_CORE_PASS checks=" + cases);
+            return 0;
+        } catch (Exception error) { Console.Error.WriteLine(error); return 1; }
+    }
+}

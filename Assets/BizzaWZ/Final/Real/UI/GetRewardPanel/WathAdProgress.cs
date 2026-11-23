@@ -25,11 +25,13 @@ public class WathAdProgress : MonoBehaviour
     {
         // The strip hides itself offline but still needs the account recovery event.
         BizzaEventSystem.On(EventDefine.Login.InitContentByCountry, UpdateProgress);
+        BizzaEventSystem.On(EventDefine.Frame.LanguageChange, UpdateProgress);
     }
 
     private void OnDestroy()
     {
         BizzaEventSystem.Off(EventDefine.Login.InitContentByCountry, UpdateProgress);
+        BizzaEventSystem.Off(EventDefine.Frame.LanguageChange, UpdateProgress);
     }
 
     private void OnEnable()

@@ -61,32 +61,36 @@ public sealed class BoosterPurchasePanel : UIPageBase<BoosterPurchasePanel.Offer
         choice = Choice.Cancel;
         propIcon.sprite = purchase.Icon;
         propIcon.enabled = purchase.Icon != null;
-
-        bool portuguese = LanguageUtils.SelectedLanguage.StartsWith("pt", StringComparison.OrdinalIgnoreCase);
-        var culture = CultureInfo.GetCultureInfo(portuguese ? "pt-BR" : "en-US");
-        string price = purchase.CoinPrice.ToString("N0", culture);
-        string balance = purchase.Balance.ToString("N0", culture);
-        bool affordable = purchase.CoinPrice > 0 && purchase.Balance >= purchase.CoinPrice;
-
-        titleText.text = portuguese ? "Comprar item" : "Buy Booster";
-        propName.text = GetBoosterName(purchase.Type, portuguese);
-        priceText.text = portuguese ? $"Preço: {price} moedas" : $"Price: {price} coins";
-        balanceText.text = portuguese ? $"Saldo de moedas: {balance}" : $"Coin balance: {balance}";
-        buyText.text = affordable
-            ? (portuguese ? "Comprar" : "Buy")
-            : (portuguese ? "Moedas insuficientes" : "Not enough coins");
-        buyButton.interactable = affordable;
-        adText.text = portuguese ? "Assistir vídeo" : "Watch video";
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedContent, true);
+        RefreshLocalizedContent();
         adButton.gameObject.SetActive(purchase.CanWatchAd);
     }
 
-    private static string GetBoosterName(OriginalBoosterType type, bool portuguese) => type switch
+    private void RefreshLocalizedContent()
     {
-        OriginalBoosterType.Hammer => portuguese ? "Martelo" : "Hammer",
-        OriginalBoosterType.Arrow => portuguese ? "Flecha" : "Arrow",
-        OriginalBoosterType.Cannon => portuguese ? "Canhão" : "Cannon",
-        OriginalBoosterType.JesterHat => portuguese ? "Chapéu de bobo" : "Jester Hat",
-        _ => portuguese ? "Item" : "Booster",
+        var culture = CultureInfo.GetCultureInfo(LanguageUtils.SelectedLanguage);
+        string price = offer.CoinPrice.ToString("N0", culture);
+        string balance = offer.Balance.ToString("N0", culture);
+        bool affordable = offer.CoinPrice > 0 && offer.Balance >= offer.CoinPrice;
+
+        titleText.text = LanguageUtils.GetText("Booster_Title");
+        propName.text = LanguageUtils.GetText(GetBoosterNameKey(offer.Type));
+        priceText.text = LanguageUtils.GetFormatText("Booster_Price", price);
+        balanceText.text = LanguageUtils.GetFormatText("Booster_Balance", balance);
+        buyText.text = affordable
+            ? LanguageUtils.GetText("Booster_Buy")
+            : LanguageUtils.GetText("Booster_NotEnoughCoins");
+        buyButton.interactable = affordable;
+        adText.text = LanguageUtils.GetText("Booster_WatchAd");
+    }
+
+    private static string GetBoosterNameKey(OriginalBoosterType type) => type switch
+    {
+        OriginalBoosterType.Hammer => "Booster_Hammer",
+        OriginalBoosterType.Arrow => "Booster_Arrow",
+        OriginalBoosterType.Cannon => "Booster_Cannon",
+        OriginalBoosterType.JesterHat => "Booster_Jester",
+        _ => "Booster_Item",
     };
 
     private void Buy()
@@ -105,6 +109,7 @@ public sealed class BoosterPurchasePanel : UIPageBase<BoosterPurchasePanel.Offer
 
     protected override void OnClose()
     {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedContent, false);
         var complete = offer.Complete;
         offer = default;
         complete?.Invoke(choice);

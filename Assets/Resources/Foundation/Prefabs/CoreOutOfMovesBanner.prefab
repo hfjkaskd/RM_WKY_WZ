@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 224044625135789424}
   - component: {fileID: 23589667821646929}
   - component: {fileID: 114372920208702427}
+  - component: {fileID: 991000000000001}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -369,7 +370,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Out of Moves!
+  m_text: "Out of Moves!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 7a4484447b7835d4eb1b79c13fa54d1e, type: 2}
@@ -441,3 +442,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 23589667821646929}
   m_maskType: 0
+--- !u!114 &991000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618682377417806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114372920208702427}
+  key: RM_Play_OutOfMoves
+  fallback: "Out of Moves!"

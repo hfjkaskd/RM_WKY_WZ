@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 23000000000611}
   - component: {fileID: 114000000000871}
   - component: {fileID: 114000114770002}
+  - component: {fileID: 991000000000001}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -304,6 +305,7 @@ GameObject:
   - component: {fileID: 23000000000613}
   - component: {fileID: 114000000000873}
   - component: {fileID: 114000114770003}
+  - component: {fileID: 991000000000002}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -1426,7 +1428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Target
+  m_text: "Target"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: fff0362ca80e4364dba952138defe362, type: 2}
@@ -1457,7 +1459,7 @@ MonoBehaviour:
   m_fontSizeBase: 5.2
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 3.4
+  m_fontSizeMin: 3.0
   m_fontSizeMax: 5.2
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -1610,7 +1612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Moves
+  m_text: "Moves"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: fff0362ca80e4364dba952138defe362, type: 2}
@@ -1641,7 +1643,7 @@ MonoBehaviour:
   m_fontSizeBase: 5.0
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 3.2
+  m_fontSizeMin: 3.0
   m_fontSizeMax: 5.0
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -1735,6 +1737,9 @@ MonoBehaviour:
   referenceViewportHeight: 20.6666667
   unifiedCardPortraitPosition: {x: 0, y: -3.38, z: 0}
   tutorialTopLimit: {fileID: 400000000200001}
+  localizedTargetTitle: {fileID: 991000000000001}
+  targetTitleKey: RM_Play_Target
+  rewardTitleKey: RM_Play_Reward
 --- !u!1 &1000000000125
 GameObject:
   serializedVersion: 6
@@ -2745,3 +2750,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400000000200000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000000000079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114000000000871}
+  key: RM_Play_Target
+  fallback: "Target"
+--- !u!114 &991000000000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000000000144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114000000000873}
+  key: RM_Play_Moves
+  fallback: "Moves"

@@ -13,6 +13,8 @@ export default {
 
     const setting = String(env.COUNTRY_FILTER_ENABLED ?? "").trim().toLowerCase();
     const filterEnabled = setting !== "false" && setting !== "0";
+    const vpnSetting = String(env.VPN_DETECTION_ENABLED ?? "").trim().toLowerCase();
+    const vpnDetectionEnabled = vpnSetting !== "false" && vpnSetting !== "0";
     const allowed = !filterEnabled || ALLOWED_COUNTRIES.has(request.cf?.country);
 
     return new Response(null, {
@@ -20,6 +22,7 @@ export default {
       headers: {
         "Cache-Control": "no-store",
         "X-Game-Region-Policy": "rm-wky-wz-v1",
+        "X-Game-Vpn-Detection": String(vpnDetectionEnabled),
       },
     });
   },

@@ -25,25 +25,33 @@ namespace Whitebox.Foundation.Editor
                         throw new InvalidOperationException("Original cell definitions are incomplete: " + number);
                     cells += level.Grid.Items.Length;
                 }
-                bool below = false, above = false;
+                bool below = false;
                 try { catalog.Load(0); } catch (ArgumentOutOfRangeException) { below = true; }
-                try { catalog.Load(101); } catch (ArgumentOutOfRangeException) { above = true; }
-                if (!below || !above) throw new InvalidOperationException("Catalog must reject levels outside the requested scope.");
+                if (!below) throw new InvalidOperationException("Catalog must reject nonpositive levels.");
+                int[] repeatedLevels = { 101, 102, 200, 201, 1000, int.MaxValue };
+                int[] resourceLevels = { 1, 2, 100, 1, 100, 47 };
+                for (int i = 0; i < repeatedLevels.Length; i++)
+                {
+                    var entry = catalog.GetEntry(repeatedLevels[i]);
+                    var level = catalog.Load(repeatedLevels[i]);
+                    if (entry.number != resourceLevels[i] || level.Name != catalog.GetEntry(resourceLevels[i]).originalName)
+                        throw new InvalidOperationException("Looped level must load its original board: " + repeatedLevels[i]);
+                }
                 var controller = UnityEngine.Object.FindObjectOfType<FoundationController>();
                 if (controller == null || controller.Gameplay == null || controller.Gameplay.Session.Name != catalog.GetEntry(1).originalName)
                     throw new InvalidOperationException("Formal first-board entry must use the configured core catalog.");
                 report.actual_resource_levels_loaded = catalog.Count; report.raw_cell_definitions_loaded = cells;
-                report.rejects_0_and_101 = true; report.formal_first_level_uses_catalog = true; report.passed = true;
+                report.rejects_0_and_repeats_boards = true; report.formal_first_level_uses_catalog = true; report.passed = true;
             }
             catch (Exception error) { report.failure = error.ToString(); throw; }
             finally { File.WriteAllText("live_core_catalog_verification.json", JsonUtility.ToJson(report, true) + "\n"); }
         }
         [Serializable] private sealed class Report
         {
-            public bool passed, rejects_0_and_101, formal_first_level_uses_catalog;
+            public bool passed, rejects_0_and_repeats_boards, formal_first_level_uses_catalog;
             public int actual_resource_levels_loaded, raw_cell_definitions_loaded;
             public string failure;
-            public string scope = "The actual configured ScriptableObject catalog loads each of the original100 ordinary levels through the production Resources/JSON reader. Out-of-range requests0/101 are rejected before loading; the actual formal entry uses the same catalog. This verifies resource/configuration availability, not100 playable levels. Core entry opens no account/area storage and uses configured presentation snapshots. The separate core-flow scenario checks actual end/retry/next-level owners and absence of peripheral UI. Remaining obstacle/static composition, complete natural playthroughs, original visual/audio/mobile parity remain pending.";
+            public string scope = "The configured catalog loads all 100 original boards through the production Resources/JSON reader, rejects level 0, and repeats the correct boards for 101, 102, 200, 201, 1000 and int.MaxValue. The formal first-board entry uses the same catalog. This checks resource availability, not complete playable runs. Core-flow and natural-attempt scenarios separately exercise actual win, retry and continuation.";
         }
     }
 }

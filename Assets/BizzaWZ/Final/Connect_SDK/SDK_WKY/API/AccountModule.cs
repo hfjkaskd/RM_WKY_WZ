@@ -128,6 +128,12 @@ public class AccountModule
 
     private static E_CountryType countryType = E_CountryType.None;
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetCountryType()
+    {
+        countryType = E_CountryType.None;
+    }
+
     public static E_CountryType CountryType
     {
         set { countryType = value; }
@@ -145,6 +151,7 @@ public class AccountModule
 
     public static E_CountryType SetCountryTypeByServer(string CountryCode)
     {
+        CountryCode = CountryCode?.Trim();
         LogLogger.LogVerbose(LogTag.LOG_Account, "CountryCode " + CountryCode + "--");
 
         if (string.Equals(CountryCode, CURRENCY_Usa, StringComparison.OrdinalIgnoreCase))
@@ -155,20 +162,10 @@ public class AccountModule
         {
             CountryType = E_CountryType.ID;
         }
-        else if (string.Equals(CountryCode, CURRENCY_Brasil, StringComparison.OrdinalIgnoreCase))
+        else
         {
             CountryType = E_CountryType.BR;
         }
-#if !BIZZA_HTTP_AD
-        else if (string.Equals(CountryCode, COUNTRY_Japan, StringComparison.OrdinalIgnoreCase))
-        {
-            CountryType = E_CountryType.JP;
-        }
-        else if (string.Equals(CountryCode, COUNTRY_Korea, StringComparison.OrdinalIgnoreCase))
-        {
-            CountryType = E_CountryType.KR;
-        }
-#endif
 
         LogLogger.LogVerbose(LogTag.LOG_Account, "国家 " + CountryType);
         return CountryType;
@@ -182,29 +179,12 @@ public class AccountModule
             case E_CountryType.US:
                 LanguageUtils.SelectedLanguage = "en-US";
                 break;
-            case E_CountryType.BR:
-                LanguageUtils.SelectedLanguage = "pt-BR";
-                break;
             case E_CountryType.ID:
                 LanguageUtils.SelectedLanguage = "id-ID";
                 break;
-#if !BIZZA_HTTP_AD
-            case E_CountryType.JP:
-                LanguageUtils.SelectedLanguage = "ja-JP";
+            default:
+                LanguageUtils.SelectedLanguage = "pt-BR";
                 break;
-            case E_CountryType.KR:
-                LanguageUtils.SelectedLanguage = "ko-KR";
-                break;
-            case E_CountryType.MX:
-                LanguageUtils.SelectedLanguage = "es-MX";
-                break;
-            case E_CountryType.SA:
-                LanguageUtils.SelectedLanguage = "ar-SA";
-                break;
-            case E_CountryType.DE:
-                LanguageUtils.SelectedLanguage = "de-DE";
-                break;
-#endif
         }
 
         LogLogger.LogVerbose(LogTag.LOG_Account, "LanguageUtils.SelectedLanguage " + LanguageUtils.SelectedLanguage);
@@ -385,14 +365,17 @@ public class AccountModule
                 InitUserInfo();
             }
         }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
-        {
-            loginAttemptInFlight = false;
-        }
         catch (Exception error)
         {
-            Debug.LogWarning("WKY login attempt failed: " + error.GetType().Name);
-            MarkLoadingUserDataFailed(error.GetType().Name);
+            if (error is OperationCanceledException && cancellation.IsCancellationRequested)
+            {
+                loginAttemptInFlight = false;
+            }
+            else
+            {
+                Debug.LogWarning("WKY login attempt failed: " + error.GetType().Name);
+                MarkLoadingUserDataFailed(error.GetType().Name);
+            }
         }
     }
 
@@ -2074,6 +2057,7 @@ public class AccountModule
                 PlayerPrefs.DeleteKey(SuspendedPrefsKey);
                 PlayerPrefs.Save();
             }
+            SetLanguageByCountryType();
         }
         catch (Exception error)
         {

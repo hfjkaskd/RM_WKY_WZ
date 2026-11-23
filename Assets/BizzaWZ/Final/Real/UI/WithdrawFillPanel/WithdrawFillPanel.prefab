@@ -2277,7 +2277,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 956a82d70bfe4c809008bfb6da242219, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2589,7 +2589,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 235}
+  m_SizeDelta: {x: 0, y: 199.1237}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2238331403406392799
 GameObject:
@@ -2775,8 +2775,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -144}
-  m_SizeDelta: {x: -40, y: 141}
+  m_AnchoredPosition: {x: 0, y: -126.06185}
+  m_SizeDelta: {x: -40, y: 105.1237}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5462861826240430684
 MonoBehaviour:
@@ -3716,12 +3716,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 108
-  m_fontSizeBase: 108
+  m_fontSize: 96
+  m_fontSizeBase: 96
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 108
-  m_fontSizeMax: 108
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 60
+  m_fontSizeMax: 96
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3732,7 +3732,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -6517,9 +6517,9 @@ MonoBehaviour:
   m_fontSize: 40
   m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 28
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -6530,7 +6530,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -7031,7 +7031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -216.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 1400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5816415125361050733
@@ -9496,6 +9496,7 @@ GameObject:
   - component: {fileID: 9101000000000000101}
   - component: {fileID: 9101000000000000102}
   - component: {fileID: 9101000000000000103}
+  - component: {fileID: 9408000401}
   m_Layer: 5
   m_Name: BrazilAccountNameTitle
   m_TagString: Untagged
@@ -9581,7 +9582,7 @@ MonoBehaviour:
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 28
+  m_fontSizeMin: 24
   m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -9630,6 +9631,7 @@ GameObject:
   - component: {fileID: 9101000000000000201}
   - component: {fileID: 9101000000000000202}
   - component: {fileID: 9101000000000000203}
+  - component: {fileID: 9408000402}
   m_Layer: 5
   m_Name: BrazilCpfNumberTitle
   m_TagString: Untagged
@@ -9715,7 +9717,7 @@ MonoBehaviour:
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 28
+  m_fontSizeMin: 24
   m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -9764,6 +9766,7 @@ GameObject:
   - component: {fileID: 9101000000000000301}
   - component: {fileID: 9101000000000000302}
   - component: {fileID: 9101000000000000303}
+  - component: {fileID: 9408000403}
   m_Layer: 5
   m_Name: BrazilPixAccountTitle
   m_TagString: Untagged
@@ -9849,8 +9852,8 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 28
-  m_fontSizeMax: 36
+  m_fontSizeMin: 24
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -10398,3 +10401,48 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9408000401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101000000000000100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49796e141a58b144486babe2f29d161b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  key: Withdrawal_NameDocumentTitle
+  whiteBuildText: "Name (as shown on CIN or RG)"
+  bounce: 0
+--- !u!114 &9408000402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101000000000000200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49796e141a58b144486babe2f29d161b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  key: Withdrawal_CpfTitle
+  whiteBuildText: "CPF/CNPJ (taxpayer ID)"
+  bounce: 0
+--- !u!114 &9408000403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101000000000000300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49796e141a58b144486babe2f29d161b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  key: Withdrawal_PixTitle
+  whiteBuildText: "Account (PIX key type)"
+  bounce: 0

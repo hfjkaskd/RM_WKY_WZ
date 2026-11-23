@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 5383910190325705177}
   - component: {fileID: 4253225096195507808}
   - component: {fileID: 3542901991353203594}
+  - component: {fileID: 991000000000001}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -250,7 +251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You can tap on power-ups to explode them!
+  m_text: "You can tap on power-ups to explode them!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 097f7ff35315b3d4683436b5ecf6d0e1, type: 2}
@@ -281,8 +282,8 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 1
-  m_fontSizeMax: 5
+  m_fontSizeMin: 2.1
+  m_fontSizeMax: 3.75
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -698,6 +699,8 @@ MonoBehaviour:
   dialog: {fileID: 2053989398926848819}
   hand: {fileID: 3945063097378749770}
   instruction: {fileID: 3542901991353203594}
+  leftDialogBackground: {fileID: 1225841181656496435}
+  rightDialogBackground: {fileID: 6327240070916910305}
   handAnimation: {fileID: 106716640883533360}
   verticalMaskCells: {fileID: 0}
   verticalHand: {fileID: 0}
@@ -720,6 +723,21 @@ MonoBehaviour:
   focusedDialogThreshold: 2
   focusedDialogAbove: 2
   focusedDialogBelow: -3.5
+  handAvoidanceRect:
+    serializedVersion: 2
+    x: -0.66
+    y: -2.17
+    width: 1.46
+    height: 2.75
+  verticalHandAvoidanceRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  focusedCellHalfSize: {x: 0.6, y: 0.6}
+  focusedScreenPadding: {x: 0.15, y: 0.2}
+  focusedDialogGap: 0.25
   highlightOffset: 10
   boardHighlightOffset: 0
 --- !u!1 &7031005255566172380
@@ -1162,3 +1180,18 @@ Transform:
   - {fileID: 4987124396232304671}
   m_Father: {fileID: 1584532717655728541}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660289736813972387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 3542901991353203594}
+  key: RM_Play_TutorialTapPower
+  fallback: "You can tap on power-ups to explode them!"

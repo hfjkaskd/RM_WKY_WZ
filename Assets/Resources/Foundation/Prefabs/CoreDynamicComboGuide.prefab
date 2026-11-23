@@ -342,6 +342,8 @@ MonoBehaviour:
   dialog: {fileID: 7314521211397659645}
   hand: {fileID: 6833471623340974318}
   instruction: {fileID: 882786675967299126}
+  leftDialogBackground: {fileID: 3693884212987965591}
+  rightDialogBackground: {fileID: 4521809688903559886}
   handAnimation: {fileID: 9079146569418371314}
   verticalMaskCells: {fileID: 6626261572369364004}
   verticalHand: {fileID: 7387436540467581724}
@@ -364,6 +366,21 @@ MonoBehaviour:
   focusedDialogThreshold: 2
   focusedDialogAbove: 2
   focusedDialogBelow: -3.5
+  handAvoidanceRect:
+    serializedVersion: 2
+    x: -1.99
+    y: -3.08
+    width: 3.35
+    height: 3.36
+  verticalHandAvoidanceRect:
+    serializedVersion: 2
+    x: -0.42
+    y: -3.37
+    width: 2.99
+    height: 4.14
+  focusedCellHalfSize: {x: 0.6, y: 0.6}
+  focusedScreenPadding: {x: 0.15, y: 0.2}
+  focusedDialogGap: 0.25
   highlightOffset: 10
   boardHighlightOffset: 0
 --- !u!1 &1599199292166617597
@@ -1017,6 +1034,7 @@ GameObject:
   - component: {fileID: 804666707565136362}
   - component: {fileID: 1543268476942508520}
   - component: {fileID: 882786675967299126}
+  - component: {fileID: 991000000000001}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -1105,7 +1123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You can swap two power-ups to make a more powerful explosion!
+  m_text: "You can swap two power-ups to make a more powerful explosion!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 097f7ff35315b3d4683436b5ecf6d0e1, type: 2}
@@ -1136,8 +1154,8 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 1
-  m_fontSizeMax: 5
+  m_fontSizeMin: 2.1
+  m_fontSizeMax: 3.75
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -2091,3 +2109,18 @@ Transform:
   - {fileID: 1382795740149166861}
   m_Father: {fileID: 4083208061229945592}
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &991000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955183394605406453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 882786675967299126}
+  key: RM_Play_TutorialCombinePower
+  fallback: "You can swap two power-ups to make a more powerful explosion!"

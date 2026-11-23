@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 224998874197659892}
   - component: {fileID: 23408345039935966}
   - component: {fileID: 114611579644537198}
+  - component: {fileID: 991000000000001}
   m_Layer: 5
   m_Name: TapToSkip
   m_TagString: Untagged
@@ -187,7 +188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tap to Skip
+  m_text: "Tap to Skip"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 7a4484447b7835d4eb1b79c13fa54d1e, type: 2}
@@ -217,9 +218,9 @@ MonoBehaviour:
   m_fontSize: 6.3
   m_fontSizeBase: 6.3
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 36
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 2.4
+  m_fontSizeMax: 4.2
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -230,7 +231,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -382,3 +383,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &991000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918264173551851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114611579644537198}
+  key: RM_Play_Skip
+  fallback: "Tap to Skip"

@@ -21,6 +21,7 @@ namespace Whitebox.Foundation
         [SerializeField] private Vector3 unlockedIconPosition,unlockedIconScale,oldLockedIconPosition,newLockedIconPosition;
         [SerializeField] private float oldLockedScale,newLockedScale;
         [SerializeField] private string levelLabel;
+        [SerializeField] private string levelLabelKey;
         public OriginalBoosterType BoosterType => boosterType;
         public int CoinPrice => coinPrice;
         public OriginalBoosterButtonPresentation Presentation { get; private set; }
@@ -35,6 +36,13 @@ namespace Whitebox.Foundation
         private IOriginalBoosterInventoryPresentation paidInventory;
         private Action<OriginalBoosterType, bool> tutorialClick;
         private OriginalBoosterButtonPresentation beforeTutorial;
+        private void OnEnable() => CoreLocalization.Changed += RefreshLevelLabel;
+        private void OnDisable() => CoreLocalization.Changed -= RefreshLevelLabel;
+        private void RefreshLevelLabel()
+        {
+            if (Presentation.ShowLevel)
+                levelText.text = CoreLocalization.Get(levelLabelKey, levelLabel) + OriginalBoosterUnlock.GetUnlockLevel(boosterType);
+        }
         public void Initialize(int level,bool newUserFlowAb,IOriginalBoosterInventoryPresentation inventory)
         {
             InitializeAppearance();
@@ -126,7 +134,7 @@ namespace Whitebox.Foundation
                 icon.sprite=lockedIcon;float scale=newUserFlowAb?newLockedScale:oldLockedScale;
                 icon.transform.localScale=Vector3.one*scale;
                 icon.transform.localPosition=newUserFlowAb?newLockedIconPosition:oldLockedIconPosition;
-                if(p.ShowLevel)levelText.text=levelLabel+OriginalBoosterUnlock.GetUnlockLevel(boosterType);
+                RefreshLevelLabel();
             }
         }
         private void Click()

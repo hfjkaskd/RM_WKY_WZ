@@ -31,6 +31,7 @@ MonoBehaviour:
   modalTutorials:
   - level: 21
     instruction: Make matches next to a MAILBOX to collect MAILS!
+    instructionKey: RM_Play_TutorialMail
     highlightWholeBoard: 0
     obstacleCells:
     - {x: 0, y: 0}
@@ -42,6 +43,7 @@ MonoBehaviour:
     landscapeAtWorldOrigin: 1
   - level: 31
     instruction: Break the ROYAL EGG by making a match next to it!
+    instructionKey: RM_Play_TutorialEgg
     highlightWholeBoard: 0
     obstacleCells:
     - {x: 0, y: 0}
@@ -110,6 +112,7 @@ MonoBehaviour:
     landscapeAtWorldOrigin: 1
   - level: 41
     instruction: Break a POTION BOTTLE by making a colored match next to it!
+    instructionKey: RM_Play_TutorialPotion
     highlightWholeBoard: 0
     obstacleCells:
     - {x: 1, y: 1}
@@ -123,6 +126,7 @@ MonoBehaviour:
     backgroundHalfWidth: 4.2
   - level: 51
     instruction: "Make matches 2 times\nnext to a VASE to break it!"
+    instructionKey: RM_Play_TutorialVase
     highlightWholeBoard: 0
     obstacleCells:
     - {x: 0, y: 0}
@@ -166,6 +170,7 @@ MonoBehaviour:
     landscapeOffset: {x: 0, y: -2}
   - level: 71
     instruction: Make matches 5 times next to a BUSH to spread GRASS!
+    instructionKey: RM_Play_TutorialBush
     highlightWholeBoard: 0
     obstacleCells:
     - {x: 1, y: 1}
@@ -177,6 +182,7 @@ MonoBehaviour:
     landscapeOffset: {x: 0, y: 0.6}
   - level: 81
     instruction: Clear HONEY by making a match next to it!
+    instructionKey: RM_Play_TutorialHoney
     highlightWholeBoard: 1
     obstacleCells: []
     portraitCell: {x: 4, y: 5}
@@ -184,6 +190,7 @@ MonoBehaviour:
     landscapeOffset: {x: 0, y: -4.5}
   - level: 91
     instruction: Hit SAFE 5 times with power-ups to break it!
+    instructionKey: RM_Play_TutorialSafe
     highlightWholeBoard: 0
     obstacleCells:
     - {x: 1, y: 2}
@@ -367,3 +374,10 @@ MonoBehaviour:
   failText: Level Failed!
   skipText: Tap to Skip
   soundFadeDuration: 0.5
+  levelTitleKey: RM_Play_LevelFormat
+  completedTitleKey: RM_Play_Complete
+  continueTextKey: RM_Play_Continue
+  completedContinueTextKey: RM_Play_PlayAgain
+  retryTextKey: RM_Play_Retry
+  failTextKey: RM_Play_Failed
+  skipTextKey: RM_Play_Skip

@@ -31,7 +31,7 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
     public TMP_Text noThanksText;
     public TMP_Text rewardText;
 
-    private string iconName = AccountModule.CountryType switch
+    private string iconName => AccountModule.CountryType switch
     {
         AccountModule.E_CountryType.BR => "3",
         AccountModule.E_CountryType.ID => "1",
@@ -290,6 +290,32 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
 
     private float dollarCount = 0;
 
+    private void OnEnable()
+    {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshVisibleLanguage, true);
+    }
+
+    private void OnDisable()
+    {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshVisibleLanguage, false);
+    }
+
+    private void RefreshVisibleLanguage()
+    {
+        if (pageClosed) return;
+        // Refresh labels only. OnRefresh also reports wins and must never run for a language change.
+        itemBTxt.text = ItemUtils.GetItemText(itemB);
+        noThanksText.text = LanguageUtils.GetText("Btn_NoThanks");
+        if (_useScene != DoubleGetRewardPanel.E_UseScene.WinPanel) return;
+        int level = winClaim != null ? winClaim.LevelNumber : FlowModule.WinLevelNumber;
+        if (level > 0) levelTxt.text = LanguageUtils.GetFormatText("Menu_LevelBtn", level);
+        if (HasDollar)
+        {
+            string amount = LanguageUtils.GetText("CurrencyToken") + WithdrawalUtil.GetCustomizedFloatByCountryType(dollarCount);
+            noThanksText.text = LanguageUtils.GetFormatText("GetRewardPage_NoThanks", iconName, amount);
+        }
+    }
+
     private void CloseAfterInterstitial(int openVersion)
     {
         if (this == null || !this || gameObject == null ||
@@ -329,14 +355,20 @@ public class GetRewardPanel : UIPageBase<ItemEntry, ItemEntry, DoubleGetRewardPa
             Action<FailHttpResponse<AccountModule.OceanShineUserReachReportResponse>> onReport = null;
             if (bridge == null || bridge.TryCaptureWinReport(out onReport))
             {
+                Exception reportError = null;
                 try
                 {
                     AccountModule.Instance.Request_UserReachLevelReportRequest(onReport);
                     LogLogger.LogVerbose(BaseConst.LOG_Game, "上报 关卡");
                 }
-                catch (Exception error) when (onReport != null)
+                catch (Exception error)
                 {
-                    Debug.LogException(error);
+                    if (onReport == null) throw;
+                    reportError = error;
+                }
+                if (reportError != null)
+                {
+                    Debug.LogException(reportError);
                     onReport(default);
                 }
             }

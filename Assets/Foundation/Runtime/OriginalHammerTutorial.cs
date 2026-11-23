@@ -16,8 +16,10 @@ namespace Whitebox.Foundation
         [SerializeField] private SpriteRenderer shade;
         [SerializeField] private Transform dialog, hand;
         [SerializeField] private TextMeshPro instruction;
+        [SerializeField] private CoreLocalizedText localizedInstruction;
         [SerializeField] private OriginalBakedMeshAnimation handAnimation;
         [SerializeField] private string selectText, strikeText;
+        [SerializeField] private string selectTextKey, strikeTextKey;
         [SerializeField] private string arrowPrefabPath, hammerPrefabPath, freeBadgePrefabPath, selectParticlesPrefabPath;
 
         private OriginalPlayableBoard game;
@@ -58,7 +60,7 @@ namespace Whitebox.Foundation
             color.a = 0f;
             shade.color = color;
             shownAt = board.Clock.Time;
-            instruction.text = selectText;
+            localizedInstruction.SetKey(selectTextKey, selectText);
             slot.ButtonCanvas.worldCamera = source;
             canvasOrder = slot.ButtonCanvas.sortingOrder;
             slot.ButtonCanvas.sortingOrder = highlightOrder;
@@ -90,7 +92,7 @@ namespace Whitebox.Foundation
             Create(selectParticlesPrefabPath, transform).transform.position = slot.transform.position;
             hand.gameObject.SetActive(true);
             handAnimation.Initialize();
-            instruction.text = strikeText;
+            localizedInstruction.SetKey(strikeTextKey, strikeText);
             RefreshLayout();
         }
 

@@ -1,0 +1,162 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using Whitebox.Foundation;
+using Whitebox.Foundation.ConfigData;
+
+namespace UnityEngine { public static class Debug { public static void LogWarning(object value) { Console.WriteLine("EXPECTED_SAVE_DIAGNOSTIC "+value); } } }
+namespace Whitebox.Foundation {
+    // Authored catalog boundary; all production lookup/mapping/load methods are inserted unchanged.
+    public sealed class CoreLevelCatalog {
+        public const int SupportedLevelCount=100;
+        public sealed class Entry { public int number;public string originalName,resourcePath; }
+        readonly Entry[] levels;
+        public int Count=>levels==null?0:levels.Length;
+        public CoreLevelCatalog(Entry[] entries) { levels=entries; }
+        // CATALOG_METHODS
+    }
+    static class OriginalLevelReader {
+        internal static readonly Dictionary<string,FTiledLevel> Levels=new();
+        internal static FTiledLevel Load(string path)=>Levels[path];
+    }
+
+    // Database transport is in memory. CoreLevelProgress itself is compiled unchanged.
+    public interface IOriginalKeyValueConnection:IDisposable { Dictionary<string,int> Data {get;} }
+    sealed class MemoryConnection:IOriginalKeyValueConnection {
+        public Dictionary<string,int> Data{get;}=new();public void Dispose(){}
+    }
+    static class OriginalRuntimeStorage {
+        public static class Paths {public static string ApplicationDataPath="isolated-fixture";}
+        public static readonly Dictionary<string,IOriginalKeyValueConnection> Files=new();
+        public static IOriginalKeyValueConnection Open(string path) {
+            if(!Files.TryGetValue(path,out var connection)){connection=new MemoryConnection();Files.Add(path,connection);}return connection;
+        }
+    }
+    sealed class OriginalDatabaseService {
+        public const int UserSaveInterval=1;public readonly Dictionary<string,int> Data;
+        public OriginalDatabaseService(IOriginalKeyValueConnection connection,int interval,object owner){Data=connection.Data;}
+        public void Save(){}public void OnApplicationResume(){}public void OnApplicationPause(){}public void OnApplicationQuit(){}public void ManualUpdate(int frame){}
+    }
+    sealed class OriginalUserKeyValue {
+        readonly Func<OriginalDatabaseService> db;public OriginalUserKeyValue(Func<OriginalDatabaseService> db){this.db=db;}
+        public int GetInt(string key,int fallback=0)=>db().Data.TryGetValue(key,out int value)?value:fallback;
+        public void SetInt(string key,int value)=>db().Data[key]=value;
+        public int IncrementInt(string key){int value=GetInt(key)+1;SetInt(key,value);return value;}
+    }
+    static class OriginalAccountStorage {public const string LevelTryCountKey="tries",HardLevelBackgroundIndexKey="hard";}
+
+    // Model boundaries for the actual attempt store and packed state serializer.
+    public interface IOriginalSavedLevelRandom{}
+    public class OriginalMoveManager {public int LeftMoves,MadeMoves;}
+    public class OriginalActiveLevelData {public string Name;public int Number,MoveCount,EgoPurchaseCount;public bool IsSideProgressionLevel;}
+    public class OriginalLevelRandomSource {public int DifficultySeed,DifficultySeedGenerationCount;}
+    public class OriginalLevelRandomManager {public OriginalLevelRandomSource DifficultySource=new();}
+    static class OriginalMoveBudgetAdjustment {public static int LastAddedExtraMoveCount;}
+    static class OriginalLevelStatisticsSaveData {public const int SavedWordCount=50;}
+    static class OriginalHoneyBoardItem {public const int TiledId=99;}
+    static class OriginalTiledItemTypes {public static int AsItemType(int id)=>id==1?1:0;}
+    static class OriginalTiledItemLayers {public static int AsLayerCount(int id)=>1;}
+    static class OriginalLevelGoalPreparation {public static int GetPrerequisiteGoal(int goal)=>0;}
+    sealed class BoardState {
+        public bool IsWin()=>false;public bool IsFail()=>false;public bool IsQuit()=>false;
+        public bool IsNoPossibleMove()=>false;public bool IsPlaying()=>true;public bool IsEgo()=>false;public bool HasAnyOperation()=>false;
+    }
+    sealed class BoardAuto {public bool IsThereAWaitingMatch;}
+    sealed class BoardFall {public bool IsAllItemsSteady=true;}
+    sealed class CoreGameFlow {public bool CanSaveAttempt=true,HasShownDynamicTutorial,UsedTutorialBooster;}
+    sealed class OriginalPlayableBoard {
+        public OriginalActiveLevelData Session=new();public OriginalMoveManager Moves=new();
+        public BoardState State=new();public BoardAuto Auto=new();public BoardFall Fall=new();
+        public FBoardSaveData SavedBoard;public FBoardSaveData CaptureBoard()=>SavedBoard;
+        public long[] CaptureStatistics()=>Array.Empty<long>();
+        public OriginalLevelRandomSource GetLevelRandom()=>new();
+    }
+}
+static class Runner {
+    static int checks;
+    static string saveDir;
+    static void Check(bool value,string message){if(!value)throw new Exception(message);checks++;Console.WriteLine("PASS "+message);}
+    static void Reject(Action action,string message){bool rejected=false;try{action();}catch(ArgumentException){rejected=true;}catch(InvalidDataException){rejected=true;}Check(rejected,message);}
+    static FTiledLevel Level(string name)=>new(){Name=name,Move=20,Goals=Array.Empty<FGoalData>(),Grid=new(){Width=1,Height=1,Cells=new FTiledCell[1]}};
+    static FBoardSaveData Board(){
+        var queues=new FItemModelQueueSaveData[9];for(int i=0;i<queues.Length;i++)queues[i]=new(){Items=Array.Empty<FItemSaveData>()};
+        return new(){GridData=new(){Width=1,Height=1,Grid=new[]{new FCellSaveData{CurrentItem=new(){TiledId=1,Data=1},StaticItems=Array.Empty<FStaticItemSaveData>()}},ShifterData=Array.Empty<int>()},
+            Goals=Array.Empty<FBoardGoalSaveData>(),ItemModelCreatorSaveData=new(){PredefinedItemsSaveData=new(){Queues=queues},CreatedSetItemCountExceptMatchItem=Array.Empty<FIntIntPair>()}};
+    }
+    static (CoreLevelAttemptStore store,string path) Save(string name,int actual,int left=19,int made=1,int revives=0){
+        string path=Path.Combine(saveDir,Guid.NewGuid().ToString("N"));
+        var store=new CoreLevelAttemptStore(path,5);
+        var game=new OriginalPlayableBoard{Session=new(){Name=name,Number=actual,MoveCount=20,EgoPurchaseCount=revives},Moves=new(){LeftMoves=left,MadeMoves=made},SavedBoard=Board()};
+        store.Begin(game,null);store.Flush();return(store,path+".level");
+    }
+    static void Main(string[] args){
+        saveDir=args[0];Directory.CreateDirectory(saveDir);
+        var entries=new CoreLevelCatalog.Entry[100];
+        for(int i=0;i<100;i++){entries[i]=new(){number=i+1,originalName="original-"+(i+1),resourcePath="fixture/"+(i+1)};OriginalLevelReader.Levels.Add(entries[i].resourcePath,Level(entries[i].originalName));}
+        var catalog=new CoreLevelCatalog(entries);
+        int[] actuals={1,99,100,101,102,200,201,1000,int.MaxValue};
+        int[] resources={1,99,100,1,2,100,1,100,47};
+        for(int i=0;i<actuals.Length;i++){
+            int actual=actuals[i],resource=resources[i];
+            Check(CoreLevelCatalog.GetResourceLevelNumber(actual)==resource,"resource mapping "+actual+" -> "+resource);
+            Check(ReferenceEquals(catalog.GetEntry(actual),entries[resource-1]),"catalog selects authored entry for "+actual);
+            var level=catalog.Load(actual);Check(level.Name==entries[resource-1].originalName&&ReferenceEquals(level,OriginalLevelReader.Levels[entries[resource-1].resourcePath]),"load preserves resource identity for "+actual);
+        }
+        foreach(int invalid in new[]{0,-1,int.MinValue}){
+            Reject(()=>CoreLevelCatalog.GetResourceLevelNumber(invalid),"mapping rejects "+invalid);
+            Reject(()=>catalog.GetEntry(invalid),"catalog rejects "+invalid);
+            Reject(()=>new CoreLevelProgress("invalid-"+invalid,invalid,true),"progress rejects "+invalid);
+            Reject(()=>CoreLevelAttemptStore.GetSaveIdentity("original-1",invalid),"save identity rejects "+invalid);
+        }
+        using(var progress=new CoreLevelProgress("local",100)){
+            progress.CompleteLevel(100);Check(progress.LevelToPlay==101&&!progress.IsComplete,"local 100 win advances to 101");
+            progress.CompleteLevel(101);Check(progress.LevelToPlay==102&&!progress.IsComplete,"local 101 win advances to 102");
+        }
+        using(var reopened=new CoreLevelProgress("local",1)){Check(reopened.LevelToPlay==102&&!reopened.IsComplete,"local progress reopens above 100");}
+        var old=OriginalRuntimeStorage.Open(Path.Combine(OriginalRuntimeStorage.Paths.ApplicationDataPath,"legacy"));
+        old.Data["Level"]=100;old.Data["CoreLevelsCompleted"]=1;old.Data[OriginalAccountStorage.LevelTryCountKey]=8;
+        using(var progress=new CoreLevelProgress("legacy",1)){
+            Check(progress.LevelToPlay==101&&!progress.IsComplete,"legacy completed level 100 migrates to 101");
+        }
+        using(var progress=new CoreLevelProgress("legacy",1)){Check(progress.LevelToPlay==101&&!progress.IsComplete,"migrated progress reopens as 101");}
+        Check(old.Data["CoreLevelsCompleted"]==0,"migration clears obsolete completion flag");
+        Check(old.Data[OriginalAccountStorage.LevelTryCountKey]==0,"migration resets the old completed attempt counter");
+        var authoritativeOld=OriginalRuntimeStorage.Open(Path.Combine(OriginalRuntimeStorage.Paths.ApplicationDataPath,"legacy-server"));
+        authoritativeOld.Data["Level"]=100;authoritativeOld.Data["CoreLevelsCompleted"]=1;
+        using(var progress=new CoreLevelProgress("legacy-server",100,true)){
+            Check(progress.LevelToPlay==100&&!progress.IsComplete,"authoritative server level 100 is never migrated locally");
+        }
+        using(var progress=new CoreLevelProgress("int-limit",int.MaxValue)){
+            bool overflow=false;try{progress.CompleteLevel(int.MaxValue);}catch(OverflowException){overflow=true;}
+            Check(overflow&&progress.LevelToPlay==int.MaxValue,"integer capacity cannot silently wrap progress negative");
+        }
+        using(var progress=new CoreLevelProgress("server",101,true)){
+            progress.CompleteLevel(101);Check(progress.LevelToPlay==101,"core win does not invent authoritative progress");
+            progress.SetAuthoritativeLevel(201);Check(progress.LevelToPlay==201,"authoritative progress accepts 201");
+            progress.SetAuthoritativeLevel(1);Check(progress.LevelToPlay==1,"authoritative rollback accepts 1");
+            progress.SetAuthoritativeLevel(int.MaxValue);Check(progress.LevelToPlay==int.MaxValue,"authoritative int boundary remains valid");
+        }
+        var originalCulture=CultureInfo.CurrentCulture;
+        try{CultureInfo.CurrentCulture=CultureInfo.GetCultureInfo("ar-SA");
+            Check(CoreLevelAttemptStore.GetSaveIdentity("original-1",101)=="original-1#level=101","save identity uses invariant actual number");
+        }finally{CultureInfo.CurrentCulture=originalCulture;}
+        Check(CoreLevelAttemptStore.GetSaveIdentity("original-100",100)=="original-100","legacy first-cycle save identity stays compatible");
+        var saved=Save("original-1",101);var restored=saved.store.Load(catalog.Load(101),101);
+        Check(restored!=null&&restored.ValidationSaveData.LevelName=="original-1#level=101","real writer/FlatBuffer/Load restores level 101");
+        Check(restored.GameStateSaveData.Length==2&&restored.BoardSaveData.GridData.Grid[0].CurrentItem.TiledId==1,"restoration retains packed state and board");
+        foreach(int other in new[]{1,201}){
+            saved=Save("original-1",101);Check(saved.store.Load(catalog.Load(other),other)==null&&!File.Exists(saved.path),"level 101 save rejected and cleared for "+other);
+        }
+        saved=Save("original-100",100);Check(saved.store.Load(catalog.Load(100),100)!=null,"existing original-name level 100 save still restores");
+        saved=Save("original-1",1);Check(saved.store.Load(catalog.Load(101),101)==null,"legacy resource 1 save cannot restore as actual 101");
+        saved=Save("original-1",101,0,20);restored=saved.store.Load(catalog.Load(101),101);
+        Check(restored!=null&&restored.ValidationSaveData.AppVersion==3,"loop level waiting for revive restores its zero-move save");
+        saved=Save("original-1",101,5,20,1);restored=saved.store.Load(catalog.Load(101),101);
+        Check(restored!=null&&restored.ValidationSaveData.AppVersion==3,"loop level restores the granted five revive moves");
+        saved=Save("original-1",201);Check(saved.store.Load(catalog.Load(201),201)!=null,"next-loop level 201 restores independently");
+        saved=Save("original-1",201);Check(saved.store.Load(catalog.Load(101),101)==null,"server rollback cannot restore a later-cycle board");
+        // Keep generated files only in the dedicated ignored Temp directory for inspection.
+        Console.WriteLine("LEVEL_LOOP_CORE_PASS cases="+checks);
+    }
+}

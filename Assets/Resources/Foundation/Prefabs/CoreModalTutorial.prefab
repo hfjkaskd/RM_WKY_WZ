@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7433758391747231667}
   - component: {fileID: 1365034750558610290}
   - component: {fileID: 2458964253507427490}
+  - component: {fileID: 991000000000001}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is a bonus level! Collect as many COINS as possible in given moves!
+  m_text: "This is a bonus level! Collect as many COINS as possible in given moves!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 097f7ff35315b3d4683436b5ecf6d0e1, type: 2}
@@ -130,8 +131,8 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 1
-  m_fontSizeMax: 5
+  m_fontSizeMin: 2.1
+  m_fontSizeMax: 3.75
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -522,6 +523,7 @@ MonoBehaviour:
   topClearance: 1.1
   boardHighlightOffset: 1
   obstacleHighlightOffset: 10
+  localizedInstruction: {fileID: 991000000000001}
 --- !u!1 &6061669559116762709
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,3 +642,18 @@ Transform:
   - {fileID: 7433758391747231667}
   m_Father: {fileID: 5677376984271394577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668119051918082091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 2458964253507427490}
+  key: RM_Play_TutorialBonus
+  fallback: "This is a bonus level! Collect as many COINS as possible in given moves!"

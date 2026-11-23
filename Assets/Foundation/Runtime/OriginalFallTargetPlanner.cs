@@ -236,7 +236,11 @@ namespace Whitebox.Foundation
                 var next = aboveTarget == null ? null : aboveTarget.Mediator.NextCell;
                 aboveTarget = above.Mediation.TargetItem;
                 var current = aboveTarget == null ? null : aboveTarget.Mediator.CurrentCell;
-                if (above.CellType != 0 && !services.IsFallBlocked(above))
+                // Only wait for an actual straight-fall supply. An empty cell
+                // without a target, or an immovable item such as a box, cannot
+                // feed this column; side entries must fill the cavity below it.
+                if (aboveTarget != null && above.CellType != 0
+                    && IsFallPossibleFromCellToCell(above, targetCell))
                 {
                     bool checkCurrent = next == null;
                     if (!checkCurrent)

@@ -121,7 +121,6 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
     [SerializeField] private GameObject brazilAccountNameTitle;
     [SerializeField] private GameObject brazilCpfNumberTitle;
     [SerializeField] private GameObject brazilPixAccountTitle;
-    private string defaultAccountNamePlaceholder;
 
     [Space(10)]
     [SerializeField] private BizzaButton closeButton;
@@ -132,7 +131,6 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
         closeButton.onClick.AddListener(() => { CloseSelf(); });
         withdrawButton.onClick.AddListener(() => { OnClick_FillPage_ToComfirmBtn(); });
 
-        defaultAccountNamePlaceholder = accountNameInput.PlaceholderTextRenderer.Text;
         EnsureProfiles();
         accountNameInput.OnValueChanged.AddListener(FilterInput);
         CPFNumberInput.OnValueChanged.AddListener(OnInputValueChanged);
@@ -323,7 +321,7 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
         this.plats = plats;
         this.callback = callback;
         this.withdrawType = withdrawType;
-        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshPayPalPlaceholder, true);
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedInputCopy, true);
 
         PlatformRoot.gameObject.SetActive(isSelectPlatform);
         PlatformIconRoot.gameObject.SetActive(!isSelectPlatform);
@@ -380,12 +378,10 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
         SetupPlatformListIfNeeded();
         SetupPaymentIconIfNeeded(profile.PayType);
 
-        profile.OnRefreshExtra?.Invoke(this);
         SetActiveList(profile.UiList, true); /// InputRoot 下的物体在这里设置显示
         SetActiveList(ErrorList, false);
-        RefreshBrazilianInputCopy(profile.PayType);
+        RefreshLocalizedInputCopy();
 
-        OnRefreshPos();
         LoadReadData(true);
         RefreshSubmitInteractable();
     }
@@ -400,9 +396,9 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
         brazilAccountNameTitle.SetActive(useBrazilianCopy);
         brazilCpfNumberTitle.SetActive(useBrazilianCopy);
         brazilPixAccountTitle.SetActive(useBrazilianCopy && payType == E_PayeeAccountType.PIX);
-        accountNameInput.PlaceHolderText = useBrazilianCopy
-            ? "O nome deve corresponder ao CIN ou RG"
-            : defaultAccountNamePlaceholder;
+        accountNameInput.PlaceHolderText = LanguageUtils.GetText(useBrazilianCopy
+            ? "Withdrawal_NameDocumentPlaceholder"
+            : "UIWithdrawalConfirm_EnterName");
     }
 
     private void OnRefreshPos()
@@ -499,7 +495,7 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
     // =============================
 
     private static readonly Regex NameRegex =
-        new Regex(@"^[A-Za-z ]+$", RegexOptions.Compiled);
+        new Regex(@"^\p{L}[\p{L}\p{M}]*(?: +\p{L}[\p{L}\p{M}]*)*$", RegexOptions.Compiled);
 
     private void FilterInput(string value)
     {
@@ -522,7 +518,7 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
         bool paymentTypeForID = data != null && (data.Os_Cn == ovoInfo || data.Os_Cn == danaInfo);
         if (paymentTypeForID && name.Length >= 45) return false;
         if (name.Length >= 100 || name.Trim().Length == 0) return false;
-        return NameRegex.IsMatch(name);
+        return NameRegex.IsMatch(name.Trim());
     }
 
     // =============================
@@ -591,7 +587,7 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
         {
             PayeeAccountType.Email => "example@gmail.com",
             PayeeAccountType.Phone => "11912345678",
-            PayeeAccountType.CpfCnpj => "99999999999 ou 99999999999999",
+            PayeeAccountType.CpfCnpj => LanguageUtils.GetText("Withdrawal_CpfPlaceholder"),
             PayeeAccountType.Evp => "123e4567-e89b-12d3-a456-426655440000",
             _ => ""
         };
@@ -818,13 +814,33 @@ public class UIWithdrawalPanel : UIPageBase<AccountModule.OceanShineWithdrawalPa
             paypalMailInput.PlaceHolderText = LanguageUtils.GetText("RM_WithdrawalPayPal_Placeholder");
     }
 
+    private void RefreshLocalizedInputCopy()
+    {
+        if (!TryGetProfile(out var profile)) return;
+        profile.OnRefreshExtra?.Invoke(this);
+        RefreshBrazilianInputCopy(profile.PayType);
+        ApplyPlaceholder(CurrentPixType);
+        CPFNumberInput.PlaceHolderText = LanguageUtils.GetText("Withdrawal_CpfPlaceholder");
+        accPhoneMailInput.PlaceHolderText = LanguageUtils.GetText("Withdrawal_IndonesiaAccountPlaceholder");
+        CPFNumberError.text = LanguageUtils.GetText("UIWithdrawalConfirm_CPFInputFaild");
+        accountNameError.text = LanguageUtils.GetText("UIWithdrawalConfirm_NameInputFaild");
+        paypalMailError.text = LanguageUtils.GetText("UIWithdrawalConfirm_Email");
+        accPhoneMailError.text = LanguageUtils.GetText("UIWithdrawalConfirm_PhoneAccount");
+        if (accountIdentificationErrorTra.gameObject.activeSelf)
+        {
+            Validate(CurrentPixType, (accountIdentificationInput.Text ?? "").Trim(), out var errorKey);
+            accountIdentificationError.text = string.IsNullOrEmpty(errorKey) ? "" : LanguageUtils.GetText(errorKey);
+        }
+        OnRefreshPos();
+    }
+
     // =============================
     //   Close & Events
     // =============================
 
     protected override void OnClose()
     {
-        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshPayPalPlaceholder, false);
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedInputCopy, false);
     }
 
     public void OnSelectWithdrawWay(WithdrawWay way)

@@ -231,6 +231,16 @@ namespace Whitebox.Foundation.Editor
                         guide.FindProperty("focusedDialogThreshold").floatValue = 2f;
                         guide.FindProperty("focusedDialogAbove").floatValue = 2f;
                         guide.FindProperty("focusedDialogBelow").floatValue = -3.5f;
+                        // Full analytical-rig gesture envelopes, with a small
+                        // margin. Keep them authored instead of sampling at runtime.
+                        guide.FindProperty("handAvoidanceRect").rectValue = combo
+                            ? new Rect(-1.99f, -3.08f, 3.35f, 3.36f)
+                            : new Rect(-.66f, -2.17f, 1.46f, 2.75f);
+                        guide.FindProperty("verticalHandAvoidanceRect").rectValue = combo
+                            ? new Rect(-.42f, -3.37f, 2.99f, 4.14f) : Rect.zero;
+                        guide.FindProperty("focusedCellHalfSize").vector2Value = new Vector2(.6f, .6f);
+                        guide.FindProperty("focusedScreenPadding").vector2Value = new Vector2(.15f, .2f);
+                        guide.FindProperty("focusedDialogGap").floatValue = .25f;
                     }
                     else
                     {
@@ -276,6 +286,11 @@ namespace Whitebox.Foundation.Editor
             text.text = instruction;
             guide.FindProperty("dialog").objectReferenceValue = dialog.transform;
             guide.FindProperty("instruction").objectReferenceValue = text;
+            foreach (var background in dialog.GetComponentsInChildren<SpriteRenderer>())
+            {
+                if (background.name == "Left") guide.FindProperty("leftDialogBackground").objectReferenceValue = background;
+                else if (background.name == "Right") guide.FindProperty("rightDialogBackground").objectReferenceValue = background;
+            }
             guide.FindProperty("dialogAnchorOffset").floatValue = .1f;
             guide.FindProperty("dialogTopClearance").floatValue = 1.1f;
             return text;

@@ -13,6 +13,7 @@ namespace Whitebox.Foundation
     {
         public int level;
         [TextArea] public string instruction;
+        public string instructionKey;
         public bool highlightWholeBoard;
         public Vector2Int[] obstacleCells;
         public Vector2Int portraitCell = new Vector2Int(-1, -1);
@@ -34,6 +35,7 @@ namespace Whitebox.Foundation
         [SerializeField] private Button dismissButton;
         [SerializeField] private Transform dialog;
         [SerializeField] private TextMeshPro instruction;
+        [SerializeField] private CoreLocalizedText localizedInstruction;
         [SerializeField] private SpriteRenderer leftBackground, rightBackground;
         [SerializeField] private float targetAlpha, fadeSeconds, minimumShownSeconds;
         [SerializeField] private float centerAnchorOffset, topClearance;
@@ -59,7 +61,7 @@ namespace Whitebox.Foundation
             this.hud = hud;
             cameraSource = camera;
             dimCanvas.worldCamera = camera;
-            instruction.text = profile.instruction;
+            localizedInstruction.SetKey(profile.instructionKey, profile.instruction);
             if (profile.textWidth > 0f)
                 instruction.rectTransform.sizeDelta = new Vector2(profile.textWidth, instruction.rectTransform.sizeDelta.y);
             if (profile.backgroundHalfWidth > 0f)

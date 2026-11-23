@@ -28,7 +28,7 @@ public sealed class ReskinReferenceLayout : MonoBehaviour
         RefreshLayout();
     }
 
-    private void RefreshLayout()
+    public void RefreshLayout()
     {
         if (viewport == null || content == null || designSize.x <= 0f)
             return;

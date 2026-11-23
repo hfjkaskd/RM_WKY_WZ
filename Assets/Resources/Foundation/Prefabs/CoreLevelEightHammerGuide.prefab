@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 5383910190325705177}
   - component: {fileID: 4253225096195507808}
   - component: {fileID: 3542901991353203594}
+  - component: {fileID: 991000000000001}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -167,7 +168,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You can tap on power-ups to explode them!
+  m_text: "You can tap on power-ups to explode them!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 097f7ff35315b3d4683436b5ecf6d0e1, type: 2}
@@ -198,8 +199,8 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 1
-  m_fontSizeMax: 5
+  m_fontSizeMin: 2.1
+  m_fontSizeMax: 3.75
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -678,6 +679,9 @@ MonoBehaviour:
   hammerPrefabPath: Foundation/Prefabs/OriginalHammerBooster
   freeBadgePrefabPath: Foundation/Prefabs/CoreTutorialFreeBoosterBadge
   selectParticlesPrefabPath: Recovered/Resources/InGameBoosterSelectParticles
+  localizedInstruction: {fileID: 991000000000001}
+  selectTextKey: RM_Play_HammerSelect
+  strikeTextKey: RM_Play_HammerStrike
 --- !u!1 &7031005255566172380
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,3 +811,18 @@ SortingGroup:
   m_SortingLayer: 6
   m_SortingOrder: 520
   m_SortAtRoot: 0
+--- !u!114 &991000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660289736813972387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 3542901991353203594}
+  key: RM_Play_TutorialTapPower
+  fallback: "You can tap on power-ups to explode them!"

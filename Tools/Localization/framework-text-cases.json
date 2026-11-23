@@ -1,0 +1,665 @@
+{
+  "instructions": "For each locale, instantiate prefab in PreviewScene, apply its runtime localization, then set the unique TMP_Text whose full transform path ends with pathSuffix. Some paths omit stripped nested-prefab ancestors. TextFileId is source diagnostic only. Rebuild layouts before ForceMeshUpdate/check overflow. All locales supplied per scenario. Dynamic FAQ and chat bubbles need their real layout methods because height is content-driven.",
+  "cases": [
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/DailyMissionPanel/DailyMissionPanel.prefab",
+      "textFileId": "8510206262085662899",
+      "pathSuffix": "Title/refreshTimeTxt",
+      "scenario": "DailyMissionPanel_RefreshTime",
+      "texts": {
+        "en-US": "Next Refresh Time is 23:59:59",
+        "pt-BR": "Próximo horário de atualização: 23:59:59",
+        "id-ID": "Waktu Refresh Berikutnya 23:59:59"
+      },
+      "key": "DailyMissionPanel_RefreshTime"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/DailyMissionPanel/DailyMissionPanel.prefab",
+      "textFileId": "3960917140792625996",
+      "pathSuffix": "Content/Hint",
+      "scenario": "DailyWithdrawMissionPanel_Hint",
+      "texts": {
+        "en-US": "Watch <color=#13BB19>30</color> videos and withdraw <color=#13BB19>$99,999.99</color>",
+        "pt-BR": "Assista a <color=#13BB19>30</color> vídeos e receba <color=#13BB19>R$99.999,99</color> recompensas",
+        "id-ID": "Tonton <color=#13BB19>30</color> video dan dapatkan <color=#13BB19>Rp999.999.999</color> hadiah"
+      },
+      "key": "DailyWithdrawMissionPanel_Hint"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/DailyMissionPanel/DailyMissionPanel.prefab",
+      "textFileId": "8240290209413650038",
+      "pathSuffix": "Content/WithdrawBtn/Text (TMP)",
+      "scenario": "Btn_Withdraw",
+      "texts": {
+        "en-US": "Withdraw",
+        "pt-BR": "Retirar",
+        "id-ID": "Tarik"
+      },
+      "key": "Btn_Withdraw"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/DailyMissionPanel/DailyMissionPanel.prefab",
+      "textFileId": "8418139660341159384",
+      "pathSuffix": "Content/ClaimedBtn/Text (TMP)",
+      "scenario": "Withdrawed_Btn",
+      "texts": {
+        "en-US": "Withdrawn",
+        "pt-BR": "Sacado",
+        "id-ID": "Sudah ditarik"
+      },
+      "key": "Withdrawed_Btn"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/DailyMissionPanel/DailyMissionPanel.prefab",
+      "textFileId": "1817926422404293436",
+      "pathSuffix": "Content/ClaimHint",
+      "scenario": "DailyWithdrawMissionPanel_ButtomHint",
+      "texts": {
+        "en-US": "Today's withdrawal tasks are completed. More tasks will be available tomorrow.",
+        "pt-BR": "As tarefas de saque de hoje foram concluídas. Amanhã haverá mais tarefas.",
+        "id-ID": "Tugas penarikan hari ini telah selesai. Akan ada lebih banyak tugas besok."
+      },
+      "key": "DailyWithdrawMissionPanel_ButtomHint"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/DailyMissionPanel/DailyMissionPanel.prefab",
+      "textFileId": "3847350883776784772",
+      "pathSuffix": "Title/title",
+      "scenario": "DailyWithdrawHint",
+      "texts": {
+        "en-US": "Watch videos and withdraw instantly.",
+        "pt-BR": "Assista a vídeos e saque instantaneamente",
+        "id-ID": "Tonton video dan tarik dana secara instan"
+      },
+      "key": "DailyWithdrawHint"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/DailyMissionPanel/DailyMissionPanel.prefab",
+      "textFileId": "3888482628531535294",
+      "pathSuffix": "Content/GoBtn/Text (TMP)",
+      "scenario": "RM_DailyMission_Go",
+      "texts": {
+        "en-US": "Go!",
+        "pt-BR": "Ir!",
+        "id-ID": "Mulai!"
+      },
+      "key": "RM_DailyMission_Go"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/GetRewardPanel/GetRewardPanel.prefab",
+      "textFileId": "7767750212246302813",
+      "pathSuffix": "Image (2)/Text (TMP) (1)",
+      "scenario": "Menu_LevelBtn",
+      "texts": {
+        "en-US": "Level 2147483647",
+        "pt-BR": "Nível 2147483647",
+        "id-ID": "Level 2147483647"
+      },
+      "key": "Menu_LevelBtn"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/GetRewardPanel/GetRewardPanel.prefab",
+      "textFileId": "4284177494034142888",
+      "pathSuffix": "Content/ButtonAnim/Button/ClaimContent/Text (TMP)",
+      "scenario": "Btn_Claim",
+      "texts": {
+        "en-US": "Claim",
+        "pt-BR": "Resgatar",
+        "id-ID": "Klaim"
+      },
+      "key": "Btn_Claim"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/GetRewardPanel/GetRewardPanel.prefab",
+      "textFileId": "7563886824438002139",
+      "pathSuffix": "Content/DelayShow/NoThank/Text (TMP)",
+      "scenario": "Btn_NoThanks",
+      "texts": {
+        "en-US": "No Thanks",
+        "pt-BR": "Não, obrigado",
+        "id-ID": "Tidak Perlu"
+      },
+      "key": "Btn_NoThanks"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/GetRewardPanel/GetRewardPanel.prefab",
+      "textFileId": "3620419705038272570",
+      "pathSuffix": "Content/ProgressStack/WathAdProgress/ProgressHint",
+      "scenario": "GetReward_WatchAd_Hint_Full",
+      "texts": {
+        "en-US": "You’ve already reached the maximum level!",
+        "pt-BR": "Você chegou ao nível máximo!",
+        "id-ID": "Kamu sudah mencapai level maksimum!"
+      },
+      "key": "GetReward_WatchAd_Hint_Full"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/GetRewardPanel/GetRewardPanel.prefab",
+      "textFileId": "3620419705038272570",
+      "pathSuffix": "Content/ProgressStack/WathAdProgress/ProgressHint",
+      "scenario": "GetReward_WatchAd_Hint_NotFull",
+      "texts": {
+        "en-US": "Watch videos to increase rewards",
+        "pt-BR": "Assista a vídeos para aumentar as recompensas",
+        "id-ID": "Tonton video untuk meningkatkan hadiah"
+      },
+      "key": "GetReward_WatchAd_Hint_NotFull"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/GetRewardPanel/GetRewardPanel.prefab",
+      "textFileId": "2302937659668344738",
+      "pathSuffix": "DesignRoot/NextBtn/Text (TMP)",
+      "scenario": "Btn_Continue",
+      "texts": {
+        "en-US": "Continue",
+        "pt-BR": "Continuar",
+        "id-ID": "Lanjutkan"
+      },
+      "key": "Btn_Continue"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/GetRewardPanel/GetRewardPanel.prefab",
+      "textFileId": "6718678499887503870",
+      "pathSuffix": "Content/Rewards/Reward_1/Rewards/Reward_1/Image_Title_1/Text (TMP)",
+      "scenario": "reward-balance-int-limit",
+      "texts": {
+        "en-US": "2,147,483,647",
+        "pt-BR": "2.147.483.647",
+        "id-ID": "2.147.483.647"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/GetRewardPanel/GetRewardPanel.prefab",
+      "textFileId": "6542237316633747035",
+      "pathSuffix": "Content/ProgressStack/WathAdProgress/ProgressValue",
+      "scenario": "ad-progress-large-config",
+      "texts": {
+        "en-US": "9999/10000",
+        "pt-BR": "9999/10000",
+        "id-ID": "9999/10000"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/NewbieGiftPage/NewbieGiftPage.prefab",
+      "textFileId": "8496055456660197204",
+      "pathSuffix": "Panel/BG (2)/Text (TMP)",
+      "scenario": "NewBieGiftPage_Title",
+      "texts": {
+        "en-US": "New Player Reward",
+        "pt-BR": "Recompensa Nova",
+        "id-ID": "Hadiah Baru"
+      },
+      "key": "NewBieGiftPage_Title"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/NewbieGiftPage/NewbieGiftPage.prefab",
+      "textFileId": "7428176600836802712",
+      "pathSuffix": "Panel/Button/Text (TMP)",
+      "scenario": "Btn_Claim",
+      "texts": {
+        "en-US": "Claim",
+        "pt-BR": "Resgatar",
+        "id-ID": "Klaim"
+      },
+      "key": "Btn_Claim"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/NewbieGiftPage/NewbieGiftPage.prefab",
+      "textFileId": "2059151709312964033",
+      "pathSuffix": "Panel/Os_UsdText",
+      "scenario": "gift-country-currency",
+      "texts": {
+        "en-US": "$999.99",
+        "pt-BR": "R$999,99",
+        "id-ID": "Rp999.999"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/StarRatingPopup/StarRatingPopup.prefab",
+      "textFileId": "2141479431791871128",
+      "pathSuffix": "Content/GoBtn/txt",
+      "scenario": "StarRatingPopup_Btn",
+      "texts": {
+        "en-US": "Confirm",
+        "pt-BR": "Confirmar",
+        "id-ID": "Konfirmasi"
+      },
+      "key": "StarRatingPopup_Btn"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/StarRatingPopup/StarRatingPopup.prefab",
+      "textFileId": "8524774652844899261",
+      "pathSuffix": "Content/Texts",
+      "scenario": "StarRatingPopup_content",
+      "texts": {
+        "en-US": "Dear Player, do you like our game? We'd really appreciate a 5-star rating on the store. Thank you for your support!",
+        "pt-BR": "Caro jogador, você gosta do nosso jogo? Agradeceríamos muito se você pudesse nos dar uma avaliação de 5 estrelas na loja. Obrigado pelo seu apoio!",
+        "id-ID": "Pemain yang terhormat, apakah Anda menyukai permainan kami? Kami akan sangat menghargai jika Anda memberikan rating 5 bintang di toko. Terima kasih atas dukungan Anda!"
+      },
+      "key": "StarRatingPopup_content"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/StarRatingPopup/StarRatingPopup.prefab",
+      "textFileId": "7053621569043289714",
+      "pathSuffix": "Content/Title",
+      "scenario": "StarRatingPopup_title",
+      "texts": {
+        "en-US": "Rate the game",
+        "pt-BR": "Avalie o jogo",
+        "id-ID": "Beri nilai game"
+      },
+      "key": "StarRatingPopup_title"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServicePanel/ServicePanel.prefab",
+      "textFileId": "6004225462979585317",
+      "pathSuffix": "Title/Title",
+      "scenario": "ServicePanel_Tittle",
+      "texts": {
+        "en-US": "Feedback",
+        "pt-BR": "Feedback",
+        "id-ID": "Umpan Balik"
+      },
+      "key": "ServicePanel_Tittle"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServicePanel/ServicePanel.prefab",
+      "textFileId": "6689890846442346167",
+      "pathSuffix": "Content/InputNode/SelectQuestionBtn /Text (TMP)",
+      "scenario": "ServicePanel_Please",
+      "texts": {
+        "en-US": "Please select a quick reply (Tap)",
+        "pt-BR": "Por favor, selecione uma resposta rápida (toque)",
+        "id-ID": "Silakan pilih balasan cepat (ketuk)"
+      },
+      "key": "ServicePanel_Please"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServicePanel/ServicePanel.prefab",
+      "textFileId": "6689890846442346167",
+      "pathSuffix": "Content/InputNode/SelectQuestionBtn /Text (TMP)",
+      "scenario": "ServicePanel_Q6",
+      "texts": {
+        "en-US": "6、Why can't I withdraw funds using my withdrawal account?",
+        "pt-BR": "6、Por que não consigo sacar usando minha conta de saque?",
+        "id-ID": "6、Mengapa saya tidak bisa menarik dana menggunakan akun penarikan saya?"
+      },
+      "key": "ServicePanel_Q6"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServiceSelectPanel/ServiceSelectPanel.prefab",
+      "textFileId": "2459552015238615346",
+      "pathSuffix": "Content/bg_Content/Questions/question_1 (4)/Text (TMP)",
+      "scenario": "ServicePanel_Q5",
+      "texts": {
+        "en-US": "5、How many times can I withdraw per day?",
+        "pt-BR": "5、Quantas vezes posso sacar por dia?",
+        "id-ID": "5、Berapa kali bisa menarik per hari?"
+      },
+      "key": "ServicePanel_Q5"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServiceSelectPanel/ServiceSelectPanel.prefab",
+      "textFileId": "3899219166351189172",
+      "pathSuffix": "Content/bg_Content/Questions/question_1 (7)/Text (TMP)",
+      "scenario": "ServicePanel_Custom",
+      "texts": {
+        "en-US": "Customer Service",
+        "pt-BR": "Atendimento ao Cliente",
+        "id-ID": "Layanan Pelanggan"
+      },
+      "key": "ServicePanel_Custom"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServiceSelectPanel/ServiceSelectPanel.prefab",
+      "textFileId": "7304933104185548933",
+      "pathSuffix": "Content/bg_Content/Questions/question_1 (2)/Text (TMP)",
+      "scenario": "ServicePanel_Q3",
+      "texts": {
+        "en-US": "3、Why did my withdrawal fail?",
+        "pt-BR": "3、Por que meu saque falhou?",
+        "id-ID": "3、Mengapa penarikan saya gagal?"
+      },
+      "key": "ServicePanel_Q3"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServiceSelectPanel/ServiceSelectPanel.prefab",
+      "textFileId": "3302444863855316968",
+      "pathSuffix": "Content/bg_Content/Questions/question_1 (6)/Text (TMP)",
+      "scenario": "ServicePanel_Q7",
+      "texts": {
+        "en-US": "7、Can I use a VPN?",
+        "pt-BR": "7、Posso usar VPN?",
+        "id-ID": "7、Apakah saya boleh menggunakan VPN?"
+      },
+      "key": "ServicePanel_Q7"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServiceSelectPanel/ServiceSelectPanel.prefab",
+      "textFileId": "8170945380672882861",
+      "pathSuffix": "Content/bg_Content/Text (TMP)",
+      "scenario": "ServicePanel_QuickReply",
+      "texts": {
+        "en-US": "Quick Reply",
+        "pt-BR": "Resposta rápida",
+        "id-ID": "Balasan cepat"
+      },
+      "key": "ServicePanel_QuickReply"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServiceSelectPanel/ServiceSelectPanel.prefab",
+      "textFileId": "6737498048608474292",
+      "pathSuffix": "Content/bg_Content/Questions/question_1 (1)/Text (TMP)",
+      "scenario": "ServicePanel_Q2",
+      "texts": {
+        "en-US": "2、How long does it take to withdraw money?",
+        "pt-BR": "2、Quanto tempo leva para sacar dinheiro?",
+        "id-ID": "2、Berapa lama waktu penarikan?"
+      },
+      "key": "ServicePanel_Q2"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServiceSelectPanel/ServiceSelectPanel.prefab",
+      "textFileId": "1383874386300295906",
+      "pathSuffix": "Content/bg_Content/Questions/question_1 (5)/Text (TMP)",
+      "scenario": "ServicePanel_Q6",
+      "texts": {
+        "en-US": "6、Why can't I withdraw funds using my withdrawal account?",
+        "pt-BR": "6、Por que não consigo sacar usando minha conta de saque?",
+        "id-ID": "6、Mengapa saya tidak bisa menarik dana menggunakan akun penarikan saya?"
+      },
+      "key": "ServicePanel_Q6"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServiceSelectPanel/ServiceSelectPanel.prefab",
+      "textFileId": "6978226949653803335",
+      "pathSuffix": "Content/bg_Content/Questions/question_1/Text (TMP)",
+      "scenario": "ServicePanel_Q1",
+      "texts": {
+        "en-US": "1、How can I withdraw cash?",
+        "pt-BR": "1、Como posso sacar dinheiro?",
+        "id-ID": "1、Bagaimana cara menarik uang?"
+      },
+      "key": "ServicePanel_Q1"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/ServiceSelectPanel/ServiceSelectPanel.prefab",
+      "textFileId": "7477266037482157431",
+      "pathSuffix": "Content/bg_Content/Questions/question_1 (3)/Text (TMP)",
+      "scenario": "ServicePanel_Q4",
+      "texts": {
+        "en-US": "4、How many times can I withdraw?",
+        "pt-BR": "4、Quantas vezes posso sacar?",
+        "id-ID": "4、Berapa kali bisa menarik?"
+      },
+      "key": "ServicePanel_Q4"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Common/UI/SettingPanel/PausePanel.prefab",
+      "textFileId": "483762537537133088",
+      "pathSuffix": "GamePauseGroup/ContinueBtn/Text (TMP)",
+      "scenario": "Btn_Continue",
+      "texts": {
+        "en-US": "Continue",
+        "pt-BR": "Continuar",
+        "id-ID": "Lanjutkan"
+      },
+      "key": "Btn_Continue"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Common/UI/SettingPanel/PausePanel.prefab",
+      "textFileId": "4280192048339687257",
+      "pathSuffix": "GamePauseGroup/BackButton/Text (TMP)",
+      "scenario": "Btn_RePlay",
+      "texts": {
+        "en-US": "Restart",
+        "pt-BR": "Recomeçar",
+        "id-ID": "Mulai Ulang"
+      },
+      "key": "Btn_RePlay"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Common/UI/SettingPanel/PausePanel.prefab",
+      "textFileId": "7891415300733195489",
+      "pathSuffix": "MainPauseGroup/BackButton/Text (TMP)",
+      "scenario": "Btn_Back",
+      "texts": {
+        "en-US": "Back",
+        "pt-BR": "Voltar",
+        "id-ID": "Kembali"
+      },
+      "key": "Btn_Back"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Common/MenuSystem/Common/LoadingPanel/LoadingPanel.prefab",
+      "textFileId": "4458720095455622064",
+      "pathSuffix": "LoadingBar/Text (TMP) (1)",
+      "scenario": "Tips_Loading",
+      "texts": {
+        "en-US": "Loading...",
+        "pt-BR": "Carregando...",
+        "id-ID": "Memuat..."
+      },
+      "key": "Tips_Loading"
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/FunctionTools/CommonPublic/UI/CommonConfirmTipsPanel.prefab",
+      "textFileId": "6600062704716107627",
+      "pathSuffix": "Content/Des",
+      "scenario": "sdk-warning-HTTPNetworkProblem",
+      "texts": {
+        "en-US": "Network error, please try again later.",
+        "pt-BR": "Erro de rede, tente novamente mais tarde.",
+        "id-ID": "Kesalahan jaringan, silakan coba lagi nanti."
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/FunctionTools/CommonPublic/UI/CommonConfirmTipsPanel.prefab",
+      "textFileId": "6600062704716107627",
+      "pathSuffix": "Content/Des",
+      "scenario": "sdk-warning-WKY_Reconnecting",
+      "texts": {
+        "en-US": "Network connection error. Reconnecting, please try again shortly.",
+        "pt-BR": "Erro de conexão. Estamos tentando reconectar. Tente novamente em instantes.",
+        "id-ID": "Koneksi jaringan bermasalah. Sedang mencoba menyambungkan kembali. Silakan coba lagi sebentar."
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/FunctionTools/CommonPublic/UI/CommonConfirmTipsPanel.prefab",
+      "textFileId": "6600062704716107627",
+      "pathSuffix": "Content/Des",
+      "scenario": "sdk-warning-Tips_NetworkError",
+      "texts": {
+        "en-US": "Network connection error, please check your network",
+        "pt-BR": "Erro de conexão de rede, verifique sua rede",
+        "id-ID": "Koneksi jaringan bermasalah, silakan periksa jaringan"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/FunctionTools/CommonPublic/UI/CommonConfirmTipsPanel.prefab",
+      "textFileId": "6600062704716107627",
+      "pathSuffix": "Content/Des",
+      "scenario": "sdk-warning-TokenClient_VPN",
+      "texts": {
+        "en-US": "Please disable your VPN or proxy and try again.",
+        "pt-BR": "Desative a VPN ou o proxy e tente novamente.",
+        "id-ID": "Harap nonaktifkan VPN atau proxy, lalu coba lagi."
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/FunctionTools/CommonPublic/UI/CommonConfirmTipsPanel.prefab",
+      "textFileId": "6600062704716107627",
+      "pathSuffix": "Content/Des",
+      "scenario": "sdk-warning-TokenClient_REGION",
+      "texts": {
+        "en-US": "This service is currently unavailable in your region.",
+        "pt-BR": "Este serviço não está disponível na sua região no momento.",
+        "id-ID": "Layanan ini saat ini tidak tersedia di wilayah Anda."
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/FunctionTools/CommonPublic/UI/CommonConfirmTipsPanel.prefab",
+      "textFileId": "6600062704716107627",
+      "pathSuffix": "Content/Des",
+      "scenario": "sdk-warning-TokenClient_APP_INTEGRITY",
+      "texts": {
+        "en-US": "The current client environment is abnormal.",
+        "pt-BR": "O ambiente atual do aplicativo está anormal.",
+        "id-ID": "Lingkungan aplikasi saat ini terdeteksi tidak normal."
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/FunctionTools/CommonPublic/UI/CommonConfirmTipsPanel.prefab",
+      "textFileId": "6600062704716107627",
+      "pathSuffix": "Content/Des",
+      "scenario": "sdk-warning-TokenClient_TOKEN_INVALID",
+      "texts": {
+        "en-US": "Please try again later.",
+        "pt-BR": "Tente novamente mais tarde.",
+        "id-ID": "Silakan coba lagi nanti."
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/FunctionTools/CommonPublic/UI/CommonConfirmTipsPanel.prefab",
+      "textFileId": "6600062704716107627",
+      "pathSuffix": "Content/Des",
+      "scenario": "sdk-warning-TokenClient_Default",
+      "texts": {
+        "en-US": "Please try again later.",
+        "pt-BR": "Tente novamente mais tarde.",
+        "id-ID": "Silakan coba lagi nanti."
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000016",
+      "pathSuffix": "Modal/Title Ribbon/Title",
+      "scenario": "Booster_Title",
+      "key": "Booster_Title",
+      "texts": {
+        "en-US": "Buy Booster",
+        "pt-BR": "Comprar item",
+        "id-ID": "Beli Penguat"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000033",
+      "pathSuffix": "Modal/Booster Name",
+      "scenario": "Booster_Hammer",
+      "key": "Booster_Hammer",
+      "texts": {
+        "en-US": "Hammer",
+        "pt-BR": "Martelo",
+        "id-ID": "Palu"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000033",
+      "pathSuffix": "Modal/Booster Name",
+      "scenario": "Booster_Arrow",
+      "key": "Booster_Arrow",
+      "texts": {
+        "en-US": "Arrow",
+        "pt-BR": "Flecha",
+        "id-ID": "Panah"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000033",
+      "pathSuffix": "Modal/Booster Name",
+      "scenario": "Booster_Cannon",
+      "key": "Booster_Cannon",
+      "texts": {
+        "en-US": "Cannon",
+        "pt-BR": "Canhão",
+        "id-ID": "Meriam"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000033",
+      "pathSuffix": "Modal/Booster Name",
+      "scenario": "Booster_Jester",
+      "key": "Booster_Jester",
+      "texts": {
+        "en-US": "Jester Hat",
+        "pt-BR": "Chapéu de bobo",
+        "id-ID": "Topi Pelawak"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000049",
+      "pathSuffix": "Modal/Coin Summary/Booster Price",
+      "scenario": "Booster_Price",
+      "key": "Booster_Price",
+      "texts": {
+        "en-US": "Price: 100 coins",
+        "pt-BR": "Preço: 100 moedas",
+        "id-ID": "Harga: 100 koin"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000053",
+      "pathSuffix": "Modal/Coin Summary/Total Coin Balance",
+      "scenario": "Booster_Balance",
+      "key": "Booster_Balance",
+      "texts": {
+        "en-US": "Coin balance: 2,147,483,647",
+        "pt-BR": "Saldo de moedas: 2.147.483.647",
+        "id-ID": "Saldo koin: 2.147.483.647"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000062",
+      "pathSuffix": "Modal/Buy Button/Buy Label",
+      "scenario": "Booster_Buy",
+      "key": "Booster_Buy",
+      "texts": {
+        "en-US": "Buy",
+        "pt-BR": "Comprar",
+        "id-ID": "Beli"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000062",
+      "pathSuffix": "Modal/Buy Button/Buy Label",
+      "scenario": "Booster_NotEnoughCoins",
+      "key": "Booster_NotEnoughCoins",
+      "texts": {
+        "en-US": "Not enough coins",
+        "pt-BR": "Moedas insuficientes",
+        "id-ID": "Koin tidak cukup"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/AddPropPanel/BoosterPurchasePanel.prefab",
+      "textFileId": "968312000000000075",
+      "pathSuffix": "Modal/Ad Button/Ad Label",
+      "scenario": "Booster_WatchAd",
+      "key": "Booster_WatchAd",
+      "texts": {
+        "en-US": "Watch video",
+        "pt-BR": "Assistir vídeo",
+        "id-ID": "Tonton video"
+      }
+    },
+    {
+      "prefab": "Assets/BizzaWZ/Final/Real/UI/RealWithdrawalPanl/RealWithdrawPanel.prefab",
+      "textFileId": "6004225462979585317",
+      "pathSuffix": "Title/Title",
+      "scenario": "withdrawal_screen_title",
+      "texts": {
+        "en-US": "Withdrawal",
+        "pt-BR": "Sacar",
+        "id-ID": "Tarik"
+      }
+    }
+  ]
+}

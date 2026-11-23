@@ -42,6 +42,9 @@ namespace Whitebox.Foundation
         [SerializeField] private float tallDialogOffset, dialogAnchorOffset, dialogTopClearance, fadeSeconds;
         [SerializeField] private float minimumDismissSeconds;
         [SerializeField] private float focusedDialogThreshold, focusedDialogAbove, focusedDialogBelow;
+        [SerializeField] private Rect handAvoidanceRect, verticalHandAvoidanceRect;
+        [SerializeField] private Vector2 focusedCellHalfSize, focusedScreenPadding;
+        [SerializeField] private float focusedDialogGap;
         [SerializeField] private int highlightOffset, boardHighlightOffset;
 
         private static readonly int AlphaTexture = Shader.PropertyToID("_AlphaTex");
@@ -60,7 +63,7 @@ namespace Whitebox.Foundation
         private RenderTexture target;
         private Material maskMaterial;
         private MaterialPropertyBlock maskProperties;
-        private Rect pixelRect;
+        private Rect pixelRect, screenSafeArea;
         private Vector3 viewCenter, boardOrigin, dialogTopLimit;
         private float height, width, targetAlpha, shownAt;
         private int dismissAtFrame = -1;
@@ -162,6 +165,7 @@ namespace Whitebox.Foundation
         private void RefreshLayout()
         {
             pixelRect = source.pixelRect;
+            screenSafeArea = Screen.safeArea;
             viewCenter = source.transform.position;
             height = source.orthographicSize * 2f;
             width = height * source.aspect;
@@ -206,6 +210,83 @@ namespace Whitebox.Foundation
                 anchor.y -= dialogTopClearance;
             }
             dialog.position = anchor;
+            if (focusCell != null)
+                FitFocusedDialog(source, screenSafeArea, dialogTopLimit,
+                    focusCell.GetViewPosition(), secondCell == null ? (Vector3?)null : secondCell.GetViewPosition());
+        }
+
+        // Use the authored envelope of the whole gesture, rather than moving
+        // the dialog with each animation frame. Called only on layout changes.
+        public void FitFocusedDialog(Camera camera, Rect safeArea, Vector3 topLimit,
+            Vector3 focusPosition, Vector3? secondPosition)
+        {
+            bool vertical = secondPosition.HasValue && Mathf.Approximately(focusPosition.x, secondPosition.Value.x);
+            var gesture = vertical ? verticalHand : hand;
+            var avoid = WorldRect(gesture, vertical ? verticalHandAvoidanceRect : handAvoidanceRect);
+            var cells = new Bounds(focusPosition, (Vector3)(focusedCellHalfSize * 2f));
+            if (secondPosition.HasValue)
+                cells.Encapsulate(new Bounds(secondPosition.Value, (Vector3)(focusedCellHalfSize * 2f)));
+            avoid = Rect.MinMaxRect(Mathf.Min(avoid.xMin, cells.min.x), Mathf.Min(avoid.yMin, cells.min.y),
+                Mathf.Max(avoid.xMax, cells.max.x), Mathf.Max(avoid.yMax, cells.max.y));
+            avoid = Rect.MinMaxRect(avoid.xMin - focusedDialogGap, avoid.yMin - focusedDialogGap,
+                avoid.xMax + focusedDialogGap, avoid.yMax + focusedDialogGap);
+
+            var bounds = leftDialogBackground.bounds;
+            bounds.Encapsulate(rightDialogBackground.bounds);
+            var text = WorldRect(instruction.rectTransform, instruction.rectTransform.rect);
+            bounds.Encapsulate(new Vector3(text.xMin, text.yMin, bounds.center.z));
+            bounds.Encapsulate(new Vector3(text.xMax, text.yMax, bounds.center.z));
+            var half = (Vector2)bounds.extents;
+            var preferred = (Vector2)bounds.center;
+            float depth = camera.WorldToScreenPoint(dialog.position).z;
+            var viewport = camera.pixelRect;
+            var bottomLeft = camera.ScreenToWorldPoint(new Vector3(
+                Mathf.Max(viewport.xMin, safeArea.xMin), Mathf.Max(viewport.yMin, safeArea.yMin), depth));
+            var topRight = camera.ScreenToWorldPoint(new Vector3(
+                Mathf.Min(viewport.xMax, safeArea.xMax), Mathf.Min(viewport.yMax, safeArea.yMax), depth));
+            var available = Rect.MinMaxRect(bottomLeft.x + focusedScreenPadding.x, bottomLeft.y + focusedScreenPadding.y,
+                topRight.x - focusedScreenPadding.x, Mathf.Min(topRight.y, topLimit.y) - focusedScreenPadding.y);
+            var limits = Rect.MinMaxRect(available.xMin + half.x, available.yMin + half.y,
+                available.xMax - half.x, available.yMax - half.y);
+            // A narrow viewport centers an oversized axis; normal supported
+            // layouts retain the prefab's text and background size.
+            if (limits.width < 0f) limits.xMin = limits.xMax = available.center.x;
+            if (limits.height < 0f) limits.yMin = limits.yMax = available.center.y;
+            Vector2 best = preferred;
+            float bestOverlap = float.PositiveInfinity, bestDistance = float.PositiveInfinity;
+            ConsiderDialogPosition(preferred, preferred, half, limits, avoid, ref best, ref bestOverlap, ref bestDistance);
+            ConsiderDialogPosition(new Vector2(preferred.x, avoid.yMax + half.y), preferred, half, limits, avoid,
+                ref best, ref bestOverlap, ref bestDistance);
+            ConsiderDialogPosition(new Vector2(preferred.x, avoid.yMin - half.y), preferred, half, limits, avoid,
+                ref best, ref bestOverlap, ref bestDistance);
+            ConsiderDialogPosition(new Vector2(avoid.xMin - half.x, preferred.y), preferred, half, limits, avoid,
+                ref best, ref bestOverlap, ref bestDistance);
+            ConsiderDialogPosition(new Vector2(avoid.xMax + half.x, preferred.y), preferred, half, limits, avoid,
+                ref best, ref bestOverlap, ref bestDistance);
+            dialog.position += (Vector3)(best - preferred);
+        }
+
+        private static Rect WorldRect(Transform owner, Rect local)
+        {
+            var bounds = new Bounds(owner.TransformPoint(new Vector3(local.xMin, local.yMin, 0f)), Vector3.zero);
+            bounds.Encapsulate(owner.TransformPoint(new Vector3(local.xMax, local.yMin, 0f)));
+            bounds.Encapsulate(owner.TransformPoint(new Vector3(local.xMin, local.yMax, 0f)));
+            bounds.Encapsulate(owner.TransformPoint(new Vector3(local.xMax, local.yMax, 0f)));
+            return Rect.MinMaxRect(bounds.min.x, bounds.min.y, bounds.max.x, bounds.max.y);
+        }
+
+        private static void ConsiderDialogPosition(Vector2 candidate, Vector2 preferred, Vector2 half, Rect limits, Rect avoid,
+            ref Vector2 best, ref float bestOverlap, ref float bestDistance)
+        {
+            candidate.x = Mathf.Clamp(candidate.x, limits.xMin, limits.xMax);
+            candidate.y = Mathf.Clamp(candidate.y, limits.yMin, limits.yMax);
+            float overlap = Mathf.Max(0f, Mathf.Min(candidate.x + half.x, avoid.xMax) - Mathf.Max(candidate.x - half.x, avoid.xMin))
+                * Mathf.Max(0f, Mathf.Min(candidate.y + half.y, avoid.yMax) - Mathf.Max(candidate.y - half.y, avoid.yMin));
+            float distance = (candidate - preferred).sqrMagnitude;
+            if (overlap > bestOverlap || (overlap == bestOverlap && distance >= bestDistance)) return;
+            best = candidate;
+            bestOverlap = overlap;
+            bestDistance = distance;
         }
 
         private Vector3 GridTopCenter()
@@ -262,7 +343,7 @@ namespace Whitebox.Foundation
                 End();
                 return;
             }
-            if (pixelRect != source.pixelRect || viewCenter != source.transform.position ||
+            if (pixelRect != source.pixelRect || screenSafeArea != Screen.safeArea || viewCenter != source.transform.position ||
                 height != source.orthographicSize * 2f || width != source.orthographicSize * 2f * source.aspect ||
                 boardOrigin != board.Grid.GetCell(0, 0).GetViewPosition())
                 RefreshLayout();

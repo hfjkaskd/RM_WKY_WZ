@@ -34,6 +34,10 @@ public class UIWithdrawalConfirmPanel : UIPageBase<WithDrawInfo>
 
     [SerializeField] private GameObject brazilNameCpfWarning;
     [SerializeField] private GameObject defaultConfirmationHint;
+    [SerializeField] private RectTransform detailsContent;
+    [SerializeField] private ScrollRect detailsScroll;
+    [SerializeField] private LayoutElement accountRowLayout, nameRowLayout, cpfRowLayout;
+    [SerializeField] private float detailRowMinimumHeight, detailVerticalPadding;
 
     // private UIWithdrawalPanel _page;
     private AccountModule.OceanShineWithdrawalPageResponse.WithdrawalPlatform data;
@@ -46,6 +50,8 @@ public class UIWithdrawalConfirmPanel : UIPageBase<WithDrawInfo>
     private E_PayeeAccountType payType;
     private E_WithdrawType withdrawType;
     private Action callback = null;
+    private double? dailyMissionAmount;
+    private int dailyMissionTaskId;
 
     [Header("按钮")]
     [SerializeField] private BizzaButton withdrawalBtn;
@@ -60,7 +66,7 @@ public class UIWithdrawalConfirmPanel : UIPageBase<WithDrawInfo>
 
     protected override void OnClose()
     {
-        // MobileInputBinderManager.Instance.SetectFouscus(true);
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedContent, false);
     }
 
     protected override void OnOpen(WithDrawInfo info)
@@ -74,7 +80,38 @@ public class UIWithdrawalConfirmPanel : UIPageBase<WithDrawInfo>
         this.Name = info.Name;
         this.CPF_CNPJ = info.CPF_CNPJ;
         this.payType = info.payType;
+        CaptureDailyMissionSnapshot(withdrawType == E_WithdrawType.DailyMission
+            ? AccountModule.Instance.routineTaskLookAdMoneyResponse
+            : null);
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedContent, true);
+        RefreshLocalizedContent();
+    }
 
+    private void CaptureDailyMissionSnapshot(AccountModule.RoutineTaskLookAdMoneyResponse mission)
+    {
+        dailyMissionAmount = null;
+        dailyMissionTaskId = 0;
+        withdrawalBtn.interactable = true;
+        if (withdrawType != E_WithdrawType.DailyMission) return;
+        if (mission == null || mission.Os_Ss != 2 || mission.Os_Tid <= 0 ||
+            mission.Os_My <= 0 || double.IsNaN(mission.Os_My) || double.IsInfinity(mission.Os_My))
+        {
+            withdrawalBtn.interactable = false;
+            return;
+        }
+        dailyMissionAmount = mission.Os_My;
+        dailyMissionTaskId = mission.Os_Tid;
+    }
+
+    private string GetDailyMissionReference()
+    {
+        return withdrawType == E_WithdrawType.DailyMission && dailyMissionAmount.HasValue
+            ? FormattableString.Invariant($"task_{dailyMissionTaskId}")
+            : string.Empty;
+    }
+
+    private void RefreshLocalizedContent()
+    {
         paymentImage.sprite = paymentList.GetSpriteByType(payType);
         gameObject.SetActive(true);
         CPF_CNPJText.text = CPF_CNPJ;
@@ -86,7 +123,10 @@ public class UIWithdrawalConfirmPanel : UIPageBase<WithDrawInfo>
         }
         if (withdrawType == E_WithdrawType.DailyMission)
         {
-            PaymentValueText.text = $"{LanguageUtils.GetText("CurrencyToken")}0,2";
+            PaymentValueText.text = dailyMissionAmount.HasValue
+                ? $"{LanguageUtils.GetText("CurrencyToken")}{WithdrawalUtil.GetCustomizedValueByCountryType((float)dailyMissionAmount.Value)}"
+                : LanguageUtils.GetText("HTTPNetworkProblem");
+            withdrawalBtn.interactable = dailyMissionAmount.HasValue;
         }
         else if (withdrawType == E_WithdrawType.Fake)
         {
@@ -122,11 +162,30 @@ public class UIWithdrawalConfirmPanel : UIPageBase<WithDrawInfo>
         {
             brazilNameCpfWarning.transform.SetAsLastSibling();
         }
+        RefreshDetailsLayout();
     }
 
+    public void RefreshDetailsLayout()
+    {
+        // Static rows and scrolling are authored in the prefab; only data changes their height.
+        Canvas.ForceUpdateCanvases();
+        ResizeDetailRow(accountRowLayout, EmailText);
+        ResizeDetailRow(nameRowLayout, NameText);
+        ResizeDetailRow(cpfRowLayout, CPF_CNPJText);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(detailsContent);
+        detailsScroll.verticalNormalizedPosition = 1f;
+    }
+
+    private void ResizeDetailRow(LayoutElement row, TMP_Text value)
+    {
+        float width = value.rectTransform.rect.width - value.margin.x - value.margin.z;
+        float height = value.GetPreferredValues(value.text, width, Mathf.Infinity).y;
+        row.preferredHeight = Mathf.Max(detailRowMinimumHeight, height + detailVerticalPadding);
+    }
 
     public void OnClickWithdrawBtn()
     {
+        if (withdrawType == E_WithdrawType.DailyMission && !dailyMissionAmount.HasValue) return;
         if (payType == E_PayeeAccountType.Paypal) // 美国的邮箱就是账号
         {
             Ra = Re;
@@ -150,9 +209,7 @@ public class UIWithdrawalConfirmPanel : UIPageBase<WithDrawInfo>
         string _Os_Rm = "";
         string _Os_Rn = payType == E_PayeeAccountType.Paypal ? "" : Name;
 
-        string _Os_Mn = withdrawType == E_WithdrawType.DailyMission
-            ? $"task_{AccountModule.Instance.routineTaskLookAdMoneyResponse.Os_Tid}"
-            : "";
+        string _Os_Mn = GetDailyMissionReference();
         string _Os_At = (withdrawType == E_WithdrawType.DailyMission || withdrawType == E_WithdrawType.Fake)
             ? $"money"
             : "";
@@ -240,7 +297,7 @@ public class UIWithdrawalConfirmPanel : UIPageBase<WithDrawInfo>
             PaymentValueText.text,
             paymentIconKey: data?.Os_Cn,
             successHintText: LanguageUtils.GetText("InfoConfirm_WithdrawSuccessful"),
-            failHintText: LanguageUtils.GetText("InfoConfirm_WithdrawFailed"),
+            failHintKey: "InfoConfirm_WithdrawFailed",
             onResultClose: OpenStarRatingAfterPending);
         UIModule.Instance.OpenPage(UIPageIds.UIWithdrawalPendingPanel, info).Forget();
     }

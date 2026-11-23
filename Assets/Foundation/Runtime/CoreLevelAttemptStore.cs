@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace Whitebox.Foundation
             this.reviveMoves = reviveMoves;
         }
 
-        internal FLevelSaveData Load(FTiledLevel level)
+        internal FLevelSaveData Load(FTiledLevel level, int levelNumber)
         {
             try
             {
@@ -43,14 +44,16 @@ namespace Whitebox.Foundation
                     throw new InvalidDataException("Invalid level save file size.");
                 using var reader = new BinaryReader(input);
                 var saved = OriginalLevelSaveFlatBuffer.Decode(reader.ReadBytes((int)input.Length));
-                Validate(saved, level);
+                Validate(saved, level, levelNumber);
                 return saved;
             }
             catch (FileNotFoundException) { return null; }
             catch (DirectoryNotFoundException) { return null; }
-            catch (Exception error) when (error is InvalidDataException || error is IOException ||
-                error is UnauthorizedAccessException || error is DecoderFallbackException)
+            catch (Exception error)
             {
+                if (!(error is InvalidDataException || error is IOException ||
+                    error is UnauthorizedAccessException || error is DecoderFallbackException))
+                    throw;
                 Debug.LogWarning("Ignoring the local level save. " + error.Message);
                 Clear();
                 return null;
@@ -94,7 +97,7 @@ namespace Whitebox.Foundation
             var data = new FLevelSaveData {
                 ValidationSaveData = new FValidationSaveData
                 {
-                    LevelName = game.Session.Name,
+                    LevelName = GetSaveIdentity(game.Session.Name, game.Session.Number),
                     AppVersion = needsReviveSchema ? ReviveSaveVersion : CoreSaveVersion,
                 },
                 BoardSaveData = game.CaptureBoard(),
@@ -166,8 +169,10 @@ namespace Whitebox.Foundation
                         else File.Move(temporary, path);
                     }
                 }
-                catch (Exception error) when (error is IOException || error is UnauthorizedAccessException)
+                catch (Exception error)
                 {
+                    if (!(error is IOException || error is UnauthorizedAccessException))
+                        throw;
                     lock (gate) writerError = error;
                 }
             }
@@ -180,14 +185,24 @@ namespace Whitebox.Foundation
             (long)data.ValidationSaveData.LevelName.Length + data.BoardSaveData.GridData.Grid.Length +
             data.GameStateSaveData.Length + data.BoosterSaveData.Length + data.LevelStatisticsSaveData.Length;
 
-        private void Validate(FLevelSaveData saved, FTiledLevel level)
+        internal static string GetSaveIdentity(string levelName, int levelNumber)
+        {
+            if (levelNumber < 1)
+                throw new ArgumentOutOfRangeException(nameof(levelNumber));
+            // Preserve existing first-cycle saves, but never restore another cycle's board.
+            return levelNumber <= CoreLevelCatalog.SupportedLevelCount
+                ? levelName
+                : levelName + "#level=" + levelNumber.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private void Validate(FLevelSaveData saved, FTiledLevel level, int levelNumber)
         {
             var identity = saved.ValidationSaveData;
             var board = saved.BoardSaveData;
             var grid = board?.GridData;
             var creator = board?.ItemModelCreatorSaveData;
             var queues = creator?.PredefinedItemsSaveData?.Queues;
-            if (identity?.LevelName != level.Name ||
+            if (identity?.LevelName != GetSaveIdentity(level.Name, levelNumber) ||
                 identity.AppVersion is not (SaveVersionWithoutOpeningRefillCounts or CoreSaveVersion or ReviveSaveVersion) ||
                 grid?.Grid == null || grid.Width != level.Grid.Width || grid.Height != level.Grid.Height ||
                 grid.Grid.Length != level.Grid.Cells.Length || (grid.ShifterData?.Length ?? 0) != 0 ||

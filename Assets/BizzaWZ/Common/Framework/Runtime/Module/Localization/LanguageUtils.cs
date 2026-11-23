@@ -1,19 +1,16 @@
 using System.Collections;
-using System.Globalization;
 using UnityEngine;
 
 public class LanguageUtils
 {
-    private const string DefaultLanguage = "en-US";
+    private const string DefaultLanguage = "pt-BR";
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void InitLanguage()
     {
-        string saved = PlayerPrefs.GetString(nameof(SelectedLanguage), string.Empty);
-        if (!HasReadLanguage)
-            SelectedLanguage = GetStandardLanguageCode();
-        else if (!IsSupportedLanguage(saved))
-            SelectedLanguage = DefaultLanguage;
+        // Start in Brazilian Portuguese until the account country is resolved.
+        // System language and a previous account's selection must not decide this session.
+        SelectedLanguage = DefaultLanguage;
     }
 
 // #if UNITY_EDITOR
@@ -54,11 +51,15 @@ public class LanguageUtils
 
     public static string SelectedLanguage
     {
-        get => PlayerPrefs.GetString(nameof(SelectedLanguage), DefaultLanguage);
+        get
+        {
+            string saved = PlayerPrefs.GetString(nameof(SelectedLanguage), DefaultLanguage);
+            return IsSupportedLanguage(saved) ? saved : DefaultLanguage;
+        }
         set
         {
             string language = IsSupportedLanguage(value) ? value : DefaultLanguage;
-            if (HasReadLanguage && SelectedLanguage == language) return;
+            if (PlayerPrefs.GetString(nameof(SelectedLanguage), string.Empty) == language) return;
             PlayerPrefs.SetString(nameof(SelectedLanguage), language);
             PlayerPrefs.Save();
             BizzaEventSystem.Emit(EventDefine.Frame.LanguageChange);
@@ -68,26 +69,9 @@ public class LanguageUtils
     public static bool HasReadLanguage => PlayerPrefs.HasKey(nameof(SelectedLanguage));
 
     private static bool IsSupportedLanguage(string language) =>
-        language is "en-US" or "pt-BR" or "id-ID" or "zh-CN" or "ru-RU" or "ja-JP" or "ko-KR" or
-            "es-ES" or "es-MX" or "tr-TR" or "vi-VN" or "en-PH" or "ar-SA" or "de-DE";
+        language is "en-US" or "pt-BR" or "id-ID";
 
-    public static string GetStandardLanguageCode() => Application.systemLanguage switch
-    {
-        SystemLanguage.Portuguese => "pt-BR",
-        SystemLanguage.Indonesian => "id-ID",
-        SystemLanguage.Chinese or SystemLanguage.ChineseSimplified or SystemLanguage.ChineseTraditional => "zh-CN",
-        SystemLanguage.Russian => "ru-RU",
-        SystemLanguage.Japanese => "ja-JP",
-        SystemLanguage.Korean => "ko-KR",
-        SystemLanguage.English when CultureInfo.CurrentCulture.Name.EndsWith("-PH", System.StringComparison.OrdinalIgnoreCase) => "en-PH",
-        SystemLanguage.Spanish when CultureInfo.CurrentCulture.Name.EndsWith("-MX", System.StringComparison.OrdinalIgnoreCase) => "es-MX",
-        SystemLanguage.Spanish => "es-ES",
-        SystemLanguage.Turkish => "tr-TR",
-        SystemLanguage.Vietnamese => "vi-VN",
-        SystemLanguage.Arabic => "ar-SA",
-        SystemLanguage.German => "de-DE",
-        _ => DefaultLanguage
-    };
+    public static string GetStandardLanguageCode() => DefaultLanguage;
 
     // public static string GetFormatNum(int num)
     // {
@@ -127,7 +111,9 @@ public class LanguageUtils
 
     public static IEnumerator InitLanguageFromIP()
     {
-        InitLanguage();
+        // Country selection is applied by AccountModule after login. A late loading
+        // task must not overwrite an already resolved US or Indonesian language.
+        SelectedLanguage = PlayerPrefs.GetString(nameof(SelectedLanguage), DefaultLanguage);
         yield break;
     }
 

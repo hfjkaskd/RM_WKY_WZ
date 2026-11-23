@@ -16,7 +16,23 @@ public class Real_AdWatchProgress : MonoBehaviour
 
     private void OnEnable()
     {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshHintLanguage, true);
         RefreshWithdrawProgressState();
+    }
+
+    private void OnDisable()
+    {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshHintLanguage, false);
+    }
+
+    private int displayedRemainingAds;
+    private float displayedTargetValue;
+
+    private void RefreshHintLanguage()
+    {
+        if (displayedRemainingAds <= 0) return;
+        hintTxt.text = LanguageUtils.GetFormatText("Real_WithdrawProgressHint", displayedRemainingAds,
+            WithdrawalUtil.GetCustomizedValueByCountryType(displayedTargetValue));
     }
 
     private void RefreshWithdrawProgressState() // 刷新提现进度状态
@@ -71,7 +87,9 @@ public class Real_AdWatchProgress : MonoBehaviour
             return;
         }
         float targetValue = Real_AdWatchCfg.GetTargetValue();
-        hintTxt.text = LanguageUtils.GetFormatText("Real_WithdrawProgressHint", gapAdCount, WithdrawalUtil.GetCustomizedValueByCountryType(targetValue));
+        displayedRemainingAds = gapAdCount;
+        displayedTargetValue = targetValue;
+        RefreshHintLanguage();
     }
 
 }

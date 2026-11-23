@@ -83,11 +83,28 @@ public class ServicePanel : UIPageBase
     private void OnEnable()
     {
         NativeKeyboardManager.AddKeyboardHeightChangedListener(OnKeyboardHeightChanged);
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshInputLanguage, true);
     }
 
     private void OnDisable()
     {
         NativeKeyboardManager.RemoveKeyboardHeightChangedListener(OnKeyboardHeightChanged);
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshInputLanguage, false);
+    }
+
+    private void RefreshInputLanguage()
+    {
+        // Only canned UI changes language; never rewrite the player's own message or history.
+        if (string.IsNullOrEmpty(inputText.Text))
+        {
+            selectQuestionText.text = LanguageUtils.GetText("ServicePanel_Please");
+        }
+        else if (selectIndex >= 0 && selectIndex < 7)
+        {
+            string question = LanguageUtils.GetText("ServicePanel_Q" + (selectIndex + 1));
+            selectQuestionText.text = question;
+            inputText.Text = question;
+        }
     }
 
     protected override void OnClose()

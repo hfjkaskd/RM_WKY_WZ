@@ -25,9 +25,29 @@ public class WithdrawHistoryItem : MonoBehaviour
     [SerializeField] private PaymentConfig paymentConfig;
     [SerializeField] private VerticalLayoutGroup detailsLayout;
     [SerializeField] private LayoutElement rowLayout;
-     
+    private AccountModule.OceanShineWithdrawalRecord record;
+
+    private void OnEnable()
+    {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedContent, true);
+        RefreshLocalizedContent();
+    }
+
+    private void OnDisable()
+    {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedContent, false);
+    }
+
     public void Init(AccountModule.OceanShineWithdrawalRecord data)
     {
+        record = data;
+        RefreshLocalizedContent();
+    }
+
+    private void RefreshLocalizedContent()
+    {
+        var data = record;
+        if (data == null) return;
         nameTxt.gameObject.SetActive(false);
         emailTxt.gameObject.SetActive(false);
         cpfTxt.gameObject.SetActive(false);
@@ -43,23 +63,23 @@ public class WithdrawHistoryItem : MonoBehaviour
         {
             case AccountModule.E_CountryType.US:
                 //amountTxt.text = $"{LanguageUtils.GetText("CurrencyToken")} {data.Os_Prc}";
-                emailTxt.text = $"Email:{data.Os_Ra}";
+                emailTxt.text = $"{LanguageUtils.GetText("Withdrawal_EmailLabel")}: {data.Os_Ra}";
                 emailTxt.gameObject.SetActive(true);
                 break;
             case AccountModule.E_CountryType.BR:
                 //amountTxt.text = $"{LanguageUtils.GetText("CurrencyToken")} {data.Os_Prc}";
                 cpfTxt.text = $"CPF/CNPJ:{data.Os_Cp}";
                 cpfTxt.gameObject.SetActive(true);
-                emailTxt.text = $"Account:{data.Os_Re}";
+                emailTxt.text = $"{LanguageUtils.GetText("Channel_Account")} {data.Os_Re}";
                 emailTxt.gameObject.SetActive(true);
-                nameTxt.text = $"Name:{data.Os_Rn}";
+                nameTxt.text = $"{LanguageUtils.GetText("Common_Name")}: {data.Os_Rn}";
                 nameTxt.gameObject.SetActive(true);
                 break;
             case AccountModule.E_CountryType.ID:
                 //amountTxt.text = $"{LanguageUtils.GetText("CurrencyToken")} {data.Os_Prc}";
-                emailTxt.text = $"Account:{data.Os_Ra}";
+                emailTxt.text = $"{LanguageUtils.GetText("Channel_Account")} {data.Os_Ra}";
                 emailTxt.gameObject.SetActive(true);
-                nameTxt.text = $"Name:{data.Os_Rn}";
+                nameTxt.text = $"{LanguageUtils.GetText("Common_Name")}: {data.Os_Rn}";
                 nameTxt.gameObject.SetActive(true);
                 break;
         }

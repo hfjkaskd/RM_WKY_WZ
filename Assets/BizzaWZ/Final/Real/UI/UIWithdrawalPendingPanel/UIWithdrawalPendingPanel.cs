@@ -30,6 +30,7 @@ public class UIWithdrawalPendingPanel : UIPageBase<UIWithdrawalPendingInfo>
     public TMP_Text progressText;
     public TMP_Text hintText;
     public TMP_Text confirmText;
+    [SerializeField] private ScrollRect resultHintScroll;
 
     [Header("Image")]
     public Image paymentImage;
@@ -106,6 +107,7 @@ public class UIWithdrawalPendingPanel : UIPageBase<UIWithdrawalPendingInfo>
 
     protected override void SetListener(bool addOrRemove)
     {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedContent, addOrRemove);
         if (addOrRemove)
         {
             NetworkCallback += OnNetworkCallback;
@@ -123,6 +125,7 @@ public class UIWithdrawalPendingPanel : UIPageBase<UIWithdrawalPendingInfo>
     protected override void OnClose()
     {
         NetworkCallback -= OnNetworkCallback;
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshLocalizedContent, false);
     }
 
     private void Update()
@@ -153,7 +156,8 @@ public class UIWithdrawalPendingPanel : UIPageBase<UIWithdrawalPendingInfo>
     {
         
         SetText(amountText, _info.AmountText, DefaultAmount);
-        SetText(hintText, _info.HintText, DefaultHint);
+        SetText(hintText, _info.HintText, LanguageUtils.GetText("Withdrawal_ProcessingHint"));
+        RefreshHintLayout();
     
 
         if (paymentImage != null && paymentList != null)
@@ -174,6 +178,19 @@ public class UIWithdrawalPendingPanel : UIPageBase<UIWithdrawalPendingInfo>
                 paymentImage.sprite = sprite;
             }
         }
+    }
+
+    private void RefreshLocalizedContent()
+    {
+        RefreshContent();
+        if (_completed) RefreshResultState();
+    }
+
+    public void RefreshHintLayout()
+    {
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(hintText.rectTransform);
+        resultHintScroll.verticalNormalizedPosition = 1f;
     }
 
     private static void SetText(TMP_Text text, string value, string fallback)
@@ -243,11 +260,15 @@ public class UIWithdrawalPendingPanel : UIPageBase<UIWithdrawalPendingInfo>
         {
             string successHint = LanguageUtils.GetText("UIWithdrawalConfirm_Success");
             SetText(hintText, successHint, DefaultHint);
+            RefreshHintLayout();
             return;
         }
 
-        string failHint = string.IsNullOrEmpty(_info.FailHintText) ? DefaultFailHint : _info.FailHintText;
+        string failHint = !string.IsNullOrEmpty(_info.FailHintKey)
+            ? LanguageUtils.GetText(_info.FailHintKey)
+            : string.IsNullOrEmpty(_info.FailHintText) ? LanguageUtils.GetText("InfoConfirm_WithdrawFailed") : _info.FailHintText;
         SetText(hintText, _result.Message, failHint);
+        RefreshHintLayout();
     }
 
     private void SetButtonsEnabled(bool enabled)
@@ -317,6 +338,7 @@ public struct UIWithdrawalPendingInfo
     public string HintText;
     public string SuccessHintText;
     public string FailHintText;
+    public string FailHintKey;
     public string ConfirmText;
     public Action OnConfirm;
     public Action<bool> OnProgressComplete;
@@ -333,7 +355,8 @@ public struct UIWithdrawalPendingInfo
         string successHintText = null,
         string failHintText = null,
         string confirmText = null,
-        Action<bool> onResultClose = null)
+        Action<bool> onResultClose = null,
+        string failHintKey = null)
     {
         PayType = payType;
         PaymentIconKey = paymentIconKey;
@@ -342,6 +365,7 @@ public struct UIWithdrawalPendingInfo
         HintText = hintText;
         SuccessHintText = successHintText;
         FailHintText = failHintText;
+        FailHintKey = failHintKey;
         ConfirmText = confirmText;
         OnConfirm = onConfirm;
         OnProgressComplete = onProgressComplete;

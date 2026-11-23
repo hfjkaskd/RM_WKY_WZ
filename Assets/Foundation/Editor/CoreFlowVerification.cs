@@ -354,8 +354,8 @@ namespace Whitebox.Foundation.Editor
                 Require(board.Goals.GetGoalLeftCount(11)==36,"Retry restores the original36-box goal");
                 Require(IsKingIdle(UnityEngine.Object.FindObjectOfType<OriginalGameplayHud>().KingVisual),
                     "A fresh level restores the authored idle sequence.");
-                VerifyCap(owner.Configuration.progressFileName+"_boundary");
-                Capture("core_flow_retry.png");report.actual_retry_reloaded_same_level=true;report.cap100_and_restart_verified=true;
+                VerifyLoopBoundary(owner.Configuration.progressFileName+"_boundary");
+                Capture("core_flow_retry.png");report.actual_retry_reloaded_same_level=true;report.loop100_and_restart_verified=true;
                 report.core_booster_inventory_purchase_ui_absent=true;
                 failedAttempt = game;
                 var cell = board.Grid.GetCell(6, 4);
@@ -579,14 +579,16 @@ namespace Whitebox.Foundation.Editor
                 }
             }
         }
-        private static void VerifyCap(string file)
+        private static void VerifyLoopBoundary(string file)
         {
             using(var progress=new CoreLevelProgress(file,100))
             {
-                progress.CompleteLevel(100);Require(progress.IsComplete&&progress.LevelToPlay==100,"Completed core catalog never stores101");
-                using(var db=OriginalRuntimeStorage.Open(progress.DatabasePath))Require(db.Find("Level").Value=="100","Final-level cap is persisted");
-                bool rejected=false;try{progress.CompleteLevel(101);}catch(InvalidDataException){rejected=true;}Require(rejected,"Out-of-scope completion is rejected");
-                progress.StartOver();Require(!progress.IsComplete&&progress.LevelToPlay==1,"Explicit Play Again resets to1");
+                progress.CompleteLevel(100);Require(!progress.IsComplete&&progress.LevelToPlay==101,"Winning 100 advances real progress to101");
+                using(var db=OriginalRuntimeStorage.Open(progress.DatabasePath))Require(db.Find("Level").Value=="101","Real progress beyond the catalog is persisted");
+                progress.CompleteLevel(101);Require(!progress.IsComplete&&progress.LevelToPlay==102,"Repeated boards keep increasing real progress");
+                Require(CoreLevelCatalog.GetResourceLevelNumber(101)==1&&CoreLevelCatalog.GetResourceLevelNumber(102)==2,
+                    "Only board resources restart after100");
+                progress.StartOver();Require(!progress.IsComplete&&progress.LevelToPlay==1,"Explicit progress reset still starts at1");
             }
         }
         internal static void RequireCurvedTitle(Component dialog, string expected, float scale)
@@ -658,7 +660,7 @@ namespace Whitebox.Foundation.Editor
         }
         [Serializable]private sealed class Report
         {
-            public bool passed,production_win_remaining_result_bound,actual_next_level_loaded,production_zero_move_failure_bound,actual_retry_reloaded_same_level,cap100_and_restart_verified,core_booster_inventory_purchase_ui_absent;
+            public bool passed,production_win_remaining_result_bound,actual_next_level_loaded,production_zero_move_failure_bound,actual_retry_reloaded_same_level,loop100_and_restart_verified,core_booster_inventory_purchase_ui_absent;
             public string king_win_reaction, king_win_connector, king_win_loop, king_fail_reaction;
             public bool king_win_mixed, king_connector_mixed, king_fail_mixed;
             public bool win_logo_backdrop_fade, remaining_moves_backdrop_reused, result_and_failure_backdrops_cleared_on_reload;

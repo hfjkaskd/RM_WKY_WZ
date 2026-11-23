@@ -31,6 +31,7 @@ namespace Whitebox.Foundation
         [Min(0)] public int firstReviveMoves;
         public string levelQuitPrefabPath;
         public string levelTitleFormat, completedTitle, continueText, completedContinueText, retryText, failText, skipText;
+        public string levelTitleKey, completedTitleKey, continueTextKey, completedContinueTextKey, retryTextKey, failTextKey, skipTextKey;
         public float soundFadeDuration;
     }
 }

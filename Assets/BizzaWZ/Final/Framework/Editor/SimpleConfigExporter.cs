@@ -99,6 +99,7 @@ public static class SimpleConfigExporter
             rows.Add(config);
         }
 
+        ApplyProjectLanguageOverrides(rows);
         WriteTable(outputPath, "tbllanguage", writer =>
         {
             SimpleConfigBinary.WriteCount(writer, rows.Count);
@@ -116,6 +117,41 @@ public static class SimpleConfigExporter
         });
 
         Debug.Log($"[SimpleConfigExporter] tbllanguage: {rows.Count} rows");
+    }
+
+    [Serializable]
+    private sealed class ProjectLanguageOverrides
+    {
+        public ProjectLanguageRow[] rows;
+    }
+
+    [Serializable]
+    private sealed class ProjectLanguageRow
+    {
+        public string key, english, portuguese, indonesian;
+    }
+
+    private static void ApplyProjectLanguageOverrides(List<LanguageConfig> rows)
+    {
+        var path = Path.Combine(Application.dataPath, "Game/Localization/LanguageOverrides.json");
+        if (!File.Exists(path)) return;
+        var overrides = JsonUtility.FromJson<ProjectLanguageOverrides>(File.ReadAllText(path, Encoding.UTF8));
+        if (overrides?.rows == null) throw new InvalidDataException("Project language overrides are invalid.");
+        foreach (var item in overrides.rows)
+        {
+            if (string.IsNullOrEmpty(item.key) || string.IsNullOrEmpty(item.english) ||
+                string.IsNullOrEmpty(item.portuguese) || string.IsNullOrEmpty(item.indonesian))
+                throw new InvalidDataException("Project translations require a key and all three supported languages.");
+            var row = rows.Find(value => value.Id == item.key);
+            if (row == null)
+            {
+                row = new LanguageConfig { Id = item.key, Dict = new Dictionary<string, string>() };
+                rows.Add(row);
+            }
+            row.Dict["en-US"] = item.english;
+            row.Dict["pt-BR"] = item.portuguese;
+            row.Dict["id-ID"] = item.indonesian;
+        }
     }
 
     private static void ExportLangNum(ExcelSheet sheet, string outputPath)

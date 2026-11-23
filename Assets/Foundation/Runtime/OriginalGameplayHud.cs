@@ -27,6 +27,8 @@ namespace Whitebox.Foundation
             ? tutorialTopLimit.position
             : portraitBackground.transform.position;
         [SerializeField] private string rewardTitle;
+        [SerializeField] private CoreLocalizedText localizedTargetTitle;
+        [SerializeField] private string targetTitleKey, rewardTitleKey;
         [SerializeField] private Vector3 rewardTitleOffset;
         [SerializeField] private Vector3 bonusTitleOffset;
         [SerializeField] private float rewardAppearDuration, rewardAppearOvershoot;
@@ -52,7 +54,7 @@ namespace Whitebox.Foundation
         {
             defaultTopLayer = topSorting.sortingLayerID;
             defaultTopOrder = topSorting.sortingOrder;
-            initialTitle = targetTitle.text;
+            initialTitle = localizedTargetTitle.Fallback;
             initialTitlePosition = targetTitle.transform.localPosition;
             initialTitleScale = targetTitle.transform.localScale;
         }
@@ -101,7 +103,7 @@ namespace Whitebox.Foundation
             CacheSorting(); Arrange();
             if (game.Session.IsBonus) // TopUi.PrepareForBonusLevel 0x162f784, original English portrait.
             {
-                targetTitle.text = rewardTitle;
+                localizedTargetTitle.SetKey(rewardTitleKey, rewardTitle);
                 targetTitle.transform.position += bonusTitleOffset;
             }
         }
@@ -118,7 +120,7 @@ namespace Whitebox.Foundation
         private void AnimateTargetTextAsReward() // TopUi 0x1630680, US/English branch of 0x16304a8.
         {
             titleScale = targetTitle.transform.localScale;
-            targetTitle.text = rewardTitle;
+            localizedTargetTitle.SetKey(rewardTitleKey, rewardTitle);
             targetTitle.transform.position += rewardTitleOffset;
             targetTitle.transform.localScale = Vector3.zero;
             titleElapsed = 0f; titleAppearing = true;
@@ -192,7 +194,7 @@ namespace Whitebox.Foundation
             Release();
             ResetSorting();
             orientationEnabled = true;
-            targetTitle.text = initialTitle;
+            localizedTargetTitle.SetKey(targetTitleKey, initialTitle);
             targetTitle.transform.localPosition = initialTitlePosition;
             targetTitle.transform.localScale = initialTitleScale;
         }

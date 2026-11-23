@@ -1,0 +1,46 @@
+static class Runner {
+    static int checks;
+    static void Check(bool value,string message) { if(!value)throw new Exception(message);checks++;Console.WriteLine("PASS "+message); }
+    // RUNNER_SETUP
+    static void Main() {
+        foreach(int actual in new[]{100,101,102,200,201,1000,int.MaxValue}) {
+            var bridge=Reset(actual);
+            Check(bridge.TryGetCurrentLevel(out int level)&&level==actual,"bridge startup preserves actual level "+actual);
+            Ready(bridge);
+            Check(FlowModule.CurrentLevel==actual,"Flow and active gameplay use actual level "+actual);
+            if(actual==int.MaxValue)continue;
+            Win(bridge);
+            Check(FlowModule.WinLevelNumber==actual&&FakeWithdrawalAnalytics.LastLevel==actual,
+                "settlement/analytics report actual winning level "+actual);
+            Check(SaveDataUtils.GameData.playerSelectedLv==actual+1,"offline win increments actual progress "+actual);
+            Scheduler.Finish(bridge.ReloadAttempt());
+            Check(bridge.TryGetCurrentLevel(out level)&&level==actual+1&&SDKAssetHandler.LastError==null,
+                "next attempt keeps incremented actual level "+actual);
+        }
+        foreach(int server in new[]{1,100,101,201,1000}) {
+            var bridge=Reset(101);Ready(bridge);Receive(bridge,server);
+            Check(FlowModule.CurrentLevel==101,"server revision does not replace active 101 board: "+server);
+            Win(bridge);
+            Check(FlowModule.WinLevelNumber==101&&SaveDataUtils.GameData.playerSelectedLv==server,
+                "win reports 101 while retaining server revision: "+server);
+            Scheduler.Finish(bridge.ReloadAttempt());
+            Check(bridge.TryGetCurrentLevel(out int level)&&level==server&&SDKAssetHandler.LastError==null,
+                "next board follows authoritative actual level: "+server);
+        }
+        var online=Reset(7,true,101);Ready(online);Win(online);
+        Check(FlowModule.WinLevelNumber==101&&online.TryCaptureWinReport(out var reply),
+            "online level 101 exposes its single settlement report");
+        // Obtain callback separately so definite assignment does not depend on Check.
+        online=Reset(7,true,101);Ready(online);Win(online);online.TryCaptureWinReport(out reply);
+        var receipt=new AccountModule.UserInfo{Os_Rts=102};
+        reply(new(){success=true,data=new(){Os_Uso=receipt}});
+        AccountModule.Instance.Os_Current_Uso=receipt;FlowModule.ApplyServerProgress(102);online.NotifyAccount();
+        Receive(online,201);Scheduler.Finish(online.ReloadAttempt());
+        Check(online.TryGetCurrentLevel(out int finalLevel)&&finalLevel==201&&SaveDataUtils.GameData.playerSelectedLv==201,
+            "older 102 settlement receipt cannot replace newer actual 201 progress");
+        var retry=Reset(201);Ready(retry);retry.OnAttemptEnded(new(){Level=201,Outcome=RoyalMatchLevelOutcome.Lost});
+        Scheduler.Finish(retry.ReloadAttempt());
+        Check(retry.TryGetCurrentLevel(out finalLevel)&&finalLevel==201,"failed loop attempt retries actual 201");
+        Console.WriteLine("LEVEL_LOOP_FLOW_PASS cases="+checks);
+    }
+}

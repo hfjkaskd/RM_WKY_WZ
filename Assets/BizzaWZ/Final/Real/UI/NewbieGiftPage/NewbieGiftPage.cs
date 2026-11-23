@@ -53,10 +53,25 @@ public class NewbieGiftPage : UIPageBase
         buttonHandled = false;
         closeOnly = SaveDataUtils.TeachData.newbieGiftRequest == NewbieGiftRequestState.Background;
         _nuwbieGift = WithdrawalUtil.GetNewbieGift();
+        RefreshAmountText();
+        // AccountModule.Instance.Request_UserReachReportRequest(OnRefresh);
+    }
+
+    private void OnEnable()
+    {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshAmountText, true);
+    }
+
+    private void OnDisable()
+    {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, RefreshAmountText, false);
+    }
+
+    private void RefreshAmountText()
+    {
         Os_ComText.text = closeOnly
             ? $"R${WithdrawalUtil.GetNewbieGift(AccountModule.E_CountryType.BR).ToString("F2", CultureInfo.GetCultureInfo("pt-BR"))}"
             : $"{LanguageUtils.GetText("CurrencyToken")}{WithdrawalUtil.GetCustomizedValueByCountryType(_nuwbieGift)}";
-        // AccountModule.Instance.Request_UserReachReportRequest(OnRefresh);
     }
 
     public void OnButtonClick()

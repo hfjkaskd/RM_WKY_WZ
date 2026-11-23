@@ -4,8 +4,8 @@ using Whitebox.Foundation.ConfigData;
 
 namespace Whitebox.Foundation
 {
-    // Product scope, explicitly narrowed by the user to ordinary levels1–100.
-    // Entries are authored assets; only the selected level payload is loaded.
+    // The original 100 authored boards repeat while player progress keeps increasing.
+    // Only resource selection wraps; session, UI and server levels stay unchanged.
     [CreateAssetMenu(menuName = "Whitebox/Core level catalog")]
     public sealed class CoreLevelCatalog : ScriptableObject
     {
@@ -18,15 +18,20 @@ namespace Whitebox.Foundation
         }
         [SerializeField] private Entry[] levels;
         public int Count => levels == null ? 0 : levels.Length;
+        public static int GetResourceLevelNumber(int number)
+        {
+            if (number < 1)
+                throw new ArgumentOutOfRangeException(nameof(number), "Level numbers must be positive.");
+            return (number - 1) % SupportedLevelCount + 1;
+        }
         public Entry GetEntry(int number)
         {
-            if (number < 1 || number > SupportedLevelCount)
-                throw new ArgumentOutOfRangeException(nameof(number), "Only ordinary levels1–100 are in scope.");
+            int resourceNumber = GetResourceLevelNumber(number);
             if (Count != SupportedLevelCount)
                 throw new InvalidOperationException("The core catalog must contain the original100 levels.");
-            var entry = levels[number - 1];
-            if (entry == null || entry.number != number || string.IsNullOrEmpty(entry.originalName) || string.IsNullOrEmpty(entry.resourcePath))
-                throw new InvalidOperationException("Invalid core level catalog entry: " + number);
+            var entry = levels[resourceNumber - 1];
+            if (entry == null || entry.number != resourceNumber || string.IsNullOrEmpty(entry.originalName) || string.IsNullOrEmpty(entry.resourcePath))
+                throw new InvalidOperationException("Invalid core level catalog entry: " + resourceNumber);
             return entry;
         }
         public FTiledLevel Load(int number)

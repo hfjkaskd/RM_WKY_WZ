@@ -38,9 +38,9 @@ namespace Whitebox.Foundation
         {
             this.owner=owner;lifecycle=new LifecycleModel(this,new OriginalUiDialogAction(action,manager));
             int level = owner.GetCurrentSession().Number;
-            title.SetLevelTitle(string.Format(owner.Configuration.levelTitleFormat, level), level);
-            failText.text=owner.Configuration.failText;foreach(var canvas in buttonCanvases)canvas.worldCamera=owner.UiCamera;
-            retryLabel.text=owner.Configuration.retryText;PrepareGoalResults();
+            title.SetLevelTitle(string.Format(CoreLocalization.Get(owner.Configuration.levelTitleKey, owner.Configuration.levelTitleFormat), level), level);
+            failText.text=CoreLocalization.Get(owner.Configuration.failTextKey, owner.Configuration.failText);foreach(var canvas in buttonCanvases)canvas.worldCamera=owner.UiCamera;
+            retryLabel.text=CoreLocalization.Get(owner.Configuration.retryTextKey, owner.Configuration.retryText);PrepareGoalResults();
             retryButton.onClick.AddListener(RetryLevel);
         }
         // Native ordinary-board PrepareGoalResults0x134cd24 and

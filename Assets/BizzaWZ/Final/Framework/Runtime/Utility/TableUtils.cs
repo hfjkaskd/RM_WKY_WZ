@@ -59,6 +59,8 @@ public static class TableUtils
             }
         }
 
+        // Refresh labels that opened before the language table became available.
+        BizzaEventSystem.Emit(EventDefine.Frame.LanguageChange);
         LogLogger.LogInfo($"{nameof(LoadTableConfigs)} end");
         return UniTask.CompletedTask;
     }

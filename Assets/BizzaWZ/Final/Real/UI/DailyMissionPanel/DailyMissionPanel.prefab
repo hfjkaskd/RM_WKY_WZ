@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 4234017191892483457}
   - component: {fileID: 7886877833332542667}
   - component: {fileID: 8240290209413650038}
+  - component: {fileID: 978411130000000001}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1637,6 +1638,7 @@ GameObject:
   - component: {fileID: 1024487327778406609}
   - component: {fileID: 2255209270500712116}
   - component: {fileID: 3888482628531535294}
+  - component: {fileID: 978411130000000002}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1660,8 +1662,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
-  m_SizeDelta: {x: 340, y: 105}
+  m_AnchoredPosition: {x: 65, y: 0}
+  m_SizeDelta: {x: 270, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2255209270500712116
 CanvasRenderer:
@@ -2122,7 +2124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47, y: 1}
+  m_AnchoredPosition: {x: -135, y: 1}
   m_SizeDelta: {x: 85, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4191488688938439370
@@ -2804,3 +2806,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &978411130000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296870115363568795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49796e141a58b144486babe2f29d161b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  key: Btn_Withdraw
+  whiteBuildText:
+  bounce: 0
+--- !u!114 &978411130000000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7530238132647260279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49796e141a58b144486babe2f29d161b, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  key: RM_DailyMission_Go
+  whiteBuildText:
+  bounce: 0

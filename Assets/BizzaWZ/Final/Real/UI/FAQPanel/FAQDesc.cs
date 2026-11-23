@@ -22,9 +22,15 @@ public class FAQDesc : MonoBehaviour
 
     private string desc;
 
-    public void Start()
-    { 
+    private void OnEnable()
+    {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, Refresh, true);
         Refresh();
+    }
+
+    private void OnDisable()
+    {
+        BizzaEventSystem.Set(EventDefine.Frame.LanguageChange, Refresh, false);
     }
 
     [Button("Refresh")]

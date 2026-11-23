@@ -29,12 +29,16 @@ namespace Whitebox.Foundation.Editor
         private static int index, frame, sample, previousOwner, expectedReload, refillsBefore, swapsBefore, rejectedBefore;
         private static OriginalPlayableBoard previousAttempt;
         private static float deadline, settledAt, afterResultAt, nextSelectionAt;
-        private static bool checkingResultButton, reopeningCompletion;
+        private static bool checkingResultButton, reopeningLoop;
+        private static string firstBoardName;
         private static bool hasHoneyGoal, hasBushGoal;
 
         internal static void Run(FoundationController owner)
         {
             report = new Report { requested_levels = CoreAuthoredOpeningVerification.ReadRequestedLevels(1, allowRetries: true) };
+            firstBoardName = AssetDatabase.LoadAssetAtPath<FoundationSettings>("Assets/Foundation/Settings/FoundationSettings.asset")
+                .CoreLevels.GetEntry(1).originalName;
+            checkingResultButton = reopeningLoop = false;
             index = 0;
             frame = -1;
             Begin(owner);
@@ -415,10 +419,8 @@ namespace Whitebox.Foundation.Editor
             int nextLevel;
             if (flow.WinDialog != null && flow.WinDialog.Lifecycle.IsShowing && !flow.WinDialog.IsAnimationWorking)
             {
-                bool lastLevel = attempt.level == CoreLevelCatalog.SupportedLevelCount;
                 Require(game.State.IsWin() && game.Session.State == 3 && CountGoalsLeft() == 0 &&
-                    controller.Progress.LevelToPlay == Math.Min(attempt.level + 1, CoreLevelCatalog.SupportedLevelCount) &&
-                    controller.Progress.IsComplete == lastLevel,
+                    controller.Progress.LevelToPlay == attempt.level + 1 && !controller.Progress.IsComplete,
                     "The actual win commits progress and displays the result.");
                 if (game.Session.IsBonus)
                 {
@@ -429,7 +431,7 @@ namespace Whitebox.Foundation.Editor
                 }
                 button = flow.WinDialog.ContinueButton;
                 outcome = "win";
-                nextLevel = lastLevel ? 1 : attempt.level + 1;
+                nextLevel = attempt.level + 1;
             }
             else if (flow.FailDialog != null && flow.FailDialog.Lifecycle.IsShowing)
             {
@@ -472,7 +474,7 @@ namespace Whitebox.Foundation.Editor
             deadline = now + 30f;
             if (outcome == "win" && attempt.level == CoreLevelCatalog.SupportedLevelCount)
             {
-                reopeningCompletion = true;
+                reopeningLoop = true;
                 SceneManager.LoadSceneAsync(controller.gameObject.scene.path, LoadSceneMode.Single);
             }
             else CoreFlowVerification.Click(button, flow.UiCamera, false);
@@ -483,10 +485,9 @@ namespace Whitebox.Foundation.Editor
         private static void ObserveReload()
         {
             var owner = UnityEngine.Object.FindObjectOfType<FoundationController>();
-            if (reopeningCompletion)
+            if (reopeningLoop)
             {
-                ObserveReopenedCompletion(owner);
-                return;
+                if (!ObserveReopenedLoop(owner)) return;
             }
             if (owner == null || owner.Gameplay == null || ReferenceEquals(owner.Gameplay, previousAttempt)) return;
             bool keptScene = owner.GetInstanceID() == previousOwner;
@@ -495,8 +496,10 @@ namespace Whitebox.Foundation.Editor
             if (!checkingResultButton) { Begin(owner); return; }
             Require(owner.CurrentLevelNumber == expectedReload && owner.Gameplay.State.IsPlaying() &&
                 owner.Gameplay.Moves.MadeMoves == 0, "The visible result button opens a fresh playable board.");
-            if (expectedReload == 1)
-                Require(!owner.Progress.IsComplete, "The level 100 result resets progress for the new run.");
+            if (expectedReload == 101)
+                Require(!owner.Progress.IsComplete && owner.Gameplay.Session.Number == 101 &&
+                    owner.Gameplay.Session.Name == firstBoardName,
+                    "After 100 the original first board plays as real level101.");
             attempt.reloaded_level = expectedReload;
             // Duplicate entries reserve retries. A real win advances past any unused slots.
             do { index++; }
@@ -518,27 +521,23 @@ namespace Whitebox.Foundation.Editor
             SceneManager.LoadSceneAsync(owner.gameObject.scene.path, LoadSceneMode.Single);
         }
 
-        private static void ObserveReopenedCompletion(FoundationController owner)
+        private static bool ObserveReopenedLoop(FoundationController owner)
         {
-            if (owner == null || owner.GetInstanceID() == previousOwner || !owner.CoreFlow.IsInitialized) return;
+            if (owner == null || owner.GetInstanceID() == previousOwner || !owner.CoreFlow.IsInitialized ||
+                owner.Gameplay == null || !owner.Gameplay.State.IsPlaying()) return false;
             var flow = owner.CoreFlow;
-            Require(owner.Progress.IsComplete && owner.CurrentLevelNumber == CoreLevelCatalog.SupportedLevelCount &&
-                owner.Gameplay == null && UnityEngine.Object.FindObjectOfType<OriginalGameplayHud>() == null,
-                "Reopening completed progress preserves level 100 without creating another attempt or HUD.");
-            var result = flow.WinDialog;
-            Require(result != null && result.Lifecycle.IsShowing && flow.BlocksBoardInput,
-                "The production scene opens its saved completion result.");
-            if (result.IsAnimationWorking) return;
-            CoreFlowVerification.RequireCurvedTitle(result, flow.Configuration.completedTitle, 2.3f);
-            Require(result.ContinueButton.GetComponentInChildren<TMP_Text>().text == flow.Configuration.completedContinueText,
-                "The restored result still offers Play Again.");
-            Require(!File.Exists(owner.Progress.DatabasePath + ".level"), "The completed run has no resumable board.");
+            Require(!owner.Progress.IsComplete && owner.Progress.LevelToPlay == 101 && owner.CurrentLevelNumber == 101 &&
+                owner.Gameplay.Session.Number == 101 &&
+                owner.Gameplay.Session.Name == firstBoardName &&
+                UnityEngine.Object.FindObjectOfType<OriginalGameplayHud>() != null,
+                "Reopening after winning100 loads the first board as real level101 with its HUD.");
+            Require(flow.WinDialog == null || !flow.WinDialog.Lifecycle.IsShowing,
+                "Reopening level101 does not show the old completed-catalog result.");
             GameSceneVerification.RequireGameBackground(GameSceneVerification.CastleGardenBackgroundGuid);
-            GrassGameplayVerification.Capture(flow.UiCamera, "core_natural_100_reopened_completion.png");
-            attempt.reopened_completion = true;
-            previousOwner = owner.GetInstanceID();
-            reopeningCompletion = false;
-            CoreFlowVerification.Click(result.ContinueButton, flow.UiCamera, false);
+            GrassGameplayVerification.Capture(flow.UiCamera, "core_natural_101_reopened_loop.png");
+            attempt.reopened_loop = true;
+            reopeningLoop = false;
+            return true;
         }
 
         private static void ObserveRemainingCupboards()
@@ -679,7 +678,7 @@ namespace Whitebox.Foundation.Editor
             public int authored_rocket_eggs_removed, authored_rocket_owls_removed;
             public int level_try_count, difficulty_seed;
             public string session_name, outcome;
-            public bool reopened_completion, entered_from_previous_result, free_hammer_used, free_arrow_used, free_arrow_row_cleared;
+            public bool reopened_loop, entered_from_previous_result, free_hammer_used, free_arrow_used, free_arrow_row_cleared;
             public bool free_cannon_used, free_cannon_column_cleared, free_jester_used;
             public bool double_lightball_opening;
             public int hammer_refills, hammer_boxes_removed;

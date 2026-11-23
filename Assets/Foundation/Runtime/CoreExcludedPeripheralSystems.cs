@@ -15,14 +15,14 @@ namespace Whitebox.Foundation
         public CoreExcludedPeripheralSystems(OriginalActiveLevelData session)
         {
             this.session = session ?? throw new ArgumentNullException(nameof(session));
-            if (session.Number < 1 || session.Number > 100 || session.IsSideProgressionLevel || session.IsLeague)
-                throw new InvalidOperationException("Core-only composition requires a numbered level 1–100.");
+            if (session.Number < 1 || session.IsSideProgressionLevel || session.IsLeague)
+                throw new InvalidOperationException("Core-only composition requires a positive numbered ordinary level.");
             Coin = session.AnimationValues.Coin.Before;
         }
         private static Exception Excluded() => new InvalidOperationException("Peripheral feature is excluded by the requested core-only scope.");
         public IOriginalWinInventory GetInventory() => this;
         public int PersistentLevelNumber => session.Number;
-        public int GetNThousandLevelCoin(int level) => throw Excluded();
+        public int GetNThousandLevelCoin(int level) => 0; // Milestone rewards remain excluded after level 1000.
         public bool IsWaterLevel => false;
         public bool KingsCupIsInGroup => false;
         public bool TeamBattleIsInGroup => false;

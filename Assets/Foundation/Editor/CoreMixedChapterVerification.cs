@@ -511,7 +511,8 @@ namespace Whitebox.Foundation.Editor
         private static int safeFirstDamageFrame = -1;
         private static OriginalSafeBoardItem openingSafe;
         private static OriginalTntBoardItem fillingTnt;
-        private static bool restartAfterCap;
+        private static bool continueAfterFirstCycle;
+        private static string firstBoardName;
         private static int level, frame, sample, ownerId, goalBefore, movesBefore;
         private static float started, settledAt;
         private static bool opening, moving, reloading, sawOriginalCombo;
@@ -519,6 +520,9 @@ namespace Whitebox.Foundation.Editor
         public static void Run(FoundationController owner, int chapterEnd = 0)
         {
             controller = owner;
+            firstBoardName = AssetDatabase.LoadAssetAtPath<FoundationSettings>("Assets/Foundation/Settings/FoundationSettings.asset")
+                .CoreLevels.GetEntry(1).originalName;
+            continueAfterFirstCycle = false;
             level = owner.CurrentLevelNumber;
             Require(level == 2 || level == 22 || level == 31 || level == 41 || level == 51 || level == 61 || level == 71 || level == 80 || level == 81 || level == 91 || level == 100,
                 "Start from the authored chapter entry.");
@@ -546,7 +550,7 @@ namespace Whitebox.Foundation.Editor
                 report.scope = "Actual GameScene from level 61 using real Continue buttons. Records owl tap, blocked drag, authored rocket and TNT, and an adjacent match. Verifies dynamic Vase and Egg refills, authored Propeller pair, and ordinary wins using controlled TNT placements.";
             if (endLevel == 80)
                 report.scope = "Actual GameScene from level 71 using real Continue buttons. Records bush tap, rejected drag, an adjacent match, controlled TNT placements, real grass spread and completion. Level 80 uses twenty legal moves on the original coin board.";
-            if (level >= 91) report.scope = "Actual GameScene with original Safe boards and level 100. Uses authored gestures, controlled specials on ordinary boards, and original level 100 gestures through the terminal result.";
+            if (level >= 91) report.scope = "Actual GameScene with original Safe boards and level 100. Uses authored gestures, controlled specials on ordinary boards, and original level 100 gestures through its result and continuation into real level101.";
             if (level == 81) report.scope = "Actual GameScene using the original honey boards and Continue buttons. Records an authored level 81 swap, covered-tile drag, honey reveal, and controlled placements for ordinary completion.";
             started = Time.realtimeSinceStartup;
             frame = -1;
@@ -793,11 +797,13 @@ namespace Whitebox.Foundation.Editor
             if (reloading)
             {
                 if (controller == null || controller.GetInstanceID() == ownerId || controller.Gameplay == null) return;
-                if (restartAfterCap)
+                if (continueAfterFirstCycle)
                 {
-                    Require(controller.CurrentLevelNumber == 1 && controller.Progress.LevelToPlay == 1 && !controller.Progress.IsComplete,
-                        "The actual terminal Continue button opens the original first level again.");
-                    report.level_cap_restarts = true; report.passed = true; Finish();
+                    Require(controller.CurrentLevelNumber == 101 && controller.Progress.LevelToPlay == 101 &&
+                        !controller.Progress.IsComplete && controller.Gameplay.Session.Number == 101 &&
+                        controller.Gameplay.Session.Name == firstBoardName,
+                        "The actual Continue button opens the original first board as real level101.");
+                    report.level_loop_continues = true; report.passed = true; Finish();
                     return;
                 }
                 BeginLevel();
@@ -2067,12 +2073,12 @@ namespace Whitebox.Foundation.Editor
         {
             var dialog = controller.CoreFlow.WinDialog;
             if (dialog == null || !dialog.Lifecycle.IsShowing || dialog.IsAnimationWorking) return;
-            CoreFlowVerification.RequireCurvedTitle(dialog, level == 100 ? "100 Levels Complete" : "Level " + level,
-                level == 100 ? 2.3f : level >= 10 ? 2.1f : 1.9f);
+            CoreFlowVerification.RequireCurvedTitle(dialog, "Level " + level,
+                level >= 100 ? 2.3f : level >= 10 ? 2.1f : 1.9f);
             current.result_title_curve_verified = true;
-            int persisted = level == 100 ? 100 : level + 1;
+            int persisted = level + 1;
             Require(game.Session.State == 3 && controller.Progress.LevelToPlay == persisted &&
-                controller.Progress.IsComplete == (level == 100), "Win persists its correct progress and completion state.");
+                !controller.Progress.IsComplete, "Win persists the next real level without completing the catalog.");
             if (game.Session.IsBonus)
             {
                 current.collected_coins = board.Goals.GetGoalLeftCount(CoinGoal);
@@ -2136,7 +2142,7 @@ namespace Whitebox.Foundation.Editor
                 Require(report.levels.Count == expectedLevels, "The chapter ran in one production continuation.");
                 if (level == 100)
                 {
-                    restartAfterCap = true; ownerId = controller.GetInstanceID(); reloading = true;
+                    continueAfterFirstCycle = true; ownerId = controller.GetInstanceID(); reloading = true;
                     WriteReport();
                     CoreFlowVerification.Click(dialog.ContinueButton, controller.CoreFlow.UiCamera);
                     return;
@@ -2233,7 +2239,7 @@ namespace Whitebox.Foundation.Editor
             public bool honey_blocks_drag, honey_natural_reveal, honey_reveals_intact_box, pending_honey_area_score_verified;
             public int honey_first_swap_removed;
             public float honey_recycled_min_alpha;
-            public bool safe_blocks_drag, safe_resists_match, safe_power_damage, safe_handle_depth_verified, level_cap_restarts;
+            public bool safe_blocks_drag, safe_resists_match, safe_power_damage, safe_handle_depth_verified, level_loop_continues;
             public float safe_handle_particle_z, safe_handle_shadow_z, safe_handle_parent_z;
             public bool tnt_fuse_masked_at_refill, tnt_fuse_unmasked_on_landing;
             public bool honey_tutorial_dismissed, safe_tutorial_dismissed;

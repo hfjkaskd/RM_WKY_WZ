@@ -50,7 +50,19 @@ namespace Whitebox.Foundation
             else
             {
                 LevelToPlay = values.GetInt(LevelKey, initialLevel);
-                IsComplete = values.GetInt(CompletedKey) == 1;
+                // Migrate the old standalone end-of-catalog save to the next real level.
+                if (values.GetInt(CompletedKey) == 1)
+                {
+                    if (LevelToPlay == CoreLevelCatalog.SupportedLevelCount)
+                    {
+                        LevelToPlay++;
+                        values.SetInt(LevelKey, LevelToPlay);
+                        values.SetInt(OriginalAccountStorage.LevelTryCountKey, 0);
+                        values.SetInt(OriginalAccountStorage.HardLevelBackgroundIndexKey, 0);
+                    }
+                    values.SetInt(CompletedKey, 0);
+                    database.Save();
+                }
             }
             PowerHintTapCount = values.GetInt(PowerHintTapCountKey);
             // Existing core saves only counted TNT/rocket taps.
@@ -63,8 +75,8 @@ namespace Whitebox.Foundation
         }
         private static void CheckLevel(int number)
         {
-            if (number < 1 || number > CoreLevelCatalog.SupportedLevelCount)
-                throw new InvalidDataException("Core progress is outside the configured100-level scope.");
+            if (number < 1)
+                throw new InvalidDataException("Core progress requires a positive level number.");
         }
         internal void SetAuthoritativeLevel(int number)
         {
@@ -100,9 +112,7 @@ namespace Whitebox.Foundation
                 database.Save();
                 return;
             }
-            if (number == CoreLevelCatalog.SupportedLevelCount)
-            { LevelToPlay = number; IsComplete = true; values.SetInt(CompletedKey, 1); }
-            else LevelToPlay = number + 1;
+            LevelToPlay = checked(number + 1);
             UpdateTutorialProgressAfterWin(number);
             values.SetInt(LevelKey, LevelToPlay);
             values.SetInt(OriginalAccountStorage.LevelTryCountKey, 0);

@@ -118,12 +118,10 @@ internal sealed partial class WkyGameplayBridge : IRoyalMatchBoosterInventory
                 success = adResult == true;
             }
         }
-        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-        {
-        }
         catch (Exception error)
         {
-            Debug.LogException(error);
+            if (!(error is OperationCanceledException && cancellationToken.IsCancellationRequested))
+                Debug.LogException(error);
         }
         finally
         {

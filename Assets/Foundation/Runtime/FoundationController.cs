@@ -155,7 +155,7 @@ namespace Whitebox.Foundation
         private void StartAttempt(bool restarted)
         {
             var camera = gameTouchInput.PointerCamera;
-            var restored = !restarted ? attemptStore?.Load(level) : null;
+            var restored = !restarted ? attemptStore?.Load(level, currentLevelNumber) : null;
             OriginalGameStateSaveData restoredState = null;
             if (restored != null)
             {

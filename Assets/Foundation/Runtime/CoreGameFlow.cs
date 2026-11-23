@@ -690,9 +690,11 @@ namespace Whitebox.Foundation
         public IOriginalFlowDialog InstantiateDefaultWinDialog(OriginalFlowAction action)
         {
             result = Create<OriginalLevelWinDialog>(config.winDialogPrefabPath);
-            if (game == null) result.BindCompletion(action, dialogs, this, config.completedTitle, progress.LevelToPlay);
+            if (game == null) result.BindCompletion(action, dialogs, this, CoreLocalization.Get(config.completedTitleKey, config.completedTitle), progress.LevelToPlay);
             else result.Bind(action, dialogs, this);
-            result.SetContinueText(progress.IsComplete ? config.completedContinueText : config.continueText);
+            result.SetContinueText(progress.IsComplete
+                ? CoreLocalization.Get(config.completedContinueTextKey, config.completedContinueText)
+                : CoreLocalization.Get(config.continueTextKey, config.continueText));
             return result;
         }
         public IOriginalLevelWinDialog InstantiateLeagueWinDialog(OriginalFlowAction action) => throw new InvalidOperationException("League is outside the first100 ordinary levels.");
@@ -972,7 +974,7 @@ namespace Whitebox.Foundation
         public void RaiseWinLogoHud(int layer, int order) => hud.SetWinLogoSorting(layer, order);
         public bool HasRemainingMovesManager() => RemainingMoves != null;
         public void TriggerTapToSkipClick() => RemainingMoves.TriggerTapToSkipClick();
-        public string GetTapToSkipText() => config.skipText;
+        public string GetTapToSkipText() => CoreLocalization.Get(config.skipTextKey, config.skipText);
         public Vector3 GetTapTextPosition()
         {
             // TapToSkip.ArrangeTapTextPosition 0x18d0b64 uses the midpoint
@@ -983,7 +985,9 @@ namespace Whitebox.Foundation
             gridBottom.y -= .5f;
             return (gridBottom + bottomUi.transform.position) * .5f;
         }
-        public string GetLevelTitle(OriginalActiveLevelData session) => progress.IsComplete ? config.completedTitle : string.Format(config.levelTitleFormat,session.Number);
+        public string GetLevelTitle(OriginalActiveLevelData session) => progress.IsComplete
+            ? CoreLocalization.Get(config.completedTitleKey, config.completedTitle)
+            : string.Format(CoreLocalization.Get(config.levelTitleKey, config.levelTitleFormat), session.Number);
         public bool ShouldShowRewardedAd => false;
         public bool ShouldShowCloche => false;
         public bool ShouldShowWeeklyPanel => false;

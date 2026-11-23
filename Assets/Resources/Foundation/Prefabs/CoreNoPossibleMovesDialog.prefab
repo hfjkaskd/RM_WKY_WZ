@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8917026571143091902}
   - component: {fileID: 5122684269759034674}
   - component: {fileID: 114089843903986396}
+  - component: {fileID: 991000000000001}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No Possible Moves!
+  m_text: "No Possible Moves!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 7a4484447b7835d4eb1b79c13fa54d1e, type: 2}
@@ -839,6 +840,7 @@ GameObject:
   - component: {fileID: 4762570056001154209}
   - component: {fileID: 8575362793350175784}
   - component: {fileID: 4595543473117555789}
+  - component: {fileID: 991000000000002}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -927,9 +929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You can restart
-
-    the level!'
+  m_text: "You can restart the level!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: fff0362ca80e4364dba952138defe362, type: 2}
@@ -1485,6 +1485,7 @@ GameObject:
   - component: {fileID: 6667541242068683234}
   - component: {fileID: 6053611760836335661}
   - component: {fileID: 6253265082194773524}
+  - component: {fileID: 991000000000003}
   m_Layer: 5
   m_Name: ButtonText
   m_TagString: Untagged
@@ -1573,7 +1574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restart
+  m_text: "Restart"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79e4b5fe7d2626c4d9cf93d088b9c03d, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 38c47ec4635de1f48bae07e1da605eff, type: 2}
@@ -2198,3 +2199,48 @@ Transform:
   - {fileID: 2994027540015273876}
   m_Father: {fileID: 6855430003178679735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681755580579892321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 5122684269759034674}
+  key: RM_Play_NoMoves
+  fallback: "No Possible Moves!"
+--- !u!114 &991000000000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4236513489678336869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 4595543473117555789}
+  key: RM_Play_RestartHint
+  fallback: "You can restart the level!"
+--- !u!114 &991000000000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6372242627855513910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdf8f1617e24435a8e9371d3d648b55, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 6253265082194773524}
+  key: RM_Play_Restart
+  fallback: "Restart"

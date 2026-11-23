@@ -96,7 +96,9 @@ public static class WithdrawalUtil
     }
 #endif
 
-    private static CultureInfo culture = new CultureInfo("de-DE");
+    private static readonly CultureInfo culture = CultureInfo.GetCultureInfo("pt-BR");
+    private static readonly CultureInfo usCulture = CultureInfo.GetCultureInfo("en-US");
+    private static readonly CultureInfo indonesiaCulture = CultureInfo.GetCultureInfo("id-ID");
     public static string GetCustomizedValueByCountryType(float _value) // 根据国家先处理数值，再按对应国家格式转成字符串。
     {
         //LogLogger.LOGNumericalShow($"数值小数点优化_字符串： 原始值_{value}");
@@ -109,10 +111,10 @@ public static class WithdrawalUtil
                 current = value.ToString("F2", culture);
                 break;
             case AccountModule.E_CountryType.US:
-                current = value.ToString("F2");
+                current = value.ToString("F2", usCulture);
                 break;
             case AccountModule.E_CountryType.ID:
-                current = Math.Truncate(value).ToString();
+                current = Math.Truncate(value).ToString("N0", indonesiaCulture);
                 break;
         }
         #endif
